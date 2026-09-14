@@ -1,0 +1,46 @@
+{
+  "device": "taiko",
+  "name": {
+    "zh": "REDMI 平板 2",
+    "en": "REDMI Pad 2"
+  },
+  "code": "OV",
+  "supports": [
+    "OS3.0",
+    "OS2.0"
+  ],
+  "android": [
+    "15.0",
+    "16.0"
+  ],
+  "type": "tablet",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "taiko",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI 平板 2",
+        "en": "REDMI Pad 2"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.307.0.WOVCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/taiko/taiko-ota_full-OS3.0.307.0.WOVCNXM-user-16.0-4eee3ed278.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.205.0.VOVCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/taiko/taiko-ota_full-OS2.0.205.0.VOVCNXM-user-15.0-2a51381009.zip"
+        }
+      }
+    }
+  ]
+}

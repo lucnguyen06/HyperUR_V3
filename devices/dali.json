@@ -1,0 +1,66 @@
+{
+  "device": "dali",
+  "name": {
+    "zh": "REDMI K80 至尊版",
+    "en": "REDMI K80 Ultra"
+  },
+  "code": "ON",
+  "supports": [
+    "OS3.0",
+    "OS2.0"
+  ],
+  "android": [
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "dali",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI K80 至尊版",
+        "en": "REDMI K80 Ultra"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.303.2.WONCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/dali/dali-ota_full-OS3.0.303.2.WONCNXM-user-16.0-37068ef617.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "dali",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI K80 至尊版",
+        "en": "REDMI K80 Ultra"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.305.0.WONCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/dali/dali-ota_full-OS3.0.305.0.WONCNXM-user-16.0-3298197d54.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.220.0.VONCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/dali/dali-ota_full-OS2.0.220.0.VONCNXM-user-15.0-ce1b8c3ab4.zip"
+        }
+      }
+    }
+  ]
+}

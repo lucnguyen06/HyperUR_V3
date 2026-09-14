@@ -1,0 +1,39 @@
+{
+  "device": "earth",
+  "name": {
+    "zh": "Redmi 12C",
+    "en": "Redmi 12C"
+  },
+  "code": "CV",
+  "supports": [
+    "OS1.0"
+  ],
+  "android": [
+    "14.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "earth",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi 12C",
+        "en": "Redmi 12C"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.8.0.UCVCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/earth/miui_EARTH_OS1.0.8.0.UCVCNXM_8f78403c28_14.0.zip"
+        }
+      }
+    }
+  ]
+}

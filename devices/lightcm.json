@@ -1,0 +1,39 @@
+{
+  "device": "lightcm",
+  "name": {
+    "zh": "Redmi Note 11R",
+    "en": "Redmi Note 11R"
+  },
+  "code": "LS",
+  "supports": [
+    "OS1.0"
+  ],
+  "android": [
+    "14.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "lightcm",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi Note 11R",
+        "en": "Redmi Note 11R"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.10.0.ULSCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/lightcm/miui_LIGHTCM_OS1.0.10.0.ULSCNXM_2480e0b8a0_14.0.zip"
+        }
+      }
+    }
+  ]
+}

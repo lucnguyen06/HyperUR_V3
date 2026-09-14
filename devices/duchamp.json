@@ -1,0 +1,78 @@
+{
+  "device": "duchamp",
+  "name": {
+    "zh": "Redmi K70E",
+    "en": "Redmi K70E"
+  },
+  "code": "NL",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "duchamp",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi K70E",
+        "en": "Redmi K70E"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.0.10.WNLCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/duchamp/duchamp-ota_full-OS3.0.0.10.WNLCNXM-user-16.0-68399fd273.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.201.3.VNLCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/duchamp/duchamp-ota_full-OS2.0.201.3.VNLCNXM-user-15.0-0c77dfad41.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "duchamp",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi K70E",
+        "en": "Redmi K70E"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.304.0.WNLCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/duchamp/duchamp-ota_full-OS3.0.304.0.WNLCNXM-user-16.0-5dc5bd9579.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.212.0.VNLCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/duchamp/duchamp-ota_full-OS2.0.212.0.VNLCNXM-user-15.0-f1e9df3044.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.18.0.UNLCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/duchamp/miui_DUCHAMP_OS1.0.18.0.UNLCNXM_f3789ac8e1_14.0.zip"
+        }
+      }
+    }
+  ]
+}

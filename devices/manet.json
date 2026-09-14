@@ -1,0 +1,78 @@
+{
+  "device": "manet",
+  "name": {
+    "zh": "Redmi K70 Pro",
+    "en": "Redmi K70 Pro"
+  },
+  "code": "NM",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "manet",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi K70 Pro",
+        "en": "Redmi K70 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.0.10.WNMCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/manet/manet-ota_full-OS3.0.0.10.WNMCNXM-user-16.0-9258c4c5ca.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.200.7.VNMCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/manet/manet-ota_full-OS2.0.200.7.VNMCNXM-user-15.0-f7b214a675.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "manet",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi K70 Pro",
+        "en": "Redmi K70 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.305.0.WNMCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/manet/manet-ota_full-OS3.0.305.0.WNMCNXM-user-16.0-5e2c4d9712.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.208.0.VNMCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/manet/manet-ota_full-OS2.0.208.0.VNMCNXM-user-15.0-a72c0b6da6.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.22.0.UNMCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/manet/miui_MANET_OS1.0.22.0.UNMCNXM_fabcc29173_14.0.zip"
+        }
+      }
+    }
+  ]
+}

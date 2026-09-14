@@ -1,0 +1,37 @@
+{
+  "device": "coral",
+  "name": {
+    "zh": "REDMI Note 15 Series",
+    "en": "REDMI Note 15 Series"
+  },
+  "code": "",
+  "supports": [],
+  "android": [
+    "15.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "coral",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI Note 15 Series",
+        "en": "REDMI Note 15 Series"
+      },
+      "region": "cn",
+      "roms": {
+        "": {
+          "os": "",
+          "android": "15.0",
+          "download": ""
+        }
+      }
+    }
+  ]
+}

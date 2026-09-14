@@ -1,0 +1,41 @@
+{
+  "device": "flute",
+  "name": {
+    "zh": "REDMI 平板 2 Pro",
+    "en": "REDMI Pad 2 Pro"
+  },
+  "code": "PW",
+  "supports": [
+    "OS3.0",
+    "OS2.0"
+  ],
+  "android": [
+    "15.0",
+    "16.0"
+  ],
+  "type": "tablet",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "flute",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI 平板 2 Pro",
+        "en": "REDMI Pad 2 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.308.0.WPWCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/flute/flute-ota_full-OS3.0.308.0.WPWCNXM-user-16.0-9a439e7815.zip"
+        }
+      }
+    }
+  ]
+}

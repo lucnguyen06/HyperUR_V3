@@ -1,0 +1,72 @@
+{
+  "device": "zorn",
+  "name": {
+    "zh": "REDMI K80",
+    "en": "REDMI K80"
+  },
+  "code": "OK",
+  "supports": [
+    "OS2.1",
+    "OS3.0",
+    "OS2.0"
+  ],
+  "android": [
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "zorn",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI K80",
+        "en": "REDMI K80"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.305.2.WOKCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/zorn/zorn-ota_full-OS3.0.305.2.WOKCNXM-user-16.0-91cfdbf6d1.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.200.15.VOKCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/zorn/zorn-ota_full-OS2.0.200.15.VOKCNXM-user-15.0-a4d63ef457.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "zorn",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI K80",
+        "en": "REDMI K80"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.307.0.WOKCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/zorn/zorn-ota_full-OS3.0.307.0.WOKCNXM-user-16.0-7894de18a4.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.216.0.VOKCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/zorn/zorn-ota_full-OS2.0.216.0.VOKCNXM-user-15.0-36e9316a97.zip"
+        }
+      }
+    }
+  ]
+}

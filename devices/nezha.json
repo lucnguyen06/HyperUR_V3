@@ -1,0 +1,87 @@
+{
+  "device": "nezha",
+  "name": {
+    "zh": "小米 17 Ultra",
+    "en": "Xiaomi 17 Ultra"
+  },
+  "code": "PA",
+  "supports": [
+    "OS3.3",
+    "OS4.0",
+    "OS3.0"
+  ],
+  "android": [
+    "16.0",
+    "17.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "nezha",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 17 Ultra",
+        "en": "Xiaomi 17 Ultra"
+      },
+      "region": "cn",
+      "roms": {
+        "OS4.0": {
+          "os": "OS4.0.0.17.XPACNXM",
+          "android": "17.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/nezha/nezha-ota_full-OS4.0.0.17.XPACNXM-user-17.0-e1faf1fe7e.zip"
+        },
+        "OS3.0": {
+          "os": "OS3.0.330.10.XPACNXM",
+          "android": "17.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/nezha/nezha-ota_full-OS3.0.330.10.XPACNXM-user-17.0-1cd59c84b2.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "nezha",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 17 Ultra",
+        "en": "Xiaomi 17 Ultra"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.309.0.WPACNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/nezha/nezha-ota_full-OS3.0.309.0.WPACNXM-user-16.0-e50c8b894f.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 安卓开发者预览版大陆版",
+        "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
+      },
+      "branchCode": "nezha_dpp",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 17 Ultra",
+        "en": "Xiaomi 17 Ultra"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.3": {
+          "os": "OS3.3.260512.2.XPACNXM.STABLE-DPP",
+          "android": "17.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/nezha_dpp/nezha_dpp-ota_full-OS3.3.260512.2.XPACNXM.STABLE-DPP-user-17.0-fda39f0f50.zip"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "device": "venus",
+  "name": {
+    "zh": "小米 11",
+    "en": "Mi 11"
+  },
+  "code": "KB",
+  "supports": [
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "venus",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 11",
+        "en": "Mi 11"
+      },
+      "region": "cn",
+      "roms": {
+        "OS2.0": {
+          "os": "OS2.0.6.0.UKBCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/venus/venus-ota_full-OS2.0.6.0.UKBCNXM-user-14.0-f0e38b04bc.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.12.0.UKBCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/venus/miui_VENUS_OS1.0.12.0.UKBCNXM_77aa77ab20_14.0.zip"
+        }
+      }
+    }
+  ]
+}

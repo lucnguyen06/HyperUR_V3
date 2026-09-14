@@ -1,0 +1,45 @@
+{
+  "device": "pipa",
+  "name": {
+    "zh": "小米平板 6",
+    "en": "Xiaomi Pad 6"
+  },
+  "code": "MZ",
+  "supports": [
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0"
+  ],
+  "type": "tablet",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "pipa",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米平板 6",
+        "en": "Xiaomi Pad 6"
+      },
+      "region": "cn",
+      "roms": {
+        "OS2.0": {
+          "os": "OS2.0.20.0.UMZCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/pipa/pipa-ota_full-OS2.0.20.0.UMZCNXM-user-14.0-cc45265ce4.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.14.0.UMZCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/pipa/miui_PIPA_OS1.0.14.0.UMZCNXM_d457f60f7f_14.0.zip"
+        }
+      }
+    }
+  ]
+}

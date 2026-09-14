@@ -1,0 +1,66 @@
+{
+  "device": "warhol",
+  "name": {
+    "zh": "Xiaomi 17T Pro",
+    "en": "Xiaomi 17T Pro"
+  },
+  "code": "PS",
+  "supports": [
+    "OS4.0",
+    "OS3.0"
+  ],
+  "android": [
+    "16.0",
+    "17.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "warhol",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "Xiaomi 17T Pro",
+        "en": "Xiaomi 17T Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS4.0": {
+          "os": "OS4.0.0.3.XPSCNXM",
+          "android": "17.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/warhol/warhol-ota_full-OS4.0.0.3.XPSCNXM-user-17.0-d7c0b752aa.zip"
+        },
+        "OS3.0": {
+          "os": "OS3.0.308.2.WPSCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/warhol/warhol-ota_full-OS3.0.308.2.WPSCNXM-user-16.0-39d6b1bc06.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "warhol",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "Xiaomi 17T Pro",
+        "en": "Xiaomi 17T Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.309.0.WPSCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/warhol/warhol-ota_full-OS3.0.309.0.WPSCNXM-user-16.0-262bf93f8a.zip"
+        }
+      }
+    }
+  ]
+}

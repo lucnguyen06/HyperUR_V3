@@ -1,0 +1,47 @@
+{
+  "device": "spring",
+  "name": {
+    "zh": "REDMI 15 5G / REDMI Note 15R 5G",
+    "en": "REDMI 15 5G / REDMI Note 15R 5G"
+  },
+  "code": "OU",
+  "supports": [
+    "OS2.2",
+    "OS3.0",
+    "OS2.0"
+  ],
+  "android": [
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "spring",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI Note 15R 5G",
+        "en": "REDMI Note 15R 5G"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.302.0.WOUCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/spring/spring-ota_full-OS3.0.302.0.WOUCNXM-user-16.0-37e6b8833a.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.204.0.VOUCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/spring/spring-ota_full-OS2.0.204.0.VOUCNXM-user-15.0-5fdd6a5a46.zip"
+        }
+      }
+    }
+  ]
+}

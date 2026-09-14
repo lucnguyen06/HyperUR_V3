@@ -1,0 +1,71 @@
+{
+  "device": "miro",
+  "name": {
+    "zh": "REDMI K80 Pro",
+    "en": "REDMI K80 Pro"
+  },
+  "code": "OM",
+  "supports": [
+    "OS3.0",
+    "OS2.0"
+  ],
+  "android": [
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "miro",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI K80 Pro",
+        "en": "REDMI K80 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.303.8.WOMCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/miro/miro-ota_full-OS3.0.303.8.WOMCNXM-user-16.0-df629df14c.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.200.16.VOMCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/miro/miro-ota_full-OS2.0.200.16.VOMCNXM-user-15.0-0a11f53adf.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "miro",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI K80 Pro",
+        "en": "REDMI K80 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.304.0.WOMCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/miro/miro-ota_full-OS3.0.304.0.WOMCNXM-user-16.0-c42e5d49de.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.206.0.VOMCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/miro/miro-ota_full-OS2.0.206.0.VOMCNXM-user-15.0-cc75a573f3.zip"
+        }
+      }
+    }
+  ]
+}

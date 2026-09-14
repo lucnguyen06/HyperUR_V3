@@ -1,0 +1,66 @@
+{
+  "device": "chagall",
+  "name": {
+    "zh": "Xiaomi 17T",
+    "en": "Xiaomi 17T"
+  },
+  "code": "PT",
+  "supports": [
+    "OS4.0",
+    "OS3.0"
+  ],
+  "android": [
+    "16.0",
+    "17.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "chagall",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "Xiaomi 17T",
+        "en": "Xiaomi 17T"
+      },
+      "region": "cn",
+      "roms": {
+        "OS4.0": {
+          "os": "OS4.0.0.10.XPTCNXM",
+          "android": "17.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/chagall/chagall-ota_full-OS4.0.0.10.XPTCNXM-user-17.0-97cfcf9df5.zip"
+        },
+        "OS3.0": {
+          "os": "OS3.0.307.5.WPTCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/chagall/chagall-ota_full-OS3.0.307.5.WPTCNXM-user-16.0-54f10a18f9.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "chagall",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "Xiaomi 17T",
+        "en": "Xiaomi 17T"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.310.0.WPTCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/chagall/chagall-ota_full-OS3.0.310.0.WPTCNXM-user-16.0-26780f6238.zip"
+        }
+      }
+    }
+  ]
+}

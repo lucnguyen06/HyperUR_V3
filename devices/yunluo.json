@@ -1,0 +1,39 @@
+{
+  "device": "yunluo",
+  "name": {
+    "zh": "Redmi 平板",
+    "en": "Redmi Pad"
+  },
+  "code": "LY",
+  "supports": [
+    "OS1.0"
+  ],
+  "android": [
+    "14.0"
+  ],
+  "type": "tablet",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "yunluo",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi 平板",
+        "en": "Redmi Pad"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.8.0.ULYCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/yunluo/miui_YUNLUO_OS1.0.8.0.ULYCNXM_0f98c0db8c_14.0.zip"
+        }
+      }
+    }
+  ]
+}

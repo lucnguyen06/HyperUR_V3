@@ -1,0 +1,39 @@
+{
+  "device": "erhu",
+  "name": {
+    "zh": "REDMI Pad 2 SE 4G",
+    "en": "REDMI Pad 2 SE 4G"
+  },
+  "code": "DO",
+  "supports": [
+    "OS3.0"
+  ],
+  "android": [
+    "16.0"
+  ],
+  "type": "tablet",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "erhu",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI Pad 2 SE 4G",
+        "en": "REDMI Pad 2 SE 4G"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.302.0.WDOCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/erhu/erhu-ota_full-OS3.0.302.0.WDOCNXM-user-16.0-1e2089f54f.zip"
+        }
+      }
+    }
+  ]
+}

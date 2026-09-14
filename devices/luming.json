@@ -1,0 +1,46 @@
+{
+  "device": "luming",
+  "name": {
+    "zh": "小米 Civi 5 Pro",
+    "en": "Xiaomi Civi 5 Pro"
+  },
+  "code": "OI",
+  "supports": [
+    "OS3.0",
+    "OS2.0"
+  ],
+  "android": [
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "luming",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 Civi 5 Pro",
+        "en": "Xiaomi Civi 5 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.303.0.WOICNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/luming/luming-ota_full-OS3.0.303.0.WOICNXM-user-16.0-48a62d897c.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.205.0.VOICNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/luming/luming-ota_full-OS2.0.205.0.VOICNXM-user-15.0-66ba385872.zip"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "device": "babylon",
+  "name": {
+    "zh": "小米 MIX Fold 3",
+    "en": "Xiaomi MIX Fold 3"
+  },
+  "code": "MV",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0",
+    "16.0"
+  ],
+  "type": "foldable",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 开发版",
+        "en": "Xiaomi HyperOS DEV"
+      },
+      "branchCode": "babylon",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 MIX Fold 3",
+        "en": "Xiaomi MIX Fold 3"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.24.7.28.DEV",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/babylon/miui_BABYLON_OS1.0.24.7.28.DEV_396443d689_14.0.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "babylon",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 MIX Fold 3",
+        "en": "Xiaomi MIX Fold 3"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.304.0.WMVCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/babylon/babylon-ota_full-OS3.0.304.0.WMVCNXM-user-16.0-c94b3b1f6e.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.209.0.VMVCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/babylon/babylon-ota_full-OS2.0.209.0.VMVCNXM-user-15.0-d94e2a97b3.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.16.0.UMVCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/babylon/miui_BABYLON_OS1.0.16.0.UMVCNXM_c13724df15_14.0.zip"
+        }
+      }
+    }
+  ]
+}

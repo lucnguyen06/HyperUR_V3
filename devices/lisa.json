@@ -1,0 +1,45 @@
+{
+  "device": "lisa",
+  "name": {
+    "zh": "小米 11 青春活力版 / 小米 11 Lite 5G NE",
+    "en": "Mi 11 LE / Xiaomi 11 Lite 5G NE"
+  },
+  "code": "KO",
+  "supports": [
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "lisa",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 11 青春活力版",
+        "en": "Mi 11 LE"
+      },
+      "region": "cn",
+      "roms": {
+        "OS2.0": {
+          "os": "OS2.0.16.0.UKOCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/lisa/lisa-ota_full-OS2.0.16.0.UKOCNXM-user-14.0-6326c122fd.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.11.0.UKOCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/lisa/miui_LISA_OS1.0.11.0.UKOCNXM_5d14291d36_14.0.zip"
+        }
+      }
+    }
+  ]
+}

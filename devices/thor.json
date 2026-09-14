@@ -1,0 +1,72 @@
+{
+  "device": "thor",
+  "name": {
+    "zh": "小米 12S Ultra",
+    "en": "Xiaomi 12S Ultra"
+  },
+  "code": "LA",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 开发版",
+        "en": "Xiaomi HyperOS DEV"
+      },
+      "branchCode": "thor",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 12S Ultra",
+        "en": "Xiaomi 12S Ultra"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.24.7.28.DEV",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/thor/miui_THOR_OS1.0.24.7.28.DEV_f47574805f_14.0.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "thor",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 12S Ultra",
+        "en": "Xiaomi 12S Ultra"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.6.0.VLACNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/thor/thor-ota_full-OS3.0.6.0.VLACNXM-user-15.0-3d1fc60ad4.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.212.0.VLACNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/thor/thor-ota_full-OS2.0.212.0.VLACNXM-user-15.0-b6f810025f.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.16.0.ULACNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/thor/miui_THOR_OS1.0.16.0.ULACNXM_2d1b0e6d67_14.0.zip"
+        }
+      }
+    }
+  ]
+}

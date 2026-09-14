@@ -1,0 +1,53 @@
+{
+  "device": "breeze",
+  "name": {
+    "zh": "Redmi Note 13R 5G / Redmi 13 5G",
+    "en": "Redmi Note 13R 5G / Redmi 13 5G"
+  },
+  "code": "NU",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "breeze",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi Note 13R 5G",
+        "en": "Redmi Note 13R 5G"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.302.0.WNUCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/breeze/breeze-ota_full-OS3.0.302.0.WNUCNXM-user-16.0-72b6826124.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.204.0.VNUCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/breeze/breeze-ota_full-OS2.0.204.0.VNUCNXM-user-15.0-23df26361c.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.10.0.UNUCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/breeze/miui_BREEZE_OS1.0.10.0.UNUCNXM_8308518da1_14.0.zip"
+        }
+      }
+    }
+  ]
+}

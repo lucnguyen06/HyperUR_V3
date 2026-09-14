@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tính năng nổi bật trên ROM HyperUR V3 - Tối ưu Kernel, giữ nguyên 100% camera Leica, bypass Play Integrity & banking app, mở khóa 120 FPS gaming, sạch sẽ 100% không quảng cáo.">
+    <title>Tính Năng Nổi Bật - HyperUR Custom ROM Portal</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2228%22 fill=%22%233b82f6%22/><text x=%2250%22 y=%2268%22 font-size=%2255%22 font-family=%22system-ui,sans-serif%22 font-weight=%22800%22 fill=%22%23ffffff%22 text-anchor=%22middle%22>H</text></svg>">
+    
+    <!-- Preconnect & Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Design System Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Floating Glass Header & Navbar -->
+    <header class="navbar-wrapper">
+        <nav class="navbar glass" id="navbar">
+            <div class="navbar-inner">
+                <!-- Brand Logo -->
+                <a href="index.html" class="navbar-brand">
+                    <span>Hyper<span class="brand-accent">UR</span></span>
+                </a>
+
+                <!-- Navigation Links -->
+                <ul class="navbar-menu" id="nav-menu">
+                    <li><a href="index.html" class="navbar-link">Trang Chủ</a></li>
+                    <li><a href="download.html" class="navbar-link">Tải ROM</a></li>
+                    <li><a href="features.html" class="navbar-link active">Tính Năng</a></li>
+                    <li><a href="guide.html" class="navbar-link">Hướng Dẫn</a></li>
+                </ul>
+
+                <!-- Navbar Actions -->
+                <div class="navbar-actions">
+                    <!-- Theme Toggle Button -->
+                    <button class="btn-icon" id="theme-btn" aria-label="Đổi giao diện Sáng/Tối" title="Chuyển chế độ sáng/tối">
+                        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="display: none;">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Hero -->
+        <section class="page-hero">
+            <span class="kicker">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+                CÔNG NGHỆ & TỐI ƯU HÓA
+            </span>
+            <h1>Tính Năng Độc Quyền HyperUR V3</h1>
+            <p>Được thiết kế từ gốc rễ để giải quyết mọi điểm yếu của ROM Stock: loại bỏ app rác, mở khóa tối đa xung nhịp phần cứng và đem lại thời lượng pin ấn tượng nhất.</p>
+        </section>
+
+        <!-- Deep Dive Features Section -->
+        <section class="section" style="padding-top: 1rem;">
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <article class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <h3>Hiệu Năng Cực Đại & Quản Lý RAM</h3>
+                    <p>Tối ưu hóa bảng điều phối xung nhịp CPU/GPU (Schedutil & Performance Governor), áp dụng nén bộ nhớ ảo ZRAM chuẩn ZSTD hiện đại giúp đa nhiệm cùng lúc hơn 20 ứng dụng không bị tải lại.</p>
+                </article>
+
+                <!-- Feature 2 -->
+                <article class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                            <circle cx="12" cy="13" r="4"></circle>
+                        </svg>
+                    </div>
+                    <h3>Bảo Toàn 100% Leica Camera</h3>
+                    <p>Xây dựng dựa trên nền firmware stock vendor gốc, bảo toàn toàn bộ bộ lọc màu Leica Authentic & Vibrant, chống rung quang học OIS và chế độ quay video chuẩn điện ảnh 8K 30fps / 4K 60fps.</p>
+                </article>
+
+                <!-- Feature 3 -->
+                <article class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <polyline points="9 12 11 14 15 10"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Bypass Play Integrity Mặc Định</h3>
+                    <p>Cơ chế spoof chứng nhận Google Play Protect được tích hợp sẵn ở cấp hệ điều hành. Sử dụng ổn định 100% ứng dụng ngân hàng, ví điện tử (VNPAY, MoMo, ZaloPay) và quét khuôn mặt eKYC an toàn tuyệt đối.</p>
+                </article>
+
+                <!-- Feature 4 -->
+                <article class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <h3>Mở Khóa 90 / 120 FPS Toàn Diện</h3>
+                    <p>Gỡ bỏ giới hạn nhiệt độ ảo (Thermal Throttling) và rào cản FPS ở các tựa game đình đám (PUBG Mobile, Liên Quân, Tốc Chiến, Genshin Impact). Tần số lấy mẫu cảm ứng nâng lên 480Hz siêu nhạy.</p>
+                </article>
+
+                <!-- Feature 5 -->
+                <article class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                            <line x1="12" y1="2" x2="12" y2="12"></line>
+                        </svg>
+                    </div>
+                    <h3>Sạch Sẽ 100%, Không Quảng Cáo</h3>
+                    <p>Loại bỏ triệt để hệ thống quảng cáo Xiaomi MSA, dịch vụ theo dõi hành vi Analytics và các ứng dụng bloatware rác của thị trường nội địa. Hệ thống nhẹ hơn 4GB so với ROM gốc.</p>
+                </article>
+
+                <!-- Feature 6 -->
+                <article class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                    </div>
+                    <h3>Tùy Biến Sâu Giao Diện & Icon</h3>
+                    <p>Hỗ trợ tùy biến thanh Trung tâm Điều khiển (Control Center), mở rộng hiệu ứng làm mờ kính thực (Real Blur), cho phép thay đổi bộ icon bên thứ ba và font chữ tiếng Việt không bị lỗi hiển thị.</p>
+                </article>
+            </div>
+
+            <!-- Action Banner -->
+            <div class="highlight-card" style="margin-top: 3.5rem; text-align: center; align-items: center; background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.08)); border-color: rgba(59, 130, 246, 0.3);">
+                <h3 style="font-size: 1.6rem; margin-bottom: 0.75rem;">Sẵn sàng nâng cấp chiếc điện thoại của bạn?</h3>
+                <p style="max-width: 600px; margin-bottom: 1.75rem;">Kiểm tra ngay phiên bản ROM HyperUR V3 mới nhất cho thiết bị của bạn với tốc độ tải cao từ SourceForge và các máy chủ nội địa.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                    <a href="download.html" class="btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <span>Xem Danh Sách Thiết Bị</span>
+                    </a>
+                    <a href="guide.html" class="btn-ghost">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
+                        <span>Đọc Hướng Dẫn Cài Đặt</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Global Site Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3>
+                        <span>Hyper<span class="brand-accent">UR</span></span>
+                    </h3>
+                    <p>Dự án ROM Custom Stock-based hàng đầu cho hệ sinh thái thiết bị Xiaomi tại Việt Nam.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Điều Hướng</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Trang Chủ</a></li>
+                        <li><a href="download.html">Kho ROM</a></li>
+                        <li><a href="features.html">Tính Năng</a></li>
+                        <li><a href="guide.html">Hướng Dẫn Flash</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Đội Ngũ Phát Triển</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://t.me/lcnguy06" target="_blank" rel="noopener noreferrer">@lcnguy06 (Lead & Dev)</a></li>
+                        <li><a href="https://t.me/Usagi79" target="_blank" rel="noopener noreferrer">@Usagi79 (Lead & Dev)</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Hyper Ultra Rate</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://t.me/hypermodupdate" target="_blank" rel="noopener noreferrer">Channel Huper Ultra Rate</a></li>
+                        <li><a href="https://t.me/HuperUltraRateChat" target="_blank" rel="noopener noreferrer">Chat Huper Ultra Rate</a></li>
+                        <li><a href="https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/" target="_blank" rel="noopener noreferrer">SourceForge Files</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 HYPERUR TEAM. BẢO LƯU MỌI QUYỀN.</p>
+                <p class="footer-meta">Mã nguồn HTML tĩnh tối ưu tốc độ & chuẩn SEO.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Scroll to Top Action -->
+    <a href="#" class="scroll-to-top" id="scroll-to-top" aria-label="Lên đầu trang">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </a>
+
+    <!-- Theme Toggle Handler -->
+    <script src="devices.js"></script>
+</body>
+</html>

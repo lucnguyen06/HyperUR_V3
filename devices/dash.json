@@ -1,0 +1,39 @@
+{
+  "device": "dash",
+  "name": {
+    "zh": "REDMI Turbo 5 MAX",
+    "en": "REDMI Turbo 5 MAX"
+  },
+  "code": "PL",
+  "supports": [
+    "OS3.0"
+  ],
+  "android": [
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "dash",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI Turbo 5 MAX",
+        "en": "REDMI Turbo 5 MAX"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.305.0.WPLCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/dash/dash-ota_full-OS3.0.305.0.WPLCNXM-user-16.0-b64527fea3.zip"
+        }
+      }
+    }
+  ]
+}

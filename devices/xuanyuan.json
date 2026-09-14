@@ -1,0 +1,78 @@
+{
+  "device": "xuanyuan",
+  "name": {
+    "zh": "小米 15 Ultra",
+    "en": "Xiaomi 15 Ultra"
+  },
+  "code": "OA",
+  "supports": [
+    "OS4.0",
+    "OS3.0",
+    "OS2.0"
+  ],
+  "android": [
+    "15.0",
+    "16.0",
+    "17.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "xuanyuan",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 15 Ultra",
+        "en": "Xiaomi 15 Ultra"
+      },
+      "region": "cn",
+      "roms": {
+        "OS4.0": {
+          "os": "OS4.0.0.6.XOACNXM",
+          "android": "17.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/xuanyuan/xuanyuan-ota_full-OS4.0.0.6.XOACNXM-user-17.0-a602093b8d.zip"
+        },
+        "OS3.0": {
+          "os": "OS3.0.311.4.WOACNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/xuanyuan/xuanyuan-ota_full-OS3.0.311.4.WOACNXM-user-16.0-11c3922775.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.213.2.VOACNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/xuanyuan/xuanyuan-ota_full-OS2.0.213.2.VOACNXM-user-15.0-a57b656432.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "xuanyuan",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 15 Ultra",
+        "en": "Xiaomi 15 Ultra"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.312.0.WOACNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/xuanyuan/xuanyuan-ota_full-OS3.0.312.0.WOACNXM-user-16.0-16f3d7d826.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.217.0.VOACNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/xuanyuan/xuanyuan-ota_full-OS2.0.217.0.VOACNXM-user-15.0-ec6c1d345d.zip"
+        }
+      }
+    }
+  ]
+}

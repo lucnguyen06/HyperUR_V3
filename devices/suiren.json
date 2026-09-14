@@ -1,0 +1,37 @@
+{
+  "device": "suiren",
+  "name": {
+    "zh": "小米澎湃智能座舱 (YU7/新一代 SU7)",
+    "en": "Xiaomi EV Cockpit (YU7/All New SU7)"
+  },
+  "code": "",
+  "supports": [],
+  "android": [
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "suiren",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米澎湃智能座舱 (YU7/新一代 SU7)",
+        "en": "Xiaomi EV Cockpit (YU7/All New SU7)"
+      },
+      "region": "cn",
+      "roms": {
+        "": {
+          "os": "",
+          "android": "15.0",
+          "download": ""
+        }
+      }
+    }
+  ]
+}

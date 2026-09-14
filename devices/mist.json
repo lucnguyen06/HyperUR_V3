@@ -1,0 +1,39 @@
+{
+  "device": "mist",
+  "name": {
+    "zh": "REDMI Note 17 5G",
+    "en": "REDMI Note 17 5G"
+  },
+  "code": "PU",
+  "supports": [
+    "OS3.0"
+  ],
+  "android": [
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "mist",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI Note 17 5G",
+        "en": "REDMI Note 17 5G"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.311.0.WPUCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/mist/mist-ota_full-OS3.0.311.0.WPUCNXM-user-16.0-d19f9040d8.zip"
+        }
+      }
+    }
+  ]
+}

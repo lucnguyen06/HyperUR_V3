@@ -1,0 +1,78 @@
+{
+  "device": "dijun",
+  "name": {
+    "zh": "小米 15S Pro",
+    "en": "Xiaomi 15S Pro"
+  },
+  "code": "OD",
+  "supports": [
+    "OS4.0",
+    "OS3.0",
+    "OS2.0"
+  ],
+  "android": [
+    "15.0",
+    "16.0",
+    "17.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "dijun",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 15S Pro",
+        "en": "Xiaomi 15S Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS4.0": {
+          "os": "OS4.0.0.7.XODCNXM",
+          "android": "17.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/dijun/dijun-ota_full-OS4.0.0.7.XODCNXM-user-17.0-5a3bccf1b8.zip"
+        },
+        "OS3.0": {
+          "os": "OS3.0.302.2.WODCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/dijun/dijun-ota_full-OS3.0.302.2.WODCNXM-user-16.0-0a8646541b.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.207.4.VODCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/dijun/dijun-ota_full-OS2.0.207.4.VODCNXM-user-15.0-ffa484912d.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "dijun",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 15S Pro",
+        "en": "Xiaomi 15S Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.303.0.WODCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/dijun/dijun-ota_full-OS3.0.303.0.WODCNXM-user-16.0-05740b75f5.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.209.0.VODCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/dijun/dijun-ota_full-OS2.0.209.0.VODCNXM-user-15.0-b8b8e6c29b.zip"
+        }
+      }
+    }
+  ]
+}

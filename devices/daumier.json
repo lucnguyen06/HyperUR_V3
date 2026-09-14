@@ -1,0 +1,65 @@
+{
+  "device": "daumier",
+  "name": {
+    "zh": "小米 12 Pro 天玑版",
+    "en": "Xiaomi 12 Pro Dimensity"
+  },
+  "code": "LG",
+  "supports": [
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 开发版",
+        "en": "Xiaomi HyperOS DEV"
+      },
+      "branchCode": "daumier",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 12 Pro 天玑版",
+        "en": "Xiaomi 12 Pro Dimensity"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.24.7.28.DEV",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/daumier/miui_DAUMIER_OS1.0.24.7.28.DEV_0719bd73c3_14.0.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "daumier",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 12 Pro 天玑版",
+        "en": "Xiaomi 12 Pro Dimensity"
+      },
+      "region": "cn",
+      "roms": {
+        "OS2.0": {
+          "os": "OS2.0.6.0.ULGCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/daumier/daumier-ota_full-OS2.0.6.0.ULGCNXM-user-14.0-507b0b4906.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.16.0.ULGCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/daumier/miui_DAUMIER_OS1.0.16.0.ULGCNXM_79859e1b0c_14.0.zip"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "device": "konghou",
+  "name": {
+    "zh": "Xiaomi YU7 后排移动控制屏",
+    "en": "Xiaomi YU7 Back Row Mobile Control Screen"
+  },
+  "code": "BP",
+  "supports": [
+    "OS1.0"
+  ],
+  "android": [
+    "14.0"
+  ],
+  "type": "carthing",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "konghou",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "Xiaomi YU7 后排移动控制屏",
+        "en": "Xiaomi YU7 Back Row Mobile Control Screen"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.4.0.UBPCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/konghou/miui_KONGHOU_OS1.0.4.0.UBPCNXM_c816cda75b_14.0.zip"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "device": "gold",
+  "name": {
+    "zh": "Redmi Note 13 5G / 13R Pro",
+    "en": "Redmi Note 13 5G / 13R Pro"
+  },
+  "code": "NQ",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "gold",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi Note 13 5G / 13R Pro",
+        "en": "Redmi Note 13 5G / 13R Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.10.0.VNQCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/gold/gold-ota_full-OS3.0.10.0.VNQCNXM-user-15.0-3f91cc8d65.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.216.0.VNQCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/gold/gold-ota_full-OS2.0.216.0.VNQCNXM-user-15.0-f28060abeb.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.12.0.UNQCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/gold/miui_GOLD_OS1.0.12.0.UNQCNXM_9403d8c039_14.0.zip"
+        }
+      }
+    }
+  ]
+}

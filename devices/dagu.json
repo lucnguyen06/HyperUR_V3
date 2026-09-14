@@ -1,0 +1,65 @@
+{
+  "device": "dagu",
+  "name": {
+    "zh": "小米平板 5 Pro 12.4",
+    "en": "Xiaomi Pad 5 Pro 12.4"
+  },
+  "code": "LZ",
+  "supports": [
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0"
+  ],
+  "type": "tablet",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 开发版",
+        "en": "Xiaomi HyperOS DEV"
+      },
+      "branchCode": "dagu",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米平板 5 Pro 12.4",
+        "en": "Xiaomi Pad 5 Pro 12.4"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.24.7.28.DEV",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/dagu/miui_DAGU_OS1.0.24.7.28.DEV_a1d234a07e_14.0.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "dagu",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米平板 5 Pro 12.4",
+        "en": "Xiaomi Pad 5 Pro 12.4"
+      },
+      "region": "cn",
+      "roms": {
+        "OS2.0": {
+          "os": "OS2.0.10.0.ULZCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/dagu/dagu-ota_full-OS2.0.10.0.ULZCNXM-user-14.0-041e9e8347.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.14.0.ULZCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/dagu/miui_DAGU_OS1.0.14.0.ULZCNXM_0d0ac5d262_14.0.zip"
+        }
+      }
+    }
+  ]
+}

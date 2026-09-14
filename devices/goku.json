@@ -1,0 +1,78 @@
+{
+  "device": "goku",
+  "name": {
+    "zh": "小米 MIX Fold 4",
+    "en": "Xiaomi MIX Fold 4"
+  },
+  "code": "NV",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0",
+    "16.0"
+  ],
+  "type": "foldable",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "goku",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 MIX Fold 4",
+        "en": "Xiaomi MIX Fold 4"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.0.18.WNVCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/goku/goku-ota_full-OS3.0.0.18.WNVCNXM-user-16.0-df15964668.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.200.16.VNVCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/goku/goku-ota_full-OS2.0.200.16.VNVCNXM-user-15.0-2ad29af39a.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "goku",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 MIX Fold 4",
+        "en": "Xiaomi MIX Fold 4"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.307.0.WNVCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/goku/goku-ota_full-OS3.0.307.0.WNVCNXM-user-16.0-a92c2806ec.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.211.0.VNVCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/goku/goku-ota_full-OS2.0.211.0.VNVCNXM-user-15.0-468c166fa1.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.15.0.UNVCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/goku/miui_GOKU_OS1.0.15.0.UNVCNXM_7c07300a92_14.0.zip"
+        }
+      }
+    }
+  ]
+}

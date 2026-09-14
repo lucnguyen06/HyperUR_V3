@@ -1,0 +1,39 @@
+{
+  "device": "guitar",
+  "name": {
+    "zh": "REDMI Pad 2 SE",
+    "en": "REDMI Pad 2 SE"
+  },
+  "code": "DN",
+  "supports": [
+    "OS3.0"
+  ],
+  "android": [
+    "16.0"
+  ],
+  "type": "tablet",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "guitar",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI Pad 2 SE",
+        "en": "REDMI Pad 2 SE"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.303.0.WDNCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/guitar/guitar-ota_full-OS3.0.303.0.WDNCNXM-user-16.0-1ebfde5ff3.zip"
+        }
+      }
+    }
+  ]
+}

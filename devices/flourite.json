@@ -1,0 +1,47 @@
+{
+  "device": "flourite",
+  "name": {
+    "zh": "REDMI Note 15 Pro+ 5G",
+    "en": "REDMI Note 15 Pro+ 5G"
+  },
+  "code": "PR",
+  "supports": [
+    "OS3.1",
+    "OS3.0",
+    "OS2.0"
+  ],
+  "android": [
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "flourite",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI Note 15 Pro+ 5G",
+        "en": "REDMI Note 15 Pro+ 5G"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.317.0.WPRCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/flourite/flourite-ota_full-OS3.0.317.0.WPRCNXM-user-16.0-ff98c106ce.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.209.0.VPRCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/flourite/flourite-ota_full-OS2.0.209.0.VPRCNXM-user-15.0-ed76995ddb.zip"
+        }
+      }
+    }
+  ]
+}

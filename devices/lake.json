@@ -1,0 +1,53 @@
+{
+  "device": "lake",
+  "name": {
+    "zh": "Redmi 14C",
+    "en": "Redmi 14C"
+  },
+  "code": "GT",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "lake",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi 14C",
+        "en": "Redmi 14C"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.305.0.WGTCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/lake/lake-ota_full-OS3.0.305.0.WGTCNXM-user-16.0-ed5237a025.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.201.0.VGTCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/lake/lake-ota_full-OS2.0.201.0.VGTCNXM-user-15.0-b373358c77.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.5.0.UGTCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/lake/miui_LAKE_OS1.0.5.0.UGTCNXM_540ab767e0_14.0.zip"
+        }
+      }
+    }
+  ]
+}

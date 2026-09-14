@@ -1,0 +1,53 @@
+{
+  "device": "flame",
+  "name": {
+    "zh": "Redmi 14R 5G",
+    "en": "Redmi 14R 5G"
+  },
+  "code": "GU",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "flame",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi 14R 5G",
+        "en": "Redmi 14R 5G"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.302.0.WGUCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/flame/flame-ota_full-OS3.0.302.0.WGUCNXM-user-16.0-7ed7a04397.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.205.0.VGUCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/flame/flame-ota_full-OS2.0.205.0.VGUCNXM-user-15.0-90916369cc.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.18.0.UGUCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/flame/miui_FLAME_OS1.0.18.0.UGUCNXM_ade9962a67_14.0.zip"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "device": "chenfeng",
+  "name": {
+    "zh": "小米 Civi 4 Pro / 小米 14 Civi",
+    "en": "Xiaomi Civi 4 Pro / Xiaomi 14 Civi"
+  },
+  "code": "NJ",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "chenfeng",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 Civi 4 Pro",
+        "en": "Xiaomi Civi 4 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.307.0.WNJCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/chenfeng/chenfeng-ota_full-OS3.0.307.0.WNJCNXM-user-16.0-6b7a24df56.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.207.0.VNJCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/chenfeng/chenfeng-ota_full-OS2.0.207.0.VNJCNXM-user-15.0-546d61abee.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.19.0.UNJCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/chenfeng/miui_CHENFENG_OS1.0.19.0.UNJCNXM_2b1ac52885_14.0.zip"
+        }
+      }
+    }
+  ]
+}

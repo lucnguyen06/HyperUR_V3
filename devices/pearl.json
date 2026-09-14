@@ -1,0 +1,52 @@
+{
+  "device": "pearl",
+  "name": {
+    "zh": "Redmi Note 12T Pro",
+    "en": "Redmi Note 12T Pro"
+  },
+  "code": "LH",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "pearl",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi Note 12T Pro",
+        "en": "Redmi Note 12T Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.3.0.VLHCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/pearl/pearl-ota_full-OS3.0.3.0.VLHCNXM-user-15.0-b919fdadf8.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.215.0.VLHCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/pearl/pearl-ota_full-OS2.0.215.0.VLHCNXM-user-15.0-8246bfc336.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.11.0.ULHCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/pearl/miui_PEARL_OS1.0.11.0.ULHCNXM_3feb554a55_14.0.zip"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "device": "ruan",
+  "name": {
+    "zh": "Redmi Pad Pro 5G",
+    "en": "Redmi Pad Pro 5G"
+  },
+  "code": "FS",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0",
+    "16.0"
+  ],
+  "type": "tablet",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "ruan",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi Pad Pro 5G",
+        "en": "Redmi Pad Pro 5G"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.307.0.WFSCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/ruan/ruan-ota_full-OS3.0.307.0.WFSCNXM-user-16.0-9b706c5c85.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.207.0.VFSCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/ruan/ruan-ota_full-OS2.0.207.0.VFSCNXM-user-15.0-97bcba34fa.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.11.0.UFSCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/ruan/miui_RUAN_OS1.0.11.0.UFSCNXM_f8537b2afb_14.0.zip"
+        }
+      }
+    }
+  ]
+}

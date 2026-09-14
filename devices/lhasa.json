@@ -1,0 +1,37 @@
+{
+  "device": "lhasa",
+  "name": {
+    "zh": "Xiaomi 18 Fold",
+    "en": "Xiaomi 18 Fold"
+  },
+  "code": "",
+  "supports": [],
+  "android": [
+    "17.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "lhasa",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "Xiaomi 18 Fold",
+        "en": "Xiaomi 18 Fold"
+      },
+      "region": "cn",
+      "roms": {
+        "": {
+          "os": "",
+          "android": "15.0",
+          "download": ""
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "device": "prague",
+  "name": {
+    "zh": "REDMI K90 Max",
+    "en": "REDMI K90 Max"
+  },
+  "code": "AA",
+  "supports": [
+    "OS4.0",
+    "OS3.0"
+  ],
+  "android": [
+    "16.0",
+    "17.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "prague",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI K90 Max",
+        "en": "REDMI K90 Max"
+      },
+      "region": "cn",
+      "roms": {
+        "OS4.0": {
+          "os": "OS4.0.0.5.XAACNXM",
+          "android": "17.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/prague/prague-ota_full-OS4.0.0.5.XAACNXM-user-17.0-e7af509a66.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "prague",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI K90 Max",
+        "en": "REDMI K90 Max"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.316.0.WAACNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/prague/prague-ota_full-OS3.0.316.0.WAACNXM-user-16.0-d3998b01cb.zip"
+        }
+      }
+    }
+  ]
+}

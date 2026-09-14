@@ -1,0 +1,66 @@
+{
+  "device": "violin",
+  "name": {
+    "zh": "小米平板 7S Pro 12.5",
+    "en": "Xiaomi Pad 7S Pro 12.5"
+  },
+  "code": "OT",
+  "supports": [
+    "OS3.0",
+    "OS2.0"
+  ],
+  "android": [
+    "15.0",
+    "16.0"
+  ],
+  "type": "tablet",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "violin",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米平板 7S Pro 12.5",
+        "en": "Xiaomi Pad 7S Pro 12.5"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.0.18.WOTCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/violin/violin-ota_full-OS3.0.0.18.WOTCNXM-user-16.0-af39e8a371.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "violin",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米平板 7S Pro 12.5",
+        "en": "Xiaomi Pad 7S Pro 12.5"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.304.0.WOTCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/violin/violin-ota_full-OS3.0.304.0.WOTCNXM-user-16.0-a2a26ab29c.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.215.0.VOTCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/violin/violin-ota_full-OS2.0.215.0.VOTCNXM-user-15.0-77bc004ae2.zip"
+        }
+      }
+    }
+  ]
+}

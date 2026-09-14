@@ -1,0 +1,52 @@
+{
+  "device": "liuqin",
+  "name": {
+    "zh": "小米平板 6 Pro",
+    "en": "Xiaomi Pad 6 Pro"
+  },
+  "code": "MY",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0"
+  ],
+  "type": "tablet",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "liuqin",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米平板 6 Pro",
+        "en": "Xiaomi Pad 6 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.7.0.VMYCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/liuqin/liuqin-ota_full-OS3.0.7.0.VMYCNXM-user-15.0-7f569a5149.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.213.0.VMYCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/liuqin/liuqin-ota_full-OS2.0.213.0.VMYCNXM-user-15.0-c6421e2b8a.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.14.0.UMYCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/liuqin/miui_LIUQIN_OS1.0.14.0.UMYCNXM_fee88382c1_14.0.zip"
+        }
+      }
+    }
+  ]
+}

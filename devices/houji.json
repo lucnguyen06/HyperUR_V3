@@ -1,0 +1,144 @@
+{
+  "device": "houji",
+  "name": {
+    "zh": "小米 14",
+    "en": "Xiaomi 14"
+  },
+  "code": "NC",
+  "supports": [
+    "OS1.1",
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "houji",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 14",
+        "en": "Xiaomi 14"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.300.6.WNCCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/houji/houji-ota_full-OS3.0.300.6.WNCCNXM-user-16.0-acbd9ef007.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.211.6.VNCCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/houji/houji-ota_full-OS2.0.211.6.VNCCNXM-user-15.0-d1e86d2fa0.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "houji",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 14",
+        "en": "Xiaomi 14"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.305.0.WNCCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/houji/houji-ota_full-OS3.0.305.0.WNCCNXM-user-16.0-c7f619bf84.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.215.0.VNCCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/houji/houji-ota_full-OS2.0.215.0.VNCCNXM-user-15.0-aebb1dbf56.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.47.0.UNCCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/houji/miui_HOUJI_OS1.0.47.0.UNCCNXM_1570ac24a8_14.0.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 安卓开发者预览版大陆版",
+        "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
+      },
+      "branchCode": "houji_pre_dpp",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 14",
+        "en": "Xiaomi 14"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.240808.1.VNCCNXMPRE-DPP",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/houji_pre_dpp/miui_HOUJIPREDPP_OS1.0.240808.1.VNCCNXMPRE-DPP_90a0aa1332_15.0.zip"
+        },
+        "24.5.8": {
+          "os": "24.5.8",
+          "android": "15.0",
+          "download": ""
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 体验增强版 Beta",
+        "en": "Xiaomi HyperOS Enhanced Experience Beta"
+      },
+      "branchCode": "houji",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 14",
+        "en": "Xiaomi 14"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.1": {
+          "os": "OS1.1.6.0.VNCCNXM.BETA",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/houji/houji-ota_full-OS1.1.6.0.VNCCNXM.BETA-user-15.0-b909917ae6.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 开发版",
+        "en": "Xiaomi HyperOS DEV"
+      },
+      "branchCode": "houji",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 14",
+        "en": "Xiaomi 14"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.24.7.28.DEV",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/houji/miui_HOUJI_OS1.0.24.7.28.DEV_1a66fc796c_14.0.zip"
+        }
+      }
+    }
+  ]
+}

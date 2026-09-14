@@ -1,0 +1,39 @@
+{
+  "device": "steppe",
+  "name": {
+    "zh": "REDMI M100",
+    "en": "REDMI M100"
+  },
+  "code": "AV",
+  "supports": [
+    "OS3.0"
+  ],
+  "android": [
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "steppe",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI M100",
+        "en": "REDMI M100"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.304.0.WAVCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/steppe/steppe-ota_full-OS3.0.304.0.WAVCNXM-user-16.0-f890a6c3f8.zip"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "device": "socrates",
+  "name": {
+    "zh": "Redmi K60 Pro",
+    "en": "Redmi K60 Pro"
+  },
+  "code": "MK",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "socrates",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi K60 Pro",
+        "en": "Redmi K60 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS2.0": {
+          "os": "OS2.0.0.24.VMKCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/socrates/socrates-ota_full-OS2.0.0.24.VMKCNXM-user-15.0-b70ed0d1f6.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "socrates",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi K60 Pro",
+        "en": "Redmi K60 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.304.0.WMKCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/socrates/socrates-ota_full-OS3.0.304.0.WMKCNXM-user-16.0-694e581e9e.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.212.0.VMKCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/socrates/socrates-ota_full-OS2.0.212.0.VMKCNXM-user-15.0-270e33ed69.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.16.0.UMKCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/socrates/miui_SOCRATES_OS1.0.16.0.UMKCNXM_d791351f8d_14.0.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 开发版",
+        "en": "Xiaomi HyperOS DEV"
+      },
+      "branchCode": "socrates",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi K60 Pro",
+        "en": "Redmi K60 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.24.7.28.DEV",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/socrates/miui_SOCRATES_OS1.0.24.7.28.DEV_cd1f20efe1_14.0.zip"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "device": "mondrian",
+  "name": {
+    "zh": "Redmi K60",
+    "en": "Redmi K60"
+  },
+  "code": "MN",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 开发版",
+        "en": "Xiaomi HyperOS DEV"
+      },
+      "branchCode": "mondrian",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi K60",
+        "en": "Redmi K60"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.24.7.28.DEV",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/mondrian/miui_MONDRIAN_OS1.0.24.7.28.DEV_22e37ea2de_14.0.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "mondrian",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi K60",
+        "en": "Redmi K60"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.8.0.VMNCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/mondrian/mondrian-ota_full-OS3.0.8.0.VMNCNXM-user-15.0-3fb07519a6.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.224.0.VMNCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/mondrian/mondrian-ota_full-OS2.0.224.0.VMNCNXM-user-15.0-62d558fd1f.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.16.0.UMNCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/mondrian/miui_MONDRIAN_OS1.0.16.0.UMNCNXM_548484eef3_14.0.zip"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "device": "rothko",
+  "name": {
+    "zh": "Redmi K70 至尊版 / 小米 14T Pro",
+    "en": "Redmi K70 Ultra / Xiaomi 14T Pro"
+  },
+  "code": "NN",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "rothko",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi K70 至尊版",
+        "en": "Redmi K70 Ultra"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.5.3.WNNCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/rothko/rothko-ota_full-OS3.0.5.3.WNNCNXM-user-16.0-903d78a4f3.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.230.16.WNNCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/rothko/rothko-ota_full-OS2.0.230.16.WNNCNXM-user-16.0-b6599de946.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "rothko",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi K70 至尊版",
+        "en": "Redmi K70 Ultra"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.307.0.WNNCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/rothko/rothko-ota_full-OS3.0.307.0.WNNCNXM-user-16.0-ceef1a27f6.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.210.0.VNNCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/rothko/rothko-ota_full-OS2.0.210.0.VNNCNXM-user-15.0-a903c87d62.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.29.0.UNNCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/rothko/miui_ROTHKO_OS1.0.29.0.UNNCNXM_635dd68c27_14.0.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 安卓开发者预览版大陆版",
+        "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
+      },
+      "branchCode": "rothko_pre_dpp",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi K70 至尊版",
+        "en": "Redmi K70 Ultra"
+      },
+      "region": "cn",
+      "roms": {
+        "OS2.0": {
+          "os": "OS2.0.250427.1.WNNCNXM.PRE-DPP",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/rothko_pre_dpp/rothko_pre_dpp-ota_full-OS2.0.250427.1.WNNCNXM.PRE-DPP-user-16.0-b8ab26fb5f.zip"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "device": "xaga",
+  "name": {
+    "zh": "Redmi Note 11T Pro/Pro+ / Redmi K50i",
+    "en": "Redmi Note 11T Pro/Pro+ / Redmi K50i"
+  },
+  "code": "LO",
+  "supports": [
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "xaga",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi Note 11T Pro / Pro+",
+        "en": "Redmi Note 11T Pro / Pro+"
+      },
+      "region": "cn",
+      "roms": {
+        "OS2.0": {
+          "os": "OS2.0.12.0.ULOCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/xaga/xaga-ota_full-OS2.0.12.0.ULOCNXM-user-14.0-5c4e2efff9.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.11.0.ULOCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/xaga/miui_XAGA_OS1.0.11.0.ULOCNXM_71da161ffb_14.0.zip"
+        }
+      }
+    }
+  ]
+}

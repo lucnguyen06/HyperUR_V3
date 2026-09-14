@@ -1,0 +1,45 @@
+{
+  "device": "ruby",
+  "name": {
+    "zh": "Redmi Note 12 Pro / Pro+ / 探索版",
+    "en": "Redmi Note 12 Pro / Pro+ / Discovery 5G"
+  },
+  "code": "MO",
+  "supports": [
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "ruby",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi Note 12 Pro / Pro+ / 探索版",
+        "en": "Redmi Note 12 Pro / Pro+ / Discovery 5G"
+      },
+      "region": "cn",
+      "roms": {
+        "OS2.0": {
+          "os": "OS2.0.20.0.UMOCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/ruby/ruby-ota_full-OS2.0.20.0.UMOCNXM-user-14.0-49a94bc079.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.16.0.UMOCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/ruby/miui_RUBY_OS1.0.16.0.UMOCNXM_1ca459eebd_14.0.zip"
+        }
+      }
+    }
+  ]
+}

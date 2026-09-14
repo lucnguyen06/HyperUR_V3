@@ -1,0 +1,46 @@
+{
+  "device": "onyx",
+  "name": {
+    "zh": "REDMI Turbo 4 Pro",
+    "en": "REDMI Turbo 4 Pro"
+  },
+  "code": "OL",
+  "supports": [
+    "OS3.0",
+    "OS2.0"
+  ],
+  "android": [
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "onyx",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI Turbo 4 Pro",
+        "en": "REDMI Turbo 4 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.305.0.WOLCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/onyx/onyx-ota_full-OS3.0.305.0.WOLCNXM-user-16.0-3870687768.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.216.0.VOLCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/onyx/onyx-ota_full-OS2.0.216.0.VOLCNXM-user-15.0-6e1ac7510e.zip"
+        }
+      }
+    }
+  ]
+}

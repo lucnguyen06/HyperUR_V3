@@ -1,0 +1,45 @@
+{
+  "device": "sunstone",
+  "name": {
+    "zh": "Redmi Note 12 5G / Note 12R Pro",
+    "en": "Redmi Note 12 5G / Note 12R Pro"
+  },
+  "code": "MQ",
+  "supports": [
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "sunstone",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi Note 12 5G / Note 12R Pro",
+        "en": "Redmi Note 12 5G / Note 12R Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS2.0": {
+          "os": "OS2.0.6.0.UMQCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/sunstone/sunstone-ota_full-OS2.0.6.0.UMQCNXM-user-14.0-a871f6a54b.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.4.0.UMQCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/sunstone/miui_SUNSTONE_OS1.0.4.0.UMQCNXM_d02194b313_14.0.zip"
+        }
+      }
+    }
+  ]
+}

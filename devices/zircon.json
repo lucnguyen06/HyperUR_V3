@@ -1,0 +1,53 @@
+{
+  "device": "zircon",
+  "name": {
+    "zh": "Redmi Note 13 Pro+ 5G",
+    "en": "Redmi Note 13 Pro+ 5G"
+  },
+  "code": "NO",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "zircon",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi Note 13 Pro+ 5G",
+        "en": "Redmi Note 13 Pro+ 5G"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.303.0.WNOCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/zircon/zircon-ota_full-OS3.0.303.0.WNOCNXM-user-16.0-09c35a83d6.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.209.0.VNOCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/zircon/zircon-ota_full-OS2.0.209.0.VNOCNXM-user-15.0-2a80ab41ff.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.11.0.UNOCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/zircon/miui_ZIRCON_OS1.0.11.0.UNOCNXM_69ddd15a3c_14.0.zip"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "device": "lapis",
+  "name": {
+    "zh": "REDMI Note 15 Pro 5G",
+    "en": "REDMI Note 15 Pro 5G"
+  },
+  "code": "PP",
+  "supports": [
+    "OS3.0",
+    "OS2.0"
+  ],
+  "android": [
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "lapis",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI Note 15 Pro 5G",
+        "en": "REDMI Note 15 Pro 5G"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.307.0.WPPCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/lapis/lapis-ota_full-OS3.0.307.0.WPPCNXM-user-16.0-aaeb88c0cd.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.209.0.VPPCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/lapis/lapis-ota_full-OS2.0.209.0.VPPCNXM-user-15.0-69ee5ae0bf.zip"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "device": "dada",
+  "name": {
+    "zh": "小米 15",
+    "en": "Xiaomi 15"
+  },
+  "code": "OC",
+  "supports": [
+    "OS4.0",
+    "OS3.0",
+    "OS2.0"
+  ],
+  "android": [
+    "15.0",
+    "16.0",
+    "17.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "dada",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 15",
+        "en": "Xiaomi 15"
+      },
+      "region": "cn",
+      "roms": {
+        "OS4.0": {
+          "os": "OS4.0.0.7.XOCCNXM",
+          "android": "17.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/dada/dada-ota_full-OS4.0.0.7.XOCCNXM-user-17.0-832125be27.zip"
+        },
+        "OS3.0": {
+          "os": "OS3.0.303.7.WOCCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/dada/dada-ota_full-OS3.0.303.7.WOCCNXM-user-16.0-1fb1fb18e3.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.214.3.VOCCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/dada/dada-ota_full-OS2.0.214.3.VOCCNXM-user-15.0-b13ca22332.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "dada",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 15",
+        "en": "Xiaomi 15"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.305.0.WOCCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/dada/dada-ota_full-OS3.0.305.0.WOCCNXM-user-16.0-d51c19846d.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.216.0.VOCCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/dada/dada-ota_full-OS2.0.216.0.VOCCNXM-user-15.0-6703365c83.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 安卓开发者预览版大陆版",
+        "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
+      },
+      "branchCode": "dada_pre_dpp",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 15",
+        "en": "Xiaomi 15"
+      },
+      "region": "cn",
+      "roms": {
+        "OS2.0": {
+          "os": "OS2.0.250427.1.WOCCNXM.PRE-DPP",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/dada_pre_dpp/dada_pre_dpp-ota_full-OS2.0.250427.1.WOCCNXM.PRE-DPP-user-16.0-1e43857eae.zip"
+        }
+      }
+    }
+  ]
+}

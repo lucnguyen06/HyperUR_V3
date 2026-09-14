@@ -1,0 +1,46 @@
+{
+  "device": "kunzite",
+  "name": {
+    "zh": "REDMI Note 15 5G",
+    "en": "REDMI Note 15 5G"
+  },
+  "code": "PQ",
+  "supports": [
+    "OS3.0",
+    "OS2.0"
+  ],
+  "android": [
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "kunzite",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI Note 15 5G",
+        "en": "REDMI Note 15 5G"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.302.0.WPQCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/kunzite/kunzite-ota_full-OS3.0.302.0.WPQCNXM-user-16.0-6e52e8a1e8.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.207.0.VPQCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/kunzite/kunzite-ota_full-OS2.0.207.0.VPQCNXM-user-15.0-6934a6d67d.zip"
+        }
+      }
+    }
+  ]
+}

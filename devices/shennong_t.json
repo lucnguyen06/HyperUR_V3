@@ -1,0 +1,39 @@
+{
+  "device": "shennong_t",
+  "name": {
+    "zh": "小米 14 Pro 钛金属卫星通讯版",
+    "en": "Xiaomi 14 Pro Ti Satellite"
+  },
+  "code": "ND",
+  "supports": [
+    "OS1.0"
+  ],
+  "android": [
+    "14.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "shennong",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "shennong_t",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 14 Pro 钛金属卫星通讯版",
+        "en": "Xiaomi 14 Pro Ti Satellite"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.7.0.UNDCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/shennong_t/miui_SHENNONGT_OS1.0.7.0.UNDCNXM_4b29ecc269_14.0.zip"
+        }
+      }
+    }
+  ]
+}

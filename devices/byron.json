@@ -1,0 +1,66 @@
+{
+  "device": "byron",
+  "name": {
+    "zh": "Xiaomi 17 Max",
+    "en": "Xiaomi 17 Max"
+  },
+  "code": "AF",
+  "supports": [
+    "OS4.0",
+    "OS3.0"
+  ],
+  "android": [
+    "16.0",
+    "17.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "byron",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "Xiaomi 17 Max",
+        "en": "Xiaomi 17 Max"
+      },
+      "region": "cn",
+      "roms": {
+        "OS4.0": {
+          "os": "OS4.0.0.11.XAFCNXM",
+          "android": "17.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/byron/byron-ota_full-OS4.0.0.11.XAFCNXM-user-17.0-50bfa22080.zip"
+        },
+        "OS3.0": {
+          "os": "OS3.0.306.2.WAFCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/byron/byron-ota_full-OS3.0.306.2.WAFCNXM-user-16.0-29a1277d40.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "byron",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "Xiaomi 17 Max",
+        "en": "Xiaomi 17 Max"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.308.0.WAFCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/byron/byron-ota_full-OS3.0.308.0.WAFCNXM-user-16.0-3fc387925d.zip"
+        }
+      }
+    }
+  ]
+}

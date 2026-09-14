@@ -1,0 +1,61 @@
+{
+  "device": "yili",
+  "name": {
+    "zh": "REDMI K Pad 2",
+    "en": "REDMI K Pad 2"
+  },
+  "code": "AK",
+  "supports": [
+    "OS4.0",
+    "OS3.0"
+  ],
+  "android": [
+    "16.0",
+    "17.0"
+  ],
+  "type": "tablet",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "yili",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI K Pad 2",
+        "en": "REDMI K Pad 2"
+      },
+      "region": "cn",
+      "roms": {
+        "OS4.0": {
+          "os": "OS4.0.0.6.XAKCNXM",
+          "android": "17.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/yili/yili-ota_full-OS4.0.0.6.XAKCNXM-user-17.0-b8e42fc0ec.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "yili",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI K Pad 2",
+        "en": "REDMI K Pad 2"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.309.0.WAKCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/yili/yili-ota_full-OS3.0.309.0.WAKCNXM-user-16.0-1b34ad9452.zip"
+        }
+      }
+    }
+  ]
+}

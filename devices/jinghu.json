@@ -1,0 +1,66 @@
+{
+  "device": "jinghu",
+  "name": {
+    "zh": "小米平板 7 Ultra",
+    "en": "Xiaomi Pad 7 Ultra"
+  },
+  "code": "OX",
+  "supports": [
+    "OS3.0",
+    "OS2.0"
+  ],
+  "android": [
+    "15.0",
+    "16.0"
+  ],
+  "type": "tablet",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "jinghu",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米平板 7 Ultra",
+        "en": "Xiaomi Pad 7 Ultra"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.300.3.WOXCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/jinghu/jinghu-ota_full-OS3.0.300.3.WOXCNXM-user-16.0-11c06a97d3.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "jinghu",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米平板 7 Ultra",
+        "en": "Xiaomi Pad 7 Ultra"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.302.0.WOXCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/jinghu/jinghu-ota_full-OS3.0.302.0.WOXCNXM-user-16.0-273fdb14ca.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.207.0.VOXCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/jinghu/jinghu-ota_full-OS2.0.207.0.VOXCNXM-user-15.0-e175184523.zip"
+        }
+      }
+    }
+  ]
+}

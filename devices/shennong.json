@@ -1,0 +1,123 @@
+{
+  "device": "shennong",
+  "name": {
+    "zh": "小米 14 Pro / Ti / 钛金属卫星通讯版",
+    "en": "Xiaomi 14 Pro / Ti / Satellite"
+  },
+  "code": "NB",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "shennong",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 14 Pro / Ti / 钛金属卫星通讯版",
+        "en": "Xiaomi 14 Pro / Ti / Satellite"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.300.8.WNBCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/shennong/shennong-ota_full-OS3.0.300.8.WNBCNXM-user-16.0-7ebae53c5e.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.213.3.VNBCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/shennong/shennong-ota_full-OS2.0.213.3.VNBCNXM-user-15.0-f6bda214a7.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "shennong",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 14 Pro / Ti",
+        "en": "Xiaomi 14 Pro / Ti"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.308.0.WNBCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/shennong/shennong-ota_full-OS3.0.308.0.WNBCNXM-user-16.0-704ee35814.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.223.0.VNBCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/shennong/shennong-ota_full-OS2.0.223.0.VNBCNXM-user-15.0-ed61c394f7.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.50.0.UNBCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/shennong/miui_SHENNONG_OS1.0.50.0.UNBCNXM_388409ff36_14.0.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 安卓开发者预览版大陆版",
+        "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
+      },
+      "branchCode": "shennong_pre_dpp",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 14 Pro / Ti",
+        "en": "Xiaomi 14 Pro / Ti"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.240808.1.VNBCNXMPRE-DPP",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/shennong_pre_dpp/miui_SHENNONGPREDPP_OS1.0.240808.1.VNBCNXMPRE-DPP_055545282c_15.0.zip"
+        },
+        "24.5.8": {
+          "os": "24.5.8",
+          "android": "15.0",
+          "download": ""
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 开发版",
+        "en": "Xiaomi HyperOS DEV"
+      },
+      "branchCode": "shennong",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 14 Pro / Ti",
+        "en": "Xiaomi 14 Pro / Ti"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.24.7.28.DEV",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/shennong/miui_SHENNONG_OS1.0.24.7.28.DEV_bbc65e48c3_14.0.zip"
+        }
+      }
+    }
+  ]
+}

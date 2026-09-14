@@ -1,0 +1,65 @@
+{
+  "device": "matisse",
+  "name": {
+    "zh": "Redmi K50 Pro",
+    "en": "Redmi K50 Pro"
+  },
+  "code": "LK",
+  "supports": [
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 开发版",
+        "en": "Xiaomi HyperOS DEV"
+      },
+      "branchCode": "matisse",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi K50 Pro",
+        "en": "Redmi K50 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.24.7.28.DEV",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/matisse/miui_MATISSE_OS1.0.24.7.28.DEV_6ed0061fac_14.0.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "matisse",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi K50 Pro",
+        "en": "Redmi K50 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS2.0": {
+          "os": "OS2.0.6.0.ULKCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/matisse/matisse-ota_full-OS2.0.6.0.ULKCNXM-user-14.0-4853637358.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.19.0.ULKCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/matisse/miui_MATISSE_OS1.0.19.0.ULKCNXM_4f31a20953_14.0.zip"
+        }
+      }
+    }
+  ]
+}

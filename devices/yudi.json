@@ -1,0 +1,52 @@
+{
+  "device": "yudi",
+  "name": {
+    "zh": "小米平板 6 Max 14",
+    "en": "Xiaomi Pad 6 Max 14"
+  },
+  "code": "MH",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0"
+  ],
+  "type": "tablet",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "yudi",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米平板 6 Max 14",
+        "en": "Xiaomi Pad 6 Max 14"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.6.0.VMHCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/yudi/yudi-ota_full-OS3.0.6.0.VMHCNXM-user-15.0-7b73783799.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.211.0.VMHCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/yudi/yudi-ota_full-OS2.0.211.0.VMHCNXM-user-15.0-7bd25509d3.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.17.0.UMHCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/yudi/miui_YUDI_OS1.0.17.0.UMHCNXM_016e5304b7_14.0.zip"
+        }
+      }
+    }
+  ]
+}

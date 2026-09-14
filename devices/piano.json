@@ -1,0 +1,66 @@
+{
+  "device": "piano",
+  "name": {
+    "zh": "小米平板 8 Pro",
+    "en": "Xiaomi Pad 8 Pro"
+  },
+  "code": "PY",
+  "supports": [
+    "OS4.0",
+    "OS3.0"
+  ],
+  "android": [
+    "16.0",
+    "17.0"
+  ],
+  "type": "tablet",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "piano",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米平板 8 Pro",
+        "en": "Xiaomi Pad 8 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS4.0": {
+          "os": "OS4.0.0.31.XPYCNXM",
+          "android": "17.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/piano/piano-ota_full-OS4.0.0.31.XPYCNXM-user-17.0-e53f7f597e.zip"
+        },
+        "OS3.0": {
+          "os": "OS3.0.306.3.WPYCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/piano/piano-ota_full-OS3.0.306.3.WPYCNXM-user-16.0-475e5c4bd6.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "piano",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米平板 8 Pro",
+        "en": "Xiaomi Pad 8 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.307.0.WPYCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/piano/piano-ota_full-OS3.0.307.0.WPYCNXM-user-16.0-8b22c582a6.zip"
+        }
+      }
+    }
+  ]
+}

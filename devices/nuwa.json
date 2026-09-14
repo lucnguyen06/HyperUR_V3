@@ -1,0 +1,93 @@
+{
+  "device": "nuwa",
+  "name": {
+    "zh": "小米 13 Pro",
+    "en": "Xiaomi 13 Pro"
+  },
+  "code": "MB",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "nuwa",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 13 Pro",
+        "en": "Xiaomi 13 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS2.0": {
+          "os": "OS2.0.200.10.VMBCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/nuwa/nuwa-ota_full-OS2.0.200.10.VMBCNXM-user-15.0-6165f9a21b.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 开发版",
+        "en": "Xiaomi HyperOS DEV"
+      },
+      "branchCode": "nuwa",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 13 Pro",
+        "en": "Xiaomi 13 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.24.7.28.DEV",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/nuwa/miui_NUWA_OS1.0.24.7.28.DEV_0f2227743d_14.0.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "nuwa",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 13 Pro",
+        "en": "Xiaomi 13 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.310.0.WMBCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/nuwa/nuwa-ota_full-OS3.0.310.0.WMBCNXM-user-16.0-765b5bb268.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.219.0.VMBCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/nuwa/nuwa-ota_full-OS2.0.219.0.VMBCNXM-user-15.0-194f4d3369.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.16.0.UMBCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/nuwa/miui_NUWA_OS1.0.16.0.UMBCNXM_70accbaa41_14.0.zip"
+        }
+      }
+    }
+  ]
+}

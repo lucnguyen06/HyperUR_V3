@@ -1,0 +1,41 @@
+{
+  "device": "organ",
+  "name": {
+    "zh": "REDMI 平板 2 Pro 5G",
+    "en": "REDMI Pad 2 Pro 5G"
+  },
+  "code": "PX",
+  "supports": [
+    "OS3.0",
+    "OS2.0"
+  ],
+  "android": [
+    "15.0",
+    "16.0"
+  ],
+  "type": "tablet",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "organ",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI 平板 2 Pro 5G",
+        "en": "REDMI Pad 2 Pro 5G"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.305.0.WPXCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/organ/organ-ota_full-OS3.0.305.0.WPXCNXM-user-16.0-b25ba793ab.zip"
+        }
+      }
+    }
+  ]
+}

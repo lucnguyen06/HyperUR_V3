@@ -1,0 +1,66 @@
+{
+  "device": "myron",
+  "name": {
+    "zh": "REDMI K90 Pro Max",
+    "en": "REDMI K90 Pro Max"
+  },
+  "code": "PM",
+  "supports": [
+    "OS4.0",
+    "OS3.0"
+  ],
+  "android": [
+    "16.0",
+    "17.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "myron",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI K90 Pro Max",
+        "en": "REDMI K90 Pro Max"
+      },
+      "region": "cn",
+      "roms": {
+        "OS4.0": {
+          "os": "OS4.0.0.21.XPMCNXM",
+          "android": "17.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/myron/myron-ota_full-OS4.0.0.21.XPMCNXM-user-17.0-3e3a87208c.zip"
+        },
+        "OS3.0": {
+          "os": "OS3.0.306.4.WPMCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/myron/myron-ota_full-OS3.0.306.4.WPMCNXM-user-16.0-c316fcd501.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "myron",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI K90 Pro Max",
+        "en": "REDMI K90 Pro Max"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.309.0.WPMCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/myron/myron-ota_full-OS3.0.309.0.WPMCNXM-user-16.0-b4ff57a766.zip"
+        }
+      }
+    }
+  ]
+}

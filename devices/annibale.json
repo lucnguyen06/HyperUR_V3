@@ -1,0 +1,66 @@
+{
+  "device": "annibale",
+  "name": {
+    "zh": "REDMI K90",
+    "en": "REDMI K90"
+  },
+  "code": "PK",
+  "supports": [
+    "OS4.0",
+    "OS3.0"
+  ],
+  "android": [
+    "16.0",
+    "17.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "annibale",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI K90",
+        "en": "REDMI K90"
+      },
+      "region": "cn",
+      "roms": {
+        "OS4.0": {
+          "os": "OS4.0.0.24.XPKCNXM",
+          "android": "17.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/annibale/annibale-ota_full-OS4.0.0.24.XPKCNXM-user-17.0-a0f705f4c2.zip"
+        },
+        "OS3.0": {
+          "os": "OS3.0.305.3.WPKCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/annibale/annibale-ota_full-OS3.0.305.3.WPKCNXM-user-16.0-132048d7f5.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "annibale",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI K90",
+        "en": "REDMI K90"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.307.0.WPKCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/annibale/annibale-ota_full-OS3.0.307.0.WPKCNXM-user-16.0-94dcf5f934.zip"
+        }
+      }
+    }
+  ]
+}

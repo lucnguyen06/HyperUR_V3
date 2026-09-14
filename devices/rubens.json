@@ -1,0 +1,65 @@
+{
+  "device": "rubens",
+  "name": {
+    "zh": "Redmi K50",
+    "en": "Redmi K50"
+  },
+  "code": "LN",
+  "supports": [
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 开发版",
+        "en": "Xiaomi HyperOS DEV"
+      },
+      "branchCode": "rubens",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi K50",
+        "en": "Redmi K50"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.24.7.28.DEV",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/rubens/miui_RUBENS_OS1.0.24.7.28.DEV_735e53ceca_14.0.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "rubens",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi K50",
+        "en": "Redmi K50"
+      },
+      "region": "cn",
+      "roms": {
+        "OS2.0": {
+          "os": "OS2.0.10.0.ULNCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/rubens/rubens-ota_full-OS2.0.10.0.ULNCNXM-user-14.0-7234ada1a1.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.17.0.ULNCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/rubens/miui_RUBENS_OS1.0.17.0.ULNCNXM_012d9c32ad_14.0.zip"
+        }
+      }
+    }
+  ]
+}

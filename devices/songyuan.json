@@ -1,0 +1,39 @@
+{
+  "device": "songyuan",
+  "name": {
+    "zh": "REDMI K100 Pro Max",
+    "en": "REDMI K100 Pro Max"
+  },
+  "code": "GN",
+  "supports": [
+    "OS3.0"
+  ],
+  "android": [
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "songyuan",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI K100 Pro Max",
+        "en": "REDMI K100 Pro Max"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.306.0.WGNCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/songyuan/songyuan-ota_full-OS3.0.306.0.WGNCNXM-user-16.0-114ed50527.zip"
+        }
+      }
+    }
+  ]
+}

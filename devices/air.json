@@ -1,0 +1,46 @@
+{
+  "device": "air",
+  "name": {
+    "zh": "Redmi 13C/R 5G",
+    "en": "Redmi 13C/R 5G"
+  },
+  "code": "GQ",
+  "supports": [
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "air",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi 13C / 13R 5G",
+        "en": "Redmi 13C / 13R 5G"
+      },
+      "region": "cn",
+      "roms": {
+        "OS2.0": {
+          "os": "OS2.0.210.0.VGQCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/air/air-ota_full-OS2.0.210.0.VGQCNXM-user-15.0-44d4eb6359.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.2.0.UGQCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/air/miui_AIR_OS1.0.2.0.UGQCNXM_8dd01b5895_14.0.zip"
+        }
+      }
+    }
+  ]
+}

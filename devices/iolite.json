@@ -1,0 +1,39 @@
+{
+  "device": "iolite",
+  "name": {
+    "zh": "REDMI Note 17 Pro 5G",
+    "en": "REDMI Note 17 Pro 5G"
+  },
+  "code": "DQ",
+  "supports": [
+    "OS3.0"
+  ],
+  "android": [
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "iolite",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI Note 17 Pro 5G",
+        "en": "REDMI Note 17 Pro 5G"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.309.0.WDQCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/iolite/iolite-ota_full-OS3.0.309.0.WDQCNXM-user-16.0-5ae8d37a23.zip"
+        }
+      }
+    }
+  ]
+}

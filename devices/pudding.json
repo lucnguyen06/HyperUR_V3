@@ -1,0 +1,87 @@
+{
+  "device": "pudding",
+  "name": {
+    "zh": "小米 17",
+    "en": "Xiaomi 17"
+  },
+  "code": "PC",
+  "supports": [
+    "OS3.3",
+    "OS4.0",
+    "OS3.0"
+  ],
+  "android": [
+    "16.0",
+    "17.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "pudding",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 17",
+        "en": "Xiaomi 17"
+      },
+      "region": "cn",
+      "roms": {
+        "OS4.0": {
+          "os": "OS4.0.0.16.XPCCNXM",
+          "android": "17.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/pudding/pudding-ota_full-OS4.0.0.16.XPCCNXM-user-17.0-52d975988c.zip"
+        },
+        "OS3.0": {
+          "os": "OS3.0.330.14.XPCCNXM",
+          "android": "17.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/pudding/pudding-ota_full-OS3.0.330.14.XPCCNXM-user-17.0-6950725769.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "pudding",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 17",
+        "en": "Xiaomi 17"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.318.0.WPCCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/pudding/pudding-ota_full-OS3.0.318.0.WPCCNXM-user-16.0-d8067aea90.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 安卓开发者预览版大陆版",
+        "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
+      },
+      "branchCode": "pudding_dpp",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 17",
+        "en": "Xiaomi 17"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.3": {
+          "os": "OS3.3.260512.2.XPCCNXM.STABLE-DPP",
+          "android": "17.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/pudding_dpp/pudding_dpp-ota_full-OS3.3.260512.2.XPCCNXM.STABLE-DPP-user-17.0-8bc34adba3.zip"
+        }
+      }
+    }
+  ]
+}

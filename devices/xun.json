@@ -1,0 +1,46 @@
+{
+  "device": "xun",
+  "name": {
+    "zh": "Redmi 平板 SE",
+    "en": "Redmi Pad SE"
+  },
+  "code": "MU",
+  "supports": [
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0"
+  ],
+  "type": "tablet",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "xun",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi 平板 SE",
+        "en": "Redmi Pad SE"
+      },
+      "region": "cn",
+      "roms": {
+        "OS2.0": {
+          "os": "OS2.0.209.0.VMUCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/xun/xun-ota_full-OS2.0.209.0.VMUCNXM-user-15.0-25c747be4d.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.10.0.UMUCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/xun/miui_XUN_OS1.0.10.0.UMUCNXM_e846ec8b58_14.0.zip"
+        }
+      }
+    }
+  ]
+}

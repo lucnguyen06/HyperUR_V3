@@ -1,0 +1,52 @@
+{
+  "device": "marble",
+  "name": {
+    "zh": "Redmi Note 12 Turbo",
+    "en": "Redmi Note 12 Turbo"
+  },
+  "code": "MR",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "marble",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi Note 12 Turbo",
+        "en": "Redmi Note 12 Turbo"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.5.0.VMRCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/marble/marble-ota_full-OS3.0.5.0.VMRCNXM-user-15.0-727afd7728.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.215.0.VMRCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/marble/marble-ota_full-OS2.0.215.0.VMRCNXM-user-15.0-d937d7f146.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.18.0.UMRCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/marble/miui_MARBLE_OS1.0.18.0.UMRCNXM_2ceea3f630_14.0.zip"
+        }
+      }
+    }
+  ]
+}

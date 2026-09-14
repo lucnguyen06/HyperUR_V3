@@ -1,0 +1,39 @@
+{
+  "device": "somalia",
+  "name": {
+    "zh": "REDMI R70 / REDMI R70m / REDMI 17 5G",
+    "en": "REDMI R70 / REDMI R70m / REDMI 17 5G"
+  },
+  "code": "BW",
+  "supports": [
+    "OS3.0"
+  ],
+  "android": [
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "somalia",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI R70 / REDMI R70m / REDMI 17 5G",
+        "en": "REDMI R70 / REDMI R70m / REDMI 17 5G"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.12.0.WBWCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/somalia/somalia-ota_full-OS3.0.12.0.WBWCNXM-user-16.0-bec5304f8d.zip"
+        }
+      }
+    }
+  ]
+}

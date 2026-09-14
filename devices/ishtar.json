@@ -1,0 +1,93 @@
+{
+  "device": "ishtar",
+  "name": {
+    "zh": "小米 13 Ultra",
+    "en": "Xiaomi 13 Ultra"
+  },
+  "code": "MA",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "ishtar",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 13 Ultra",
+        "en": "Xiaomi 13 Ultra"
+      },
+      "region": "cn",
+      "roms": {
+        "OS2.0": {
+          "os": "OS2.0.200.11.VMACNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/ishtar/ishtar-ota_full-OS2.0.200.11.VMACNXM-user-15.0-eed5b966f2.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 开发版",
+        "en": "Xiaomi HyperOS DEV"
+      },
+      "branchCode": "ishtar",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 13 Ultra",
+        "en": "Xiaomi 13 Ultra"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.24.7.28.DEV",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/ishtar/miui_ISHTAR_OS1.0.24.7.28.DEV_c39599acc1_14.0.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "ishtar",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 13 Ultra",
+        "en": "Xiaomi 13 Ultra"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.306.0.WMACNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/ishtar/ishtar-ota_full-OS3.0.306.0.WMACNXM-user-16.0-42184b59d7.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.210.0.VMACNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/ishtar/ishtar-ota_full-OS2.0.210.0.VMACNXM-user-15.0-139ea346cd.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.20.0.UMACNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/ishtar/miui_ISHTAR_OS1.0.20.0.UMACNXM_371076313a_14.0.zip"
+        }
+      }
+    }
+  ]
+}

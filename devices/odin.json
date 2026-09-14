@@ -1,0 +1,39 @@
+{
+  "device": "odin",
+  "name": {
+    "zh": "小米 MIX 4",
+    "en": "MIX 4"
+  },
+  "code": "KM",
+  "supports": [
+    "OS1.0"
+  ],
+  "android": [
+    "14.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "odin",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 MIX 4",
+        "en": "MIX 4"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.8.0.UKMCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/odin/miui_ODIN_OS1.0.8.0.UKMCNXM_68477e189f_14.0.zip"
+        }
+      }
+    }
+  ]
+}

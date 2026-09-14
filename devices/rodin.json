@@ -1,0 +1,46 @@
+{
+  "device": "rodin",
+  "name": {
+    "zh": "REDMI Turbo 4",
+    "en": "REDMI Turbo 4"
+  },
+  "code": "OJ",
+  "supports": [
+    "OS3.0",
+    "OS2.0"
+  ],
+  "android": [
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "rodin",
+      "brand": "Redmi",
+      "device": {
+        "zh": "REDMI Turbo 4",
+        "en": "REDMI Turbo 4"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.304.0.WOJCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/rodin/rodin-ota_full-OS3.0.304.0.WOJCNXM-user-16.0-0aac50ddf1.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.208.0.VOJCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/rodin/rodin-ota_full-OS2.0.208.0.VOJCNXM-user-15.0-7342995578.zip"
+        }
+      }
+    }
+  ]
+}

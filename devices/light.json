@@ -1,0 +1,39 @@
+{
+  "device": "light",
+  "name": {
+    "zh": "Redmi 10 5G/Redmi 11 Prime 5G/Redmi Note 11E",
+    "en": "Redmi 10 5G/Redmi 11 Prime 5G/Redmi Note 11E"
+  },
+  "code": "LS",
+  "supports": [
+    "OS1.0"
+  ],
+  "android": [
+    "14.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "light",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi Note 11E",
+        "en": "Redmi Note 11E"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.9.0.ULSCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/light/miui_LIGHT_OS1.0.9.0.ULSCNXM_b41692586c_14.0.zip"
+        }
+      }
+    }
+  ]
+}

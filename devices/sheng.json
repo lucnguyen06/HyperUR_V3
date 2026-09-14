@@ -1,0 +1,124 @@
+{
+  "device": "sheng",
+  "name": {
+    "zh": "小米平板 6S Pro 12.4",
+    "en": "Xiaomi Pad 6S Pro 12.4"
+  },
+  "code": "NX",
+  "supports": [
+    "OS1.1",
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0",
+    "16.0"
+  ],
+  "type": "tablet",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "sheng",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米平板 6S Pro 12.4",
+        "en": "Xiaomi Pad 6S Pro 12.4"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.0.8.WNXCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/sheng/sheng-ota_full-OS3.0.0.8.WNXCNXM-user-16.0-7dd8485234.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.201.2.VNXCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/sheng/sheng-ota_full-OS2.0.201.2.VNXCNXM-user-15.0-6d891cb6cc.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "sheng",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米平板 6S Pro 12.4",
+        "en": "Xiaomi Pad 6S Pro 12.4"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.304.0.WNXCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/sheng/sheng-ota_full-OS3.0.304.0.WNXCNXM-user-16.0-57e0a09d42.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.211.0.VNXCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/sheng/sheng-ota_full-OS2.0.211.0.VNXCNXM-user-15.0-b89bcc4fbf.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.11.0.UNXCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/sheng/miui_SHENG_OS1.0.11.0.UNXCNXM_921ff6036a_14.0.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 安卓开发者预览版大陆版",
+        "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
+      },
+      "branchCode": "sheng_pre_dpp",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米平板 6S Pro 12.4",
+        "en": "Xiaomi Pad 6S Pro 12.4"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.240808.1.VNXCNXMPRE-DPP",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/sheng_pre_dpp/miui_SHENGPREDPP_OS1.0.240808.1.VNXCNXMPRE-DPP_ee8ad5209f_15.0.zip"
+        },
+        "24.5.10.1": {
+          "os": "24.5.10.1",
+          "android": "15.0",
+          "download": ""
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 体验增强版 Beta",
+        "en": "Xiaomi HyperOS Enhanced Experience Beta"
+      },
+      "branchCode": "sheng",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米平板 6S Pro 12.4",
+        "en": "Xiaomi Pad 6S Pro 12.4"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.1": {
+          "os": "OS1.1.7.0.VNXCNXM.BETA",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/sheng/sheng-ota_full-OS1.1.7.0.VNXCNXM.BETA-user-15.0-dc3ad61264.zip"
+        }
+      }
+    }
+  ]
+}

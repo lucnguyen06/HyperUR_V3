@@ -1,0 +1,53 @@
+{
+  "device": "malachite",
+  "name": {
+    "zh": "Redmi Note 14 Pro",
+    "en": "Redmi Note 14 Pro"
+  },
+  "code": "OO",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "malachite",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi Note 14 Pro",
+        "en": "Redmi Note 14 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.306.0.WOOCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/malachite/malachite-ota_full-OS3.0.306.0.WOOCNXM-user-16.0-ce38ea51cf.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.213.0.VOOCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/malachite/malachite-ota_full-OS2.0.213.0.VOOCNXM-user-15.0-65e6de054e.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.13.0.UOOCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/malachite/miui_MALACHITE_OS1.0.13.0.UOOCNXM_e630a3e60c_14.0.zip"
+        }
+      }
+    }
+  ]
+}

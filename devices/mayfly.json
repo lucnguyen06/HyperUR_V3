@@ -1,0 +1,72 @@
+{
+  "device": "mayfly",
+  "name": {
+    "zh": "小米 12S",
+    "en": "Xiaomi 12S"
+  },
+  "code": "LT",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 开发版",
+        "en": "Xiaomi HyperOS DEV"
+      },
+      "branchCode": "mayfly",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 12S",
+        "en": "Xiaomi 12S"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.24.7.28.DEV",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/mayfly/miui_MAYFLY_OS1.0.24.7.28.DEV_64c13321c5_14.0.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "mayfly",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 12S",
+        "en": "Xiaomi 12S"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.3.0.VLTCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/mayfly/mayfly-ota_full-OS3.0.3.0.VLTCNXM-user-15.0-16f6dcd338.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.209.0.VLTCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/mayfly/mayfly-ota_full-OS2.0.209.0.VLTCNXM-user-15.0-f35ba50669.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.14.0.ULTCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/mayfly/miui_MAYFLY_OS1.0.14.0.ULTCNXM_ae11669a2c_14.0.zip"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "device": "yuechu",
+  "name": {
+    "zh": "小米 Civi 3",
+    "en": "Xiaomi Civi 3"
+  },
+  "code": "MI",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "yuechu",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 Civi 3",
+        "en": "Xiaomi Civi 3"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.10.0.VMICNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/yuechu/yuechu-ota_full-OS3.0.10.0.VMICNXM-user-15.0-d8eb8d8777.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.213.0.VMICNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/yuechu/yuechu-ota_full-OS2.0.213.0.VMICNXM-user-15.0-744fc925ff.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.17.0.UMICNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/yuechu/miui_YUECHU_OS1.0.17.0.UMICNXM_b61dd21d41_14.0.zip"
+        }
+      }
+    }
+  ]
+}

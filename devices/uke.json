@@ -1,0 +1,71 @@
+{
+  "device": "uke",
+  "name": {
+    "zh": "小米平板 7",
+    "en": "Xiaomi Pad 7"
+  },
+  "code": "OZ",
+  "supports": [
+    "OS3.0",
+    "OS2.0"
+  ],
+  "android": [
+    "15.0",
+    "16.0"
+  ],
+  "type": "tablet",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "uke",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米平板 7",
+        "en": "Xiaomi Pad 7"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.2.1.WOZCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/uke/uke-ota_full-OS3.0.2.1.WOZCNXM-user-16.0-b4aa6edb42.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.200.18.VOZCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/uke/uke-ota_full-OS2.0.200.18.VOZCNXM-user-15.0-8270feeabe.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "uke",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米平板 7",
+        "en": "Xiaomi Pad 7"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.302.0.WOZCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/uke/uke-ota_full-OS3.0.302.0.WOZCNXM-user-16.0-d8973af359.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.208.0.VOZCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/uke/uke-ota_full-OS2.0.208.0.VOZCNXM-user-15.0-3f41482738.zip"
+        }
+      }
+    }
+  ]
+}

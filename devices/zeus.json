@@ -1,0 +1,72 @@
+{
+  "device": "zeus",
+  "name": {
+    "zh": "小米 12 Pro",
+    "en": "Xiaomi 12 Pro"
+  },
+  "code": "LB",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 开发版",
+        "en": "Xiaomi HyperOS DEV"
+      },
+      "branchCode": "zeus",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 12 Pro",
+        "en": "Xiaomi 12 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.24.7.28.DEV",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/zeus/miui_ZEUS_OS1.0.24.7.28.DEV_1817c497a7_14.0.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "zeus",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 12 Pro",
+        "en": "Xiaomi 12 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.3.0.VLBCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/zeus/zeus-ota_full-OS3.0.3.0.VLBCNXM-user-15.0-b4852ba809.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.214.0.VLBCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/zeus/zeus-ota_full-OS2.0.214.0.VLBCNXM-user-15.0-0aaf6ce15b.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.12.0.ULBCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/zeus/miui_ZEUS_OS1.0.12.0.ULBCNXM_3acdf84493_14.0.zip"
+        }
+      }
+    }
+  ]
+}

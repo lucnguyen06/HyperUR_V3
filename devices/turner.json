@@ -1,0 +1,66 @@
+{
+  "device": "turner",
+  "name": {
+    "zh": "REDMI K Pad / Xiaomi Pad Mini",
+    "en": "REDMI K Pad / Xiaomi Pad Mini"
+  },
+  "code": "AO",
+  "supports": [
+    "OS3.0",
+    "OS2.0"
+  ],
+  "android": [
+    "15.0",
+    "16.0"
+  ],
+  "type": "tablet",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "turner",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI K Pad",
+        "en": "REDMI K Pad"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.1.2.WAOCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/turner/turner-ota_full-OS3.0.1.2.WAOCNXM-user-16.0-4d3ec0cbfc.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "turner",
+      "brand": "REDMI",
+      "device": {
+        "zh": "REDMI K Pad",
+        "en": "REDMI K Pad"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.308.0.WAOCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/turner/turner-ota_full-OS3.0.308.0.WAOCNXM-user-16.0-23e1afcc33.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.218.0.VAOCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/turner/turner-ota_full-OS2.0.218.0.VAOCNXM-user-15.0-8f9cf6895c.zip"
+        }
+      }
+    }
+  ]
+}

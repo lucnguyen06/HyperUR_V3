@@ -1,0 +1,72 @@
+{
+  "device": "cupid",
+  "name": {
+    "zh": "小米 12",
+    "en": "Xiaomi 12"
+  },
+  "code": "LC",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 开发版",
+        "en": "Xiaomi HyperOS DEV"
+      },
+      "branchCode": "cupid",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 12",
+        "en": "Xiaomi 12"
+      },
+      "region": "cn",
+      "roms": {
+        "OS1.0": {
+          "os": "OS1.0.24.7.28.DEV",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/cupid/miui_CUPID_OS1.0.24.7.28.DEV_14526c6cd7_14.0.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "cupid",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 12",
+        "en": "Xiaomi 12"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.3.0.VLCCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/cupid/cupid-ota_full-OS3.0.3.0.VLCCNXM-user-15.0-1786889676.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.213.0.VLCCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/cupid/cupid-ota_full-OS2.0.213.0.VLCCNXM-user-15.0-4def86ecec.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.12.0.ULCCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/cupid/miui_CUPID_OS1.0.12.0.ULCCNXM_e5ab3c821b_14.0.zip"
+        }
+      }
+    }
+  ]
+}

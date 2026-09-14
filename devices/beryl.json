@@ -1,0 +1,54 @@
+{
+  "device": "beryl",
+  "name": {
+    "zh": "Redmi Note 14 5G",
+    "en": "Redmi Note 14 5G"
+  },
+  "code": "OQ",
+  "supports": [
+    "OS2.2",
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "beryl",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi Note 14 5G",
+        "en": "Redmi Note 14 5G"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.306.0.WOQCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/beryl/beryl-ota_full-OS3.0.306.0.WOQCNXM-user-16.0-429fcb7dd3.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.211.0.VOQCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/beryl/beryl-ota_full-OS2.0.211.0.VOQCNXM-user-15.0-e5d505b4da.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.9.0.UOQCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/beryl/miui_BERYL_OS1.0.9.0.UOQCNXM_512bbea280_14.0.zip"
+        }
+      }
+    }
+  ]
+}

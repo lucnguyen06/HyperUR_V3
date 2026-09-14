@@ -1,0 +1,78 @@
+{
+  "device": "vermeer",
+  "name": {
+    "zh": "Redmi K70",
+    "en": "Redmi K70"
+  },
+  "code": "NK",
+  "supports": [
+    "OS3.0",
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0",
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "vermeer",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi K70",
+        "en": "Redmi K70"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.0.11.WNKCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/vermeer/vermeer-ota_full-OS3.0.0.11.WNKCNXM-user-16.0-b7d40e20e9.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.201.3.VNKCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/vermeer/vermeer-ota_full-OS2.0.201.3.VNKCNXM-user-15.0-187b90f56c.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "vermeer",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi K70",
+        "en": "Redmi K70"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.306.0.WNKCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/vermeer/vermeer-ota_full-OS3.0.306.0.WNKCNXM-user-16.0-e4789f735e.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.217.0.VNKCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/vermeer/vermeer-ota_full-OS2.0.217.0.VNKCNXM-user-15.0-dd4ca75e12.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.20.0.UNKCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/vermeer/miui_VERMEER_OS1.0.20.0.UNKCNXM_9de24d741c_14.0.zip"
+        }
+      }
+    }
+  ]
+}

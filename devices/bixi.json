@@ -1,0 +1,66 @@
+{
+  "device": "bixi",
+  "name": {
+    "zh": "小米 MIX Flip 2",
+    "en": "Xiaomi MIX Flip 2"
+  },
+  "code": "OH",
+  "supports": [
+    "OS3.0",
+    "OS2.0"
+  ],
+  "android": [
+    "15.0",
+    "16.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "bixi",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 MIX Flip 2",
+        "en": "Xiaomi MIX Flip 2"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.300.9.WOHCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/bixi/bixi-ota_full-OS3.0.300.9.WOHCNXM-user-16.0-c848159e77.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "bixi",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 MIX Flip 2",
+        "en": "Xiaomi MIX Flip 2"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.304.0.WOHCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/bixi/bixi-ota_full-OS3.0.304.0.WOHCNXM-user-16.0-3f0cd38056.zip"
+        },
+        "OS2.0": {
+          "os": "OS2.0.213.0.VOHCNXM",
+          "android": "15.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/bixi/bixi-ota_full-OS2.0.213.0.VOHCNXM-user-15.0-d5ba1518a2.zip"
+        }
+      }
+    }
+  ]
+}

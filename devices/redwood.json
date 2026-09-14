@@ -1,0 +1,45 @@
+{
+  "device": "redwood",
+  "name": {
+    "zh": "Redmi Note 12 Pro 极速版",
+    "en": "Redmi Note 12 Pro Speed"
+  },
+  "code": "MS",
+  "supports": [
+    "OS2.0",
+    "OS1.0"
+  ],
+  "android": [
+    "14.0"
+  ],
+  "type": "phone",
+  "miui": "yes",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "redwood",
+      "brand": "Redmi",
+      "device": {
+        "zh": "Redmi Note 12 Pro 极速版",
+        "en": "Redmi Note 12 Pro Speed"
+      },
+      "region": "cn",
+      "roms": {
+        "OS2.0": {
+          "os": "OS2.0.20.0.UMSCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/redwood/redwood-ota_full-OS2.0.20.0.UMSCNXM-user-14.0-3abcd51591.zip"
+        },
+        "OS1.0": {
+          "os": "OS1.0.15.0.UMSCNXM",
+          "android": "14.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/redwood/miui_REDWOOD_OS1.0.15.0.UMSCNXM_e4cf3d94d4_14.0.zip"
+        }
+      }
+    }
+  ]
+}

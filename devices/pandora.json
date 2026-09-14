@@ -1,0 +1,66 @@
+{
+  "device": "pandora",
+  "name": {
+    "zh": "小米 17 Pro",
+    "en": "Xiaomi 17 Pro"
+  },
+  "code": "BL",
+  "supports": [
+    "OS4.0",
+    "OS3.0"
+  ],
+  "android": [
+    "16.0",
+    "17.0"
+  ],
+  "type": "phone",
+  "miui": "no",
+  "merged": "no",
+  "branches": [
+    {
+      "name": {
+        "zh": "小米澎湃 OS Beta",
+        "en": "Xiaomi HyperOS Beta"
+      },
+      "branchCode": "pandora",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 17 Pro",
+        "en": "Xiaomi 17 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS4.0": {
+          "os": "OS4.0.0.27.XBLCNXM",
+          "android": "17.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/pandora/pandora-ota_full-OS4.0.0.27.XBLCNXM-user-17.0-e1df202eaf.zip"
+        },
+        "OS3.0": {
+          "os": "OS3.0.315.2.WBLCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/pandora/pandora-ota_full-OS3.0.315.2.WBLCNXM-user-16.0-303b249b7c.zip"
+        }
+      }
+    },
+    {
+      "name": {
+        "zh": "小米澎湃 OS 正式版",
+        "en": "Xiaomi HyperOS Stable"
+      },
+      "branchCode": "pandora",
+      "brand": "Xiaomi",
+      "device": {
+        "zh": "小米 17 Pro",
+        "en": "Xiaomi 17 Pro"
+      },
+      "region": "cn",
+      "roms": {
+        "OS3.0": {
+          "os": "OS3.0.318.0.WBLCNXM",
+          "android": "16.0",
+          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/pandora/pandora-ota_full-OS3.0.318.0.WBLCNXM-user-16.0-082e9f32b8.zip"
+        }
+      }
+    }
+  ]
+}
