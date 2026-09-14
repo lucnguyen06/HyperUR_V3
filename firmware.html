@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Thông tin và hình ảnh thực tế từ thiết bị chạy ROM HyperUR V3 - Trải nghiệm thực tế ứng dụng độc quyền UR Manager, HyperUR Keybox, LiveBridge OTP, sao lưu Google Photos không giới hạn, Max FPS và Tiếng Việt 100%.">
+    <title>Thông Tin & Ảnh Chụp Thực Tế Firmware - HyperUR</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2228%22 fill=%22%233b82f6%22/><text x=%2250%22 y=%2268%22 font-size=%2255%22 font-family=%22system-ui,sans-serif%22 font-weight=%22800%22 fill=%22%23ffffff%22 text-anchor=%22middle%22>H</text></svg>">
+    
+    <!-- Preconnect & Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Design System Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Floating Glass Header & Navbar -->
+    <header class="navbar-wrapper">
+        <nav class="navbar glass" id="navbar">
+            <div class="navbar-inner">
+                <!-- Brand Logo -->
+                <a href="index.html" class="navbar-brand">
+                    <span>Hyper<span class="brand-accent">UR</span></span>
+                </a>
+
+                <!-- Navigation Links -->
+                <ul class="navbar-menu" id="nav-menu">
+                    <li><a href="index.html" class="navbar-link">Trang Chủ</a></li>
+                    <li><a href="download.html" class="navbar-link">Tải ROM</a></li>
+                    <li><a href="firmware.html" class="navbar-link active">Thông Tin FW</a></li>
+                    <li><a href="guide.html" class="navbar-link">Hướng Dẫn</a></li>
+                </ul>
+
+                <!-- Navbar Actions -->
+                <div class="navbar-actions">
+                    <!-- Theme Toggle Button -->
+                    <button class="btn-icon" id="theme-btn" aria-label="Đổi giao diện Sáng/Tối" title="Chuyển chế độ sáng/tối">
+                        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="display: none;">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Hero -->
+        <section class="page-hero">
+            <span class="kicker">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                </svg>
+                ẢNH CHỤP THỰC TẾ TRÊN THIẾT BỊ • XIAOMI 17 ULTRA (LCNGUYN)
+            </span>
+            <h1>Thông Tin & Giao Diện Thực Tế Firmware HyperUR</h1>
+            <p>Trải nghiệm trực quan toàn bộ hệ sinh thái tính năng độc quyền của HyperUR V3: ứng dụng <strong>UR Manager</strong>, cơ chế <strong>LiveBridge OTP</strong>, công cụ <strong>Spoof Keybox</strong>, sao lưu <strong>Google Photos không giới hạn</strong> và hỗ trợ <strong>Tiếng Việt 100%</strong>.</p>
+            
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 1.5rem;">
+                <a href="#gallery" class="btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                    </svg>
+                    <span>Xem 8 Màn Hình Thực Tế</span>
+                </a>
+                <a href="download.html" class="btn-ghost">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span>Tải ROM Cho Máy Của Bạn</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Firmware System Specs Strip -->
+        <section class="section" style="padding-top: 0;">
+            <div class="fw-specs-grid">
+                <!-- Spec 1: Phiên bản OS -->
+                <div class="fw-spec-item">
+                    <div class="fw-spec-icon blue">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <div class="fw-spec-content">
+                        <div class="fw-spec-label">Phiên Bản Bản Build</div>
+                        <div class="fw-spec-val">OS 3.0.312.0 (HyperUR V3)</div>
+                    </div>
+                </div>
+
+                <!-- Spec 2: Thiết bị thực nghiệm -->
+                <div class="fw-spec-item">
+                    <div class="fw-spec-icon green">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                        </svg>
+                    </div>
+                    <div class="fw-spec-content">
+                        <div class="fw-spec-label">Thiết Bị Thử Nghiệm</div>
+                        <div class="fw-spec-val">Xiaomi 17 Ultra (SM8850)</div>
+                    </div>
+                </div>
+
+                <!-- Spec 3: Ứng dụng độc quyền -->
+                <div class="fw-spec-item">
+                    <div class="fw-spec-icon purple">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                    </div>
+                    <div class="fw-spec-content">
+                        <div class="fw-spec-label">Trung Tâm Quản Lý</div>
+                        <div class="fw-spec-val">UR Manager (Chính chủ)</div>
+                    </div>
+                </div>
+
+                <!-- Spec 4: Tiện ích đặc biệt -->
+                <div class="fw-spec-icon-box fw-spec-item">
+                    <div class="fw-spec-icon cyan">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <div class="fw-spec-content">
+                        <div class="fw-spec-label">Tính Năng Độc Quyền</div>
+                        <div class="fw-spec-val">LiveBridge OTP • Google Photos ∞</div>
+                    </div>
+                </div>
+
+                <!-- Spec 5: Ngôn ngữ -->
+                <div class="fw-spec-item">
+                    <div class="fw-spec-icon amber">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                    </div>
+                    <div class="fw-spec-content">
+                        <div class="fw-spec-label">Hỗ Trợ Ngôn Ngữ</div>
+                        <div class="fw-spec-val">Tiếng Việt 100% Gốc</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- =============================================================
+                 SCREENSHOT SHOWCASE GALLERY (Ảnh Chụp Màn Hình Thực Tế)
+                 ============================================================= -->
+            <div id="gallery" class="section-header" style="text-align: center; margin-bottom: 2rem;">
+                <span class="kicker">BỘ SƯU TẬP ẢNH CHỤP MÀN HÌNH THẬT</span>
+                <h2>Giao Diện & Tính Năng Thực Tế Của HyperUR</h2>
+                <p>Toàn bộ các hình ảnh dưới đây được chụp trực tiếp từ máy của đội ngũ phát triển (@lcnguyn). Nhấp vào từng ảnh để phóng to chi tiết.</p>
+            </div>
+
+            <!-- Category Filter Tabs -->
+            <div class="fw-filter-wrapper">
+                <button class="fw-filter-tab active" data-filter="all">
+                    <span>Tất Cả Ảnh</span>
+                    <span style="opacity: 0.7; font-size: 0.8rem;">(8)</span>
+                </button>
+                <button class="fw-filter-tab" data-filter="system">
+                    <span>Giới Thiệu Máy</span>
+                </button>
+                <button class="fw-filter-tab" data-filter="manager">
+                    <span>UR Manager</span>
+                </button>
+                <button class="fw-filter-tab" data-filter="spoof">
+                    <span>Spoof & Keybox</span>
+                </button>
+                <button class="fw-filter-tab" data-filter="tweaks">
+                    <span>Tweaks & LiveBridge</span>
+                </button>
+                <button class="fw-filter-tab" data-filter="mods">
+                    <span>Mods & Max FPS</span>
+                </button>
+                <button class="fw-filter-tab" data-filter="google">
+                    <span>Google Photos</span>
+                </button>
+                <button class="fw-filter-tab" data-filter="ui">
+                    <span>Giao Diện & Tiếng Việt</span>
+                </button>
+            </div>
+
+            <!-- Phone Mockup Grid -->
+            <div class="fw-gallery-grid" id="fw-gallery-grid">
+                
+                <!-- CARD 1: About Phone (Hệ thống thực tế) -->
+                <article class="fw-phone-card" data-category="system">
+                    <div class="fw-phone-frame" 
+                         data-img="images/fw/about_phone.jpg" 
+                         data-title="Giới Thiệu Điện Thoại (About Phone)" 
+                         data-category="Giới Thiệu Máy"
+                         data-desc="Giao diện cài đặt About Phone chuẩn HyperUR với logo lớn 'HyperUR - Fine-tuned by the UR Team'. Hiển thị đầy đủ mã OS 3.0.312.0.WPACNXM.C09, vi xử lý SM8850 Snapdragon 8 Elite, bộ nhớ 528GB và RAM 16+6GB."
+                         data-spec-1-name="Tên thiết bị" data-spec-1-val="Xiaomi 17 Ultra của lcnguyn"
+                         data-spec-2-name="Phiên bản OS" data-spec-2-val="3.0.312.0.WPACNXM.C09"
+                         data-spec-3-name="Vi xử lý & RAM" data-spec-3-val="SM8850 • 16,0+6,0 GB RAM"
+                         data-spec-4-name="Màn hình & Pin" data-spec-4-val="6.9'' 2608x1200 • 6800mAh (typ)">
+                        <div class="fw-phone-notch"></div>
+                        <img src="images/fw/about_phone.jpg" alt="Giới thiệu điện thoại Xiaomi 17 Ultra HyperUR" class="fw-phone-screen" loading="lazy">
+                        <div class="fw-frame-overlay">
+                            <div class="fw-overlay-pill">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                                <span>Phóng to chi tiết</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fw-card-details">
+                        <div class="fw-card-meta">
+                            <span class="fw-badge blue">Hệ Thống</span>
+                            <span style="font-size: 0.78rem; color: var(--muted); font-weight: 600;">Fine-tuned by UR Team</span>
+                        </div>
+                        <h3>Giới Thiệu Thiết Bị HyperUR</h3>
+                        <p>Logo nhận diện HyperUR sắc nét ở đầu trang cài đặt. Tự động tinh chỉnh và tối ưu hóa tối đa thông số phần cứng thiết bị.</p>
+                        <ul class="fw-feature-bullets">
+                            <li>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Bản build OS 3.0.312.0 mới nhất</span>
+                            </li>
+                            <li>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Mở rộng RAM ảo mượt mà (+6GB ZRAM)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- CARD 2: UR Manager Dashboard -->
+                <article class="fw-phone-card" data-category="manager">
+                    <div class="fw-phone-frame" 
+                         data-img="images/fw/ur_manager_home.jpg" 
+                         data-title="Ứng Dụng UR Manager - Dashboard" 
+                         data-category="UR Manager"
+                         data-desc="Bảng điều khiển trung tâm độc quyền UR Manager. Cho phép theo dõi trực quan thông tin phần cứng: RAM sử dụng, dung lượng bộ nhớ trong, tình trạng sạc pin, độ phân giải màn hình 480dpi và tải tiến trình surfaceflinger/CPU theo thời gian thực."
+                         data-spec-1-name="Ứng dụng" data-spec-1-val="UR Manager (Chính chủ HyperUR)"
+                         data-spec-2-name="Giám sát RAM" data-spec-2-val="Theo dõi trực tiếp RAM thực & ảo"
+                         data-spec-3-name="Giám sát pin" data-spec-3-val="Phần trăm pin & Trạng thái sạc"
+                         data-spec-4-name="Đo nhiệt độ CPU" data-spec-4-val="Hiển thị nhiệt độ & Tiến trình chạy ngầm">
+                        <div class="fw-phone-notch"></div>
+                        <img src="images/fw/ur_manager_home.jpg" alt="UR Manager Dashboard" class="fw-phone-screen" loading="lazy">
+                        <div class="fw-frame-overlay">
+                            <div class="fw-overlay-pill">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                                <span>Phóng to chi tiết</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fw-card-details">
+                        <div class="fw-card-meta">
+                            <span class="fw-badge purple">Độc Quyền</span>
+                            <span style="font-size: 0.78rem; color: var(--muted); font-weight: 600;">UR Manager App</span>
+                        </div>
+                        <h3>Bảng Điều Khiển UR Manager</h3>
+                        <p>Ứng dụng điều phối toàn bộ tài nguyên máy do đội ngũ phát triển thiết kế riêng. Thiết kế thẻ giao diện kính hiện đại và cực kỳ dễ sử dụng.</p>
+                        <ul class="fw-feature-bullets">
+                            <li>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Giám sát phần cứng & xung nhịp chip tức thì</span>
+                            </li>
+                            <li>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Thanh điều hướng 4 mục: Home, Spoof, Tweaks, Cài đặt</span>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- CARD 3: UR Manager Spoof Center -->
+                <article class="fw-phone-card" data-category="spoof">
+                    <div class="fw-phone-frame" 
+                         data-img="images/fw/ur_manager_spoof.jpg" 
+                         data-title="Trung Tâm Spoof & HyperUR Keybox" 
+                         data-category="Spoof & Keybox"
+                         data-desc="Khu vực kiểm soát chứng thực và giả lập thiết bị: Cập nhật HyperUR Keybox với 1 chạm, quản lý keybox.xml cho 35 gói, Play Store spoof 14 khóa tùy chỉnh, Games spoof mở khóa FPS game, Messenger spoof sang Galaxy S24 Ultra và Photos spoof sang Pixel XL."
+                         data-spec-1-name="Keybox Manager" data-spec-1-val="Tích hợp keybox.xml • 35 gói app"
+                         data-spec-2-name="Play Store Spoof" data-spec-2-val="14 khóa prop tùy chỉnh"
+                         data-spec-3-name="Messenger Spoof" data-spec-3-val="Giả lập Galaxy S24 Ultra"
+                         data-spec-4-name="Photos Spoof" data-spec-4-val="Pixel XL Unlimited Backup">
+                        <div class="fw-phone-notch"></div>
+                        <img src="images/fw/ur_manager_spoof.jpg" alt="UR Manager Spoof" class="fw-phone-screen" loading="lazy">
+                        <div class="fw-frame-overlay">
+                            <div class="fw-overlay-pill">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                                <span>Phóng to chi tiết</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fw-card-details">
+                        <div class="fw-card-meta">
+                            <span class="fw-badge green">Bảo Mật & Spoof</span>
+                            <span style="font-size: 0.78rem; color: var(--muted); font-weight: 600;">HyperUR Keybox</span>
+                        </div>
+                        <h3>Công Cụ Spoof & Keybox</h3>
+                        <p>Nút 'Cập nhật HyperUR Keybox' trực tiếp giúp bạn không bao giờ phải lo lắng về việc Google thu hồi chứng chỉ hay app ngân hàng bị chặn.</p>
+                        <ul class="fw-feature-bullets">
+                            <li>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Bypass triệt để cơ chế quét của Google Play</span>
+                            </li>
+                            <li>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Spoof máy flagship cho từng ứng dụng cụ thể</span>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- CARD 4: Google Photos Unlimited Backup -->
+                <article class="fw-phone-card" data-category="google">
+                    <div class="fw-phone-frame" 
+                         data-img="images/fw/google_photos_unlimited.jpg" 
+                         data-title="Sao Lưu Google Photos Không Giới Hạn" 
+                         data-category="Google Photos"
+                         data-desc="Bằng chứng thực tế tính năng sao lưu ảnh Google Photos không giới hạn: Thông báo chính thức từ Google Photos 'Pixel XL này có thể sao lưu ảnh và video mà không mất phí, không giới hạn số lượng'. Thoải mái lưu trữ ảnh gốc chất lượng cao mà không tốn dung lượng tài khoản."
+                         data-spec-1-name="Dịch vụ" data-spec-1-val="Google Photos Cloud Backup"
+                         data-spec-2-name="Quyền lợi" data-spec-2-val="Sao lưu KHÔNG GIỚI HẠN dung lượng"
+                         data-spec-3-name="Chất lượng ảnh" data-spec-3-val="Giữ nguyên chất lượng ảnh gốc (Original)"
+                         data-spec-4-name="Cơ chế giả lập" data-spec-4-val="Google Pixel XL Spoof độc quyền">
+                        <div class="fw-phone-notch"></div>
+                        <img src="images/fw/google_photos_unlimited.jpg" alt="Google Photos Unlimited Backup" class="fw-phone-screen" loading="lazy">
+                        <div class="fw-frame-overlay">
+                            <div class="fw-overlay-pill">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                                <span>Phóng to chi tiết</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fw-card-details">
+                        <div class="fw-card-meta">
+                            <span class="fw-badge amber">Google Photos</span>
+                            <span style="font-size: 0.78rem; color: var(--muted); font-weight: 600;">Miễn Phí Vĩnh Viễn</span>
+                        </div>
+                        <h3>Google Photos Không Giới Hạn</h3>
+                        <p>Sao lưu toàn bộ kho ảnh và video gia đình với dung lượng không giới hạn hoàn toàn miễn phí, tài khoản Google không bị trừ dung lượng 15GB.</p>
+                        <ul class="fw-feature-bullets">
+                            <li>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Tự động đồng bộ ngay khi chụp ảnh mới</span>
+                            </li>
+                            <li>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Tương thích hoàn toàn với tài khoản Google chính chủ</span>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- CARD 5: Tweaks & LiveBridge OTP -->
+                <article class="fw-phone-card" data-category="tweaks">
+                    <div class="fw-phone-frame" 
+                         data-img="images/fw/ur_manager_tweaks.jpg" 
+                         data-title="Tweaks & Công Nghệ LiveBridge OTP" 
+                         data-category="Tweaks & LiveBridge"
+                         data-desc="Tab Tweaks trên UR Manager giới thiệu tính năng LiveBridge: Tự động phát hiện và chuyển đổi mã xác thực OTP cũng như tiến trình dạng văn bản từ thông báo thành thẻ live nhỏ gọn trên màn hình. Kèm Overlay hiệu năng với 8 chỉ số giám sát nổi."
+                         data-spec-1-name="Công nghệ LiveBridge" data-spec-1-val="Biến mã OTP & Thông báo thành Live Card"
+                         data-spec-2-name="Overlay hiệu năng" data-spec-2-val="8/8 chỉ số (RAM, CPU, GPU, FPS, Watt)"
+                         data-spec-3-name="Tùy chọn lập trình" data-spec-3-val="Bật nhanh Gỡ lỗi USB & Nhà phát triển"
+                         data-spec-4-name="Tiện ích hệ thống" data-spec-4-val="Quản lý chi tiết từng tính năng">
+                        <div class="fw-phone-notch"></div>
+                        <img src="images/fw/ur_manager_tweaks.jpg" alt="UR Manager Tweaks LiveBridge" class="fw-phone-screen" loading="lazy">
+                        <div class="fw-frame-overlay">
+                            <div class="fw-overlay-pill">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                                <span>Phóng to chi tiết</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fw-card-details">
+                        <div class="fw-card-meta">
+                            <span class="fw-badge cyan">Tweaks</span>
+                            <span style="font-size: 0.78rem; color: var(--muted); font-weight: 600;">LiveBridge OTP</span>
+                        </div>
+                        <h3>LiveBridge & Overlay Hiệu Năng</h3>
+                        <p>Không cần mở bảng thông báo để tìm mã OTP; công nghệ LiveBridge tự động trích xuất mã và hiển thị nổi ngay lập tức với 1 chạm để sao chép.</p>
+                        <ul class="fw-feature-bullets">
+                            <li>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Thẻ live gọn gàng chuẩn phong cách Dynamic Island</span>
+                            </li>
+                            <li>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Bật tắt lớp phủ Overlay đo FPS và nhiệt độ khi chơi game</span>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- CARD 6: Mods & Max FPS -->
+                <article class="fw-phone-card" data-category="mods">
+                    <div class="fw-phone-frame" 
+                         data-img="images/fw/ur_manager_mods.jpg" 
+                         data-title="Hệ Thống Mods & Max FPS In All Apps" 
+                         data-category="Mods & Max FPS"
+                         data-desc="Danh mục Mods độc quyền có trên UR Manager: 'Hide Gesture Line' ẩn thanh gạch ngang điều hướng, 'Extended Power Menu' mở rộng menu khởi động nhanh, 'Disable flag secure' gỡ bỏ chặn chụp màn hình trên app ngân hàng, 'Max FPS In All Apps' ép 120 FPS trên mọi ứng dụng và Private DNS."
+                         data-spec-1-name="Max FPS In All Apps" data-spec-1-val="Ép tần số quét 120Hz mọi ứng dụng"
+                         data-spec-2-name="Disable flag secure" data-spec-2-val="Cho phép chụp ảnh màn hình mọi app"
+                         data-spec-3-name="Hide Gesture Line" data-spec-3-val="Ẩn thanh điều hướng tràn viền 100%"
+                         data-spec-4-name="Extended Power Menu" data-spec-4-val="Khởi động nhanh Recovery/Fastboot">
+                        <div class="fw-phone-notch"></div>
+                        <img src="images/fw/ur_manager_mods.jpg" alt="UR Manager Mods" class="fw-phone-screen" loading="lazy">
+                        <div class="fw-frame-overlay">
+                            <div class="fw-overlay-pill">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                                <span>Phóng to chi tiết</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fw-card-details">
+                        <div class="fw-card-meta">
+                            <span class="fw-badge blue">Hệ Thống Mods</span>
+                            <span style="font-size: 0.78rem; color: var(--muted); font-weight: 600;">Max FPS & Unblock</span>
+                        </div>
+                        <h3>Mods & Mở Khóa Chụp Màn Hình</h3>
+                        <p>Các tính năng can thiệp sâu giúp phá vỡ mọi rào cản của ROM gốc: Chụp màn hình cả trong app ngân hàng và trải nghiệm 120Hz mượt mà toàn diện.</p>
+                        <ul class="fw-feature-bullets">
+                            <li>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Disable flag secure: Chụp biên lai ngân hàng thoải mái</span>
+                            </li>
+                            <li>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Max FPS: Không còn tình trạng bị tụt xuống 60Hz khi cuộn</span>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- CARD 7: Language Vietnamese 100% -->
+                <article class="fw-phone-card" data-category="ui">
+                    <div class="fw-phone-frame" 
+                         data-img="images/fw/language_vietnamese.jpg" 
+                         data-title="Ngôn Ngữ Tiếng Việt 100% Chuẩn Xác" 
+                         data-category="Giao Diện & Tiếng Việt"
+                         data-desc="Ảnh chụp màn hình thực tế mục cài đặt Ngôn ngữ: Bản ROM HyperUR được bản địa hóa và tích hợp gói Tiếng Việt 100% vào nhân hệ thống. Không có tình trạng bị sót tiếng Trung hay câu dịch máy ngớ ngẩn."
+                         data-spec-1-name="Ngôn ngữ chính" data-spec-1-val="Tiếng Việt (Đã kiểm tra & Đầy đủ dấu)"
+                         data-spec-2-name="Độ hoàn thiện" data-spec-2-val="100% Bản địa hóa chuyên nghiệp"
+                         data-spec-3-name="Font chữ hỗ trợ" data-spec-3-val="MiSans, Inter & Robtoto không lỗi font"
+                         data-spec-4-name="Các ngôn ngữ khác" data-spec-4-val="Tiếng Trung, English, v.v.">
+                        <div class="fw-phone-notch"></div>
+                        <img src="images/fw/language_vietnamese.jpg" alt="Ngôn ngữ Tiếng Việt 100%" class="fw-phone-screen" loading="lazy">
+                        <div class="fw-frame-overlay">
+                            <div class="fw-overlay-pill">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                                <span>Phóng to chi tiết</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fw-card-details">
+                        <div class="fw-card-meta">
+                            <span class="fw-badge green">Bản Địa Hóa</span>
+                            <span style="font-size: 0.78rem; color: var(--muted); font-weight: 600;">Tiếng Việt 100%</span>
+                        </div>
+                        <h3>Bản Địa Hóa Tiếng Việt Gốc</h3>
+                        <p>Cài đặt xong máy nhận ngay Tiếng Việt mặc định. Từng câu chữ trong ứng dụng cài đặt và hệ thống đều được dịch sát nghĩa và tự nhiên nhất.</p>
+                        <ul class="fw-feature-bullets">
+                            <li>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Đầy đủ dấu câu tiếng Việt, font hiển thị trang nhã</span>
+                            </li>
+                            <li>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Không bị sót tiếng Trung ở bất kỳ menu hệ thống nào</span>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- CARD 8: Notification & Real Blur & Lunar Calendar -->
+                <article class="fw-phone-card" data-category="ui">
+                    <div class="fw-phone-frame" 
+                         data-img="images/fw/notification_blur.jpg" 
+                         data-title="Trung Tâm Thông Báo, Real Blur & Lịch Âm" 
+                         data-category="Giao Diện & Tiếng Việt"
+                         data-desc="Ảnh chụp màn hình thực tế Trung tâm thông báo: Nền làm mờ kính thực (Hardware Real Blur) sang trọng, hiển thị đồng hồ thời gian thực, ngày dương lịch kèm ngày âm lịch truyền thống '4/8 Bính Ngọ' và hiển thị 2 SIM nhà mạng Việt Nam (Vietnamobile | VNSKY)."
+                         data-spec-1-name="Hiệu ứng mờ nền" data-spec-1-val="Hardware Accelerated Real Blur"
+                         data-spec-2-name="Tiện ích ngày tháng" data-spec-2-val="Hiển thị song song Dương lịch & Lịch Âm"
+                         data-spec-3-name="Tương thích SIM" data-spec-3-val="Hỗ trợ đầy đủ VoLTE, VoWiFi mọi nhà mạng"
+                         data-spec-4-name="Trải nghiệm vuốt" data-spec-4-val="Mượt mà 120Hz không giật lag">
+                        <div class="fw-phone-notch"></div>
+                        <img src="images/fw/notification_blur.jpg" alt="Trung tâm thông báo Real Blur" class="fw-phone-screen" loading="lazy">
+                        <div class="fw-frame-overlay">
+                            <div class="fw-overlay-pill">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                                <span>Phóng to chi tiết</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fw-card-details">
+                        <div class="fw-card-meta">
+                            <span class="fw-badge purple">Giao Diện</span>
+                            <span style="font-size: 0.78rem; color: var(--muted); font-weight: 600;">Real Blur & Lịch Âm</span>
+                        </div>
+                        <h3>Real Blur & Lịch Âm Tích Hợp</h3>
+                        <p>Hiệu ứng mờ đục cao cấp kèm ngày âm lịch tiện lợi cho người dùng Việt Nam theo dõi ngày rằm, mùng một và dịp lễ truyền thống.</p>
+                        <ul class="fw-feature-bullets">
+                            <li>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Hiển thị ngày âm lịch chuẩn xác trên thanh trạng thái</span>
+                            </li>
+                            <li>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Nhận diện sóng 4G/5G và tên nhà mạng Việt Nam tức thì</span>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- =============================================================
+                 SECTION 2: NHỮNG GÌ CÓ TRÊN FIRMWARE (Module Checklist)
+                 ============================================================= -->
+            <div class="section-header" style="text-align: center; margin-bottom: 2.5rem;">
+                <span class="kicker">TÍNH NĂNG ĐÃ KIỂM NGHIỆM TRÊN THIẾT BỊ</span>
+                <h2>Chi Tiết Những Gì Có Trên Firmware HyperUR</h2>
+                <p>Tổng hợp toàn bộ các gói tính năng thực tế đang hoạt động ổn định trên các bản build của HyperUR.</p>
+            </div>
+
+            <div class="fw-modules-grid">
+                <!-- Module 1: UR Manager & Keybox -->
+                <div class="fw-module-box">
+                    <div class="fw-module-header">
+                        <div class="fw-spec-icon purple">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                            </svg>
+                        </div>
+                        <div class="fw-module-title">
+                            <h3>UR Manager & HyperUR Keybox</h3>
+                            <span>Ứng Dụng Độc Quyền Chính Chủ</span>
+                        </div>
+                    </div>
+                    <ul class="fw-items-checklist">
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Cập nhật HyperUR Keybox 1-Click:</strong> Nút tải trực tiếp chứng chỉ keybox.xml mới nhất khi Google quét. <span class="fw-tag new">Mới</span></div>
+                        </li>
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Quản lý 35 gói app:</strong> Tùy chọn gán chứng chỉ Keybox bảo vệ cho từng ứng dụng ngân hàng riêng biệt. <span class="fw-tag opt">Tối ưu</span></div>
+                        </li>
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Play Store Spoof 14 khóa:</strong> Giả lập thông số tương thích để tải được mọi app trên kho CH Play.</div>
+                        </li>
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Theo dõi tài nguyên:</strong> Đo mức chiếm dụng RAM, CPU, nhiệt độ và tiến trình hệ thống trực quan.</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Module 2: LiveBridge & Thông báo thông minh -->
+                <div class="fw-module-box">
+                    <div class="fw-module-header">
+                        <div class="fw-spec-icon cyan">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                            </svg>
+                        </div>
+                        <div class="fw-module-title">
+                            <h3>LiveBridge & Thông Báo OTP</h3>
+                            <span>Thông Báo Thông Minh Thế Hệ Mới</span>
+                        </div>
+                    </div>
+                    <ul class="fw-items-checklist">
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Phản chiếu mã OTP tự động:</strong> Tự động lọc số OTP từ tin nhắn ngân hàng và hiển thị dạng thẻ live nổi. <span class="fw-tag new">Mới</span></div>
+                        </li>
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Theo dõi tiến trình:</strong> Hiển thị tiến trình dạng văn bản (đang tải, đang giao dịch) thành thanh tiến độ trực quan.</div>
+                        </li>
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Overlay hiệu năng 8 thông số:</strong> Hiển thị RAM, xung nhịp từng lõi CPU, GPU, phần trăm pin và FPS khi chơi game. <span class="fw-tag opt">Tối ưu</span></div>
+                        </li>
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Phím bật nhanh Developer:</strong> Bật/tắt chế độ gỡ lỗi USB và tùy chọn nhà phát triển chỉ với 1 gạt.</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Module 3: Google Photos & Spoofing -->
+                <div class="fw-module-box">
+                    <div class="fw-module-header">
+                        <div class="fw-spec-icon amber">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                <circle cx="12" cy="13" r="4"></circle>
+                            </svg>
+                        </div>
+                        <div class="fw-module-title">
+                            <h3>Google Photos Không Giới Hạn</h3>
+                            <span>Photos & App Spoof Flagship</span>
+                        </div>
+                    </div>
+                    <ul class="fw-items-checklist">
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Spoof Pixel XL sao lưu vô hạn:</strong> Sao lưu ảnh/video dung lượng gốc hoàn toàn miễn phí mãi mãi. <span class="fw-tag orig">Gốc</span></div>
+                        </li>
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Games Spoof đồ họa cao cấp:</strong> Giả lập các thiết bị gaming chuyên dụng để mở khóa tùy chọn đồ họa tối đa. <span class="fw-tag opt">Tối ưu</span></div>
+                        </li>
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Messenger Spoof Galaxy S24 Ultra:</strong> Hưởng trọn các tính năng mới và chất lượng gửi ảnh cao nhất.</div>
+                        </li>
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Hoạt động độc lập:</strong> Không ảnh hưởng đến các ứng dụng khác trong hệ điều hành.</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Module 4: Mods Độc Quyền -->
+                <div class="fw-module-box">
+                    <div class="fw-module-header">
+                        <div class="fw-spec-icon green">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                <polyline points="9 12 11 14 15 10"></polyline>
+                            </svg>
+                        </div>
+                        <div class="fw-module-title">
+                            <h3>Hệ Thống Mods & Max FPS</h3>
+                            <span>Bỏ Chặn Chụp Màn Hình & Tràn Viền</span>
+                        </div>
+                    </div>
+                    <ul class="fw-items-checklist">
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Disable flag secure:</strong> Cho phép chụp màn hình và quay video trên mọi ứng dụng bị cấm (app ngân hàng, ví). <span class="fw-tag new">Mới</span></div>
+                        </li>
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Max FPS In All Apps:</strong> Ép tần số quét 120Hz/144Hz trên toàn bộ ứng dụng, xóa bỏ hiện tượng giật rớt 60Hz. <span class="fw-tag opt">Tối ưu</span></div>
+                        </li>
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Hide Gesture Line:</strong> Ẩn thanh gạch trắng điều hướng ở mép dưới, màn hình hiển thị tràn viền 100%.</div>
+                        </li>
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Extended Power Menu:</strong> Menu nguồn mở rộng với các tùy chọn khởi động nhanh vào Fastboot và Recovery.</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Module 5: Tiếng Việt & Bản địa hóa -->
+                <div class="fw-module-box">
+                    <div class="fw-module-header">
+                        <div class="fw-spec-icon blue">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                        </div>
+                        <div class="fw-module-title">
+                            <h3>Tiếng Việt & Giao Diện Thẩm Mỹ</h3>
+                            <span>Bản Địa Hóa Gốc & Lịch Âm</span>
+                        </div>
+                    </div>
+                    <ul class="fw-items-checklist">
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Tiếng Việt 100% toàn hệ thống:</strong> Đầy đủ dấu, không sót tiếng Trung ở bất kỳ menu ngóc ngách nào. <span class="fw-tag orig">Gốc</span></div>
+                        </li>
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Lịch Âm Việt Nam:</strong> Hiển thị ngày âm lịch trực tiếp trên thanh thông báo và màn hình khóa (VD: 4/8 Bính Ngọ). <span class="fw-tag new">Mới</span></div>
+                        </li>
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Hardware Real Blur:</strong> Hiệu ứng mờ nền kính thực cho Trung tâm thông báo và Control Center.</div>
+                        </li>
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Tương thích mạng Việt Nam:</strong> Nhận diện đúng tên mạng (Viettel, Vina, Mobi, Vietnamobile, VNSKY) và VoLTE/VoWiFi.</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Module 6: Camera & Đa phương tiện -->
+                <div class="fw-module-box">
+                    <div class="fw-module-header">
+                        <div class="fw-spec-icon amber">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="8" y1="21" x2="16" y2="21"></line>
+                                <line x1="12" y1="17" x2="12" y2="21"></line>
+                            </svg>
+                        </div>
+                        <div class="fw-module-title">
+                            <h3>Camera Leica & Tối Ưu Âm Thanh</h3>
+                            <span>Stock Vendor & Hi-Res Audio</span>
+                        </div>
+                    </div>
+                    <ul class="fw-items-checklist">
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Bảo toàn Camera Leica Stock:</strong> Đầy đủ bộ lọc Leica Authentic, Leica Vibrant và chế độ quay video 8K/4K. <span class="fw-tag orig">Gốc</span></div>
+                        </li>
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Tích hợp Dolby Atmos:</strong> Tối ưu không gian âm thanh vòm qua loa kép và tai nghe chuẩn rạp chiếu phim.</div>
+                        </li>
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Gỡ sạch 100% quảng cáo MSA:</strong> Không có quảng cáo rác, không bloatware nội địa Trung Quốc. <span class="fw-tag opt">Tối ưu</span></div>
+                        </li>
+                        <li class="fw-item-entry">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <div><strong>Công cụ Flash tự động:</strong> Nạp ROM qua Fastboot trên máy tính Windows với 1 file .bat duy nhất.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Action Banner -->
+            <div class="highlight-card" style="margin-top: 3.5rem; text-align: center; align-items: center; background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.08)); border-color: rgba(59, 130, 246, 0.3);">
+                <h3 style="font-size: 1.6rem; margin-bottom: 0.75rem;">Sẵn sàng nâng cấp chiếc điện thoại của bạn?</h3>
+                <p style="max-width: 600px; margin-bottom: 1.75rem;">Khám phá kho 121 thiết bị được hỗ trợ và tải trực tiếp gói ROM HyperUR V3 tối ưu nhất cho máy của bạn.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                    <a href="download.html" class="btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <span>Xem Kho ROM 121 Thiết Bị</span>
+                    </a>
+                    <a href="guide.html" class="btn-ghost">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
+                        <span>Hướng Dẫn Cài Đặt Chi Tiết</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Interactive Lightbox Modal -->
+    <div class="fw-lightbox" id="fw-lightbox" aria-hidden="true" role="dialog">
+        <div class="fw-lightbox-dialog">
+            <button class="fw-lightbox-close" id="fw-lightbox-close" aria-label="Đóng cửa sổ xem ảnh">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="fw-lightbox-img-pane">
+                <img src="" alt="Firmware screenshot full view" id="fw-lightbox-img">
+            </div>
+            <div class="fw-lightbox-info-pane">
+                <span class="fw-badge blue" id="fw-lightbox-cat">HỆ THỐNG</span>
+                <h2 class="fw-lightbox-title" id="fw-lightbox-title">Tiêu Đề Ảnh</h2>
+                <p class="fw-lightbox-desc" id="fw-lightbox-desc">Mô tả chi tiết ảnh chụp màn hình...</p>
+                
+                <table class="fw-lightbox-specs-table">
+                    <tbody>
+                        <tr>
+                            <td id="fw-lightbox-s1-name">Thông số 1</td>
+                            <td id="fw-lightbox-s1-val">-</td>
+                        </tr>
+                        <tr>
+                            <td id="fw-lightbox-s2-name">Thông số 2</td>
+                            <td id="fw-lightbox-s2-val">-</td>
+                        </tr>
+                        <tr>
+                            <td id="fw-lightbox-s3-name">Thông số 3</td>
+                            <td id="fw-lightbox-s3-val">-</td>
+                        </tr>
+                        <tr>
+                            <td id="fw-lightbox-s4-name">Thông số 4</td>
+                            <td id="fw-lightbox-s4-val">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div style="margin-top: auto; display: flex; gap: 0.75rem;">
+                    <a href="download.html" class="btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.88rem;">Tải Bản Build Cho Thiết Bị</a>
+                    <button class="btn-ghost" id="fw-lightbox-close-btn" style="padding: 0.6rem 1.2rem; font-size: 0.88rem;">Đóng Cửa Sổ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Site Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3>
+                        <span>Hyper<span class="brand-accent">UR</span></span>
+                    </h3>
+                    <p>Dự án ROM Custom Stock-based hàng đầu cho hệ sinh thái thiết bị Xiaomi tại Việt Nam.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Điều Hướng</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Trang Chủ</a></li>
+                        <li><a href="download.html">Kho ROM</a></li>
+                        <li><a href="firmware.html">Thông Tin FW</a></li>
+                        <li><a href="guide.html">Hướng Dẫn Flash</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Đội Ngũ Phát Triển</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://t.me/lcnguy06" target="_blank" rel="noopener noreferrer">@lcnguy06 (Lead & Dev)</a></li>
+                        <li><a href="https://t.me/Usagi79" target="_blank" rel="noopener noreferrer">@Usagi79 (Lead & Dev)</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Hyper Ultra Rate</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://t.me/hypermodupdate" target="_blank" rel="noopener noreferrer">Channel Huper Ultra Rate</a></li>
+                        <li><a href="https://t.me/HuperUltraRateChat" target="_blank" rel="noopener noreferrer">Chat Huper Ultra Rate</a></li>
+                        <li><a href="https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/" target="_blank" rel="noopener noreferrer">SourceForge Files</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 HYPERUR TEAM. BẢO LƯU MỌI QUYỀN.</p>
+                <p class="footer-meta">Mã nguồn HTML tĩnh tối ưu tốc độ & chuẩn SEO.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Scroll to Top Action -->
+    <a href="#" class="scroll-to-top" id="scroll-to-top" aria-label="Lên đầu trang">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </a>
+
+    <!-- Theme Toggle Handler -->
+    <script src="devices.js"></script>
+
+    <!-- Firmware Gallery & Lightbox Controller Script -->
+    <script>
+        (function() {
+            'use strict';
+
+            // Filter Tabs logic
+            const filterTabs = document.querySelectorAll('.fw-filter-tab');
+            const phoneCards = document.querySelectorAll('.fw-phone-card');
+
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    filterTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    const filter = tab.getAttribute('data-filter');
+                    phoneCards.forEach(card => {
+                        const cat = card.getAttribute('data-category');
+                        if (filter === 'all' || cat === filter) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Lightbox Modal logic
+            const lightbox = document.getElementById('fw-lightbox');
+            const lightboxClose = document.getElementById('fw-lightbox-close');
+            const lightboxCloseBtn = document.getElementById('fw-lightbox-close-btn');
+            const lightboxImg = document.getElementById('fw-lightbox-img');
+            const lightboxCat = document.getElementById('fw-lightbox-cat');
+            const lightboxTitle = document.getElementById('fw-lightbox-title');
+            const lightboxDesc = document.getElementById('fw-lightbox-desc');
+            const s1Name = document.getElementById('fw-lightbox-s1-name');
+            const s1Val = document.getElementById('fw-lightbox-s1-val');
+            const s2Name = document.getElementById('fw-lightbox-s2-name');
+            const s2Val = document.getElementById('fw-lightbox-s2-val');
+            const s3Name = document.getElementById('fw-lightbox-s3-name');
+            const s3Val = document.getElementById('fw-lightbox-s3-val');
+            const s4Name = document.getElementById('fw-lightbox-s4-name');
+            const s4Val = document.getElementById('fw-lightbox-s4-val');
+
+            const phoneFrames = document.querySelectorAll('.fw-phone-frame');
+
+            function openLightbox(frame) {
+                const img = frame.getAttribute('data-img');
+                const title = frame.getAttribute('data-title');
+                const cat = frame.getAttribute('data-category');
+                const desc = frame.getAttribute('data-desc');
+
+                lightboxImg.src = img;
+                lightboxImg.alt = title;
+                lightboxTitle.textContent = title;
+                lightboxCat.textContent = cat;
+                lightboxDesc.textContent = desc;
+
+                s1Name.textContent = frame.getAttribute('data-spec-1-name') || 'Thông số 1';
+                s1Val.textContent = frame.getAttribute('data-spec-1-val') || '-';
+                s2Name.textContent = frame.getAttribute('data-spec-2-name') || 'Thông số 2';
+                s2Val.textContent = frame.getAttribute('data-spec-2-val') || '-';
+                s3Name.textContent = frame.getAttribute('data-spec-3-name') || 'Thông số 3';
+                s3Val.textContent = frame.getAttribute('data-spec-3-val') || '-';
+                s4Name.textContent = frame.getAttribute('data-spec-4-name') || 'Thông số 4';
+                s4Val.textContent = frame.getAttribute('data-spec-4-val') || '-';
+
+                lightbox.classList.add('active');
+                lightbox.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                lightbox.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            phoneFrames.forEach(frame => {
+                frame.addEventListener('click', () => openLightbox(frame));
+            });
+
+            if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+            if (lightboxCloseBtn) lightboxCloseBtn.addEventListener('click', closeLightbox);
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    closeLightbox();
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

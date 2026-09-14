@@ -19,15 +19,17 @@ Cổng thông tin và kho tải ROM Custom Stock-based hàng đầu cho hệ sin
 UR_V3/
 ├── index.html                  # Trang Chủ (Giới thiệu, Banner Hero, 3 Thẻ điều hướng)
 ├── download.html               # Kho Tải ROM (121 thiết bị, Tìm kiếm, Lọc hãng, Popup tải)
-├── features.html               # Tính Năng (Công nghệ Kernel, Camera Leica, Play Integrity)
+├── firmware.html               # Thông Tin & Giao Diện FW (Ảnh chụp màn hình thực tế, Specs, Modules)
+├── features.html               # Chuyển hướng tự động (Redirect) sang firmware.html
 ├── guide.html                  # Hướng Dẫn Flash (Quy trình 4 bước, Fastboot/Recovery, Lưu ý)
-├── styles.css                  # Toàn bộ Design System (Titanium Glassmorphism)
+├── styles.css                  # Toàn bộ Design System (Titanium Glassmorphism, Phone Frames)
 ├── devices.js                  # Module JavaScript duy nhất (Tải & Lọc thiết bị, Modal)
 ├── README.md                   # Tài liệu dự án
 ├── devices/                    # 121 file JSON dữ liệu thiết bị
 │   ├── manifest.json           # Danh mục tổng hợp mã máy
 │   └── ... (các mã thiết bị)
-└── images/                     # Ảnh render thiết bị theo chuẩn mã máy
+└── images/                     # Ảnh render thiết bị theo mã máy
+    └── fw/                     # Ảnh chụp màn hình thực tế của Firmware HyperUR
 ```
 
 ---

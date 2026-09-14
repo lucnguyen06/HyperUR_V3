@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1d"/>
+      <stop offset="50%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#070b14"/>
+    </linearGradient>
+    <linearGradient id="brandAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.6"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Phone Canvas -->
+  <rect width="390" height="844" fill="url(#bgGrad)"/>
+
+  <!-- Status Bar -->
+  <text x="32" y="38" font-family="'Inter', -apple-system, sans-serif" font-size="14" font-weight="600" fill="#ffffff">09:41</text>
+  <g transform="translate(300, 26)" fill="#ffffff">
+    <!-- 5G, Wi-Fi, Battery -->
+    <path d="M12 3h3v10h-3z M6 6h3v7H6z M0 9h3v4H0z"/>
+    <path d="M22 2a11 11 0 0 1 8 0 M24 6a7 7 0 0 1 4 0 M26 10a2 2 0 0 1 0 1" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <rect x="42" y="2" width="22" height="11" rx="3" fill="none" stroke="#fff" stroke-width="1.8"/>
+    <rect x="44" y="4" width="15" height="7" rx="1.5" fill="#3b82f6"/>
+    <rect x="65" y="5" width="2" height="5" rx="1" fill="#fff"/>
+  </g>
+
+  <!-- Top App Bar -->
+  <g transform="translate(24, 68)">
+    <path d="M15 18l-6-6 6-6" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <text x="36" y="16" font-family="'Be Vietnam Pro', sans-serif" font-size="20" font-weight="700" fill="#ffffff">Giới thiệu điện thoại</text>
+  </g>
+
+  <!-- HyperUR Large OS Logo Card -->
+  <g transform="translate(24, 115)">
+    <rect width="342" height="168" rx="24" fill="url(#cardGrad)" stroke="rgba(59,130,246,0.3)" stroke-width="1.5"/>
+    <circle cx="75" cy="84" r="48" fill="url(#brandAccent)" opacity="0.15" filter="url(#glow)"/>
+    
+    <!-- Stylized H Logo -->
+    <rect x="45" y="54" width="60" height="60" rx="18" fill="url(#brandAccent)"/>
+    <text x="75" y="96" font-family="'Inter', sans-serif" font-size="34" font-weight="800" fill="#ffffff" text-anchor="middle">H</text>
+
+    <!-- Info text beside logo -->
+    <text x="125" y="65" font-family="'Inter', sans-serif" font-size="22" font-weight="800" fill="#ffffff">Hyper<tspan fill="#3b82f6">UR</tspan></text>
+    <rect x="125" y="76" width="110" height="22" rx="11" fill="rgba(59,130,246,0.2)"/>
+    <text x="180" y="91" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#60a5fa" text-anchor="middle">OS 3.0 • V3.0.2 STABLE</text>
+    <text x="125" y="118" font-family="'Be Vietnam Pro', sans-serif" font-size="12" fill="#94a3b8">Bản ROM stock-based tùy biến</text>
+    <text x="125" y="136" font-family="'Be Vietnam Pro', sans-serif" font-size="11" fill="#38bdf8">Đã kiểm tra • Sạch 100%</text>
+  </g>
+
+  <!-- Spec Items Grid -->
+  <g transform="translate(24, 305)">
+    <!-- Item 1: Tên thiết bị -->
+    <rect x="0" y="0" width="165" height="92" rx="18" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <text x="18" y="28" font-family="'Be Vietnam Pro', sans-serif" font-size="12" fill="#94a3b8">Tên thiết bị</text>
+    <text x="18" y="52" font-family="'Be Vietnam Pro', sans-serif" font-size="15" font-weight="700" fill="#ffffff">Redmi K70 Ultra</text>
+    <text x="18" y="74" font-family="'Inter', sans-serif" font-size="12" font-weight="600" fill="#3b82f6">Codename: rothko</text>
+
+    <!-- Item 2: Phiên bản Android -->
+    <rect x="177" y="0" width="165" height="92" rx="18" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <text x="195" y="28" font-family="'Be Vietnam Pro', sans-serif" font-size="12" fill="#94a3b8">Phiên bản Android</text>
+    <text x="195" y="52" font-family="'Inter', sans-serif" font-size="17" font-weight="700" fill="#10b981">Android 15 (Vanilla)</text>
+    <text x="195" y="74" font-family="'Be Vietnam Pro', sans-serif" font-size="11" fill="#94a3b8">Bảo mật: Mới nhất</text>
+
+    <!-- Item 3: Bộ vi xử lý & Kernel -->
+    <rect x="0" y="104" width="342" height="92" rx="18" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <text x="18" y="132" font-family="'Be Vietnam Pro', sans-serif" font-size="12" fill="#94a3b8">Nhân hệ thống (Kernel)</text>
+    <text x="18" y="156" font-family="'Inter', sans-serif" font-size="15" font-weight="700" fill="#ffffff">Kernel 6.1.75-HyperUR-Perf+</text>
+    <text x="18" y="178" font-family="'Be Vietnam Pro', sans-serif" font-size="12" fill="#a855f7">Schedutil Gov • Hỗ trợ KernelSU v1.0.2</text>
+
+    <!-- Item 4: Bộ nhớ RAM & Bộ nhớ trong -->
+    <rect x="0" y="208" width="165" height="92" rx="18" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <text x="18" y="236" font-family="'Be Vietnam Pro', sans-serif" font-size="12" fill="#94a3b8">Bộ nhớ RAM</text>
+    <text x="18" y="260" font-family="'Inter', sans-serif" font-size="16" font-weight="700" fill="#ffffff">16.0 GB + 8.0 GB</text>
+    <text x="18" y="282" font-family="'Inter', sans-serif" font-size="11" fill="#38bdf8">ZRAM ZSTD High-Speed</text>
+
+    <!-- Item 5: Trạng thái chứng nhận -->
+    <rect x="177" y="208" width="165" height="92" rx="18" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <text x="195" y="236" font-family="'Be Vietnam Pro', sans-serif" font-size="12" fill="#94a3b8">Play Integrity</text>
+    <text x="195" y="260" font-family="'Inter', sans-serif" font-size="15" font-weight="700" fill="#10b981">MEETS_STRONG ✓</text>
+    <text x="195" y="282" font-family="'Be Vietnam Pro', sans-serif" font-size="11" fill="#94a3b8">100% App ngân hàng</text>
+  </g>
+
+  <!-- All Specs Row Button -->
+  <g transform="translate(24, 630)">
+    <rect width="342" height="56" rx="16" fill="rgba(59,130,246,0.12)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+    <text x="20" y="34" font-family="'Be Vietnam Pro', sans-serif" font-size="14" font-weight="600" fill="#ffffff">Tất cả thông số phần mềm & phần cứng</text>
+    <path d="M312 28l6-6-6-6" stroke="#3b82f6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+
+  <!-- Bottom Home Indicator -->
+  <rect x="135" y="828" width="120" height="5" rx="2.5" fill="#ffffff" opacity="0.4"/>
+</svg>

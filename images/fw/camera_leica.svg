@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="100%" height="100%">
+  <defs>
+    <linearGradient id="viewfinderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#182235"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="leicaRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#b91c1c"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Camera Body Background -->
+  <rect width="390" height="844" fill="#000000"/>
+
+  <!-- Viewfinder Area -->
+  <rect x="0" y="80" width="390" height="520" fill="url(#viewfinderGrad)"/>
+
+  <!-- Focus Reticle & Leica Watermark in Viewfinder -->
+  <g transform="translate(195, 320)">
+    <!-- Focus Box -->
+    <rect x="-35" y="-35" width="70" height="70" fill="none" stroke="#eab308" stroke-width="1.5" stroke-dasharray="8 4"/>
+    <circle cx="0" cy="0" r="4" fill="#eab308"/>
+  </g>
+
+  <!-- Leica Authentic / Vibrant Mode Switcher Overlay -->
+  <g transform="translate(115, 100)">
+    <rect width="160" height="34" rx="17" fill="rgba(0,0,0,0.65)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <!-- Active Authentic Tab -->
+    <rect x="4" y="4" width="76" height="26" rx="13" fill="url(#leicaRed)"/>
+    <text x="42" y="21" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">AUTHENTIC</text>
+    <text x="118" y="21" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#94a3b8" text-anchor="middle">VIBRANT</text>
+  </g>
+
+  <!-- Leica Red Dot Logo at Top -->
+  <g transform="translate(24, 30)">
+    <circle cx="16" cy="16" r="14" fill="url(#leicaRed)"/>
+    <text x="16" y="20" font-family="'Inter', sans-serif" font-size="11" font-weight="900" font-style="italic" fill="#ffffff" text-anchor="middle">Leica</text>
+    <text x="40" y="22" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#ffffff">CAMERA VENDOR GỐC</text>
+  </g>
+
+  <!-- Top Viewfinder Toggles (Flash, HDR, 50MP, AI, Filter) -->
+  <g transform="translate(20, 150)">
+    <circle cx="20" cy="20" r="16" fill="rgba(0,0,0,0.5)"/>
+    <path d="M18 12l-4 8h6l-2 8 8-10h-6z" fill="#ffffff"/>
+
+    <circle cx="68" cy="20" r="16" fill="rgba(0,0,0,0.5)"/>
+    <text x="68" y="24" font-family="'Inter', sans-serif" font-size="10" font-weight="800" fill="#ffffff" text-anchor="middle">HDR</text>
+
+    <circle cx="116" cy="20" r="16" fill="rgba(0,0,0,0.5)"/>
+    <text x="116" y="24" font-family="'Inter', sans-serif" font-size="9" font-weight="800" fill="#facc15" text-anchor="middle">50MP</text>
+
+    <circle cx="164" cy="20" r="16" fill="rgba(0,0,0,0.5)"/>
+    <text x="164" y="24" font-family="'Inter', sans-serif" font-size="10" font-weight="800" fill="#ffffff" text-anchor="middle">AI</text>
+  </g>
+
+  <!-- Lens Zoom Ratio Selector (0.6x, 1x, 2x, 5x) -->
+  <g transform="translate(75, 545)">
+    <rect width="240" height="42" rx="21" fill="rgba(0,0,0,0.65)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+    <circle cx="36" cy="21" r="14" fill="none"/>
+    <text x="36" y="25" font-family="'Inter', sans-serif" font-size="12" font-weight="600" fill="#94a3b8" text-anchor="middle">0.6</text>
+    
+    <!-- Active 1x Zoom Button -->
+    <circle cx="96" cy="21" r="16" fill="#eab308"/>
+    <text x="96" y="25" font-family="'Inter', sans-serif" font-size="12" font-weight="800" fill="#000000" text-anchor="middle">1X</text>
+
+    <circle cx="156" cy="21" r="14" fill="none"/>
+    <text x="156" y="25" font-family="'Inter', sans-serif" font-size="12" font-weight="600" fill="#94a3b8" text-anchor="middle">2</text>
+
+    <circle cx="206" cy="21" r="14" fill="none"/>
+    <text x="206" y="25" font-family="'Inter', sans-serif" font-size="12" font-weight="600" fill="#94a3b8" text-anchor="middle">5</text>
+  </g>
+
+  <!-- Camera Modes Carousel (PRO, TÀI LIỆU, VIDEO, ẢNH, CHÂN DUNG, ĐÊM) -->
+  <g transform="translate(0, 625)">
+    <text x="50" y="16" font-family="'Be Vietnam Pro', sans-serif" font-size="12" font-weight="600" fill="#64748b" text-anchor="middle">PRO</text>
+    <text x="120" y="16" font-family="'Be Vietnam Pro', sans-serif" font-size="12" font-weight="600" fill="#64748b" text-anchor="middle">VIDEO</text>
+    <text x="195" y="16" font-family="'Be Vietnam Pro', sans-serif" font-size="14" font-weight="800" fill="#eab308" text-anchor="middle">ẢNH LEICA</text>
+    <text x="275" y="16" font-family="'Be Vietnam Pro', sans-serif" font-size="12" font-weight="600" fill="#64748b" text-anchor="middle">CHÂN DUNG</text>
+    <text x="348" y="16" font-family="'Be Vietnam Pro', sans-serif" font-size="12" font-weight="600" fill="#64748b" text-anchor="middle">ĐÊM</text>
+    <circle cx="195" cy="28" r="3" fill="#eab308"/>
+  </g>
+
+  <!-- Bottom Control Bar (Gallery Preview, Shutter Button, Switch Camera) -->
+  <g transform="translate(24, 680)">
+    <!-- Gallery Thumb -->
+    <rect x="20" y="15" width="54" height="54" rx="27" fill="#1e293b" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+    <circle cx="47" cy="42" r="10" fill="#3b82f6"/>
+
+    <!-- Shutter Button -->
+    <circle cx="171" cy="42" r="38" fill="none" stroke="#ffffff" stroke-width="4"/>
+    <circle cx="171" cy="42" r="31" fill="#ffffff"/>
+
+    <!-- Switch Camera Lens Button -->
+    <circle cx="295" cy="42" r="27" fill="#1e293b"/>
+    <path d="M290 36a7 7 0 0 1 10 0 M300 48a7 7 0 0 1-10 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Bottom Home Indicator -->
+  <rect x="135" y="828" width="120" height="5" rx="2.5" fill="#ffffff" opacity="0.4"/>
+</svg>

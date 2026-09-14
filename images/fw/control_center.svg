@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="100%" height="100%">
+  <defs>
+    <linearGradient id="blurBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141a29"/>
+      <stop offset="50%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="activeBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="390" height="844" fill="url(#blurBg)"/>
+
+  <!-- Status Bar -->
+  <text x="32" y="38" font-family="'Inter', sans-serif" font-size="14" font-weight="600" fill="#ffffff">09:41</text>
+  <g transform="translate(300, 26)" fill="#ffffff">
+    <path d="M12 3h3v10h-3z M6 6h3v7H6z M0 9h3v4H0z"/>
+    <path d="M22 2a11 11 0 0 1 8 0 M24 6a7 7 0 0 1 4 0 M26 10a2 2 0 0 1 0 1" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <rect x="42" y="2" width="22" height="11" rx="3" fill="none" stroke="#fff" stroke-width="1.8"/>
+    <rect x="44" y="4" width="15" height="7" rx="1.5" fill="#3b82f6"/>
+    <rect x="65" y="5" width="2" height="5" rx="1" fill="#fff"/>
+  </g>
+
+  <!-- Big Clock & Date in Control Center -->
+  <g transform="translate(24, 60)">
+    <text x="0" y="38" font-family="'Inter', sans-serif" font-size="44" font-weight="300" fill="#ffffff">09:41</text>
+    <text x="0" y="62" font-family="'Be Vietnam Pro', sans-serif" font-size="14" font-weight="500" fill="#94a3b8">Thứ Hai, 14 tháng 9 • Real Blur Active</text>
+  </g>
+
+  <!-- Top 4 Major Toggles (Wi-Fi, Mobile Data, Bluetooth, Flashlight) -->
+  <g transform="translate(24, 145)">
+    <!-- Wi-Fi (Active) -->
+    <rect x="0" y="0" width="165" height="84" rx="22" fill="url(#activeBlue)"/>
+    <circle cx="36" cy="42" r="20" fill="rgba(255,255,255,0.2)"/>
+    <path d="M30 36a8 8 0 0 1 12 0 M32 40a5 5 0 0 1 8 0 M35 44a2 2 0 0 1 2 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <text x="68" y="36" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#ffffff">Wi-Fi 7</text>
+    <text x="68" y="54" font-family="'Inter', sans-serif" font-size="11" fill="rgba(255,255,255,0.8)">HyperUR_5G</text>
+
+    <!-- Mobile Data (Active) -->
+    <rect x="177" y="0" width="165" height="84" rx="22" fill="url(#activeBlue)"/>
+    <circle cx="213" cy="42" r="20" fill="rgba(255,255,255,0.2)"/>
+    <path d="M210 36l6 6-6 6 M216 48l-6-6 6-6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <text x="245" y="36" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#ffffff">5G Viettel</text>
+    <text x="245" y="54" font-family="'Inter', sans-serif" font-size="11" fill="rgba(255,255,255,0.8)">Tốc độ cao</text>
+
+    <!-- Bluetooth -->
+    <rect x="0" y="96" width="165" height="84" rx="22" fill="rgba(255,255,255,0.1)"/>
+    <circle cx="36" cy="138" r="20" fill="rgba(255,255,255,0.1)"/>
+    <path d="M36 128l3 5-3 5 M36 138l3 5-3 5" stroke="#fff" stroke-width="2" fill="none"/>
+    <text x="68" y="132" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#ffffff">Bluetooth</text>
+    <text x="68" y="150" font-family="'Inter', sans-serif" font-size="11" fill="#94a3b8">LDAC Ready</text>
+
+    <!-- Dolby Atmos -->
+    <rect x="177" y="96" width="165" height="84" rx="22" fill="rgba(168,85,247,0.25)" stroke="rgba(168,85,247,0.4)" stroke-width="1"/>
+    <circle cx="213" cy="138" r="20" fill="rgba(168,85,247,0.3)"/>
+    <text x="213" y="144" font-family="'Inter', sans-serif" font-size="12" font-weight="800" fill="#c084fc" text-anchor="middle">DA</text>
+    <text x="245" y="132" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#ffffff">Dolby Atmos</text>
+    <text x="245" y="150" font-family="'Inter', sans-serif" font-size="11" fill="#c084fc">Âm thanh vòm</text>
+  </g>
+
+  <!-- Big Sliders (Brightness & Volume) -->
+  <g transform="translate(24, 345)">
+    <!-- Brightness Slider -->
+    <rect x="0" y="0" width="165" height="150" rx="24" fill="rgba(255,255,255,0.08)"/>
+    <rect x="0" y="45" width="165" height="105" rx="24" fill="rgba(255,255,255,0.2)"/>
+    <circle cx="82" cy="115" r="14" fill="#ffffff"/>
+    <path d="M82 106v-3 M82 127v-3 M73 115h-3 M94 115h-3" stroke="#000" stroke-width="1.8"/>
+    <text x="82" y="32" font-family="'Inter', sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">Độ sáng 70%</text>
+
+    <!-- Volume Slider -->
+    <rect x="177" y="0" width="165" height="150" rx="24" fill="rgba(255,255,255,0.08)"/>
+    <rect x="177" y="30" width="165" height="120" rx="24" fill="rgba(59,130,246,0.35)"/>
+    <path d="M255 110l-4-4h-4v8h4l4-4z M259 107a5 5 0 0 1 0 6" stroke="#fff" stroke-width="2" fill="none"/>
+    <text x="260" y="32" font-family="'Inter', sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">Âm lượng 80%</text>
+  </g>
+
+  <!-- Media Player Widget -->
+  <g transform="translate(24, 515)">
+    <rect width="342" height="100" rx="24" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <rect x="16" y="16" width="68" height="68" rx="16" fill="#1e293b"/>
+    <circle cx="50" cy="50" r="18" fill="#3b82f6" opacity="0.3"/>
+    <path d="M46 42l12 8-12 8z" fill="#3b82f6"/>
+    <text x="96" y="42" font-family="'Inter', sans-serif" font-size="15" font-weight="700" fill="#ffffff">HyperUR Soundstage</text>
+    <text x="96" y="62" font-family="'Be Vietnam Pro', sans-serif" font-size="12" fill="#94a3b8">Hi-Res Audio • 24-bit 192kHz</text>
+    <circle cx="310" cy="50" r="18" fill="rgba(255,255,255,0.1)"/>
+    <path d="M308 44l8 6-8 6z" fill="#ffffff"/>
+  </g>
+
+  <!-- Quick Mini Toggles (Row of 4) -->
+  <g transform="translate(24, 635)">
+    <!-- NFC -->
+    <rect x="0" y="0" width="76" height="76" rx="20" fill="rgba(59,130,246,0.2)"/>
+    <text x="38" y="38" font-family="'Inter', sans-serif" font-size="16" font-weight="700" fill="#60a5fa" text-anchor="middle">NFC</text>
+    <text x="38" y="58" font-family="'Be Vietnam Pro', sans-serif" font-size="10" fill="#94a3b8" text-anchor="middle">Bật</text>
+
+    <!-- Hotspot -->
+    <rect x="88" y="0" width="76" height="76" rx="20" fill="rgba(255,255,255,0.08)"/>
+    <circle cx="126" cy="32" r="8" fill="none" stroke="#fff" stroke-width="2"/>
+    <text x="126" y="58" font-family="'Be Vietnam Pro', sans-serif" font-size="10" fill="#94a3b8" text-anchor="middle">Điểm phát</text>
+
+    <!-- Dark Mode -->
+    <rect x="176" y="0" width="76" height="76" rx="20" fill="rgba(59,130,246,0.2)"/>
+    <path d="M214 26a7 7 0 1 0 0 12 7 7 0 0 1 0-12z" fill="#60a5fa"/>
+    <text x="214" y="58" font-family="'Be Vietnam Pro', sans-serif" font-size="10" fill="#94a3b8" text-anchor="middle">Nền tối</text>
+
+    <!-- FPS Unlock -->
+    <rect x="266" y="0" width="76" height="76" rx="20" fill="rgba(16,185,129,0.2)"/>
+    <text x="304" y="38" font-family="'Inter', sans-serif" font-size="13" font-weight="800" fill="#34d399" text-anchor="middle">120Hz</text>
+    <text x="304" y="58" font-family="'Be Vietnam Pro', sans-serif" font-size="10" fill="#34d399" text-anchor="middle">Siêu mượt</text>
+  </g>
+
+  <!-- Bottom Home Indicator -->
+  <rect x="135" y="828" width="120" height="5" rx="2.5" fill="#ffffff" opacity="0.4"/>
+</svg>

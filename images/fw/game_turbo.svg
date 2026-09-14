@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="100%" height="100%">
+  <defs>
+    <linearGradient id="gameBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#06090f"/>
+    </linearGradient>
+    <linearGradient id="neonCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="turboRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="100%" stop-color="#e11d48"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="390" height="844" fill="url(#gameBg)"/>
+
+  <!-- Status Bar -->
+  <text x="32" y="38" font-family="'Inter', sans-serif" font-size="14" font-weight="600" fill="#ffffff">09:41</text>
+  <g transform="translate(300, 26)" fill="#ffffff">
+    <path d="M12 3h3v10h-3z M6 6h3v7H6z M0 9h3v4H0z"/>
+    <rect x="42" y="2" width="22" height="11" rx="3" fill="none" stroke="#fff" stroke-width="1.8"/>
+    <rect x="44" y="4" width="15" height="7" rx="1.5" fill="#10b981"/>
+    <rect x="65" y="5" width="2" height="5" rx="1" fill="#fff"/>
+  </g>
+
+  <!-- Game Turbo HUD Floating Toolbar Header -->
+  <g transform="translate(24, 75)">
+    <rect width="342" height="80" rx="20" fill="rgba(15,23,42,0.85)" stroke="rgba(6,182,212,0.4)" stroke-width="1.5"/>
+    
+    <!-- Game Icon Badge -->
+    <rect x="16" y="16" width="48" height="48" rx="14" fill="url(#neonCyan)"/>
+    <path d="M30 32l6-6 6 6 M30 44l6 6 6-6" stroke="#fff" stroke-width="2.5" fill="none"/>
+
+    <text x="76" y="38" font-family="'Inter', sans-serif" font-size="17" font-weight="800" fill="#ffffff">GAME TURBO 6.0</text>
+    <text x="76" y="56" font-family="'Be Vietnam Pro', sans-serif" font-size="12" fill="#38bdf8">Chế độ Hiệu Năng Cực Đại Active</text>
+    
+    <!-- 120 FPS Badge -->
+    <rect x="250" y="22" width="76" height="36" rx="10" fill="url(#turboRed)"/>
+    <text x="288" y="45" font-family="'Inter', sans-serif" font-size="14" font-weight="900" fill="#ffffff" text-anchor="middle">120 FPS</text>
+  </g>
+
+  <!-- Realtime Performance Meter Gauges -->
+  <g transform="translate(24, 175)">
+    <!-- FPS Meter Card -->
+    <rect x="0" y="0" width="105" height="110" rx="18" fill="rgba(30,41,59,0.7)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <text x="52" y="32" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#94a3b8" text-anchor="middle">TỐC ĐỘ KHUNG</text>
+    <text x="52" y="68" font-family="'Inter', sans-serif" font-size="28" font-weight="900" fill="#22c55e" text-anchor="middle">120.0</text>
+    <text x="52" y="92" font-family="'Inter', sans-serif" font-size="11" fill="#4ade80" text-anchor="middle">Ổn định 99.8%</text>
+
+    <!-- CPU Clock Meter -->
+    <rect x="118" y="0" width="105" height="110" rx="18" fill="rgba(30,41,59,0.7)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <text x="170" y="32" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#94a3b8" text-anchor="middle">XUNG NHỊP CPU</text>
+    <text x="170" y="68" font-family="'Inter', sans-serif" font-size="24" font-weight="900" fill="#38bdf8" text-anchor="middle">3.4 GHz</text>
+    <text x="170" y="92" font-family="'Inter', sans-serif" font-size="11" fill="#38bdf8" text-anchor="middle">Cortex-X4 Perf</text>
+
+    <!-- GPU Usage Meter -->
+    <rect x="236" y="0" width="105" height="110" rx="18" fill="rgba(30,41,59,0.7)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <text x="288" y="32" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#94a3b8" text-anchor="middle">TẢI GPU</text>
+    <text x="288" y="68" font-family="'Inter', sans-serif" font-size="24" font-weight="900" fill="#a855f7" text-anchor="middle">68%</text>
+    <text x="288" y="92" font-family="'Inter', sans-serif" font-size="11" fill="#c084fc" text-anchor="middle">Adreno 750</text>
+  </g>
+
+  <!-- Gaming Feature Switches List -->
+  <g transform="translate(24, 310)">
+    <!-- Switch 1: Bypass Giới hạn Thermal Throttling -->
+    <rect x="0" y="0" width="342" height="74" rx="18" fill="rgba(30,41,59,0.6)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <circle cx="36" cy="37" r="18" fill="rgba(244,63,94,0.15)"/>
+    <path d="M36 28v12 M36 44v1" stroke="#f43f5e" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="68" y="32" font-family="'Be Vietnam Pro', sans-serif" font-size="14" font-weight="700" fill="#ffffff">Gỡ bỏ bóp xung (Thermal Bypass)</text>
+    <text x="68" y="52" font-family="'Be Vietnam Pro', sans-serif" font-size="11" fill="#94a3b8">Duy trì FPS ổn định trong combat dài</text>
+    <!-- Toggle ON -->
+    <rect x="280" y="25" width="46" height="24" rx="12" fill="#22c55e"/>
+    <circle cx="313" cy="37" r="9" fill="#ffffff"/>
+
+    <!-- Switch 2: Touch Sampling Rate 480Hz -->
+    <rect x="0" y="86" width="342" height="74" rx="18" fill="rgba(30,41,59,0.6)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <circle cx="36" cy="123" r="18" fill="rgba(6,182,212,0.15)"/>
+    <circle cx="36" cy="123" r="8" fill="none" stroke="#06b6d4" stroke-width="2"/>
+    <text x="68" y="118" font-family="'Be Vietnam Pro', sans-serif" font-size="14" font-weight="700" fill="#ffffff">Tần số lấy mẫu cảm ứng 480Hz</text>
+    <text x="68" y="138" font-family="'Be Vietnam Pro', sans-serif" font-size="11" fill="#94a3b8">Độ trễ chạm siêu thấp cho game bắn súng</text>
+    <!-- Toggle ON -->
+    <rect x="280" y="111" width="46" height="24" rx="12" fill="#22c55e"/>
+    <circle cx="313" cy="123" r="9" fill="#ffffff"/>
+
+    <!-- Switch 3: Chặn Thông Báo & Khóa Cử Chỉ -->
+    <rect x="0" y="172" width="342" height="74" rx="18" fill="rgba(30,41,59,0.6)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <circle cx="36" cy="209" r="18" fill="rgba(168,85,247,0.15)"/>
+    <path d="M30 209h12" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="68" y="204" font-family="'Be Vietnam Pro', sans-serif" font-size="14" font-weight="700" fill="#ffffff">Không làm phiền & Chặn chạm nhầm</text>
+    <text x="68" y="224" font-family="'Be Vietnam Pro', sans-serif" font-size="11" fill="#94a3b8">Tự động chặn cuộc gọi & vuốt nhầm thanh home</text>
+    <!-- Toggle ON -->
+    <rect x="280" y="197" width="46" height="24" rx="12" fill="#22c55e"/>
+    <circle cx="313" cy="209" r="9" fill="#ffffff"/>
+  </g>
+
+  <!-- Game Turbo Quick Boost Button -->
+  <g transform="translate(24, 585)">
+    <rect width="342" height="60" rx="18" fill="url(#neonCyan)"/>
+    <text x="171" y="37" font-family="'Inter', sans-serif" font-size="16" font-weight="800" fill="#ffffff" text-anchor="middle">⚡ TỐI ƯU TOÀN DIỆN (BOOST RAM + GPU)</text>
+  </g>
+
+  <!-- Bottom Home Indicator -->
+  <rect x="135" y="828" width="120" height="5" rx="2.5" fill="#ffffff" opacity="0.4"/>
+</svg>

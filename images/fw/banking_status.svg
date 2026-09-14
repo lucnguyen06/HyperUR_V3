@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" width="100%" height="100%">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="cardDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="390" height="844" fill="#090d16"/>
+
+  <!-- Status Bar -->
+  <text x="32" y="38" font-family="'Inter', sans-serif" font-size="14" font-weight="600" fill="#ffffff">09:41</text>
+  <g transform="translate(300, 26)" fill="#ffffff">
+    <path d="M12 3h3v10h-3z M6 6h3v7H6z M0 9h3v4H0z"/>
+    <rect x="42" y="2" width="22" height="11" rx="3" fill="none" stroke="#fff" stroke-width="1.8"/>
+    <rect x="44" y="4" width="15" height="7" rx="1.5" fill="#10b981"/>
+    <rect x="65" y="5" width="2" height="5" rx="1" fill="#fff"/>
+  </g>
+
+  <!-- Header -->
+  <g transform="translate(24, 70)">
+    <text x="0" y="20" font-family="'Be Vietnam Pro', sans-serif" font-size="20" font-weight="800" fill="#ffffff">Bảo Mật & Play Integrity</text>
+    <text x="0" y="42" font-family="'Be Vietnam Pro', sans-serif" font-size="12" fill="#94a3b8">Bypass chứng thực Google Play Protect & Banking</text>
+  </g>
+
+  <!-- Big Shield Hero Banner -->
+  <g transform="translate(24, 135)">
+    <rect width="342" height="170" rx="24" fill="url(#cardDark)" stroke="rgba(16,185,129,0.3)" stroke-width="1.5"/>
+    
+    <!-- Big Shield Icon -->
+    <circle cx="75" cy="85" r="46" fill="rgba(16,185,129,0.15)"/>
+    <circle cx="75" cy="85" r="32" fill="url(#shieldGrad)"/>
+    <path d="M66 85l6 6 13-13" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+    <text x="135" y="65" font-family="'Inter', sans-serif" font-size="18" font-weight="800" fill="#ffffff">Play Integrity PASS</text>
+    <rect x="135" y="75" width="135" height="22" rx="11" fill="rgba(16,185,129,0.2)"/>
+    <text x="202" y="90" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#34d399" text-anchor="middle">DEVICE_INTEGRITY ✓</text>
+    <text x="135" y="118" font-family="'Be Vietnam Pro', sans-serif" font-size="12" fill="#cbd5e1">Chứng chỉ Google hợp lệ</text>
+    <text x="135" y="136" font-family="'Be Vietnam Pro', sans-serif" font-size="11" fill="#10b981">Ẩn Bootloader hoàn toàn</text>
+  </g>
+
+  <!-- Detailed Check List -->
+  <g transform="translate(24, 325)">
+    <!-- Item 1: MEETS_BASIC_INTEGRITY -->
+    <rect x="0" y="0" width="342" height="66" rx="16" fill="url(#cardDark)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <circle cx="32" cy="33" r="14" fill="rgba(16,185,129,0.2)"/>
+    <path d="M27 33l3 3 7-7" stroke="#10b981" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <text x="58" y="28" font-family="'Inter', sans-serif" font-size="13" font-weight="700" fill="#ffffff">MEETS_BASIC_INTEGRITY</text>
+    <text x="58" y="48" font-family="'Be Vietnam Pro', sans-serif" font-size="11" fill="#94a3b8">Hệ thống tệp không bị can thiệp trái phép</text>
+    <text x="315" y="38" font-family="'Inter', sans-serif" font-size="12" font-weight="700" fill="#10b981" text-anchor="end">PASS</text>
+
+    <!-- Item 2: MEETS_DEVICE_INTEGRITY -->
+    <rect x="0" y="78" width="342" height="66" rx="16" fill="url(#cardDark)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <circle cx="32" cy="111" r="14" fill="rgba(16,185,129,0.2)"/>
+    <path d="M27 111l3 3 7-7" stroke="#10b981" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <text x="58" y="106" font-family="'Inter', sans-serif" font-size="13" font-weight="700" fill="#ffffff">MEETS_DEVICE_INTEGRITY</text>
+    <text x="58" y="126" font-family="'Be Vietnam Pro', sans-serif" font-size="11" fill="#94a3b8">Chứng thực chứng chỉ thiết bị tương thích Google</text>
+    <text x="315" y="116" font-family="'Inter', sans-serif" font-size="12" font-weight="700" fill="#10b981" text-anchor="end">PASS</text>
+
+    <!-- Item 3: Banking & eKYC Verified -->
+    <rect x="0" y="156" width="342" height="66" rx="16" fill="url(#cardDark)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <circle cx="32" cy="189" r="14" fill="rgba(59,130,246,0.2)"/>
+    <path d="M27 189l3 3 7-7" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <text x="58" y="184" font-family="'Be Vietnam Pro', sans-serif" font-size="13" font-weight="700" fill="#ffffff">Sinh trắc học & Quét khuôn mặt eKYC</text>
+    <text x="58" y="204" font-family="'Be Vietnam Pro', sans-serif" font-size="11" fill="#94a3b8">Bảo đảm theo Quyết định 2345/QĐ-NHNN</text>
+    <text x="315" y="194" font-family="'Inter', sans-serif" font-size="12" font-weight="700" fill="#3b82f6" text-anchor="end">OK</text>
+  </g>
+
+  <!-- Supported Banking Apps Row -->
+  <g transform="translate(24, 575)">
+    <text x="0" y="20" font-family="'Be Vietnam Pro', sans-serif" font-size="13" font-weight="700" fill="#cbd5e1">ỨNG DỤNG ĐÃ KIỂM TRA 100% HOẠT ĐỘNG</text>
+    <g transform="translate(0, 35)">
+      <!-- App 1: VCB -->
+      <rect x="0" y="0" width="76" height="50" rx="12" fill="rgba(16,185,129,0.15)" stroke="rgba(16,185,129,0.3)" stroke-width="1"/>
+      <text x="38" y="30" font-family="'Inter', sans-serif" font-size="12" font-weight="800" fill="#10b981" text-anchor="middle">VCB</text>
+
+      <!-- App 2: BIDV -->
+      <rect x="88" y="0" width="76" height="50" rx="12" fill="rgba(59,130,246,0.15)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+      <text x="126" y="30" font-family="'Inter', sans-serif" font-size="12" font-weight="800" fill="#60a5fa" text-anchor="middle">BIDV</text>
+
+      <!-- App 3: Techcombank -->
+      <rect x="176" y="0" width="76" height="50" rx="12" fill="rgba(239,68,68,0.15)" stroke="rgba(239,68,68,0.3)" stroke-width="1"/>
+      <text x="214" y="30" font-family="'Inter', sans-serif" font-size="12" font-weight="800" fill="#f87171" text-anchor="middle">TCB</text>
+
+      <!-- App 4: MoMo -->
+      <rect x="266" y="0" width="76" height="50" rx="12" fill="rgba(217,70,239,0.15)" stroke="rgba(217,70,239,0.3)" stroke-width="1"/>
+      <text x="304" y="30" font-family="'Inter', sans-serif" font-size="12" font-weight="800" fill="#e879f9" text-anchor="middle">MoMo</text>
+    </g>
+  </g>
+
+  <!-- Bottom Home Indicator -->
+  <rect x="135" y="828" width="120" height="5" rx="2.5" fill="#ffffff" opacity="0.4"/>
+</svg>
