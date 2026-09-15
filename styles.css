@@ -1598,7 +1598,7 @@ dialog:not([open]) {
 
 .footer-top {
   display: grid;
-  grid-template-columns: 1.8fr 1fr 1.2fr 1.3fr;
+  grid-template-columns: 1.4fr 1.2fr 1.2fr;
   gap: 2.5rem;
   margin-bottom: 3.5rem;
 }
@@ -2996,7 +2996,7 @@ dialog:not([open]) {
 
 .footer-top {
   display: grid;
-  grid-template-columns: 1.4fr 0.9fr 1.2fr 1.2fr;
+  grid-template-columns: 1.4fr 1.2fr 1.2fr;
   gap: 2.5rem;
   margin-bottom: 3.5rem;
 }
