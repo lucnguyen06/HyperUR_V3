@@ -1,0 +1,632 @@
+{
+  "_metadata": {
+    "lastSync": "2026-09-15T08:59:21.112Z",
+    "totalDevices": 39,
+    "totalRoms": 39,
+    "source": "Google Drive Live Sync (https://drive.google.com/drive/u/2/folders/1WxXT6Mx7ZdknKh_gd-dQr0Jturtkypyq)"
+  },
+  "amethyst": {
+    "device": "amethyst",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.305.0.WOPCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1cofNkBAzs6GSDRpEpWS7H8L2m5_gQGow",
+        "viewUrl": "https://drive.google.com/file/d/1cofNkBAzs6GSDRpEpWS7H8L2m5_gQGow/view",
+        "fileId": "1cofNkBAzs6GSDRpEpWS7H8L2m5_gQGow",
+        "fileName": "UR_amethyst_OS3.0.305.0.WOPCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "annibale": {
+    "device": "annibale",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.307.0.WPKCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1_lw121UvCiHNOcRxv7GFvNQeQrvOdpVB",
+        "viewUrl": "https://drive.google.com/file/d/1_lw121UvCiHNOcRxv7GFvNQeQrvOdpVB/view",
+        "fileId": "1_lw121UvCiHNOcRxv7GFvNQeQrvOdpVB",
+        "fileName": "UR_annibale_OS3.0.307.0.WPKCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "athens": {
+    "device": "athens",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.306.0.WPICNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=14yRCfYJj_synmVmBd5g4DDVC3BL3diGa",
+        "viewUrl": "https://drive.google.com/file/d/14yRCfYJj_synmVmBd5g4DDVC3BL3diGa/view",
+        "fileId": "14yRCfYJj_synmVmBd5g4DDVC3BL3diGa",
+        "fileName": "UR_athens_OS3.0.306.0.WPICNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "aurora": {
+    "device": "aurora",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.306.0.WNACNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1Cftqi2nF0BIrQJ5n-0X8HF6F6Ll1s7Rv",
+        "viewUrl": "https://drive.google.com/file/d/1Cftqi2nF0BIrQJ5n-0X8HF6F6Ll1s7Rv/view",
+        "fileId": "1Cftqi2nF0BIrQJ5n-0X8HF6F6Ll1s7Rv",
+        "fileName": "UR_aurorapro_OS3.0.306.0.WNACNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "babylon": {
+    "device": "babylon",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.304.0.WMVCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1zqTEH297UiG1DxKyFzQZsOe3s6i9gZ1J",
+        "viewUrl": "https://drive.google.com/file/d/1zqTEH297UiG1DxKyFzQZsOe3s6i9gZ1J/view",
+        "fileId": "1zqTEH297UiG1DxKyFzQZsOe3s6i9gZ1J",
+        "fileName": "UR_babylon_OS3.0.304.0.WMVCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "bixi": {
+    "device": "bixi",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.304.0.WOHCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1c51ZzCI5A0gw2BBsFh_5sNXjvGaR0JqX",
+        "viewUrl": "https://drive.google.com/file/d/1c51ZzCI5A0gw2BBsFh_5sNXjvGaR0JqX/view",
+        "fileId": "1c51ZzCI5A0gw2BBsFh_5sNXjvGaR0JqX",
+        "fileName": "UR_bixi_OS3.0.304.0.WOHCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "byron": {
+    "device": "byron",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.309.0.WAFCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1og6-KvNsHLe9H3FtXUKGAdQLX8Bg4wvM",
+        "viewUrl": "https://drive.google.com/file/d/1og6-KvNsHLe9H3FtXUKGAdQLX8Bg4wvM/view",
+        "fileId": "1og6-KvNsHLe9H3FtXUKGAdQLX8Bg4wvM",
+        "fileName": "UR_byron_OS3.0.309.0.WAFCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "chenfeng": {
+    "device": "chenfeng",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.307.0.WNJCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1ya9XQnqXazJZHQoJD9mk_z7ng9Afzwsu",
+        "viewUrl": "https://drive.google.com/file/d/1ya9XQnqXazJZHQoJD9mk_z7ng9Afzwsu/view",
+        "fileId": "1ya9XQnqXazJZHQoJD9mk_z7ng9Afzwsu",
+        "fileName": "UR_chenfeng_OS3.0.307.0.WNJCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "dada": {
+    "device": "dada",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.307.0.WOCCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1ru4_hv-4TMgtG-7jz8zH9dIXfF2G3Wfr",
+        "viewUrl": "https://drive.google.com/file/d/1ru4_hv-4TMgtG-7jz8zH9dIXfF2G3Wfr/view",
+        "fileId": "1ru4_hv-4TMgtG-7jz8zH9dIXfF2G3Wfr",
+        "fileName": "UR_dada_OS3.0.307.0.WOCCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "fuxi": {
+    "device": "fuxi",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.308.0.WMCCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1uAxnFdHdx7JpFcdtup1okL09zODgD4Vt",
+        "viewUrl": "https://drive.google.com/file/d/1uAxnFdHdx7JpFcdtup1okL09zODgD4Vt/view",
+        "fileId": "1uAxnFdHdx7JpFcdtup1okL09zODgD4Vt",
+        "fileName": "UR_fuxi_OS3.0.308.0.WMCCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "garnet": {
+    "device": "garnet",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.306.0.WNRCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1KMF1PFfqStrZ0DmbhKX_2l-FcvM0m2H5",
+        "viewUrl": "https://drive.google.com/file/d/1KMF1PFfqStrZ0DmbhKX_2l-FcvM0m2H5/view",
+        "fileId": "1KMF1PFfqStrZ0DmbhKX_2l-FcvM0m2H5",
+        "fileName": "UR_garnet_OS3.0.306.0.WNRCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "goku": {
+    "device": "goku",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.307.0.WNVCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1rRqUMYy0JiaKVoDL-bN0N9OdL-sNPoHH",
+        "viewUrl": "https://drive.google.com/file/d/1rRqUMYy0JiaKVoDL-bN0N9OdL-sNPoHH/view",
+        "fileId": "1rRqUMYy0JiaKVoDL-bN0N9OdL-sNPoHH",
+        "fileName": "UR_goku_OS3.0.307.0.WNVCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "haotian": {
+    "device": "haotian",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.309.0.WOBCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1BJHiu9ng_wA5LpNmnQjZZZLZq5is0WMp",
+        "viewUrl": "https://drive.google.com/file/d/1BJHiu9ng_wA5LpNmnQjZZZLZq5is0WMp/view",
+        "fileId": "1BJHiu9ng_wA5LpNmnQjZZZLZq5is0WMp",
+        "fileName": "UR_haotian_OS3.0.309.0.WOBCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "houji": {
+    "device": "houji",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.306.0.WNCCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1D5rF0q_XuazxE_xc64pyAngFFYOLbx1-",
+        "viewUrl": "https://drive.google.com/file/d/1D5rF0q_XuazxE_xc64pyAngFFYOLbx1-/view",
+        "fileId": "1D5rF0q_XuazxE_xc64pyAngFFYOLbx1-",
+        "fileName": "UR_houji_OS3.0.306.0.WNCCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "ishtar": {
+    "device": "ishtar",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.307.0.WMACNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1MD6SXE67mRWRpp7N-wC-Z2sFdyENM8-t",
+        "viewUrl": "https://drive.google.com/file/d/1MD6SXE67mRWRpp7N-wC-Z2sFdyENM8-t/view",
+        "fileId": "1MD6SXE67mRWRpp7N-wC-Z2sFdyENM8-t",
+        "fileName": "UR_ishtar_OS3.0.307.0.WMACNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "luming": {
+    "device": "luming",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.303.0.WOICNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1AfcCGtAJK9vvJv5jrifkH_c_djPRM-wa",
+        "viewUrl": "https://drive.google.com/file/d/1AfcCGtAJK9vvJv5jrifkH_c_djPRM-wa/view",
+        "fileId": "1AfcCGtAJK9vvJv5jrifkH_c_djPRM-wa",
+        "fileName": "UR_luming_OS3.0.303.0.WOICNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "manet": {
+    "device": "manet",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.305.0.WNMCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1js15KOzeWVPflJbP35VtM-LmltmBaSdH",
+        "viewUrl": "https://drive.google.com/file/d/1js15KOzeWVPflJbP35VtM-LmltmBaSdH/view",
+        "fileId": "1js15KOzeWVPflJbP35VtM-LmltmBaSdH",
+        "fileName": "UR_manet_OS3.0.305.0.WNMCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "miro": {
+    "device": "miro",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.304.0.WOMCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1irIikDzSFOZ6VwEGVYYR2UhFr7eOUDRh",
+        "viewUrl": "https://drive.google.com/file/d/1irIikDzSFOZ6VwEGVYYR2UhFr7eOUDRh/view",
+        "fileId": "1irIikDzSFOZ6VwEGVYYR2UhFr7eOUDRh",
+        "fileName": "UR_miro_OS3.0.304.0.WOMCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "muyu": {
+    "device": "muyu",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.307.0.WOYCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=142gkZDxZ8W1ULuKcugtHHn43wnI4EJ7C",
+        "viewUrl": "https://drive.google.com/file/d/142gkZDxZ8W1ULuKcugtHHn43wnI4EJ7C/view",
+        "fileId": "142gkZDxZ8W1ULuKcugtHHn43wnI4EJ7C",
+        "fileName": "UR_muyu_OS3.0.307.0.WOYCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "myron": {
+    "device": "myron",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.309.0.WPMCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1mhsYsxOBiqOYwsfMdybBp4tRSNW74uVh",
+        "viewUrl": "https://drive.google.com/file/d/1mhsYsxOBiqOYwsfMdybBp4tRSNW74uVh/view",
+        "fileId": "1mhsYsxOBiqOYwsfMdybBp4tRSNW74uVh",
+        "fileName": "UR_myron_OS3.0.309.0.WPMCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "nezha": {
+    "device": "nezha",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.312.0.WPACNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1s1FRD6VWwHxljxqUT3BxULKMES7gzGCa",
+        "viewUrl": "https://drive.google.com/file/d/1s1FRD6VWwHxljxqUT3BxULKMES7gzGCa/view",
+        "fileId": "1s1FRD6VWwHxljxqUT3BxULKMES7gzGCa",
+        "fileName": "UR_nezha_OS3.0.312.0.WPACNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "nuwa": {
+    "device": "nuwa",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.311.0.WMBCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1ciK4Fb0GBzuBQR2GkSvfUOvrDaaLkTpQ",
+        "viewUrl": "https://drive.google.com/file/d/1ciK4Fb0GBzuBQR2GkSvfUOvrDaaLkTpQ/view",
+        "fileId": "1ciK4Fb0GBzuBQR2GkSvfUOvrDaaLkTpQ",
+        "fileName": "UR_nuwa_OS3.0.311.0.WMBCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "onyx": {
+    "device": "onyx",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.305.0.WOLCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1xAGWwL2Xm6kbuhwsGoKVsYJ4Ev6e9RW9",
+        "viewUrl": "https://drive.google.com/file/d/1xAGWwL2Xm6kbuhwsGoKVsYJ4Ev6e9RW9/view",
+        "fileId": "1xAGWwL2Xm6kbuhwsGoKVsYJ4Ev6e9RW9",
+        "fileName": "UR_onyx_OS3.0.305.0.WOLCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "pandora": {
+    "device": "pandora",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.319.0.WBLCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=14DvG60MdcTrQPF7BUKRv4EKMBtlK62Pr",
+        "viewUrl": "https://drive.google.com/file/d/14DvG60MdcTrQPF7BUKRv4EKMBtlK62Pr/view",
+        "fileId": "14DvG60MdcTrQPF7BUKRv4EKMBtlK62Pr",
+        "fileName": "UR_pandora_OS3.0.319.0.WBLCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "peridot": {
+    "device": "peridot",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.304.0.WNPCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1Q0KDeJx4ZQsEp_LMUivMPegWKkwBRA8J",
+        "viewUrl": "https://drive.google.com/file/d/1Q0KDeJx4ZQsEp_LMUivMPegWKkwBRA8J/view",
+        "fileId": "1Q0KDeJx4ZQsEp_LMUivMPegWKkwBRA8J",
+        "fileName": "UR_peridot_OS3.0.304.0.WNPCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "piano": {
+    "device": "piano",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.308.0.WPYCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1esrVnVOUL0dDue_JjEl7D-Ndb-ExWjSE",
+        "viewUrl": "https://drive.google.com/file/d/1esrVnVOUL0dDue_JjEl7D-Ndb-ExWjSE/view",
+        "fileId": "1esrVnVOUL0dDue_JjEl7D-Ndb-ExWjSE",
+        "fileName": "UR_piano_OS3.0.308.0.WPYCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "popsicle": {
+    "device": "popsicle",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.319.0.WPBCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1dBiJuL7rvqgmTFrzgxI_wer-aZtdgDfA",
+        "viewUrl": "https://drive.google.com/file/d/1dBiJuL7rvqgmTFrzgxI_wer-aZtdgDfA/view",
+        "fileId": "1dBiJuL7rvqgmTFrzgxI_wer-aZtdgDfA",
+        "fileName": "UR_popsicle_OS3.0.319.0.WPBCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "pudding": {
+    "device": "pudding",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.319.0.WPCCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1uYgkKl-sWvmyyGFQFpYx5Yys2aZ83N9l",
+        "viewUrl": "https://drive.google.com/file/d/1uYgkKl-sWvmyyGFQFpYx5Yys2aZ83N9l/view",
+        "fileId": "1uYgkKl-sWvmyyGFQFpYx5Yys2aZ83N9l",
+        "fileName": "UR_pudding_OS3.0.319.0.WPCCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "ruyi": {
+    "device": "ruyi",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.305.0.WNICNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1TjbECbJOrj5_bHoCzG9S36hNLC-LCUDK",
+        "viewUrl": "https://drive.google.com/file/d/1TjbECbJOrj5_bHoCzG9S36hNLC-LCUDK/view",
+        "fileId": "1TjbECbJOrj5_bHoCzG9S36hNLC-LCUDK",
+        "fileName": "UR_ruyi_OS3.0.305.0.WNICNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "sheng": {
+    "device": "sheng",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.304.0.WNXCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1pzmP5e85Tyva-m4-Sf55eRfOsZpA0ocd",
+        "viewUrl": "https://drive.google.com/file/d/1pzmP5e85Tyva-m4-Sf55eRfOsZpA0ocd/view",
+        "fileId": "1pzmP5e85Tyva-m4-Sf55eRfOsZpA0ocd",
+        "fileName": "UR_sheng_OS3.0.304.0.WNXCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "shennong": {
+    "device": "shennong",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.308.0.WNBCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1y_tq34z8rEe9i4yRIAbw9i088pHe_xuq",
+        "viewUrl": "https://drive.google.com/file/d/1y_tq34z8rEe9i4yRIAbw9i088pHe_xuq/view",
+        "fileId": "1y_tq34z8rEe9i4yRIAbw9i088pHe_xuq",
+        "fileName": "UR_shennong_OS3.0.308.0.WNBCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "socrates": {
+    "device": "socrates",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.304.0.WMKCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1PY6xsk1o1K61Ny9LBYn9e-DrcFvdLdUA",
+        "viewUrl": "https://drive.google.com/file/d/1PY6xsk1o1K61Ny9LBYn9e-DrcFvdLdUA/view",
+        "fileId": "1PY6xsk1o1K61Ny9LBYn9e-DrcFvdLdUA",
+        "fileName": "UR_socrates_OS3.0.304.0.WMKCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "songyuan": {
+    "device": "songyuan",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.306.0.WGNCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1BCzQgkxhgBOjNx_HIn3jAquRROzv-KMB",
+        "viewUrl": "https://drive.google.com/file/d/1BCzQgkxhgBOjNx_HIn3jAquRROzv-KMB/view",
+        "fileId": "1BCzQgkxhgBOjNx_HIn3jAquRROzv-KMB",
+        "fileName": "UR_songyuan_OS3.0.306.0.WGNCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "uke": {
+    "device": "uke",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.302.0.WOZCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1ROJ8caqVdvmf4j8pR32CTuczq01kQLuh",
+        "viewUrl": "https://drive.google.com/file/d/1ROJ8caqVdvmf4j8pR32CTuczq01kQLuh/view",
+        "fileId": "1ROJ8caqVdvmf4j8pR32CTuczq01kQLuh",
+        "fileName": "UR_uke_OS3.0.302.0.WOZCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "vermeer": {
+    "device": "vermeer",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.307.0.WNKCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1UPI0NT9JfvEPXOyui5ULmR7mD8TWKMRJ",
+        "viewUrl": "https://drive.google.com/file/d/1UPI0NT9JfvEPXOyui5ULmR7mD8TWKMRJ/view",
+        "fileId": "1UPI0NT9JfvEPXOyui5ULmR7mD8TWKMRJ",
+        "fileName": "UR_vermeer_OS3.0.307.0.WNKCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "warsaw": {
+    "device": "warsaw",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.307.0.WHPCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1Roub9M6aXO5skWPVQxei_8A9ipF6leUe",
+        "viewUrl": "https://drive.google.com/file/d/1Roub9M6aXO5skWPVQxei_8A9ipF6leUe/view",
+        "fileId": "1Roub9M6aXO5skWPVQxei_8A9ipF6leUe",
+        "fileName": "UR_warsaw_OS3.0.307.0.WHPCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "xuanyuan": {
+    "device": "xuanyuan",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.312.0.WOACNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1eFbyS7gV9q95Z8djd7hjsquiF4aYvxfF",
+        "viewUrl": "https://drive.google.com/file/d/1eFbyS7gV9q95Z8djd7hjsquiF4aYvxfF/view",
+        "fileId": "1eFbyS7gV9q95Z8djd7hjsquiF4aYvxfF",
+        "fileName": "UR_xuanyuan_OS3.0.312.0.WOACNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "yupei": {
+    "device": "yupei",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.309.0.WPZCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1HZ0c733BFmi_8a_Rb_aNvi--Qwkb9jZ7",
+        "viewUrl": "https://drive.google.com/file/d/1HZ0c733BFmi_8a_Rb_aNvi--Qwkb9jZ7/view",
+        "fileId": "1HZ0c733BFmi_8a_Rb_aNvi--Qwkb9jZ7",
+        "fileName": "UR_yupei_OS3.0.309.0.WPZCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  },
+  "zorn": {
+    "device": "zorn",
+    "roms": {
+      "OS3.0": {
+        "os": "OS3.0.307.0.WOKCNXM",
+        "android": "16.0",
+        "region": "cn",
+        "download": "https://drive.google.com/uc?export=download&id=1Tw61Qht24nCevkHQhHS9OSRoyaflZyeK",
+        "viewUrl": "https://drive.google.com/file/d/1Tw61Qht24nCevkHQhHS9OSRoyaflZyeK/view",
+        "fileId": "1Tw61Qht24nCevkHQhHS9OSRoyaflZyeK",
+        "fileName": "UR_zorn_OS3.0.307.0.WOKCNXM_16.7z",
+        "size": "Bản nén 7z",
+        "date": "2026-09-15"
+      }
+    }
+  }
+}

@@ -1,0 +1,4470 @@
+{
+  "air": {
+    "code": "air",
+    "name": {
+      "en": "Redmi 13C/R 5G"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "GQ",
+    "supports": [
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "air",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi 13C / 13R 5G"
+        }
+      }
+    ]
+  },
+  "amethyst": {
+    "code": "amethyst",
+    "name": {
+      "en": "Redmi Note 14 Pro+"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "OP",
+    "supports": [
+      "OS2.2",
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "amethyst",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi Note 14 Pro+"
+        }
+      }
+    ]
+  },
+  "annibale": {
+    "code": "annibale",
+    "name": {
+      "en": "REDMI K90"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "PK",
+    "supports": [
+      "OS4.0",
+      "OS3.0"
+    ],
+    "android": [
+      "16.0",
+      "17.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "annibale",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI K90"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "annibale",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI K90"
+        }
+      }
+    ]
+  },
+  "athens": {
+    "code": "athens",
+    "name": {
+      "en": "REDMI K100 Pro"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "PI",
+    "supports": [
+      "OS3.0"
+    ],
+    "android": [
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "athens",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI K100 Pro"
+        }
+      }
+    ]
+  },
+  "aurora": {
+    "code": "aurora",
+    "name": {
+      "en": "Xiaomi 14 Ultra"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "NA",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "aurora",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 14 Ultra"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "aurora",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 14 Ultra"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable Daily Build"
+        },
+        "branchCode": "aurora",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 14 Ultra"
+        }
+      }
+    ]
+  },
+  "babylon": {
+    "code": "babylon",
+    "name": {
+      "en": "Xiaomi MIX Fold 3"
+    },
+    "brand": "Xiaomi",
+    "type": "foldable",
+    "codeName": "MV",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS DEV"
+        },
+        "branchCode": "babylon",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi MIX Fold 3"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "babylon",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi MIX Fold 3"
+        }
+      }
+    ]
+  },
+  "beryl": {
+    "code": "beryl",
+    "name": {
+      "en": "Redmi Note 14 5G"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "OQ",
+    "supports": [
+      "OS2.2",
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "beryl",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi Note 14 5G"
+        }
+      }
+    ]
+  },
+  "bixi": {
+    "code": "bixi",
+    "name": {
+      "en": "Xiaomi MIX Flip 2"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "OH",
+    "supports": [
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "bixi",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi MIX Flip 2"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "bixi",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi MIX Flip 2"
+        }
+      }
+    ]
+  },
+  "breeze": {
+    "code": "breeze",
+    "name": {
+      "en": "Redmi Note 13R 5G / Redmi 13 5G"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "NU",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "breeze",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi Note 13R 5G"
+        }
+      }
+    ]
+  },
+  "byron": {
+    "code": "byron",
+    "name": {
+      "en": "Xiaomi 17 Max"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "AF",
+    "supports": [
+      "OS4.0",
+      "OS3.0"
+    ],
+    "android": [
+      "16.0",
+      "17.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "byron",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 17 Max"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "byron",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 17 Max"
+        }
+      }
+    ]
+  },
+  "chagall": {
+    "code": "chagall",
+    "name": {
+      "en": "Xiaomi 17T"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "PT",
+    "supports": [
+      "OS4.0",
+      "OS3.0"
+    ],
+    "android": [
+      "16.0",
+      "17.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "chagall",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 17T"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "chagall",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 17T"
+        }
+      }
+    ]
+  },
+  "chenfeng": {
+    "code": "chenfeng",
+    "name": {
+      "en": "Xiaomi Civi 4 Pro / Xiaomi 14 Civi"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "NJ",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "chenfeng",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Civi 4 Pro"
+        }
+      }
+    ]
+  },
+  "coral": {
+    "code": "coral",
+    "name": {
+      "en": "REDMI Note 15 Series"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "",
+    "supports": [],
+    "android": [
+      "15.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "coral",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI Note 15 Series"
+        }
+      }
+    ]
+  },
+  "corot": {
+    "code": "corot",
+    "name": {
+      "en": "Redmi K60 Ultra / Xiaomi 13T Pro"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "ML",
+    "supports": [
+      "OS1.1",
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "corot",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K60 Ultra"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "corot",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K60 Ultra"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
+        },
+        "branchCode": "corot_pre_dpp",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K60 Ultra"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Enhanced Experience Beta"
+        },
+        "branchCode": "corot",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K60 Ultra"
+        }
+      }
+    ]
+  },
+  "cupid": {
+    "code": "cupid",
+    "name": {
+      "en": "Xiaomi 12"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "LC",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS DEV"
+        },
+        "branchCode": "cupid",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 12"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "cupid",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 12"
+        }
+      }
+    ]
+  },
+  "dada": {
+    "code": "dada",
+    "name": {
+      "en": "Xiaomi 15"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "OC",
+    "supports": [
+      "OS4.0",
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0",
+      "17.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "dada",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 15"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "dada",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 15"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
+        },
+        "branchCode": "dada_pre_dpp",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 15"
+        }
+      }
+    ]
+  },
+  "dagu": {
+    "code": "dagu",
+    "name": {
+      "en": "Xiaomi Pad 5 Pro 12.4"
+    },
+    "brand": "Xiaomi",
+    "type": "tablet",
+    "codeName": "LZ",
+    "supports": [
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS DEV"
+        },
+        "branchCode": "dagu",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Pad 5 Pro 12.4"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "dagu",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Pad 5 Pro 12.4"
+        }
+      }
+    ]
+  },
+  "dali": {
+    "code": "dali",
+    "name": {
+      "en": "REDMI K80 Ultra"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "ON",
+    "supports": [
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "dali",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI K80 Ultra"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "dali",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI K80 Ultra"
+        }
+      }
+    ]
+  },
+  "dash": {
+    "code": "dash",
+    "name": {
+      "en": "REDMI Turbo 5 MAX"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "PL",
+    "supports": [
+      "OS3.0"
+    ],
+    "android": [
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "dash",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI Turbo 5 MAX"
+        }
+      }
+    ]
+  },
+  "daumier": {
+    "code": "daumier",
+    "name": {
+      "en": "Xiaomi 12 Pro Dimensity"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "LG",
+    "supports": [
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS DEV"
+        },
+        "branchCode": "daumier",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 12 Pro Dimensity"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "daumier",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 12 Pro Dimensity"
+        }
+      }
+    ]
+  },
+  "dijun": {
+    "code": "dijun",
+    "name": {
+      "en": "Xiaomi 15S Pro"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "OD",
+    "supports": [
+      "OS4.0",
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0",
+      "17.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "dijun",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 15S Pro"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "dijun",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 15S Pro"
+        }
+      }
+    ]
+  },
+  "diting": {
+    "code": "diting",
+    "name": {
+      "en": "Redmi K50 Ultra / Xiaomi 12T Pro"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "LF",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS DEV"
+        },
+        "branchCode": "diting",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K50 Ultra"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "diting",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K50 Ultra"
+        }
+      }
+    ]
+  },
+  "dizi": {
+    "code": "dizi",
+    "name": {
+      "en": "Redmi Pad Pro / Special Edition featuring Harry Potter"
+    },
+    "brand": "Redmi",
+    "type": "tablet",
+    "codeName": "NS",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "dizi",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi Pad Pro / Special Edition featuring Harry Potter"
+        }
+      }
+    ]
+  },
+  "duchamp": {
+    "code": "duchamp",
+    "name": {
+      "en": "Redmi K70E"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "NL",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "duchamp",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K70E"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "duchamp",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K70E"
+        }
+      }
+    ]
+  },
+  "earth": {
+    "code": "earth",
+    "name": {
+      "en": "Redmi 12C"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "CV",
+    "supports": [
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "earth",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi 12C"
+        }
+      }
+    ]
+  },
+  "erhu": {
+    "code": "erhu",
+    "name": {
+      "en": "REDMI Pad 2 SE 4G"
+    },
+    "brand": "REDMI",
+    "type": "tablet",
+    "codeName": "DO",
+    "supports": [
+      "OS3.0"
+    ],
+    "android": [
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "erhu",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI Pad 2 SE 4G"
+        }
+      }
+    ]
+  },
+  "flame": {
+    "code": "flame",
+    "name": {
+      "en": "Redmi 14R 5G"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "GU",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "flame",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi 14R 5G"
+        }
+      }
+    ]
+  },
+  "flourite": {
+    "code": "flourite",
+    "name": {
+      "en": "REDMI Note 15 Pro+ 5G"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "PR",
+    "supports": [
+      "OS3.1",
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "flourite",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI Note 15 Pro+ 5G"
+        }
+      }
+    ]
+  },
+  "flute": {
+    "code": "flute",
+    "name": {
+      "en": "REDMI Pad 2 Pro"
+    },
+    "brand": "REDMI",
+    "type": "tablet",
+    "codeName": "PW",
+    "supports": [
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "flute",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI Pad 2 Pro"
+        }
+      }
+    ]
+  },
+  "fuxi": {
+    "code": "fuxi",
+    "name": {
+      "en": "Xiaomi 13"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "MC",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "fuxi",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 13"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS DEV"
+        },
+        "branchCode": "fuxi",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 13"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "fuxi",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 13"
+        }
+      }
+    ]
+  },
+  "garnet": {
+    "code": "garnet",
+    "name": {
+      "en": "Redmi Note 13 Pro 5G"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "NR",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "garnet",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi Note 13 Pro 5G"
+        }
+      }
+    ]
+  },
+  "goku": {
+    "code": "goku",
+    "name": {
+      "en": "Xiaomi MIX Fold 4"
+    },
+    "brand": "Xiaomi",
+    "type": "foldable",
+    "codeName": "NV",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "goku",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi MIX Fold 4"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "goku",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi MIX Fold 4"
+        }
+      }
+    ]
+  },
+  "gold": {
+    "code": "gold",
+    "name": {
+      "en": "Redmi Note 13 5G / 13R Pro"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "NQ",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "gold",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi Note 13 5G / 13R Pro"
+        }
+      }
+    ]
+  },
+  "guitar": {
+    "code": "guitar",
+    "name": {
+      "en": "REDMI Pad 2 SE"
+    },
+    "brand": "REDMI",
+    "type": "tablet",
+    "codeName": "DN",
+    "supports": [
+      "OS3.0"
+    ],
+    "android": [
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "guitar",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI Pad 2 SE"
+        }
+      }
+    ]
+  },
+  "haotian": {
+    "code": "haotian",
+    "name": {
+      "en": "Xiaomi 15 Pro"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "OB",
+    "supports": [
+      "OS4.0",
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0",
+      "17.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "haotian",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 15 Pro"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "haotian",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 15 Pro"
+        }
+      }
+    ]
+  },
+  "haydn": {
+    "code": "haydn",
+    "name": {
+      "en": "Redmi K40 Pro/Pro+/ Mi 11i / Mi 11X Pro"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "KK",
+    "supports": [
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "haydn",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K40 Pro/Pro+"
+        }
+      }
+    ]
+  },
+  "houji": {
+    "code": "houji",
+    "name": {
+      "en": "Xiaomi 14"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "NC",
+    "supports": [
+      "OS1.1",
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "houji",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 14"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "houji",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 14"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
+        },
+        "branchCode": "houji_pre_dpp",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 14"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Enhanced Experience Beta"
+        },
+        "branchCode": "houji",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 14"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS DEV"
+        },
+        "branchCode": "houji",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 14"
+        }
+      }
+    ]
+  },
+  "ingres": {
+    "code": "ingres",
+    "name": {
+      "en": "Redmi K50G"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "LJ",
+    "supports": [
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS DEV"
+        },
+        "branchCode": "ingres",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K50G"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "ingres",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K50G"
+        }
+      }
+    ]
+  },
+  "iolite": {
+    "code": "iolite",
+    "name": {
+      "en": "REDMI Note 17 Pro 5G"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "DQ",
+    "supports": [
+      "OS3.0"
+    ],
+    "android": [
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "iolite",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI Note 17 Pro 5G"
+        }
+      }
+    ]
+  },
+  "ishtar": {
+    "code": "ishtar",
+    "name": {
+      "en": "Xiaomi 13 Ultra"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "MA",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "ishtar",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 13 Ultra"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS DEV"
+        },
+        "branchCode": "ishtar",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 13 Ultra"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "ishtar",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 13 Ultra"
+        }
+      }
+    ]
+  },
+  "jinghu": {
+    "code": "jinghu",
+    "name": {
+      "en": "Xiaomi Pad 7 Ultra"
+    },
+    "brand": "Xiaomi",
+    "type": "tablet",
+    "codeName": "OX",
+    "supports": [
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "jinghu",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Pad 7 Ultra"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "jinghu",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Pad 7 Ultra"
+        }
+      }
+    ]
+  },
+  "klee": {
+    "code": "klee",
+    "name": {
+      "en": "REDMI Turbo 5"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "PJ",
+    "supports": [
+      "OS3.0"
+    ],
+    "android": [
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "klee",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI Turbo 5"
+        }
+      }
+    ]
+  },
+  "konghou": {
+    "code": "konghou",
+    "name": {
+      "en": "Xiaomi YU7 Back Row Mobile Control Screen"
+    },
+    "brand": "Xiaomi",
+    "type": "carthing",
+    "codeName": "BP",
+    "supports": [
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "konghou",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi YU7 Back Row Mobile Control Screen"
+        }
+      }
+    ]
+  },
+  "kunzite": {
+    "code": "kunzite",
+    "name": {
+      "en": "REDMI Note 15 5G"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "PQ",
+    "supports": [
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "kunzite",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI Note 15 5G"
+        }
+      }
+    ]
+  },
+  "lake": {
+    "code": "lake",
+    "name": {
+      "en": "Redmi 14C"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "GT",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "lake",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi 14C"
+        }
+      }
+    ]
+  },
+  "lapis": {
+    "code": "lapis",
+    "name": {
+      "en": "REDMI Note 15 Pro 5G"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "PP",
+    "supports": [
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "lapis",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI Note 15 Pro 5G"
+        }
+      }
+    ]
+  },
+  "lhasa": {
+    "code": "lhasa",
+    "name": {
+      "en": "Xiaomi 18 Fold"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "",
+    "supports": [],
+    "android": [
+      "17.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "lhasa",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 18 Fold"
+        }
+      }
+    ]
+  },
+  "light": {
+    "code": "light",
+    "name": {
+      "en": "Redmi 10 5G/Redmi 11 Prime 5G/Redmi Note 11E"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "LS",
+    "supports": [
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "light",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi Note 11E"
+        }
+      }
+    ]
+  },
+  "lightcm": {
+    "code": "lightcm",
+    "name": {
+      "en": "Redmi Note 11R"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "LS",
+    "supports": [
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "lightcm",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi Note 11R"
+        }
+      }
+    ]
+  },
+  "lisa": {
+    "code": "lisa",
+    "name": {
+      "en": "Mi 11 LE / Xiaomi 11 Lite 5G NE"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "KO",
+    "supports": [
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "lisa",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Mi 11 LE"
+        }
+      }
+    ]
+  },
+  "liuqin": {
+    "code": "liuqin",
+    "name": {
+      "en": "Xiaomi Pad 6 Pro"
+    },
+    "brand": "Xiaomi",
+    "type": "tablet",
+    "codeName": "MY",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "liuqin",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Pad 6 Pro"
+        }
+      }
+    ]
+  },
+  "luming": {
+    "code": "luming",
+    "name": {
+      "en": "Xiaomi Civi 5 Pro"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "OI",
+    "supports": [
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "luming",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Civi 5 Pro"
+        }
+      }
+    ]
+  },
+  "malachite": {
+    "code": "malachite",
+    "name": {
+      "en": "Redmi Note 14 Pro"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "OO",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "malachite",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi Note 14 Pro"
+        }
+      }
+    ]
+  },
+  "manet": {
+    "code": "manet",
+    "name": {
+      "en": "Redmi K70 Pro"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "NM",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "manet",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K70 Pro"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "manet",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K70 Pro"
+        }
+      }
+    ]
+  },
+  "marble": {
+    "code": "marble",
+    "name": {
+      "en": "Redmi Note 12 Turbo"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "MR",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "marble",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi Note 12 Turbo"
+        }
+      }
+    ]
+  },
+  "matisse": {
+    "code": "matisse",
+    "name": {
+      "en": "Redmi K50 Pro"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "LK",
+    "supports": [
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS DEV"
+        },
+        "branchCode": "matisse",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K50 Pro"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "matisse",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K50 Pro"
+        }
+      }
+    ]
+  },
+  "mayfly": {
+    "code": "mayfly",
+    "name": {
+      "en": "Xiaomi 12S"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "LT",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS DEV"
+        },
+        "branchCode": "mayfly",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 12S"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "mayfly",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 12S"
+        }
+      }
+    ]
+  },
+  "miro": {
+    "code": "miro",
+    "name": {
+      "en": "REDMI K80 Pro"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "OM",
+    "supports": [
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "miro",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI K80 Pro"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "miro",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI K80 Pro"
+        }
+      }
+    ]
+  },
+  "mist": {
+    "code": "mist",
+    "name": {
+      "en": "REDMI Note 17 5G"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "PU",
+    "supports": [
+      "OS3.0"
+    ],
+    "android": [
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "mist",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI Note 17 5G"
+        }
+      }
+    ]
+  },
+  "mondrian": {
+    "code": "mondrian",
+    "name": {
+      "en": "Redmi K60"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "MN",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS DEV"
+        },
+        "branchCode": "mondrian",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K60"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "mondrian",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K60"
+        }
+      }
+    ]
+  },
+  "munch": {
+    "code": "munch",
+    "name": {
+      "en": "Redmi K40S"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "LM",
+    "supports": [
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "munch",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K40S"
+        }
+      }
+    ]
+  },
+  "muyu": {
+    "code": "muyu",
+    "name": {
+      "en": "Xiaomi Pad 7 Pro"
+    },
+    "brand": "Xiaomi",
+    "type": "tablet",
+    "codeName": "OY",
+    "supports": [
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "muyu",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Pad 7 Pro"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "muyu",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Pad 7 Pro"
+        }
+      }
+    ]
+  },
+  "myron": {
+    "code": "myron",
+    "name": {
+      "en": "REDMI K90 Pro Max"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "PM",
+    "supports": [
+      "OS4.0",
+      "OS3.0"
+    ],
+    "android": [
+      "16.0",
+      "17.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "myron",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI K90 Pro Max"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "myron",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI K90 Pro Max"
+        }
+      }
+    ]
+  },
+  "nezha": {
+    "code": "nezha",
+    "name": {
+      "en": "Xiaomi 17 Ultra"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "PA",
+    "supports": [
+      "OS3.3",
+      "OS4.0",
+      "OS3.0"
+    ],
+    "android": [
+      "16.0",
+      "17.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "nezha",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 17 Ultra"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "nezha",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 17 Ultra"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
+        },
+        "branchCode": "nezha_dpp",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 17 Ultra"
+        }
+      }
+    ]
+  },
+  "nuwa": {
+    "code": "nuwa",
+    "name": {
+      "en": "Xiaomi 13 Pro"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "MB",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "nuwa",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 13 Pro"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS DEV"
+        },
+        "branchCode": "nuwa",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 13 Pro"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "nuwa",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 13 Pro"
+        }
+      }
+    ]
+  },
+  "odin": {
+    "code": "odin",
+    "name": {
+      "en": "MIX 4"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "KM",
+    "supports": [
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "odin",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "MIX 4"
+        }
+      }
+    ]
+  },
+  "onyx": {
+    "code": "onyx",
+    "name": {
+      "en": "REDMI Turbo 4 Pro"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "OL",
+    "supports": [
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "onyx",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI Turbo 4 Pro"
+        }
+      }
+    ]
+  },
+  "organ": {
+    "code": "organ",
+    "name": {
+      "en": "REDMI Pad 2 Pro 5G"
+    },
+    "brand": "REDMI",
+    "type": "tablet",
+    "codeName": "PX",
+    "supports": [
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "organ",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI Pad 2 Pro 5G"
+        }
+      }
+    ]
+  },
+  "pandora": {
+    "code": "pandora",
+    "name": {
+      "en": "Xiaomi 17 Pro"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "BL",
+    "supports": [
+      "OS4.0",
+      "OS3.0"
+    ],
+    "android": [
+      "16.0",
+      "17.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "pandora",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 17 Pro"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "pandora",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 17 Pro"
+        }
+      }
+    ]
+  },
+  "pearl": {
+    "code": "pearl",
+    "name": {
+      "en": "Redmi Note 12T Pro"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "LH",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "pearl",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi Note 12T Pro"
+        }
+      }
+    ]
+  },
+  "peridot": {
+    "code": "peridot",
+    "name": {
+      "en": "Redmi Turbo 3"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "NP",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "peridot",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi Turbo 3"
+        }
+      }
+    ]
+  },
+  "piano": {
+    "code": "piano",
+    "name": {
+      "en": "Xiaomi Pad 8 Pro"
+    },
+    "brand": "Xiaomi",
+    "type": "tablet",
+    "codeName": "PY",
+    "supports": [
+      "OS4.0",
+      "OS3.0"
+    ],
+    "android": [
+      "16.0",
+      "17.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "piano",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Pad 8 Pro"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "piano",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Pad 8 Pro"
+        }
+      }
+    ]
+  },
+  "pipa": {
+    "code": "pipa",
+    "name": {
+      "en": "Xiaomi Pad 6"
+    },
+    "brand": "Xiaomi",
+    "type": "tablet",
+    "codeName": "MZ",
+    "supports": [
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "pipa",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Pad 6"
+        }
+      }
+    ]
+  },
+  "popsicle": {
+    "code": "popsicle",
+    "name": {
+      "en": "Xiaomi 17 Pro Max"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "PB",
+    "supports": [
+      "OS4.0",
+      "OS3.0"
+    ],
+    "android": [
+      "16.0",
+      "17.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "popsicle",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 17 Pro Max"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "popsicle",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 17 Pro Max"
+        }
+      }
+    ]
+  },
+  "prague": {
+    "code": "prague",
+    "name": {
+      "en": "REDMI K90 Max"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "AA",
+    "supports": [
+      "OS4.0",
+      "OS3.0"
+    ],
+    "android": [
+      "16.0",
+      "17.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "prague",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI K90 Max"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "prague",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI K90 Max"
+        }
+      }
+    ]
+  },
+  "pudding": {
+    "code": "pudding",
+    "name": {
+      "en": "Xiaomi 17"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "PC",
+    "supports": [
+      "OS3.3",
+      "OS4.0",
+      "OS3.0"
+    ],
+    "android": [
+      "16.0",
+      "17.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "pudding",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 17"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "pudding",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 17"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
+        },
+        "branchCode": "pudding_dpp",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 17"
+        }
+      }
+    ]
+  },
+  "redwood": {
+    "code": "redwood",
+    "name": {
+      "en": "Redmi Note 12 Pro Speed"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "MS",
+    "supports": [
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "redwood",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi Note 12 Pro Speed"
+        }
+      }
+    ]
+  },
+  "rembrandt": {
+    "code": "rembrandt",
+    "name": {
+      "en": "Redmi K60E"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "MM",
+    "supports": [
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "rembrandt",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K60E"
+        }
+      }
+    ]
+  },
+  "rodin": {
+    "code": "rodin",
+    "name": {
+      "en": "REDMI Turbo 4"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "OJ",
+    "supports": [
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "rodin",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "REDMI Turbo 4"
+        }
+      }
+    ]
+  },
+  "rothko": {
+    "code": "rothko",
+    "name": {
+      "en": "Redmi K70 Ultra / Xiaomi 14T Pro"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "NN",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "rothko",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K70 Ultra"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "rothko",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K70 Ultra"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
+        },
+        "branchCode": "rothko_pre_dpp",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K70 Ultra"
+        }
+      }
+    ]
+  },
+  "ruan": {
+    "code": "ruan",
+    "name": {
+      "en": "Redmi Pad Pro 5G"
+    },
+    "brand": "Redmi",
+    "type": "tablet",
+    "codeName": "FS",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "ruan",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi Pad Pro 5G"
+        }
+      }
+    ]
+  },
+  "rubens": {
+    "code": "rubens",
+    "name": {
+      "en": "Redmi K50"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "LN",
+    "supports": [
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS DEV"
+        },
+        "branchCode": "rubens",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K50"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "rubens",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K50"
+        }
+      }
+    ]
+  },
+  "ruby": {
+    "code": "ruby",
+    "name": {
+      "en": "Redmi Note 12 Pro / Pro+ / Discovery 5G"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "MO",
+    "supports": [
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "ruby",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi Note 12 Pro / Pro+ / Discovery 5G"
+        }
+      }
+    ]
+  },
+  "ruyi": {
+    "code": "ruyi",
+    "name": {
+      "en": "Xiaomi MIX Flip"
+    },
+    "brand": "Xiaomi",
+    "type": "foldable",
+    "codeName": "NI",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "ruyi",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi MIX Flip"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "ruyi",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi MIX Flip"
+        }
+      }
+    ]
+  },
+  "sheng": {
+    "code": "sheng",
+    "name": {
+      "en": "Xiaomi Pad 6S Pro 12.4"
+    },
+    "brand": "Xiaomi",
+    "type": "tablet",
+    "codeName": "NX",
+    "supports": [
+      "OS1.1",
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "sheng",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Pad 6S Pro 12.4"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "sheng",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Pad 6S Pro 12.4"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
+        },
+        "branchCode": "sheng_pre_dpp",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Pad 6S Pro 12.4"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Enhanced Experience Beta"
+        },
+        "branchCode": "sheng",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Pad 6S Pro 12.4"
+        }
+      }
+    ]
+  },
+  "shennong": {
+    "code": "shennong",
+    "name": {
+      "en": "Xiaomi 14 Pro / Ti / Satellite"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "NB",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "shennong",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 14 Pro / Ti / Satellite"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "shennong",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 14 Pro / Ti"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
+        },
+        "branchCode": "shennong_pre_dpp",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 14 Pro / Ti"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS DEV"
+        },
+        "branchCode": "shennong",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 14 Pro / Ti"
+        }
+      }
+    ]
+  },
+  "shennong_t": {
+    "code": "shennong_t",
+    "name": {
+      "en": "Xiaomi 14 Pro Ti Satellite"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "ND",
+    "supports": [
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "shennong_t",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 14 Pro Ti Satellite"
+        }
+      }
+    ]
+  },
+  "sky": {
+    "code": "sky",
+    "name": {
+      "en": "Redmi 12 / 12R 5G / Redmi Note 12R"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "MW",
+    "supports": [
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "sky",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi Note 12R"
+        }
+      }
+    ]
+  },
+  "socrates": {
+    "code": "socrates",
+    "name": {
+      "en": "Redmi K60 Pro"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "MK",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "socrates",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K60 Pro"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "socrates",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K60 Pro"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS DEV"
+        },
+        "branchCode": "socrates",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K60 Pro"
+        }
+      }
+    ]
+  },
+  "somalia": {
+    "code": "somalia",
+    "name": {
+      "en": "REDMI R70 / REDMI R70m / REDMI 17 5G"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "BW",
+    "supports": [
+      "OS3.0"
+    ],
+    "android": [
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "somalia",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI R70 / REDMI R70m / REDMI 17 5G"
+        }
+      }
+    ]
+  },
+  "songyuan": {
+    "code": "songyuan",
+    "name": {
+      "en": "REDMI K100 Pro Max"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "GN",
+    "supports": [
+      "OS3.0"
+    ],
+    "android": [
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "songyuan",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI K100 Pro Max"
+        }
+      }
+    ]
+  },
+  "spring": {
+    "code": "spring",
+    "name": {
+      "en": "REDMI 15 5G / REDMI Note 15R 5G"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "OU",
+    "supports": [
+      "OS2.2",
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "spring",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI Note 15R 5G"
+        }
+      }
+    ]
+  },
+  "star": {
+    "code": "star",
+    "name": {
+      "en": "Mi 11 Pro / Ultra"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "KA",
+    "supports": [
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "star",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Mi 11 Pro / Ultra"
+        }
+      }
+    ]
+  },
+  "steppe": {
+    "code": "steppe",
+    "name": {
+      "en": "REDMI M100"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "AV",
+    "supports": [
+      "OS3.0"
+    ],
+    "android": [
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "steppe",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI M100"
+        }
+      }
+    ]
+  },
+  "suiren": {
+    "code": "suiren",
+    "name": {
+      "en": "Xiaomi EV Cockpit (YU7/All New SU7)"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "",
+    "supports": [],
+    "android": [
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "suiren",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi EV Cockpit (YU7/All New SU7)"
+        }
+      }
+    ]
+  },
+  "sunstone": {
+    "code": "sunstone",
+    "name": {
+      "en": "Redmi Note 12 5G / Note 12R Pro"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "MQ",
+    "supports": [
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "sunstone",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi Note 12 5G / Note 12R Pro"
+        }
+      }
+    ]
+  },
+  "taiko": {
+    "code": "taiko",
+    "name": {
+      "en": "REDMI Pad 2"
+    },
+    "brand": "REDMI",
+    "type": "tablet",
+    "codeName": "OV",
+    "supports": [
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "taiko",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI Pad 2"
+        }
+      }
+    ]
+  },
+  "thor": {
+    "code": "thor",
+    "name": {
+      "en": "Xiaomi 12S Ultra"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "LA",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS DEV"
+        },
+        "branchCode": "thor",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 12S Ultra"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "thor",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 12S Ultra"
+        }
+      }
+    ]
+  },
+  "tornado": {
+    "code": "tornado",
+    "name": {
+      "en": "REDMI 15C 5G / REDMI 15R 5G"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "PO",
+    "supports": [
+      "OS2.2",
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "tornado",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI 15R 5G"
+        }
+      }
+    ]
+  },
+  "turner": {
+    "code": "turner",
+    "name": {
+      "en": "REDMI K Pad / Xiaomi Pad Mini"
+    },
+    "brand": "REDMI",
+    "type": "tablet",
+    "codeName": "AO",
+    "supports": [
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "turner",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI K Pad"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "turner",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI K Pad"
+        }
+      }
+    ]
+  },
+  "uke": {
+    "code": "uke",
+    "name": {
+      "en": "Xiaomi Pad 7"
+    },
+    "brand": "Xiaomi",
+    "type": "tablet",
+    "codeName": "OZ",
+    "supports": [
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "uke",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Pad 7"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "uke",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Pad 7"
+        }
+      }
+    ]
+  },
+  "unicorn": {
+    "code": "unicorn",
+    "name": {
+      "en": "Xiaomi 12S Pro"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "LE",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS DEV"
+        },
+        "branchCode": "unicorn",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 12S Pro"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "unicorn",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 12S Pro"
+        }
+      }
+    ]
+  },
+  "venus": {
+    "code": "venus",
+    "name": {
+      "en": "Mi 11"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "KB",
+    "supports": [
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "venus",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Mi 11"
+        }
+      }
+    ]
+  },
+  "vermeer": {
+    "code": "vermeer",
+    "name": {
+      "en": "Redmi K70"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "NK",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "vermeer",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K70"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "vermeer",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi K70"
+        }
+      }
+    ]
+  },
+  "violin": {
+    "code": "violin",
+    "name": {
+      "en": "Xiaomi Pad 7S Pro 12.5"
+    },
+    "brand": "Xiaomi",
+    "type": "tablet",
+    "codeName": "OT",
+    "supports": [
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "violin",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Pad 7S Pro 12.5"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "violin",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Pad 7S Pro 12.5"
+        }
+      }
+    ]
+  },
+  "warhol": {
+    "code": "warhol",
+    "name": {
+      "en": "Xiaomi 17T Pro"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "PS",
+    "supports": [
+      "OS4.0",
+      "OS3.0"
+    ],
+    "android": [
+      "16.0",
+      "17.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "warhol",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 17T Pro"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "warhol",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 17T Pro"
+        }
+      }
+    ]
+  },
+  "warsaw": {
+    "code": "warsaw",
+    "name": {
+      "en": "REDMI K90 Ultra"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "HP",
+    "supports": [
+      "OS4.0",
+      "OS3.0"
+    ],
+    "android": [
+      "16.0",
+      "17.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "warsaw",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI K90 Ultra"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "warsaw",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI K90 Ultra"
+        }
+      }
+    ]
+  },
+  "xaga": {
+    "code": "xaga",
+    "name": {
+      "en": "Redmi Note 11T Pro/Pro+ / Redmi K50i"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "LO",
+    "supports": [
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "xaga",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi Note 11T Pro / Pro+"
+        }
+      }
+    ]
+  },
+  "xuanyuan": {
+    "code": "xuanyuan",
+    "name": {
+      "en": "Xiaomi 15 Ultra"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "OA",
+    "supports": [
+      "OS4.0",
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0",
+      "17.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "xuanyuan",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 15 Ultra"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "xuanyuan",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 15 Ultra"
+        }
+      }
+    ]
+  },
+  "xun": {
+    "code": "xun",
+    "name": {
+      "en": "Redmi Pad SE"
+    },
+    "brand": "Redmi",
+    "type": "tablet",
+    "codeName": "MU",
+    "supports": [
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "xun",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi Pad SE"
+        }
+      }
+    ]
+  },
+  "yili": {
+    "code": "yili",
+    "name": {
+      "en": "REDMI K Pad 2"
+    },
+    "brand": "REDMI",
+    "type": "tablet",
+    "codeName": "AK",
+    "supports": [
+      "OS4.0",
+      "OS3.0"
+    ],
+    "android": [
+      "16.0",
+      "17.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "yili",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI K Pad 2"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "yili",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI K Pad 2"
+        }
+      }
+    ]
+  },
+  "yudi": {
+    "code": "yudi",
+    "name": {
+      "en": "Xiaomi Pad 6 Max 14"
+    },
+    "brand": "Xiaomi",
+    "type": "tablet",
+    "codeName": "MH",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "yudi",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Pad 6 Max 14"
+        }
+      }
+    ]
+  },
+  "yuechu": {
+    "code": "yuechu",
+    "name": {
+      "en": "Xiaomi Civi 3"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "MI",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "yuechu",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Civi 3"
+        }
+      }
+    ]
+  },
+  "yunluo": {
+    "code": "yunluo",
+    "name": {
+      "en": "Redmi Pad"
+    },
+    "brand": "Redmi",
+    "type": "tablet",
+    "codeName": "LY",
+    "supports": [
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "yunluo",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi Pad"
+        }
+      }
+    ]
+  },
+  "yupei": {
+    "code": "yupei",
+    "name": {
+      "en": "Xiaomi Pad 8"
+    },
+    "brand": "Xiaomi",
+    "type": "tablet",
+    "codeName": "",
+    "supports": [
+      "OS4.0",
+      "OS3.0"
+    ],
+    "android": [
+      "16.0",
+      "17.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "yupei",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Pad 8"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "yupei",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Pad 8"
+        }
+      }
+    ]
+  },
+  "zeus": {
+    "code": "zeus",
+    "name": {
+      "en": "Xiaomi 12 Pro"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "LB",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS DEV"
+        },
+        "branchCode": "zeus",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 12 Pro"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "zeus",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi 12 Pro"
+        }
+      }
+    ]
+  },
+  "zijin": {
+    "code": "zijin",
+    "name": {
+      "en": "Xiaomi Civi 1S"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "LP",
+    "supports": [
+      "OS1.0"
+    ],
+    "android": [
+      "14.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "zijin",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Civi 1S"
+        }
+      }
+    ]
+  },
+  "zircon": {
+    "code": "zircon",
+    "name": {
+      "en": "Redmi Note 13 Pro+ 5G"
+    },
+    "brand": "Redmi",
+    "type": "phone",
+    "codeName": "NO",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "zircon",
+        "brand": "Redmi",
+        "region": "cn",
+        "device": {
+          "en": "Redmi Note 13 Pro+ 5G"
+        }
+      }
+    ]
+  },
+  "ziyi": {
+    "code": "ziyi",
+    "name": {
+      "en": "Xiaomi Civi 2"
+    },
+    "brand": "Xiaomi",
+    "type": "phone",
+    "codeName": "LL",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "ziyi",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi Civi 2"
+        }
+      }
+    ]
+  },
+  "zizhan": {
+    "code": "zizhan",
+    "name": {
+      "en": "Xiaomi MIX Fold 2"
+    },
+    "brand": "Xiaomi",
+    "type": "foldable",
+    "codeName": "LR",
+    "supports": [
+      "OS3.0",
+      "OS2.0",
+      "OS1.0"
+    ],
+    "android": [
+      "14.0",
+      "15.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS DEV"
+        },
+        "branchCode": "zizhan",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi MIX Fold 2"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "zizhan",
+        "brand": "Xiaomi",
+        "region": "cn",
+        "device": {
+          "en": "Xiaomi MIX Fold 2"
+        }
+      }
+    ]
+  },
+  "zorn": {
+    "code": "zorn",
+    "name": {
+      "en": "REDMI K80"
+    },
+    "brand": "REDMI",
+    "type": "phone",
+    "codeName": "OK",
+    "supports": [
+      "OS2.1",
+      "OS3.0",
+      "OS2.0"
+    ],
+    "android": [
+      "15.0",
+      "16.0"
+    ],
+    "branches": [
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Beta"
+        },
+        "branchCode": "zorn",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI K80"
+        }
+      },
+      {
+        "name": {
+          "en": "Xiaomi HyperOS Stable"
+        },
+        "branchCode": "zorn",
+        "brand": "REDMI",
+        "region": "cn",
+        "device": {
+          "en": "REDMI K80"
+        }
+      }
+    ]
+  }
+}

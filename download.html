@@ -118,12 +118,15 @@
                 </div>
             </div>
 
+            <!-- Drive Live Sync Status & Mode Toggle (Rendered dynamically) -->
+            <div id="drive-sync-container"></div>
+
             <!-- Devices Dynamic Grid (Loaded via devices.js) -->
             <div class="device-grid" id="devices-grid">
                 <div class="loading" id="devices-loading">
                     <div class="loading-spinner"></div>
-                    <p style="font-weight: 600; font-size: 1.1rem; color: var(--text-strong);">Đang tải danh sách 121 thiết bị...</p>
-                    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--muted);">Tự động quét kho ROM HyperUR</p>
+                    <p style="font-weight: 600; font-size: 1.1rem; color: var(--text-strong);">Đang tải danh sách thiết bị...</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--muted);">Đang kết nối kho ROM Google Drive & Catalog</p>
                 </div>
             </div>
         </section>
@@ -281,7 +284,8 @@
         </svg>
     </a>
 
-    <!-- THE ONLY JAVASCRIPT: DEVICES LOADER & FILTER MODULE -->
+    <!-- CONFIGURATION & DYNAMIC DEVICES LOADER MODULE -->
+    <script src="config.js"></script>
     <script src="devices.js"></script>
 </body>
 </html>
