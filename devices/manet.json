@@ -1,7 +1,6 @@
 {
   "device": "manet",
   "name": {
-    "zh": "Redmi K70 Pro",
     "en": "Redmi K70 Pro"
   },
   "code": "NM",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "manet",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K70 Pro",
         "en": "Redmi K70 Pro"
       },
       "region": "cn",
@@ -46,13 +43,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "manet",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K70 Pro",
         "en": "Redmi K70 Pro"
       },
       "region": "cn",

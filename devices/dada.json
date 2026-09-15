@@ -1,7 +1,6 @@
 {
   "device": "dada",
   "name": {
-    "zh": "小米 15",
     "en": "Xiaomi 15"
   },
   "code": "OC",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "dada",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 15",
         "en": "Xiaomi 15"
       },
       "region": "cn",
@@ -51,13 +48,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "dada",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 15",
         "en": "Xiaomi 15"
       },
       "region": "cn",
@@ -76,13 +71,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 安卓开发者预览版大陆版",
         "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
       },
       "branchCode": "dada_pre_dpp",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 15",
         "en": "Xiaomi 15"
       },
       "region": "cn",

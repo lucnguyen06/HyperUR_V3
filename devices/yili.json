@@ -1,7 +1,6 @@
 {
   "device": "yili",
   "name": {
-    "zh": "REDMI K Pad 2",
     "en": "REDMI K Pad 2"
   },
   "code": "AK",
@@ -19,13 +18,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "yili",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI K Pad 2",
         "en": "REDMI K Pad 2"
       },
       "region": "cn",
@@ -39,13 +36,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "yili",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI K Pad 2",
         "en": "REDMI K Pad 2"
       },
       "region": "cn",

@@ -1,7 +1,6 @@
 {
   "device": "redwood",
   "name": {
-    "zh": "Redmi Note 12 Pro 极速版",
     "en": "Redmi Note 12 Pro Speed"
   },
   "code": "MS",
@@ -18,13 +17,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "redwood",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi Note 12 Pro 极速版",
         "en": "Redmi Note 12 Pro Speed"
       },
       "region": "cn",

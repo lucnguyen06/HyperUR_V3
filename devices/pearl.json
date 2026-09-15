@@ -1,7 +1,6 @@
 {
   "device": "pearl",
   "name": {
-    "zh": "Redmi Note 12T Pro",
     "en": "Redmi Note 12T Pro"
   },
   "code": "LH",
@@ -20,13 +19,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "pearl",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi Note 12T Pro",
         "en": "Redmi Note 12T Pro"
       },
       "region": "cn",

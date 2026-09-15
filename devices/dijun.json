@@ -1,7 +1,6 @@
 {
   "device": "dijun",
   "name": {
-    "zh": "小米 15S Pro",
     "en": "Xiaomi 15S Pro"
   },
   "code": "OD",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "dijun",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 15S Pro",
         "en": "Xiaomi 15S Pro"
       },
       "region": "cn",
@@ -51,13 +48,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "dijun",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 15S Pro",
         "en": "Xiaomi 15S Pro"
       },
       "region": "cn",

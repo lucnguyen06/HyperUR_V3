@@ -1,7 +1,6 @@
 {
   "device": "earth",
   "name": {
-    "zh": "Redmi 12C",
     "en": "Redmi 12C"
   },
   "code": "CV",
@@ -17,13 +16,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "earth",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi 12C",
         "en": "Redmi 12C"
       },
       "region": "cn",

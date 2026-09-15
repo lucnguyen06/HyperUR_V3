@@ -1,7 +1,6 @@
 {
   "device": "ishtar",
   "name": {
-    "zh": "小米 13 Ultra",
     "en": "Xiaomi 13 Ultra"
   },
   "code": "MA",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "ishtar",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 13 Ultra",
         "en": "Xiaomi 13 Ultra"
       },
       "region": "cn",
@@ -41,13 +38,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 开发版",
         "en": "Xiaomi HyperOS DEV"
       },
       "branchCode": "ishtar",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 13 Ultra",
         "en": "Xiaomi 13 Ultra"
       },
       "region": "cn",
@@ -61,13 +56,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "ishtar",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 13 Ultra",
         "en": "Xiaomi 13 Ultra"
       },
       "region": "cn",

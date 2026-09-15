@@ -1,7 +1,6 @@
 {
   "device": "mayfly",
   "name": {
-    "zh": "小米 12S",
     "en": "Xiaomi 12S"
   },
   "code": "LT",
@@ -20,13 +19,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 开发版",
         "en": "Xiaomi HyperOS DEV"
       },
       "branchCode": "mayfly",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 12S",
         "en": "Xiaomi 12S"
       },
       "region": "cn",
@@ -40,13 +37,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "mayfly",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 12S",
         "en": "Xiaomi 12S"
       },
       "region": "cn",

@@ -1,7 +1,6 @@
 {
   "device": "songyuan",
   "name": {
-    "zh": "REDMI K100 Pro Max",
     "en": "REDMI K100 Pro Max"
   },
   "code": "GN",
@@ -17,13 +16,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "songyuan",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI K100 Pro Max",
         "en": "REDMI K100 Pro Max"
       },
       "region": "cn",

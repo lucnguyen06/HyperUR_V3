@@ -1,7 +1,6 @@
 {
   "device": "ruan",
   "name": {
-    "zh": "Redmi Pad Pro 5G",
     "en": "Redmi Pad Pro 5G"
   },
   "code": "FS",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "ruan",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi Pad Pro 5G",
         "en": "Redmi Pad Pro 5G"
       },
       "region": "cn",

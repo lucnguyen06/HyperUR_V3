@@ -1,7 +1,6 @@
 {
   "device": "flourite",
   "name": {
-    "zh": "REDMI Note 15 Pro+ 5G",
     "en": "REDMI Note 15 Pro+ 5G"
   },
   "code": "PR",
@@ -20,13 +19,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "flourite",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI Note 15 Pro+ 5G",
         "en": "REDMI Note 15 Pro+ 5G"
       },
       "region": "cn",

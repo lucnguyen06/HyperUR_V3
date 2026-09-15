@@ -1,7 +1,6 @@
 {
   "device": "klee",
   "name": {
-    "zh": "REDMI Turbo 5",
     "en": "REDMI Turbo 5"
   },
   "code": "PJ",
@@ -17,13 +16,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "klee",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI Turbo 5",
         "en": "REDMI Turbo 5"
       },
       "region": "cn",

@@ -1,7 +1,6 @@
 {
   "device": "shennong",
   "name": {
-    "zh": "小米 14 Pro / Ti / 钛金属卫星通讯版",
     "en": "Xiaomi 14 Pro / Ti / Satellite"
   },
   "code": "NB",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "shennong",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 14 Pro / Ti / 钛金属卫星通讯版",
         "en": "Xiaomi 14 Pro / Ti / Satellite"
       },
       "region": "cn",
@@ -46,13 +43,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "shennong",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 14 Pro / Ti",
         "en": "Xiaomi 14 Pro / Ti"
       },
       "region": "cn",
@@ -76,13 +71,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 安卓开发者预览版大陆版",
         "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
       },
       "branchCode": "shennong_pre_dpp",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 14 Pro / Ti",
         "en": "Xiaomi 14 Pro / Ti"
       },
       "region": "cn",
@@ -101,13 +94,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 开发版",
         "en": "Xiaomi HyperOS DEV"
       },
       "branchCode": "shennong",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 14 Pro / Ti",
         "en": "Xiaomi 14 Pro / Ti"
       },
       "region": "cn",

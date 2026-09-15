@@ -1,7 +1,6 @@
 {
   "device": "rodin",
   "name": {
-    "zh": "REDMI Turbo 4",
     "en": "REDMI Turbo 4"
   },
   "code": "OJ",
@@ -19,13 +18,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "rodin",
       "brand": "Redmi",
       "device": {
-        "zh": "REDMI Turbo 4",
         "en": "REDMI Turbo 4"
       },
       "region": "cn",

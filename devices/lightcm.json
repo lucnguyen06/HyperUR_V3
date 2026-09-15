@@ -1,7 +1,6 @@
 {
   "device": "lightcm",
   "name": {
-    "zh": "Redmi Note 11R",
     "en": "Redmi Note 11R"
   },
   "code": "LS",
@@ -17,13 +16,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "lightcm",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi Note 11R",
         "en": "Redmi Note 11R"
       },
       "region": "cn",

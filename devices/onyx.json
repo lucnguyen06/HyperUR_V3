@@ -1,7 +1,6 @@
 {
   "device": "onyx",
   "name": {
-    "zh": "REDMI Turbo 4 Pro",
     "en": "REDMI Turbo 4 Pro"
   },
   "code": "OL",
@@ -19,13 +18,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "onyx",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI Turbo 4 Pro",
         "en": "REDMI Turbo 4 Pro"
       },
       "region": "cn",

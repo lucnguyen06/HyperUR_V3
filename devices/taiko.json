@@ -1,7 +1,6 @@
 {
   "device": "taiko",
   "name": {
-    "zh": "REDMI 平板 2",
     "en": "REDMI Pad 2"
   },
   "code": "OV",
@@ -19,13 +18,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "taiko",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI 平板 2",
         "en": "REDMI Pad 2"
       },
       "region": "cn",

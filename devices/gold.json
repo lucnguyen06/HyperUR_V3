@@ -1,7 +1,6 @@
 {
   "device": "gold",
   "name": {
-    "zh": "Redmi Note 13 5G / 13R Pro",
     "en": "Redmi Note 13 5G / 13R Pro"
   },
   "code": "NQ",
@@ -20,13 +19,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "gold",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi Note 13 5G / 13R Pro",
         "en": "Redmi Note 13 5G / 13R Pro"
       },
       "region": "cn",

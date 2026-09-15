@@ -1,7 +1,6 @@
 {
   "device": "pipa",
   "name": {
-    "zh": "小米平板 6",
     "en": "Xiaomi Pad 6"
   },
   "code": "MZ",
@@ -18,13 +17,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "pipa",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米平板 6",
         "en": "Xiaomi Pad 6"
       },
       "region": "cn",

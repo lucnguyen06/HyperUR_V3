@@ -1,7 +1,6 @@
 {
   "device": "organ",
   "name": {
-    "zh": "REDMI 平板 2 Pro 5G",
     "en": "REDMI Pad 2 Pro 5G"
   },
   "code": "PX",
@@ -19,13 +18,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "organ",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI 平板 2 Pro 5G",
         "en": "REDMI Pad 2 Pro 5G"
       },
       "region": "cn",

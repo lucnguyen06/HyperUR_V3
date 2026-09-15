@@ -1,7 +1,6 @@
 {
   "device": "zircon",
   "name": {
-    "zh": "Redmi Note 13 Pro+ 5G",
     "en": "Redmi Note 13 Pro+ 5G"
   },
   "code": "NO",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "zircon",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi Note 13 Pro+ 5G",
         "en": "Redmi Note 13 Pro+ 5G"
       },
       "region": "cn",

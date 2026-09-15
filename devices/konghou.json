@@ -1,7 +1,6 @@
 {
   "device": "konghou",
   "name": {
-    "zh": "Xiaomi YU7 后排移动控制屏",
     "en": "Xiaomi YU7 Back Row Mobile Control Screen"
   },
   "code": "BP",
@@ -17,13 +16,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "konghou",
       "brand": "Xiaomi",
       "device": {
-        "zh": "Xiaomi YU7 后排移动控制屏",
         "en": "Xiaomi YU7 Back Row Mobile Control Screen"
       },
       "region": "cn",

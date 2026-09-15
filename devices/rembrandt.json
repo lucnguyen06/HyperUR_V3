@@ -1,7 +1,6 @@
 {
   "device": "rembrandt",
   "name": {
-    "zh": "Redmi K60E",
     "en": "Redmi K60E"
   },
   "code": "MM",
@@ -18,13 +17,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "rembrandt",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K60E",
         "en": "Redmi K60E"
       },
       "region": "cn",

@@ -1,7 +1,6 @@
 {
   "device": "munch",
   "name": {
-    "zh": "Redmi K40S",
     "en": "Redmi K40S"
   },
   "code": "LM",
@@ -17,13 +16,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "munch",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K40S",
         "en": "Redmi K40S"
       },
       "region": "cn",

@@ -1,7 +1,6 @@
 {
   "device": "corot",
   "name": {
-    "zh": "Redmi K60 至尊版 / 小米 13T Pro",
     "en": "Redmi K60 Ultra / Xiaomi 13T Pro"
   },
   "code": "ML",
@@ -22,13 +21,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "corot",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K60 至尊版",
         "en": "Redmi K60 Ultra"
       },
       "region": "cn",
@@ -42,13 +39,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "corot",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K60 至尊版",
         "en": "Redmi K60 Ultra"
       },
       "region": "cn",
@@ -72,13 +67,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 安卓开发者预览版大陆版",
         "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
       },
       "branchCode": "corot_pre_dpp",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K60 至尊版",
         "en": "Redmi K60 Ultra"
       },
       "region": "cn",
@@ -97,13 +90,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 体验增强版 Beta",
         "en": "Xiaomi HyperOS Enhanced Experience Beta"
       },
       "branchCode": "corot",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K60 至尊版",
         "en": "Redmi K60 Ultra"
       },
       "region": "cn",

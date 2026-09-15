@@ -1,7 +1,6 @@
 {
   "device": "mondrian",
   "name": {
-    "zh": "Redmi K60",
     "en": "Redmi K60"
   },
   "code": "MN",
@@ -20,13 +19,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 开发版",
         "en": "Xiaomi HyperOS DEV"
       },
       "branchCode": "mondrian",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K60",
         "en": "Redmi K60"
       },
       "region": "cn",
@@ -40,13 +37,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "mondrian",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K60",
         "en": "Redmi K60"
       },
       "region": "cn",

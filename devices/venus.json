@@ -1,7 +1,6 @@
 {
   "device": "venus",
   "name": {
-    "zh": "小米 11",
     "en": "Mi 11"
   },
   "code": "KB",
@@ -18,13 +17,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "venus",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 11",
         "en": "Mi 11"
       },
       "region": "cn",

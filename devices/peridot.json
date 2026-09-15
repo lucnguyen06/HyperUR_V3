@@ -1,7 +1,6 @@
 {
   "device": "peridot",
   "name": {
-    "zh": "Redmi Turbo 3",
     "en": "Redmi Turbo 3"
   },
   "code": "NP",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "peridot",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi Turbo 3",
         "en": "Redmi Turbo 3"
       },
       "region": "cn",

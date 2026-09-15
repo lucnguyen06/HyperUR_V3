@@ -1,7 +1,6 @@
 {
   "device": "annibale",
   "name": {
-    "zh": "REDMI K90",
     "en": "REDMI K90"
   },
   "code": "PK",
@@ -19,13 +18,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "annibale",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI K90",
         "en": "REDMI K90"
       },
       "region": "cn",
@@ -44,13 +41,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "annibale",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI K90",
         "en": "REDMI K90"
       },
       "region": "cn",

@@ -1,7 +1,6 @@
 {
   "device": "popsicle",
   "name": {
-    "zh": "小米 17 Pro Max",
     "en": "Xiaomi 17 Pro Max"
   },
   "code": "PB",
@@ -19,13 +18,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "popsicle",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 17 Pro Max",
         "en": "Xiaomi 17 Pro Max"
       },
       "region": "cn",
@@ -44,13 +41,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "popsicle",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 17 Pro Max",
         "en": "Xiaomi 17 Pro Max"
       },
       "region": "cn",

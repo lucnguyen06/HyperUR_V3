@@ -1,7 +1,6 @@
 {
   "device": "yunluo",
   "name": {
-    "zh": "Redmi 平板",
     "en": "Redmi Pad"
   },
   "code": "LY",
@@ -17,13 +16,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "yunluo",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi 平板",
         "en": "Redmi Pad"
       },
       "region": "cn",

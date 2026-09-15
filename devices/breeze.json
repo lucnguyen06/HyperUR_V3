@@ -1,7 +1,6 @@
 {
   "device": "breeze",
   "name": {
-    "zh": "Redmi Note 13R 5G / Redmi 13 5G",
     "en": "Redmi Note 13R 5G / Redmi 13 5G"
   },
   "code": "NU",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "breeze",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi Note 13R 5G",
         "en": "Redmi Note 13R 5G"
       },
       "region": "cn",

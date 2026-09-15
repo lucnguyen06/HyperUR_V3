@@ -1,7 +1,6 @@
 {
   "device": "bixi",
   "name": {
-    "zh": "小米 MIX Flip 2",
     "en": "Xiaomi MIX Flip 2"
   },
   "code": "OH",
@@ -19,13 +18,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "bixi",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 MIX Flip 2",
         "en": "Xiaomi MIX Flip 2"
       },
       "region": "cn",
@@ -39,13 +36,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "bixi",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 MIX Flip 2",
         "en": "Xiaomi MIX Flip 2"
       },
       "region": "cn",

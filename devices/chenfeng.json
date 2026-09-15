@@ -1,7 +1,6 @@
 {
   "device": "chenfeng",
   "name": {
-    "zh": "小米 Civi 4 Pro / 小米 14 Civi",
     "en": "Xiaomi Civi 4 Pro / Xiaomi 14 Civi"
   },
   "code": "NJ",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "chenfeng",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 Civi 4 Pro",
         "en": "Xiaomi Civi 4 Pro"
       },
       "region": "cn",

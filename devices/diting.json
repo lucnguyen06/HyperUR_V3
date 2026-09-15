@@ -1,7 +1,6 @@
 {
   "device": "diting",
   "name": {
-    "zh": "Redmi K50 至尊版 / 小米 12T Pro",
     "en": "Redmi K50 Ultra / Xiaomi 12T Pro"
   },
   "code": "LF",
@@ -20,13 +19,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 开发版",
         "en": "Xiaomi HyperOS DEV"
       },
       "branchCode": "diting",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K50 至尊版",
         "en": "Redmi K50 Ultra"
       },
       "region": "cn",
@@ -40,13 +37,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "diting",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K50 至尊版",
         "en": "Redmi K50 Ultra"
       },
       "region": "cn",

@@ -1,7 +1,6 @@
 {
   "device": "violin",
   "name": {
-    "zh": "小米平板 7S Pro 12.5",
     "en": "Xiaomi Pad 7S Pro 12.5"
   },
   "code": "OT",
@@ -19,13 +18,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "violin",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米平板 7S Pro 12.5",
         "en": "Xiaomi Pad 7S Pro 12.5"
       },
       "region": "cn",
@@ -39,13 +36,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "violin",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米平板 7S Pro 12.5",
         "en": "Xiaomi Pad 7S Pro 12.5"
       },
       "region": "cn",

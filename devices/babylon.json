@@ -1,7 +1,6 @@
 {
   "device": "babylon",
   "name": {
-    "zh": "小米 MIX Fold 3",
     "en": "Xiaomi MIX Fold 3"
   },
   "code": "MV",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 开发版",
         "en": "Xiaomi HyperOS DEV"
       },
       "branchCode": "babylon",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 MIX Fold 3",
         "en": "Xiaomi MIX Fold 3"
       },
       "region": "cn",
@@ -41,13 +38,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "babylon",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 MIX Fold 3",
         "en": "Xiaomi MIX Fold 3"
       },
       "region": "cn",

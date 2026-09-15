@@ -111,7 +111,7 @@
 
       const devItem = {
         code: code,
-        name: data.name || { zh: code, en: code },
+        name: data.name || { en: code },
         brand: data.branches.find(b => b.brand)?.brand || 'Xiaomi',
         type: data.type || 'phone',
         supports: data.supports || [],
@@ -191,7 +191,7 @@
 
       if (osVersions.length > 0) {
         branches.push({
-          branchName: branch.name?.en || branch.name?.zh || branch.branchCode,
+          branchName: branch.name?.en || branch.branchCode,
           region: branch.region || 'cn',
           osVersions: osVersions.sort((a, b) => {
             const aMatch = a.key.match(/^OS(\d+)\.(\d+)/);
@@ -221,9 +221,9 @@
     const filtered = currentList.filter(d => {
       if (!q) return true;
       const nameEn = (d.name.en || '').toLowerCase();
-      const nameZh = (d.name.zh || '').toLowerCase();
       const code = d.code.toLowerCase();
-      return nameEn.includes(q) || nameZh.includes(q) || code.includes(q);
+      const brand = (d.brand || '').toLowerCase();
+      return nameEn.includes(q) || code.includes(q) || brand.includes(q);
     });
 
     if (filtered.length === 0) {
@@ -241,7 +241,7 @@
 
     gridEl.innerHTML = filtered.map(dev => {
       const devName = dev.name.vi || dev.name.en || dev.code;
-      const altName = dev.name.zh && dev.name.zh !== devName ? dev.name.zh : dev.brand;
+      const altName = dev.brand || 'Xiaomi';
       const branches = getRomVersions(dev);
       const availableCount = branches.reduce((sum, b) => sum + b.osVersions.filter(o => o.hasDownload).length, 0);
       const supportedOsList = Array.isArray(dev.supports) && dev.supports.length > 0 ? dev.supports : ['OS1.0', 'OS2.0'];

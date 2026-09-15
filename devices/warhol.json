@@ -1,7 +1,6 @@
 {
   "device": "warhol",
   "name": {
-    "zh": "Xiaomi 17T Pro",
     "en": "Xiaomi 17T Pro"
   },
   "code": "PS",
@@ -19,13 +18,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "warhol",
       "brand": "Xiaomi",
       "device": {
-        "zh": "Xiaomi 17T Pro",
         "en": "Xiaomi 17T Pro"
       },
       "region": "cn",
@@ -44,13 +41,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "warhol",
       "brand": "Xiaomi",
       "device": {
-        "zh": "Xiaomi 17T Pro",
         "en": "Xiaomi 17T Pro"
       },
       "region": "cn",

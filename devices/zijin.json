@@ -1,7 +1,6 @@
 {
   "device": "zijin",
   "name": {
-    "zh": "小米 Civi 1S",
     "en": "Xiaomi Civi 1S"
   },
   "code": "LP",
@@ -17,13 +16,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "zijin",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 Civi 1S",
         "en": "Xiaomi Civi 1S"
       },
       "region": "cn",

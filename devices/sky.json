@@ -1,7 +1,6 @@
 {
   "device": "sky",
   "name": {
-    "zh": "Redmi 12 / 12R 5G / Redmi Note 12R",
     "en": "Redmi 12 / 12R 5G / Redmi Note 12R"
   },
   "code": "MW",
@@ -19,13 +18,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "sky",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi Note 12R",
         "en": "Redmi Note 12R"
       },
       "region": "cn",

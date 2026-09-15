@@ -1,7 +1,6 @@
 {
   "device": "rothko",
   "name": {
-    "zh": "Redmi K70 至尊版 / 小米 14T Pro",
     "en": "Redmi K70 Ultra / Xiaomi 14T Pro"
   },
   "code": "NN",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "rothko",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K70 至尊版",
         "en": "Redmi K70 Ultra"
       },
       "region": "cn",
@@ -46,13 +43,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "rothko",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K70 至尊版",
         "en": "Redmi K70 Ultra"
       },
       "region": "cn",
@@ -76,13 +71,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 安卓开发者预览版大陆版",
         "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
       },
       "branchCode": "rothko_pre_dpp",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K70 至尊版",
         "en": "Redmi K70 Ultra"
       },
       "region": "cn",

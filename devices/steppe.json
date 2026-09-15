@@ -1,7 +1,6 @@
 {
   "device": "steppe",
   "name": {
-    "zh": "REDMI M100",
     "en": "REDMI M100"
   },
   "code": "AV",
@@ -17,13 +16,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "steppe",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI M100",
         "en": "REDMI M100"
       },
       "region": "cn",

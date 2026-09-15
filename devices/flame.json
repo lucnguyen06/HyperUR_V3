@@ -1,7 +1,6 @@
 {
   "device": "flame",
   "name": {
-    "zh": "Redmi 14R 5G",
     "en": "Redmi 14R 5G"
   },
   "code": "GU",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "flame",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi 14R 5G",
         "en": "Redmi 14R 5G"
       },
       "region": "cn",

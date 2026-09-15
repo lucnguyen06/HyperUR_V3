@@ -1,7 +1,6 @@
 {
   "device": "xun",
   "name": {
-    "zh": "Redmi 平板 SE",
     "en": "Redmi Pad SE"
   },
   "code": "MU",
@@ -19,13 +18,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "xun",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi 平板 SE",
         "en": "Redmi Pad SE"
       },
       "region": "cn",

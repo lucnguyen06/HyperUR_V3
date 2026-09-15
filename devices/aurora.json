@@ -1,7 +1,6 @@
 {
   "device": "aurora",
   "name": {
-    "zh": "小米 14 Ultra / Ultra Ti",
     "en": "Xiaomi 14 Ultra"
   },
   "code": "NA",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "aurora",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 14 Ultra / Ultra Ti",
         "en": "Xiaomi 14 Ultra"
       },
       "region": "cn",
@@ -46,13 +43,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "aurora",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 14 Ultra / Ultra Ti",
         "en": "Xiaomi 14 Ultra"
       },
       "region": "cn",
@@ -76,13 +71,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版每日构建版本",
         "en": "Xiaomi HyperOS Stable Daily Build"
       },
       "branchCode": "aurora",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 14 Ultra / Ultra Ti",
         "en": "Xiaomi 14 Ultra"
       },
       "region": "cn",

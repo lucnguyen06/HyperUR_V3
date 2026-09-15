@@ -1,7 +1,6 @@
 {
   "device": "xuanyuan",
   "name": {
-    "zh": "小米 15 Ultra",
     "en": "Xiaomi 15 Ultra"
   },
   "code": "OA",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "xuanyuan",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 15 Ultra",
         "en": "Xiaomi 15 Ultra"
       },
       "region": "cn",
@@ -51,13 +48,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "xuanyuan",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 15 Ultra",
         "en": "Xiaomi 15 Ultra"
       },
       "region": "cn",

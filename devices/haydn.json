@@ -1,7 +1,6 @@
 {
   "device": "haydn",
   "name": {
-    "zh": "Redmi K40 Pro/Pro+ / 小米 11i / 小米 11X Pro",
     "en": "Redmi K40 Pro/Pro+/ Mi 11i / Mi 11X Pro"
   },
   "code": "KK",
@@ -17,13 +16,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "haydn",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K40 Pro/Pro+",
         "en": "Redmi K40 Pro/Pro+"
       },
       "region": "cn",

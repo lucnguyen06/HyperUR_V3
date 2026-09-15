@@ -1,7 +1,6 @@
 {
   "device": "cupid",
   "name": {
-    "zh": "小米 12",
     "en": "Xiaomi 12"
   },
   "code": "LC",
@@ -20,13 +19,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 开发版",
         "en": "Xiaomi HyperOS DEV"
       },
       "branchCode": "cupid",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 12",
         "en": "Xiaomi 12"
       },
       "region": "cn",
@@ -40,13 +37,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "cupid",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 12",
         "en": "Xiaomi 12"
       },
       "region": "cn",

@@ -2987,9 +2987,8 @@ dialog:not([open]) {
 .footer-bottom {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+  justify-content: center;
+  text-align: center;
   padding-top: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -2998,12 +2997,16 @@ dialog:not([open]) {
   border-top-color: rgba(15, 23, 42, 0.08);
 }
 
+.footer-copyright {
+  text-align: center;
+}
+
 .footer-copyright p {
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.05em;
-  color: var(--text-strong);
-  margin-bottom: 0.25rem;
+  color: var(--muted);
+  margin: 0;
 }
 
 .footer-credit {

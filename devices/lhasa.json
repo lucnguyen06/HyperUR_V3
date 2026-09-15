@@ -1,7 +1,6 @@
 {
   "device": "lhasa",
   "name": {
-    "zh": "Xiaomi 18 Fold",
     "en": "Xiaomi 18 Fold"
   },
   "code": "",
@@ -15,13 +14,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "lhasa",
       "brand": "Xiaomi",
       "device": {
-        "zh": "Xiaomi 18 Fold",
         "en": "Xiaomi 18 Fold"
       },
       "region": "cn",

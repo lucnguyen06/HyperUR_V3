@@ -1,7 +1,6 @@
 {
   "device": "turner",
   "name": {
-    "zh": "REDMI K Pad / Xiaomi Pad Mini",
     "en": "REDMI K Pad / Xiaomi Pad Mini"
   },
   "code": "AO",
@@ -19,13 +18,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "turner",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI K Pad",
         "en": "REDMI K Pad"
       },
       "region": "cn",
@@ -39,13 +36,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "turner",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI K Pad",
         "en": "REDMI K Pad"
       },
       "region": "cn",

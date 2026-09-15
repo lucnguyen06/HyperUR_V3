@@ -1,7 +1,6 @@
 {
   "device": "zizhan",
   "name": {
-    "zh": "小米 MIX Fold 2",
     "en": "Xiaomi MIX Fold 2"
   },
   "code": "LR",
@@ -20,13 +19,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 开发版",
         "en": "Xiaomi HyperOS DEV"
       },
       "branchCode": "zizhan",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 MIX Fold 2",
         "en": "Xiaomi MIX Fold 2"
       },
       "region": "cn",
@@ -40,13 +37,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "zizhan",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 MIX Fold 2",
         "en": "Xiaomi MIX Fold 2"
       },
       "region": "cn",

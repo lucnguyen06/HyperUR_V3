@@ -1,7 +1,6 @@
 {
   "device": "socrates",
   "name": {
-    "zh": "Redmi K60 Pro",
     "en": "Redmi K60 Pro"
   },
   "code": "MK",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "socrates",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K60 Pro",
         "en": "Redmi K60 Pro"
       },
       "region": "cn",
@@ -41,13 +38,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "socrates",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K60 Pro",
         "en": "Redmi K60 Pro"
       },
       "region": "cn",
@@ -71,13 +66,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 开发版",
         "en": "Xiaomi HyperOS DEV"
       },
       "branchCode": "socrates",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K60 Pro",
         "en": "Redmi K60 Pro"
       },
       "region": "cn",

@@ -1,7 +1,6 @@
 {
   "device": "mist",
   "name": {
-    "zh": "REDMI Note 17 5G",
     "en": "REDMI Note 17 5G"
   },
   "code": "PU",
@@ -17,13 +16,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "mist",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI Note 17 5G",
         "en": "REDMI Note 17 5G"
       },
       "region": "cn",

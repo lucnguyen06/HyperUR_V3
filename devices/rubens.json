@@ -1,7 +1,6 @@
 {
   "device": "rubens",
   "name": {
-    "zh": "Redmi K50",
     "en": "Redmi K50"
   },
   "code": "LN",
@@ -18,13 +17,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 开发版",
         "en": "Xiaomi HyperOS DEV"
       },
       "branchCode": "rubens",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K50",
         "en": "Redmi K50"
       },
       "region": "cn",
@@ -38,13 +35,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "rubens",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K50",
         "en": "Redmi K50"
       },
       "region": "cn",

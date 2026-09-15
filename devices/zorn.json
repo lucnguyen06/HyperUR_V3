@@ -1,7 +1,6 @@
 {
   "device": "zorn",
   "name": {
-    "zh": "REDMI K80",
     "en": "REDMI K80"
   },
   "code": "OK",
@@ -20,13 +19,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "zorn",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI K80",
         "en": "REDMI K80"
       },
       "region": "cn",
@@ -45,13 +42,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "zorn",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI K80",
         "en": "REDMI K80"
       },
       "region": "cn",

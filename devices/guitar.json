@@ -1,7 +1,6 @@
 {
   "device": "guitar",
   "name": {
-    "zh": "REDMI Pad 2 SE",
     "en": "REDMI Pad 2 SE"
   },
   "code": "DN",
@@ -17,13 +16,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "guitar",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI Pad 2 SE",
         "en": "REDMI Pad 2 SE"
       },
       "region": "cn",

@@ -1,7 +1,6 @@
 {
   "device": "ruby",
   "name": {
-    "zh": "Redmi Note 12 Pro / Pro+ / 探索版",
     "en": "Redmi Note 12 Pro / Pro+ / Discovery 5G"
   },
   "code": "MO",
@@ -18,13 +17,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "ruby",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi Note 12 Pro / Pro+ / 探索版",
         "en": "Redmi Note 12 Pro / Pro+ / Discovery 5G"
       },
       "region": "cn",

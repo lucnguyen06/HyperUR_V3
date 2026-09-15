@@ -1,7 +1,6 @@
 {
   "device": "nuwa",
   "name": {
-    "zh": "小米 13 Pro",
     "en": "Xiaomi 13 Pro"
   },
   "code": "MB",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "nuwa",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 13 Pro",
         "en": "Xiaomi 13 Pro"
       },
       "region": "cn",
@@ -41,13 +38,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 开发版",
         "en": "Xiaomi HyperOS DEV"
       },
       "branchCode": "nuwa",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 13 Pro",
         "en": "Xiaomi 13 Pro"
       },
       "region": "cn",
@@ -61,13 +56,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "nuwa",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 13 Pro",
         "en": "Xiaomi 13 Pro"
       },
       "region": "cn",

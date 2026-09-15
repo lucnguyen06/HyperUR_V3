@@ -1,7 +1,6 @@
 {
   "device": "piano",
   "name": {
-    "zh": "小米平板 8 Pro",
     "en": "Xiaomi Pad 8 Pro"
   },
   "code": "PY",
@@ -19,13 +18,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "piano",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米平板 8 Pro",
         "en": "Xiaomi Pad 8 Pro"
       },
       "region": "cn",
@@ -44,13 +41,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "piano",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米平板 8 Pro",
         "en": "Xiaomi Pad 8 Pro"
       },
       "region": "cn",

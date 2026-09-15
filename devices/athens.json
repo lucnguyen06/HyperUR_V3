@@ -1,7 +1,6 @@
 {
   "device": "athens",
   "name": {
-    "zh": "REDMI K100 Pro",
     "en": "REDMI K100 Pro"
   },
   "code": "PI",
@@ -17,13 +16,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "athens",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI K100 Pro",
         "en": "REDMI K100 Pro"
       },
       "region": "cn",

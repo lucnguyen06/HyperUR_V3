@@ -1,7 +1,6 @@
 {
   "device": "tornado",
   "name": {
-    "zh": "REDMI 15C 5G / REDMI 15R 5G",
     "en": "REDMI 15C 5G / REDMI 15R 5G"
   },
   "code": "PO",
@@ -20,13 +19,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "tornado",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI 15R 5G",
         "en": "REDMI 15R 5G"
       },
       "region": "cn",

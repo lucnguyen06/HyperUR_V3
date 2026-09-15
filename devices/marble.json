@@ -1,7 +1,6 @@
 {
   "device": "marble",
   "name": {
-    "zh": "Redmi Note 12 Turbo",
     "en": "Redmi Note 12 Turbo"
   },
   "code": "MR",
@@ -20,13 +19,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "marble",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi Note 12 Turbo",
         "en": "Redmi Note 12 Turbo"
       },
       "region": "cn",

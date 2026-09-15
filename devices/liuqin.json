@@ -1,7 +1,6 @@
 {
   "device": "liuqin",
   "name": {
-    "zh": "小米平板 6 Pro",
     "en": "Xiaomi Pad 6 Pro"
   },
   "code": "MY",
@@ -20,13 +19,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "liuqin",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米平板 6 Pro",
         "en": "Xiaomi Pad 6 Pro"
       },
       "region": "cn",

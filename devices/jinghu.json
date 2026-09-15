@@ -1,7 +1,6 @@
 {
   "device": "jinghu",
   "name": {
-    "zh": "小米平板 7 Ultra",
     "en": "Xiaomi Pad 7 Ultra"
   },
   "code": "OX",
@@ -19,13 +18,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "jinghu",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米平板 7 Ultra",
         "en": "Xiaomi Pad 7 Ultra"
       },
       "region": "cn",
@@ -39,13 +36,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "jinghu",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米平板 7 Ultra",
         "en": "Xiaomi Pad 7 Ultra"
       },
       "region": "cn",

@@ -1,7 +1,6 @@
 {
   "device": "pudding",
   "name": {
-    "zh": "小米 17",
     "en": "Xiaomi 17"
   },
   "code": "PC",
@@ -20,13 +19,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "pudding",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 17",
         "en": "Xiaomi 17"
       },
       "region": "cn",
@@ -45,13 +42,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "pudding",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 17",
         "en": "Xiaomi 17"
       },
       "region": "cn",
@@ -65,13 +60,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 安卓开发者预览版大陆版",
         "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
       },
       "branchCode": "pudding_dpp",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 17",
         "en": "Xiaomi 17"
       },
       "region": "cn",

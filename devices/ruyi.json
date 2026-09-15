@@ -1,7 +1,6 @@
 {
   "device": "ruyi",
   "name": {
-    "zh": "小米 MIX Flip",
     "en": "Xiaomi MIX Flip"
   },
   "code": "NI",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "ruyi",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 MIX Flip",
         "en": "Xiaomi MIX Flip"
       },
       "region": "cn",
@@ -46,13 +43,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "ruyi",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 MIX Flip",
         "en": "Xiaomi MIX Flip"
       },
       "region": "cn",

@@ -1,7 +1,6 @@
 {
   "device": "miro",
   "name": {
-    "zh": "REDMI K80 Pro",
     "en": "REDMI K80 Pro"
   },
   "code": "OM",
@@ -19,13 +18,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "miro",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI K80 Pro",
         "en": "REDMI K80 Pro"
       },
       "region": "cn",
@@ -44,13 +41,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "miro",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI K80 Pro",
         "en": "REDMI K80 Pro"
       },
       "region": "cn",

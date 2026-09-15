@@ -1,7 +1,6 @@
 {
   "device": "garnet",
   "name": {
-    "zh": "Redmi Note 13 Pro 5G",
     "en": "Redmi Note 13 Pro 5G"
   },
   "code": "NR",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "garnet",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi Note 13 Pro 5G",
         "en": "Redmi Note 13 Pro 5G"
       },
       "region": "cn",

@@ -1,7 +1,6 @@
 {
   "device": "yuechu",
   "name": {
-    "zh": "小米 Civi 3",
     "en": "Xiaomi Civi 3"
   },
   "code": "MI",
@@ -20,13 +19,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "yuechu",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 Civi 3",
         "en": "Xiaomi Civi 3"
       },
       "region": "cn",

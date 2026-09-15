@@ -1,7 +1,6 @@
 {
   "device": "unicorn",
   "name": {
-    "zh": "小米 12S Pro",
     "en": "Xiaomi 12S Pro"
   },
   "code": "LE",
@@ -20,13 +19,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 开发版",
         "en": "Xiaomi HyperOS DEV"
       },
       "branchCode": "unicorn",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 12S Pro",
         "en": "Xiaomi 12S Pro"
       },
       "region": "cn",
@@ -40,13 +37,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "unicorn",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 12S Pro",
         "en": "Xiaomi 12S Pro"
       },
       "region": "cn",

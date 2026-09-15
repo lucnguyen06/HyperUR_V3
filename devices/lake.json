@@ -1,7 +1,6 @@
 {
   "device": "lake",
   "name": {
-    "zh": "Redmi 14C",
     "en": "Redmi 14C"
   },
   "code": "GT",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "lake",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi 14C",
         "en": "Redmi 14C"
       },
       "region": "cn",

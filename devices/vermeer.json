@@ -1,7 +1,6 @@
 {
   "device": "vermeer",
   "name": {
-    "zh": "Redmi K70",
     "en": "Redmi K70"
   },
   "code": "NK",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "vermeer",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K70",
         "en": "Redmi K70"
       },
       "region": "cn",
@@ -46,13 +43,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "vermeer",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi K70",
         "en": "Redmi K70"
       },
       "region": "cn",

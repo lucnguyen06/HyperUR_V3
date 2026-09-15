@@ -1,7 +1,6 @@
 {
   "device": "light",
   "name": {
-    "zh": "Redmi 10 5G/Redmi 11 Prime 5G/Redmi Note 11E",
     "en": "Redmi 10 5G/Redmi 11 Prime 5G/Redmi Note 11E"
   },
   "code": "LS",
@@ -17,13 +16,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "light",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi Note 11E",
         "en": "Redmi Note 11E"
       },
       "region": "cn",

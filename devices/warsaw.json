@@ -1,7 +1,6 @@
 {
   "device": "warsaw",
   "name": {
-    "zh": "REDMI K90 至尊版",
     "en": "REDMI K90 Ultra"
   },
   "code": "HP",
@@ -19,13 +18,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "warsaw",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI K90 至尊版",
         "en": "REDMI K90 Ultra"
       },
       "region": "cn",
@@ -39,13 +36,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "warsaw",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI K90 至尊版",
         "en": "REDMI K90 Ultra"
       },
       "region": "cn",

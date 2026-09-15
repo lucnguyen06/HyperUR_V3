@@ -1,7 +1,6 @@
 {
   "device": "spring",
   "name": {
-    "zh": "REDMI 15 5G / REDMI Note 15R 5G",
     "en": "REDMI 15 5G / REDMI Note 15R 5G"
   },
   "code": "OU",
@@ -20,13 +19,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "spring",
       "brand": "REDMI",
       "device": {
-        "zh": "REDMI Note 15R 5G",
         "en": "REDMI Note 15R 5G"
       },
       "region": "cn",

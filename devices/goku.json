@@ -1,7 +1,6 @@
 {
   "device": "goku",
   "name": {
-    "zh": "小米 MIX Fold 4",
     "en": "Xiaomi MIX Fold 4"
   },
   "code": "NV",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "goku",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 MIX Fold 4",
         "en": "Xiaomi MIX Fold 4"
       },
       "region": "cn",
@@ -46,13 +43,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "goku",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 MIX Fold 4",
         "en": "Xiaomi MIX Fold 4"
       },
       "region": "cn",

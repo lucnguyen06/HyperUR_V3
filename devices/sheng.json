@@ -1,7 +1,6 @@
 {
   "device": "sheng",
   "name": {
-    "zh": "小米平板 6S Pro 12.4",
     "en": "Xiaomi Pad 6S Pro 12.4"
   },
   "code": "NX",
@@ -22,13 +21,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "sheng",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米平板 6S Pro 12.4",
         "en": "Xiaomi Pad 6S Pro 12.4"
       },
       "region": "cn",
@@ -47,13 +44,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "sheng",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米平板 6S Pro 12.4",
         "en": "Xiaomi Pad 6S Pro 12.4"
       },
       "region": "cn",
@@ -77,13 +72,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 安卓开发者预览版大陆版",
         "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
       },
       "branchCode": "sheng_pre_dpp",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米平板 6S Pro 12.4",
         "en": "Xiaomi Pad 6S Pro 12.4"
       },
       "region": "cn",
@@ -102,13 +95,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 体验增强版 Beta",
         "en": "Xiaomi HyperOS Enhanced Experience Beta"
       },
       "branchCode": "sheng",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米平板 6S Pro 12.4",
         "en": "Xiaomi Pad 6S Pro 12.4"
       },
       "region": "cn",

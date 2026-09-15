@@ -1,7 +1,6 @@
 {
   "device": "zeus",
   "name": {
-    "zh": "小米 12 Pro",
     "en": "Xiaomi 12 Pro"
   },
   "code": "LB",
@@ -20,13 +19,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 开发版",
         "en": "Xiaomi HyperOS DEV"
       },
       "branchCode": "zeus",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 12 Pro",
         "en": "Xiaomi 12 Pro"
       },
       "region": "cn",
@@ -40,13 +37,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "zeus",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 12 Pro",
         "en": "Xiaomi 12 Pro"
       },
       "region": "cn",

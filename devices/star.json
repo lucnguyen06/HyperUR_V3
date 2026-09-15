@@ -1,7 +1,6 @@
 {
   "device": "star",
   "name": {
-    "zh": "小米 11 Pro / Ultra",
     "en": "Mi 11 Pro / Ultra"
   },
   "code": "KA",
@@ -18,13 +17,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "star",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 11 Pro / Ultra",
         "en": "Mi 11 Pro / Ultra"
       },
       "region": "cn",

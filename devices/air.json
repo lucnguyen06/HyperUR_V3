@@ -1,7 +1,6 @@
 {
   "device": "air",
   "name": {
-    "zh": "Redmi 13C/R 5G",
     "en": "Redmi 13C/R 5G"
   },
   "code": "GQ",
@@ -19,13 +18,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "air",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi 13C / 13R 5G",
         "en": "Redmi 13C / 13R 5G"
       },
       "region": "cn",

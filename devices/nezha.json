@@ -1,7 +1,6 @@
 {
   "device": "nezha",
   "name": {
-    "zh": "小米 17 Ultra",
     "en": "Xiaomi 17 Ultra"
   },
   "code": "PA",
@@ -20,13 +19,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "nezha",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 17 Ultra",
         "en": "Xiaomi 17 Ultra"
       },
       "region": "cn",
@@ -45,13 +42,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "nezha",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 17 Ultra",
         "en": "Xiaomi 17 Ultra"
       },
       "region": "cn",
@@ -65,13 +60,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 安卓开发者预览版大陆版",
         "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
       },
       "branchCode": "nezha_dpp",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 17 Ultra",
         "en": "Xiaomi 17 Ultra"
       },
       "region": "cn",

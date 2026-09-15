@@ -1,7 +1,6 @@
 {
   "device": "houji",
   "name": {
-    "zh": "小米 14",
     "en": "Xiaomi 14"
   },
   "code": "NC",
@@ -22,13 +21,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "houji",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 14",
         "en": "Xiaomi 14"
       },
       "region": "cn",
@@ -47,13 +44,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "houji",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 14",
         "en": "Xiaomi 14"
       },
       "region": "cn",
@@ -77,13 +72,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 安卓开发者预览版大陆版",
         "en": "Xiaomi HyperOS Android Developer Preview (China Mainland)"
       },
       "branchCode": "houji_pre_dpp",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 14",
         "en": "Xiaomi 14"
       },
       "region": "cn",
@@ -102,13 +95,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 体验增强版 Beta",
         "en": "Xiaomi HyperOS Enhanced Experience Beta"
       },
       "branchCode": "houji",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 14",
         "en": "Xiaomi 14"
       },
       "region": "cn",
@@ -122,13 +113,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 开发版",
         "en": "Xiaomi HyperOS DEV"
       },
       "branchCode": "houji",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米 14",
         "en": "Xiaomi 14"
       },
       "region": "cn",

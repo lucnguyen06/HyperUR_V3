@@ -1,7 +1,6 @@
 {
   "device": "sunstone",
   "name": {
-    "zh": "Redmi Note 12 5G / Note 12R Pro",
     "en": "Redmi Note 12 5G / Note 12R Pro"
   },
   "code": "MQ",
@@ -18,13 +17,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "sunstone",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi Note 12 5G / Note 12R Pro",
         "en": "Redmi Note 12 5G / Note 12R Pro"
       },
       "region": "cn",

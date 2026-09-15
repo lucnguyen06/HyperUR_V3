@@ -1,7 +1,6 @@
 {
   "device": "yupei",
   "name": {
-    "zh": "小米平板 8",
     "en": "Xiaomi Pad 8"
   },
   "code": "",
@@ -19,13 +18,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS Beta",
         "en": "Xiaomi HyperOS Beta"
       },
       "branchCode": "yupei",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米平板 8",
         "en": "Xiaomi Pad 8"
       },
       "region": "cn",
@@ -44,13 +41,11 @@
     },
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "yupei",
       "brand": "Xiaomi",
       "device": {
-        "zh": "小米平板 8",
         "en": "Xiaomi Pad 8"
       },
       "region": "cn",

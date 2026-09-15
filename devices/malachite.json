@@ -1,7 +1,6 @@
 {
   "device": "malachite",
   "name": {
-    "zh": "Redmi Note 14 Pro",
     "en": "Redmi Note 14 Pro"
   },
   "code": "OO",
@@ -21,13 +20,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "malachite",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi Note 14 Pro",
         "en": "Redmi Note 14 Pro"
       },
       "region": "cn",

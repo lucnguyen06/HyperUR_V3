@@ -1,7 +1,6 @@
 {
   "device": "beryl",
   "name": {
-    "zh": "Redmi Note 14 5G",
     "en": "Redmi Note 14 5G"
   },
   "code": "OQ",
@@ -22,13 +21,11 @@
   "branches": [
     {
       "name": {
-        "zh": "小米澎湃 OS 正式版",
         "en": "Xiaomi HyperOS Stable"
       },
       "branchCode": "beryl",
       "brand": "Redmi",
       "device": {
-        "zh": "Redmi Note 14 5G",
         "en": "Redmi Note 14 5G"
       },
       "region": "cn",
