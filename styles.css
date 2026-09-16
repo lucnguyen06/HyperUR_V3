@@ -4394,3 +4394,438 @@ dialog:not([open]) {
   border: 1px solid rgba(6, 182, 212, 0.25);
 }
 
+/* ==========================================================================
+   HYPERUR INTRO SPLASH ANIMATION & WELCOME HERO BADGE
+   Aesthetic: Next-Gen Titanium Glassmorphism & Cyber Aurora Glow
+   ========================================================================== */
+
+/* ===== 1. Fullscreen Intro Splash Screen ===== */
+.hyperur-splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 35%, #0e172e 0%, #070a14 65%, #030408 100%);
+  color: #ffffff;
+  overflow: hidden;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), 
+              visibility 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+[data-theme="light"] .hyperur-splash-screen {
+  background: radial-gradient(circle at 50% 35%, #0f172a 0%, #090d16 70%, #030508 100%);
+}
+
+.hyperur-splash-screen.splash-dismissed {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.04);
+  pointer-events: none;
+}
+
+/* Splash Backdrop & Aurora Orbs */
+.splash-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.splash-aurora-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.45;
+  animation: splashAuroraPulse 6s ease-in-out infinite alternate;
+}
+
+.splash-glow-1 {
+  width: 550px;
+  height: 550px;
+  top: 15%;
+  left: 20%;
+  background: radial-gradient(circle, #3b82f6 0%, rgba(59, 130, 246, 0) 70%);
+}
+
+.splash-glow-2 {
+  width: 500px;
+  height: 500px;
+  bottom: 15%;
+  right: 20%;
+  background: radial-gradient(circle, #8b5cf6 0%, rgba(139, 92, 246, 0) 70%);
+  animation-delay: -3s;
+}
+
+.splash-grid-mesh {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 80%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 80%);
+}
+
+/* Splash Content Container */
+.splash-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  max-width: 560px;
+  width: 90%;
+}
+
+/* Logo Squircle with Glowing Rings */
+.splash-logo-container {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash-logo-halo {
+  position: absolute;
+  inset: -12px;
+  border-radius: 32px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.5), rgba(139, 92, 246, 0.5));
+  filter: blur(20px);
+  animation: splashHaloPulse 3s ease-in-out infinite alternate;
+}
+
+.splash-logo-core {
+  position: relative;
+  width: 78px;
+  height: 78px;
+  background: rgba(15, 23, 42, 0.88);
+  border: 2px solid rgba(59, 130, 246, 0.45);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  animation: splashLogoPop 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.splash-logo-letter {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 2.75rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #ffffff 0%, #93c5fd 60%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  user-select: none;
+}
+
+.splash-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.splash-ring-1 {
+  inset: -14px;
+  border: 1.5px dashed rgba(59, 130, 246, 0.4);
+  animation: splashSpin 12s linear infinite;
+}
+
+.splash-ring-2 {
+  inset: -22px;
+  border: 1px dotted rgba(139, 92, 246, 0.3);
+  animation: splashSpin 20s linear infinite reverse;
+}
+
+/* Splash Text Details */
+.splash-text-container {
+  margin-bottom: 2.2rem;
+}
+
+.splash-tagline {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+  opacity: 0;
+  animation: splashFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+.splash-title {
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45em;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: splashFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+}
+
+.splash-word-welcome {
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.splash-word-to {
+  color: #94a3b8;
+  font-weight: 600;
+  font-size: 0.85em;
+}
+
+.splash-brand-text {
+  background: linear-gradient(135deg, #60a5fa 0%, #a855f7 50%, #38bdf8 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: splashTextShine 3s ease infinite;
+  filter: drop-shadow(0 4px 16px rgba(99, 102, 241, 0.45));
+}
+
+.splash-brand-text .brand-accent {
+  background: linear-gradient(135deg, #38bdf8 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.splash-subtext {
+  font-size: 0.98rem;
+  color: #94a3b8;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  animation: splashFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+
+/* High-tech Loading Bar */
+.splash-loader-track {
+  width: 220px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1.8rem;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  animation: splashFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+}
+
+.splash-loader-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+  border-radius: 999px;
+  box-shadow: 0 0 14px rgba(59, 130, 246, 0.85);
+  transition: width 0.1s ease;
+}
+
+/* Skip Button */
+.splash-skip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1.1rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-pill);
+  color: #cbd5e1;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+  opacity: 0;
+  animation: splashFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.75s forwards;
+}
+
+.splash-skip-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  border-color: rgba(59, 130, 246, 0.4);
+  transform: translateY(-1px);
+}
+
+/* ===== 2. Hero Welcome Badge (On-page Greeting) ===== */
+.welcome-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1.15rem;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), 0 0 15px rgba(59, 130, 246, 0.12);
+  backdrop-filter: blur(14px);
+  margin-bottom: 1.25rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: welcomeBadgeFloat 4s ease-in-out infinite alternate;
+}
+
+[data-theme="light"] .welcome-hero-badge {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(37, 99, 235, 0.28);
+  box-shadow: 0 4px 18px rgba(37, 99, 235, 0.12);
+}
+
+.welcome-hero-badge:hover {
+  transform: translateY(-2px) scale(1.02);
+  border-color: rgba(59, 130, 246, 0.7);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.25), 0 0 25px rgba(139, 92, 246, 0.2);
+}
+
+.welcome-badge-glow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: skewX(-25deg);
+  animation: welcomeShimmer 3.5s infinite;
+  pointer-events: none;
+}
+
+.welcome-badge-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(139, 92, 246, 0.25));
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  border-radius: 50%;
+  color: #38bdf8;
+  flex-shrink: 0;
+}
+
+.welcome-badge-text {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.86rem;
+  letter-spacing: 0.02em;
+}
+
+.welcome-prefix {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+}
+
+.welcome-name {
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
+}
+
+.welcome-badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.18rem 0.55rem;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #10b981;
+  letter-spacing: 0.04em;
+}
+
+.welcome-status-dot {
+  width: 6px;
+  height: 6px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #10b981;
+  animation: pulseDot 2s infinite;
+}
+
+/* ===== 3. Keyframe Animations ===== */
+@keyframes splashHaloPulse {
+  0% { transform: scale(0.95); opacity: 0.4; }
+  100% { transform: scale(1.15); opacity: 0.8; }
+}
+
+@keyframes splashAuroraPulse {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.35; }
+  100% { transform: translate(25px, -20px) scale(1.1); opacity: 0.55; }
+}
+
+@keyframes splashLogoPop {
+  0% { transform: scale(0.5); opacity: 0; }
+  70% { transform: scale(1.08); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes splashSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes splashFadeUp {
+  0% { transform: translateY(14px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes splashTextShine {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes welcomeBadgeFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+@keyframes welcomeShimmer {
+  0% { left: -100%; }
+  40%, 100% { left: 180%; }
+}
+
+/* Respect user's motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .hyperur-splash-screen,
+  .splash-logo-core,
+  .welcome-hero-badge,
+  .splash-aurora-glow,
+  .splash-ring-1,
+  .splash-ring-2 {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+

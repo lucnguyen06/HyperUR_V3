@@ -16,6 +16,43 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- =================================================================
+         HYPERUR WELCOME INTRO SPLASH ANIMATION
+         ================================================================= -->
+    <div id="hyperur-splash-screen" class="hyperur-splash-screen" aria-hidden="true">
+        <div class="splash-backdrop">
+            <div class="splash-aurora-glow splash-glow-1"></div>
+            <div class="splash-aurora-glow splash-glow-2"></div>
+            <div class="splash-grid-mesh"></div>
+        </div>
+        <div class="splash-content">
+            <div class="splash-logo-container">
+                <div class="splash-logo-halo"></div>
+                <div class="splash-logo-core">
+                    <span class="splash-logo-letter">H</span>
+                    <div class="splash-ring splash-ring-1"></div>
+                    <div class="splash-ring splash-ring-2"></div>
+                </div>
+            </div>
+            <div class="splash-text-container">
+                <div class="splash-tagline">HYPEROS OPTIMIZATION ECOSYSTEM</div>
+                <h2 class="splash-title">
+                    <span class="splash-word-welcome">WELCOME</span>
+                    <span class="splash-word-to">TO</span>
+                    <span class="splash-brand-text">Hyper<span class="brand-accent">UR</span></span>
+                </h2>
+                <p class="splash-subtext">Khai phóng tiềm năng • Mượt mà tuyệt đỉnh</p>
+            </div>
+            <div class="splash-loader-track">
+                <div class="splash-loader-indicator" id="splash-loader-indicator"></div>
+            </div>
+            <button id="splash-skip-btn" class="splash-skip-btn" type="button" aria-label="Bỏ qua màn hình chào">
+                <span>Bỏ qua</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+        </div>
+    </div>
+
     <!-- Floating Glass Header & Navbar -->
     <header class="navbar-wrapper">
         <nav class="navbar glass" id="navbar">
@@ -86,6 +123,24 @@
              ================================================================= -->
         <section id="hero" class="hero">
             <div class="hero-inner">
+                <!-- Welcome Animated Hero Badge -->
+                <div class="welcome-hero-badge" id="welcome-hero-badge" title="Nhấn để xem lại hiệu ứng chào mừng">
+                    <div class="welcome-badge-glow"></div>
+                    <span class="welcome-badge-icon" aria-hidden="true">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </span>
+                    <span class="welcome-badge-text">
+                        <span class="welcome-prefix">WELCOME TO</span>
+                        <span class="welcome-name">HYPERUR</span>
+                    </span>
+                    <span class="welcome-badge-status">
+                        <span class="welcome-status-dot"></span>
+                        <span>V3.0 ONLINE</span>
+                    </span>
+                </div>
+
                 <!-- Eyebrow Pill -->
                 <div class="eyebrow-pill">
                     <span class="pulse-dot"></span>
@@ -517,6 +572,89 @@
             window.addEventListener('resize', function() {
                 if (window.innerWidth > 768) closeMenu();
             });
+        })();
+    </script>
+
+    <!-- HyperUR Welcome Intro Animation Script -->
+    <script>
+        (function() {
+            const splash = document.getElementById('hyperur-splash-screen');
+            const progressBar = document.getElementById('splash-loader-indicator');
+            const skipBtn = document.getElementById('splash-skip-btn');
+            const welcomeBadge = document.getElementById('welcome-hero-badge');
+            if (!splash) return;
+
+            let isDismissed = false;
+            let progressInterval = null;
+
+            function runIntro() {
+                isDismissed = false;
+                splash.style.display = 'flex';
+                // Trigger reflow to restart CSS animations if replaying
+                void splash.offsetWidth;
+                splash.classList.remove('splash-dismissed');
+                splash.setAttribute('aria-hidden', 'false');
+
+                if (progressBar) {
+                    progressBar.style.width = '0%';
+                    const startTime = performance.now();
+                    const totalDuration = 1800; // 1.8s
+                    clearInterval(progressInterval);
+
+                    progressInterval = setInterval(function() {
+                        const elapsed = performance.now() - startTime;
+                        const ratio = Math.min(elapsed / totalDuration, 1);
+                        // Ease-out progress curve
+                        const easedProgress = 1 - Math.pow(1 - ratio, 3);
+                        const currentProgress = Math.min(Math.round(easedProgress * 100), 100);
+                        progressBar.style.width = currentProgress + '%';
+
+                        if (ratio >= 1) {
+                            clearInterval(progressInterval);
+                            setTimeout(dismissIntro, 150);
+                        }
+                    }, 20);
+                } else {
+                    setTimeout(dismissIntro, 1800);
+                }
+            }
+
+            function dismissIntro() {
+                if (isDismissed) return;
+                isDismissed = true;
+                clearInterval(progressInterval);
+                splash.classList.add('splash-dismissed');
+                splash.setAttribute('aria-hidden', 'true');
+                try {
+                    sessionStorage.setItem('hyperur_splash_viewed', 'true');
+                } catch (e) {}
+                setTimeout(function() {
+                    if (isDismissed) splash.style.display = 'none';
+                }, 680);
+            }
+
+            if (skipBtn) {
+                skipBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    dismissIntro();
+                });
+            }
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && !isDismissed) {
+                    dismissIntro();
+                }
+            });
+
+            // Interactive Replay: Clicking the Welcome badge in Hero section replays the intro
+            if (welcomeBadge) {
+                welcomeBadge.addEventListener('click', function() {
+                    runIntro();
+                });
+            }
+
+            // Start intro on page load
+            runIntro();
         })();
     </script>
 
