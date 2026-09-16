@@ -5,7 +5,7 @@
 
 window.HYPERUR_CONFIG = {
   // 1. Google Apps Script Web App URL (Realtime API)
-  GOOGLE_DRIVE_API_URL: "https://script.google.com/macros/s/AKfycbxKY0UfmpiB3famqdN7GkYeIVU002SVQDeIA0MGOrIL3MKj6MzFgE3OYNiqMhRET6VI/exec",
+  GOOGLE_DRIVE_API_URL: "https://script.google.com/macros/s/AKfycbzaD5HJUbNeKUQYfRUQDzpe7p9oHijySTbnFw9Cujt2HK1PXYS87ssEY_TLqeDe2xZOeA/exec",
 
   // 2. Chế độ lọc thiết bị theo Google Drive:
   // true  -> CHỈ HIỂN THỊ những thiết bị ĐANG CÓ ROM trên Google Drive (theo yêu cầu của bạn).

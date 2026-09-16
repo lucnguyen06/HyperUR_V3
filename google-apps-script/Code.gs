@@ -17,11 +17,9 @@ const CONFIG = {
   // 1. ID thư mục Google Drive chính (Link Tổng)
   FOLDER_ID: "1WxXT6Mx7ZdknKh_gd-dQr0Jturtkypyq",
 
-  // Danh sách ID các thư mục quét trực tiếp (nếu muốn chỉ định rõ)
-  SUBFOLDERS: [
-    { name: "China", region: "cn", id: "1gSFtHeF7SAINCDG5lBJ5o3RBMS-s90St" },
-    { name: "Glb", region: "global", id: "1PoSGGsS9T9hyEN2GOAZAXqiIchC5Z61n" }
-  ],
+  // Danh sách thư mục quét đã được lược bỏ (đã gỡ 2026-09-16) vì ID cũ hết hạn/bị revoke.
+  // Code chỉ quét đệ quy từ FOLDER_ID gốc và tự nhận diện region theo tên thư mục con
+  // (chứa "glb"/"global" -> global, mặc định còn lại -> cn).
 
   // 2. Cấu hình GitOps GitHub (Tùy chọn tự động commit active_roms.json lên GitHub)
   GITHUB: {
@@ -30,7 +28,7 @@ const CONFIG = {
     REPO: "HyperUR_V3",                     // Tên repository GitHub
     BRANCH: "main",                         // Nhánh chính (main hoặc master)
     FILE_PATH: "active_roms.json",          // Đường dẫn file trong repo
-    TOKEN: "ghp_xxxxxxxxxxxxxxxxxxxx"      // GitHub Personal Access Token (quyền 'repo')
+    TOKEN: "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"      // GitHub Personal Access Token (quyền 'repo')
   },
 
   // 3. Cấu hình Webhook tới server riêng (Tùy chọn)
@@ -51,6 +49,9 @@ const CONFIG = {
  * HyperUR_[codename]_[osKey]_[osBuild]_[androidVer].zip
  */
 function parseRomFileName(fileName) {
+  if (!fileName || typeof fileName !== 'string') {
+    return null;
+  }
   const cleanName = fileName.replace(/\.(7z|zip|tar|rar|bin)$/i, '');
 
   // Chuẩn thực tế: UR_amethyst_OS3.0.305.0.WOPCNXM_16
@@ -137,8 +138,29 @@ function scanFolderFiles(folder, defaultRegion, activeRoms, uniqueDevices) {
       };
     }
 
-    activeRoms[codename].roms[osKey] = {
+    // Xác định key lưu trữ:
+    // Nếu chưa có ROM nào cho osKey này (VD: "OS3.0") thì lưu key là osKey để giữ cấu trúc chuẩn
+    // Nếu có thêm bản build khác của cùng osKey (VD: nezha có cả 309 và 312), chuyển sang lưu theo tên osBuild để không bị đè
+    let romKey = osKey;
+    if (activeRoms[codename].roms[romKey]) {
+      const existing = activeRoms[codename].roms[romKey];
+      if (existing.os !== osBuild) {
+        activeRoms[codename].roms[existing.os] = existing;
+        delete activeRoms[codename].roms[romKey];
+        romKey = osBuild;
+      }
+    } else {
+      const isDuplicateOs = Object.keys(activeRoms[codename].roms).some(function(k) {
+        return activeRoms[codename].roms[k].osKey === osKey;
+      });
+      if (isDuplicateOs) {
+        romKey = osBuild;
+      }
+    }
+
+    activeRoms[codename].roms[romKey] = {
       os: osBuild,
+      osKey: osKey,
       android: androidVer,
       region: defaultRegion || "cn",
       download: directDownloadLink,
@@ -228,8 +250,8 @@ function doGet(e) {
     if (!cachedData || forceRefresh) {
       const data = scanGoogleDriveFolder();
       cachedData = JSON.stringify(data);
-      // Cache 10 phút để tối ưu tốc độ
-      cache.put("active_roms_json", cachedData, 600);
+      // Cache 2 phút để tối ưu tốc độ mà vẫn cập nhật ROM mới cực nhanh
+      cache.put("active_roms_json", cachedData, 120);
     }
 
     return ContentService.createTextOutput(cachedData)
@@ -418,9 +440,24 @@ function sendWebhookNotification(payloadData) {
 
 /**
  * Chạy thử nghiệm trong trình soạn thảo Apps Script
+ * (Chọn hàm 'testScanFolder' ở thanh menu trên cùng rồi bấm nút 'Chạy' / 'Run')
  */
 function testScanFolder() {
   console.log("🧪 Đang chạy thử nghiệm quét Drive...");
   const result = scanGoogleDriveFolder();
-  console.log(JSON.stringify(result, null, 2));
+  console.log("✅ Quét xong! Tổng thiết bị: " + result._metadata.totalDevices + ", Tổng số bản ROM: " + result._metadata.totalRoms);
+
+  // Tự động kiểm tra và in ra bất kỳ thiết bị nào có từ 2 bản ROM trở lên
+  const multiRomList = [];
+  for (const key of Object.keys(result)) {
+    if (key === '_metadata') continue;
+    const count = Object.keys(result[key].roms || {}).length;
+    if (count > 1) {
+      multiRomList.push(key + " (" + count + " bản)");
+    }
+  }
+
+  if (multiRomList.length > 0) {
+    console.log("⭐ Các thiết bị đang có nhiều bản ROM: " + multiRomList.join(", "));
+  }
 }

@@ -119,14 +119,19 @@
     if (apiUrl) {
       try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 6000); // 6s timeout
+        const timeoutId = setTimeout(() => controller.abort(), 12000); // 12s timeout đảm bảo Apps Script khởi động kịp
 
-        const response = await fetch(apiUrl, { signal: controller.signal });
+        // Chống browser cache dữ liệu cũ khi deploy hosting
+        const reqUrl = apiUrl + (apiUrl.includes('?') ? '&' : '?') + '_t=' + Date.now();
+        const response = await fetch(reqUrl, {
+          signal: controller.signal,
+          cache: 'no-store'
+        });
         clearTimeout(timeoutId);
 
         if (response.ok) {
           const driveData = await response.json();
-          if (driveData && !driveData.error) {
+          if (driveData && !driveData.error && Object.keys(driveData).length > 1) {
             console.log('⚡ Đã kết nối Google Drive API thành công:', driveData);
             return driveData;
           }
@@ -138,7 +143,7 @@
 
     // Đọc từ file active_roms.json cục bộ
     try {
-      const localRes = await fetch('./active_roms.json');
+      const localRes = await fetch('./active_roms.json?_t=' + Date.now());
       if (localRes.ok) {
         return await localRes.json();
       }
@@ -166,7 +171,7 @@
         try {
           const res = await fetch(`./devices/${code}.json`);
           if (res.ok) loadedMap[code] = await res.json();
-        } catch (_) {}
+        } catch (_) { }
       }));
     }
     return loadedMap;
@@ -193,11 +198,12 @@
       if (hasDriveRoms) {
         // Tạo branch đại diện cho bản build Google Drive chính thức
         const osVersions = [];
-        for (const [osKey, r] of Object.entries(driveEntry.roms)) {
+        for (const [rawKey, r] of Object.entries(driveEntry.roms)) {
+          const majorKey = r.osKey || (r.os && r.os.match(/^OS\d+\.\d+/) ? r.os.match(/^OS\d+\.\d+/)[0] : rawKey.match(/^OS\d+\.\d+/) ? rawKey.match(/^OS\d+\.\d+/)[0] : rawKey);
           osVersions.push({
-            key: osKey,
-            os: r.os || osKey,
-            android: r.android || (osKey === 'OS2.0' ? '15.0' : '14.0'),
+            key: majorKey,
+            os: r.os || rawKey,
+            android: r.android || (majorKey === 'OS2.0' ? '15.0' : (majorKey === 'OS1.0' ? '14.0' : '16.0')),
             download: r.download || '',
             fileName: r.fileName || '',
             size: r.size || '',
@@ -273,13 +279,15 @@
    * Sắp xếp các phiên bản OS theo thứ tự mới nhất (OS3.0 -> OS2.0 -> OS1.0)
    */
   function sortOsVersions(a, b) {
-    const aMatch = a.key.match(/^OS(\d+)\.(\d+)/);
-    const bMatch = b.key.match(/^OS(\d+)\.(\d+)/);
+    const aMatch = (a.key || '').match(/^OS(\d+)\.(\d+)/);
+    const bMatch = (b.key || '').match(/^OS(\d+)\.(\d+)/);
     if (!aMatch || !bMatch) return 0;
     const aMajor = parseInt(aMatch[1]);
     const bMajor = parseInt(bMatch[1]);
     if (aMajor !== bMajor) return bMajor - aMajor;
-    return parseInt(bMatch[2]) - parseInt(aMatch[2]);
+    const minorDiff = parseInt(bMatch[2]) - parseInt(aMatch[2]);
+    if (minorDiff !== 0) return minorDiff;
+    return (b.os || '').localeCompare(a.os || '', undefined, { numeric: true });
   }
 
   /**
@@ -402,9 +410,9 @@
           <span class="no-results-icon">🔍</span>
           <h3 style="color: var(--text-strong); margin-bottom: 0.5rem;">Không tìm thấy thiết bị phù hợp</h3>
           <p style="color: var(--muted); font-size: 0.95rem; max-width: 500px; margin: 0 auto;">
-            ${isOnlyActive 
-              ? 'Hiện tại hệ thống chỉ hiển thị các dòng máy đã có file ROM trên Google Drive. Bạn có thể bấm nút "Chế độ xem" phía trên để xem toàn bộ 121 dòng máy.' 
-              : 'Vui lòng thử tìm với từ khóa tên máy khác (ví dụ: K70, 14, F5) hoặc mã máy (houji, garnet).'}
+            ${isOnlyActive
+          ? 'Hiện tại hệ thống chỉ hiển thị các dòng máy đã có file ROM trên Google Drive. Bạn có thể bấm nút "Chế độ xem" phía trên để xem toàn bộ 121 dòng máy.'
+          : 'Vui lòng thử tìm với từ khóa tên máy khác (ví dụ: K70, 14, F5) hoặc mã máy (houji, garnet).'}
           </p>
         </div>
       `;
@@ -443,13 +451,13 @@
 
             <div class="device-os-chips">
               ${supportedOsList.slice(0, 3).map(osKey => {
-                const isAvail = dev.branches.some(b => b.osVersions.some(o => o.key === osKey && o.hasDownload));
-                return `
+        const isAvail = dev.branches.some(b => b.osVersions.some(o => o.key === osKey && o.hasDownload));
+        return `
                   <span class="os-chip ${isAvail ? 'available' : 'coming'}">
                     ${osKey}
                   </span>
                 `;
-              }).join('')}
+      }).join('')}
             </div>
 
             <div class="device-action-wrapper">

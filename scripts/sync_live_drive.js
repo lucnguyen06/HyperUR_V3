@@ -66,8 +66,24 @@ async function extractAllActiveRoms() {
             };
           }
 
-          activeRoms[codename].roms[osKey] = {
+          let romKey = osKey;
+          if (activeRoms[codename].roms[romKey]) {
+            const existing = activeRoms[codename].roms[romKey];
+            if (existing.os !== osBuild) {
+              activeRoms[codename].roms[existing.os] = existing;
+              delete activeRoms[codename].roms[romKey];
+              romKey = osBuild;
+            }
+          } else {
+            const isDuplicateOs = Object.keys(activeRoms[codename].roms).some(k => activeRoms[codename].roms[k].osKey === osKey);
+            if (isDuplicateOs) {
+              romKey = osBuild;
+            }
+          }
+
+          activeRoms[codename].roms[romKey] = {
             os: osBuild,
+            osKey: osKey,
             android: androidVer,
             region: f.region,
             download: `https://drive.google.com/uc?export=download&id=${fileId}`,
