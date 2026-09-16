@@ -17,9 +17,9 @@ const CONFIG = {
   // 1. ID thư mục Google Drive chính (Link Tổng)
   FOLDER_ID: "1WxXT6Mx7ZdknKh_gd-dQr0Jturtkypyq",
 
-  // Danh sách thư mục quét đã được lược bỏ (đã gỡ 2026-09-16) vì ID cũ hết hạn/bị revoke.
-  // Code chỉ quét đệ quy từ FOLDER_ID gốc và tự nhận diện region theo tên thư mục con
-  // (chứa "glb"/"global" -> global, mặc định còn lại -> cn).
+  // (Đã bỏ SUBFOLDERS từ 2026-09-16 vì ID cũ hết hạn/revoke quyền.
+  //  Bây giờ chỉ quét đệ quy từ FOLDER_ID gốc, tự nhận diện region theo tên thư mục con
+  //  - chứa "glb"/"global" -> "global", còn lại mặc định -> "cn".)
 
   // 2. Cấu hình GitOps GitHub (Tùy chọn tự động commit active_roms.json lên GitHub)
   GITHUB: {
@@ -111,6 +111,11 @@ function parseRomFileName(fileName) {
  * Quét toàn bộ file trong một thư mục Google Drive
  */
 function scanFolderFiles(folder, defaultRegion, activeRoms, uniqueDevices) {
+  if (!folder) {
+    console.warn("scanFolderFiles: folder không hợp lệ, bỏ qua.");
+    return;
+  }
+
   const files = folder.getFiles();
 
   while (files.hasNext()) {
@@ -190,23 +195,14 @@ function scanGoogleDriveFolder() {
 
   const uniqueDevices = new Set();
 
-  // 1. Quét theo danh sách subfolders đã định nghĩa trước
-  if (CONFIG.SUBFOLDERS && CONFIG.SUBFOLDERS.length > 0) {
-    for (let i = 0; i < CONFIG.SUBFOLDERS.length; i++) {
-      const sub = CONFIG.SUBFOLDERS[i];
-      try {
-        const f = DriveApp.getFolderById(sub.id);
-        scanFolderFiles(f, sub.region, activeRoms, uniqueDevices);
-      } catch (err) {
-        console.warn("Không thể truy cập thư mục " + sub.name + ": " + err.toString());
-      }
-    }
-  }
-
-  // 2. Quét đệ quy từ thư mục gốc
+  // Chỉ quét đệ quy từ FOLDER_ID gốc (đã bỏ SUBFOLDERS từ 2026-09-16 vì ID hết hạn/revoke)
   if (CONFIG.FOLDER_ID && CONFIG.FOLDER_ID.trim() !== "") {
     try {
       const rootFolder = DriveApp.getFolderById(CONFIG.FOLDER_ID);
+      if (!rootFolder) {
+        console.warn("Không truy cập được thư mục gốc: ID không hợp lệ hoặc mất quyền.");
+        return activeRoms;
+      }
       scanFolderFiles(rootFolder, "cn", activeRoms, uniqueDevices);
 
       // Quét tất cả thư mục con bên trong thư mục gốc
