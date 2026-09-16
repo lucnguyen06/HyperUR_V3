@@ -80,7 +80,7 @@ Hệ thống Intro Loading Screen mang đậm ngôn ngữ thiết kế **HyperOS
     </span>
     <span class="welcome-badge-status">
         <span class="welcome-status-dot"></span>
-        <span>V3.0 ONLINE</span>
+        <span>STOCK-BASED CUSTOM ROM • XIAOMI / REDMI</span>
     </span>
 </div>
 ```
