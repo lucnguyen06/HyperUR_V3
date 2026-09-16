@@ -585,7 +585,7 @@
                 if (progressBar) {
                     progressBar.style.width = '0%';
                     const startTime = performance.now();
-                    const totalDuration = 5000; // 5.0s hiển thị êm ái, rõ ràng
+                    const totalDuration = 4000; // 4.0s hiển thị êm ái, rõ ràng
                     clearInterval(progressInterval);
 
                     progressInterval = setInterval(function() {
@@ -602,7 +602,7 @@
                         }
                     }, 20);
                 } else {
-                    setTimeout(dismissIntro, 5000);
+                    setTimeout(dismissIntro, 4000);
                 }
             }
 
