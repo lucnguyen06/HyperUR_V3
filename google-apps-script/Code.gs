@@ -246,6 +246,92 @@ function doGet(e) {
 
 /**
  * =========================================================================
+ * ENDPOINT TIẾP NHẬN FORM ĐĂNG KÝ SERIAL (doPost)
+ * Nhận dữ liệu đăng ký serial từ register.html và lưu vào Google Sheet
+ * =========================================================================
+ */
+function doPost(e) {
+  try {
+    let data = {};
+    if (e.postData && e.postData.contents) {
+      try {
+        data = JSON.parse(e.postData.contents);
+      } catch (jsonErr) {
+        data = e.parameter || {};
+      }
+    } else if (e.parameter) {
+      data = e.parameter;
+    }
+
+    const serial = (data.serial || data.serialNumber || "").toString().trim().toUpperCase();
+    const codename = (data.codename || data.deviceCodename || "").toString().trim().toLowerCase();
+    const plan = data.plan || data.registrationType || "Đăng kí có Ủng hộ (Vĩnh viễn)";
+    const paymentMethod = data.paymentMethod || "Góp Quỹ MoMo (Chính Thức)";
+    const senderName = data.senderName || "";
+    const transactionCode = data.transactionCode || "";
+    const timestamp = data.timestamp || new Date().toISOString();
+
+    // Mở hoặc tạo Google Sheet lưu danh sách đăng ký
+    let ss = null;
+    try {
+      ss = SpreadsheetApp.getActiveSpreadsheet();
+    } catch (err) {}
+
+    if (!ss && CONFIG.SPREADSHEET_ID) {
+      try {
+        ss = SpreadsheetApp.openById(CONFIG.SPREADSHEET_ID);
+      } catch (err) {}
+    }
+
+    if (ss) {
+      let sheet = ss.getSheetByName("Serial_Registrations");
+      if (!sheet) {
+        sheet = ss.insertSheet("Serial_Registrations");
+        // Header
+        sheet.appendRow([
+          "Thời Gian",
+          "Số Serial",
+          "Mã Thiết Bị (Codename)",
+          "Gói Đăng Ký",
+          "Phương Thức Ủng Hộ",
+          "Tên Người Gửi",
+          "Nội Dung & Mã GD",
+          "Trạng Thái"
+        ]);
+        sheet.getRange(1, 1, 1, 8).setFontWeight("bold").setBackground("#1e293b").setFontColor("#ffffff");
+      }
+
+      sheet.appendRow([
+        new Date().toLocaleString("vi-VN"),
+        serial,
+        codename,
+        plan,
+        paymentMethod,
+        senderName,
+        transactionCode,
+        "Chờ kích hoạt"
+      ]);
+    }
+
+    const response = {
+      success: true,
+      message: "Đã tiếp nhận thông tin đăng ký serial thành công!",
+      serial: serial,
+      codename: codename
+    };
+
+    return ContentService.createTextOutput(JSON.stringify(response))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({
+      success: false,
+      error: err.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+/**
+ * =========================================================================
  * HÀM TRIGGER CHẠY ĐỊNH KỲ (MỖI 5 PHÚT)
  * =========================================================================
  */

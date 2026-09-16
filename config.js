@@ -5,7 +5,7 @@
 
 window.HYPERUR_CONFIG = {
   // 1. Google Apps Script Web App URL (Realtime API)
-  GOOGLE_DRIVE_API_URL: "https://script.google.com/macros/s/AKfycbwjfPzSOkWstEAAZw4D6TqzS6D9dshHRHBkyW_mip7ledWRjSZSCt_Z6MmVfA-Lu8V-/exec",
+  GOOGLE_DRIVE_API_URL: "https://script.google.com/macros/s/AKfycbxKY0UfmpiB3famqdN7GkYeIVU002SVQDeIA0MGOrIL3MKj6MzFgE3OYNiqMhRET6VI/exec",
 
   // 2. Chế độ lọc thiết bị theo Google Drive:
   // true  -> CHỈ HIỂN THỊ những thiết bị ĐANG CÓ ROM trên Google Drive (theo yêu cầu của bạn).
@@ -22,6 +22,9 @@ window.HYPERUR_CONFIG = {
   DRIVE_ROOT_FOLDER_URL: "https://drive.google.com/drive/u/2/folders/1WxXT6Mx7ZdknKh_gd-dQr0Jturtkypyq",
 
   // 6. Tên miền chính thức của website
-  SITE_DOMAIN: "https://hyperur.io.vn"
+  SITE_DOMAIN: "https://hyperur.io.vn",
+
+  // 7. Cấu hình Web App Google Apps Script nhận form Đăng ký Serial (doPost)
+  SERIAL_REGISTER_API_URL: "https://script.google.com/macros/s/AKfycbwjfPzSOkWstEAAZw4D6TqzS6D9dshHRHBkyW_mip7ledWRjSZSCt_Z6MmVfA-Lu8V-/exec"
 };
 

@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Đăng ký Serial HyperUR - Cổng đăng ký kích hoạt bản quyền ROM HyperUR V3 chính thức. Đăng ký có ủng hộ (Vĩnh viễn) dành cho các dòng máy Xiaomi, Redmi.">
+    <title>Đăng Ký HyperUR - Kích Hoạt Serial Bản Quyền Vĩnh Viễn</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2228%22 fill=%22%233b82f6%22/><text x=%2250%22 y=%2268%22 font-size=%2255%22 font-family=%22system-ui,sans-serif%22 font-weight=%22800%22 fill=%22%23ffffff%22 text-anchor=%22middle%22>H</text></svg>">
+    
+    <!-- Preconnect & Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Design System Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Floating Glass Header & Navbar -->
+    <header class="navbar-wrapper">
+        <nav class="navbar glass" id="navbar">
+            <div class="navbar-inner">
+                <!-- Brand Logo -->
+                <a href="index.html" class="navbar-brand">
+                    <span>Hyper<span class="brand-accent">UR</span></span>
+                </a>
+
+                <!-- Navigation Links -->
+                <ul class="navbar-menu" id="nav-menu">
+                    <li><a href="index.html" class="navbar-link">Trang Chủ</a></li>
+                    <li><a href="download.html" class="navbar-link">Tải ROM</a></li>
+                    <li><a href="firmware.html" class="navbar-link">Thông Tin FW</a></li>
+                    <li><a href="guide.html" class="navbar-link">Hướng Dẫn</a></li>
+                    <li><a href="register.html" class="navbar-link active">Đăng Ký Serial</a></li>
+                    <li class="mobile-nav-divider" aria-hidden="true"></li>
+                    <li class="mobile-nav-footer">
+                        <a href="https://t.me/hypermodupdate" target="_blank" rel="noopener noreferrer" class="mobile-nav-ext-link" aria-label="Tham gia kênh Telegram">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                            </svg>
+                            <span>Kênh Telegram</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Navbar Actions -->
+                <div class="navbar-actions">
+                    <!-- Mobile Menu Hamburger Toggle -->
+                    <button class="btn-icon mobile-menu-btn" id="mobile-menu-btn" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="nav-menu" title="Menu">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                            <line x1="4" y1="7" x2="20" y2="7" class="bar-top"></line>
+                            <line x1="4" y1="12" x2="20" y2="12" class="bar-mid"></line>
+                            <line x1="4" y1="17" x2="20" y2="17" class="bar-bot"></line>
+                        </svg>
+                    </button>
+
+                    <!-- Theme Toggle Button -->
+                    <button class="btn-icon" id="theme-btn" aria-label="Đổi giao diện Sáng/Tối" title="Chuyển chế độ sáng/tối">
+                        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="display: none;">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Backdrop -->
+    <div class="mobile-nav-backdrop" id="mobile-nav-backdrop" aria-hidden="true"></div>
+
+    <!-- Main Registration Section -->
+    <main class="main-content">
+        <div class="register-page-wrapper">
+            <!-- Hero Header -->
+            <header class="register-hero">
+                <span class="kicker">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    HỆ THỐNG KÍCH HOẠT BẢN QUYỀN
+                </span>
+                <h1>Đăng kí HyperUR</h1>
+                <p>Điền chính xác số Serial và mã máy để kích hoạt giấy phép sử dụng ROM HyperUR vĩnh viễn, cập nhật không giới hạn và nhận hỗ trợ ưu tiên.</p>
+            </header>
+
+            <!-- Registration Form Card -->
+            <section class="register-card" aria-labelledby="form-heading">
+                <form id="serial-register-form" novalidate>
+                    <!-- =========================================================
+                         MỤC 1: THÔNG TIN THIẾT BỊ
+                         ========================================================= -->
+                    <div class="reg-section">
+                        <div class="reg-section-header">
+                            <span class="reg-section-badge">1</span>
+                            <h2 class="reg-section-title" id="form-heading">Thông Tin Thiết Bị Của Bạn</h2>
+                        </div>
+
+                        <!-- Trường 1: Số serial thiết bị -->
+                        <div class="reg-form-group">
+                            <label for="serial-input" class="reg-label">
+                                <span>Số serial thiết bị của bạn?<span class="reg-required">*</span></span>
+                                <span class="reg-hint" id="serial-counter">0 ký tự</span>
+                            </label>
+
+                            <!-- Alert Note: Chỉ điền số serial, không điền bất kì kí tự nào khác -->
+                            <div class="serial-alert-banner" role="alert">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                </svg>
+                                <div>
+                                    <strong>Lưu ý quan trọng:</strong> Chỉ điền số serial, không điền bất kì kí tự nào khác (không thêm khoảng trắng, dấu hai chấm, tiền tố <code>SN:</code> hoặc <code>Serial:</code>). Hệ thống sẽ tự động lọc sạch.
+                                </div>
+                            </div>
+
+                            <div class="reg-input-wrapper">
+                                <span class="reg-input-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                                    </svg>
+                                </span>
+                                <input 
+                                    type="text" 
+                                    id="serial-input" 
+                                    name="serialNumber"
+                                    class="reg-input serial-field" 
+                                    placeholder="VD: A1B2C3D4 hoặc 0123456789" 
+                                    autocomplete="off" 
+                                    spellcheck="false"
+                                    required
+                                    aria-describedby="serial-status"
+                                >
+                                <button type="button" id="serial-clean-btn" class="reg-input-clean-btn" aria-label="Xóa nhanh serial">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div class="serial-clean-status" id="serial-status">
+                                <span id="serial-clean-preview">Đang chờ nhập serial hợp lệ...</span>
+                                <span id="serial-valid-tag" class="serial-status-valid" style="display: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    Chuẩn định dạng
+                                </span>
+                            </div>
+
+                            <!-- Accordion hướng dẫn tìm serial -->
+                            <details class="serial-help-accordion">
+                                <summary class="serial-help-summary">
+                                    <span>🔍 Bạn chưa biết cách lấy số Serial thiết bị? Nhấn xem hướng dẫn</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </summary>
+                                <div class="serial-help-body">
+                                    <p>Bạn có thể lấy số Serial bằng một trong 3 cách sau:</p>
+                                    <ol>
+                                        <li><strong>Xem trong Cài đặt (Khi máy đang bật):</strong> Vào <em>Cài đặt &rarr; Giới thiệu điện thoại &rarr; Tất cả thông số &rarr; Trạng thái &rarr; Số sê-ri</em>.</li>
+                                        <li><strong>Qua chế độ Fastboot (Khuyên dùng khi cài ROM):</strong> Đưa máy vào Fastboot, cắm cáp vào máy tính và mở Command Prompt gõ: <code>fastboot getvar serialno</code>.</li>
+                                        <li><strong>Qua ADB:</strong> Bật Gỡ lỗi USB và gõ lệnh: <code>adb get-serialno</code>.</li>
+                                    </ol>
+                                </div>
+                            </details>
+                        </div>
+
+                        <!-- Trường 2: Mã thiết bị (codename) -->
+                        <div class="reg-form-group">
+                            <label for="codename-input" class="reg-label">
+                                <span>Mã thiết bị của bạn (codename)?<span class="reg-required">*</span></span>
+                                <span class="reg-hint">VD: amethyst, houji, aurora...</span>
+                            </label>
+
+                            <div class="reg-input-wrapper">
+                                <span class="reg-input-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                                    </svg>
+                                </span>
+                                <input 
+                                    type="text" 
+                                    id="codename-input" 
+                                    name="deviceCodename"
+                                    class="reg-input" 
+                                    placeholder="Gõ mã máy hoặc tên thiết bị (VD: amethyst, Xiaomi 14...)" 
+                                    list="devices-datalist"
+                                    autocomplete="off"
+                                    spellcheck="false"
+                                    required
+                                >
+                                <datalist id="devices-datalist">
+                                    <!-- Dữ liệu được nạp động từ devices_catalog.json -->
+                                </datalist>
+                            </div>
+
+                            <!-- Hiển thị xem trước thiết bị khi nhận diện được codename -->
+                            <div class="device-preview-box" id="device-preview-box">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                <span id="device-preview-text">Nhận diện: Đang chọn...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- =========================================================
+                         MỤC 2: LOẠI ĐĂNG KÝ
+                         ========================================================= -->
+                    <div class="reg-section">
+                        <!-- Thông Báo Team UR về Mức Ủng Hộ Mới -->
+                        <div class="team-announcement-banner">
+                            <div class="announcement-top-row">
+                                <span class="announcement-tag">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                                        <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"></path>
+                                    </svg>
+                                    <span>THÔNG BÁO TỪ TEAM HYPERUR</span>
+                                </span>
+                                <span class="announcement-badge-new">ÁP DỤNG TỪ THỜI ĐIỂM NÀY</span>
+                            </div>
+
+                            <p style="margin: 0; font-size: 0.92rem; color: var(--text-strong); font-weight: 600;">
+                                Quyết định chung của toàn bộ Team UR về việc điều chỉnh mức ủng hộ đăng ký Serial:
+                            </p>
+
+                            <div class="announcement-pricing-box">
+                                <span class="announcement-price-new">💸 40.000đ / thiết bị</span>
+                            </div>
+                        </div>
+
+                        <div class="reg-section-header">
+                            <span class="reg-section-badge">2</span>
+                            <h2 class="reg-section-title">Loại Đăng Ký Bạn Muốn?</h2>
+                        </div>
+
+                        <!-- Gói: Đăng kí có Ủng hộ (Vĩnh viễn) -->
+                        <div class="reg-plan-card" id="plan-selected-card">
+                            <div class="reg-plan-header">
+                                <div class="reg-plan-title">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color: var(--accent-primary);">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                                    </svg>
+                                    <span>Đăng kí có Ủng hộ (Vĩnh viễn)</span>
+                                </div>
+                                <span class="reg-vip-badge">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                    </svg>
+                                    VIP TRỌN ĐỜI
+                                </span>
+                            </div>
+
+                            <div class="reg-plan-price-tag">
+                                <span class="reg-plan-price-val">40.000đ</span>
+                                <span class="reg-plan-price-sub">/ Thiết Bị (Kích Hoạt Vĩnh Viễn)</span>
+                            </div>
+
+                            <p style="font-size: 0.88rem; color: var(--muted); margin: 0;">Gói đăng ký ủng hộ cho đội ngũ phát triển ROM HyperUR. Quyền lợi kích hoạt bản quyền vĩnh viễn trên thiết bị đăng ký.</p>
+
+                            <ul class="reg-plan-features">
+                                <li>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <span>Kích hoạt bản quyền vĩnh viễn</span>
+                                </li>
+                                <li>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <span>Nhận mọi bản cập nhật ROM trọn đời</span>
+                                </li>
+                                <li>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <span>Mở khóa tối đa FPS & Full tính năng</span>
+                                </li>
+                                <li>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <span>Hỗ trợ kỹ thuật ưu tiên từ Devs</span>
+                                </li>
+                            </ul>
+
+                            <input type="hidden" name="registrationType" id="reg-type-value" value="Đăng kí có Ủng hộ (Vĩnh viễn)">
+                        </div>
+                    </div>
+
+                    <!-- =========================================================
+                         MỤC 3: PHƯƠNG THỨC ỦNG HỘ & THÔNG TIN ĐỐI SOÁT
+                         ========================================================= -->
+                    <div class="reg-section">
+                        <div class="reg-section-header">
+                            <span class="reg-section-badge">3</span>
+                            <h2 class="reg-section-title">Phương Thức & Thông Tin Ủng Hộ</h2>
+                        </div>
+
+                        <!-- Chọn Phương thức Ủng hộ -->
+                        <div class="reg-form-group">
+                            <label class="reg-label">
+                                <span>Phương thức Ủng hộ?<span class="reg-required">*</span></span>
+                                <span class="reg-hint">Kênh chính thức & minh bạch</span>
+                            </label>
+
+                            <div class="payment-methods-grid" id="payment-methods-grid" role="radiogroup">
+                                <div class="payment-method-card active" data-method="momo" role="radio" aria-checked="true" tabindex="0">
+                                    <div class="payment-method-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #e879f9;">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <path d="M8 12h8"></path>
+                                            <path d="M12 8v8"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="payment-method-name">Góp Quỹ MoMo (Chính Thức)</div>
+                                    <div class="payment-method-desc">Ủng hộ qua Quỹ MoMo HyperUR minh bạch 100%</div>
+                                </div>
+
+                                <div class="payment-method-card" data-method="binance" role="radio" aria-checked="false" tabindex="0">
+                                    <div class="payment-method-icon" style="background: rgba(240, 185, 11, 0.12); border: 1px solid rgba(240, 185, 11, 0.3);">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="#F0B90B">
+                                            <path d="M16.624 13.9202l2.715-2.715-2.735-2.735-2.715 2.735 2.735 2.715zm-4.624-4.624l2.735-2.735-2.735-2.735-2.735 2.735 2.735 2.735zm-4.624 4.624l2.735-2.715-2.735-2.735-2.715 2.735 2.715 2.715zm4.624 4.624l2.735-2.735-2.735-2.735-2.735 2.735 2.735 2.735zm0-3.324l1.39-1.39-1.39-1.39-1.39 1.39 1.39 1.39zm0-10.22l8.03 8.03-3.32 3.32-4.71-4.71-4.71 4.71-3.32-3.32 8.03-8.03zm-8.03 12.03l3.32-3.32 4.71 4.71 4.71-4.71 3.32 3.32-8.03 8.03-8.03-8.03z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="payment-method-name" style="color: #fbbf24;">Binance Pay (Crypto)</div>
+                                    <div class="payment-method-desc">UID: 833477683 • Nickname: lucnguyen06 • 5$</div>
+                                </div>
+
+                                <div class="payment-method-card" data-method="paypal" role="radio" aria-checked="false" tabindex="0">
+                                    <div class="payment-method-icon" style="background: rgba(0, 121, 193, 0.15); border: 1px solid rgba(0, 121, 193, 0.35);">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="#38bdf8">
+                                            <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.82.83 4.722-.72 2.884-2.678 4.887-5.513 5.64 1.83.67 2.656 2.308 2.053 4.723-.628 2.512-2.737 4.442-5.748 4.442H8.884l-1.175 4.7c-.082.519-.53.901-1.054.901l.421-1.661zm4.183-11.455c1.78 0 3.003-.984 3.376-2.478.362-1.448-.616-2.544-2.42-2.544H7.572l-1.07 5.022h4.757z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="payment-method-name" style="color: #38bdf8;">PayPal (Quốc Tế)</div>
+                                    <div class="payment-method-desc">paypal.me/lucnguyeen • Nguyễn Lực • 5$</div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="paymentMethod" id="payment-method-value" value="Góp Quỹ MoMo (Chính Thức)">
+                        </div>
+
+                        <!-- Khung chi tiết tài khoản nhận ủng hộ -->
+                        <div class="payment-detail-box" id="payment-detail-box">
+                            <div class="payment-qr-wrap">
+                                <img src="images/QR_MOMO_DNT_HYPERUR.jpg" 
+                                     alt="Quét mã Góp Quỹ HyperUR trên MoMo" 
+                                     class="payment-qr-img" 
+                                     id="payment-qr-image"
+                                     loading="lazy">
+                                <span class="payment-qr-caption" id="payment-qr-caption">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+                                    <span>Góp Quỹ trên MoMo</span>
+                                </span>
+                            </div>
+
+                            <div class="payment-info-rows">
+                                <div class="payment-info-item">
+                                    <span class="payment-info-label" id="bank-name-label">Kênh Tiếp Nhận:</span>
+                                    <div class="payment-info-value-row">
+                                        <span class="payment-info-value" id="bank-name-val">Quỹ HyperUR (Nền tảng Góp Quỹ MoMo)</span>
+                                    </div>
+                                </div>
+
+                                <div class="payment-info-item">
+                                    <span class="payment-info-label" id="bank-owner-label">Người Đại Diện:</span>
+                                    <div class="payment-info-value-row">
+                                        <span class="payment-info-value" id="bank-owner-val">NGUYEN TAN LUC (NH: MoMo)</span>
+                                        <button type="button" class="btn-copy-mini" id="btn-copy-owner" data-copy="NGUYEN TAN LUC" style="display: none;" aria-label="Sao chép tên người nhận">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                            <span id="btn-copy-owner-text">Chép</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="payment-info-item" id="fund-code-row">
+                                    <span class="payment-info-label" id="fund-code-label">Mã Quỹ MoMo:</span>
+                                    <div class="payment-info-value-row">
+                                        <span class="payment-info-value" id="bank-acc-val">PSG2625519200000013</span>
+                                        <button type="button" class="btn-copy-mini" id="btn-copy-acc" data-copy="PSG2625519200000013" aria-label="Sao chép mã quỹ MoMo">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                            <span id="btn-copy-acc-text">Chép</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="payment-info-item" id="fund-link-row">
+                                    <span class="payment-info-label" id="fund-link-label">Link Góp Quỹ Trực Tiếp:</span>
+                                    <div class="payment-info-value-row" style="margin-bottom: 0.35rem;">
+                                        <span class="payment-info-value" id="fund-link-url" style="font-size: 0.86rem; word-break: break-all; color: var(--accent-cyan);">https://quy.momo.vn/v2/APNLXaw0uN?cover=da0c</span>
+                                        <button type="button" class="btn-copy-mini" id="btn-copy-fund-link" data-copy="https://quy.momo.vn/v2/APNLXaw0uN?cover=da0c" aria-label="Sao chép link">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                            <span>Chép Link</span>
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <a href="https://quy.momo.vn/v2/APNLXaw0uN?cover=da0c" target="_blank" rel="noopener noreferrer" class="btn-momo-link" id="btn-open-direct-link">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                            </svg>
+                                            <span id="btn-open-direct-text">Mở Trang Góp Quỹ MoMo Trực Tiếp</span>
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                                <polyline points="7 7 17 7 17 17"></polyline>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- Hướng dẫn Binance Pay -->
+                                <div class="payment-info-item" id="binance-guide-row" style="display: none;">
+                                    <span class="payment-info-label" style="color: #fbbf24;">Hướng Dẫn Thanh Toán Binance Pay:</span>
+                                    <div class="binance-guide-box">
+                                        <div>1. Mở ứng dụng <strong>Binance</strong> &rarr; Chọn biểu tượng <strong>Pay</strong> (hoặc Quét QR).</div>
+                                        <div>2. Quét mã QR bên trái hoặc nhập UID: <strong>833477683</strong>.</div>
+                                        <div>3. Kiểm tra Nickname: <strong>lucnguyen06</strong> & xác nhận số tiền (<strong>5 USDT</strong> hoặc <strong>5$</strong>).</div>
+                                    </div>
+                                </div>
+
+                                <!-- Hướng dẫn PayPal -->
+                                <div class="payment-info-item" id="paypal-guide-row" style="display: none;">
+                                    <span class="payment-info-label" style="color: #38bdf8;">Hướng Dẫn Thanh Toán PayPal:</span>
+                                    <div class="binance-guide-box" style="background: rgba(0, 121, 193, 0.08); border-color: rgba(56, 189, 248, 0.35); color: #bae6fd;">
+                                        <div>1. Nhấn nút <strong>Mở Trang PayPal</strong> bên trên hoặc quét mã QR bên trái.</div>
+                                        <div>2. Kiểm tra tên người nhận: <strong>Nguyễn Lực</strong> (<code>paypal.me/lucnguyeen</code>).</div>
+                                        <div>3. Nhập số tiền <strong>5$ (5 USD)</strong> & ghi chú Serial máy của bạn.</div>
+                                    </div>
+                                </div>
+
+                                <div class="payment-info-item" id="donation-amount-row">
+                                    <span class="payment-info-label">Mức Tiền Ủng Hộ:</span>
+                                    <div class="payment-info-value-row">
+                                        <span class="payment-info-value" id="donation-amount-val" style="color: #fbbf24; font-size: 1.15rem;">40.000đ / thiết bị</span>
+                                        <button type="button" class="btn-copy-mini" id="btn-copy-amount" data-copy="40000" aria-label="Sao chép số tiền">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                            <span id="btn-copy-amount-text">Chép 40.000đ</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="payment-info-item">
+                                    <span class="payment-info-label">Nội Dung Ủng Hộ Gợi Ý:</span>
+                                    <div class="payment-info-value-row">
+                                        <span class="payment-info-value" id="suggested-syntax">UR [SERIAL]</span>
+                                        <button type="button" class="btn-copy-mini" id="btn-copy-syntax-quick" aria-label="Sao chép nội dung gợi ý">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                            <span>Chép</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Trường: Tên người gửi Ủng hộ -->
+                        <div class="reg-form-group" style="margin-top: 1.5rem;">
+                            <label for="sender-name-input" class="reg-label">
+                                <span>Tên người gửi Ủng hộ?<span class="reg-required">*</span></span>
+                                <span class="reg-hint">Tên tài khoản hoặc Nickname của bạn</span>
+                            </label>
+                            <div class="reg-input-wrapper">
+                                <span class="reg-input-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
+                                    </svg>
+                                </span>
+                                <input 
+                                    type="text" 
+                                    id="sender-name-input" 
+                                    name="senderName" 
+                                    class="reg-input" 
+                                    placeholder="VD: Nguyễn Văn A hoặc @username_telegram" 
+                                    required
+                                >
+                            </div>
+                        </div>
+
+                        <!-- Trường: Nội dung Ủng hộ + Mã giao dịch (nếu có) -->
+                        <div class="reg-form-group">
+                            <label for="transaction-input" class="reg-label">
+                                <span>Nội dung Ủng hộ + Mã giao dịch (nếu có)?<span class="reg-required">*</span></span>
+                                <span class="reg-hint">Mã GD MoMo / Binance Pay TxID / Nội dung chuyển</span>
+                            </label>
+                            <div class="reg-input-wrapper">
+                                <span class="reg-input-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                        <line x1="4" y1="9" x2="20" y2="9"></line>
+                                        <line x1="4" y1="15" x2="20" y2="15"></line>
+                                        <line x1="10" y1="3" x2="8" y2="21"></line>
+                                        <line x1="16" y1="3" x2="14" y2="21"></line>
+                                    </svg>
+                                </span>
+                                <input 
+                                    type="text" 
+                                    id="transaction-input" 
+                                    name="transactionCode" 
+                                    class="reg-input" 
+                                    placeholder="VD: Mã GD MoMo, Binance Pay TxID hoặc UR A1B2C3D4..." 
+                                    required
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- =========================================================
+                         MỤC 4: HÀNH ĐỘNG GỬI ĐĂNG KÝ
+                         ========================================================= -->
+                    <div class="reg-actions-wrapper">
+                        <button type="submit" id="btn-submit-form" class="btn-submit-main">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            <span>Xác Nhận & Gửi Đăng Ký HyperUR</span>
+                        </button>
+
+                        <div class="reg-secondary-actions">
+                            <button type="button" id="btn-open-telegram" class="btn-secondary-telegram">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                                </svg>
+                                <span>Gửi Tin Nhắn Telegram Cho Admin</span>
+                            </button>
+
+                            <button type="button" id="btn-copy-full-text" class="btn-secondary-copy">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                                <span>Sao Chép Cú Pháp Đăng Ký</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Lịch sử đăng ký cục bộ trên trình duyệt này -->
+            <section class="reg-history-card" id="reg-history-card" style="display: none;">
+                <div class="reg-history-title">
+                    <span>Lịch Sử Đăng Ký Gần Đây (Thiết Bị Này)</span>
+                    <button type="button" id="btn-clear-history" class="btn-copy-mini">Xóa lịch sử</button>
+                </div>
+                <div class="reg-history-list" id="reg-history-list"></div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Dialog Modal: Xác Nhận Thành Công -->
+    <dialog class="reg-modal" id="success-dialog">
+        <div class="reg-modal-content">
+            <div class="reg-modal-icon">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+            <h2 class="reg-modal-title">Gửi Đăng Ký Thành Công!</h2>
+            <p class="reg-modal-desc">Thông tin đăng ký serial của bạn đã được ghi nhận. Đội ngũ HyperUR sẽ đối soát và kích hoạt bản quyền trong thời gian sớm nhất.</p>
+
+            <div class="reg-modal-details">
+                <div>
+                    <span>Số Serial:</span>
+                    <span id="modal-serial-val">---</span>
+                </div>
+                <div>
+                    <span>Mã Thiết Bị (Codename):</span>
+                    <span id="modal-codename-val">---</span>
+                </div>
+                <div>
+                    <span>Gói Đăng Ký:</span>
+                    <span id="modal-plan-val">Có Ủng hộ (Vĩnh viễn)</span>
+                </div>
+                <div>
+                    <span>Mức Ủng Hộ:</span>
+                    <span style="color: #fbbf24; font-weight: 700;">40.000đ / thiết bị</span>
+                </div>
+                <div>
+                    <span>Người Gửi:</span>
+                    <span id="modal-sender-val">---</span>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+                <a href="https://t.me/lcnguy06" id="modal-telegram-link" target="_blank" rel="noopener noreferrer" class="btn-primary" style="justify-content: center; text-decoration: none;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                    </svg>
+                    <span>Báo Admin Qua Telegram Ngay</span>
+                </a>
+                <button type="button" class="btn-ghost" id="modal-close-btn" style="justify-content: center;">
+                    <span>Đóng Cửa Sổ</span>
+                </button>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Global Site Footer -->
+    <footer class="site-footer">
+        <div class="footer-glow-layer" aria-hidden="true"></div>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <!-- Col 1: Brand & Status -->
+                <div class="footer-brand-col">
+                    <a href="index.html" class="footer-logo">
+                        <img src="https://t.me/i/userpic/320/hypermodupdate.jpg" alt="HyperUR Logo" class="footer-brand-icon" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='images/avatar_channel.jpg'">
+                        <span class="logo-text">Hyper<span class="brand-accent">UR</span></span>
+                        <span class="footer-version-tag">V3.0</span>
+                    </a>
+                    <p class="footer-desc">Dự án ROM Custom Stock-based hàng đầu cho hệ sinh thái thiết bị Xiaomi tại Việt Nam. Tinh chỉnh hiệu năng mượt mà, tối ưu pin và an toàn tuyệt đối.</p>
+                    <div class="footer-status-pill">
+                        <span class="status-pulse-dot"></span>
+                        <span>Hệ thống đăng ký kích hoạt Serial chính thức</span>
+                    </div>
+                </div>
+
+                <!-- Col 2: Core Developers -->
+                <div class="footer-team-col">
+                    <h4 class="footer-heading">Đội Ngũ Phát Triển</h4>
+                    <div class="footer-cards-list">
+                        <a href="https://t.me/lcnguy06" target="_blank" rel="noopener noreferrer" class="footer-member-card">
+                            <div class="footer-member-avatar">
+                                <img src="https://t.me/i/userpic/320/lcnguy06.jpg" alt="@lcnguy06" class="footer-avatar-img" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='images/avatar_lcnguy06.jpg'">
+                            </div>
+                            <div class="footer-member-info">
+                                <span class="footer-member-name">@lcnguy06 (lucnguyen06)</span>
+                                <span class="footer-member-role">Lead & Dev</span>
+                            </div>
+                            <svg class="footer-arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                        </a>
+                        <a href="https://t.me/Usagi79" target="_blank" rel="noopener noreferrer" class="footer-member-card">
+                            <div class="footer-member-avatar">
+                                <img src="https://t.me/i/userpic/320/Usagi79.jpg" alt="@Usagi79" class="footer-avatar-img" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='images/avatar_usagi79.jpg'">
+                            </div>
+                            <div class="footer-member-info">
+                                <span class="footer-member-name">@Usagi79</span>
+                                <span class="footer-member-role">Lead & Dev</span>
+                            </div>
+                            <svg class="footer-arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 3: Community & Resources -->
+                <div class="footer-community-col">
+                    <h4 class="footer-heading">Cộng Đồng HyperUR</h4>
+                    <div class="footer-cards-list">
+                        <a href="https://t.me/hypermodupdate" target="_blank" rel="noopener noreferrer" class="footer-member-card">
+                            <div class="footer-member-avatar">
+                                <img src="https://t.me/i/userpic/320/hypermodupdate.jpg" alt="Channel Huper Ultra Rate" class="footer-avatar-img" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='images/avatar_channel.jpg'">
+                            </div>
+                            <div class="footer-member-info">
+                                <span class="footer-member-name">Channel Huper Ultra Rate</span>
+                                <span class="footer-member-role">Kênh Cập Nhật ROM</span>
+                            </div>
+                            <svg class="footer-arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                        </a>
+                        <a href="https://t.me/HuperUltraRateChat" target="_blank" rel="noopener noreferrer" class="footer-member-card">
+                            <div class="footer-member-avatar">
+                                <img src="https://t.me/i/userpic/320/HuperUltraRateChat.jpg" alt="Chat Huper Ultra Rate" class="footer-avatar-img" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='images/avatar_chat.jpg'">
+                            </div>
+                            <div class="footer-member-info">
+                                <span class="footer-member-name">Chat Huper Ultra Rate</span>
+                                <span class="footer-member-role">Nhóm Thảo Luận 24/7</span>
+                            </div>
+                            <svg class="footer-arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom Bar -->
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>© 2026 HYPERUR TEAM. BẢO LƯU MỌI QUYỀN.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="reg-toast" id="reg-toast" role="status" aria-live="polite">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--accent-emerald);">
+            <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span id="toast-text">Thông báo</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script src="devices.js"></script>
+    <script>
+        (function() {
+            'use strict';
+
+            // DOM Elements
+            const form = document.getElementById('serial-register-form');
+            const serialInput = document.getElementById('serial-input');
+            const serialCounter = document.getElementById('serial-counter');
+            const serialCleanBtn = document.getElementById('serial-clean-btn');
+            const serialCleanPreview = document.getElementById('serial-clean-preview');
+            const serialValidTag = document.getElementById('serial-valid-tag');
+            
+            const codenameInput = document.getElementById('codename-input');
+            const datalist = document.getElementById('devices-datalist');
+            const previewBox = document.getElementById('device-preview-box');
+            const previewText = document.getElementById('device-preview-text');
+
+            const paymentCards = document.querySelectorAll('.payment-method-card');
+            const paymentMethodValue = document.getElementById('payment-method-value');
+            const paymentQrImg = document.getElementById('payment-qr-image');
+            const paymentQrCaption = document.getElementById('payment-qr-caption');
+            const bankNameLabel = document.getElementById('bank-name-label');
+            const bankNameVal = document.getElementById('bank-name-val');
+            const bankAccVal = document.getElementById('bank-acc-val');
+            const bankOwnerVal = document.getElementById('bank-owner-val');
+            const suggestedSyntax = document.getElementById('suggested-syntax');
+            const btnCopySyntaxQuick = document.getElementById('btn-copy-syntax-quick');
+
+            const senderNameInput = document.getElementById('sender-name-input');
+            const transactionInput = document.getElementById('transaction-input');
+            const submitBtn = document.getElementById('btn-submit-form');
+            const btnOpenTelegram = document.getElementById('btn-open-telegram');
+            const btnCopyFullText = document.getElementById('btn-copy-full-text');
+
+            const toast = document.getElementById('reg-toast');
+            const toastText = document.getElementById('toast-text');
+
+            const successDialog = document.getElementById('success-dialog');
+            const modalSerial = document.getElementById('modal-serial-val');
+            const modalCodename = document.getElementById('modal-codename-val');
+            const modalPlan = document.getElementById('modal-plan-val');
+            const modalSender = document.getElementById('modal-sender-val');
+            const modalCloseBtn = document.getElementById('modal-close-btn');
+            const modalTelegramLink = document.getElementById('modal-telegram-link');
+
+            const historyCard = document.getElementById('reg-history-card');
+            const historyList = document.getElementById('reg-history-list');
+            const btnClearHistory = document.getElementById('btn-clear-history');
+
+            // Device catalog cache
+            let devicesMap = {};
+
+            // 1. Load catalog from devices_catalog.json for autocomplete
+            async function initCatalog() {
+                try {
+                    const res = await fetch('./devices_catalog.json');
+                    if (res.ok) {
+                        devicesMap = await res.json();
+                        const frag = document.createDocumentFragment();
+                        for (const code in devicesMap) {
+                            const dev = devicesMap[code];
+                            const opt = document.createElement('option');
+                            const devName = dev.name && dev.name.en ? dev.name.en : code;
+                            opt.value = code;
+                            opt.label = `${devName} (${dev.brand || 'Xiaomi'})`;
+                            frag.appendChild(opt);
+                        }
+                        datalist.appendChild(frag);
+                    }
+                } catch (err) {
+                    console.warn('Không tải được catalog gợi ý thiết bị:', err);
+                }
+            }
+            initCatalog();
+
+            // 2. Sanitizer for Serial Number: "Chỉ điền số serial, không điền bất kì kí tự nào khác"
+            function sanitizeSerial(raw) {
+                if (!raw) return '';
+                // Bỏ tiền tố SN:, Serial:, sn:
+                let clean = raw.replace(/^(?:sn|serial)\s*[:=\s-]*/i, '');
+                // Bỏ tất cả khoảng trắng, dấu hai chấm, gạch nối, ký tự lạ không thuộc chữ và số
+                clean = clean.replace(/[^a-zA-Z0-9]/g, '');
+                return clean.toUpperCase();
+            }
+
+            function handleSerialInput() {
+                const rawVal = serialInput.value;
+                const sanitized = sanitizeSerial(rawVal);
+                
+                // Cập nhật giá trị hiển thị nếu có ký tự lạ được lọc
+                if (rawVal !== sanitized) {
+                    serialInput.value = sanitized;
+                }
+
+                const len = sanitized.length;
+                serialCounter.textContent = `${len} ký tự`;
+                serialCleanBtn.style.display = len > 0 ? 'block' : 'none';
+
+                if (len >= 6) {
+                    serialCleanPreview.innerHTML = `Serial hợp lệ: <strong>${sanitized}</strong>`;
+                    serialValidTag.style.display = 'inline-flex';
+                } else if (len > 0) {
+                    serialCleanPreview.innerHTML = `Đang nhập (${len}/8 ký tự)...`;
+                    serialValidTag.style.display = 'none';
+                } else {
+                    serialCleanPreview.textContent = 'Đang chờ nhập serial hợp lệ...';
+                    serialValidTag.style.display = 'none';
+                }
+
+                updateSuggestedSyntax();
+            }
+
+            serialInput.addEventListener('input', handleSerialInput);
+            serialCleanBtn.addEventListener('click', function() {
+                serialInput.value = '';
+                handleSerialInput();
+                serialInput.focus();
+            });
+
+            // 3. Codename validation & preview
+            function handleCodenameInput() {
+                const val = codenameInput.value.trim().toLowerCase();
+                if (!val) {
+                    previewBox.classList.remove('show');
+                    updateSuggestedSyntax();
+                    return;
+                }
+
+                // Check in catalog
+                if (devicesMap[val]) {
+                    const dev = devicesMap[val];
+                    const devName = dev.name && dev.name.en ? dev.name.en : val;
+                    previewText.innerHTML = `Thiết bị: <strong>${devName}</strong> (${dev.brand || 'Xiaomi'}) • Codename: <code>${val}</code>`;
+                    previewBox.classList.add('show');
+                } else {
+                    previewText.innerHTML = `Mã thiết bị nhập tay: <code>${val}</code>`;
+                    previewBox.classList.add('show');
+                }
+
+                updateSuggestedSyntax();
+            }
+            codenameInput.addEventListener('input', handleCodenameInput);
+            codenameInput.addEventListener('change', handleCodenameInput);
+
+            // 4. Update Suggested Syntax
+            function updateSuggestedSyntax() {
+                const serial = serialInput.value.trim().toUpperCase() || '[SERIAL]';
+                const code = codenameInput.value.trim().toLowerCase() || '[CODENAME]';
+                const syntax = `UR ${serial} ${code}`;
+                suggestedSyntax.textContent = syntax;
+            }
+
+            // 5. Payment Methods Selection
+            const fundCodeRow = document.getElementById('fund-code-row');
+            const fundLinkRow = document.getElementById('fund-link-row');
+            const fundLinkLabel = document.getElementById('fund-link-label');
+            const fundLinkUrl = document.getElementById('fund-link-url');
+            const btnCopyFundLink = document.getElementById('btn-copy-fund-link');
+            const btnOpenDirectLink = document.getElementById('btn-open-direct-link');
+            const btnOpenDirectText = document.getElementById('btn-open-direct-text');
+            const binanceGuideRow = document.getElementById('binance-guide-row');
+            const paypalGuideRow = document.getElementById('paypal-guide-row');
+            const bankOwnerLabel = document.getElementById('bank-owner-label');
+            const fundCodeLabel = document.getElementById('fund-code-label');
+            const btnCopyOwner = document.getElementById('btn-copy-owner');
+            const btnCopyOwnerText = document.getElementById('btn-copy-owner-text');
+            const btnCopyAcc = document.getElementById('btn-copy-acc');
+            const btnCopyAccText = document.getElementById('btn-copy-acc-text');
+            const donationAmountVal = document.getElementById('donation-amount-val');
+            const btnCopyAmount = document.getElementById('btn-copy-amount');
+            const btnCopyAmountText = document.getElementById('btn-copy-amount-text');
+
+            const PAYMENT_CONFIG = {
+                momo: {
+                    name: 'Góp Quỹ MoMo (Chính Thức)',
+                    bankLabel: 'Kênh Tiếp Nhận:',
+                    bankName: 'Quỹ HyperUR (Nền tảng Góp Quỹ MoMo)',
+                    ownerLabel: 'Người Đại Diện:',
+                    ownerName: 'NGUYEN TAN LUC (NH: MoMo)',
+                    showOwnerCopy: false,
+                    ownerCopyVal: '',
+                    ownerBtnText: 'Chép',
+                    accLabel: 'Mã Quỹ MoMo:',
+                    accNumber: 'PSG2625519200000013',
+                    accCopyVal: 'PSG2625519200000013',
+                    accCopyText: 'Chép',
+                    amountText: '40.000đ / thiết bị',
+                    amountCopyVal: '40000',
+                    amountBtnText: 'Chép 40.000đ',
+                    qrCaption: 'Góp Quỹ trên MoMo',
+                    qrCaptionColor: '#a50064',
+                    qrSrc: 'images/QR_MOMO_DNT_HYPERUR.jpg',
+                    showFundLink: true,
+                    fundLinkLabel: 'Link Góp Quỹ Trực Tiếp:',
+                    fundLinkUrl: 'https://quy.momo.vn/v2/APNLXaw0uN?cover=da0c',
+                    fundLinkBtnText: 'Mở Trang Góp Quỹ MoMo Trực Tiếp',
+                    fundLinkBtnClass: 'btn-momo-link',
+                    showBinanceGuide: false,
+                    showPaypalGuide: false
+                },
+                binance: {
+                    name: 'Binance Pay (Crypto)',
+                    bankLabel: 'Kênh Tiếp Nhận:',
+                    bankName: 'Binance Pay (Sàn Giao Dịch Binance)',
+                    ownerLabel: 'Nickname Binance:',
+                    ownerName: 'lucnguyen06',
+                    showOwnerCopy: true,
+                    ownerCopyVal: 'lucnguyen06',
+                    ownerBtnText: 'Chép Nickname',
+                    accLabel: 'Binance Pay ID / UID:',
+                    accNumber: '833477683',
+                    accCopyVal: '833477683',
+                    accCopyText: 'Chép UID',
+                    amountText: '5 USDT (5$) / thiết bị',
+                    amountCopyVal: '5',
+                    amountBtnText: 'Chép 5 USDT',
+                    qrCaption: 'Quét mã trên Binance App (lucnguyen06 - 833477683)',
+                    qrCaptionColor: '#f59e0b',
+                    qrSrc: 'images/QR_BINANCE_DNT_HYPERUR.jpg',
+                    showFundLink: false,
+                    fundLinkLabel: '',
+                    fundLinkUrl: '',
+                    fundLinkBtnText: '',
+                    fundLinkBtnClass: '',
+                    showBinanceGuide: true,
+                    showPaypalGuide: false
+                },
+                paypal: {
+                    name: 'PayPal (Quốc Tế)',
+                    bankLabel: 'Kênh Tiếp Nhận:',
+                    bankName: 'PayPal (Cổng Thanh Toán Quốc Tế)',
+                    ownerLabel: 'Tên Người Nhận:',
+                    ownerName: 'Nguyễn Lực',
+                    showOwnerCopy: true,
+                    ownerCopyVal: 'Nguyễn Lực',
+                    ownerBtnText: 'Chép Tên',
+                    accLabel: 'Link PayPal Cá Nhân:',
+                    accNumber: 'paypal.me/lucnguyeen',
+                    accCopyVal: 'https://paypal.me/lucnguyeen',
+                    accCopyText: 'Chép Link PayPal',
+                    amountText: '5$ (5 USD) / thiết bị',
+                    amountCopyVal: '5',
+                    amountBtnText: 'Chép 5$',
+                    qrCaption: 'Quét mã thanh toán PayPal (Nguyễn Lực)',
+                    qrCaptionColor: '#38bdf8',
+                    qrSrc: 'images/QR_PAYPAL_DNT_HYPERUR.jpg',
+                    showFundLink: true,
+                    fundLinkLabel: 'Link PayPal Trực Tiếp:',
+                    fundLinkUrl: 'https://paypal.me/lucnguyeen',
+                    fundLinkBtnText: 'Mở Trang PayPal (paypal.me/lucnguyeen)',
+                    fundLinkBtnClass: 'btn-paypal-link',
+                    showBinanceGuide: false,
+                    showPaypalGuide: true
+                }
+            };
+
+            paymentCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    paymentCards.forEach(c => {
+                        c.classList.remove('active');
+                        c.setAttribute('aria-checked', 'false');
+                    });
+                    this.classList.add('active');
+                    this.setAttribute('aria-checked', 'true');
+
+                    const methodKey = this.getAttribute('data-method') || 'momo';
+                    const data = PAYMENT_CONFIG[methodKey];
+                    if (data) {
+                        paymentMethodValue.value = data.name;
+                        if (bankNameLabel) bankNameLabel.textContent = data.bankLabel;
+                        if (bankNameVal) bankNameVal.textContent = data.bankName;
+                        if (bankOwnerLabel) bankOwnerLabel.textContent = data.ownerLabel;
+                        if (bankOwnerVal) bankOwnerVal.textContent = data.ownerName;
+
+                        if (btnCopyOwner) {
+                            if (data.showOwnerCopy) {
+                                btnCopyOwner.style.display = 'inline-flex';
+                                btnCopyOwner.setAttribute('data-copy', data.ownerCopyVal);
+                                if (btnCopyOwnerText) btnCopyOwnerText.textContent = data.ownerBtnText;
+                            } else {
+                                btnCopyOwner.style.display = 'none';
+                            }
+                        }
+
+                        if (fundCodeLabel) fundCodeLabel.textContent = data.accLabel;
+                        if (bankAccVal) bankAccVal.textContent = data.accNumber;
+                        if (btnCopyAcc) {
+                            btnCopyAcc.setAttribute('data-copy', data.accCopyVal);
+                        }
+                        if (btnCopyAccText) {
+                            btnCopyAccText.textContent = data.accCopyText;
+                        }
+
+                        if (donationAmountVal) donationAmountVal.textContent = data.amountText;
+                        if (btnCopyAmount) {
+                            btnCopyAmount.setAttribute('data-copy', data.amountCopyVal);
+                        }
+                        if (btnCopyAmountText && data.amountBtnText) {
+                            btnCopyAmountText.textContent = data.amountBtnText;
+                        }
+
+                        paymentQrCaption.innerHTML = `
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+                            <span>${data.qrCaption}</span>
+                        `;
+                        paymentQrCaption.style.color = data.qrCaptionColor;
+                        paymentQrImg.src = data.qrSrc;
+
+                        if (fundCodeRow) fundCodeRow.style.display = 'flex';
+
+                        if (fundLinkRow) {
+                            if (data.showFundLink) {
+                                fundLinkRow.style.display = 'flex';
+                                if (fundLinkLabel) fundLinkLabel.textContent = data.fundLinkLabel;
+                                if (fundLinkUrl) fundLinkUrl.textContent = data.fundLinkUrl;
+                                if (btnCopyFundLink) btnCopyFundLink.setAttribute('data-copy', data.fundLinkUrl);
+                                if (btnOpenDirectLink) {
+                                    btnOpenDirectLink.href = data.fundLinkUrl;
+                                    btnOpenDirectLink.className = data.fundLinkBtnClass;
+                                }
+                                if (btnOpenDirectText) btnOpenDirectText.textContent = data.fundLinkBtnText;
+                            } else {
+                                fundLinkRow.style.display = 'none';
+                            }
+                        }
+
+                        if (binanceGuideRow) binanceGuideRow.style.display = data.showBinanceGuide ? 'flex' : 'none';
+                        if (paypalGuideRow) paypalGuideRow.style.display = data.showPaypalGuide ? 'flex' : 'none';
+
+                        updateSuggestedSyntax();
+                    }
+                });
+            });
+
+            // 6. Copy Buttons helper
+            function showToast(msg) {
+                toastText.textContent = msg;
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2800);
+            }
+
+            document.querySelectorAll('[data-copy]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const text = this.getAttribute('data-copy');
+                    if (text && navigator.clipboard) {
+                        navigator.clipboard.writeText(text).then(() => {
+                            showToast(`Đã sao chép: ${text}`);
+                        });
+                    }
+                });
+            });
+
+            if (btnCopySyntaxQuick) {
+                btnCopySyntaxQuick.addEventListener('click', function() {
+                    const text = suggestedSyntax.textContent;
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(text).then(() => {
+                            showToast(`Đã sao chép nội dung: ${text}`);
+                        });
+                    }
+                });
+            }
+
+            // 7. Compose formatted submission message
+            function buildSubmissionText() {
+                const serial = serialInput.value.trim().toUpperCase();
+                const code = codenameInput.value.trim().toLowerCase();
+                const plan = document.getElementById('reg-type-value').value;
+                const method = paymentMethodValue.value;
+                const name = senderNameInput.value.trim();
+                const tx = transactionInput.value.trim();
+
+                let paymentDetail = '';
+                if (method.includes('Binance')) {
+                    paymentDetail = `• Kênh ủng hộ: ${method}\n• Binance Nickname: lucnguyen06 | Binance UID: 833477683\n• Mức ủng hộ: 5 USDT (5$) / thiết bị\n`;
+                } else if (method.includes('PayPal')) {
+                    paymentDetail = `• Kênh ủng hộ: ${method}\n• Người nhận: Nguyễn Lực (paypal.me/lucnguyeen)\n• Mức ủng hộ: 5$ (5 USD) / thiết bị\n`;
+                } else {
+                    paymentDetail = `• Kênh ủng hộ: ${method}\n• Mức ủng hộ: 40.000đ / thiết bị\n• Link Quỹ MoMo: https://quy.momo.vn/v2/APNLXaw0uN?cover=da0c\n`;
+                }
+
+                return `🔥 [ĐĂNG KÝ SERIAL HYPERUR] 🔥\n` +
+                       `• Số Serial: ${serial}\n` +
+                       `• Mã thiết bị (Codename): ${code}\n` +
+                       `• Gói đăng ký: ${plan}\n` +
+                       paymentDetail +
+                       `• Tên người gửi: ${name}\n` +
+                       `• Nội dung & Mã GD: ${tx}\n` +
+                       `• Thời gian: ${new Date().toLocaleString('vi-VN')}`;
+            }
+
+            // 8. Copy Full Text Button
+            btnCopyFullText.addEventListener('click', function() {
+                const serial = serialInput.value.trim();
+                const code = codenameInput.value.trim();
+                if (!serial || !code) {
+                    showToast('⚠️ Vui lòng điền Serial và Mã máy trước!');
+                    serialInput.focus();
+                    return;
+                }
+
+                const fullText = buildSubmissionText();
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(fullText).then(() => {
+                        showToast('✅ Đã sao chép toàn bộ cú pháp đăng ký!');
+                    });
+                }
+            });
+
+            // 9. Open Telegram Direct Message
+            btnOpenTelegram.addEventListener('click', function() {
+                const serial = serialInput.value.trim();
+                const code = codenameInput.value.trim();
+                if (!serial || !code) {
+                    showToast('⚠️ Vui lòng điền Serial và Mã máy trước!');
+                    serialInput.focus();
+                    return;
+                }
+
+                const fullText = buildSubmissionText();
+                const encoded = encodeURIComponent(fullText);
+                const telegramUrl = `https://t.me/lcnguy06?text=${encoded}`;
+                window.open(telegramUrl, '_blank');
+            });
+
+            // 10. Local Storage History Management
+            const STORAGE_KEY = 'hyperur_serial_regs';
+
+            function getHistory() {
+                try {
+                    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+                } catch (e) {
+                    return [];
+                }
+            }
+
+            function saveToHistory(item) {
+                const list = getHistory();
+                list.unshift(item);
+                // Giữ tối đa 10 bản ghi gần nhất
+                if (list.length > 10) list.pop();
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+                renderHistory();
+            }
+
+            function renderHistory() {
+                const list = getHistory();
+                if (!list || list.length === 0) {
+                    historyCard.style.display = 'none';
+                    return;
+                }
+                historyCard.style.display = 'block';
+                historyList.innerHTML = '';
+
+                list.forEach(item => {
+                    const row = document.createElement('div');
+                    row.className = 'reg-history-item';
+                    row.innerHTML = `
+                        <div class="reg-history-meta">
+                            <span class="reg-history-serial">Serial: ${item.serial} • Mã máy: ${item.codename}</span>
+                            <span class="reg-history-sub">${item.plan} | Người gửi: ${item.name} | ${item.time}</span>
+                        </div>
+                        <button type="button" class="btn-copy-mini" data-copy-serial="${item.serial}">Chép Serial</button>
+                    `;
+                    historyList.appendChild(row);
+                });
+
+                historyList.querySelectorAll('[data-copy-serial]').forEach(b => {
+                    b.addEventListener('click', function() {
+                        const s = this.getAttribute('data-copy-serial');
+                        if (navigator.clipboard) {
+                            navigator.clipboard.writeText(s).then(() => showToast(`Đã chép: ${s}`));
+                        }
+                    });
+                });
+            }
+
+            btnClearHistory.addEventListener('click', function() {
+                localStorage.removeItem(STORAGE_KEY);
+                renderHistory();
+                showToast('Đã xóa lịch sử đăng ký.');
+            });
+
+            // Load history on startup
+            renderHistory();
+
+            // 11. Form Submission Handler
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const serial = serialInput.value.trim().toUpperCase();
+                const code = codenameInput.value.trim().toLowerCase();
+                const plan = document.getElementById('reg-type-value').value;
+                const method = paymentMethodValue.value;
+                const name = senderNameInput.value.trim();
+                const tx = transactionInput.value.trim();
+
+                // Validation
+                if (!serial || serial.length < 4) {
+                    showToast('⚠️ Vui lòng nhập số Serial hợp lệ (tối thiểu 4 ký tự)');
+                    serialInput.focus();
+                    return;
+                }
+
+                if (!code) {
+                    showToast('⚠️ Vui lòng nhập mã thiết bị (codename)');
+                    codenameInput.focus();
+                    return;
+                }
+
+                if (!name) {
+                    showToast('⚠️ Vui lòng điền Tên người gửi ủng hộ');
+                    senderNameInput.focus();
+                    return;
+                }
+
+                if (!tx) {
+                    showToast('⚠️ Vui lòng điền Nội dung hoặc Mã giao dịch chuyển khoản');
+                    transactionInput.focus();
+                    return;
+                }
+
+                // Payload
+                const payload = {
+                    serial: serial,
+                    codename: code,
+                    plan: plan,
+                    paymentMethod: method,
+                    senderName: name,
+                    transactionCode: tx,
+                    timestamp: new Date().toISOString()
+                };
+
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="spin">
+                        <circle cx="12" cy="12" r="10" stroke-dasharray="30" stroke-dashoffset="10"></circle>
+                    </svg>
+                    <span>Đang gửi thông tin đăng ký...</span>
+                `;
+
+                // Try sending to Google Apps Script Web App URL if configured
+                const scriptUrl = (window.HYPERUR_CONFIG && window.HYPERUR_CONFIG.SERIAL_REGISTER_API_URL) || '';
+                if (scriptUrl && scriptUrl.trim() !== '') {
+                    try {
+                        await fetch(scriptUrl, {
+                            method: 'POST',
+                            mode: 'no-cors',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                    } catch (netErr) {
+                        console.warn('Lỗi khi gửi webhook Google Apps Script:', netErr);
+                    }
+                }
+
+                // Save to local storage
+                saveToHistory({
+                    serial: serial,
+                    codename: code,
+                    plan: plan,
+                    name: name,
+                    tx: tx,
+                    time: new Date().toLocaleDateString('vi-VN') + ' ' + new Date().toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'})
+                });
+
+                // Reset button state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <span>Xác Nhận & Gửi Đăng Ký HyperUR</span>
+                `;
+
+                // Update Modal Content & Show
+                modalSerial.textContent = serial;
+                modalCodename.textContent = code;
+                modalPlan.textContent = plan;
+                modalSender.textContent = name;
+
+                const fullText = buildSubmissionText();
+                modalTelegramLink.href = `https://t.me/lcnguy06?text=${encodeURIComponent(fullText)}`;
+
+                if (typeof successDialog.showModal === 'function') {
+                    successDialog.showModal();
+                } else {
+                    alert('Đăng ký thành công! Vui lòng liên hệ Admin qua Telegram.');
+                }
+            });
+
+            // Modal Close handlers
+            modalCloseBtn.addEventListener('click', function() {
+                successDialog.close();
+            });
+
+            successDialog.addEventListener('click', function(e) {
+                const rect = successDialog.getBoundingClientRect();
+                const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height
+                  && rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
+                if (!isInDialog) {
+                    successDialog.close();
+                }
+            });
+
+            // Mobile menu script
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const navMenu = document.getElementById('nav-menu');
+            const backdrop = document.getElementById('mobile-nav-backdrop');
+            if (menuBtn && navMenu && backdrop) {
+                function closeMenu() {
+                    menuBtn.classList.remove('active');
+                    navMenu.classList.remove('is-open');
+                    backdrop.classList.remove('is-open');
+                    menuBtn.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                }
+                function openMenu() {
+                    menuBtn.classList.add('active');
+                    navMenu.classList.add('is-open');
+                    backdrop.classList.add('is-open');
+                    menuBtn.setAttribute('aria-expanded', 'true');
+                    document.body.style.overflow = 'hidden';
+                }
+                menuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const isOpen = navMenu.classList.contains('is-open');
+                    isOpen ? closeMenu() : openMenu();
+                });
+                backdrop.addEventListener('click', closeMenu);
+                document.querySelectorAll('#nav-menu .navbar-link, #nav-menu .mobile-nav-ext-link').forEach(link => {
+                    link.addEventListener('click', closeMenu);
+                });
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) closeMenu();
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
