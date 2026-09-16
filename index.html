@@ -585,7 +585,7 @@
                 if (progressBar) {
                     progressBar.style.width = '0%';
                     const startTime = performance.now();
-                    const totalDuration = 1800; // 1.8s
+                    const totalDuration = 3200; // 3.2s hiển thị êm ái, rõ ràng
                     clearInterval(progressInterval);
 
                     progressInterval = setInterval(function() {
@@ -598,11 +598,11 @@
 
                         if (ratio >= 1) {
                             clearInterval(progressInterval);
-                            setTimeout(dismissIntro, 150);
+                            setTimeout(dismissIntro, 300);
                         }
                     }, 20);
                 } else {
-                    setTimeout(dismissIntro, 1800);
+                    setTimeout(dismissIntro, 3200);
                 }
             }
 
@@ -617,7 +617,7 @@
                 } catch (e) {}
                 setTimeout(function() {
                     if (isDismissed) splash.style.display = 'none';
-                }, 680);
+                }, 850);
             }
 
             if (skipBtn) {
