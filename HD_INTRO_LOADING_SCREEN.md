@@ -9,9 +9,9 @@ Tài liệu này hướng dẫn chi tiết về cấu trúc, cách thức hoạt
 Hệ thống Intro Loading Screen mang đậm ngôn ngữ thiết kế **HyperOS Titanium Glassmorphism & Aurora Glow**:
 - **Màn hình Intro (`#hyperur-splash-screen`)**:
   - Xuất hiện trang trọng ngay khi người dùng truy cập website.
-  - Hiển thị khối logo chữ **H** phát sáng 3D với 2 vòng quỹ đạo xoay tròn điện quang.
+  - Hiển thị khối logo chữ **UR** phát sáng 3D với 2 vòng quỹ đạo xoay tròn điện quang.
   - Tiêu đề quét sáng kim loại neon: **`WELCOME TO HyperUR`**.
-  - Thanh năng lượng (Progress Indicator) chạy mượt mà theo đường cong gia tốc `ease-out` trong **3.2s** (tổng ~3.5s hiển thị rõ nét, không bị quá nhanh), tự động mờ dần chuyển cảnh vào trang chủ.
+  - Thanh năng lượng (Progress Indicator) chạy mượt mà theo đường cong gia tốc `ease-out` trong **4.0s** hiển thị rõ nét, tự động mờ dần chuyển cảnh vào trang chủ.
   - Nút **Bỏ qua (Skip)** và phím tắt **`Escape`** giúp vào trang ngay lập tức nếu không muốn chờ.
 - **Huy hiệu Chào mừng (`#welcome-hero-badge`)**:
   - Đặt trang nhã ở phần đầu Hero section của trang chủ.
@@ -32,11 +32,11 @@ Hệ thống Intro Loading Screen mang đậm ngôn ngữ thiết kế **HyperOS
         <div class="splash-grid-mesh"></div>
     </div>
     <div class="splash-content">
-        <!-- Logo H phát sáng 3D -->
+        <!-- Logo UR phát sáng 3D -->
         <div class="splash-logo-container">
             <div class="splash-logo-halo"></div>
             <div class="splash-logo-core">
-                <span class="splash-logo-letter">H</span>
+                <span class="splash-logo-letter">UR</span>
                 <div class="splash-ring splash-ring-1"></div>
                 <div class="splash-ring splash-ring-2"></div>
             </div>
