@@ -149,7 +149,6 @@
                         <div class="reg-form-group">
                             <label for="serial-input" class="reg-label">
                                 <span>Số serial thiết bị của bạn?<span class="reg-required">*</span></span>
-                                <span class="reg-hint" id="serial-counter">0 ký tự</span>
                             </label>
 
                             <!-- Alert Note: Chỉ điền số serial, không điền bất kì kí tự nào khác -->
@@ -209,9 +208,8 @@
                                     </svg>
                                 </summary>
                                 <div class="serial-help-body">
-                                    <p>Bạn có thể lấy số Serial bằng một trong 3 cách sau:</p>
+                                    <p>Bạn có thể lấy số Serial bằng một trong 2 cách chuẩn sau:</p>
                                     <ol>
-                                        <li><strong>Xem trong Cài đặt (Khi máy đang bật):</strong> Vào <em>Cài đặt &rarr; Giới thiệu điện thoại &rarr; Tất cả thông số &rarr; Trạng thái &rarr; Số sê-ri</em>.</li>
                                         <li><strong>Qua chế độ Fastboot (Khuyên dùng khi cài ROM):</strong> Đưa máy vào Fastboot, cắm cáp vào máy tính và mở Command Prompt gõ: <code>fastboot getvar serialno</code>.</li>
                                         <li><strong>Qua ADB:</strong> Bật Gỡ lỗi USB và gõ lệnh: <code>adb get-serialno</code>.</li>
                                     </ol>
@@ -264,83 +262,123 @@
                          MỤC 2: LOẠI ĐĂNG KÝ
                          ========================================================= -->
                     <div class="reg-section">
-                        <!-- Thông Báo Team UR về Mức Ủng Hộ Mới -->
-                        <div class="team-announcement-banner">
-                            <div class="announcement-top-row">
-                                <span class="announcement-tag">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
-                                        <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"></path>
-                                    </svg>
-                                    <span>THÔNG BÁO TỪ TEAM HYPERUR</span>
-                                </span>
-                                <span class="announcement-badge-new">ÁP DỤNG TỪ THỜI ĐIỂM NÀY</span>
-                            </div>
-
-                            <p style="margin: 0; font-size: 0.92rem; color: var(--text-strong); font-weight: 600;">
-                                Quyết định chung của toàn bộ Team UR về việc điều chỉnh mức ủng hộ đăng ký Serial:
-                            </p>
-
-                            <div class="announcement-pricing-box">
-                                <span class="announcement-price-new">💸 40.000đ / thiết bị</span>
-                            </div>
-                        </div>
-
                         <div class="reg-section-header">
                             <span class="reg-section-badge">2</span>
                             <h2 class="reg-section-title">Loại Đăng Ký Bạn Muốn?</h2>
                         </div>
+                        <p style="font-size: 0.88rem; color: var(--text-soft); margin-top: -0.25rem; margin-bottom: 1.15rem;">
+                            Nhấp chọn 1 trong 2 gói bên dưới (chọn gói có ủng hộ sẽ mở phần thanh toán):
+                        </p>
 
-                        <!-- Gói: Đăng kí có Ủng hộ (Vĩnh viễn) -->
-                        <div class="reg-plan-card" id="plan-selected-card">
-                            <div class="reg-plan-header">
-                                <div class="reg-plan-title">
-                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color: var(--accent-primary);">
-                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                                    </svg>
-                                    <span>Đăng kí có Ủng hộ (Vĩnh viễn)</span>
+                        <div class="reg-plans-selection" role="radiogroup" aria-label="Chọn loại đăng ký serial">
+                            <!-- Gói 1: Đăng kí có Ủng hộ (Vĩnh viễn) -->
+                            <div class="reg-plan-card active" id="plan-card-vip" data-plan="vip" role="radio" aria-checked="true" tabindex="0">
+                                <div class="reg-plan-selection-bar">
+                                    <div class="reg-plan-radio-wrap">
+                                        <span class="plan-radio-circle"></span>
+                                        <span class="plan-selection-status" id="status-vip">✓ Đang chọn gói này (Mặc định)</span>
+                                    </div>
+                                    <span class="reg-vip-badge">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                        </svg>
+                                        VIP TRỌN ĐỜI
+                                    </span>
                                 </div>
-                                <span class="reg-vip-badge">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                    </svg>
-                                    VIP TRỌN ĐỜI
-                                </span>
+
+                                <div class="reg-plan-header">
+                                    <div class="reg-plan-title">
+                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color: var(--accent-primary);">
+                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                                        </svg>
+                                        <span>Đăng kí có Ủng hộ (Vĩnh viễn)</span>
+                                    </div>
+                                </div>
+
+                                <div class="reg-plan-price-tag">
+                                    <span class="reg-plan-price-val">40.000đ</span>
+                                    <span class="reg-plan-price-sub">/ Thiết Bị (Kích Hoạt Vĩnh Viễn)</span>
+                                </div>
+
+                                <p style="font-size: 0.88rem; color: var(--muted); margin: 0;">Gói đăng ký ủng hộ cho đội ngũ phát triển ROM HyperUR. Quyền lợi kích hoạt bản quyền vĩnh viễn trên thiết bị đăng ký.</p>
+
+                                <ul class="reg-plan-features">
+                                    <li>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <span>Kích hoạt bản quyền vĩnh viễn</span>
+                                    </li>
+                                    <li>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <span>Nhận mọi bản cập nhật ROM trọn đời</span>
+                                    </li>
+                                    <li>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <span>Mở khóa tối đa FPS & Full tính năng</span>
+                                    </li>
+                                    <li>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <span>Hỗ trợ kỹ thuật ưu tiên từ Devs</span>
+                                    </li>
+                                </ul>
                             </div>
 
-                            <div class="reg-plan-price-tag">
-                                <span class="reg-plan-price-val">40.000đ</span>
-                                <span class="reg-plan-price-sub">/ Thiết Bị (Kích Hoạt Vĩnh Viễn)</span>
+                            <!-- Gói 2: Active Free (36 Ngày Trải Nghiệm) -->
+                            <div class="reg-plan-card plan-free-card" id="plan-card-free" data-plan="free" role="radio" aria-checked="false" tabindex="0">
+                                <div class="reg-plan-selection-bar">
+                                    <div class="reg-plan-radio-wrap">
+                                        <span class="plan-radio-circle"></span>
+                                        <span class="plan-selection-status" id="status-free">Nhấn để chọn gói này</span>
+                                    </div>
+                                    <span class="free-active-badge">36 NGÀY TRẢI NGHIỆM</span>
+                                </div>
+
+                                <div class="reg-plan-header">
+                                    <div class="reg-plan-title">
+                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color: #34d399;">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <polyline points="12 6 12 12 16 14"></polyline>
+                                        </svg>
+                                        <span>Đối với anh em sử dụng active free:</span>
+                                    </div>
+                                </div>
+
+                                <div class="reg-plan-price-tag">
+                                    <span class="reg-plan-price-val" style="color: #34d399;">0đ</span>
+                                    <span class="reg-plan-price-sub" style="background: rgba(16, 185, 129, 0.12); color: #34d399;">/ Thiết Bị (Miễn Phí 36 Ngày)</span>
+                                </div>
+
+                                <p class="free-active-desc" style="margin: 0;">
+                                    Thời hạn sử dụng sẽ là <strong>36 ngày</strong>. Đây là thời gian để anh em trải nghiệm và thử nghiệm ROM xem có ổn định, phù hợp và xứng đáng để dùng lâu dài hay không.
+                                </p>
+
+                                <ul class="reg-plan-features">
+                                    <li>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <span>36 ngày trải nghiệm đầy đủ các tính năng</span>
+                                    </li>
+                                    <li>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <span>Không cần chuyển khoản hay thanh toán</span>
+                                    </li>
+                                    <li>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <span>Đánh giá độ ổn định trước khi quyết định</span>
+                                    </li>
+                                    <li>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <span>Có thể nâng cấp lên bản vĩnh viễn bất kỳ lúc nào</span>
+                                    </li>
+                                </ul>
                             </div>
-
-                            <p style="font-size: 0.88rem; color: var(--muted); margin: 0;">Gói đăng ký ủng hộ cho đội ngũ phát triển ROM HyperUR. Quyền lợi kích hoạt bản quyền vĩnh viễn trên thiết bị đăng ký.</p>
-
-                            <ul class="reg-plan-features">
-                                <li>
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    <span>Kích hoạt bản quyền vĩnh viễn</span>
-                                </li>
-                                <li>
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    <span>Nhận mọi bản cập nhật ROM trọn đời</span>
-                                </li>
-                                <li>
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    <span>Mở khóa tối đa FPS & Full tính năng</span>
-                                </li>
-                                <li>
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    <span>Hỗ trợ kỹ thuật ưu tiên từ Devs</span>
-                                </li>
-                            </ul>
-
-                            <input type="hidden" name="registrationType" id="reg-type-value" value="Đăng kí có Ủng hộ (Vĩnh viễn)">
                         </div>
+
+                        <input type="hidden" name="registrationType" id="reg-type-value" value="Đăng kí có Ủng hộ (Vĩnh viễn)">
                     </div>
 
                     <!-- =========================================================
                          MỤC 3: PHƯƠNG THỨC ỦNG HỘ & THÔNG TIN ĐỐI SOÁT
                          ========================================================= -->
-                    <div class="reg-section">
+                    <div class="reg-section" id="payment-reg-section">
                         <div class="reg-section-header">
                             <span class="reg-section-badge">3</span>
                             <h2 class="reg-section-title">Phương Thức & Thông Tin Ủng Hộ</h2>
@@ -622,7 +660,6 @@
                             </svg>
                             <span>Nhập Số Serial Thiết Bị (Hardware SN)</span>
                         </label>
-                        <span class="lookup-counter-tag" id="lookup-counter">0 ký tự</span>
                     </div>
 
                     <div class="lookup-input-row">
@@ -659,17 +696,8 @@
                         </button>
                     </div>
 
-                    <!-- Quick Sample Chips -->
-                    <div class="lookup-quick-chips">
-                        <span class="lookup-chips-label">Gợi ý kiểm thử nhanh:</span>
-                        <button type="button" class="lookup-chip-item" data-serial="DEMO_HOUJI_ACTIVE">
-                            <span style="color: var(--accent-emerald);">●</span>
-                            <span>Mẫu Kích Hoạt (Xiaomi 14)</span>
-                        </button>
-                        <button type="button" class="lookup-chip-item" data-serial="DEMO_GARNET_PENDING">
-                            <span style="color: var(--accent-amber);">●</span>
-                            <span>Mẫu Chờ Duyệt (Redmi Note 13 Pro)</span>
-                        </button>
+                    <!-- Quick Actions -->
+                    <div class="lookup-quick-chips" id="lookup-quick-chips" style="display: none;">
                         <button type="button" class="lookup-chip-item" id="btn-paste-last-registered" style="display: none;">
                             <span>📋 Dán Serial vừa đăng ký</span>
                         </button>
@@ -682,11 +710,10 @@
                         <span>🔍 Bạn chưa biết cách lấy số Serial thiết bị? Nhấn xem hướng dẫn</span>
                     </summary>
                     <div class="serial-help-body">
-                        <p>Bạn có thể lấy số Serial phần cứng bằng một trong các cách sau:</p>
+                        <p>Bạn có thể lấy số Serial phần cứng bằng một trong 2 cách sau:</p>
                         <ol>
                             <li><strong>Qua chế độ Fastboot (Khuyên dùng khi cài ROM):</strong> Đưa máy về Fastboot, cắm cáp USB vào máy tính và gõ lệnh: <code>fastboot getvar serialno</code>.</li>
                             <li><strong>Qua ADB:</strong> Bật Gỡ lỗi USB trên điện thoại và gõ: <code>adb get-serialno</code>.</li>
-                            <li><strong>Xem trực tiếp trong Cài đặt máy:</strong> Vào <em>Cài đặt</em> &gt; <em>Giới thiệu điện thoại</em> &gt; <em>Tất cả thông số</em> &gt; <em>Trạng thái</em> &gt; <em>Số sê-ri</em>.</li>
                         </ol>
                     </div>
                 </details>
@@ -735,7 +762,7 @@
                 </svg>
             </div>
             <h2 class="reg-modal-title">Gửi Đăng Ký Thành Công!</h2>
-            <p class="reg-modal-desc">Thông tin đăng ký serial của bạn đã được ghi nhận. Đội ngũ HyperUR sẽ đối soát và kích hoạt bản quyền trong thời gian sớm nhất.</p>
+            <p class="reg-modal-desc" id="modal-desc-text">Thông tin đăng ký serial của bạn đã được ghi nhận. Đội ngũ HyperUR sẽ đối soát và kích hoạt bản quyền trong thời gian sớm nhất.</p>
 
             <div class="reg-modal-details">
                 <div>
@@ -752,7 +779,7 @@
                 </div>
                 <div>
                     <span>Mức Ủng Hộ:</span>
-                    <span style="color: #fbbf24; font-weight: 700;">40.000đ / thiết bị</span>
+                    <span id="modal-amount-val" style="color: #fbbf24; font-weight: 700;">40.000đ / thiết bị</span>
                 </div>
                 <div>
                     <span>Người Gửi:</span>
@@ -981,7 +1008,6 @@
 
             const regForm = document.getElementById('serial-register-form');
             const serialInput = document.getElementById('serial-input');
-            const serialCounter = document.getElementById('serial-counter');
             const serialCleanBtn = document.getElementById('serial-clean-btn');
             const serialCleanPreview = document.getElementById('serial-clean-preview');
             const serialValidTag = document.getElementById('serial-valid-tag');
@@ -1002,6 +1028,14 @@
             const suggestedSyntax = document.getElementById('suggested-syntax');
             const btnCopySyntaxQuick = document.getElementById('btn-copy-syntax-quick');
 
+            // Plan Selection (Có ủng hộ vs Active Free)
+            const planCardVip = document.getElementById('plan-card-vip');
+            const planCardFree = document.getElementById('plan-card-free');
+            const statusVip = document.getElementById('status-vip');
+            const statusFree = document.getElementById('status-free');
+            const regTypeValue = document.getElementById('reg-type-value');
+            const paymentRegSection = document.getElementById('payment-reg-section');
+
             const senderNameInput = document.getElementById('sender-name-input');
             const transactionInput = document.getElementById('transaction-input');
             const submitBtn = document.getElementById('btn-submit-form');
@@ -1019,6 +1053,72 @@
             const modalCloseBtn = document.getElementById('modal-close-btn');
             const modalTelegramLink = document.getElementById('modal-telegram-link');
             const modalLookupLink = document.getElementById('modal-lookup-link');
+
+            function selectPlan(planKey) {
+                if (planKey === 'free') {
+                    if (planCardVip) {
+                        planCardVip.classList.remove('active');
+                        planCardVip.setAttribute('aria-checked', 'false');
+                    }
+                    if (planCardFree) {
+                        planCardFree.classList.add('active');
+                        planCardFree.setAttribute('aria-checked', 'true');
+                    }
+                    if (statusVip) statusVip.textContent = 'Nhấn để chọn gói này';
+                    if (statusFree) statusFree.textContent = '✓ Đang chọn gói này (Trải nghiệm 36 ngày)';
+                    if (regTypeValue) regTypeValue.value = 'Active Free (36 Ngày Trải Nghiệm)';
+
+                    if (paymentRegSection) paymentRegSection.style.display = 'none';
+                    if (senderNameInput) senderNameInput.required = false;
+                    if (transactionInput) transactionInput.required = false;
+
+                    if (submitBtn) {
+                        const btnSpan = submitBtn.querySelector('span');
+                        if (btnSpan) btnSpan.textContent = 'Xác Nhận & Gửi Đăng Ký Active Free (36 Ngày)';
+                    }
+                } else {
+                    if (planCardFree) {
+                        planCardFree.classList.remove('active');
+                        planCardFree.setAttribute('aria-checked', 'false');
+                    }
+                    if (planCardVip) {
+                        planCardVip.classList.add('active');
+                        planCardVip.setAttribute('aria-checked', 'true');
+                    }
+                    if (statusFree) statusFree.textContent = 'Nhấn để chọn gói này';
+                    if (statusVip) statusVip.textContent = '✓ Đang chọn gói này (Mặc định)';
+                    if (regTypeValue) regTypeValue.value = 'Đăng kí có Ủng hộ (Vĩnh viễn)';
+
+                    if (paymentRegSection) paymentRegSection.style.display = 'block';
+                    if (senderNameInput) senderNameInput.required = true;
+                    if (transactionInput) transactionInput.required = true;
+
+                    if (submitBtn) {
+                        const btnSpan = submitBtn.querySelector('span');
+                        if (btnSpan) btnSpan.textContent = 'Xác Nhận & Gửi Đăng Ký HyperUR';
+                    }
+                }
+            }
+
+            if (planCardVip) {
+                planCardVip.addEventListener('click', () => selectPlan('vip'));
+                planCardVip.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        selectPlan('vip');
+                    }
+                });
+            }
+
+            if (planCardFree) {
+                planCardFree.addEventListener('click', () => selectPlan('free'));
+                planCardFree.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        selectPlan('free');
+                    }
+                });
+            }
 
             const historyCard = document.getElementById('reg-history-card');
             const historyList = document.getElementById('reg-history-list');
@@ -1064,7 +1164,7 @@
                 }
 
                 const len = sanitized.length;
-                serialCounter.textContent = `${len} ký tự`;
+                // Bỏ hiển thị đếm số ký tự theo yêu cầu người dùng
                 serialCleanBtn.style.display = len > 0 ? 'block' : 'none';
 
                 if (len >= 6) {
@@ -1333,10 +1433,21 @@
             function buildSubmissionText() {
                 const serial = serialInput.value.trim().toUpperCase();
                 const code = codenameInput.value.trim().toLowerCase();
-                const plan = document.getElementById('reg-type-value').value;
-                const method = paymentMethodValue.value;
+                const plan = (regTypeValue ? regTypeValue.value : document.getElementById('reg-type-value').value) || 'Đăng kí có Ủng hộ (Vĩnh viễn)';
+                const isFree = plan.includes('Active Free') || plan.includes('36');
+                const method = isFree ? 'Active Free (0đ - Dùng thử 36 ngày)' : paymentMethodValue.value;
                 const name = senderNameInput.value.trim();
                 const tx = transactionInput.value.trim();
+
+                if (isFree) {
+                    return `🔥 [ĐĂNG KÝ ACTIVE FREE HYPERUR] 🔥\n` +
+                           `• Số Serial: ${serial}\n` +
+                           `• Mã thiết bị (Codename): ${code}\n` +
+                           `• Gói đăng ký: ${plan}\n` +
+                           `• Thời hạn trải nghiệm: 36 ngày (Miễn phí 100%)\n` +
+                           (name ? `• Tên người gửi: ${name}\n` : '') +
+                           `• Thời gian: ${new Date().toLocaleString('vi-VN')}`;
+                }
 
                 let paymentDetail = '';
                 if (method.includes('Binance')) {
@@ -1452,8 +1563,9 @@
 
                 const serial = serialInput.value.trim().toUpperCase();
                 const code = codenameInput.value.trim().toLowerCase();
-                const plan = document.getElementById('reg-type-value').value;
-                const method = paymentMethodValue.value;
+                const plan = (regTypeValue ? regTypeValue.value : document.getElementById('reg-type-value').value) || 'Đăng kí có Ủng hộ (Vĩnh viễn)';
+                const isFree = plan.includes('Active Free') || plan.includes('36');
+                const method = isFree ? 'Active Free (0đ - Dùng thử 36 ngày)' : paymentMethodValue.value;
                 const name = senderNameInput.value.trim();
                 const tx = transactionInput.value.trim();
 
@@ -1469,16 +1581,18 @@
                     return;
                 }
 
-                if (!name) {
-                    showToast('⚠️ Vui lòng điền Tên người gửi ủng hộ');
-                    senderNameInput.focus();
-                    return;
-                }
+                if (!isFree) {
+                    if (!name) {
+                        showToast('⚠️ Vui lòng điền Tên người gửi ủng hộ');
+                        senderNameInput.focus();
+                        return;
+                    }
 
-                if (!tx) {
-                    showToast('⚠️ Vui lòng điền Nội dung hoặc Mã giao dịch chuyển khoản');
-                    transactionInput.focus();
-                    return;
+                    if (!tx) {
+                        showToast('⚠️ Vui lòng điền Nội dung hoặc Mã giao dịch chuyển khoản');
+                        transactionInput.focus();
+                        return;
+                    }
                 }
 
                 const payload = {
@@ -1486,8 +1600,8 @@
                     codename: code,
                     plan: plan,
                     paymentMethod: method,
-                    senderName: name,
-                    transactionCode: tx,
+                    senderName: isFree ? (name || 'Active Free User') : name,
+                    transactionCode: isFree ? (tx || 'ACTIVE_FREE_36_DAYS') : tx,
                     timestamp: new Date().toISOString()
                 };
 
@@ -1517,8 +1631,8 @@
                     serial: serial,
                     codename: code,
                     plan: plan,
-                    name: name,
-                    tx: tx,
+                    name: isFree ? (name || 'Active Free') : name,
+                    tx: isFree ? (tx || 'Active Free (36 Ngày)') : tx,
                     time: new Date().toLocaleDateString('vi-VN') + ' ' + new Date().toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'})
                 });
 
@@ -1528,13 +1642,25 @@
                         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                         <polyline points="22 4 12 14.01 9 11.01"></polyline>
                     </svg>
-                    <span>Xác Nhận & Gửi Đăng Ký HyperUR</span>
+                    <span>${isFree ? 'Xác Nhận & Gửi Đăng Ký Active Free (36 Ngày)' : 'Xác Nhận & Gửi Đăng Ký HyperUR'}</span>
                 `;
 
                 modalSerial.textContent = serial;
                 modalCodename.textContent = code;
                 modalPlan.textContent = plan;
-                modalSender.textContent = name;
+                modalSender.textContent = isFree ? (name || 'Không yêu cầu (Active Free)') : name;
+
+                const modalAmount = document.getElementById('modal-amount-val');
+                if (modalAmount) {
+                    modalAmount.textContent = isFree ? '0đ (Miễn Phí 36 Ngày Trải Nghiệm)' : '40.000đ / thiết bị';
+                }
+
+                const modalDesc = document.getElementById('modal-desc-text');
+                if (modalDesc) {
+                    modalDesc.textContent = isFree
+                        ? 'Thông tin đăng ký Active Free (36 ngày) đã được ghi nhận. Đội ngũ HyperUR sẽ cấp quyền kích hoạt trải nghiệm trong thời gian sớm nhất.'
+                        : 'Thông tin đăng ký serial của bạn đã được ghi nhận. Đội ngũ HyperUR sẽ đối soát và kích hoạt bản quyền trong thời gian sớm nhất.';
+                }
 
                 const fullText = buildSubmissionText();
                 modalTelegramLink.href = `https://t.me/lcnguy06?text=${encodeURIComponent(fullText)}`;
@@ -1585,52 +1711,11 @@
             const lookupSerialInput = document.getElementById('lookup-serial-input');
             const lookupClearBtn = document.getElementById('lookup-clear-btn');
             const lookupSubmitBtn = document.getElementById('lookup-submit-btn');
-            const lookupCounterTag = document.getElementById('lookup-counter');
             const lookupResultContainer = document.getElementById('lookup-result-container');
             const pasteLastBtn = document.getElementById('btn-paste-last-registered');
             const lookupHistoryWrapper = document.getElementById('lookup-history-wrapper');
             const lookupHistoryGrid = document.getElementById('lookup-history-grid');
             const clearLookupHistoryBtn = document.getElementById('btn-clear-lookup-history');
-
-            const DEMO_RECORDS = {
-                'DEMO_HOUJI_ACTIVE': {
-                    found: true,
-                    serial: 'DEMO_HOUJI_ACTIVE',
-                    codename: 'houji',
-                    deviceName: 'Xiaomi 14',
-                    plan: 'Gói Đăng Ký Có Ủng Hộ (Vĩnh Viễn)',
-                    senderName: 'Admin Demo',
-                    registeredDate: '15/09/2026',
-                    statusCode: 'active',
-                    statusText: 'Đã Kích Hoạt (Bản Quyền Vĩnh Viễn)',
-                    rawStatus: 'Đã kích hoạt',
-                    supportedOS: ['HyperOS 1.0', 'HyperOS 2.0', 'HyperOS 3.0'],
-                    features: [
-                        'Bản quyền kích hoạt vĩnh viễn theo số Serial phần cứng',
-                        'Bypass Play Integrity (DEVICE/STRONG) trọn đời',
-                        'Cập nhật OTA mượt mà qua ứng dụng UR Manager',
-                        'Mở khóa 120 FPS và tính năng nâng cao HyperOS'
-                    ]
-                },
-                'DEMO_GARNET_PENDING': {
-                    found: true,
-                    serial: 'DEMO_GARNET_PENDING',
-                    codename: 'garnet',
-                    deviceName: 'Redmi Note 13 Pro 5G',
-                    plan: 'Gói Đăng Ký Có Ủng Hộ (Vĩnh Viễn)',
-                    senderName: 'Thành viên HyperUR',
-                    registeredDate: '18/09/2026',
-                    statusCode: 'pending',
-                    statusText: 'Đang Chờ Kích Hoạt / Đối Soát',
-                    rawStatus: 'Chờ kích hoạt',
-                    supportedOS: ['HyperOS 1.0', 'HyperOS 2.0', 'HyperOS 3.0'],
-                    features: [
-                        'Đã tiếp nhận yêu cầu đăng ký bản quyền',
-                        'Đang đối soát giao dịch ủng hộ qua ngân hàng / MoMo',
-                        'Dự kiến kích hoạt hoàn tất trong vòng 1-4 giờ làm việc'
-                    ]
-                }
-            };
 
             function cleanSerialString(val) {
                 if (!val) return '';
@@ -1641,7 +1726,7 @@
 
             function updateLookupCounter() {
                 const len = lookupSerialInput.value.length;
-                lookupCounterTag.textContent = len + ' ký tự';
+                // Bỏ hiển thị đếm số ký tự theo yêu cầu người dùng
                 lookupClearBtn.style.display = len > 0 ? 'flex' : 'none';
             }
 
@@ -1665,7 +1750,8 @@
                 if (regHistRaw) {
                     const regHist = JSON.parse(regHistRaw);
                     if (Array.isArray(regHist) && regHist.length > 0 && regHist[0].serial) {
-                        const lastSerial = regHist[0].serial;
+                        const chipsWrapper = document.getElementById('lookup-quick-chips');
+                        if (chipsWrapper) chipsWrapper.style.display = 'flex';
                         pasteLastBtn.style.display = 'inline-flex';
                         pasteLastBtn.title = 'Tra cứu Serial: ' + lastSerial;
                         pasteLastBtn.addEventListener('click', function() {
@@ -1676,15 +1762,6 @@
                     }
                 }
             } catch (e) {}
-
-            document.querySelectorAll('.lookup-chip-item[data-serial]').forEach(chip => {
-                chip.addEventListener('click', function() {
-                    const sn = this.getAttribute('data-serial');
-                    lookupSerialInput.value = sn;
-                    updateLookupCounter();
-                    performLookup(sn);
-                });
-            });
 
             async function performLookup(serial) {
                 const cleanSerial = cleanSerialString(serial);
@@ -1716,18 +1793,11 @@
 
                 let resultData = null;
 
-                if (DEMO_RECORDS[cleanSerial]) {
-                    resultData = {
-                        success: true,
-                        found: true,
-                        data: DEMO_RECORDS[cleanSerial]
-                    };
-                }
-
-                if (!resultData && lookupApiUrl && lookupApiUrl.trim() !== '') {
+                // Chỉ tra cứu duy nhất qua Google Apps Script Web App API chính thức
+                if (lookupApiUrl && lookupApiUrl.trim() !== '') {
                     try {
                         const controller = new AbortController();
-                        const timeoutId = setTimeout(() => controller.abort(), 8000);
+                        const timeoutId = setTimeout(() => controller.abort(), 10000);
 
                         const fetchUrl = lookupApiUrl + (lookupApiUrl.includes('?') ? '&' : '?')
                             + 'action=check_serial&serial=' + encodeURIComponent(cleanSerial)
@@ -1746,43 +1816,12 @@
                             }
                         }
                     } catch (netErr) {
-                        console.warn('Lỗi kết nối API Google Apps Script, chuyển sang tìm kiếm bộ nhớ cục bộ:', netErr);
+                        console.warn('Lỗi kết nối API Google Apps Script:', netErr);
                     }
                 }
 
-                if (!resultData) {
-                    try {
-                        const regHistRaw = localStorage.getItem(REG_STORAGE_KEY);
-                        if (regHistRaw) {
-                            const list = JSON.parse(regHistRaw);
-                            const matched = list.find(item => cleanSerialString(item.serial) === cleanSerial);
-                            if (matched) {
-                                resultData = {
-                                    success: true,
-                                    found: true,
-                                    data: {
-                                        serial: cleanSerial,
-                                        codename: matched.codename || 'Chưa rõ',
-                                        plan: matched.plan || 'Đăng ký có Ủng hộ (Vĩnh viễn)',
-                                        senderName: matched.name || 'Người dùng',
-                                        registeredDate: matched.time || 'Vừa xong',
-                                        statusCode: 'pending',
-                                        statusText: 'Đang Chờ Kích Hoạt / Đối Soát',
-                                        rawStatus: 'Chờ kích hoạt',
-                                        supportedOS: ['HyperOS 1.0', 'HyperOS 2.0', 'HyperOS 3.0'],
-                                        features: [
-                                            'Đã tiếp nhận yêu cầu từ trình duyệt này',
-                                            'Đang chờ Admin đối soát mã giao dịch ủng hộ',
-                                            'Vui lòng nhắn tin Admin Telegram để kích hoạt tức thì'
-                                        ]
-                                    }
-                                };
-                            }
-                        }
-                    } catch (e) {}
-                }
-
-                if (!resultData) {
+                // Nếu không tìm thấy trên hệ thống, tuyệt đối không tạo dữ liệu ảo
+                if (!resultData || !resultData.found) {
                     resultData = {
                         success: true,
                         found: false,
@@ -2040,8 +2079,20 @@
                         lookupHistoryWrapper.style.display = 'none';
                         return;
                     }
-                    const list = JSON.parse(raw);
-                    if (!Array.isArray(list) || list.length === 0) {
+                    let list = JSON.parse(raw);
+                    if (!Array.isArray(list)) {
+                        lookupHistoryWrapper.style.display = 'none';
+                        return;
+                    }
+
+                    // Tự động loại bỏ hoàn toàn các thông tin demo/ảo cũ
+                    const filtered = list.filter(item => item && item.serial && !item.serial.startsWith('DEMO_') && item.serial !== '11111111');
+                    if (filtered.length !== list.length) {
+                        list = filtered;
+                        localStorage.setItem(LOOKUP_HISTORY_KEY, JSON.stringify(list));
+                    }
+
+                    if (list.length === 0) {
                         lookupHistoryWrapper.style.display = 'none';
                         return;
                     }

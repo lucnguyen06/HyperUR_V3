@@ -3798,17 +3798,138 @@ dialog:not([open]) {
   font-family: monospace;
 }
 
-/* Plan Card */
+/* Plan Selection & Cards */
+.reg-plans-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
 .reg-plan-card {
   position: relative;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(139, 92, 246, 0.1) 100%);
-  border: 2px solid rgba(59, 130, 246, 0.5);
+  background: rgba(15, 23, 42, 0.5);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-md);
-  padding: 1.35rem 1.25rem;
-  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
+  padding: 1.35rem 1.35rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.25s ease, 
+              box-shadow 0.25s ease, 
+              background 0.25s ease,
+              opacity 0.25s ease;
+  user-select: none;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0.82;
+}
+
+.reg-plan-card:hover {
+  opacity: 1;
+  border-color: rgba(255, 255, 255, 0.24);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.reg-plan-card:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+}
+
+/* Plan Selection Top Bar */
+.reg-plan-selection-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.reg-plan-radio-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.plan-radio-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.22s ease;
+  flex-shrink: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.plan-radio-circle::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: transparent;
+  transform: scale(0);
+  transition: transform 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.plan-selection-status {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+/* Active VIP Plan State */
+.reg-plan-card.active {
+  opacity: 1;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.12) 100%);
+  border: 2px solid rgba(59, 130, 246, 0.7);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.22), inset 0 0 20px rgba(59, 130, 246, 0.08);
+}
+
+.reg-plan-card.active .plan-radio-circle {
+  border-color: var(--accent-primary);
+  background: var(--accent-primary);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.65);
+}
+
+.reg-plan-card.active .plan-radio-circle::after {
+  background: #ffffff;
+  transform: scale(1);
+}
+
+.reg-plan-card.active .plan-selection-status {
+  color: #38bdf8;
+}
+
+/* Active Free Plan State */
+.reg-plan-card.plan-free-card.active {
+  opacity: 1;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(6, 182, 212, 0.08) 100%);
+  border: 2px solid rgba(16, 185, 129, 0.7);
+  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.2), inset 0 0 20px rgba(16, 185, 129, 0.07);
+}
+
+.reg-plan-card.plan-free-card.active .plan-radio-circle {
+  border-color: #34d399;
+  background: #10b981;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.65);
+}
+
+.reg-plan-card.plan-free-card.active .plan-radio-circle::after {
+  background: #ffffff;
+  transform: scale(1);
+}
+
+.reg-plan-card.plan-free-card.active .plan-selection-status {
+  color: #34d399;
 }
 
 .reg-plan-header {
@@ -3862,6 +3983,22 @@ dialog:not([open]) {
 .reg-plan-features svg {
   color: var(--accent-emerald);
   flex-shrink: 0;
+}
+
+/* Smooth reveal animation for payment section */
+#payment-reg-section {
+  animation: regSectionFadeIn 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes regSectionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Payment Method Selection */
@@ -4487,7 +4624,94 @@ dialog:not([open]) {
   padding: 0.15rem 0.5rem;
   border-radius: 4px;
   background: rgba(6, 182, 212, 0.12);
-  border: 1px solid rgba(6, 182, 212, 0.25);
+}
+
+/* Notice Box for Active Free (36 Days Trial) */
+.free-active-notice-box {
+  margin-top: 1.25rem;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(6, 182, 212, 0.06) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.28);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.4rem;
+  display: flex;
+  gap: 1.1rem;
+  align-items: flex-start;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+}
+
+.free-active-notice-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--accent-primary), var(--accent-cyan));
+}
+
+.free-active-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.15);
+  border: 1.5px solid rgba(59, 130, 246, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+}
+
+.free-active-body {
+  flex: 1;
+}
+
+.free-active-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.45rem;
+}
+
+.free-active-title {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-strong);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.free-active-badge {
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #34d399;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.free-active-desc {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+.free-active-desc strong {
+  color: var(--accent-cyan);
+  font-weight: 700;
 }
 
 /* ==========================================================================
