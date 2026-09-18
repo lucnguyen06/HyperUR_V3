@@ -598,15 +598,16 @@
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
-                            <span>Xác Nhận & Gửi Đăng Ký HyperUR</span>
+                            <span>Xác Nhận & Gửi Serial Lên Hệ Thống</span>
                         </button>
 
                         <div class="reg-secondary-actions">
-                            <button type="button" id="btn-open-telegram" class="btn-secondary-telegram">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                            <button type="button" id="btn-quick-lookup-tab" class="btn-secondary-copy">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                 </svg>
-                                <span>Gửi Tin Nhắn Telegram Cho Admin</span>
+                                <span>Chuyển Sang Tab Tra Cứu Serial</span>
                             </button>
 
                             <button type="button" id="btn-copy-full-text" class="btn-secondary-copy">
@@ -761,13 +762,13 @@
                     <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
             </div>
-            <h2 class="reg-modal-title">Gửi Đăng Ký Thành Công!</h2>
-            <p class="reg-modal-desc" id="modal-desc-text">Thông tin đăng ký serial của bạn đã được ghi nhận. Đội ngũ HyperUR sẽ đối soát và kích hoạt bản quyền trong thời gian sớm nhất.</p>
+            <h2 class="reg-modal-title">Đã Gửi Serial Lên Hệ Thống!</h2>
+            <p class="reg-modal-desc" id="modal-desc-text">Số Serial của bạn đã được gửi lên hệ thống máy chủ để xác nhận và kích hoạt bản quyền.</p>
 
             <div class="reg-modal-details">
                 <div>
                     <span>Số Serial:</span>
-                    <span id="modal-serial-val">---</span>
+                    <span id="modal-serial-val" style="font-family: monospace; font-weight: 700; color: var(--accent-cyan);">---</span>
                 </div>
                 <div>
                     <span>Mã Thiết Bị (Codename):</span>
@@ -788,18 +789,12 @@
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 0.65rem;">
-                <a href="https://t.me/lcnguy06" id="modal-telegram-link" target="_blank" rel="noopener noreferrer" class="btn-primary" style="justify-content: center; text-decoration: none;">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
-                    </svg>
-                    <span>Báo Admin Qua Telegram Ngay</span>
-                </a>
-                <button type="button" id="modal-lookup-link" class="lookup-btn-outline" style="justify-content: center; text-decoration: none; padding: 0.85rem 1.25rem; border: none; cursor: pointer; width: 100%; font-family: inherit; font-size: inherit;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                <button type="button" id="modal-lookup-link" class="btn-primary" style="justify-content: center; text-decoration: none; width: 100%; cursor: pointer;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
-                    <span>Kiểm Tra Trạng Thái Kích Hoạt Serial Này</span>
+                    <span>Kiểm Tra Trạng Thái Kích Hoạt Serial Ngay</span>
                 </button>
                 <button type="button" class="btn-ghost" id="modal-close-btn" style="justify-content: center;">
                     <span>Đóng Cửa Sổ</span>
@@ -1039,7 +1034,7 @@
             const senderNameInput = document.getElementById('sender-name-input');
             const transactionInput = document.getElementById('transaction-input');
             const submitBtn = document.getElementById('btn-submit-form');
-            const btnOpenTelegram = document.getElementById('btn-open-telegram');
+            const btnQuickLookupTab = document.getElementById('btn-quick-lookup-tab');
             const btnCopyFullText = document.getElementById('btn-copy-full-text');
 
             const toast = document.getElementById('reg-toast');
@@ -1051,7 +1046,6 @@
             const modalPlan = document.getElementById('modal-plan-val');
             const modalSender = document.getElementById('modal-sender-val');
             const modalCloseBtn = document.getElementById('modal-close-btn');
-            const modalTelegramLink = document.getElementById('modal-telegram-link');
             const modalLookupLink = document.getElementById('modal-lookup-link');
 
             function selectPlan(planKey) {
@@ -1074,7 +1068,7 @@
 
                     if (submitBtn) {
                         const btnSpan = submitBtn.querySelector('span');
-                        if (btnSpan) btnSpan.textContent = 'Xác Nhận & Gửi Đăng Ký Active Free (36 Ngày)';
+                        if (btnSpan) btnSpan.textContent = 'Xác Nhận & Gửi Serial Active Free (36 Ngày)';
                     }
                 } else {
                     if (planCardFree) {
@@ -1095,7 +1089,7 @@
 
                     if (submitBtn) {
                         const btnSpan = submitBtn.querySelector('span');
-                        if (btnSpan) btnSpan.textContent = 'Xác Nhận & Gửi Đăng Ký HyperUR';
+                        if (btnSpan) btnSpan.textContent = 'Xác Nhận & Gửi Serial Lên Hệ Thống';
                     }
                 }
             }
@@ -1485,20 +1479,20 @@
                 }
             });
 
-            btnOpenTelegram.addEventListener('click', function() {
-                const serial = serialInput.value.trim();
-                const code = codenameInput.value.trim();
-                if (!serial || !code) {
-                    showToast('⚠️ Vui lòng điền Serial và Mã máy trước!');
-                    serialInput.focus();
-                    return;
-                }
-
-                const fullText = buildSubmissionText();
-                const encoded = encodeURIComponent(fullText);
-                const telegramUrl = `https://t.me/lcnguy06?text=${encoded}`;
-                window.open(telegramUrl, '_blank');
-            });
+            if (btnQuickLookupTab) {
+                btnQuickLookupTab.addEventListener('click', function() {
+                    activateTab('lookup', true);
+                    const serial = serialInput.value.trim();
+                    if (serial) {
+                        const lookupInput = document.getElementById('lookup-serial-input');
+                        if (lookupInput) {
+                            lookupInput.value = serial;
+                            updateLookupCounter();
+                            performLookup(serial);
+                        }
+                    }
+                });
+            }
 
             const REG_STORAGE_KEY = 'hyperur_serial_regs';
 
@@ -1610,7 +1604,7 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="spin">
                         <circle cx="12" cy="12" r="10" stroke-dasharray="30" stroke-dashoffset="10"></circle>
                     </svg>
-                    <span>Đang gửi thông tin đăng ký...</span>
+                    <span>Đang gửi Serial lên hệ thống để xác nhận...</span>
                 `;
 
                 const scriptUrl = (window.HYPERUR_CONFIG && window.HYPERUR_CONFIG.SERIAL_REGISTER_API_URL) || '';
@@ -1642,7 +1636,7 @@
                         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                         <polyline points="22 4 12 14.01 9 11.01"></polyline>
                     </svg>
-                    <span>${isFree ? 'Xác Nhận & Gửi Đăng Ký Active Free (36 Ngày)' : 'Xác Nhận & Gửi Đăng Ký HyperUR'}</span>
+                    <span>${isFree ? 'Xác Nhận & Gửi Serial Active Free (36 Ngày)' : 'Xác Nhận & Gửi Serial Lên Hệ Thống'}</span>
                 `;
 
                 modalSerial.textContent = serial;
@@ -1658,12 +1652,11 @@
                 const modalDesc = document.getElementById('modal-desc-text');
                 if (modalDesc) {
                     modalDesc.textContent = isFree
-                        ? 'Thông tin đăng ký Active Free (36 ngày) đã được ghi nhận. Đội ngũ HyperUR sẽ cấp quyền kích hoạt trải nghiệm trong thời gian sớm nhất.'
-                        : 'Thông tin đăng ký serial của bạn đã được ghi nhận. Đội ngũ HyperUR sẽ đối soát và kích hoạt bản quyền trong thời gian sớm nhất.';
+                        ? `Số Serial ${serial} đã được gửi lên hệ thống máy chủ để xác nhận kích hoạt gói Active Free (36 ngày). Bạn có thể kiểm tra trạng thái kích hoạt ngay bên dưới.`
+                        : `Số Serial ${serial} đã được gửi lên hệ thống máy chủ để xác nhận kích hoạt bản quyền. Bạn có thể kiểm tra trạng thái kích hoạt ngay bên dưới.`;
                 }
 
-                const fullText = buildSubmissionText();
-                modalTelegramLink.href = `https://t.me/lcnguy06?text=${encodeURIComponent(fullText)}`;
+                showToast('✅ Đã gửi Serial lên hệ thống để xác nhận!');
 
                 // Nút "Kiểm tra trạng thái" trong modal -> chuyển sang tab Tra Cứu và tự động tra cứu serial vừa đăng ký
                 if (modalLookupLink) {
@@ -1685,7 +1678,7 @@
                 if (typeof successDialog.showModal === 'function') {
                     successDialog.showModal();
                 } else {
-                    alert('Đăng ký thành công! Vui lòng liên hệ Admin qua Telegram.');
+                    alert(`Đã gửi số Serial ${serial} lên hệ thống thành công! Bạn có thể chuyển sang tab Tra Cứu để kiểm tra trạng thái kích hoạt.`);
                 }
             });
 
