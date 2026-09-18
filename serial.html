@@ -609,14 +609,6 @@
                                 </svg>
                                 <span>Chuyển Sang Tab Tra Cứu Serial</span>
                             </button>
-
-                            <button type="button" id="btn-copy-full-text" class="btn-secondary-copy">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                </svg>
-                                <span>Sao Chép Cú Pháp Đăng Ký</span>
-                            </button>
                         </div>
                     </div>
                 </form>
@@ -1035,7 +1027,6 @@
             const transactionInput = document.getElementById('transaction-input');
             const submitBtn = document.getElementById('btn-submit-form');
             const btnQuickLookupTab = document.getElementById('btn-quick-lookup-tab');
-            const btnCopyFullText = document.getElementById('btn-copy-full-text');
 
             const toast = document.getElementById('reg-toast');
             const toastText = document.getElementById('toast-text');
@@ -1424,60 +1415,6 @@
                 });
             }
 
-            function buildSubmissionText() {
-                const serial = serialInput.value.trim().toUpperCase();
-                const code = codenameInput.value.trim().toLowerCase();
-                const plan = (regTypeValue ? regTypeValue.value : document.getElementById('reg-type-value').value) || 'Đăng kí có Ủng hộ (Vĩnh viễn)';
-                const isFree = plan.includes('Active Free') || plan.includes('36');
-                const method = isFree ? 'Active Free (0đ - Dùng thử 36 ngày)' : paymentMethodValue.value;
-                const name = senderNameInput.value.trim();
-                const tx = transactionInput.value.trim();
-
-                if (isFree) {
-                    return `🔥 [ĐĂNG KÝ ACTIVE FREE HYPERUR] 🔥\n` +
-                           `• Số Serial: ${serial}\n` +
-                           `• Mã thiết bị (Codename): ${code}\n` +
-                           `• Gói đăng ký: ${plan}\n` +
-                           `• Thời hạn trải nghiệm: 36 ngày (Miễn phí 100%)\n` +
-                           (name ? `• Tên người gửi: ${name}\n` : '') +
-                           `• Thời gian: ${new Date().toLocaleString('vi-VN')}`;
-                }
-
-                let paymentDetail = '';
-                if (method.includes('Binance')) {
-                    paymentDetail = `• Kênh ủng hộ: ${method}\n• Binance Nickname: lucnguyen06 | Binance UID: 833477683\n• Mức ủng hộ: 5 USDT (5$) / thiết bị\n`;
-                } else if (method.includes('PayPal')) {
-                    paymentDetail = `• Kênh ủng hộ: ${method}\n• Người nhận: Nguyễn Lực (paypal.me/lucnguyeen)\n• Mức ủng hộ: 5$ (5 USD) / thiết bị\n`;
-                } else {
-                    paymentDetail = `• Kênh ủng hộ: ${method}\n• Mức ủng hộ: 40.000đ / thiết bị\n• Link Quỹ MoMo: https://quy.momo.vn/v2/APNLXaw0uN?cover=da0c\n`;
-                }
-
-                return `🔥 [ĐĂNG KÝ SERIAL HYPERUR] 🔥\n` +
-                       `• Số Serial: ${serial}\n` +
-                       `• Mã thiết bị (Codename): ${code}\n` +
-                       `• Gói đăng ký: ${plan}\n` +
-                       paymentDetail +
-                       `• Tên người gửi: ${name}\n` +
-                       `• Nội dung & Mã GD: ${tx}\n` +
-                       `• Thời gian: ${new Date().toLocaleString('vi-VN')}`;
-            }
-
-            btnCopyFullText.addEventListener('click', function() {
-                const serial = serialInput.value.trim();
-                const code = codenameInput.value.trim();
-                if (!serial || !code) {
-                    showToast('⚠️ Vui lòng điền Serial và Mã máy trước!');
-                    serialInput.focus();
-                    return;
-                }
-
-                const fullText = buildSubmissionText();
-                if (navigator.clipboard) {
-                    navigator.clipboard.writeText(fullText).then(() => {
-                        showToast('✅ Đã sao chép toàn bộ cú pháp đăng ký!');
-                    });
-                }
-            });
 
             if (btnQuickLookupTab) {
                 btnQuickLookupTab.addEventListener('click', function() {
