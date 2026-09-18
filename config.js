@@ -25,6 +25,9 @@ window.HYPERUR_CONFIG = {
   SITE_DOMAIN: "https://hyperur.io.vn",
 
   // 7. Cấu hình Web App Google Apps Script nhận form Đăng ký Serial (doPost)
-  SERIAL_REGISTER_API_URL: "https://script.google.com/macros/s/AKfycbwjfPzSOkWstEAAZw4D6TqzS6D9dshHRHBkyW_mip7ledWRjSZSCt_Z6MmVfA-Lu8V-/exec"
+  SERIAL_REGISTER_API_URL: "https://script.google.com/macros/s/AKfycbwjfPzSOkWstEAAZw4D6TqzS6D9dshHRHBkyW_mip7ledWRjSZSCt_Z6MmVfA-Lu8V-/exec",
+
+  // 8. Cấu hình Web App Google Apps Script tra cứu Serial (doGet)
+  SERIAL_LOOKUP_API_URL: "https://script.google.com/macros/s/AKfycbwjfPzSOkWstEAAZw4D6TqzS6D9dshHRHBkyW_mip7ledWRjSZSCt_Z6MmVfA-Lu8V-/exec"
 };
 

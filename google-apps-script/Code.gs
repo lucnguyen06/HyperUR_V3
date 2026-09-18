@@ -238,10 +238,20 @@ function scanGoogleDriveFolder() {
  */
 function doGet(e) {
   try {
+    const params = (e && e.parameter) || {};
+    const action = params.action || "";
+    const querySerial = (params.serial || "").toString().trim().toUpperCase();
+
+    // 1. Xử lý tra cứu Serial nếu có tham số action=check_serial / lookup hoặc serial
+    if (action === "check_serial" || action === "lookup" || querySerial) {
+      return handleSerialLookup(querySerial);
+    }
+
+    // 2. Mặc định: Quét hoặc trả về danh sách ROM Google Drive
     const cache = CacheService.getScriptCache();
     let cachedData = cache.get("active_roms_json");
 
-    const forceRefresh = e && e.parameter && e.parameter.action === "refresh";
+    const forceRefresh = action === "refresh";
 
     if (!cachedData || forceRefresh) {
       const data = scanGoogleDriveFolder();
@@ -264,8 +274,129 @@ function doGet(e) {
 
 /**
  * =========================================================================
+ * TRA CỨU SERIAL TỪ GOOGLE SHEET SERIAL_REGISTRATIONS
+ * =========================================================================
+ */
+function handleSerialLookup(querySerial) {
+  if (!querySerial) {
+    return ContentService.createTextOutput(JSON.stringify({
+      success: false,
+      message: "Vui lòng cung cấp số Serial cần tra cứu."
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+
+  try {
+    let ss = null;
+    try {
+      ss = SpreadsheetApp.getActiveSpreadsheet();
+    } catch (err) {}
+
+    if (!ss && CONFIG.SPREADSHEET_ID) {
+      try {
+        ss = SpreadsheetApp.openById(CONFIG.SPREADSHEET_ID);
+      } catch (err) {}
+    }
+
+    if (!ss) {
+      return ContentService.createTextOutput(JSON.stringify({
+        success: false,
+        found: false,
+        serial: querySerial,
+        message: "Chưa kết nối được Google Sheet lưu trữ dữ liệu Serial."
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    const sheet = ss.getSheetByName("Serial_Registrations");
+    if (!sheet) {
+      return ContentService.createTextOutput(JSON.stringify({
+        success: true,
+        found: false,
+        serial: querySerial,
+        message: "Bảng dữ liệu Serial chưa được khởi tạo."
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    const data = sheet.getDataRange().getValues();
+    if (data.length <= 1) {
+      return ContentService.createTextOutput(JSON.stringify({
+        success: true,
+        found: false,
+        serial: querySerial,
+        message: "Chưa có dữ liệu đăng ký Serial nào trên hệ thống."
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // Duyệt từ dưới lên để lấy bản ghi mới nhất của Serial này
+    let matchedRow = null;
+    for (let r = data.length - 1; r >= 1; r--) {
+      const rowSerial = (data[r][1] || "").toString().trim().toUpperCase();
+      if (rowSerial === querySerial) {
+        matchedRow = data[r];
+        break;
+      }
+    }
+
+    if (!matchedRow) {
+      return ContentService.createTextOutput(JSON.stringify({
+        success: true,
+        found: false,
+        serial: querySerial,
+        message: "Không tìm thấy số Serial này trên hệ thống HyperUR. Vui lòng kiểm tra lại hoặc thực hiện đăng ký mới."
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    const timeStr = matchedRow[0] ? matchedRow[0].toString() : "";
+    const codename = matchedRow[2] ? matchedRow[2].toString().toLowerCase() : "";
+    const plan = matchedRow[3] ? matchedRow[3].toString() : "Đăng ký có Ủng hộ (Vĩnh viễn)";
+    const senderName = matchedRow[5] ? matchedRow[5].toString() : "";
+    const rawStatus = matchedRow[7] ? matchedRow[7].toString().trim() : "Chờ kích hoạt";
+
+    // Phân loại trạng thái
+    let statusCode = "pending";
+    let statusText = "Đang Chờ Kích Hoạt / Đối Soát";
+    const lowerStatus = rawStatus.toLowerCase();
+    if (lowerStatus.includes("đã kích hoạt") || lowerStatus.includes("hoạt động") || lowerStatus.includes("active") || lowerStatus.includes("vĩnh viễn") || lowerStatus.includes("thành công")) {
+      statusCode = "active";
+      statusText = "Đã Kích Hoạt (Bản Quyền Vĩnh Viễn)";
+    } else if (lowerStatus.includes("từ chối") || lowerStatus.includes("hủy") || lowerStatus.includes("khóa") || lowerStatus.includes("banned")) {
+      statusCode = "rejected";
+      statusText = "Đã Bị Khóa Hoặc Từ Chối";
+    }
+
+    return ContentService.createTextOutput(JSON.stringify({
+      success: true,
+      found: true,
+      data: {
+        serial: querySerial,
+        codename: codename,
+        plan: plan,
+        senderName: senderName ? (senderName.length > 2 ? senderName.substring(0, 2) + "***" : senderName) : "",
+        registeredDate: timeStr,
+        statusCode: statusCode,
+        statusText: statusText,
+        rawStatus: rawStatus,
+        supportedOS: ["HyperOS 1.0", "HyperOS 2.0", "HyperOS 3.0"],
+        features: [
+          "Bản quyền kích hoạt vĩnh viễn theo số Serial phần cứng",
+          "Bypass Play Integrity (DEVICE/STRONG) trọn đời",
+          "Cập nhật OTA mượt mà qua ứng dụng UR Manager",
+          "Mở khóa 120 FPS và tính năng nâng cao HyperOS"
+        ]
+      }
+    })).setMimeType(ContentService.MimeType.JSON);
+
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({
+      success: false,
+      error: err.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+/**
+ * =========================================================================
  * ENDPOINT TIẾP NHẬN FORM ĐĂNG KÝ SERIAL (doPost)
- * Nhận dữ liệu đăng ký serial từ register.html và lưu vào Google Sheet
+ * Nhận dữ liệu đăng ký serial từ serial.html và lưu vào Google Sheet
  * =========================================================================
  */
 function doPost(e) {

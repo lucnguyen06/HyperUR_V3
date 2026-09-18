@@ -22,6 +22,9 @@ UR_V3/
 ├── firmware.html               # Thông Tin & Giao Diện FW (Ảnh chụp màn hình thực tế, Specs, Modules)
 ├── features.html               # Chuyển hướng tự động (Redirect) sang firmware.html
 ├── guide.html                  # Hướng Dẫn Flash (Quy trình 4 bước, Fastboot/Recovery, Lưu ý)
+├── register.html               # (Đã gộp vào serial.html - Xem bên dưới)
+├── lookup.html                 # (Đã gộp vào serial.html - Xem bên dưới)
+├── serial.html                 # Đăng Ký & Tra Cứu Serial (Gộp 2 trang cũ)
 ├── styles.css                  # Toàn bộ Design System (Titanium Glassmorphism, Phone Frames)
 ├── devices.js                  # Module JavaScript duy nhất (Tải & Lọc thiết bị, Modal)
 ├── README.md                   # Tài liệu dự án
