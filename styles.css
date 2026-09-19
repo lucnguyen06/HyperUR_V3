@@ -3752,6 +3752,31 @@ dialog:not([open]) {
   gap: 0.3rem;
 }
 
+/* Email field state messages */
+.email-state-msg {
+  display: flex;
+  align-items: center;
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  transition: color var(--transition-fast);
+}
+
+.email-state-msg.valid {
+  color: var(--accent-emerald);
+}
+
+.email-state-msg.invalid {
+  color: var(--rose-500);
+}
+
+.reg-input.email-field {
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: inherit;
+  font-weight: 400;
+}
+
 /* Serial Lookup Accordion */
 .serial-help-accordion {
   margin-top: 0.75rem;
