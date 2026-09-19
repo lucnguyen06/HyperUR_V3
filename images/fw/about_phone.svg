@@ -6,8 +6,8 @@
       <stop offset="100%" stop-color="#070b14"/>
     </linearGradient>
     <linearGradient id="brandAccent" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#3b82f6"/>
-      <stop offset="100%" stop-color="#8b5cf6"/>
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#14b8a6"/>
     </linearGradient>
     <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#1e293b" stop-opacity="0.8"/>
@@ -29,7 +29,7 @@
     <path d="M12 3h3v10h-3z M6 6h3v7H6z M0 9h3v4H0z"/>
     <path d="M22 2a11 11 0 0 1 8 0 M24 6a7 7 0 0 1 4 0 M26 10a2 2 0 0 1 0 1" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/>
     <rect x="42" y="2" width="22" height="11" rx="3" fill="none" stroke="#fff" stroke-width="1.8"/>
-    <rect x="44" y="4" width="15" height="7" rx="1.5" fill="#3b82f6"/>
+    <rect x="44" y="4" width="15" height="7" rx="1.5" fill="#10b981"/>
     <rect x="65" y="5" width="2" height="5" rx="1" fill="#fff"/>
   </g>
 
@@ -41,7 +41,7 @@
 
   <!-- HyperUR Large OS Logo Card -->
   <g transform="translate(24, 115)">
-    <rect width="342" height="168" rx="24" fill="url(#cardGrad)" stroke="rgba(59,130,246,0.3)" stroke-width="1.5"/>
+    <rect width="342" height="168" rx="24" fill="url(#cardGrad)" stroke="rgba(16,185,129,0.35)" stroke-width="1.5"/>
     <circle cx="75" cy="84" r="48" fill="url(#brandAccent)" opacity="0.15" filter="url(#glow)"/>
     
     <!-- Stylized H Logo -->
@@ -49,11 +49,11 @@
     <text x="75" y="96" font-family="'Inter', sans-serif" font-size="34" font-weight="800" fill="#ffffff" text-anchor="middle">H</text>
 
     <!-- Info text beside logo -->
-    <text x="125" y="65" font-family="'Inter', sans-serif" font-size="22" font-weight="800" fill="#ffffff">Hyper<tspan fill="#3b82f6">UR</tspan></text>
-    <rect x="125" y="76" width="110" height="22" rx="11" fill="rgba(59,130,246,0.2)"/>
-    <text x="180" y="91" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#60a5fa" text-anchor="middle">OS 3.0 • V3.0.2 STABLE</text>
+    <text x="125" y="65" font-family="'Inter', sans-serif" font-size="22" font-weight="800" fill="#ffffff">Hyper<tspan fill="#10b981">UR</tspan></text>
+    <rect x="125" y="76" width="110" height="22" rx="11" fill="rgba(16,185,129,0.2)"/>
+    <text x="180" y="91" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#34d399" text-anchor="middle">OS 3.0 • V3.0.2 STABLE</text>
     <text x="125" y="118" font-family="'Be Vietnam Pro', sans-serif" font-size="12" fill="#94a3b8">Bản ROM stock-based tùy biến</text>
-    <text x="125" y="136" font-family="'Be Vietnam Pro', sans-serif" font-size="11" fill="#38bdf8">Đã kiểm tra • Sạch 100%</text>
+    <text x="125" y="136" font-family="'Be Vietnam Pro', sans-serif" font-size="11" fill="#2dd4bf">Đã kiểm tra • Sạch 100%</text>
   </g>
 
   <!-- Spec Items Grid -->
@@ -62,7 +62,7 @@
     <rect x="0" y="0" width="165" height="92" rx="18" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
     <text x="18" y="28" font-family="'Be Vietnam Pro', sans-serif" font-size="12" fill="#94a3b8">Tên thiết bị</text>
     <text x="18" y="52" font-family="'Be Vietnam Pro', sans-serif" font-size="15" font-weight="700" fill="#ffffff">Redmi K70 Ultra</text>
-    <text x="18" y="74" font-family="'Inter', sans-serif" font-size="12" font-weight="600" fill="#3b82f6">Codename: rothko</text>
+    <text x="18" y="74" font-family="'Inter', sans-serif" font-size="12" font-weight="600" fill="#10b981">Codename: rothko</text>
 
     <!-- Item 2: Phiên bản Android -->
     <rect x="177" y="0" width="165" height="92" rx="18" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
@@ -74,7 +74,7 @@
     <rect x="0" y="104" width="342" height="92" rx="18" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
     <text x="18" y="132" font-family="'Be Vietnam Pro', sans-serif" font-size="12" fill="#94a3b8">Nhân hệ thống (Kernel)</text>
     <text x="18" y="156" font-family="'Inter', sans-serif" font-size="15" font-weight="700" fill="#ffffff">Kernel 6.1.75-HyperUR-Perf+</text>
-    <text x="18" y="178" font-family="'Be Vietnam Pro', sans-serif" font-size="12" fill="#a855f7">Schedutil Gov • Hỗ trợ KernelSU v1.0.2</text>
+    <text x="18" y="178" font-family="'Be Vietnam Pro', sans-serif" font-size="12" fill="#34d399">Schedutil Gov • Hỗ trợ KernelSU v1.0.2</text>
 
     <!-- Item 4: Bộ nhớ RAM & Bộ nhớ trong -->
     <rect x="0" y="208" width="165" height="92" rx="18" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>

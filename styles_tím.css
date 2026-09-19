@@ -43,16 +43,9 @@ html {
   --blue-500: #3b82f6;
   --blue-600: #2563eb;
   --indigo-500: #6366f1;
-  --purple-500: #10b981;
+  --purple-500: #8b5cf6;
   --cyan-500: #06b6d4;
-  --teal-400: #2dd4bf;
-  --teal-500: #14b8a6;
-  --teal-600: #0d9488;
-  --emerald-400: #34d399;
   --emerald-500: #10b981;
-  --emerald-600: #059669;
-  --mint-300: #a7f3d0;
-  --mint-400: #6ee7b7;
   --amber-500: #f59e0b;
   --rose-500: #f43f5e;
   --slate-50: #f8fafc;
@@ -67,22 +60,22 @@ html {
 
   /* Layer 2: Semantic Tokens (Dark Theme Default) */
   --bg: var(--slate-950);
-  --bg-gradient: radial-gradient(circle at 50% 0%, #0d1e1a 0%, #080a11 60%, #05060a 100%);
-  --surface: rgba(16, 28, 24, 0.65);
-  --surface-hover: rgba(20, 38, 32, 0.85);
-  --surface-solid: #0d1b17;
-  --surface-card: rgba(16, 26, 23, 0.55);
-  --surface-elevated: rgba(20, 42, 36, 0.75);
+  --bg-gradient: radial-gradient(circle at 50% 0%, #121829 0%, #080a11 60%, #05060a 100%);
+  --surface: rgba(16, 22, 36, 0.65);
+  --surface-hover: rgba(23, 31, 51, 0.85);
+  --surface-solid: #0e1320;
+  --surface-card: rgba(18, 24, 40, 0.55);
+  --surface-elevated: rgba(26, 35, 58, 0.75);
 
-  --glass-bg: rgba(11, 24, 20, 0.75);
+  --glass-bg: rgba(13, 18, 30, 0.75);
   --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-border-hover: rgba(16, 185, 129, 0.4);
+  --glass-border-hover: rgba(59, 130, 246, 0.35);
   --glass-highlight: rgba(255, 255, 255, 0.04);
   --glass-blur: 24px;
 
   --border: rgba(255, 255, 255, 0.07);
   --border-strong: rgba(255, 255, 255, 0.14);
-  --border-focus: rgba(16, 185, 129, 0.6);
+  --border-focus: rgba(59, 130, 246, 0.6);
 
   --text-strong: #ffffff;
   --text: var(--slate-200);
@@ -90,25 +83,20 @@ html {
   --muted: var(--slate-400);
   --muted-soft: var(--slate-500);
 
-  --accent-primary: var(--emerald-500);
-  --accent-primary-hover: var(--emerald-600);
-  --accent-secondary: var(--teal-400);
-  --accent-gradient: linear-gradient(135deg, var(--emerald-500) 0%, var(--teal-500) 50%, var(--cyan-500) 100%);
-  --accent-gradient-glow: linear-gradient(135deg, rgba(16, 185, 129, 0.4), rgba(20, 184, 166, 0.4));
+  --accent-primary: var(--blue-500);
+  --accent-primary-hover: var(--blue-600);
+  --accent-gradient: linear-gradient(135deg, var(--blue-500) 0%, var(--indigo-500) 50%, var(--purple-500) 100%);
+  --accent-gradient-glow: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(139, 92, 246, 0.4));
   --accent-cyan: var(--cyan-500);
-  --accent-teal: var(--teal-500);
   --accent-emerald: var(--emerald-500);
-  --accent-mint: var(--mint-400);
   --accent-amber: var(--amber-500);
   --accent-rose: var(--rose-500);
 
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.55);
-  --shadow-glow: 0 0 35px rgba(16, 185, 129, 0.25);
-  --shadow-glow-purple: 0 0 35px rgba(20, 184, 166, 0.25);
-  --shadow-glow-teal: 0 0 35px rgba(20, 184, 166, 0.25);
-  --shadow-glow-emerald: 0 0 35px rgba(16, 185, 129, 0.3);
+  --shadow-glow: 0 0 35px rgba(59, 130, 246, 0.25);
+  --shadow-glow-purple: 0 0 35px rgba(139, 92, 246, 0.25);
 
   --scrollbar-thumb: rgba(255, 255, 255, 0.15);
   --scrollbar-thumb-hover: rgba(255, 255, 255, 0.28);
@@ -132,7 +120,7 @@ html {
 /* Light Theme Variables */
 [data-theme="light"] {
   --bg: var(--slate-50);
-  --bg-gradient: radial-gradient(circle at 50% 0%, #e6f4f1 0%, #f1f5f9 60%, #f8fafc 100%);
+  --bg-gradient: radial-gradient(circle at 50% 0%, #e2e8f0 0%, #f1f5f9 60%, #f8fafc 100%);
   --surface: rgba(255, 255, 255, 0.75);
   --surface-hover: rgba(255, 255, 255, 0.95);
   --surface-solid: #ffffff;
@@ -141,13 +129,13 @@ html {
 
   --glass-bg: rgba(255, 255, 255, 0.8);
   --glass-border: rgba(15, 23, 42, 0.08);
-  --glass-border-hover: rgba(5, 150, 105, 0.4);
+  --glass-border-hover: rgba(37, 99, 235, 0.4);
   --glass-highlight: rgba(255, 255, 255, 0.9);
   --glass-blur: 24px;
 
   --border: rgba(15, 23, 42, 0.08);
   --border-strong: rgba(15, 23, 42, 0.15);
-  --border-focus: rgba(5, 150, 105, 0.6);
+  --border-focus: rgba(37, 99, 235, 0.6);
 
   --text-strong: var(--slate-900);
   --text: #1e293b;
@@ -155,19 +143,16 @@ html {
   --muted: var(--slate-500);
   --muted-soft: var(--slate-400);
 
-  --accent-primary: var(--emerald-600);
-  --accent-primary-hover: #047857;
-  --accent-secondary: var(--teal-600);
-  --accent-gradient: linear-gradient(135deg, #059669 0%, #0d9488 50%, #0891b2 100%);
-  --accent-gradient-glow: linear-gradient(135deg, rgba(5, 150, 105, 0.2), rgba(13, 148, 136, 0.2));
+  --accent-primary: var(--blue-600);
+  --accent-primary-hover: #1d4ed8;
+  --accent-gradient: linear-gradient(135deg, #2563eb 0%, #4f46e5 50%, #7c3aed 100%);
+  --accent-gradient-glow: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(124, 58, 237, 0.2));
 
   --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
   --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
   --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.12);
-  --shadow-glow: 0 0 35px rgba(5, 150, 105, 0.15);
-  --shadow-glow-purple: 0 0 35px rgba(13, 148, 136, 0.15);
-  --shadow-glow-teal: 0 0 35px rgba(13, 148, 136, 0.15);
-  --shadow-glow-emerald: 0 0 35px rgba(5, 150, 105, 0.18);
+  --shadow-glow: 0 0 35px rgba(37, 99, 235, 0.15);
+  --shadow-glow-purple: 0 0 35px rgba(124, 58, 237, 0.15);
 
   --scrollbar-thumb: rgba(15, 23, 42, 0.15);
   --scrollbar-thumb-hover: rgba(15, 23, 42, 0.28);
@@ -204,8 +189,8 @@ body::before {
   width: 100%;
   height: 100%;
   background:
-    radial-gradient(circle 800px at 15% 10%, rgba(16, 185, 129, 0.12), transparent 70%),
-    radial-gradient(circle 900px at 85% 25%, rgba(20, 184, 166, 0.1), transparent 70%),
+    radial-gradient(circle 800px at 15% 10%, rgba(59, 130, 246, 0.12), transparent 70%),
+    radial-gradient(circle 900px at 85% 25%, rgba(139, 92, 246, 0.1), transparent 70%),
     radial-gradient(circle 700px at 50% 80%, rgba(6, 182, 212, 0.08), transparent 70%);
   pointer-events: none;
   z-index: 0;
@@ -2120,9 +2105,9 @@ dialog:not([open]) {
 }
 
 .highlight-card-icon.purple {
-  background: rgba(20, 184, 166, 0.12);
-  color: var(--teal-400);
-  border: 1px solid rgba(20, 184, 166, 0.25);
+  background: rgba(168, 85, 247, 0.12);
+  color: var(--accent-secondary);
+  border: 1px solid rgba(168, 85, 247, 0.25);
 }
 
 .highlight-card h3 {
@@ -2426,8 +2411,8 @@ dialog:not([open]) {
 }
 
 .member-avatar.chat {
-  background: linear-gradient(135deg, #10b981, #14b8a6);
-  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.25);
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
 }
 
 .member-info {
@@ -2511,9 +2496,9 @@ dialog:not([open]) {
 }
 
 .fw-spec-icon.purple {
-  background: rgba(20, 184, 166, 0.15);
-  color: #14b8a6;
-  border: 1px solid rgba(20, 184, 166, 0.3);
+  background: rgba(168, 85, 247, 0.15);
+  color: #a855f7;
+  border: 1px solid rgba(168, 85, 247, 0.3);
 }
 
 .fw-spec-icon.cyan {
@@ -2659,9 +2644,9 @@ dialog:not([open]) {
 }
 
 .fw-badge.purple {
-  background: rgba(20, 184, 166, 0.15);
-  color: #14b8a6;
-  border: 1px solid rgba(20, 184, 166, 0.3);
+  background: rgba(168, 85, 247, 0.15);
+  color: #a855f7;
+  border: 1px solid rgba(168, 85, 247, 0.3);
 }
 
 .fw-badge.cyan {
@@ -3001,7 +2986,7 @@ dialog:not([open]) {
   transform: translateX(-50%);
   width: 650px;
   height: 240px;
-  background: radial-gradient(ellipse at center, rgba(16, 185, 129, 0.12) 0%, rgba(20, 184, 166, 0.06) 50%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.12) 0%, rgba(139, 92, 246, 0.06) 50%, transparent 70%);
   pointer-events: none;
   filter: blur(40px);
 }
@@ -3496,9 +3481,9 @@ dialog:not([open]) {
   left: 0.4rem;
   bottom: 0.4rem;
   width: calc(50% - 0.4rem);
-  background: linear-gradient(135deg, var(--emerald-500) 0%, var(--teal-500) 100%);
+  background: linear-gradient(135deg, var(--accent-primary, #3b82f6) 0%, #6366f1 100%);
   border-radius: 999px;
-  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 18px rgba(59, 130, 246, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
 }
@@ -3578,7 +3563,7 @@ dialog:not([open]) {
   left: 15%;
   right: 15%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.6), rgba(20, 184, 166, 0.6), transparent);
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.6), rgba(139, 92, 246, 0.6), transparent);
 }
 
 @media (max-width: 768px) {
@@ -3936,9 +3921,9 @@ dialog:not([open]) {
 /* Active VIP Plan State */
 .reg-plan-card.active {
   opacity: 1;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(20, 184, 166, 0.12) 100%);
-  border: 2px solid rgba(16, 185, 129, 0.7);
-  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.22), inset 0 0 20px rgba(16, 185, 129, 0.08);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.12) 100%);
+  border: 2px solid rgba(59, 130, 246, 0.7);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.22), inset 0 0 20px rgba(59, 130, 246, 0.08);
 }
 
 .reg-plan-card.active .plan-radio-circle {
@@ -4819,7 +4804,7 @@ dialog:not([open]) {
   height: 500px;
   bottom: 15%;
   right: 20%;
-  background: radial-gradient(circle, #10b981 0%, rgba(16, 185, 129, 0) 70%);
+  background: radial-gradient(circle, #8b5cf6 0%, rgba(139, 92, 246, 0) 70%);
   animation-delay: -3s;
 }
 
@@ -4862,7 +4847,7 @@ dialog:not([open]) {
   position: absolute;
   inset: -12px;
   border-radius: 32px;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.5), rgba(20, 184, 166, 0.5));
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.5), rgba(139, 92, 246, 0.5));
   filter: blur(20px);
   animation: splashHaloPulse 3s ease-in-out infinite alternate;
 }
@@ -4908,7 +4893,7 @@ dialog:not([open]) {
 
 .splash-ring-2 {
   inset: -22px;
-  border: 1px dotted rgba(20, 184, 166, 0.35);
+  border: 1px dotted rgba(139, 92, 246, 0.3);
   animation: splashSpin 20s linear infinite reverse;
 }
 
@@ -4956,12 +4941,12 @@ dialog:not([open]) {
 }
 
 .splash-brand-text {
-  background: linear-gradient(135deg, #34d399 0%, #14b8a6 50%, #38bdf8 100%);
+  background: linear-gradient(135deg, #60a5fa 0%, #a855f7 50%, #38bdf8 100%);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: splashTextShine 3s ease infinite;
-  filter: drop-shadow(0 4px 16px rgba(16, 185, 129, 0.45));
+  filter: drop-shadow(0 4px 16px rgba(99, 102, 241, 0.45));
 }
 
 .splash-brand-text .brand-accent {
@@ -4998,9 +4983,9 @@ dialog:not([open]) {
   top: 0;
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #10b981, #14b8a6, #06b6d4);
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
   border-radius: 999px;
-  box-shadow: 0 0 14px rgba(16, 185, 129, 0.85);
+  box-shadow: 0 0 14px rgba(59, 130, 246, 0.85);
   transition: width 0.1s ease;
 }
 
@@ -5059,8 +5044,8 @@ dialog:not([open]) {
 
 .welcome-hero-badge:hover {
   transform: translateY(-2px) scale(1.02);
-  border-color: rgba(16, 185, 129, 0.7);
-  box-shadow: 0 8px 30px rgba(16, 185, 129, 0.25), 0 0 25px rgba(20, 184, 166, 0.2);
+  border-color: rgba(59, 130, 246, 0.7);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.25), 0 0 25px rgba(139, 92, 246, 0.2);
 }
 
 .welcome-badge-glow {
@@ -5081,10 +5066,10 @@ dialog:not([open]) {
   justify-content: center;
   width: 26px;
   height: 26px;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(20, 184, 166, 0.25));
-  border: 1px solid rgba(16, 185, 129, 0.4);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(139, 92, 246, 0.25));
+  border: 1px solid rgba(59, 130, 246, 0.4);
   border-radius: 50%;
-  color: #34d399;
+  color: #38bdf8;
   flex-shrink: 0;
 }
 
@@ -5210,8 +5195,8 @@ dialog:not([open]) {
 
 /* Cross-page Navigation Banner */
 .lookup-cross-banner {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(20, 184, 166, 0.12));
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(139, 92, 246, 0.12));
+  border: 1px solid rgba(59, 130, 246, 0.3);
   border-radius: var(--radius-md);
   padding: 1rem 1.25rem;
   margin-bottom: 2rem;
