@@ -537,11 +537,11 @@
                 ` : ''}
               </div>
               <div class="popup-os-actions">
-                <button 
-                  class="btn-icon copy-link-btn" 
-                  style="width: 34px; height: 34px; border-radius: 8px;"
+                <button
+                  class="btn-icon copy-link-btn popup-copy-btn"
                   data-url="${os.download}"
                   title="Sao chép link tải Google Drive"
+                  aria-label="Sao chép link tải Google Drive"
                 >
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
