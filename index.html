@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="HyperUR - Kho ROM Custom Stock-based tối ưu hóa cho Xiaomi, Redmi. Hỗ trợ 121 thiết bị HyperOS 1.0, 2.0, 3.0 với độ mượt tuyệt đỉnh, bypass app ngân hàng và mở khóa FPS.">
+    <meta name="description" content="HyperUR - Kho ROM Custom Stock-based tối ưu hóa cho Xiaomi, Redmi. Hỗ trợ 121 thiết bị HyperOS 1.0, 2.0, 3.0 với độ mượt tuyệt đỉnh, bypass app ngân hàng và mở khóa FPS." data-i18n-meta="description">
     <title>HyperUR - HyperOS Custom ROM Portal</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2228%22 fill=%22%2310b981%22/><text x=%2250%22 y=%2268%22 font-size=%2255%22 font-family=%22system-ui,sans-serif%22 font-weight=%22800%22 fill=%22%23ffffff%22 text-anchor=%22middle%22>H</text></svg>">
     
@@ -35,19 +35,19 @@
                 </div>
             </div>
             <div class="splash-text-container">
-                <div class="splash-tagline">HYPEROS OPTIMIZATION ECOSYSTEM</div>
+                <div class="splash-tagline" data-i18n="splash.tagline">HYPEROS OPTIMIZATION ECOSYSTEM</div>
                 <h2 class="splash-title">
-                    <span class="splash-word-welcome">WELCOME</span>
-                    <span class="splash-word-to">TO</span>
+                    <span class="splash-word-welcome" data-i18n="splash.welcome">WELCOME</span>
+                    <span class="splash-word-to" data-i18n="splash.to">TO</span>
                     <span class="splash-brand-text">Hyper<span class="brand-accent">UR</span></span>
                 </h2>
-                <p class="splash-subtext">Khai phóng tiềm năng • Mượt mà tuyệt đỉnh</p>
+                <p class="splash-subtext" data-i18n="splash.subtext">Khai phóng tiềm năng • Mượt mà tuyệt đỉnh</p>
             </div>
             <div class="splash-loader-track">
                 <div class="splash-loader-indicator" id="splash-loader-indicator"></div>
             </div>
-            <button id="splash-skip-btn" class="splash-skip-btn" type="button" aria-label="Bỏ qua màn hình chào">
-                <span>Bỏ qua</span>
+            <button id="splash-skip-btn" class="splash-skip-btn" type="button" data-i18n-aria-label="splash.skipAria">
+                <span data-i18n="splash.skip">Bỏ qua</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </button>
         </div>
@@ -64,24 +64,34 @@
 
                 <!-- Navigation Links -->
                 <ul class="navbar-menu" id="nav-menu">
-                    <li><a href="index.html" class="navbar-link active">Trang Chủ</a></li>
-                    <li><a href="download.html" class="navbar-link">Tải ROM</a></li>
-                    <li><a href="firmware.html" class="navbar-link">Thông Tin FW</a></li>
-                    <li><a href="guide.html" class="navbar-link">Hướng Dẫn</a></li>
-                    <li><a href="serial.html" class="navbar-link">Đăng Ký & Tra Cứu Serial</a></li>
+                    <li><a href="index.html" class="navbar-link active" data-i18n="nav.home">Trang Chủ</a></li>
+                    <li><a href="download.html" class="navbar-link" data-i18n="nav.download">Tải ROM</a></li>
+                    <li><a href="firmware.html" class="navbar-link" data-i18n="nav.firmware">Thông Tin FW</a></li>
+                    <li><a href="guide.html" class="navbar-link" data-i18n="nav.guide">Hướng Dẫn</a></li>
+                    <li><a href="serial.html" class="navbar-link" data-i18n="nav.serial">Đăng Ký & Tra Cứu Serial</a></li>
                     <li class="mobile-nav-divider" aria-hidden="true"></li>
                     <li class="mobile-nav-footer">
                         <a href="https://t.me/hypermodupdate" target="_blank" rel="noopener noreferrer" class="mobile-nav-ext-link" aria-label="Tham gia kênh Telegram">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
                             </svg>
-                            <span>Kênh Telegram</span>
+                            <span data-i18n="nav.telegram">Kênh Telegram</span>
                         </a>
                     </li>
                 </ul>
 
                 <!-- Navbar Actions -->
                 <div class="navbar-actions">
+                    <!-- Language Selector -->
+                    <button class="btn-icon lang-selector" id="lang-btn" aria-label="Chuyển ngôn ngữ" title="Chuyển ngôn ngữ">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <span class="lang-label" id="lang-label">VI</span>
+                    </button>
+
                     <!-- Mobile Menu Hamburger Toggle (được ẩn trên desktop, hiện trên mobile/tablet) -->
                     <button class="btn-icon mobile-menu-btn" id="mobile-menu-btn" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="nav-menu" title="Menu">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
@@ -143,13 +153,13 @@
 
                 <!-- Main Headline -->
                 <h1 class="hero-title">
-                    Tối ưu hiệu năng.<br />
-                    <span class="grad">Khai phóng tiềm năng.</span>
+                    <span data-i18n="hero.title">Tối ưu hiệu năng.</span><br />
+                    <span class="grad" data-i18n="hero.titleAccent">Khai phóng tiềm năng.</span>
                 </h1>
 
                 <!-- Subtitle -->
-                <p class="hero-desc">
-                    Mượt mà tuyệt đỉnh, mở khóa tối đa FPS gaming, giữ nguyên thuật toán Camera Leica và hoạt động 100% ứng dụng ngân hàng. Chào mừng bạn đến với <strong>HyperUR</strong>.
+                <p class="hero-desc" data-i18n="hero.desc">
+                    Mượt mà tuyệt đỉnh, mở khóa tối đa FPS gaming, giữ nguyên thuật toán Camera Leica và hoạt động 100% ứng dụng ngân hàng. Chào mừng bạn đến với HyperUR.
                 </p>
 
                 <!-- CTA Buttons -->
@@ -160,34 +170,30 @@
                             <polyline points="7 10 12 15 17 10"></polyline>
                             <line x1="12" y1="15" x2="12" y2="3"></line>
                         </svg>
-                        <span>Khám Phá Thiết Bị</span>
+                        <span data-i18n="hero.ctaExplore">Khám Phá Thiết Bị</span>
                     </a>
                     <a href="guide.html" class="btn-ghost">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
                             <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
                             <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
                         </svg>
-                        <span>Hướng Dẫn Flash</span>
+                        <span data-i18n="hero.ctaGuide">Hướng Dẫn Flash</span>
                     </a>
                 </div>
 
                 <!-- Stats Strip -->
                 <div class="stats-strip">
                     <div class="stat-item">
-                        <div class="stat-value">121+</div>
-                        <div class="stat-label">Thiết Bị Hỗ Trợ</div>
+                        <div class="stat-value" data-i18n="stats.devicesValue">121+</div>
+                        <div class="stat-label" data-i18n="stats.devices">Thiết Bị Hỗ Trợ</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-value">OS 3.0</div>
-                        <div class="stat-label">HyperOS 1.0 - 3.0</div>
+                        <div class="stat-value" data-i18n="stats.osValue">OS 3.0</div>
+                        <div class="stat-label" data-i18n="stats.os">HyperOS 1.0 - 3.0</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-value">100%</div>
-                        <div class="stat-label">Vượt Play Integrity</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">120 FPS</div>
-                        <div class="stat-label">Mở Khóa Gaming</div>
+                        <div class="stat-value" data-i18n="stats.fpsValue">120 FPS</div>
+                        <div class="stat-label" data-i18n="stats.fps">Mở Khóa Gaming</div>
                     </div>
                 </div>
 
@@ -195,7 +201,7 @@
                 <div class="hero-mockup-wrapper">
                     <div class="hero-mockup-card">
                         <div class="mockup-header">
-                            <div class="mockup-status-dot">
+                            <div class="mockup-status-dot" data-i18n="mockup.status">
                                 HyperUR V3.0 Stable • Online
                             </div>
                         </div>
@@ -207,8 +213,8 @@
                                         <polyline points="9 12 11 14 15 10"></polyline>
                                     </svg>
                                 </div>
-                                <h4>Bảo Mật Ngân Hàng</h4>
-                                <p>Ẩn Bootloader mặc định, sẵn sàng app ngân hàng và sinh trắc eKYC</p>
+                                <h4 data-i18n="mockup.bankingTitle">Bảo Mật Ngân Hàng</h4>
+                                <p data-i18n="mockup.bankingDesc">Ẩn Bootloader mặc định, sẵn sàng app ngân hàng và sinh trắc eKYC</p>
                             </div>
                             <div class="mockup-feature-box">
                                 <div class="mockup-feature-svg">
@@ -216,8 +222,8 @@
                                         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                                     </svg>
                                 </div>
-                                <h4>Tối Ưu Cảm Ứng & FPS</h4>
-                                <p>Mở khóa 90/120 FPS, tối ưu touch sampling rate cho game thủ</p>
+                                <h4 data-i18n="mockup.fpsTitle">Tối Ưu Cảm Ứng & FPS</h4>
+                                <p data-i18n="mockup.fpsDesc">Mở khóa 90/120 FPS, tối ưu touch sampling rate cho game thủ</p>
                             </div>
                         </div>
                     </div>
@@ -230,9 +236,9 @@
              ================================================================= -->
         <section class="section" style="padding-top: 1rem;">
             <header class="section-header">
-                <span class="kicker">KHÁM PHÁ HỆ SINH THÁI</span>
-                <h2>Mọi Thứ Bạn Cần Cho Chiếc Điện Thoại</h2>
-                <p>Khám phá kho bản build, tìm hiểu các giải pháp tối ưu hệ thống hoặc bắt đầu cài đặt với cẩm nang chi tiết.</p>
+                <span class="kicker" data-i18n="section.exploreKicker">KHÁM PHÁ HỆ SINH THÁI</span>
+                <h2 data-i18n="section.exploreTitle">Mọi Thứ Bạn Cần Cho Chiếc Điện Thoại</h2>
+                <p data-i18n="section.exploreDesc">Khám phá kho bản build, tìm hiểu các giải pháp tối ưu hệ thống hoặc bắt đầu cài đặt với cẩm nang chi tiết.</p>
             </header>
 
             <div class="home-highlights-grid">
@@ -244,10 +250,10 @@
                             <line x1="12" y1="18" x2="12.01" y2="18"></line>
                         </svg>
                     </div>
-                    <h3>Kho ROM 121 Thiết Bị</h3>
-                    <p>Tra cứu nhanh chóng theo tên máy hoặc mã thiết bị (codename). Tải trực tiếp các bản build HyperOS 1.0, 2.0 và 3.0 mới nhất được cập nhật liên tục.</p>
+                    <h3 data-i18n="highlight.romTitle">Kho ROM 121 Thiết Bị</h3>
+                    <p data-i18n="highlight.romDesc">Tra cứu nhanh chóng theo tên máy hoặc mã thiết bị (codename). Tải trực tiếp các bản build HyperOS 1.0, 2.0 và 3.0 mới nhất được cập nhật liên tục.</p>
                     <a href="download.html" class="btn-link">
-                        <span>Truy Cập Kho ROM</span>
+                        <span data-i18n="highlight.romLink">Truy Cập Kho ROM</span>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                             <polyline points="12 5 19 12 12 19"></polyline>
@@ -263,10 +269,10 @@
                             <line x1="12" y1="18" x2="12.01" y2="18"></line>
                         </svg>
                     </div>
-                    <h3>Thông Tin Firmware</h3>
-                    <p>Khám phá ảnh chụp màn hình thực tế trên máy, bảng thông số kỹ thuật chuyên sâu và các tính năng, tinh chỉnh có sẵn trên bản ROM HyperUR.</p>
+                    <h3 data-i18n="highlight.fwTitle">Thông Tin Firmware</h3>
+                    <p data-i18n="highlight.fwDesc">Khám phá ảnh chụp màn hình thực tế trên máy, bảng thông số kỹ thuật chuyên sâu và các tính năng, tinh chỉnh có sẵn trên bản ROM HyperUR.</p>
                     <a href="firmware.html" class="btn-link">
-                        <span>Xem Thông Tin FW</span>
+                        <span data-i18n="highlight.fwLink">Xem Thông Tin FW</span>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                             <polyline points="12 5 19 12 12 19"></polyline>
@@ -282,10 +288,10 @@
                             <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
                         </svg>
                     </div>
-                    <h3>Hướng Dẫn Cài Đặt</h3>
-                    <p>Quy trình 3 bước nhanh chóng từ tải ROM, cài đặt driver đến flash qua công cụ Flashing Tool Windows tự động và thiết lập máy.</p>
+                    <h3 data-i18n="highlight.guideTitle">Hướng Dẫn Cài Đặt</h3>
+                    <p data-i18n="highlight.guideDesc">Quy trình 3 bước nhanh chóng từ tải ROM, cài đặt driver đến flash qua công cụ Flashing Tool Windows tự động và thiết lập máy.</p>
                     <a href="guide.html" class="btn-link">
-                        <span>Xem Quy Trình Flash</span>
+                        <span data-i18n="highlight.guideLink">Xem Quy Trình Flash</span>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                             <polyline points="12 5 19 12 12 19"></polyline>
@@ -300,9 +306,9 @@
              ================================================================= -->
         <section class="section team-community-section" style="padding-top: 2rem;">
             <header class="section-header">
-                <span class="kicker">ĐỘI NGŨ & CỘNG ĐỒNG</span>
-                <h2>Hyper Ultra Rate</h2>
-                <p>Dự án được khởi xướng, phát triển và hỗ trợ liên tục bởi đội ngũ nòng cốt cùng cộng đồng người dùng đam mê HyperOS.</p>
+                <span class="kicker" data-i18n="team.kicker">ĐỘI NGŨ & CỘNG ĐỒNG</span>
+                <h2 data-i18n="team.title">Hyper Ultra Rate</h2>
+                <p data-i18n="team.desc">Dự án được khởi xướng, phát triển và hỗ trợ liên tục bởi đội ngũ nòng cốt cùng cộng đồng người dùng đam mê HyperOS.</p>
             </header>
 
             <div class="team-community-grid">
@@ -315,8 +321,8 @@
                             </svg>
                         </div>
                         <div>
-                            <h3>Đội Ngũ Phát Triển</h3>
-                            <span class="team-box-sub">Core Developers & Project Leads</span>
+                            <h3 data-i18n="team.devTitle">Đội Ngũ Phát Triển</h3>
+                            <span class="team-box-sub" data-i18n="team.devSub">Core Developers & Project Leads</span>
                         </div>
                     </div>
 
@@ -326,14 +332,14 @@
                                 <img src="https://t.me/i/userpic/320/lcnguy06.jpg" alt="@lcnguy06" class="member-avatar-img" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='images/avatar_lcnguy06.jpg'">
                             </div>
                             <div class="member-info">
-                                <span class="member-role">Project Lead & Developer</span>
+                                <span class="member-role" data-i18n="team.roleLead">Project Lead & Developer</span>
                                 <span class="member-handle">@lcnguy06</span>
                             </div>
                             <div class="member-action">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
                                 </svg>
-                                <span>Nhắn tin</span>
+                                <span data-i18n="team.message">Nhắn tin</span>
                             </div>
                         </a>
 
@@ -342,14 +348,14 @@
                                 <img src="https://t.me/i/userpic/320/Usagi79.jpg" alt="@Usagi79" class="member-avatar-img" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='images/avatar_usagi79.jpg'">
                             </div>
                             <div class="member-info">
-                                <span class="member-role">Project Lead & Developer</span>
+                                <span class="member-role" data-i18n="team.roleLead">Project Lead & Developer</span>
                                 <span class="member-handle">@Usagi79</span>
                             </div>
                             <div class="member-action">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
                                 </svg>
-                                <span>Nhắn tin</span>
+                                <span data-i18n="team.message">Nhắn tin</span>
                             </div>
                         </a>
                     </div>
@@ -367,8 +373,8 @@
                             </svg>
                         </div>
                         <div>
-                            <h3>Hyper Ultra Rate</h3>
-                            <span class="team-box-sub">Kênh Thông Báo & Nhóm Thảo Luận</span>
+                            <h3 data-i18n="team.commTitle">Hyper Ultra Rate</h3>
+                            <span class="team-box-sub" data-i18n="team.commSub">Kênh Thông Báo & Nhóm Thảo Luận</span>
                         </div>
                     </div>
 
@@ -378,11 +384,11 @@
                                 <img src="https://t.me/i/userpic/320/hypermodupdate.jpg" alt="Channel Hyper Ultra Rate" class="member-avatar-img" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='images/avatar_channel.jpg'">
                             </div>
                             <div class="member-info">
-                                <span class="member-role">Channel Chính Thức</span>
-                                <span class="member-handle">Channel Huper Ultra Rate</span>
+                                <span class="member-role" data-i18n="team.channelOfficial">Channel Chính Thức</span>
+                                <span class="member-handle" data-i18n="team.channelName">Channel Huper Ultra Rate</span>
                             </div>
                             <div class="member-action">
-                                <span>Tham gia</span>
+                                <span data-i18n="team.join">Tham gia</span>
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>
@@ -395,11 +401,11 @@
                                 <img src="https://t.me/i/userpic/320/HuperUltraRateChat.jpg" alt="Chat Hyper Ultra Rate" class="member-avatar-img" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='images/avatar_chat.jpg'">
                             </div>
                             <div class="member-info">
-                                <span class="member-role">Nhóm Chat Thảo Luận</span>
-                                <span class="member-handle">Chat Huper Ultra Rate</span>
+                                <span class="member-role" data-i18n="team.chatGroup">Nhóm Chat Thảo Luận</span>
+                                <span class="member-handle" data-i18n="team.chatName">Chat Huper Ultra Rate</span>
                             </div>
                             <div class="member-action">
-                                <span>Vào nhóm</span>
+                                <span data-i18n="team.enterGroup">Vào nhóm</span>
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>
@@ -422,18 +428,18 @@
                     <a href="index.html" class="footer-logo">
                         <img src="https://t.me/i/userpic/320/hypermodupdate.jpg" alt="HyperUR Logo" class="footer-brand-icon" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='images/avatar_channel.jpg'">
                         <span class="logo-text">Hyper<span class="brand-accent">UR</span></span>
-                        <span class="footer-version-tag">V3.0</span>
+                        <span class="footer-version-tag" data-i18n="footer.version">V3.0</span>
                     </a>
-                    <p class="footer-desc">Dự án ROM Custom Stock-based hàng đầu cho hệ sinh thái thiết bị Xiaomi tại Việt Nam. Tinh chỉnh hiệu năng mượt mà, tối ưu pin và an toàn tuyệt đối.</p>
+                    <p class="footer-desc" data-i18n="footer.desc">Dự án ROM Custom Stock-based hàng đầu cho hệ sinh thái thiết bị Xiaomi tại Việt Nam. Tinh chỉnh hiệu năng mượt mà, tối ưu pin và an toàn tuyệt đối.</p>
                     <div class="footer-status-pill">
                         <span class="status-pulse-dot"></span>
-                        <span>Hỗ trợ 121 thiết bị Xiaomi / Redmi / POCO</span>
+                        <span data-i18n="footer.status">Hỗ trợ 121 thiết bị Xiaomi / Redmi / POCO</span>
                     </div>
                 </div>
 
                 <!-- Col 2: Core Developers -->
                 <div class="footer-team-col">
-                    <h4 class="footer-heading">Đội Ngũ Phát Triển</h4>
+                    <h4 class="footer-heading" data-i18n="footer.devTeam">Đội Ngũ Phát Triển</h4>
                     <div class="footer-cards-list">
                         <a href="https://t.me/lcnguy06" target="_blank" rel="noopener noreferrer" class="footer-member-card">
                             <div class="footer-member-avatar">
@@ -441,7 +447,7 @@
                             </div>
                             <div class="footer-member-info">
                                 <span class="footer-member-name">@lcnguy06</span>
-                                <span class="footer-member-role">Lead & Dev</span>
+                                <span class="footer-member-role" data-i18n="footer.leadDev">Lead & Dev</span>
                             </div>
                             <svg class="footer-arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -454,7 +460,7 @@
                             </div>
                             <div class="footer-member-info">
                                 <span class="footer-member-name">@Usagi79</span>
-                                <span class="footer-member-role">Lead & Dev</span>
+                                <span class="footer-member-role" data-i18n="footer.leadDev">Lead & Dev</span>
                             </div>
                             <svg class="footer-arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -466,15 +472,15 @@
 
                 <!-- Col 4: Community & Resources -->
                 <div class="footer-community-col">
-                    <h4 class="footer-heading">Hyper Ultra Rate</h4>
+                    <h4 class="footer-heading" data-i18n="footer.community">Hyper Ultra Rate</h4>
                     <div class="footer-cards-list">
                         <a href="https://t.me/hypermodupdate" target="_blank" rel="noopener noreferrer" class="footer-member-card">
                             <div class="footer-member-avatar">
                                 <img src="https://t.me/i/userpic/320/hypermodupdate.jpg" alt="Channel Huper Ultra Rate" class="footer-avatar-img" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='images/avatar_channel.jpg'">
                             </div>
                             <div class="footer-member-info">
-                                <span class="footer-member-name">Channel Huper Ultra Rate</span>
-                                <span class="footer-member-role">Kênh Cập Nhật ROM</span>
+                                <span class="footer-member-name" data-i18n="team.channelName">Channel Huper Ultra Rate</span>
+                                <span class="footer-member-role" data-i18n="footer.updateChannel">Kênh Cập Nhật ROM</span>
                             </div>
                             <svg class="footer-arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -486,8 +492,8 @@
                                 <img src="https://t.me/i/userpic/320/HuperUltraRateChat.jpg" alt="Chat Huper Ultra Rate" class="footer-avatar-img" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='images/avatar_chat.jpg'">
                             </div>
                             <div class="footer-member-info">
-                                <span class="footer-member-name">Chat Huper Ultra Rate</span>
-                                <span class="footer-member-role">Nhóm Thảo Luận 24/7</span>
+                                <span class="footer-member-name" data-i18n="team.chatName">Chat Huper Ultra Rate</span>
+                                <span class="footer-member-role" data-i18n="footer.discussGroup">Nhóm Thảo Luận 24/7</span>
                             </div>
                             <svg class="footer-arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -501,14 +507,14 @@
             <!-- Footer Bottom Bar -->
             <div class="footer-bottom">
                 <div class="footer-copyright">
-                    <p>© 2026 HYPERUR TEAM. BẢO LƯU MỌI QUYỀN.</p>
+                    <p data-i18n="footer.copyright">© 2026 HYPERUR TEAM. BẢO LƯU MỌI QUYỀN.</p>
                 </div>
             </div>
         </div>
     </footer>
 
     <!-- Floating Scroll to Top Action -->
-    <a href="#hero" class="scroll-to-top" id="scroll-to-top" aria-label="Lên đầu trang">
+    <a href="#hero" class="scroll-to-top" id="scroll-to-top" data-i18n-aria-label="footer.scrollTop" aria-label="Lên đầu trang">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
@@ -641,5 +647,36 @@
 
     <!-- Theme Toggle Handler -->
     <script src="devices.js"></script>
+
+    <!-- i18n Internationalization -->
+    <script src="i18n.js"></script>
+    <script>
+        (function() {
+            // Language selector functionality
+            const langBtn = document.getElementById('lang-btn');
+            const langLabel = document.getElementById('lang-label');
+
+            function updateLangLabel() {
+                if (langLabel) {
+                    langLabel.textContent = I18n.currentLang.toUpperCase();
+                }
+            }
+
+            if (langBtn) {
+                langBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    I18n.toggleLang();
+                    updateLangLabel();
+                });
+            }
+
+            // Initialize label on page load
+            updateLangLabel();
+
+            // Listen for language changes to update nav links
+            document.addEventListener('DOMContentLoaded', updateLangLabel);
+        })();
+    </script>
 </body>
 </html>

@@ -582,7 +582,7 @@ body::before {
 /* Stats Strip */
 .stats-strip {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.25rem;
   max-width: 1080px;
   margin: 0 auto 3rem;
@@ -6211,6 +6211,57 @@ dialog.rom-dialog[open]::backdrop {
   .lookup-pulse-dot {
     animation: none !important;
     transition: none !important;
+  }
+}
+
+/* ===== Language Selector ===== */
+.lang-selector {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-md);
+  background: transparent;
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-width: 52px;
+}
+
+.lang-selector:hover {
+  background: var(--surface-hover);
+  color: var(--text-strong);
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+
+.lang-selector svg {
+  flex-shrink: 0;
+}
+
+.lang-label {
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+}
+
+.lang-selector .icon-globe {
+  width: 18px;
+  height: 18px;
+}
+
+/* Mobile adjustments for lang selector */
+@media (max-width: 768px) {
+  .lang-selector {
+    padding: 0.4rem 0.6rem;
+    min-width: 44px;
+  }
+
+  .lang-selector .lang-label {
+    font-size: 0.7rem;
   }
 }
 
