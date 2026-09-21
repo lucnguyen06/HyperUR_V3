@@ -387,7 +387,7 @@ body::before {
 
 .navbar-link-icon {
   width: 15px;
-  height: 15px;
+  height: 15px; 
   flex-shrink: 0;
   opacity: 0.75;
   transition: opacity var(--transition-fast);
