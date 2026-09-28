@@ -3803,6 +3803,111 @@ dialog:not([open]) {
   font-weight: 400;
 }
 
+/* Email input loader */
+.reg-input-loader {
+  position: absolute;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-primary);
+  pointer-events: none;
+}
+
+/* Email registration stats */
+.email-reg-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+}
+
+@media (max-width: 640px) {
+  .email-reg-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+.email-stats-card,
+.email-price-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.9rem;
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-normal);
+}
+
+.email-stats-card:hover,
+.email-price-card:hover {
+  background: var(--surface-hover);
+  border-color: var(--glass-border-hover);
+  transform: translateY(-1px);
+}
+
+.email-stats-icon,
+.email-price-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--accent-primary);
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  color: white;
+}
+
+.email-stats-content,
+.email-price-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.email-stats-label,
+.email-price-label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.email-stats-value {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-strong);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.email-price-value {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--accent-primary);
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 0.35rem;
+}
+
+.email-price-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.6rem;
+  background: var(--accent-primary);
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.02em;
+  margin-top: 0.25rem;
+}
+
 /* Serial Lookup Accordion */
 .serial-help-accordion {
   margin-top: 0.75rem;

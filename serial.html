@@ -145,10 +145,122 @@
                             <h2 class="reg-section-title" id="form-heading">Thông Tin Thiết Bị Của Bạn</h2>
                         </div>
 
-                        <!-- Trường 1: Số serial thiết bị -->
+                        <!-- Trường 1: Email liên hệ (bắt buộc) - CHECK TRƯỚC ĐỂ TÍNH GIÁ -->
+                        <div class="reg-form-group">
+                            <label for="sender-email-input" class="reg-label">
+                                <span>1️⃣ Email liên hệ của bạn?<span class="reg-required">*</span></span>
+                                <span class="reg-hint">Nhập email trước để kiểm tra ưu đãi giá & lịch sử đăng ký</span>
+                            </label>
+                            <div class="reg-input-wrapper">
+                                <span class="reg-input-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                </span>
+                                <input
+                                    type="email"
+                                    id="sender-email-input"
+                                    name="senderEmail"
+                                    class="reg-input email-field"
+                                    placeholder="VD: banhuyen@gmail.com hoặc username@tutanota.com"
+                                    autocomplete="email"
+                                    spellcheck="false"
+                                    inputmode="email"
+                                    required
+                                >
+                                <span class="reg-input-loader" id="email-check-loader" style="display: none;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <circle cx="12" cy="12" r="10" opacity="0.25"></circle>
+                                        <path d="M12 2 A10 10 0 0 1 22 12" stroke-linecap="round">
+                                            <animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/>
+                                        </path>
+                                    </svg>
+                                </span>
+                            </div>
+                            
+                            <!-- Email state message -->
+                            <div class="email-state-msg" id="email-state-msg" style="display: none;">
+                                <span id="email-state-text"></span>
+                            </div>
+
+                            <!-- Email registration stats -->
+                            <div class="email-reg-stats" id="email-reg-stats" style="display: none;">
+                                <div class="email-stats-card">
+                                    <div class="email-stats-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                                            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                                        </svg>
+                                    </div>
+                                    <div class="email-stats-content">
+                                        <div class="email-stats-label">Số thiết bị đã đăng ký</div>
+                                        <div class="email-stats-value" id="email-devices-count">0 thiết bị</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="email-price-card" id="email-price-card">
+                                    <div class="email-price-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path>
+                                            <path d="M12 18V6"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="email-price-content">
+                                        <div class="email-price-label">Giá cho thiết bị tiếp theo</div>
+                                        <div class="email-price-value" id="email-next-price">50.000đ</div>
+                                        <div class="email-price-badge" id="email-price-badge" style="display: none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Trường 2: Mã thiết bị (codename) -->
+                        <div class="reg-form-group">
+                            <label for="codename-input" class="reg-label">
+                                <span>2️⃣ Mã thiết bị của bạn (codename)?<span class="reg-required">*</span></span>
+                                <span class="reg-hint">VD: amethyst, houji, aurora...</span>
+                            </label>
+
+                            <div class="reg-input-wrapper">
+                                <span class="reg-input-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                                    </svg>
+                                </span>
+                                <input
+                                    type="text"
+                                    id="codename-input"
+                                    name="deviceCodename"
+                                    class="reg-input"
+                                    placeholder="Gõ mã máy hoặc tên thiết bị (VD: amethyst, Xiaomi 14...)"
+                                    list="devices-datalist"
+                                    autocomplete="off"
+                                    spellcheck="false"
+                                    required
+                                >
+                                <datalist id="devices-datalist">
+                                    <!-- Dữ liệu được nạp động từ devices_catalog.json -->
+                                </datalist>
+                            </div>
+
+                            <!-- Hiển thị xem trước thiết bị khi nhận diện được codename -->
+                            <div class="device-preview-box" id="device-preview-box">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                <span id="device-preview-text">Nhận diện: Đang chọn...</span>
+                            </div>
+                        </div>
+
+                        <!-- Trường 3: Số serial thiết bị -->
                         <div class="reg-form-group">
                             <label for="serial-input" class="reg-label">
-                                <span>Số serial thiết bị của bạn?<span class="reg-required">*</span></span>
+                                <span>3️⃣ Số serial thiết bị của bạn?<span class="reg-required">*</span></span>
+                                <span class="reg-hint">8 ký tự hợp lệ (A-Z, 0-9), tự động làm sạch</span>
                             </label>
 
                             <!-- Alert Note: Chỉ điền số serial, không điền bất kì kí tự nào khác -->
@@ -216,75 +328,6 @@
                                 </div>
                             </details>
                         </div>
-
-                        <!-- Trường 2: Mã thiết bị (codename) -->
-                        <div class="reg-form-group">
-                            <label for="codename-input" class="reg-label">
-                                <span>Mã thiết bị của bạn (codename)?<span class="reg-required">*</span></span>
-                                <span class="reg-hint">VD: amethyst, houji, aurora...</span>
-                            </label>
-
-                            <div class="reg-input-wrapper">
-                                <span class="reg-input-icon">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-                                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
-                                    </svg>
-                                </span>
-                                <input
-                                    type="text"
-                                    id="codename-input"
-                                    name="deviceCodename"
-                                    class="reg-input"
-                                    placeholder="Gõ mã máy hoặc tên thiết bị (VD: amethyst, Xiaomi 14...)"
-                                    list="devices-datalist"
-                                    autocomplete="off"
-                                    spellcheck="false"
-                                    required
-                                >
-                                <datalist id="devices-datalist">
-                                    <!-- Dữ liệu được nạp động từ devices_catalog.json -->
-                                </datalist>
-                            </div>
-
-                            <!-- Hiển thị xem trước thiết bị khi nhận diện được codename -->
-                            <div class="device-preview-box" id="device-preview-box">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                </svg>
-                                <span id="device-preview-text">Nhận diện: Đang chọn...</span>
-                            </div>
-                        </div>
-
-                        <!-- Trường 3: Email liên hệ (bắt buộc) -->
-                        <div class="reg-form-group">
-                            <label for="sender-email-input" class="reg-label">
-                                <span>Email liên hệ của bạn?<span class="reg-required">*</span></span>
-                            </label>
-                            <div class="reg-input-wrapper">
-                                <span class="reg-input-icon">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                                        <polyline points="22,6 12,13 2,6"></polyline>
-                                    </svg>
-                                </span>
-                                <input
-                                    type="email"
-                                    id="sender-email-input"
-                                    name="senderEmail"
-                                    class="reg-input email-field"
-                                    placeholder="VD: banhuyen@gmail.com hoặc username@tutanota.com"
-                                    autocomplete="email"
-                                    spellcheck="false"
-                                    inputmode="email"
-                                    required
-                                >
-                            </div>
-                            <div class="email-state-msg" id="email-state-msg" style="display: none;">
-                                <span id="email-state-text"></span>
-                            </div>
-                        </div>
                     </div>
 
                     <!-- =========================================================
@@ -325,7 +368,7 @@
                                 </div>
 
                                 <div class="reg-plan-price-tag">
-                                    <span class="reg-plan-price-val">40.000đ</span>
+                                    <span class="reg-plan-price-val">50.000đ</span>
                                     <span class="reg-plan-price-sub">/ Thiết Bị (Kích Hoạt Vĩnh Viễn)</span>
                                 </div>
 
@@ -502,17 +545,6 @@
                                         <div>1. Nhấn nút <strong>Mở Trang PayPal</strong> bên trên hoặc quét mã QR bên trái.</div>
                                         <div>2. Kiểm tra tên người nhận: <strong>Nguyễn Lực</strong> (<code>paypal.me/lucnguyeen</code>).</div>
                                         <div>3. Nhập số tiền <strong>5$ (5 USD)</strong> & ghi chú Serial máy của bạn.</div>
-                                    </div>
-                                </div>
-
-                                <div class="payment-info-item" id="donation-amount-row">
-                                    <span class="payment-info-label">Mức Tiền Ủng Hộ:</span>
-                                    <div class="payment-info-value-row">
-                                        <span class="payment-info-value" id="donation-amount-val" style="color: #fbbf24; font-size: 1.15rem;">40.000đ / thiết bị</span>
-                                        <button type="button" class="btn-copy-mini" id="btn-copy-amount" data-copy="40000" aria-label="Sao chép số tiền">
-                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                                            <span id="btn-copy-amount-text">Chép 40.000đ</span>
-                                        </button>
                                     </div>
                                 </div>
 
@@ -763,7 +795,7 @@
                 </div>
                 <div>
                     <span>Mức Ủng Hộ:</span>
-                    <span id="modal-amount-val" style="color: #fbbf24; font-weight: 700;">40.000đ / thiết bị</span>
+                    <span id="modal-amount-val" style="color: #fbbf24; font-weight: 700;">50.000đ / thiết bị</span>
                 </div>
                 <div>
                     <span>Người Gửi:</span>
@@ -1202,34 +1234,148 @@
                 suggestedSyntax.textContent = syntax;
             }
 
-            // Email validation realtime (bắt buộc cho cả 2 gói)
+            // =========================================================
+            // EMAIL CHECK WITH PRICING LOGIC
+            // =========================================================
             const EMAIL_REGEX = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+            const EMAIL_REG_STORAGE_KEY = 'hyperur_email_registrations';
+            
+            const emailCheckLoader = document.getElementById('email-check-loader');
+            const emailRegStats = document.getElementById('email-reg-stats');
+            const emailDevicesCount = document.getElementById('email-devices-count');
+            const emailNextPrice = document.getElementById('email-next-price');
+            const emailPriceBadge = document.getElementById('email-price-badge');
+            const emailPriceCard = document.getElementById('email-price-card');
+
+            let emailCheckTimeout = null;
+
+            function getEmailRegistrations() {
+                try {
+                    const data = localStorage.getItem(EMAIL_REG_STORAGE_KEY);
+                    return data ? JSON.parse(data) : {};
+                } catch (e) {
+                    return {};
+                }
+            }
+
+            function saveEmailRegistration(email, deviceCount) {
+                try {
+                    const data = getEmailRegistrations();
+                    data[email.toLowerCase()] = {
+                        count: deviceCount,
+                        lastUpdated: new Date().toISOString()
+                    };
+                    localStorage.setItem(EMAIL_REG_STORAGE_KEY, JSON.stringify(data));
+                } catch (e) {
+                    console.error('Cannot save email registration:', e);
+                }
+            }
+
+            function calculatePrice(deviceCount) {
+                if (deviceCount >= 30) {
+                    return { price: 35000, badge: '🎉 Ưu đãi VIP: Giảm 15k/thiết bị', badgeColor: '#10b981' };
+                } else if (deviceCount >= 15) {
+                    return { price: 40000, badge: '🎁 Ưu đãi: Giảm 10k/thiết bị', badgeColor: '#3b82f6' };
+                } else {
+                    return { price: 50000, badge: null, badgeColor: null };
+                }
+            }
+
+            function formatCurrency(amount) {
+                return new Intl.NumberFormat('vi-VN').format(amount) + 'đ';
+            }
+
+            async function checkEmailAndUpdatePrice(email) {
+                if (!EMAIL_REGEX.test(email)) return;
+
+                // Show loader
+                if (emailCheckLoader) emailCheckLoader.style.display = 'flex';
+                if (emailStateMsg) emailStateMsg.style.display = 'none';
+                if (emailRegStats) emailRegStats.style.display = 'none';
+
+                // Simulate API call delay (remove this in production)
+                await new Promise(resolve => setTimeout(resolve, 800));
+
+                // Get email registration data from localStorage
+                const registrations = getEmailRegistrations();
+                const emailData = registrations[email.toLowerCase()];
+                const deviceCount = emailData ? emailData.count : 0;
+
+                // Calculate price for next device
+                const priceInfo = calculatePrice(deviceCount);
+
+                // Hide loader
+                if (emailCheckLoader) emailCheckLoader.style.display = 'none';
+
+                // Show validation message
+                if (emailStateMsg) {
+                    emailStateMsg.style.display = 'flex';
+                    emailStateMsg.classList.add('valid');
+                    emailStateMsg.classList.remove('invalid');
+                }
+                if (emailStateText) {
+                    emailStateText.textContent = '✓ Email hợp lệ';
+                }
+
+                // Show registration stats
+                if (emailRegStats) emailRegStats.style.display = 'grid';
+                if (emailDevicesCount) {
+                    emailDevicesCount.textContent = `${deviceCount} thiết bị`;
+                }
+                if (emailNextPrice) {
+                    emailNextPrice.textContent = formatCurrency(priceInfo.price);
+                }
+
+                // Update VIP plan price display
+                const planPriceVal = document.querySelector('#plan-card-vip .reg-plan-price-val');
+                if (planPriceVal) {
+                    planPriceVal.textContent = formatCurrency(priceInfo.price);
+                }
+
+                // Show/hide badge
+                if (priceInfo.badge) {
+                    if (emailPriceBadge) {
+                        emailPriceBadge.textContent = priceInfo.badge;
+                        emailPriceBadge.style.display = 'inline-flex';
+                        emailPriceBadge.style.background = `${priceInfo.badgeColor}15`;
+                        emailPriceBadge.style.color = priceInfo.badgeColor;
+                        emailPriceBadge.style.border = `1px solid ${priceInfo.badgeColor}40`;
+                    }
+                    if (emailPriceCard) {
+                        emailPriceCard.style.background = `linear-gradient(135deg, ${priceInfo.badgeColor}08 0%, ${priceInfo.badgeColor}15 100%)`;
+                        emailPriceCard.style.border = `1px solid ${priceInfo.badgeColor}25`;
+                    }
+                } else {
+                    if (emailPriceBadge) emailPriceBadge.style.display = 'none';
+                    if (emailPriceCard) {
+                        emailPriceCard.style.background = '';
+                        emailPriceCard.style.border = '';
+                    }
+                }
+            }
 
             function handleEmailInput() {
                 if (!senderEmailInput) return;
-                const raw = senderEmailInput.value.trim();
-                if (!raw) {
-                    // Trống: ẩn message, không hiển thị gì
+                const email = senderEmailInput.value.trim();
+                
+                // Clear previous timeout
+                if (emailCheckTimeout) {
+                    clearTimeout(emailCheckTimeout);
+                }
+
+                if (!email) {
+                    // Empty: hide everything
                     if (emailStateMsg) {
                         emailStateMsg.style.display = 'none';
                         emailStateMsg.classList.remove('valid', 'invalid');
                     }
-                    if (emailStateText) {
-                        emailStateText.textContent = '';
-                    }
+                    if (emailRegStats) emailRegStats.style.display = 'none';
+                    if (emailCheckLoader) emailCheckLoader.style.display = 'none';
                     return false;
                 }
-                if (EMAIL_REGEX.test(raw)) {
-                    if (emailStateMsg) {
-                        emailStateMsg.style.display = 'flex';
-                        emailStateMsg.classList.add('valid');
-                        emailStateMsg.classList.remove('invalid');
-                    }
-                    if (emailStateText) {
-                        emailStateText.textContent = '✓ Email hợp lệ: ' + raw;
-                    }
-                    return true;
-                } else {
+
+                if (!EMAIL_REGEX.test(email)) {
+                    // Invalid format
                     if (emailStateMsg) {
                         emailStateMsg.style.display = 'flex';
                         emailStateMsg.classList.add('invalid');
@@ -1238,13 +1384,28 @@
                     if (emailStateText) {
                         emailStateText.textContent = '⚠️ Email chưa đúng định dạng (VD: ten@gmail.com)';
                     }
+                    if (emailRegStats) emailRegStats.style.display = 'none';
+                    if (emailCheckLoader) emailCheckLoader.style.display = 'none';
                     return false;
                 }
+
+                // Valid format: debounce check
+                emailCheckTimeout = setTimeout(() => {
+                    checkEmailAndUpdatePrice(email);
+                }, 600);
+
+                return true;
             }
 
             if (senderEmailInput) {
                 senderEmailInput.addEventListener('input', handleEmailInput);
-                senderEmailInput.addEventListener('blur', handleEmailInput);
+                senderEmailInput.addEventListener('blur', () => {
+                    const email = senderEmailInput.value.trim();
+                    if (email && EMAIL_REGEX.test(email)) {
+                        if (emailCheckTimeout) clearTimeout(emailCheckTimeout);
+                        checkEmailAndUpdatePrice(email);
+                    }
+                });
             }
 
             // Payment methods
@@ -1281,9 +1442,9 @@
                     accNumber: 'PSG2625519200000013',
                     accCopyVal: 'PSG2625519200000013',
                     accCopyText: 'Chép',
-                    amountText: '40.000đ / thiết bị',
-                    amountCopyVal: '40000',
-                    amountBtnText: 'Chép 40.000đ',
+                    amountText: '50.000đ / thiết bị',
+                    amountCopyVal: '50000',
+                    amountBtnText: 'Chép 50.000đ',
                     qrCaption: 'Góp Quỹ trên MoMo',
                     qrCaptionColor: '#a50064',
                     qrSrc: 'images/QR_MOMO_DNT_HYPERUR.jpg',
@@ -1649,7 +1810,7 @@
 
                 const modalAmount = document.getElementById('modal-amount-val');
                 if (modalAmount) {
-                    modalAmount.textContent = isFree ? '0đ (Miễn Phí 36 Ngày Trải Nghiệm)' : '40.000đ / thiết bị';
+                    modalAmount.textContent = isFree ? '0đ (Miễn Phí 36 Ngày Trải Nghiệm)' : '50.000đ / thiết bị';
                 }
 
                 const modalDesc = document.getElementById('modal-desc-text');
@@ -2221,6 +2382,20 @@
                     handleSerialInput();
                 }
             } catch (e) {}
+        })();
+
+        // =========================================================
+        // DEMO DATA - Initialize sample email registrations
+        // =========================================================
+        // Remove this block in production!
+        (function initDemoData() {
+            const sampleData = {
+                'test@gmail.com': { count: 5, lastUpdated: new Date().toISOString() },
+                'tho@gmail.com': { count: 18, lastUpdated: new Date().toISOString() },
+                'sop@gmail.com': { count: 35, lastUpdated: new Date().toISOString() }
+            };
+            localStorage.setItem('hyperur_email_registrations', JSON.stringify(sampleData));
+            console.log('✅ Demo data loaded. Try emails: test@gmail.com, tho@gmail.com, sop@gmail.com');
         })();
     </script>
 </body>
