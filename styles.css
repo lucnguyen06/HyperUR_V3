@@ -632,9 +632,9 @@ body::before {
   font-weight: 500;
 }
 
-/* Hero Mockup Card */
+/* Hero Mockup Card (Merged System Dashboard) */
 .hero-mockup-wrapper {
-  max-width: 820px;
+  max-width: 880px;
   margin: 0 auto;
 }
 
@@ -642,7 +642,7 @@ body::before {
   background: linear-gradient(145deg, rgba(30, 41, 67, 0.7), rgba(15, 23, 42, 0.85));
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 28px;
-  padding: 2.5rem 2rem;
+  padding: 2.2rem 2rem 2rem;
   box-shadow:
     0 24px 70px rgba(0, 0, 0, 0.6),
     0 0 80px rgba(59, 130, 246, 0.15);
@@ -661,7 +661,7 @@ body::before {
   justify-content: space-between;
   border-bottom: 1px solid var(--border);
   padding-bottom: 1.25rem;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
 }
 
 .mockup-status-dot {
@@ -686,6 +686,36 @@ body::before {
   font-size: 0.8rem;
   color: var(--muted);
   font-family: monospace;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Merged Mockup Stats Grid */
+.mockup-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.hero-mockup-card .stat-item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  padding: 1.25rem 1rem;
+  margin: 0;
+  backdrop-filter: none;
+}
+
+[data-theme="light"] .hero-mockup-card .stat-item {
+  background: rgba(15, 23, 42, 0.03);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.hero-mockup-card .stat-item:hover {
+  background: rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.25);
+  transform: translateY(-2px);
 }
 
 .mockup-grid {
@@ -697,7 +727,7 @@ body::before {
 .mockup-feature-box {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 16px;
+  border-radius: 18px;
   padding: 1.25rem;
   text-align: left;
   transition: all var(--transition-fast);
@@ -731,6 +761,44 @@ body::before {
   font-size: 0.8rem;
   color: var(--muted);
   line-height: 1.4;
+}
+
+/* Feature highlight banner spanning full width inside mockup */
+.mockup-feature-box.mockup-feature-full {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.mockup-feature-full .mockup-feature-svg {
+  margin-bottom: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: rgba(59, 130, 246, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.mockup-feature-full .mockup-feature-content {
+  flex: 1;
+}
+
+.mockup-feature-full .mockup-feature-content h4 {
+  font-size: 1.02rem;
+  color: var(--text-strong);
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.mockup-feature-full .mockup-feature-content p {
+  font-size: 0.86rem;
+  color: var(--muted);
+  line-height: 1.45;
+  margin: 0;
 }
 
 /* ===== Feature Pillars Grid ===== */
@@ -1995,6 +2063,35 @@ dialog:not([open]) {
     grid-template-columns: 1fr;
   }
 
+  .hero-mockup-card {
+    padding: 1.75rem 1.25rem 1.5rem;
+    border-radius: 22px;
+  }
+
+  .mockup-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+  }
+
+  .hero-mockup-card .stat-item {
+    padding: 0.95rem 0.5rem;
+    border-radius: 14px;
+  }
+
+  .hero-mockup-card .stat-value {
+    font-size: 1.45rem;
+  }
+
+  .hero-mockup-card .stat-label {
+    font-size: 0.72rem;
+  }
+
+  .mockup-feature-box.mockup-feature-full {
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem 1.15rem;
+  }
+
   .footer-top {
     grid-template-columns: 1fr;
   }
@@ -2002,6 +2099,19 @@ dialog:not([open]) {
   dialog.rom-dialog {
     width: calc(100vw - 24px);
     max-height: 90vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .mockup-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+
+  .mockup-feature-box.mockup-feature-full {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
   }
 }
 
