@@ -3646,7 +3646,7 @@ dialog:not([open]) {
    (Gộp từ register.html vào serial.html unified portal)
    ========================================================================== */
 .register-page-wrapper {
-  max-width: 860px;
+  max-width: 820px;
   margin: 0 auto;
   padding: 1.5rem 1rem 4rem;
 }
@@ -3886,6 +3886,13 @@ dialog:not([open]) {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
+}
+
+.serial-format-hint {
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  margin-top: 0.35rem;
+  line-height: 1.4;
 }
 
 /* Email field state messages */
@@ -4230,6 +4237,178 @@ dialog:not([open]) {
   box-shadow: 0 2px 10px rgba(245, 158, 11, 0.35);
 }
 
+/* Price row & tier note beside price */
+.reg-plan-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 0.25rem 0 0.45rem;
+}
+
+.reg-plan-price-tag {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.reg-plan-price-val {
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight: 800;
+  color: var(--accent-primary);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.reg-plan-price-sub {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-soft);
+}
+
+.reg-price-tier-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.55rem 0.85rem;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.28);
+  border-radius: var(--radius-sm);
+  backdrop-filter: blur(8px);
+}
+
+.tier-box-header {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #fbbf24;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tier-box-header svg {
+  color: #f59e0b;
+}
+
+.tier-box-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.tier-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.22rem 0.6rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.tier-pill.tier-base {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--slate-200);
+}
+
+.tier-pill.tier-15 {
+  background: rgba(59, 130, 246, 0.14);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  color: #93c5fd;
+}
+
+.tier-pill.tier-30 {
+  background: rgba(16, 185, 129, 0.14);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #6ee7b7;
+}
+
+.tier-pill strong {
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.tier-pill.current-active {
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+  border-color: #fbbf24;
+  color: #fef08a;
+  background: rgba(245, 158, 11, 0.22);
+  transform: scale(1.04);
+}
+
+.payment-tier-inline-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  color: #fbbf24;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill);
+}
+
+.email-price-tier-hint {
+  font-size: 0.74rem;
+  color: #fbbf24;
+  margin-top: 0.35rem;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+/* Light Theme Adaptations */
+[data-theme="light"] .reg-price-tier-box {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(217, 119, 6, 0.35);
+}
+
+[data-theme="light"] .tier-box-header {
+  color: #b45309;
+}
+
+[data-theme="light"] .tier-pill.tier-base {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #334155;
+}
+
+[data-theme="light"] .tier-pill.tier-15 {
+  background: rgba(37, 99, 235, 0.08);
+  border-color: rgba(37, 99, 235, 0.3);
+  color: #1d4ed8;
+}
+
+[data-theme="light"] .tier-pill.tier-30 {
+  background: rgba(5, 150, 105, 0.08);
+  border-color: rgba(5, 150, 105, 0.3);
+  color: #047857;
+}
+
+[data-theme="light"] .tier-pill.current-active {
+  background: rgba(217, 119, 6, 0.15);
+  border-color: #b45309;
+  color: #92400e;
+}
+
+[data-theme="light"] .payment-tier-inline-hint {
+  color: #b45309;
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(217, 119, 6, 0.3);
+}
+
+[data-theme="light"] .email-price-tier-hint {
+  color: #b45309;
+}
+
 .reg-plan-features {
   list-style: none;
   display: grid;
@@ -4500,6 +4679,223 @@ dialog:not([open]) {
   background: rgba(59, 130, 246, 0.2);
   border-color: var(--accent-primary);
   color: #ffffff;
+}
+
+/* ==========================================================================
+   Donation Registration Notices & Guidelines (serial.html)
+   ========================================================================== */
+.reg-donation-notice {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.32);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.4rem;
+  margin-bottom: 1.6rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(245, 158, 11, 0.09);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.reg-donation-notice::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #f59e0b, #ef4444);
+}
+
+.reg-donation-notice-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: #fbbf24;
+  font-size: 0.98rem;
+  font-weight: 700;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid rgba(245, 158, 11, 0.22);
+  letter-spacing: -0.01em;
+}
+
+.reg-donation-notice-header svg {
+  flex-shrink: 0;
+  color: #f59e0b;
+}
+
+.reg-donation-notice-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Quick Notice Grid */
+.reg-notice-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .reg-notice-quick-grid {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+}
+
+.reg-notice-quick-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.83rem;
+  line-height: 1.5;
+  color: var(--text-soft);
+}
+
+.reg-notice-quick-item strong {
+  color: #fef08a;
+  font-weight: 600;
+}
+
+[data-theme="light"] .reg-notice-quick-item strong {
+  color: #b45309;
+}
+
+/* Verification inputs row (2 columns) */
+.reg-verify-inputs-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .reg-verify-inputs-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+.reg-donation-notice-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--text-soft);
+}
+
+.reg-donation-notice-bullet {
+  font-size: 1rem;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+
+.reg-donation-notice-item strong {
+  color: #fef08a;
+  font-weight: 600;
+}
+
+.reg-donation-notice-item em {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.reg-code-highlight {
+  display: inline-block;
+  background: rgba(245, 158, 11, 0.16);
+  border: 1px solid rgba(245, 158, 11, 0.38);
+  color: #fef08a;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.reg-notice-link {
+  color: #38bdf8;
+  text-decoration: underline;
+  text-underline-offset: 2.5px;
+  font-weight: 600;
+  transition: color var(--transition-fast);
+}
+
+.reg-notice-link:hover {
+  color: #7dd3fc;
+}
+
+.payment-syntax-tip {
+  display: block;
+  font-size: 0.8rem;
+  color: #fbbf24;
+  margin-top: 0.4rem;
+  line-height: 1.45;
+}
+
+.reg-field-note {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 0.35rem;
+  line-height: 1.4;
+}
+
+.reg-plan-card-note {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  color: #fbbf24;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  line-height: 1.4;
+}
+
+.reg-plan-card-note svg {
+  flex-shrink: 0;
+  color: #f59e0b;
+}
+
+/* Light Theme Adaptations */
+[data-theme="light"] .reg-donation-notice {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(217, 119, 6, 0.35);
+  box-shadow: 0 4px 20px rgba(217, 119, 6, 0.06);
+}
+
+[data-theme="light"] .reg-donation-notice-header {
+  color: #b45309;
+  border-bottom-color: rgba(217, 119, 6, 0.2);
+}
+
+[data-theme="light"] .reg-donation-notice-item {
+  color: #334155;
+}
+
+[data-theme="light"] .reg-donation-notice-item strong {
+  color: #0f172a;
+}
+
+[data-theme="light"] .reg-code-highlight {
+  background: rgba(245, 158, 11, 0.14);
+  border-color: rgba(217, 119, 6, 0.4);
+  color: #92400e;
+}
+
+[data-theme="light"] .payment-syntax-tip {
+  color: #b45309;
+}
+
+[data-theme="light"] .reg-plan-card-note {
+  color: #b45309;
+  border-top-color: rgba(0, 0, 0, 0.08);
 }
 
 /* Submit Actions */
