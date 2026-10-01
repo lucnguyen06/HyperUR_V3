@@ -1,36 +1,407 @@
 {
-  "device": "mist",
-  "name": {
-    "en": "REDMI Note 17 5G"
-  },
-  "code": "PU",
-  "supports": [
-    "OS3.0"
-  ],
-  "android": [
-    "16.0"
-  ],
-  "type": "phone",
-  "miui": "no",
-  "merged": "no",
-  "branches": [
-    {
-      "name": {
-        "en": "Xiaomi HyperOS Stable"
-      },
-      "branchCode": "mist",
-      "brand": "REDMI",
-      "device": {
-        "en": "REDMI Note 17 5G"
-      },
-      "region": "cn",
-      "roms": {
-        "OS3.0": {
-          "os": "OS3.0.311.0.WPUCNXM",
-          "android": "16.0",
-          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/mist/mist-ota_full-OS3.0.311.0.WPUCNXM-user-16.0-d19f9040d8.zip"
-        }
-      }
-    }
-  ]
+	"device": "mist",
+	"name": {
+		"zh": "REDMI Note 17 5G / POCO M8 Power 5G",
+		"en": "REDMI Note 17 5G / POCO M8 Power 5G"
+	},
+	"code": "PU",
+	"supports": [
+		"OS3.0"
+	],
+	"android": [
+		"16.0"
+	],
+	"type": "phone",
+	"miui": "no",
+	"merged": "no",
+	"branches": [
+		{
+			"name": {
+				"zh": "小米澎湃 OS 正式版",
+				"en": "Xiaomi HyperOS Stable"
+			},
+			"branchCode": "mist",
+			"brand": "REDMI",
+			"device": {
+				"zh": "REDMI Note 17 5G",
+				"en": "REDMI Note 17 5G"
+			},
+			"idtag": "CnOO",
+			"tag": "CNXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot",
+				"ctelecom",
+				"cnmobile"
+			],
+			"show": "1",
+			"carrier": [
+				"",
+				"chinatelecom",
+				"chinamobile",
+				"chinaunicom"
+			],
+			"region": "cn",
+			"zone": "1",
+			"ep": "0",
+			"roms": {
+				"OS3.0.311.0.WPUCNXM": {
+					"os": "OS3.0.311.0.WPUCNXM",
+					"android": "16.0",
+					"release": "2026-08-20",
+					"aspatch": "2026-08-01",
+					"recovery": "mist-ota_full-OS3.0.311.0.WPUCNXM-user-16.0-d19f9040d8.zip",
+					"fastboot": "mist_images_OS3.0.311.0.WPUCNXM_20260815.0000.00_16.0_cn_e548d30d2c.tgz",
+					"ctelecom": "mist_images_OS3.0.311.0.WPUCNXM_20260815.0000.00_16.0_cn_chinatelecom_98dba73c9e.tgz",
+					"cnmobile": "mist_images_OS3.0.311.0.WPUCNXM_20260815.0000.00_16.0_cn_chinamobile_44811063d9.tgz"
+				},
+				"OS3.0.310.0.WPUCNXM": {
+					"os": "OS3.0.310.0.WPUCNXM",
+					"android": "16.0",
+					"release": "2026-08-01",
+					"aspatch": "2026-07-01",
+					"recovery": "mist-ota_full-OS3.0.310.0.WPUCNXM-user-16.0-32c71f60d0.zip",
+					"fastboot": "mist_images_OS3.0.310.0.WPUCNXM_20260730.0000.00_16.0_cn_8ae6895a2b.tgz",
+					"ctelecom": "mist_images_OS3.0.310.0.WPUCNXM_20260730.0000.00_16.0_cn_chinatelecom_98855aef39.tgz",
+					"cnmobile": "mist_images_OS3.0.310.0.WPUCNXM_20260730.0000.00_16.0_cn_chinamobile_326c58c4d3.tgz"
+				},
+				"OS3.0.307.0.WPUCNXM": {
+					"os": "OS3.0.307.0.WPUCNXM",
+					"android": "16.0",
+					"release": "2026-07-14",
+					"aspatch": "2026-06-01",
+					"recovery": "mist-ota_full-OS3.0.307.0.WPUCNXM-user-16.0-b9de94fb03.zip",
+					"fastboot": "mist_images_OS3.0.307.0.WPUCNXM_20260709.0000.00_16.0_cn_dacec824d0.tgz",
+					"ctelecom": "mist_images_OS3.0.307.0.WPUCNXM_20260709.0000.00_16.0_cn_chinatelecom_03c307384d.tgz",
+					"cnmobile": "mist_images_OS3.0.307.0.WPUCNXM_20260709.0000.00_16.0_cn_chinamobile_87f70a35d5.tgz"
+				},
+				"OS3.0.305.0.WPUCNXM": {
+					"os": "OS3.0.305.0.WPUCNXM",
+					"android": "16.0",
+					"release": "2026-07-14",
+					"aspatch": "2026-05-01",
+					"recovery": "mist-ota_full-OS3.0.305.0.WPUCNXM-user-16.0-b87d7eafe9.zip",
+					"fastboot": "",
+					"ctelecom": "",
+					"cnmobile": ""
+				}
+			}
+		},
+		{
+			"name": {
+				"zh": "小米澎湃 OS 演示机系统",
+				"en": "Xiaomi HyperOS China MiStore Demo"
+			},
+			"branchCode": "mist_demo",
+			"brand": "REDMI",
+			"device": {
+				"zh": "REDMI Note 17 5G",
+				"en": "REDMI Note 17 5G"
+			},
+			"idtag": "CnOD",
+			"tag": "CNDM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot",
+				"ctelecom",
+				"cnmobile"
+			],
+			"show": "0",
+			"region": "cn",
+			"carrier": [
+				"",
+				"chinatelecom",
+				"chinamobile",
+				"chinaunicom"
+			],
+			"zone": "1",
+			"ep": "0",
+			"roms": {
+				"OS3.0.302.0.WPUCNDM": {
+					"os": "OS3.0.302.0.WPUCNDM",
+					"android": "16.0",
+					"release": "2026-07-14",
+					"aspatch": "2026-05-01",
+					"recovery": "mist_demo-ota_full-OS3.0.302.0.WPUCNDM-user-16.0-69c8cf6ac6.zip",
+					"fastboot": "mist_demo_images_OS3.0.302.0.WPUCNDM_20260603.0000.00_16.0_cn_03c8db4704.tgz",
+					"ctelecom": "mist_demo_images_OS3.0.302.0.WPUCNDM_20260603.0000.00_16.0_cn_chinatelecom_9da209b496.tgz",
+					"cnmobile": "mist_demo_images_OS3.0.302.0.WPUCNDM_20260603.0000.00_16.0_cn_chinamobile_1989d3b863.tgz"
+				}
+			}
+		},
+		{
+			"name": {
+				"zh": "小米澎湃 OS 中国台湾省正式版",
+				"en": "Xiaomi HyperOS China Taiwan Province Stable"
+			},
+			"branchCode": "mist_tw_global",
+			"brand": "REDMI, POCO",
+			"device": {
+				"zh": "REDMI Note 17 5G / POCO M8 Power 5G",
+				"en": "REDMI Note 17 5G / POCO M8 Power 5G"
+			},
+			"idtag": "CNTP",
+			"tag": "TWXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot"
+			],
+			"show": "1",
+			"carrier": [
+				""
+			],
+			"region": "tw",
+			"zone": "2",
+			"ep": "0",
+			"roms": {
+				"OS3.0.303.0.WPUTWXM": {
+					"os": "OS3.0.303.0.WPUTWXM",
+					"android": "16.0",
+					"release": "2026-09-16",
+					"aspatch": "2026-08-01",
+					"recovery": "mist_tw_global-ota_full-OS3.0.303.0.WPUTWXM-user-16.0-e34f632e92.zip",
+					"fastboot": "mist_tw_global_images_OS3.0.303.0.WPUTWXM_20260908.0000.00_16.0_tw_a21f036019.tgz"
+				},
+				"OS3.0.302.0.WPUTWXM": {
+					"os": "OS3.0.302.0.WPUTWXM",
+					"android": "16.0",
+					"release": "2026-09-03",
+					"aspatch": "2026-06-01",
+					"recovery": "mist_tw_global-ota_full-OS3.0.302.0.WPUTWXM-user-16.0-051052c856.zip",
+					"fastboot": "mist_tw_global_images_OS3.0.302.0.WPUTWXM_20260713.0000.00_16.0_tw_2dac72ff44.tgz"
+				}
+			}
+		},
+		{
+			"name": {
+				"zh": "小米澎湃 OS 国际正式版",
+				"en": "Xiaomi HyperOS Global Stable"
+			},
+			"branchCode": "mist_global",
+			"brand": "REDMI, POCO",
+			"device": {
+				"zh": "REDMI Note 17 5G / POCO M8 Power 5G",
+				"en": "REDMI Note 17 5G / POCO M8 Power 5G"
+			},
+			"idtag": "GBOO",
+			"tag": "MIXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot"
+			],
+			"show": "1",
+			"carrier": [
+				""
+			],
+			"region": "global",
+			"zone": "2",
+			"ep": "0",
+			"roms": {
+				"OS3.0.304.0.WPUMIXM": {
+					"os": "OS3.0.304.0.WPUMIXM",
+					"android": "16.0",
+					"release": "2026-09-24",
+					"aspatch": "2026-08-01",
+					"recovery": "mist_global-ota_full-OS3.0.304.0.WPUMIXM-user-16.0-372c599d17.zip",
+					"fastboot": ""
+				},
+				"OS3.0.303.0.WPUMIXM": {
+					"os": "OS3.0.303.0.WPUMIXM",
+					"android": "16.0",
+					"release": "2026-09-14",
+					"aspatch": "2026-08-01",
+					"recovery": "mist_global-ota_full-OS3.0.303.0.WPUMIXM-user-16.0-a979fe77ca.zip",
+					"fastboot": "mist_global_images_OS3.0.303.0.WPUMIXM_20260904.0000.00_16.0_global_395eb8bc79.tgz"
+				},
+				"OS3.0.302.0.WPUMIXM": {
+					"os": "OS3.0.302.0.WPUMIXM",
+					"android": "16.0",
+					"release": "2026-08-28",
+					"aspatch": "2026-08-01",
+					"recovery": "mist_global-ota_full-OS3.0.302.0.WPUMIXM-user-16.0-998c6d2c07.zip",
+					"fastboot": "mist_global_images_OS3.0.302.0.WPUMIXM_20260813.0000.00_16.0_global_5e1963dd0a.tgz"
+				},
+				"OS3.0.301.0.WPUMIXM": {
+					"os": "OS3.0.301.0.WPUMIXM",
+					"android": "16.0",
+					"release": "2026-08-28",
+					"aspatch": "2026-06-01",
+					"recovery": "mist_global-ota_full-OS3.0.301.0.WPUMIXM-user-16.0-ea89d0c4da.zip",
+					"fastboot": "mist_global_images_OS3.0.301.0.WPUMIXM_20260713.0000.00_16.0_global_4b45f6fd17.tgz"
+				}
+			}
+		},
+		{
+			"name": {
+				"zh": "小米澎湃 OS 国际 DC 正式版",
+				"en": "Xiaomi HyperOS Global DC Stable"
+			},
+			"branchCode": "mist_dc_global",
+			"brand": "REDMI, POCO",
+			"device": {
+				"zh": "REDMI Note 17 5G / POCO M8 Power 5G",
+				"en": "REDMI Note 17 5G / POCO M8 Power 5G"
+			},
+			"idtag": "GBDC",
+			"tag": "MIDC",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot"
+			],
+			"show": "0",
+			"carrier": [
+				"dc"
+			],
+			"region": "global",
+			"zone": "2",
+			"ep": "0",
+			"roms": {
+				"OS3.0.303.0.WPUMIDC": {
+					"os": "OS3.0.303.0.WPUMIDC",
+					"android": "16.0",
+					"release": "2026-09-24",
+					"aspatch": "2026-08-01",
+					"recovery": "mist_dc_global-ota_full-OS3.0.303.0.WPUMIDC-user-16.0-908de0b16e.zip",
+					"fastboot": "mist_dc_global_images_OS3.0.303.0.WPUMIDC_20260917.0000.00_16.0_global_dc_9114ac8ce5.tgz"
+				}
+			}
+		},
+		{
+			"name": {
+				"zh": "小米澎湃 OS 欧洲EEA正式版",
+				"en": "Xiaomi HyperOS Europe EEA Stable"
+			},
+			"branchCode": "mist_eea_global",
+			"brand": "REDMI, POCO",
+			"device": {
+				"zh": "REDMI Note 17 5G / POCO M8 Power 5G",
+				"en": "REDMI Note 17 5G / POCO M8 Power 5G"
+			},
+			"idtag": "EEAO",
+			"tag": "EUXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot"
+			],
+			"show": "1",
+			"carrier": [
+				""
+			],
+			"region": "eea",
+			"zone": "2",
+			"ep": "0",
+			"roms": {
+				"OS3.0.305.0.WPUEUXM": {
+					"os": "OS3.0.305.0.WPUEUXM",
+					"android": "16.0",
+					"release": "2026-09-18",
+					"aspatch": "2026-08-01",
+					"recovery": "mist_eea_global-ota_full-OS3.0.305.0.WPUEUXM-user-16.0-255e440570.zip",
+					"fastboot": "mist_eea_global_images_OS3.0.305.0.WPUEUXM_20260914.0000.00_16.0_eea_57e23a4813.tgz"
+				},
+				"OS3.0.304.0.WPUEUXM": {
+					"os": "OS3.0.304.0.WPUEUXM",
+					"android": "16.0",
+					"release": "2026-08-31",
+					"aspatch": "2026-08-01",
+					"recovery": "mist_eea_global-ota_full-OS3.0.304.0.WPUEUXM-user-16.0-b2ad77c1b7.zip",
+					"fastboot": "mist_eea_global_images_OS3.0.304.0.WPUEUXM_20260819.0000.00_16.0_eea_36e3445621.tgz"
+				},
+				"OS3.0.303.0.WPUEUXM": {
+					"os": "OS3.0.303.0.WPUEUXM",
+					"android": "16.0",
+					"release": "2026-07-31",
+					"aspatch": "2026-06-01",
+					"recovery": "mist_eea_global-ota_full-OS3.0.303.0.WPUEUXM-user-16.0-9df43f6521.zip",
+					"fastboot": ""
+				}
+			}
+		},
+		{
+			"name": {
+				"zh": "小米澎湃 OS 印度正式版",
+				"en": "Xiaomi HyperOS India Stable"
+			},
+			"branchCode": "mist_in_global",
+			"brand": "REDMI, POCO",
+			"device": {
+				"zh": "REDMI Note 17 5G / POCO M8 Power 5G",
+				"en": "REDMI Note 17 5G / POCO M8 Power 5G"
+			},
+			"idtag": "INSO",
+			"tag": "INXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot"
+			],
+			"show": "1",
+			"carrier": [
+				""
+			],
+			"region": "in",
+			"zone": "2",
+			"ep": "0",
+			"roms": {
+				"OS3.0.306.0.WPUINXM": {
+					"os": "OS3.0.306.0.WPUINXM",
+					"android": "16.0",
+					"release": "2026-09-09",
+					"aspatch": "2026-08-01",
+					"recovery": "mist_in_global-ota_full-OS3.0.306.0.WPUINXM-user-16.0-244a8a4a0b.zip",
+					"fastboot": "mist_in_global_images_OS3.0.306.0.WPUINXM_20260904.0000.00_16.0_in_890376289e.tgz"
+				},
+				"OS3.0.305.0.WPUINXM": {
+					"os": "OS3.0.305.0.WPUINXM",
+					"android": "16.0",
+					"release": "2026-08-21",
+					"aspatch": "2026-08-01",
+					"recovery": "mist_in_global-ota_full-OS3.0.305.0.WPUINXM-user-16.0-247829b24e.zip",
+					"fastboot": "mist_in_global_images_OS3.0.305.0.WPUINXM_20260812.0000.00_16.0_in_fb4be5f8ae.tgz"
+				},
+				"OS3.0.304.0.WPUINXM": {
+					"os": "OS3.0.304.0.WPUINXM",
+					"android": "16.0",
+					"release": "2026-08-12",
+					"aspatch": "2026-07-01",
+					"recovery": "mist_in_global-ota_full-OS3.0.304.0.WPUINXM-user-16.0-c14f89122f.zip",
+					"fastboot": "mist_in_global_images_OS3.0.304.0.WPUINXM_20260722.0000.00_16.0_in_909667115e.tgz"
+				}
+			}
+		}
+	]
 }

@@ -1,61 +1,230 @@
 {
-  "device": "byron",
-  "name": {
-    "en": "Xiaomi 17 Max"
-  },
-  "code": "AF",
-  "supports": [
-    "OS4.0",
-    "OS3.0"
-  ],
-  "android": [
-    "16.0",
-    "17.0"
-  ],
-  "type": "phone",
-  "miui": "no",
-  "merged": "no",
-  "branches": [
-    {
-      "name": {
-        "en": "Xiaomi HyperOS Beta"
-      },
-      "branchCode": "byron",
-      "brand": "Xiaomi",
-      "device": {
-        "en": "Xiaomi 17 Max"
-      },
-      "region": "cn",
-      "roms": {
-        "OS4.0": {
-          "os": "OS4.0.0.11.XAFCNXM",
-          "android": "17.0",
-          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/byron/byron-ota_full-OS4.0.0.11.XAFCNXM-user-17.0-50bfa22080.zip"
-        },
-        "OS3.0": {
-          "os": "OS3.0.306.2.WAFCNXM",
-          "android": "16.0",
-          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/byron/byron-ota_full-OS3.0.306.2.WAFCNXM-user-16.0-29a1277d40.zip"
-        }
-      }
-    },
-    {
-      "name": {
-        "en": "Xiaomi HyperOS Stable"
-      },
-      "branchCode": "byron",
-      "brand": "Xiaomi",
-      "device": {
-        "en": "Xiaomi 17 Max"
-      },
-      "region": "cn",
-      "roms": {
-        "OS3.0": {
-          "os": "OS3.0.308.0.WAFCNXM",
-          "android": "16.0",
-          "download": "https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/byron/byron-ota_full-OS3.0.308.0.WAFCNXM-user-16.0-3fc387925d.zip"
-        }
-      }
-    }
-  ]
+	"device": "byron",
+	"name": {
+		"zh": "Xiaomi 17 Max",
+		"en": "Xiaomi 17 Max"
+	},
+	"code": "AF",
+	"supports": [
+		"OS3.0",
+		"OS4.0"
+	],
+	"android": [
+		"16.0",
+		"17.0"
+	],
+	"type": "phone",
+	"miui": "no",
+	"merged": "no",
+	"branches": [
+		{
+			"name": {
+				"zh": "小米澎湃 OS Beta",
+				"en": "Xiaomi HyperOS Beta"
+			},
+			"branchCode": "byron",
+			"brand": "Xiaomi",
+			"device": {
+				"zh": "Xiaomi 17 Max",
+				"en": "Xiaomi 17 Max"
+			},
+			"idtag": "CnOB",
+			"tag": "CNXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot"
+			],
+			"show": "1",
+			"carrier": [
+				"",
+				"chinatelecom",
+				"chinamobile",
+				"chinaunicom"
+			],
+			"region": "cn",
+			"zone": "1",
+			"ep": "0",
+			"roms": {
+				"OS4.0.0.22.XAFCNXM": {
+					"os": "OS4.0.0.22.XAFCNXM",
+					"android": "17.0",
+					"release": "2026-09-22",
+					"aspatch": "2026-09-01",
+					"recovery": "byron-ota_full-OS4.0.0.22.XAFCNXM-user-17.0-2043e68253.zip",
+					"fastboot": ""
+				},
+				"OS4.0.0.20.XAFCNXM": {
+					"os": "OS4.0.0.20.XAFCNXM",
+					"android": "17.0",
+					"release": "2026-09-17",
+					"aspatch": "2026-09-01",
+					"recovery": "byron-ota_full-OS4.0.0.20.XAFCNXM-user-17.0-62dfe69602.zip",
+					"fastboot": ""
+				},
+				"OS4.0.0.13.XAFCNXM": {
+					"os": "OS4.0.0.13.XAFCNXM",
+					"android": "17.0",
+					"release": "2026-09-08",
+					"aspatch": "2026-08-01",
+					"recovery": "byron-ota_full-OS4.0.0.13.XAFCNXM-user-17.0-0eb3c817ce.zip",
+					"fastboot": ""
+				},
+				"OS4.0.0.12.XAFCNXM": {
+					"os": "OS4.0.0.12.XAFCNXM",
+					"android": "17.0",
+					"release": "2026-09-04",
+					"aspatch": "2026-08-01",
+					"recovery": "byron-ota_full-OS4.0.0.12.XAFCNXM-user-17.0-de7443a44b.zip",
+					"fastboot": ""
+				},
+				"OS4.0.0.11.XAFCNXM": {
+					"os": "OS4.0.0.11.XAFCNXM",
+					"android": "17.0",
+					"release": "2026-08-27",
+					"aspatch": "2026-08-01",
+					"recovery": "byron-ota_full-OS4.0.0.11.XAFCNXM-user-17.0-50bfa22080.zip",
+					"fastboot": ""
+				},
+				"OS3.0.306.2.WAFCNXM": {
+					"os": "OS3.0.306.2.WAFCNXM",
+					"android": "16.0",
+					"release": "2026-06-09",
+					"aspatch": "2026-05-01",
+					"recovery": "byron-ota_full-OS3.0.306.2.WAFCNXM-user-16.0-29a1277d40.zip",
+					"fastboot": ""
+				}
+			}
+		},
+		{
+			"name": {
+				"zh": "小米澎湃 OS 正式版",
+				"en": "Xiaomi HyperOS Stable"
+			},
+			"branchCode": "byron",
+			"brand": "Xiaomi",
+			"device": {
+				"zh": "Xiaomi 17 Max",
+				"en": "Xiaomi 17 Max"
+			},
+			"idtag": "CnOO",
+			"tag": "CNXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot",
+				"ctelecom"
+			],
+			"show": "1",
+			"carrier": [
+				"",
+				"chinatelecom",
+				"chinamobile",
+				"chinaunicom"
+			],
+			"region": "cn",
+			"zone": "1",
+			"ep": "0",
+			"roms": {
+				"OS3.0.309.0.WAFCNXM": {
+					"os": "OS3.0.309.0.WAFCNXM",
+					"android": "16.0",
+					"release": "2026-09-02",
+					"aspatch": "2026-08-01",
+					"recovery": "byron-ota_full-OS3.0.309.0.WAFCNXM-user-16.0-46d6d23957.zip",
+					"fastboot": "byron_images_OS3.0.309.0.WAFCNXM_20260818.0000.00_16.0_cn_bd0411122d.tgz",
+					"ctelecom": "byron_images_OS3.0.309.0.WAFCNXM_20260818.0000.00_16.0_cn_chinatelecom_ce5c57ebcf.tgz"
+				},
+				"OS3.0.308.0.WAFCNXM": {
+					"os": "OS3.0.308.0.WAFCNXM",
+					"android": "16.0",
+					"release": "2026-07-28",
+					"aspatch": "2026-06-01",
+					"recovery": "byron-ota_full-OS3.0.308.0.WAFCNXM-user-16.0-3fc387925d.zip",
+					"fastboot": "byron_images_OS3.0.308.0.WAFCNXM_20260722.0000.00_16.0_cn_a5e9349591.tgz",
+					"ctelecom": "byron_images_OS3.0.308.0.WAFCNXM_20260722.0000.00_16.0_cn_chinatelecom_28c3c5ccf7.tgz"
+				},
+				"OS3.0.307.0.WAFCNXM": {
+					"os": "OS3.0.307.0.WAFCNXM",
+					"android": "16.0",
+					"release": "2026-06-15",
+					"aspatch": "2026-05-01",
+					"recovery": "byron-ota_full-OS3.0.307.0.WAFCNXM-user-16.0-be99c1047e.zip",
+					"fastboot": "byron_images_OS3.0.307.0.WAFCNXM_20260607.0000.00_16.0_cn_696a7139d5.tgz",
+					"ctelecom": "byron_images_OS3.0.307.0.WAFCNXM_20260607.0000.00_16.0_cn_chinatelecom_d62dc8b6e5.tgz"
+				},
+				"OS3.0.304.0.WAFCNXM": {
+					"os": "OS3.0.304.0.WAFCNXM",
+					"android": "16.0",
+					"release": "2026-05-26",
+					"aspatch": "2026-05-01",
+					"recovery": "byron-ota_full-OS3.0.304.0.WAFCNXM-user-16.0-b3a2165acf.zip",
+					"fastboot": "byron_images_OS3.0.304.0.WAFCNXM_20260520.0000.00_16.0_cn_1fa5c5a68a.tgz",
+					"ctelecom": "byron_images_OS3.0.304.0.WAFCNXM_20260520.0000.00_16.0_cn_chinatelecom_c272ffdd5c.tgz"
+				},
+				"OS3.0.301.0.WAFCNXM": {
+					"os": "OS3.0.301.0.WAFCNXM",
+					"android": "16.0",
+					"release": "2026-05-21",
+					"aspatch": "2026-05-01",
+					"recovery": "byron-ota_full-OS3.0.301.0.WAFCNXM-user-16.0-3b8f263428.zip",
+					"fastboot": "byron_images_OS3.0.301.0.WAFCNXM_20260515.0000.00_16.0_cn_0c7999f2a2.tgz",
+					"ctelecom": "byron_images_OS3.0.301.0.WAFCNXM_20260515.0000.00_16.0_cn_chinatelecom_e510d29fcb.tgz"
+				}
+			}
+		},
+		{
+			"name": {
+				"zh": "小米澎湃 OS 演示机系统",
+				"en": "Xiaomi HyperOS China MiStore Demo"
+			},
+			"branchCode": "byron_demo",
+			"brand": "Xiaomi",
+			"device": {
+				"zh": "Xiaomi 17 Max",
+				"en": "Xiaomi 17 Max"
+			},
+			"idtag": "CnOD",
+			"tag": "CNDM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot",
+				"ctelecom"
+			],
+			"show": "0",
+			"region": "cn",
+			"carrier": [
+				"",
+				"chinatelecom",
+				"chinamobile",
+				"chinaunicom"
+			],
+			"zone": "1",
+			"ep": "0",
+			"roms": {
+				"OS3.0.302.0.WAFCNDM": {
+					"os": "OS3.0.302.0.WAFCNDM",
+					"android": "16.0",
+					"release": "2026-05-21",
+					"aspatch": "2026-05-01",
+					"recovery": "byron_demo-ota_full-OS3.0.302.0.WAFCNDM-user-16.0-a1e363956d.zip",
+					"fastboot": "byron_demo_images_OS3.0.302.0.WAFCNDM_20260515.0000.00_16.0_cn_784bf32fac.tgz",
+					"ctelecom": "byron_demo_images_OS3.0.302.0.WAFCNDM_20260515.0000.00_16.0_cn_chinatelecom_4931a254a4.tgz"
+				}
+			}
+		}
+	]
 }

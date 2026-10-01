@@ -1,0 +1,483 @@
+{
+	"device": "leedsa",
+	"name": {
+		"zh": "REDMI 17 / POCO C95 Pro",
+		"en": "REDMI 17 / POCO C95 Pro"
+	},
+	"code": "DT",
+	"supports": [
+		"OS3.0"
+	],
+	"android": [
+		"16.0"
+	],
+	"type": "phone",
+	"miui": "no",
+	"merged": "no",
+	"branches": [
+		{
+			"name": {
+				"zh": "小米澎湃 OS 中国台湾省正式版",
+				"en": "Xiaomi HyperOS China Taiwan Province Stable"
+			},
+			"branchCode": "leedsa_tw_global",
+			"brand": "REDMI, POCO",
+			"device": {
+				"zh": "REDMI 17 / POCO C95 Pro",
+				"en": "REDMI 17 / POCO C95 Pro"
+			},
+			"idtag": "CNTP",
+			"tag": "TWXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot"
+			],
+			"show": "1",
+			"carrier": [
+				""
+			],
+			"region": "tw",
+			"zone": "2",
+			"ep": "0",
+			"roms": {
+				"OS3.0.302.0.WDTTWXM": {
+					"os": "OS3.0.302.0.WDTTWXM",
+					"android": "16.0",
+					"release": "2026-09-01",
+					"aspatch": "2026-07-01",
+					"recovery": "leedsa_tw_global-ota_full-OS3.0.302.0.WDTTWXM-user-16.0-009e90db76.zip",
+					"fastboot": "leedsa_tw_global_images_OS3.0.302.0.WDTTWXM_20260731.0000.00_16.0_tw_d2d9c3daf8.tgz"
+				},
+				"OS3.0.301.0.WDTTWXM": {
+					"os": "OS3.0.301.0.WDTTWXM",
+					"android": "16.0",
+					"release": "2026-08-31",
+					"aspatch": "2026-06-01",
+					"recovery": "leedsa_tw_global-ota_full-OS3.0.301.0.WDTTWXM-user-16.0-2ea7feafb6.zip",
+					"fastboot": "leedsa_tw_global_images_OS3.0.301.0.WDTTWXM_20260630.0000.00_16.0_tw_174e744a9d.tgz"
+				}
+			}
+		},
+		{
+			"name": {
+				"zh": "小米澎湃 OS 国际正式版",
+				"en": "Xiaomi HyperOS Global Stable"
+			},
+			"branchCode": "leedsa_global",
+			"brand": "REDMI, POCO",
+			"device": {
+				"zh": "REDMI 17 / POCO C95 Pro",
+				"en": "REDMI 17 / POCO C95 Pro"
+			},
+			"idtag": "GBOO",
+			"tag": "MIXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot"
+			],
+			"show": "1",
+			"carrier": [
+				""
+			],
+			"region": "global",
+			"zone": "2",
+			"ep": "0",
+			"roms": {
+				"OS3.0.310.0.WDTMIXM": {
+					"os": "OS3.0.310.0.WDTMIXM",
+					"android": "16.0",
+					"release": "2026-09-15",
+					"aspatch": "2026-08-01",
+					"recovery": "leedsa_global-ota_full-OS3.0.310.0.WDTMIXM-user-16.0-f5f1553b2a.zip",
+					"fastboot": "leedsa_global_images_OS3.0.310.0.WDTMIXM_20260909.0000.00_16.0_global_0c79e29046.tgz"
+				},
+				"OS3.0.308.0.WDTMIXM": {
+					"os": "OS3.0.308.0.WDTMIXM",
+					"android": "16.0",
+					"release": "2026-08-27",
+					"aspatch": "2026-08-01",
+					"recovery": "leedsa_global-ota_full-OS3.0.308.0.WDTMIXM-user-16.0-5c3f711b6b.zip",
+					"fastboot": "leedsa_global_images_OS3.0.308.0.WDTMIXM_20260825.0000.00_16.0_global_8ac3ae64bb.tgz"
+				},
+				"OS3.0.306.0.WDTMIXM": {
+					"os": "OS3.0.306.0.WDTMIXM",
+					"android": "16.0",
+					"release": "2026-08-19",
+					"aspatch": "2026-08-01",
+					"recovery": "leedsa_global-ota_full-OS3.0.306.0.WDTMIXM-user-16.0-7e693c762c.zip",
+					"fastboot": "leedsa_global_images_OS3.0.306.0.WDTMIXM_20260813.0000.00_16.0_global_3e98b73f55.tgz"
+				},
+				"OS3.0.305.0.WDTMIXM": {
+					"os": "OS3.0.305.0.WDTMIXM",
+					"android": "16.0",
+					"release": "2026-08-10",
+					"aspatch": "2026-07-01",
+					"recovery": "leedsa_global-ota_full-OS3.0.305.0.WDTMIXM-user-16.0-f0f9eb71ed.zip",
+					"fastboot": "leedsa_global_images_OS3.0.305.0.WDTMIXM_20260724.0000.00_16.0_global_8654c9b118.tgz"
+				},
+				"OS3.0.303.0.WDTMIXM": {
+					"os": "OS3.0.303.0.WDTMIXM",
+					"android": "16.0",
+					"release": "2026-08-10",
+					"aspatch": "2026-05-01",
+					"recovery": "leedsa_global-ota_full-OS3.0.303.0.WDTMIXM-user-16.0-96272a063a.zip",
+					"fastboot": "leedsa_global_images_OS3.0.303.0.WDTMIXM_20260623.0000.00_16.0_global_bb9c9e8c31.tgz"
+				},
+				"OS3.0.301.0.WDTMIXM": {
+					"os": "OS3.0.301.0.WDTMIXM",
+					"android": "16.0",
+					"release": "2026-08-10",
+					"aspatch": "2026-05-01",
+					"recovery": "leedsa_global-ota_full-OS3.0.301.0.WDTMIXM-user-16.0-ead7a36f52.zip",
+					"fastboot": ""
+				}
+			}
+		},
+		{
+			"name": {
+				"zh": "小米澎湃 OS 国际 DC 正式版",
+				"en": "Xiaomi HyperOS Global DC Stable"
+			},
+			"branchCode": "leedsa_dc_global",
+			"brand": "REDMI, POCO",
+			"device": {
+				"zh": "REDMI 17 / POCO C95 Pro",
+				"en": "REDMI 17 / POCO C95 Pro"
+			},
+			"idtag": "GBDC",
+			"tag": "MIDC",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot"
+			],
+			"show": "0",
+			"carrier": [
+				"dc"
+			],
+			"region": "global",
+			"zone": "2",
+			"ep": "0",
+			"roms": {
+				"OS3.0.307.0.WDTMIDC": {
+					"os": "OS3.0.307.0.WDTMIDC",
+					"android": "16.0",
+					"release": "2026-09-11",
+					"aspatch": "2026-08-01",
+					"recovery": "leedsa_dc_global-ota_full-OS3.0.307.0.WDTMIDC-user-16.0-8e630711a9.zip",
+					"fastboot": "leedsa_dc_global_images_OS3.0.307.0.WDTMIDC_20260831.0000.00_16.0_global_dc_ba03e131d0.tgz"
+				},
+				"OS3.0.305.0.WDTMIDC": {
+					"os": "OS3.0.305.0.WDTMIDC",
+					"android": "16.0",
+					"release": "2026-09-04",
+					"aspatch": "2026-07-01",
+					"recovery": "leedsa_dc_global-ota_full-OS3.0.305.0.WDTMIDC-user-16.0-3a404a8ea9.zip",
+					"fastboot": "leedsa_dc_global_images_OS3.0.305.0.WDTMIDC_20260724.0000.00_16.0_global_dc_292d4b6fd1.tgz"
+				}
+			}
+		},
+		{
+			"name": {
+				"zh": "小米澎湃 OS 欧洲EEA正式版",
+				"en": "Xiaomi HyperOS Europe EEA Stable"
+			},
+			"branchCode": "leedsa_eea_global",
+			"brand": "REDMI, POCO",
+			"device": {
+				"zh": "REDMI 17 / POCO C95 Pro",
+				"en": "REDMI 17 / POCO C95 Pro"
+			},
+			"idtag": "EEAO",
+			"tag": "EUXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot"
+			],
+			"show": "1",
+			"carrier": [
+				""
+			],
+			"region": "eea",
+			"zone": "2",
+			"ep": "0",
+			"roms": {
+				"OS3.0.307.0.WDTEUXM": {
+					"os": "OS3.0.307.0.WDTEUXM",
+					"android": "16.0",
+					"release": "2026-09-05",
+					"aspatch": "2026-08-01",
+					"recovery": "leedsa_eea_global-ota_full-OS3.0.307.0.WDTEUXM-user-16.0-656ef66603.zip",
+					"fastboot": "leedsa_eea_global_images_OS3.0.307.0.WDTEUXM_20260902.0000.00_16.0_eea_c3db79c21c.tgz"
+				},
+				"OS3.0.305.0.WDTEUXM": {
+					"os": "OS3.0.305.0.WDTEUXM",
+					"android": "16.0",
+					"release": "2026-08-14",
+					"aspatch": "2026-08-01",
+					"recovery": "leedsa_eea_global-ota_full-OS3.0.305.0.WDTEUXM-user-16.0-d689e8e3cc.zip",
+					"fastboot": "leedsa_eea_global_images_OS3.0.305.0.WDTEUXM_20260808.0000.00_16.0_eea_5cdc0f6866.tgz"
+				},
+				"OS3.0.304.0.WDTEUXM": {
+					"os": "OS3.0.304.0.WDTEUXM",
+					"android": "16.0",
+					"release": "2026-08-21",
+					"aspatch": "2026-07-01",
+					"recovery": "leedsa_eea_global-ota_full-OS3.0.304.0.WDTEUXM-user-16.0-2e69e53334.zip",
+					"fastboot": "leedsa_eea_global_images_OS3.0.304.0.WDTEUXM_20260710.0000.00_16.0_eea_62542d5ac6.tgz"
+				},
+				"OS3.0.301.0.WDTEUXM": {
+					"os": "OS3.0.301.0.WDTEUXM",
+					"android": "16.0",
+					"release": "2026-08-14",
+					"aspatch": "2026-05-01",
+					"recovery": "leedsa_eea_global-ota_full-OS3.0.301.0.WDTEUXM-user-16.0-2a6c3ef860.zip",
+					"fastboot": "leedsa_eea_global_images_OS3.0.301.0.WDTEUXM_20260610.0000.00_16.0_eea_188dc354be.tgz"
+				}
+			}
+		},
+		{
+			"name": {
+				"zh": "小米澎湃 OS 俄罗斯正式版",
+				"en": "Xiaomi HyperOS Russia Stable"
+			},
+			"branchCode": "leedsa_ru_global",
+			"brand": "REDMI, POCO",
+			"device": {
+				"zh": "REDMI 17 / POCO C95 Pro",
+				"en": "REDMI 17 / POCO C95 Pro"
+			},
+			"idtag": "RUSO",
+			"tag": "RUXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot"
+			],
+			"show": "1",
+			"carrier": [
+				""
+			],
+			"region": "ru",
+			"zone": "2",
+			"ep": "0",
+			"roms": {
+				"OS3.0.304.0.WDTRUXM": {
+					"os": "OS3.0.304.0.WDTRUXM",
+					"android": "16.0",
+					"release": "2026-09-14",
+					"aspatch": "2026-07-01",
+					"recovery": "leedsa_ru_global-ota_full-OS3.0.304.0.WDTRUXM-user-16.0-35dfc7bee3.zip",
+					"fastboot": "leedsa_ru_global_images_OS3.0.304.0.WDTRUXM_20260731.0000.00_16.0_ru_0377664163.tgz"
+				},
+				"OS3.0.302.0.WDTRUXM": {
+					"os": "OS3.0.302.0.WDTRUXM",
+					"android": "16.0",
+					"release": "2026-08-14",
+					"aspatch": "2026-06-01",
+					"recovery": "leedsa_ru_global-ota_full-OS3.0.302.0.WDTRUXM-user-16.0-14cc09f73a.zip",
+					"fastboot": "leedsa_ru_global_images_OS3.0.302.0.WDTRUXM_20260630.0000.00_16.0_ru_2ba7c4e6b6.tgz"
+				}
+			}
+		},
+		{
+			"name": {
+				"zh": "小米澎湃 OS 印度尼西亚正式版",
+				"en": "Xiaomi HyperOS Indonesia Stable"
+			},
+			"branchCode": "leedsa_id_global",
+			"brand": "REDMI, POCO",
+			"device": {
+				"zh": "REDMI 17 / POCO C95 Pro",
+				"en": "REDMI 17 / POCO C95 Pro"
+			},
+			"idtag": "IDSO",
+			"tag": "IDXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot"
+			],
+			"show": "1",
+			"carrier": [
+				""
+			],
+			"region": "id",
+			"zone": "2",
+			"ep": "0",
+			"roms": {
+				"OS3.0.304.0.WDTIDXM": {
+					"os": "OS3.0.304.0.WDTIDXM",
+					"android": "16.0",
+					"release": "2026-09-06",
+					"aspatch": "2026-08-01",
+					"recovery": "leedsa_id_global-ota_full-OS3.0.304.0.WDTIDXM-user-16.0-c7e540afc3.zip",
+					"fastboot": "leedsa_id_global_images_OS3.0.304.0.WDTIDXM_20260902.0000.00_16.0_id_8ec8031168.tgz"
+				},
+				"OS3.0.302.0.WDTIDXM": {
+					"os": "OS3.0.302.0.WDTIDXM",
+					"android": "16.0",
+					"release": "2026-08-31",
+					"aspatch": "2026-08-01",
+					"recovery": "leedsa_id_global-ota_full-OS3.0.302.0.WDTIDXM-user-16.0-0e221dd6b7.zip",
+					"fastboot": "leedsa_id_global_images_OS3.0.302.0.WDTIDXM_20260818.0000.00_16.0_id_5b8d64fb90.tgz"
+				}
+			}
+		},
+		{
+			"name": {
+				"zh": "小米澎湃 OS 印度尼西亚 Demo",
+				"en": "Xiaomi HyperOS Indonesia MiStore Demo"
+			},
+			"branchCode": "leedsa_id_global",
+			"brand": "Xiaomi, REDMI, POCO",
+			"device": {
+				"zh": "",
+				"en": ""
+			},
+			"idtag": "IDDM",
+			"tag": "IDDM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot"
+			],
+			"show": "0",
+			"carrier": [
+				""
+			],
+			"region": "id",
+			"zone": "2",
+			"ep": "0",
+			"roms": {
+				"OS3.0.302.0.WDTIDDM": {
+					"os": "OS3.0.302.0.WDTIDDM",
+					"android": "16.0",
+					"release": "2026-09-14",
+					"aspatch": "2026-08-01",
+					"recovery": "leedsa_id_global-ota_full-OS3.0.302.0.WDTIDDM-user-16.0-2524607d64.zip",
+					"fastboot": "leedsa_id_global_images_OS3.0.302.0.WDTIDDM_20260904.0000.00_16.0_id_d5387ba28b.tgz"
+				}
+			}
+		},
+		{
+			"name": {
+				"zh": "小米澎湃 OS 土耳其正式版",
+				"en": "Xiaomi HyperOS Turkey Stable"
+			},
+			"branchCode": "leedsa_tr_global",
+			"brand": "REDMI, POCO",
+			"device": {
+				"zh": "REDMI 17 / POCO C95 Pro",
+				"en": "REDMI 17 / POCO C95 Pro"
+			},
+			"idtag": "TRSO",
+			"tag": "TRXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot"
+			],
+			"show": "1",
+			"carrier": [
+				""
+			],
+			"region": "tr",
+			"zone": "2",
+			"ep": "0",
+			"roms": {
+				"OS3.0.303.0.WDTTRXM": {
+					"os": "OS3.0.303.0.WDTTRXM",
+					"android": "16.0",
+					"release": "2026-09-15",
+					"aspatch": "2026-08-01",
+					"recovery": "leedsa_tr_global-ota_full-OS3.0.303.0.WDTTRXM-user-16.0-26e5d41145.zip",
+					"fastboot": "leedsa_tr_global_images_OS3.0.303.0.WDTTRXM_20260817.0000.00_16.0_tr_c36891fb2b.tgz"
+				}
+			}
+		},
+		{
+			"name": {
+				"zh": "小米澎湃 OS 日本正式版",
+				"en": "Xiaomi HyperOS Japan Stable"
+			},
+			"branchCode": "leedsa_jp_global",
+			"brand": "REDMI, POCO",
+			"device": {
+				"zh": "REDMI 17 / POCO C95 Pro",
+				"en": "REDMI 17 / POCO C95 Pro"
+			},
+			"idtag": "JAPS",
+			"tag": "JPXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot"
+			],
+			"show": "1",
+			"carrier": [
+				""
+			],
+			"region": "jp",
+			"zone": "2",
+			"ep": "0",
+			"roms": {
+				"OS3.0.303.0.WDTJPXM": {
+					"os": "OS3.0.303.0.WDTJPXM",
+					"android": "16.0",
+					"release": "2026-08-31",
+					"aspatch": "2026-08-01",
+					"recovery": "leedsa_jp_global-ota_full-OS3.0.303.0.WDTJPXM-user-16.0-28dc851a0c.zip",
+					"fastboot": "leedsa_jp_global_images_OS3.0.303.0.WDTJPXM_20260824.0000.00_16.0_jp_2873401117.tgz"
+				},
+				"OS3.0.302.0.WDTJPXM": {
+					"os": "OS3.0.302.0.WDTJPXM",
+					"android": "16.0",
+					"release": "2026-08-28",
+					"aspatch": "2026-07-01",
+					"recovery": "leedsa_jp_global-ota_full-OS3.0.302.0.WDTJPXM-user-16.0-89dc74b4b9.zip",
+					"fastboot": "leedsa_jp_global_images_OS3.0.302.0.WDTJPXM_20260724.0000.00_16.0_jp_ce63299d74.tgz"
+				}
+			}
+		}
+	]
+}

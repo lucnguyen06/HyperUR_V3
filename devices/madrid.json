@@ -1,0 +1,154 @@
+{
+	"device": "madrid",
+	"name": {
+		"zh": "小米 18 Pro Max",
+		"en": "Xiaomi 18 Pro Max"
+	},
+	"code": "FP",
+	"supports": [
+		"OS4.0"
+	],
+	"android": [
+		"17.0"
+	],
+	"type": "phone",
+	"miui": "no",
+	"merged": "no",
+	"branches": [
+		{
+			"name": {
+				"zh": "小米澎湃 OS 正式版",
+				"en": "Xiaomi HyperOS Stable"
+			},
+			"branchCode": "madrid",
+			"brand": "Xiaomi",
+			"device": {
+				"zh": "小米 18 Pro Max",
+				"en": "Xiaomi 18 Pro Max"
+			},
+			"idtag": "CnOO",
+			"tag": "CNXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot",
+				"ctelecom"
+			],
+			"show": "1",
+			"carrier": [
+				"",
+				"chinatelecom",
+				"chinamobile",
+				"chinaunicom"
+			],
+			"region": "cn",
+			"zone": "1",
+			"ep": "0",
+			"roms": {
+				"OS4.0.11.0.XEOCNXM": {
+					"os": "OS4.0.11.0.XEOCNXM",
+					"android": "17.0",
+					"release": "2026-09-25",
+					"aspatch": "2026-09-01",
+					"recovery": "madrid-ota_full-OS4.0.11.0.XEOCNXM-user-17.0-f0e19e380b.zip",
+					"fastboot": "madrid_images_OS4.0.11.0.XEOCNXM_20260925.0000.00_17.0_cn_fdc4296bdb.tgz",
+					"ctelecom": "madrid_images_OS4.0.11.0.XEOCNXM_20260925.0000.00_17.0_cn_chinatelecom_b89ced1af2.tgz"
+				},
+				"OS4.0.9.0.XEOCNXM": {
+					"os": "OS4.0.9.0.XEOCNXM",
+					"android": "17.0",
+					"release": "2026-09-23",
+					"aspatch": "2026-09-01",
+					"recovery": "madrid-ota_full-OS4.0.9.0.XEOCNXM-user-17.0-d1df2bda26.zip",
+					"fastboot": "madrid_images_OS4.0.9.0.XEOCNXM_20260921.0000.00_17.0_cn_141958367b.tgz",
+					"ctelecom": "madrid_images_OS4.0.9.0.XEOCNXM_20260921.0000.00_17.0_cn_chinatelecom_d04a1db62b.tgz"
+				},
+				"OS4.0.6.0.XEOCNXM": {
+					"os": "OS4.0.6.0.XEOCNXM",
+					"android": "17.0",
+					"release": "2026-09-23",
+					"aspatch": "2026-09-01",
+					"recovery": "madrid-ota_full-OS4.0.6.0.XEOCNXM-user-17.0-89a4bb7e7d.zip",
+					"fastboot": "madrid_images_OS4.0.6.0.XEOCNXM_20260917.0000.00_17.0_cn_333df29ab5.tgz",
+					"ctelecom": "madrid_images_OS4.0.6.0.XEOCNXM_20260917.0000.00_17.0_cn_chinatelecom_ea86b67a08.tgz"
+				},
+				"OS4.0.5.0.XEOCNXM": {
+					"os": "OS4.0.5.0.XEOCNXM",
+					"android": "17.0",
+					"release": "2026-09-23",
+					"aspatch": "2026-09-01",
+					"recovery": "madrid-ota_full-OS4.0.5.0.XEOCNXM-user-17.0-f8bfba90f0.zip",
+					"fastboot": "",
+					"ctelecom": ""
+				}
+			}
+		},
+		{
+			"name": {
+				"zh": "小米澎湃 OS 演示机系统",
+				"en": "Xiaomi HyperOS China MiStore Demo"
+			},
+			"branchCode": "madrid_demo",
+			"brand": "Xiaomi",
+			"device": {
+				"zh": "小米 18 Pro Max",
+				"en": "Xiaomi 18 Pro Max"
+			},
+			"idtag": "CnOD",
+			"tag": "CNDM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot",
+				"ctelecom"
+			],
+			"show": "0",
+			"region": "cn",
+			"carrier": [
+				"",
+				"chinatelecom",
+				"chinamobile",
+				"chinaunicom"
+			],
+			"zone": "1",
+			"ep": "0",
+			"roms": {
+				"OS4.0.6.0.XEOCNDM": {
+					"os": "OS4.0.6.0.XEOCNDM",
+					"android": "17.0",
+					"release": "2026-09-29",
+					"aspatch": "2026-09-01",
+					"recovery": "madrid_demo-ota_full-OS4.0.6.0.XEOCNDM-user-17.0-78ace0927e.zip",
+					"fastboot": "madrid_demo_images_OS4.0.6.0.XEOCNDM_20260926.0000.00_17.0_cn_bd097b5193.tgz",
+					"ctelecom": "madrid_demo_images_OS4.0.6.0.XEOCNDM_20260926.0000.00_17.0_cn_chinatelecom_7fab9fb935.tgz"
+				},
+				"OS4.0.5.0.XEOCNDM": {
+					"os": "OS4.0.5.0.XEOCNDM",
+					"android": "17.0",
+					"release": "2026-09-23",
+					"aspatch": "2026-09-01",
+					"recovery": "madrid_demo-ota_full-OS4.0.5.0.XEOCNDM-user-17.0-38007cd602.zip",
+					"fastboot": "madrid_demo_images_OS4.0.5.0.XEOCNDM_20260922.0000.00_17.0_cn_fcbc5e7d58.tgz",
+					"ctelecom": "madrid_demo_images_OS4.0.5.0.XEOCNDM_20260922.0000.00_17.0_cn_chinatelecom_8f7b80598f.tgz"
+				},
+				"OS4.0.4.0.XEOCNDM": {
+					"os": "OS4.0.4.0.XEOCNDM",
+					"android": "17.0",
+					"release": "2026-09-23",
+					"aspatch": "2026-09-01",
+					"recovery": "madrid_demo-ota_full-OS4.0.4.0.XEOCNDM-user-17.0-85e427ee0b.zip",
+					"fastboot": "madrid_demo_images_OS4.0.4.0.XEOCNDM_20260921.0000.00_17.0_cn_8505879000.tgz",
+					"ctelecom": "madrid_demo_images_OS4.0.4.0.XEOCNDM_20260921.0000.00_17.0_cn_chinatelecom_3473887397.tgz"
+				}
+			}
+		}
+	]
+}

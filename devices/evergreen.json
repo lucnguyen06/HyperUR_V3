@@ -1,0 +1,227 @@
+{
+	"device": "evergreen",
+	"name": {
+		"zh": "POCO M4 Pro 5G",
+		"en": "POCO M4 Pro 5G"
+	},
+	"code": "GB",
+	"supports": [
+		"OS1.0"
+	],
+	"android": [
+		"13.0"
+	],
+	"type": "phone",
+	"miui": "yes",
+	"merged": "no",
+	"branches": [
+		{
+			"name": {
+				"zh": "小米澎湃 OS 中国台湾省正式版",
+				"en": "Xiaomi HyperOS China Taiwan Province Stable"
+			},
+			"branchCode": "evergreen_tw_global",
+			"brand": "POCO",
+			"device": {
+				"zh": "POCO M4 Pro 5G",
+				"en": "POCO M4 Pro 5G"
+			},
+			"idtag": "CNTP",
+			"tag": "TWXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot"
+			],
+			"show": "1",
+			"carrier": [
+				""
+			],
+			"region": "tw",
+			"zone": "2",
+			"ep": "0",
+			"roms": {
+				"OS1.0.1.0.TGBTWXM": {
+					"os": "OS1.0.1.0.TGBTWXM",
+					"android": "13.0",
+					"release": "2024-03-22",
+					"aspatch": "2024-02-01",
+					"recovery": "miui_EVERGREENTWGlobal_OS1.0.1.0.TGBTWXM_71148f3f61_13.0.zip",
+					"fastboot": "evergreen_tw_global_images_OS1.0.1.0.TGBTWXM_20240229.0000.00_13.0_tw_3321563586.tgz"
+				}
+			}
+		},
+		{
+			"name": {
+				"zh": "小米澎湃 OS 国际正式版",
+				"en": "Xiaomi HyperOS Global Stable"
+			},
+			"branchCode": "evergreen_global",
+			"brand": "POCO",
+			"device": {
+				"zh": "POCO M4 Pro 5G",
+				"en": "POCO M4 Pro 5G"
+			},
+			"idtag": "GBOO",
+			"tag": "MIXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot"
+			],
+			"show": "1",
+			"carrier": [
+				""
+			],
+			"region": "global",
+			"zone": "2",
+			"ep": "0",
+			"roms": {
+				"OS1.0.1.0.TGBMIXM": {
+					"os": "OS1.0.1.0.TGBMIXM",
+					"android": "13.0",
+					"release": "2024-04-01",
+					"aspatch": "2024-02-01",
+					"recovery": "miui_EVERGREENGlobal_OS1.0.1.0.TGBMIXM_d22f981c91_13.0.zip",
+					"fastboot": "evergreen_global_images_OS1.0.1.0.TGBMIXM_20240226.0000.00_13.0_global_e1e9e4ff66.tgz"
+				}
+			}
+		},
+		{
+			"name": {
+				"zh": "小米澎湃 OS 欧洲EEA正式版",
+				"en": "Xiaomi HyperOS Europe EEA Stable"
+			},
+			"branchCode": "evergreen_eea_global",
+			"brand": "POCO",
+			"device": {
+				"zh": "POCO M4 Pro 5G",
+				"en": "POCO M4 Pro 5G"
+			},
+			"idtag": "EEAO",
+			"tag": "EUXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot"
+			],
+			"show": "1",
+			"carrier": [
+				""
+			],
+			"region": "eea",
+			"zone": "2",
+			"ep": "0",
+			"roms": {
+				"OS1.0.2.0.TGBEUXM": {
+					"os": "OS1.0.2.0.TGBEUXM",
+					"android": "13.0",
+					"release": "2024-09-06",
+					"aspatch": "2024-08-01",
+					"recovery": "miui_EVERGREENEEAGlobal_OS1.0.2.0.TGBEUXM_9b74437e97_13.0.zip",
+					"fastboot": "evergreen_eea_global_images_OS1.0.2.0.TGBEUXM_20240826.0000.00_13.0_eea_f36f49d15d.tgz"
+				},
+				"OS1.0.1.0.TGBEUXM": {
+					"os": "OS1.0.1.0.TGBEUXM",
+					"android": "13.0",
+					"release": "2024-04-06",
+					"aspatch": "2024-02-01",
+					"recovery": "miui_EVERGREENEEAGlobal_OS1.0.1.0.TGBEUXM_a85e24d7ff_13.0.zip",
+					"fastboot": "evergreen_eea_global_images_OS1.0.1.0.TGBEUXM_20240229.0000.00_13.0_eea_e5004001d2.tgz"
+				}
+			}
+		},
+		{
+			"name": {
+				"zh": "小米澎湃 OS 俄罗斯正式版",
+				"en": "Xiaomi HyperOS Russia Stable"
+			},
+			"branchCode": "evergreen_ru_global",
+			"brand": "POCO",
+			"device": {
+				"zh": "POCO M4 Pro 5G",
+				"en": "POCO M4 Pro 5G"
+			},
+			"idtag": "RUSO",
+			"tag": "RUXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot"
+			],
+			"show": "1",
+			"carrier": [
+				""
+			],
+			"region": "ru",
+			"zone": "2",
+			"ep": "0",
+			"roms": {
+				"OS1.0.1.0.TGBRUXM": {
+					"os": "OS1.0.1.0.TGBRUXM",
+					"android": "13.0",
+					"release": "2024-04-10",
+					"aspatch": "2024-02-01",
+					"recovery": "miui_EVERGREENRUGlobal_OS1.0.1.0.TGBRUXM_6c961203aa_13.0.zip",
+					"fastboot": "evergreen_ru_global_images_OS1.0.1.0.TGBRUXM_20240307.0000.00_13.0_ru_6b5885aaf9.tgz"
+				}
+			}
+		},
+		{
+			"name": {
+				"zh": "小米澎湃 OS 土耳其正式版",
+				"en": "Xiaomi HyperOS Turkey Stable"
+			},
+			"branchCode": "evergreen_tr_global",
+			"brand": "POCO",
+			"device": {
+				"zh": "POCO M4 Pro 5G",
+				"en": "POCO M4 Pro 5G"
+			},
+			"idtag": "TRSO",
+			"tag": "TRXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot"
+			],
+			"show": "1",
+			"carrier": [
+				""
+			],
+			"region": "tr",
+			"zone": "2",
+			"ep": "0",
+			"roms": {
+				"OS1.0.1.0.TGBTRXM": {
+					"os": "OS1.0.1.0.TGBTRXM",
+					"android": "13.0",
+					"release": "2024-04-10",
+					"aspatch": "2024-02-01",
+					"recovery": "miui_EVERGREENTRGlobal_OS1.0.1.0.TGBTRXM_63803823e1_13.0.zip",
+					"fastboot": "evergreen_tr_global_images_OS1.0.1.0.TGBTRXM_20240307.0000.00_13.0_tr_c0debd7162.tgz"
+				}
+			}
+		}
+	]
+}

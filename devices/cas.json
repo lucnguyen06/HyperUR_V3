@@ -1,0 +1,73 @@
+{
+	"device": "cas",
+	"name": {
+		"zh": "小米 10 至尊纪念版",
+		"en": "Mi 10 Ultra"
+	},
+	"code": "JJ",
+	"supports": [
+		"OS1.0"
+	],
+	"android": [
+		"13.0"
+	],
+	"type": "phone",
+	"miui": "yes",
+	"merged": "no",
+	"branches": [
+		{
+			"name": {
+				"zh": "小米澎湃 OS 正式版",
+				"en": "Xiaomi HyperOS Stable"
+			},
+			"branchCode": "cas",
+			"brand": "Xiaomi",
+			"device": {
+				"zh": "小米 10 至尊纪念版",
+				"en": "Mi 10 Ultra"
+			},
+			"idtag": "CnOO",
+			"tag": "CNXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot",
+				"ctelecom"
+			],
+			"show": "1",
+			"carrier": [
+				"",
+				"chinatelecom",
+				"chinamobile",
+				"chinaunicom"
+			],
+			"region": "cn",
+			"zone": "1",
+			"ep": "0",
+			"roms": {
+				"OS1.0.4.0.TJJCNXM": {
+					"os": "OS1.0.4.0.TJJCNXM",
+					"android": "13.0",
+					"release": "2024-06-12",
+					"aspatch": "2024-03-01",
+					"recovery": "miui_CAS_OS1.0.4.0.TJJCNXM_40f432b58e_13.0.zip",
+					"fastboot": "cas_images_OS1.0.4.0.TJJCNXM_20240605.0000.00_13.0_cn_628f989f7d.tgz",
+					"ctelecom": "cas_images_OS1.0.4.0.TJJCNXM_20240605.0000.00_13.0_cn_chinatelecom_75e2ccc3d7.tgz"
+				},
+				"OS1.0.2.0.TJJCNXM": {
+					"os": "OS1.0.2.0.TJJCNXM",
+					"android": "13.0",
+					"release": "2024-04-15",
+					"aspatch": "2024-03-01",
+					"recovery": "miui_CAS_OS1.0.2.0.TJJCNXM_7bda5178f0_13.0.zip",
+					"fastboot": "cas_images_OS1.0.2.0.TJJCNXM_20240325.0000.00_13.0_cn_30226836d7.tgz",
+					"ctelecom": "cas_images_OS1.0.2.0.TJJCNXM_20240325.0000.00_13.0_cn_chinatelecom_21f0dbe2ab.tgz"
+				}
+			}
+		}
+	]
+}

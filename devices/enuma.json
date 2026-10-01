@@ -1,0 +1,73 @@
+{
+	"device": "enuma",
+	"name": {
+		"zh": "小米平板 5 Pro 5G",
+		"en": "Xiaomi Pad 5 Pro 5G"
+	},
+	"code": "KZ",
+	"supports": [
+		"OS1.0"
+	],
+	"android": [
+		"13.0"
+	],
+	"type": "tablet",
+	"miui": "yes",
+	"merged": "no",
+	"branches": [
+		{
+			"name": {
+				"zh": "小米澎湃 OS 正式版",
+				"en": "Xiaomi HyperOS Stable"
+			},
+			"branchCode": "enuma",
+			"brand": "Xiaomi",
+			"device": {
+				"zh": "小米平板 5 Pro 5G",
+				"en": "Xiaomi Pad 5 Pro 5G"
+			},
+			"idtag": "CnOO",
+			"tag": "CNXM",
+			"branchtag": "F",
+			"table": [
+				"os",
+				"android",
+				"release",
+				"aspatch",
+				"recovery",
+				"fastboot",
+				"ctelecom"
+			],
+			"show": "1",
+			"carrier": [
+				"",
+				"chinatelecom",
+				"chinamobile",
+				"chinaunicom"
+			],
+			"region": "cn",
+			"zone": "1",
+			"ep": "0",
+			"roms": {
+				"OS1.0.3.0.TKZCNXM": {
+					"os": "OS1.0.3.0.TKZCNXM",
+					"android": "13.0",
+					"release": "2024-05-17",
+					"aspatch": "2024-03-01",
+					"recovery": "miui_ENUMA_OS1.0.3.0.TKZCNXM_e1128c5324_13.0.zip",
+					"fastboot": "enuma_images_OS1.0.3.0.TKZCNXM_20240508.0000.00_13.0_cn_fc06cc99cc.tgz",
+					"ctelecom": "enuma_images_OS1.0.3.0.TKZCNXM_20240508.0000.00_13.0_cn_chinatelecom_99618f1e59.tgz"
+				},
+				"OS1.0.1.0.TKZCNXM": {
+					"os": "OS1.0.1.0.TKZCNXM",
+					"android": "13.0",
+					"release": "2024-03-05",
+					"aspatch": "2024-02-01",
+					"recovery": "miui_ENUMA_OS1.0.1.0.TKZCNXM_4488f26875_13.0.zip",
+					"fastboot": "enuma_images_OS1.0.1.0.TKZCNXM_20240206.0000.00_13.0_cn_71ead6a87c.tgz",
+					"ctelecom": "enuma_images_OS1.0.1.0.TKZCNXM_20240206.0000.00_13.0_cn_chinatelecom_1816cfc44b.tgz"
+				}
+			}
+		}
+	]
+}
