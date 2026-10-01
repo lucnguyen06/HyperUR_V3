@@ -1,0 +1,26 @@
+{
+  "name": "hyperur-telegram-bot",
+  "version": "1.0.0",
+  "description": "HyperUR Telegram Bot để nhận và quản lý bill đăng ký ROM",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "dev": "nodemon bot.js",
+    "setup": "node setup-wizard.js",
+    "test": "echo \"Tests coming soon\" && exit 0",
+    "lint": "echo \"Linting coming soon\" && exit 0"
+  },
+  "keywords": ["telegram", "bot", "hyperur", "xiaomi", "rom"],
+  "author": "HyperUR Team",
+  "license": "MIT",
+  "dependencies": {
+    "telegraf": "^4.16.3",
+    "dotenv": "^16.4.5",
+    "node-fetch": "^2.7.0",
+    "fs-extra": "^11.2.0",
+    "date-fns": "^3.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}

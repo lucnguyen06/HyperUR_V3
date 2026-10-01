@@ -1,0 +1,50 @@
+<!-- 
+  HyperUR Bot Badge - Embed vào website
+  Copy đoạn code này vào file HTML của website
+-->
+
+<div class="hyperur-bot-badge" style="
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  cursor: pointer;
+">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+  </svg>
+  <div>
+    <div style="font-size: 14px; opacity: 0.9;">Đăng ký qua Telegram Bot</div>
+    <div style="font-size: 12px; opacity: 0.7;" id="hyperur-bot-count">Loading...</div>
+  </div>
+</div>
+
+<style>
+  .hyperur-bot-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  }
+</style>
+
+<script>
+  // Fetch số lượng đăng ký từ bot stats
+  fetch('./data/bot-stats.json')
+    .then(res => res.json())
+    .then(data => {
+      const count = data.stats?.approvedBills || 0;
+      document.getElementById('hyperur-bot-count').textContent = 
+        `${count} người đã đăng ký`;
+    })
+    .catch(() => {
+      document.getElementById('hyperur-bot-count').textContent = 
+        'Đăng ký nhanh chóng';
+    });
+</script>
