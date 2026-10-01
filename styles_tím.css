@@ -3703,7 +3703,6 @@ dialog:not([open]) {
   font-size: 1.12rem;
   letter-spacing: 0.08em;
   font-weight: 600;
-  text-transform: uppercase;
 }
 
 .reg-input-clean-btn {
@@ -5726,7 +5725,6 @@ dialog:not([open]) {
   font-size: 1.15rem;
   font-weight: 700;
   letter-spacing: 1.5px;
-  text-transform: uppercase;
   outline: none;
   transition: all var(--transition-normal);
 }

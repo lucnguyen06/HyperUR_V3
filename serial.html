@@ -261,7 +261,7 @@
                         <div class="reg-form-group">
                             <label for="serial-input" class="reg-label">
                                 <span>3️⃣ Số serial thiết bị của bạn?<span class="reg-required">*</span></span>
-                                <span class="reg-hint">8 ký tự hợp lệ (A-Z, 0-9) • Tự động chuẩn hóa</span>
+                                <span class="reg-hint">8 ký tự hợp lệ (A-Z, 0-9)</span>
                             </label>
 
                             <div class="reg-input-wrapper">
@@ -1234,7 +1234,7 @@
                 if (!raw) return '';
                 let clean = raw.replace(/^(?:sn|serial)\s*[:=\s-]*/i, '');
                 clean = clean.replace(/[^a-zA-Z0-9]/g, '');
-                return clean.toUpperCase();
+                return clean; // Giữ nguyên chữ hoa/thường khi nhập
             }
 
             function handleSerialInput() {
@@ -1246,11 +1246,13 @@
                 }
 
                 const len = sanitized.length;
+                const upperSerial = sanitized.toUpperCase(); // Chỉ chuyển HOA để hiển thị preview
+                
                 // Bỏ hiển thị đếm số ký tự theo yêu cầu người dùng
                 serialCleanBtn.style.display = len > 0 ? 'block' : 'none';
 
                 if (len >= 6) {
-                    serialCleanPreview.innerHTML = `Serial hợp lệ: <strong>${sanitized}</strong>`;
+                    serialCleanPreview.innerHTML = `Serial hợp lệ: <strong>${upperSerial}</strong>`;
                     serialValidTag.style.display = 'inline-flex';
                 } else if (len > 0) {
                     serialCleanPreview.innerHTML = `Đang nhập (${len}/8 ký tự)...`;
@@ -1981,11 +1983,12 @@
             const lookupHistoryGrid = document.getElementById('lookup-history-grid');
             const clearLookupHistoryBtn = document.getElementById('btn-clear-lookup-history');
 
-            function cleanSerialString(val) {
+            function cleanSerialString(val, toUpper = false) {
                 if (!val) return '';
                 let s = val.trim();
                 s = s.replace(/^(SN|SERIAL|S\/N|S\/NO|NO)[\s:=-]*/i, '');
-                return s.replace(/[^A-Za-z0-9_-]/g, '').toUpperCase();
+                s = s.replace(/[^A-Za-z0-9_-]/g, '');
+                return toUpper ? s.toUpperCase() : s;
             }
 
             function updateLookupCounter() {
@@ -2028,7 +2031,7 @@
             } catch (e) {}
 
             async function performLookup(serial) {
-                const cleanSerial = cleanSerialString(serial);
+                const cleanSerial = cleanSerialString(serial, true);
                 if (!cleanSerial) {
                     alert('Vui lòng nhập số Serial cần tra cứu!');
                     lookupSerialInput.focus();
