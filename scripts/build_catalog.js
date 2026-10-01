@@ -10,7 +10,7 @@ const path = require('path');
 const ROOT_DIR = path.resolve(__dirname, '..');
 const DEVICES_DIR = path.join(ROOT_DIR, 'devices');
 const MANIFEST_PATH = path.join(DEVICES_DIR, 'manifest.json');
-const OUTPUT_PATH = path.join(ROOT_DIR, 'devices_catalog.json');
+const OUTPUT_PATH = path.join(ROOT_DIR, 'json', 'devices_catalog.json');
 
 function buildCatalog() {
   console.log('🚀 Bắt đầu gộp danh mục thiết bị HyperUR...');

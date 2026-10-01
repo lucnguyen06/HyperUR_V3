@@ -7,8 +7,8 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const catalog = JSON.parse(fs.readFileSync(path.join(ROOT, 'devices_catalog.json'), 'utf8'));
-const activeRoms = JSON.parse(fs.readFileSync(path.join(ROOT, 'active_roms.json'), 'utf8'));
+const catalog = JSON.parse(fs.readFileSync(path.join(ROOT, 'json', 'devices_catalog.json'), 'utf8'));
+const activeRoms = JSON.parse(fs.readFileSync(path.join(ROOT, 'json', 'active_roms.json'), 'utf8'));
 
 console.log(`\n=== KIỂM TRA HỆ THỐNG HYPERUR V3 ===`);
 console.log(`1. Tổng số thiết bị trong từ điển devices_catalog.json: ${Object.keys(catalog).length}`);

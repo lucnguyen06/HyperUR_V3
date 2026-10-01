@@ -111,7 +111,7 @@ async function extractAllActiveRoms() {
   console.log(`- Tổng số bản ROM: ${totalRoms}`);
   console.log(`- Danh sách máy: ${Array.from(uniqueDevices).join(', ')}`);
 
-  fs.writeFileSync('active_roms.json', JSON.stringify(activeRoms, null, 2), 'utf8');
+  fs.writeFileSync(require('path').join(__dirname, '..', 'json', 'active_roms.json'), JSON.stringify(activeRoms, null, 2), 'utf8');
   console.log(`✅ Đã cập nhật file active_roms.json với dữ liệu thật từ Google Drive!`);
 }
 

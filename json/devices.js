@@ -68,7 +68,7 @@
       // 1. Tải danh mục thiết bị (devices_catalog.json tập trung)
       let catalogMap = null;
       try {
-        const catRes = await fetch('./devices_catalog.json');
+        const catRes = await fetch('./json/devices_catalog.json');
         if (catRes.ok) {
           catalogMap = await catRes.json();
         }
@@ -143,7 +143,7 @@
 
     // Đọc từ file active_roms.json cục bộ
     try {
-      const localRes = await fetch('./active_roms.json?_t=' + Date.now());
+      const localRes = await fetch('./json/active_roms.json?_t=' + Date.now());
       if (localRes.ok) {
         return await localRes.json();
       }
