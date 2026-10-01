@@ -1210,7 +1210,7 @@
 
             async function initCatalog() {
                 try {
-                    const res = await fetch('./devices_catalog.json');
+                    const res = await fetch('./json/devices_catalog.json');
                     if (res.ok) {
                         devicesMap = await res.json();
                         const frag = document.createDocumentFragment();
