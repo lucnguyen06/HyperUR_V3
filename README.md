@@ -22,7 +22,7 @@ HyperUR_V3/
 ├── download.html               # Kho Tải ROM (121 thiết bị)
 ├── firmware.html               # Thông Tin FW
 ├── guide.html                  # Hướng Dẫn Flash
-├── serial.html                 # Đăng Ký & Tra Cứu Serial
+├── serial.html                 # Đăng Ký & Tra Cứu Serial  
 ├── styles.css                  # Design System
 ├── devices.js                  # Module JavaScript
 ├── devices/                    # 121 file JSON dữ liệu thiết bị
