@@ -3745,8 +3745,10 @@ dialog:not([open]) {
 
 .reg-label {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.25rem;
   font-size: 0.92rem;
   font-weight: 600;
   color: var(--text-strong);
@@ -4410,23 +4412,25 @@ dialog:not([open]) {
 
 .reg-plan-features {
   list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
   margin-top: 0.35rem;
 }
 
 .reg-plan-features li {
   display: flex;
-  align-items: center;
-  gap: 0.45rem;
+  align-items: flex-start;
+  gap: 0.5rem;
   font-size: 0.84rem;
   color: var(--text-soft);
+  line-height: 1.4;
 }
 
 .reg-plan-features svg {
   color: var(--accent-emerald);
   flex-shrink: 0;
+  margin-top: 0.15rem;
 }
 
 /* Smooth reveal animation for payment section */
@@ -6873,6 +6877,38 @@ dialog.rom-dialog[open]::backdrop {
 
   .lang-selector .lang-label {
     font-size: 0.65rem;
+  }
+}
+
+/* Mobile Button Fixes */
+.btn-submit-main svg,
+.btn-momo-link svg,
+.btn-paypal-link svg {
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .btn-submit-main {
+    font-size: 0.95rem;
+    padding: 0.85rem 1rem;
+  }
+  
+  .btn-submit-main span {
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  .btn-momo-link, 
+  .btn-paypal-link {
+    font-size: 0.85rem;
+    padding: 0.65rem 0.85rem;
+    gap: 0.35rem;
+  }
+
+  .btn-momo-link span,
+  .btn-paypal-link span {
+    line-height: 1.25;
+    text-align: center;
   }
 }
 
