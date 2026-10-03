@@ -844,7 +844,7 @@
                 </svg>
             </div>
             <h2 class="reg-modal-title">Đã Gửi Serial Lên Hệ Thống!</h2>
-            <p class="reg-modal-desc" id="modal-desc-text">Số Serial của bạn đã được gửi lên hệ thống máy chủ để xác nhận và kích hoạt bản quyền.</p>
+            <p class="reg-modal-desc" id="modal-desc-text">Số Serial của bạn đã được gửi lên hệ thống máy chủ để xác nhận và kích hoạt bản quyền. Email xác nhận đã được gửi đến địa chỉ email của bạn.</p>
 
             <div class="reg-modal-details">
                 <div>
@@ -1925,11 +1925,11 @@
                 const modalDesc = document.getElementById('modal-desc-text');
                 if (modalDesc) {
                     modalDesc.textContent = isFree
-                        ? `Số Serial ${serial} đã được gửi lên hệ thống máy chủ để xác nhận kích hoạt gói Active Free (36 ngày). Bạn có thể kiểm tra trạng thái kích hoạt ngay bên dưới.`
-                        : `Số Serial ${serial} đã được gửi lên hệ thống máy chủ để xác nhận kích hoạt bản quyền. Vui lòng đảm bảo bạn đã hoàn tất ủng hộ với nội dung cú pháp gợi ý để admin đối soát và kích hoạt trong vòng 5 - 30 phút.`;
+                        ? `Số Serial ${serial} đã được gửi lên hệ thống máy chủ để xác nhận kích hoạt gói Active Free (36 ngày). Email xác nhận đã được gửi đến ${email}. Bạn có thể kiểm tra trạng thái kích hoạt ngay bên dưới.`
+                        : `Số Serial ${serial} đã được gửi lên hệ thống máy chủ để xác nhận kích hoạt bản quyền. Email xác nhận đã được gửi đến ${email}. Vui lòng đảm bảo bạn đã hoàn tất ủng hộ với nội dung cú pháp gợi ý để admin đối soát và kích hoạt trong vòng 5 - 30 phút.`;
                 }
 
-                showToast('✅ Đã gửi Serial lên hệ thống để xác nhận!');
+                showToast('✅ Đã gửi Serial lên hệ thống và email xác nhận đã được gửi!');
 
                 // Nút "Kiểm tra trạng thái" trong modal -> chuyển sang tab Tra Cứu và tự động tra cứu serial vừa đăng ký
                 if (modalLookupLink) {

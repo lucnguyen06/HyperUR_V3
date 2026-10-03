@@ -10,7 +10,7 @@ Cổng thông tin và kho tải ROM Custom Stock-based hàng đầu cho hệ sin
 - **100% Vector SVG**: Biểu tượng sắc nét, loại bỏ hoàn toàn emoji không đồng bộ.
 - **Dynamic Device Module (`devices.js`)**: Module JavaScript duy nhất đảm nhận tải động 121 máy, tìm kiếm tức thì theo tên/mã máy, lọc theo hãng và mở hộp thoại tải ROM chuẩn `<dialog>`.
 - **Tương thích toàn diện**: Bypass Play Integrity mặc định, hoạt động 100% ứng dụng ngân hàng và eKYC sinh trắc học.
-- **🤖 Telegram Bot**: Hệ thống bot Telegram tự động nhận và xử lý đăng ký ROM qua bill thanh toán.
+- **📧 Email Confirmation**: Hệ thống tự động gửi email xác nhận khi đăng ký serial thành công.
 
 ---
 
@@ -22,56 +22,16 @@ HyperUR_V3/
 ├── download.html               # Kho Tải ROM (121 thiết bị)
 ├── firmware.html               # Thông Tin FW
 ├── guide.html                  # Hướng Dẫn Flash
-├── serial.html                 # Đăng Ký & Tra Cứu Serial  
+├── serial.html                 # Đăng Ký & Tra Cứu Serial (với Email Confirmation)
 ├── styles.css                  # Design System
-├── devices.js                  # Module JavaScript
+├── json/                       # Configuration & i18n
+│   ├── config.js               # API Configuration
+│   ├── devices.js              # Device data module
+│   └── i18n.js                 # Multi-language support
 ├── devices/                    # 121 file JSON dữ liệu thiết bị
 ├── images/                     # Ảnh render thiết bị
-├── telegram-bot/               # 🤖 Telegram Bot System
-│   ├── bot.js                  # Bot chính
-│   ├── database.js             # Quản lý database
-│   ├── handlers/               # Bill, Admin, User handlers
-│   ├── config.js               # Configuration
-│   ├── integration.js          # Tích hợp với website
-│   └── README.md               # Hướng dẫn bot
 └── README.md                   # Tài liệu dự án
 ```
-
----
-
-## 🤖 Telegram Bot - Quản Lý Đăng Ký ROM
-
-### Tính năng Bot
-
-**Dành cho User:**
-- 📤 Gửi bill thanh toán (ảnh)
-- 📱 Đăng ký thiết bị theo codename
-- 🔍 Tra cứu trạng thái đơn
-- 🔗 Nhận link ROM sau khi được duyệt
-
-**Dành cho Admin:**
-- 🔔 Nhận thông báo đơn mới realtime
-- ✅ Duyệt/Từ chối đơn nhanh chóng
-- 📋 Quản lý danh sách đơn chờ
-- 📊 Xem thống kê hệ thống
-
-### Quick Start Bot
-
-```bash
-# Di chuyển vào thư mục bot
-cd telegram-bot
-
-# Cài đặt dependencies
-npm install
-
-# Chạy setup wizard
-npm run setup
-
-# Khởi động bot
-npm start
-```
-
-**Xem hướng dẫn chi tiết:** [telegram-bot/README.md](./telegram-bot/README.md)
 
 ---
 
@@ -85,29 +45,21 @@ npm start
 
 ---
 
-## 🔗 Tích Hợp Website & Bot
+## 📧 Hệ Thống Email Confirmation
 
-Bot tự động đồng bộ với website:
+Khi user đăng ký serial, hệ thống tự động:
 
-- **Serial Registration**: Đồng bộ serial đã đăng ký vào `data/registered-serials.json`
-- **Device Validation**: Kiểm tra device code từ `devices_catalog.json`
-- **ROM Links**: Lấy link từ `active_roms.json`
-- **Statistics**: Export stats vào `data/bot-stats.json`
+1. **Gửi dữ liệu lên Google Apps Script** qua `SERIAL_REGISTER_API_URL`
+2. **Google Apps Script xử lý**:
+   - Lưu thông tin vào Google Sheets
+   - Tự động gửi email xác nhận đến địa chỉ email user đã nhập
+   - Email chứa: Serial, Codename, Gói đăng ký, Trạng thái
+3. **Thông báo thành công**: Modal hiển thị "Email xác nhận đã được gửi đến..."
 
-### Kích hoạt tích hợp
+### Cấu hình trong `json/config.js`:
 
-Bot tự động tìm website tại thư mục cha. Cấu trúc:
-
-```
-HyperUR_V3/
-├── index.html (website)
-├── devices_catalog.json
-├── active_roms.json
-├── data/
-│   ├── registered-serials.json (tự động tạo)
-│   └── bot-stats.json (tự động tạo)
-└── telegram-bot/
-    └── bot.js
+```javascript
+SERIAL_REGISTER_API_URL: "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec"
 ```
 
 ---
@@ -148,31 +100,32 @@ Deploy lên:
 
 ## 📚 Tài Liệu
 
-### Website
+### Website Documentation
 - [README.md](./README.md) - Tài liệu chính
-- [devices.js](./devices.js) - Device module documentation
+- [json/config.js](./json/config.js) - API Configuration
+- [json/devices.js](./json/devices.js) - Device module
+- [json/i18n.js](./json/i18n.js) - Multi-language support
 
-### Telegram Bot
-- [telegram-bot/README.md](./telegram-bot/README.md) - Hướng dẫn đầy đủ
-- [telegram-bot/QUICK_START.md](./telegram-bot/QUICK_START.md) - Hướng dẫn nhanh
-- [telegram-bot/ADVANCED.md](./telegram-bot/ADVANCED.md) - Tính năng nâng cao
-- [telegram-bot/CONTRIBUTING.md](./telegram-bot/CONTRIBUTING.md) - Đóng góp code
-- [telegram-bot/SECURITY.md](./telegram-bot/SECURITY.md) - Security policy
+### Features
+- **Serial Registration System**: Đăng ký và tra cứu serial với email confirmation tự động
+- **Device Catalog**: 121 thiết bị Xiaomi/Redmi/POCO
+- **Multi-language**: Hỗ trợ Tiếng Việt và English
+- **Dark/Light Mode**: Chuyển đổi giao diện linh hoạt
 
 ---
 
 ## 🔐 Bảo Mật
 
-- Bot token và sensitive data lưu trong `.env`
-- Database bill được mã hóa (optional)
-- Admin access được validate
-- Rate limiting cho spam protection
+- Email và thông tin cá nhân được mã hóa khi gửi lên server
+- Google Apps Script xử lý dữ liệu an toàn
+- HTTPS cho tất cả API calls
+- Local storage cho lịch sử đăng ký
 
 ---
 
 ## 🤝 Đóng Góp
 
-Contributions are welcome! Xem [CONTRIBUTING.md](./telegram-bot/CONTRIBUTING.md)
+Contributions are welcome! Tạo issue hoặc pull request trên GitHub.
 
 ---
 
@@ -180,7 +133,7 @@ Contributions are welcome! Xem [CONTRIBUTING.md](./telegram-bot/CONTRIBUTING.md)
 
 © 2026 HYPERUR TEAM. Dự án mã nguồn mở phục vụ cộng đồng người dùng Xiaomi.
 
-License: [MIT](./telegram-bot/LICENSE)
+License: MIT
 
 ---
 
@@ -191,16 +144,43 @@ License: [MIT](./telegram-bot/LICENSE)
 - 🚀 100% tối ưu performance
 - 📱 121 thiết bị được hỗ trợ
 - 🔍 Tìm kiếm và lọc thiết bị nâng cao
+- 📧 Email confirmation tự động khi đăng ký serial
+- 🌐 Multi-language support (VI/EN)
+- 🎨 Dark/Light mode switching
 
-### 🤖 Telegram Bot (NEW!)
-- 📤 Tự động nhận và xử lý bill
-- ✅ Admin panel quản lý đơn
-- 🔗 Gửi ROM link tự động
-- 📊 Thống kê và analytics
-- 🔄 Tích hợp hoàn chỉnh với website
+### Serial Registration System
+- 📝 Form đăng ký serial thân thiện
+- ✅ Validation thông tin realtime
+- 📧 Tự động gửi email xác nhận
+- 🔍 Tra cứu trạng thái kích hoạt
+- 💾 Lưu lịch sử đăng ký local
+- 📊 Thống kê số thiết bị đã đăng ký theo email
+
+---
+
+## 📦 Deployment
+
+### Website (Static Hosting)
+
+Deploy lên:
+- **Vercel**: `vercel --prod`
+- **Netlify**: `netlify deploy --prod`
+- **GitHub Pages**: Push lên `gh-pages` branch
+- **Cloudflare Pages**: Connect repo
+
+### Google Apps Script Setup
+
+1. Tạo Google Sheets để lưu trữ đăng ký
+2. Tạo Apps Script project
+3. Deploy as Web App với quyền "Anyone"
+4. Copy URL và cập nhật vào `json/config.js`
 
 ---
 
 **Phiên bản:** V3.0  
-**Cập nhật:** 2026-10-01  
+**Cập nhật:** 2026-10-03  
 **Maintainers:** [@lcnguy06](https://t.me/lcnguy06) | [@Usagi79](https://t.me/Usagi79)
+
+---
+
+**HyperUR - Mượt mà tuyệt đỉnh, khai phóng tiềm năng!** 🚀
