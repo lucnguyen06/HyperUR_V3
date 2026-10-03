@@ -1874,6 +1874,38 @@
                     <span>Đang gửi Serial lên hệ thống để xác nhận...</span>
                 `;
 
+                // Send to PHP API (Database + Email)
+                let phpSuccess = false;
+                let phpMessage = '';
+                try {
+                    const phpResponse = await fetch('api/serial-register.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const phpResult = await phpResponse.json();
+                    phpSuccess = phpResult.success;
+                    phpMessage = phpResult.message || '';
+
+                    if (!phpSuccess) {
+                        throw new Error(phpMessage || 'Lỗi không xác định từ server');
+                    }
+                } catch (phpErr) {
+                    console.error('Lỗi khi gửi đến PHP API:', phpErr);
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        <span>${isFree ? 'Xác Nhận & Gửi Serial Active Free (36 Ngày)' : 'Xác Nhận & Gửi Serial Lên Hệ Thống'}</span>
+                    `;
+                    showToast('❌ ' + (phpErr.message || 'Không thể kết nối đến server. Vui lòng thử lại.'));
+                    return;
+                }
+
+                // Send to Google Apps Script (optional webhook)
                 const scriptUrl = (window.HYPERUR_CONFIG && window.HYPERUR_CONFIG.SERIAL_REGISTER_API_URL) || '';
                 if (scriptUrl && scriptUrl.trim() !== '') {
                     try {
