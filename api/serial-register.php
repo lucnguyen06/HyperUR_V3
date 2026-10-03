@@ -145,9 +145,12 @@ try {
     $emailHtml = generateEmailTemplate($data);
     $subject = "✅ Xác Nhận Đăng Ký Serial {$serial} - HyperUR";
     
+    // Properly encode email headers to prevent issues with special characters
+    $fromName = '=?UTF-8?B?' . base64_encode(EMAIL_FROM_NAME) . '?=';
+    
     $headers = "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-    $headers .= "From: " . EMAIL_FROM_NAME . " <" . EMAIL_FROM . ">\r\n";
+    $headers .= "From: {$fromName} <" . EMAIL_FROM . ">\r\n";
     $headers .= "Reply-To: " . SUPPORT_EMAIL . "\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
     
