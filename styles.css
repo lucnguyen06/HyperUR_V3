@@ -633,26 +633,36 @@ body::before {
 }
 
 /* Hero Mockup Card (Merged System Dashboard) */
+@keyframes mockupFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
 .hero-mockup-wrapper {
   max-width: 880px;
   margin: 0 auto;
+  animation: mockupFloat 6s ease-in-out infinite;
 }
 
 .hero-mockup-card {
-  background: linear-gradient(145deg, rgba(30, 41, 67, 0.7), rgba(15, 23, 42, 0.85));
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01));
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 28px;
   padding: 2.2rem 2rem 2rem;
   box-shadow:
-    0 24px 70px rgba(0, 0, 0, 0.6),
-    0 0 80px rgba(59, 130, 246, 0.15);
-  backdrop-filter: blur(30px);
+    0 24px 70px rgba(0, 0, 0, 0.5),
+    0 0 80px rgba(59, 130, 246, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(40px) saturate(150%);
+  -webkit-backdrop-filter: blur(40px) saturate(150%);
 }
 
 [data-theme="light"] .hero-mockup-card {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(241, 245, 249, 0.8));
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.15);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.2));
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 
+    0 24px 60px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .mockup-header {
@@ -680,6 +690,7 @@ body::before {
   background: var(--accent-emerald);
   border-radius: 50%;
   box-shadow: 0 0 10px var(--accent-emerald);
+  animation: pulse-dot 2s infinite;
 }
 
 .mockup-chip-info {
@@ -705,6 +716,7 @@ body::before {
   padding: 1.25rem 1rem;
   margin: 0;
   backdrop-filter: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 [data-theme="light"] .hero-mockup-card .stat-item {
@@ -714,8 +726,9 @@ body::before {
 
 .hero-mockup-card .stat-item:hover {
   background: rgba(59, 130, 246, 0.08);
-  border-color: rgba(59, 130, 246, 0.25);
-  transform: translateY(-2px);
+  border-color: rgba(59, 130, 246, 0.35);
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.25);
 }
 
 .mockup-grid {
@@ -730,7 +743,7 @@ body::before {
   border-radius: 18px;
   padding: 1.25rem;
   text-align: left;
-  transition: all var(--transition-fast);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 [data-theme="light"] .mockup-feature-box {
@@ -740,14 +753,20 @@ body::before {
 
 .mockup-feature-box:hover {
   background: rgba(59, 130, 246, 0.08);
-  border-color: rgba(59, 130, 246, 0.25);
-  transform: translateY(-2px);
+  border-color: rgba(59, 130, 246, 0.35);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.25);
 }
 
 .mockup-feature-svg {
   color: var(--accent-primary);
   margin-bottom: 0.6rem;
   display: flex;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.mockup-feature-box:hover .mockup-feature-svg {
+  transform: scale(1.1) rotate(-5deg);
 }
 
 .mockup-feature-box h4 {
@@ -781,6 +800,12 @@ body::before {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.mockup-feature-box.mockup-feature-full:hover .mockup-feature-svg {
+  background: rgba(59, 130, 246, 0.25);
+  transform: scale(1.15) rotate(-5deg);
 }
 
 .mockup-feature-full .mockup-feature-content {
