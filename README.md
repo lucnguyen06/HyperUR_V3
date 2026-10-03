@@ -45,22 +45,42 @@ HyperUR_V3/
 
 ---
 
-## 📧 Hệ Thống Email Confirmation
+## 📧 Hệ Thống Email Confirmation (PHP)
 
-Khi user đăng ký serial, hệ thống tự động:
+Hệ thống PHP gửi email xác nhận tự động khi user đăng ký serial:
 
-1. **Gửi dữ liệu lên Google Apps Script** qua `SERIAL_REGISTER_API_URL`
-2. **Google Apps Script xử lý**:
-   - Lưu thông tin vào Google Sheets
+1. **User đăng ký serial** trên website `serial.html`
+2. **Website gửi POST request** đến PHP API: `api/serial-register.php`
+3. **PHP Script xử lý**:
+   - Lưu thông tin vào MySQL database
    - Tự động gửi email xác nhận đến địa chỉ email user đã nhập
-   - Email chứa: Serial, Codename, Gói đăng ký, Trạng thái
-3. **Thông báo thành công**: Modal hiển thị "Email xác nhận đã được gửi đến..."
+   - Email chứa: Serial, Codename, Gói đăng ký, Trạng thái, Link tra cứu
+4. **Thông báo thành công**: Modal hiển thị "Email xác nhận đã được gửi đến..."
 
 ### Cấu hình trong `json/config.js`:
 
 ```javascript
-SERIAL_REGISTER_API_URL: "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec"
+SERIAL_REGISTER_API_URL: "https://hyperur.io.vn/api/serial-register.php"
+SERIAL_LOOKUP_API_URL: "https://hyperur.io.vn/api/serial-lookup.php"
 ```
+
+### Setup Guide:
+
+Chi tiết cài đặt xem tại: **[SETUP_GUIDE.md](./SETUP_GUIDE.md)**
+
+**Files cần thiết:**
+- `api/config.php` - Cấu hình database & email
+- `api/serial-register.php` - API đăng ký serial
+- `api/serial-lookup.php` - API tra cứu serial
+- `api/email-template.php` - Email HTML template
+- `database/schema.sql` - MySQL database schema
+
+**Features:**
+- ✅ MySQL database thay Google Sheets
+- ✅ Auto-activation cho gói Free (36 ngày)
+- ✅ Email template đẹp (dark theme glassmorphism)
+- ✅ Activity logging đầy đủ
+- ✅ CORS support
 
 ---
 
@@ -85,16 +105,22 @@ Deploy lên:
 - **Netlify**: `netlify deploy --prod`
 - **GitHub Pages**: Push lên `gh-pages` branch
 - **Cloudflare Pages**: Connect repo
+- **cPanel Hosting**: Upload files via FTP/File Manager
 
-### Telegram Bot (Server)
+### PHP Email System (cPanel Hosting)
 
-Deploy lên:
-- **VPS**: PM2 process manager
-- **Heroku**: Procfile provided
-- **Railway**: One-click deploy
-- **Docker**: Dockerfile included
+**Requirements:**
+- PHP 7.4+
+- MySQL 5.7+
+- cPanel/WHM hoặc tương đương
 
-**Xem chi tiết:** [telegram-bot/ADVANCED.md](./telegram-bot/ADVANCED.md)
+**Setup Steps:**
+1. Upload files `api/*.php` lên hosting
+2. Tạo MySQL database và import `database/schema.sql`
+3. Cấu hình `api/config.php` với thông tin database
+4. Test API endpoints
+
+**Chi tiết:** [SETUP_GUIDE.md](./SETUP_GUIDE.md) & [api/README.md](./api/README.md)
 
 ---
 
@@ -102,24 +128,33 @@ Deploy lên:
 
 ### Website Documentation
 - [README.md](./README.md) - Tài liệu chính
+- [SETUP_GUIDE.md](./SETUP_GUIDE.md) - Hướng dẫn setup PHP Email System
+- [api/README.md](./api/README.md) - PHP API documentation
 - [json/config.js](./json/config.js) - API Configuration
 - [json/devices.js](./json/devices.js) - Device module
 - [json/i18n.js](./json/i18n.js) - Multi-language support
 
+### Database
+- [database/schema.sql](./database/schema.sql) - MySQL database schema
+- Tables: `registrations`, `activity_logs`
+
 ### Features
-- **Serial Registration System**: Đăng ký và tra cứu serial với email confirmation tự động
+- **Serial Registration System**: Đăng ký và tra cứu serial với PHP email system
 - **Device Catalog**: 121 thiết bị Xiaomi/Redmi/POCO
 - **Multi-language**: Hỗ trợ Tiếng Việt và English
 - **Dark/Light Mode**: Chuyển đổi giao diện linh hoạt
+- **ROM API**: HyperUR_API cho download links (Google Drive)
 
 ---
 
 ## 🔐 Bảo Mật
 
-- Email và thông tin cá nhân được mã hóa khi gửi lên server
-- Google Apps Script xử lý dữ liệu an toàn
+- Email và thông tin cá nhân được validate và sanitize
+- MySQL prepared statements chống SQL injection
 - HTTPS cho tất cả API calls
-- Local storage cho lịch sử đăng ký
+- CORS headers được cấu hình đúng
+- Password và sensitive data không commit lên Git
+- Activity logging đầy đủ với IP tracking
 
 ---
 

@@ -24,10 +24,10 @@ window.HYPERUR_CONFIG = {
   // 6. Tên miền chính thức của website
   SITE_DOMAIN: "https://hyperur.io.vn",
 
-  // 7. Cấu hình Web App Google Apps Script nhận form Đăng ký Serial (doPost) - Tự động gửi email xác nhận
-  SERIAL_REGISTER_API_URL: "https://script.google.com/macros/s/AKfycbx1RfaT5NevKzW1A2F3oZUcODX5qSVSoumLEKMya1753zNlb9OU4zT4pMElWph6jKmRLg/exec",
+  // 7. Cấu hình PHP API nhận form Đăng ký Serial (POST) - Tự động gửi email xác nhận
+  SERIAL_REGISTER_API_URL: "https://hyperur.io.vn/api/serial-register.php",
 
-  // 8. Cấu hình Web App Google Apps Script tra cứu Serial (doGet)
-  SERIAL_LOOKUP_API_URL: "https://script.google.com/macros/s/AKfycbx1RfaT5NevKzW1A2F3oZUcODX5qSVSoumLEKMya1753zNlb9OU4zT4pMElWph6jKmRLg/exec"
+  // 8. Cấu hình PHP API tra cứu Serial (GET)
+  SERIAL_LOOKUP_API_URL: "https://hyperur.io.vn/api/serial-lookup.php"
 };
 

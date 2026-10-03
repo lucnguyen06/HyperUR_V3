@@ -1,0 +1,52 @@
+# .gitignore - HyperUR V3
+
+# PHP Configuration (contains sensitive data)
+api/config.php
+
+# Logs
+api/error.log
+*.log
+
+# Database backups
+*.sql.bak
+database/*.sql.bak
+
+# Composer dependencies
+vendor/
+composer.lock
+
+# PHPMailer (if using)
+PHPMailer/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Editor directories
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+*.cache
+
+# Node modules (if any)
+node_modules/
+package-lock.json
+
+# Build outputs
+dist/
+build/
+
+# Test files
+test-*.php
+api/test-*.php
