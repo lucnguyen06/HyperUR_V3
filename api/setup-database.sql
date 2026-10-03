@@ -47,8 +47,13 @@ CREATE TABLE IF NOT EXISTS activity_logs (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 5. Grant permissions to user (IMPORTANT)
+<<<<<<< HEAD
 -- Replace with your actual username and password if needed
 GRANT ALL PRIVILEGES ON ycoozxap_hyperur_db.* TO 'ycoozxap_lcnguyn06'@'localhost' IDENTIFIED BY 'Tl29126@';
+=======
+-- Replace 'ycoozxap' and 'Tl29126@@@' with your actual username and password
+GRANT ALL PRIVILEGES ON ycoozxap_hyperur_db.* TO 'ycoozxap'@'localhost' IDENTIFIED BY 'Tl29126@@@';
+>>>>>>> 23e8739cb665143119588e3aa6d057587c40f763
 FLUSH PRIVILEGES;
 
 -- 6. Verify setup
