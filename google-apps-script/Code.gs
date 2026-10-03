@@ -1,590 +1,390 @@
 /**
- * =========================================================================
- * HYPERUR V3 - GOOGLE DRIVE AUTO-SYNC & API SCRIPT (Google Apps Script)
- * =========================================================================
- * Script này tự động quét thư mục Google Drive chứa các bản ROM HyperUR:
- * - Link Tổng (Root): https://drive.google.com/drive/u/2/folders/1WxXT6Mx7ZdknKh_gd-dQr0Jturtkypyq
- *   + Thư mục con "China" (ID: 1gSFtHeF7SAINCDG5lBJ5o3RBMS-s90St)
- *   + Thư mục con "Glb"   (ID: 1PoSGGsS9T9hyEN2GOAZAXqiIchC5Z61n)
+ * HyperUR V3 - Google Apps Script
+ * Xử lý đăng ký Serial và tự động gửi email xác nhận
  * 
- * Tự động hỗ trợ quét đệ quy tất cả thư mục con, nhận diện định dạng file ROM:
- * Ví dụ: UR_amethyst_OS3.0.305.0.WOPCNXM_16.7z
- * =========================================================================
+ * Deploy: Web App
+ * Execute as: Me (your account)
+ * Who has access: Anyone
  */
 
-// ==================== CẤU HÌNH HỆ THỐNG ====================
+// ===== CẤU HÌNH =====
 const CONFIG = {
-  // 1. ID thư mục Google Drive chính (Link Tổng)
-  FOLDER_ID: "1WxXT6Mx7ZdknKh_gd-dQr0Jturtkypyq",
-
-  // (Đã bỏ SUBFOLDERS từ 2026-09-16 vì ID cũ hết hạn/revoke quyền.
-  //  Bây giờ chỉ quét đệ quy từ FOLDER_ID gốc, tự nhận diện region theo tên thư mục con
-  //  - chứa "glb"/"global" -> "global", còn lại mặc định -> "cn".)
-
-  // 2. Cấu hình GitOps GitHub (Tùy chọn tự động commit active_roms.json lên GitHub)
-  GITHUB: {
-    ENABLED: false,                         // Đổi thành true nếu muốn tự động commit lên GitHub
-    OWNER: "lucnguyen06",                   // Tên tài khoản GitHub
-    REPO: "HyperUR_V3",                     // Tên repository GitHub
-    BRANCH: "main",                         // Nhánh chính (main hoặc master)
-    FILE_PATH: "active_roms.json",          // Đường dẫn file trong repo
-    TOKEN: "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"      // GitHub Personal Access Token (quyền 'repo')
-  },
-
-  // 3. Cấu hình Webhook tới server riêng (Tùy chọn)
-  WEBHOOK: {
-    ENABLED: false,
-    URL: "https://hyperur.io.vn/api/update-link",
-    SECRET_TOKEN: "ma_bao_mat_cua_ban"
-  }
+  SHEET_NAME: 'Registrations', // Tên sheet lưu đăng ký
+  WEBSITE_URL: 'https://hyperur.io.vn', // URL website của bạn
+  SUPPORT_EMAIL: 'support@hyperur.io.vn', // Email hỗ trợ (nếu có)
+  TELEGRAM_CHANNEL: 'https://t.me/hypermodupdate',
+  TELEGRAM_CHAT: 'https://t.me/HuperUltraRateChat'
 };
 
+// ===== MAIN FUNCTIONS =====
+
 /**
- * Bóc tách thông tin file ROM:
- * Chuẩn thực tế HyperUR:
- * UR_[codename]_[osBuild]_[androidVer].7z (hoặc .zip)
- * Ví dụ: UR_amethyst_OS3.0.305.0.WOPCNXM_16.7z
- * 
- * Cũng hỗ trợ chuẩn:
- * HyperUR_[codename]_[osKey]_[osBuild]_[androidVer].zip
+ * Xử lý POST request từ website (Đăng ký Serial)
  */
-function parseRomFileName(fileName) {
-  if (!fileName || typeof fileName !== 'string') {
-    return null;
+function doPost(e) {
+  try {
+    // Parse dữ liệu từ website
+    const data = JSON.parse(e.postData.contents);
+    
+    // Validate dữ liệu
+    if (!data.serial || !data.codename || !data.senderEmail) {
+      return createResponse(false, 'Thiếu thông tin bắt buộc');
+    }
+    
+    // Lưu vào Google Sheets
+    saveToSheet(data);
+    
+    // Gửi email xác nhận cho user
+    sendConfirmationEmail(data);
+    
+    // Trả về response thành công
+    return createResponse(true, 'Đăng ký thành công và email đã được gửi');
+    
+  } catch (error) {
+    Logger.log('Error in doPost: ' + error.toString());
+    return createResponse(false, 'Lỗi hệ thống: ' + error.toString());
   }
-  const cleanName = fileName.replace(/\.(7z|zip|tar|rar|bin)$/i, '');
+}
 
-  // Chuẩn thực tế: UR_amethyst_OS3.0.305.0.WOPCNXM_16
-  const regexActual = /^(?:UR|HyperUR)_([a-zA-Z0-9]+)_(OS\d+\.\d+[^_]*)_(\d+(?:\.\d+)?)$/i;
-  let match = cleanName.match(regexActual);
-  if (match) {
-    let codename = match[1].toLowerCase();
-    if (codename === 'aurorapro') codename = 'aurora';
-    const osBuild = match[2];
-    const androidVer = match[3].includes('.') ? match[3] : match[3] + '.0';
-    const osKeyMatch = osBuild.match(/^OS\d+\.\d+/);
-    const osKey = osKeyMatch ? osKeyMatch[0] : 'OS3.0';
-
-    return {
-      codename: codename,
-      osKey: osKey,
-      osBuild: osBuild,
-      androidVer: androidVer
-    };
+/**
+ * Xử lý GET request (Tra cứu Serial)
+ */
+function doGet(e) {
+  try {
+    const serial = e.parameter.serial;
+    
+    if (!serial) {
+      return createResponse(false, 'Vui lòng cung cấp số Serial');
+    }
+    
+    // Tìm kiếm trong sheet
+    const result = findSerial(serial.toUpperCase());
+    
+    if (result) {
+      return createResponse(true, 'Tìm thấy Serial', result);
+    } else {
+      return createResponse(false, 'Không tìm thấy Serial này trong hệ thống');
+    }
+    
+  } catch (error) {
+    Logger.log('Error in doGet: ' + error.toString());
+    return createResponse(false, 'Lỗi hệ thống: ' + error.toString());
   }
+}
 
-  // Chuẩn 2: HyperUR_houji_OS2.0_OS2.0.12.0.VNCCNXM_15.0
-  const regexStandard = /^(?:HyperUR|UR)_([a-zA-Z0-9]+)_(OS\d+\.\d+)_([A-Za-z0-9._]+)_(\d+\.\d+)$/i;
-  match = cleanName.match(regexStandard);
-  if (match) {
-    let codename = match[1].toLowerCase();
-    if (codename === 'aurorapro') codename = 'aurora';
-    return {
-      codename: codename,
-      osKey: match[2].toUpperCase(),
-      osBuild: match[3],
-      androidVer: match[4]
-    };
+// ===== HELPER FUNCTIONS =====
+
+/**
+ * Lưu thông tin đăng ký vào Google Sheets
+ */
+function saveToSheet(data) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+  
+  // Tạo sheet nếu chưa có
+  if (!sheet) {
+    sheet = ss.insertSheet(CONFIG.SHEET_NAME);
+    // Header row
+    sheet.appendRow([
+      'Timestamp',
+      'Serial',
+      'Codename',
+      'Plan',
+      'Payment Method',
+      'Sender Name',
+      'Sender Email',
+      'Transaction Code',
+      'Status',
+      'Activated Date',
+      'Expired Date'
+    ]);
+    // Format header
+    const headerRange = sheet.getRange(1, 1, 1, 11);
+    headerRange.setBackground('#10b981');
+    headerRange.setFontColor('#ffffff');
+    headerRange.setFontWeight('bold');
   }
-
-  // Chuẩn 3: UR_houji_OS3.0.306.0.WNCCNXM
-  const regexSimple = /^(?:HyperUR|UR)_([a-zA-Z0-9]+)_(OS\d+\.\d+[^_]*)$/i;
-  match = cleanName.match(regexSimple);
-  if (match) {
-    let codename = match[1].toLowerCase();
-    if (codename === 'aurorapro') codename = 'aurora';
-    const osBuild = match[2];
-    const osKeyMatch = osBuild.match(/^OS\d+\.\d+/);
-    const osKey = osKeyMatch ? osKeyMatch[0] : 'OS2.0';
-    return {
-      codename: codename,
-      osKey: osKey,
-      osBuild: osBuild,
-      androidVer: osKey.includes('3') ? '16.0' : (osKey.includes('2') ? '15.0' : '14.0')
-    };
+  
+  // Kiểm tra xem Serial đã tồn tại chưa
+  const existingRow = findSerialRow(data.serial.toUpperCase());
+  
+  if (existingRow > 0) {
+    // Cập nhật thông tin
+    sheet.getRange(existingRow, 1, 1, 11).setValues([[
+      new Date(),
+      data.serial.toUpperCase(),
+      data.codename.toLowerCase(),
+      data.plan,
+      data.paymentMethod,
+      data.senderName,
+      data.senderEmail.toLowerCase(),
+      data.transactionCode,
+      'Pending', // Giữ nguyên status cũ hoặc update
+      '', // Activated Date
+      '' // Expired Date
+    ]]);
+  } else {
+    // Thêm mới
+    const isFree = data.plan.includes('Active Free') || data.plan.includes('36');
+    const status = isFree ? 'Active' : 'Pending';
+    const activatedDate = isFree ? new Date() : '';
+    const expiredDate = isFree ? new Date(Date.now() + 36 * 24 * 60 * 60 * 1000) : ''; // +36 ngày
+    
+    sheet.appendRow([
+      new Date(),
+      data.serial.toUpperCase(),
+      data.codename.toLowerCase(),
+      data.plan,
+      data.paymentMethod,
+      data.senderName,
+      data.senderEmail.toLowerCase(),
+      data.transactionCode,
+      status,
+      activatedDate,
+      expiredDate
+    ]);
   }
+}
 
+/**
+ * Tìm Serial trong sheet
+ */
+function findSerial(serial) {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(CONFIG.SHEET_NAME);
+  
+  if (!sheet) return null;
+  
+  const data = sheet.getDataRange().getValues();
+  
+  // Bỏ qua header row
+  for (let i = 1; i < data.length; i++) {
+    if (data[i][1] === serial.toUpperCase()) {
+      return {
+        serial: data[i][1],
+        codename: data[i][2],
+        plan: data[i][3],
+        senderEmail: data[i][6],
+        status: data[i][8],
+        activatedDate: data[i][9] ? formatDate(data[i][9]) : '',
+        expiredDate: data[i][10] ? formatDate(data[i][10]) : '',
+        registeredDate: formatDate(data[i][0])
+      };
+    }
+  }
+  
   return null;
 }
 
 /**
- * Quét toàn bộ file trong một thư mục Google Drive
+ * Tìm row number của Serial
  */
-function scanFolderFiles(folder, defaultRegion, activeRoms, uniqueDevices) {
-  if (!folder) {
-    console.warn("scanFolderFiles: folder không hợp lệ, bỏ qua.");
-    return;
-  }
-
-  const files = folder.getFiles();
-
-  while (files.hasNext()) {
-    const file = files.next();
-    const fileName = file.getName();
-    const parsed = parseRomFileName(fileName);
-
-    if (!parsed) {
-      continue;
-    }
-
-    const { codename, osKey, osBuild, androidVer } = parsed;
-    const fileId = file.getId();
-    
-    // Link tải trực tiếp từ Google Drive
-    const directDownloadLink = "https://drive.google.com/uc?export=download&id=" + fileId;
-    const viewLink = file.getUrl();
-    const fileSizeMB = (file.getSize() / (1024 * 1024)).toFixed(1);
-    const sizeFormatted = fileSizeMB > 1024 ? (fileSizeMB / 1024).toFixed(2) + " GB" : fileSizeMB + " MB";
-
-    if (!activeRoms[codename]) {
-      activeRoms[codename] = {
-        device: codename,
-        roms: {}
-      };
-    }
-
-    // Xác định key lưu trữ:
-    // Nếu chưa có ROM nào cho osKey này (VD: "OS3.0") thì lưu key là osKey để giữ cấu trúc chuẩn
-    // Nếu có thêm bản build khác của cùng osKey (VD: nezha có cả 309 và 312), chuyển sang lưu theo tên osBuild để không bị đè
-    let romKey = osKey;
-    if (activeRoms[codename].roms[romKey]) {
-      const existing = activeRoms[codename].roms[romKey];
-      if (existing.os !== osBuild) {
-        activeRoms[codename].roms[existing.os] = existing;
-        delete activeRoms[codename].roms[romKey];
-        romKey = osBuild;
-      }
-    } else {
-      const isDuplicateOs = Object.keys(activeRoms[codename].roms).some(function(k) {
-        return activeRoms[codename].roms[k].osKey === osKey;
-      });
-      if (isDuplicateOs) {
-        romKey = osBuild;
-      }
-    }
-
-    activeRoms[codename].roms[romKey] = {
-      os: osBuild,
-      osKey: osKey,
-      android: androidVer,
-      region: defaultRegion || "cn",
-      download: directDownloadLink,
-      viewUrl: viewLink,
-      fileId: fileId,
-      fileName: fileName,
-      size: sizeFormatted,
-      date: Utilities.formatDate(file.getLastUpdated(), "GMT+7", "yyyy-MM-dd")
-    };
-
-    uniqueDevices.add(codename);
-  }
-}
-
-/**
- * Quét toàn bộ cây thư mục Google Drive (Thư mục gốc + tất cả thư mục con)
- */
-function scanGoogleDriveFolder() {
-  const activeRoms = {
-    _metadata: {
-      lastSync: new Date().toISOString(),
-      totalDevices: 0,
-      totalRoms: 0,
-      source: "HyperUR Live Google Drive Sync"
-    }
-  };
-
-  const uniqueDevices = new Set();
-
-  // Chỉ quét đệ quy từ FOLDER_ID gốc (đã bỏ SUBFOLDERS từ 2026-09-16 vì ID hết hạn/revoke)
-  if (CONFIG.FOLDER_ID && CONFIG.FOLDER_ID.trim() !== "") {
-    try {
-      const rootFolder = DriveApp.getFolderById(CONFIG.FOLDER_ID);
-      if (!rootFolder) {
-        console.warn("Không truy cập được thư mục gốc: ID không hợp lệ hoặc mất quyền.");
-        return activeRoms;
-      }
-      scanFolderFiles(rootFolder, "cn", activeRoms, uniqueDevices);
-
-      // Quét tất cả thư mục con bên trong thư mục gốc
-      const subFoldersIter = rootFolder.getFolders();
-      while (subFoldersIter.hasNext()) {
-        const subF = subFoldersIter.next();
-        const subName = subF.getName().toLowerCase();
-        const subRegion = subName.includes("glb") || subName.includes("global") ? "global" : "cn";
-        scanFolderFiles(subF, subRegion, activeRoms, uniqueDevices);
-      }
-    } catch (e) {
-      console.warn("Lỗi khi quét thư mục gốc: " + e.toString());
-    }
-  }
-
-  // Đếm tổng số ROM
-  let totalRoms = 0;
-  for (const code of uniqueDevices) {
-    totalRoms += Object.keys(activeRoms[code].roms).length;
-  }
-
-  activeRoms._metadata.totalDevices = uniqueDevices.size;
-  activeRoms._metadata.totalRoms = totalRoms;
-
-  return activeRoms;
-}
-
-/**
- * =========================================================================
- * ENDPOINT WEB APP (doGet)
- * Cho phép website HyperUR (https://hyperur.io.vn) fetch dữ liệu thời gian thực
- * =========================================================================
- */
-function doGet(e) {
-  try {
-    const params = (e && e.parameter) || {};
-    const action = params.action || "";
-    const querySerial = (params.serial || "").toString().trim().toUpperCase();
-
-    // 1. Xử lý tra cứu Serial nếu có tham số action=check_serial / lookup hoặc serial
-    if (action === "check_serial" || action === "lookup" || querySerial) {
-      return handleSerialLookup(querySerial);
-    }
-
-    // 2. Mặc định: Quét hoặc trả về danh sách ROM Google Drive
-    const cache = CacheService.getScriptCache();
-    let cachedData = cache.get("active_roms_json");
-
-    const forceRefresh = action === "refresh";
-
-    if (!cachedData || forceRefresh) {
-      const data = scanGoogleDriveFolder();
-      cachedData = JSON.stringify(data);
-      // Cache 2 phút để tối ưu tốc độ mà vẫn cập nhật ROM mới cực nhanh
-      cache.put("active_roms_json", cachedData, 120);
-    }
-
-    return ContentService.createTextOutput(cachedData)
-      .setMimeType(ContentService.MimeType.JSON);
-  } catch (error) {
-    const errPayload = JSON.stringify({
-      error: true,
-      message: error.toString()
-    });
-    return ContentService.createTextOutput(errPayload)
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-}
-
-/**
- * =========================================================================
- * TRA CỨU SERIAL TỪ GOOGLE SHEET SERIAL_REGISTRATIONS
- * =========================================================================
- */
-function handleSerialLookup(querySerial) {
-  if (!querySerial) {
-    return ContentService.createTextOutput(JSON.stringify({
-      success: false,
-      message: "Vui lòng cung cấp số Serial cần tra cứu."
-    })).setMimeType(ContentService.MimeType.JSON);
-  }
-
-  try {
-    let ss = null;
-    try {
-      ss = SpreadsheetApp.getActiveSpreadsheet();
-    } catch (err) {}
-
-    if (!ss && CONFIG.SPREADSHEET_ID) {
-      try {
-        ss = SpreadsheetApp.openById(CONFIG.SPREADSHEET_ID);
-      } catch (err) {}
-    }
-
-    if (!ss) {
-      return ContentService.createTextOutput(JSON.stringify({
-        success: false,
-        found: false,
-        serial: querySerial,
-        message: "Chưa kết nối được Google Sheet lưu trữ dữ liệu Serial."
-      })).setMimeType(ContentService.MimeType.JSON);
-    }
-
-    const sheet = ss.getSheetByName("Serial_Registrations");
-    if (!sheet) {
-      return ContentService.createTextOutput(JSON.stringify({
-        success: true,
-        found: false,
-        serial: querySerial,
-        message: "Bảng dữ liệu Serial chưa được khởi tạo."
-      })).setMimeType(ContentService.MimeType.JSON);
-    }
-
-    const data = sheet.getDataRange().getValues();
-    if (data.length <= 1) {
-      return ContentService.createTextOutput(JSON.stringify({
-        success: true,
-        found: false,
-        serial: querySerial,
-        message: "Chưa có dữ liệu đăng ký Serial nào trên hệ thống."
-      })).setMimeType(ContentService.MimeType.JSON);
-    }
-
-    // Duyệt từ dưới lên để lấy bản ghi mới nhất của Serial này
-    let matchedRow = null;
-    for (let r = data.length - 1; r >= 1; r--) {
-      const rowSerial = (data[r][1] || "").toString().trim().toUpperCase();
-      if (rowSerial === querySerial) {
-        matchedRow = data[r];
-        break;
-      }
-    }
-
-    if (!matchedRow) {
-      return ContentService.createTextOutput(JSON.stringify({
-        success: true,
-        found: false,
-        serial: querySerial,
-        message: "Không tìm thấy số Serial này trên hệ thống HyperUR. Vui lòng kiểm tra lại hoặc thực hiện đăng ký mới."
-      })).setMimeType(ContentService.MimeType.JSON);
-    }
-
-    const timeStr = matchedRow[0] ? matchedRow[0].toString() : "";
-    const codename = matchedRow[2] ? matchedRow[2].toString().toLowerCase() : "";
-    const plan = matchedRow[3] ? matchedRow[3].toString() : "Đăng ký có Ủng hộ (Vĩnh viễn)";
-    const senderName = matchedRow[5] ? matchedRow[5].toString() : "";
-    const rawStatus = matchedRow[7] ? matchedRow[7].toString().trim() : "Chờ kích hoạt";
-
-    // Phân loại trạng thái
-    let statusCode = "pending";
-    let statusText = "Đang Chờ Kích Hoạt / Đối Soát";
-    const lowerStatus = rawStatus.toLowerCase();
-    if (lowerStatus.includes("đã kích hoạt") || lowerStatus.includes("hoạt động") || lowerStatus.includes("active") || lowerStatus.includes("vĩnh viễn") || lowerStatus.includes("thành công")) {
-      statusCode = "active";
-      statusText = "Đã Kích Hoạt (Bản Quyền Vĩnh Viễn)";
-    } else if (lowerStatus.includes("từ chối") || lowerStatus.includes("hủy") || lowerStatus.includes("khóa") || lowerStatus.includes("banned")) {
-      statusCode = "rejected";
-      statusText = "Đã Bị Khóa Hoặc Từ Chối";
-    }
-
-    return ContentService.createTextOutput(JSON.stringify({
-      success: true,
-      found: true,
-      data: {
-        serial: querySerial,
-        codename: codename,
-        plan: plan,
-        senderName: senderName ? (senderName.length > 2 ? senderName.substring(0, 2) + "***" : senderName) : "",
-        registeredDate: timeStr,
-        statusCode: statusCode,
-        statusText: statusText,
-        rawStatus: rawStatus,
-        supportedOS: ["HyperOS 1.0", "HyperOS 2.0", "HyperOS 3.0"],
-        features: [
-          "Bản quyền kích hoạt vĩnh viễn theo số Serial phần cứng",
-          "Bypass Play Integrity (DEVICE/STRONG) trọn đời",
-          "Cập nhật OTA mượt mà qua ứng dụng UR Manager",
-          "Mở khóa 120 FPS và tính năng nâng cao HyperOS"
-        ]
-      }
-    })).setMimeType(ContentService.MimeType.JSON);
-
-  } catch (err) {
-    return ContentService.createTextOutput(JSON.stringify({
-      success: false,
-      error: err.toString()
-    })).setMimeType(ContentService.MimeType.JSON);
-  }
-}
-
-/**
- * =========================================================================
- * ENDPOINT TIẾP NHẬN FORM ĐĂNG KÝ SERIAL (doPost)
- * Nhận dữ liệu đăng ký serial từ serial.html và lưu vào Google Sheet
- * =========================================================================
- */
-function doPost(e) {
-  try {
-    let data = {};
-    if (e.postData && e.postData.contents) {
-      try {
-        data = JSON.parse(e.postData.contents);
-      } catch (jsonErr) {
-        data = e.parameter || {};
-      }
-    } else if (e.parameter) {
-      data = e.parameter;
-    }
-
-    const serial = (data.serial || data.serialNumber || "").toString().trim().toUpperCase();
-    const codename = (data.codename || data.deviceCodename || "").toString().trim().toLowerCase();
-    const plan = data.plan || data.registrationType || "Đăng kí có Ủng hộ (Vĩnh viễn)";
-    const paymentMethod = data.paymentMethod || "Góp Quỹ MoMo (Chính Thức)";
-    const senderName = data.senderName || "";
-    const transactionCode = data.transactionCode || "";
-    const timestamp = data.timestamp || new Date().toISOString();
-
-    // Mở hoặc tạo Google Sheet lưu danh sách đăng ký
-    let ss = null;
-    try {
-      ss = SpreadsheetApp.getActiveSpreadsheet();
-    } catch (err) {}
-
-    if (!ss && CONFIG.SPREADSHEET_ID) {
-      try {
-        ss = SpreadsheetApp.openById(CONFIG.SPREADSHEET_ID);
-      } catch (err) {}
-    }
-
-    if (ss) {
-      let sheet = ss.getSheetByName("Serial_Registrations");
-      if (!sheet) {
-        sheet = ss.insertSheet("Serial_Registrations");
-        // Header
-        sheet.appendRow([
-          "Thời Gian",
-          "Số Serial",
-          "Mã Thiết Bị (Codename)",
-          "Gói Đăng Ký",
-          "Phương Thức Ủng Hộ",
-          "Tên Người Gửi",
-          "Nội Dung & Mã GD",
-          "Trạng Thái"
-        ]);
-        sheet.getRange(1, 1, 1, 8).setFontWeight("bold").setBackground("#1e293b").setFontColor("#ffffff");
-      }
-
-      sheet.appendRow([
-        new Date().toLocaleString("vi-VN"),
-        serial,
-        codename,
-        plan,
-        paymentMethod,
-        senderName,
-        transactionCode,
-        "Chờ kích hoạt"
-      ]);
-    }
-
-    const response = {
-      success: true,
-      message: "Đã tiếp nhận thông tin đăng ký serial thành công!",
-      serial: serial,
-      codename: codename
-    };
-
-    return ContentService.createTextOutput(JSON.stringify(response))
-      .setMimeType(ContentService.MimeType.JSON);
-  } catch (err) {
-    return ContentService.createTextOutput(JSON.stringify({
-      success: false,
-      error: err.toString()
-    })).setMimeType(ContentService.MimeType.JSON);
-  }
-}
-
-/**
- * =========================================================================
- * HÀM TRIGGER CHẠY ĐỊNH KỲ (MỖI 5 PHÚT)
- * =========================================================================
- */
-function checkDriveUpdates() {
-  console.log("⏳ Bắt đầu quét Google Drive...");
-  try {
-    const activeRoms = scanGoogleDriveFolder();
-    const activeRomsJson = JSON.stringify(activeRoms, null, 2);
-
-    CacheService.getScriptCache().put("active_roms_json", activeRomsJson, 600);
-
-    if (CONFIG.GITHUB.ENABLED) {
-      commitToGitHub(activeRomsJson);
-    }
-
-    if (CONFIG.WEBHOOK.ENABLED) {
-      sendWebhookNotification(activeRoms);
-    }
-
-    console.log("✅ Quét thành công: " + activeRoms._metadata.totalDevices + " máy, " + activeRoms._metadata.totalRoms + " ROM.");
-  } catch (err) {
-    console.error("❌ Lỗi khi quét: " + err.toString());
-  }
-}
-
-/**
- * Tự động commit active_roms.json lên GitHub Repository
- */
-function commitToGitHub(jsonContent) {
-  const { OWNER, REPO, BRANCH, FILE_PATH, TOKEN } = CONFIG.GITHUB;
-  if (!TOKEN || TOKEN.includes("xxxx")) return;
-
-  const apiUrl = "https://api.github.com/repos/" + OWNER + "/" + REPO + "/contents/" + FILE_PATH;
+function findSerialRow(serial) {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(CONFIG.SHEET_NAME);
   
-  let currentSha = null;
-  try {
-    const getRes = UrlFetchApp.fetch(apiUrl + "?ref=" + BRANCH, {
-      method: "get",
-      headers: {
-        "Authorization": "token " + TOKEN,
-        "Accept": "application/vnd.github.v3+json",
-        "User-Agent": "GoogleAppsScript-HyperUR"
-      },
-      muteHttpExceptions: true
-    });
-    if (getRes.getResponseCode() === 200) {
-      const getJson = JSON.parse(getRes.getContentText());
-      currentSha = getJson.sha;
+  if (!sheet) return -1;
+  
+  const data = sheet.getDataRange().getValues();
+  
+  for (let i = 1; i < data.length; i++) {
+    if (data[i][1] === serial.toUpperCase()) {
+      return i + 1; // Row index (1-based)
     }
-  } catch (e) {}
-
-  const base64Content = Utilities.base64Encode(jsonContent, Utilities.Charset.UTF_8);
-  const payload = {
-    message: "Auto-sync active ROMs from Google Drive [skip ci]",
-    content: base64Content,
-    branch: BRANCH
-  };
-  if (currentSha) payload.sha = currentSha;
-
-  UrlFetchApp.fetch(apiUrl, {
-    method: "put",
-    headers: {
-      "Authorization": "token " + TOKEN,
-      "Accept": "application/vnd.github.v3+json",
-      "User-Agent": "GoogleAppsScript-HyperUR"
-    },
-    contentType: "application/json",
-    payload: JSON.stringify(payload),
-    muteHttpExceptions: true
-  });
-}
-
-function sendWebhookNotification(payloadData) {
-  try {
-    UrlFetchApp.fetch(CONFIG.WEBHOOK.URL, {
-      method: "post",
-      contentType: "application/json",
-      headers: { "Authorization": "Bearer " + CONFIG.WEBHOOK.SECRET_TOKEN },
-      payload: JSON.stringify(payloadData),
-      muteHttpExceptions: true
-    });
-  } catch (e) {}
+  }
+  
+  return -1;
 }
 
 /**
- * Chạy thử nghiệm trong trình soạn thảo Apps Script
- * (Chọn hàm 'testScanFolder' ở thanh menu trên cùng rồi bấm nút 'Chạy' / 'Run')
+ * Gửi email xác nhận cho user
  */
-function testScanFolder() {
-  console.log("🧪 Đang chạy thử nghiệm quét Drive...");
-  const result = scanGoogleDriveFolder();
-  console.log("✅ Quét xong! Tổng thiết bị: " + result._metadata.totalDevices + ", Tổng số bản ROM: " + result._metadata.totalRoms);
+function sendConfirmationEmail(data) {
+  const isFree = data.plan.includes('Active Free') || data.plan.includes('36');
+  const serial = data.serial.toUpperCase();
+  const codename = data.codename.toUpperCase();
+  
+  const subject = `✅ Xác Nhận Đăng Ký Serial ${serial} - HyperUR`;
+  
+  const htmlBody = `
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; background-color: #0F172A; }
+    .container { max-width: 600px; margin: 0 auto; background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.98) 100%); border: 1px solid rgba(148, 163, 184, 0.15); border-radius: 16px; overflow: hidden; }
+    .header { padding: 32px 40px 24px; text-align: center; border-bottom: 1px solid rgba(148, 163, 184, 0.1); }
+    .logo { font-size: 28px; font-weight: 800; color: #F8FAFC; margin-bottom: 8px; }
+    .accent { color: #10b981; }
+    .subtitle { font-size: 13px; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 600; }
+    .icon-wrapper { padding: 32px 40px 16px; text-align: center; }
+    .success-icon { display: inline-block; width: 64px; height: 64px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 50%; line-height: 64px; font-size: 36px; margin-bottom: 16px; }
+    .title { padding: 0 40px 16px; text-align: center; font-size: 24px; font-weight: 700; color: #F8FAFC; margin: 0; }
+    .description { padding: 0 40px 32px; text-align: center; font-size: 15px; color: #CBD5E1; line-height: 1.6; margin: 0; }
+    .details-box { margin: 0 40px 32px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(148, 163, 184, 0.12); border-radius: 12px; overflow: hidden; }
+    .detail-row { padding: 16px 20px; border-bottom: 1px solid rgba(148, 163, 184, 0.08); }
+    .detail-row:last-child { border-bottom: none; }
+    .detail-label { font-size: 13px; color: #94A3B8; margin-bottom: 4px; }
+    .detail-value { font-size: 15px; color: #F8FAFC; font-weight: 600; }
+    .serial-value { color: #22D3EE; font-family: 'Courier New', monospace; font-size: 16px; }
+    .plan-value { color: #10b981; }
+    .amount-value { color: #fbbf24; font-size: 16px; }
+    .cta-wrapper { padding: 0 40px 32px; text-align: center; }
+    .cta-button { display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; text-decoration: none; border-radius: 10px; font-weight: 600; font-size: 15px; }
+    .note-box { margin: 0 40px 32px; background: rgba(249, 115, 22, 0.08); border: 1px solid rgba(249, 115, 22, 0.2); border-radius: 10px; padding: 16px 20px; }
+    .note-title { font-size: 13px; color: #fb923c; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .note-text { font-size: 14px; color: #CBD5E1; line-height: 1.6; margin: 0; }
+    .footer { padding: 24px 40px; background: rgba(15, 23, 42, 0.8); border-top: 1px solid rgba(148, 163, 184, 0.1); text-align: center; }
+    .footer-text { font-size: 13px; color: #94A3B8; margin: 0 0 12px; }
+    .footer-links { margin-top: 16px; }
+    .footer-link { display: inline-block; margin: 0 8px; color: #22D3EE; text-decoration: none; font-size: 13px; }
+    .divider { color: #475569; margin: 0 4px; }
+  </style>
+</head>
+<body>
+  <div style="padding: 40px 20px; background-color: #0F172A;">
+    <div class="container">
+      
+      <!-- Header -->
+      <div class="header">
+        <div class="logo">Hyper<span class="accent">UR</span></div>
+        <div class="subtitle">CỔNG BẢN QUYỀN CHÍNH THỨC</div>
+      </div>
+      
+      <!-- Success Icon -->
+      <div class="icon-wrapper">
+        <div class="success-icon">✓</div>
+      </div>
+      
+      <!-- Title -->
+      <h1 class="title">Đã Gửi Serial Lên Hệ Thống!</h1>
+      
+      <!-- Description -->
+      <p class="description">
+        ${isFree 
+          ? `Số Serial <strong>${serial}</strong> đã được gửi lên hệ thống máy chủ để xác nhận kích hoạt gói Active Free (36 ngày). Bạn có thể kiểm tra trạng thái kích hoạt ngay bên dưới.`
+          : `Số Serial <strong>${serial}</strong> đã được gửi lên hệ thống máy chủ để xác nhận kích hoạt bản quyền. Vui lòng đảm bảo bạn đã hoàn tất ủng hộ với nội dung cú pháp gợi ý để admin đối soát và kích hoạt trong vòng 5 - 30 phút.`
+        }
+      </p>
+      
+      <!-- Details Box -->
+      <div class="details-box">
+        <div class="detail-row">
+          <div class="detail-label">Số Serial:</div>
+          <div class="detail-value serial-value">${serial}</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Mã Thiết Bị (Codename):</div>
+          <div class="detail-value">${codename}</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Gói Đăng Ký:</div>
+          <div class="detail-value plan-value">${data.plan}</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Mức Ủng Hộ:</div>
+          <div class="detail-value amount-value">${isFree ? '0đ (Miễn Phí 36 Ngày Trải Nghiệm)' : '50.000đ / thiết bị'}</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Người Gửi:</div>
+          <div class="detail-value">${data.senderName || 'Không yêu cầu (Active Free)'}</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Email Liên Hệ:</div>
+          <div class="detail-value serial-value">${data.senderEmail}</div>
+        </div>
+      </div>
+      
+      <!-- CTA Button -->
+      <div class="cta-wrapper">
+        <a href="${CONFIG.WEBSITE_URL}/serial.html#lookup" class="cta-button">
+          🔍 Kiểm Tra Trạng Thái Kích Hoạt Serial Ngay
+        </a>
+      </div>
+      
+      <!-- Important Note -->
+      <div class="note-box">
+        <div class="note-title">⚠️ LƯU Ý QUAN TRỌNG</div>
+        <p class="note-text">
+          ${isFree
+            ? `Gói Active Free sẽ tự động kích hoạt trong vài phút. Bạn có thể kiểm tra trạng thái bằng cách tra cứu Serial trên website. Gói có hiệu lực 36 ngày kể từ ngày kích hoạt.`
+            : `Vui lòng chuyển khoản với nội dung: <strong>UR ${serial}</strong> để hệ thống admin duyệt tự động nhanh nhất. Admin sẽ kích hoạt bản quyền trong vòng 5-30 phút sau khi nhận được thanh toán. Nếu quá 30 phút chưa được kích hoạt, vui lòng liên hệ admin qua Telegram.`
+          }
+        </p>
+      </div>
+      
+      <!-- Footer -->
+      <div class="footer">
+        <p class="footer-text">Cảm ơn bạn đã tin dùng HyperUR!</p>
+        <div class="footer-links">
+          <a href="${CONFIG.TELEGRAM_CHANNEL}" class="footer-link">📢 Kênh Telegram</a>
+          <span class="divider">•</span>
+          <a href="${CONFIG.TELEGRAM_CHAT}" class="footer-link">💬 Hỗ Trợ 24/7</a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</body>
+</html>
+  `;
+  
+  // Gửi email
+  MailApp.sendEmail({
+    to: data.senderEmail,
+    subject: subject,
+    htmlBody: htmlBody
+  });
+  
+  Logger.log(`✉️ Email xác nhận đã gửi tới: ${data.senderEmail}`);
+}
 
-  // Tự động kiểm tra và in ra bất kỳ thiết bị nào có từ 2 bản ROM trở lên
-  const multiRomList = [];
-  for (const key of Object.keys(result)) {
-    if (key === '_metadata') continue;
-    const count = Object.keys(result[key].roms || {}).length;
-    if (count > 1) {
-      multiRomList.push(key + " (" + count + " bản)");
-    }
+/**
+ * Tạo response JSON
+ */
+function createResponse(success, message, data = null) {
+  const response = {
+    success: success,
+    message: message
+  };
+  
+  if (data) {
+    response.data = data;
   }
+  
+  return ContentService
+    .createTextOutput(JSON.stringify(response))
+    .setMimeType(ContentService.MimeType.JSON);
+}
 
-  if (multiRomList.length > 0) {
-    console.log("⭐ Các thiết bị đang có nhiều bản ROM: " + multiRomList.join(", "));
-  }
+/**
+ * Format date
+ */
+function formatDate(date) {
+  if (!date) return '';
+  const d = new Date(date);
+  const day = String(d.getDate()).padStart(2, '0');
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const year = d.getFullYear();
+  const hours = String(d.getHours()).padStart(2, '0');
+  const minutes = String(d.getMinutes()).padStart(2, '0');
+  return `${day}/${month}/${year} ${hours}:${minutes}`;
+}
+
+/**
+ * Test function - Chạy để test gửi email
+ */
+function testEmail() {
+  const testData = {
+    serial: 'TEST123456',
+    codename: 'marble',
+    plan: 'Active Free (36 ngày)',
+    paymentMethod: 'Active Free (0đ - Dùng thử 36 ngày)',
+    senderName: 'Test User',
+    senderEmail: 'your-email@gmail.com', // Thay bằng email của bạn để test
+    transactionCode: 'ACTIVE_FREE_36_DAYS'
+  };
+  
+  sendConfirmationEmail(testData);
+  Logger.log('✅ Test email đã được gửi!');
 }
