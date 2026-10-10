@@ -170,7 +170,11 @@
                 </div>
 
                 <form id="serial-register-form" novalidate>
-                    <!-- =========================================================
+
+                    <div class="reg-form-grid-layout">
+                        <!-- ================= CỘT TRÁI: MỤC 1 & MỤC 2 ================= -->
+                        <div class="reg-layout-col-left">
+<!-- =========================================================
                          MỤC 1: THÔNG TIN THIẾT BỊ & EMAIL XÁC THỰC
                          ========================================================= -->
                     <div class="reg-section">
@@ -423,15 +427,6 @@
                                     </div>
                                 </div>
 
-                                <div class="reg-plan-price-tag">
-                                    <span class="reg-plan-price-val">50.000đ</span>
-                                    <span class="reg-plan-price-sub">/ 1 Thiết Bị</span>
-                                    <div class="tier-box-pills" style="margin-left: auto;">
-                                        <span class="tier-pill tier-base current-active" id="tier-pill-base">Cơ bản: <strong>50k</strong></span>
-                                        <span class="tier-pill tier-15" id="tier-pill-15">Tích >15 con: <strong>40k</strong></span>
-                                    </div>
-                                </div>
-
                                 <p style="font-size: 0.88rem; color: var(--muted); margin: 0; line-height: 1.5;">Gói kích hoạt vĩnh viễn trọn đời dành cho người dùng ủng hộ đội ngũ phát triển ROM HyperUR. Quyền lợi kích hoạt vĩnh viễn trên thiết bị đăng ký.</p>
 
                                 <ul class="reg-plan-features">
@@ -471,11 +466,6 @@
                                     </div>
                                 </div>
 
-                                <div class="reg-plan-price-tag">
-                                    <span class="reg-plan-price-val" style="color: #34d399;">0đ</span>
-                                    <span class="reg-plan-price-sub" style="background: rgba(16, 185, 129, 0.12); color: #34d399; padding: 0.2rem 0.6rem; border-radius: 6px;">/ Miễn Phí 36 Ngày</span>
-                                </div>
-
                                 <p class="free-active-desc" style="margin: 0; line-height: 1.5;">
                                     Thời hạn sử dụng sẽ là <strong>36 ngày</strong>. Đây là thời gian để anh em trải nghiệm và kiểm tra ROM xem có ổn định, mượt mà và phù hợp với nhu cầu lâu dài hay không.
                                 </p>
@@ -504,8 +494,45 @@
 
                         <input type="hidden" name="registrationType" id="reg-type-value" value="Đăng kí có Ủng hộ (Vĩnh viễn)">
                     </div>
+                        </div>
 
-                    <!-- =========================================================
+                        <!-- ================= CỘT PHẢI: MỤC 3 (THANH TOÁN / QR) & GỬI ================= -->
+                        <div class="reg-layout-col-right">
+
+                        <!-- Hộp thông báo khi chọn Gói Active Free (36 Ngày) -->
+                        <div class="free-plan-summary-box" id="free-plan-summary-box" style="display: none;">
+                            <div class="free-summary-header">
+                                <div class="free-summary-icon">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color: #34d399;">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="free-summary-titles">
+                                    <h3 class="free-summary-title">Gói Dùng Thử Active Free</h3>
+                                    <span class="free-summary-badge">36 NGÀY TRẢI NGHIỆM • 0Đ</span>
+                                </div>
+                            </div>
+                            <div class="free-summary-body">
+                                <p>Bạn đang chọn gói kích hoạt trải nghiệm <strong>36 ngày hoàn toàn miễn phí</strong>:</p>
+                                <ul class="free-summary-list">
+                                    <li>
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <span>Không cần chuyển khoản ủng hộ</span>
+                                    </li>
+                                    <li>
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <span>Không cần quét mã QR ngân hàng</span>
+                                    </li>
+                                    <li>
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <span>Nhấn nút xác nhận bên dưới để gửi yêu cầu kích hoạt ngay</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+<!-- =========================================================
                          MỤC 3: THÔNG TIN THANH TOÁN & QUÉT MÃ QR MBBANK
                          ========================================================= -->
                     <div class="reg-section" id="payment-reg-section">
@@ -541,58 +568,42 @@
                                         </div>
                                         <div>
                                             <div class="payment-method-name">MBBank (VietQR 24/7)</div>
+                                            <span class="payment-method-tag tag-vnd">Ngân hàng VN • Tính giá động</span>
                                         </div>
                                     </div>
-                                    <div class="payment-method-desc">Quét mã VietQR tự động từ mọi app ngân hàng tại Việt Nam (Miễn phí)</div>
+                                    <div class="payment-method-desc">Quét mã VietQR tự động từ mọi app ngân hàng (50k / ưu đãi tích lũy)</div>
                                 </div>
 
-                                <div class="payment-method-card" data-method="binance" role="radio" aria-checked="false" tabindex="0">
+                                <div class="payment-method-card" data-method="crypto_intl" role="radio" aria-checked="false" tabindex="0">
                                     <div class="payment-method-header">
-                                        <div class="payment-method-icon" style="background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.3);">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#F0B90B">
-                                                <path d="M16.624 13.9202l2.715-2.715-2.735-2.735-2.715 2.735 2.735 2.715zm-4.624-4.624l2.735-2.735-2.735-2.735-2.735 2.735 2.735 2.735zm-4.624 4.624l2.735-2.715-2.735-2.735-2.715 2.735 2.715 2.715zm4.624 4.624l2.735-2.735-2.735-2.735-2.735 2.735 2.735 2.735zm0-3.324l1.39-1.39-1.39-1.39-1.39 1.39 1.39 1.39zm0-10.22l8.03 8.03-3.32 3.32-4.71-4.71-4.71 4.71-3.32-3.32 8.03-8.03zm-8.03 12.03l3.32-3.32 4.71 4.71 4.71-4.71 3.32 3.32-8.03 8.03-8.03-8.03z"/>
+                                        <div class="payment-method-icon" style="background: rgba(240, 185, 11, 0.15); border-color: rgba(240, 185, 11, 0.35); color: #fbbf24;">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                                             </svg>
                                         </div>
                                         <div>
-                                            <div class="payment-method-name" style="color: #fbbf24;">Binance Pay (Crypto)</div>
+                                            <div class="payment-method-name" style="color: #fbbf24;">Binance Pay & PayPal</div>
+                                            <span class="payment-method-tag tag-fixed-price">Only 5$ • Giá cố định</span>
                                         </div>
                                     </div>
-                                    <div class="payment-method-desc">UID: 833477683 • Nickname: lucnguyen06 • 5 USDT</div>
-                                </div>
-
-                                <div class="payment-method-card" data-method="paypal" role="radio" aria-checked="false" tabindex="0">
-                                    <div class="payment-method-header">
-                                        <div class="payment-method-icon" style="background: rgba(0, 121, 193, 0.15); border-color: rgba(0, 121, 193, 0.35);">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="#38bdf8">
-                                                <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.82.83 4.722-.72 2.884-2.678 4.887-5.513 5.64 1.83.67 2.656 2.308 2.053 4.723-.628 2.512-2.737 4.442-5.748 4.442H8.884l-1.175 4.7c-.082.519-.53.901-1.054.901l.421-1.661zm4.183-11.455c1.78 0 3.003-.984 3.376-2.478.362-1.448-.616-2.544-2.42-2.544H7.572l-1.07 5.022h4.757z"/>
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <div class="payment-method-name" style="color: #38bdf8;">PayPal (Quốc Tế)</div>
-                                        </div>
-                                    </div>
-                                    <div class="payment-method-desc">paypal.me/lucnguyeen • Nguyễn Lực • 5 USD</div>
+                                    <div class="payment-method-desc">Quốc tế & Crypto • Chấp nhận 5 USDT (Binance) hoặc 5 USD (PayPal)</div>
                                 </div>
                             </div>
                             <input type="hidden" name="paymentMethod" id="payment-method-value" value="Chuyển Khoản MBBank (VietQR 24/7)">
                         </div>
 
-                        <!-- 3 Bước Hướng Dẫn Nhanh -->
-                        <div class="payment-steps-banner">
-                            <div class="p-step-item">
-                                <div class="p-step-num">1</div>
-                                <div class="p-step-text">Mở App Ngân hàng bất kỳ hoặc Ví điện tử</div>
-                            </div>
-                            <div class="p-step-arrow">➔</div>
-                            <div class="p-step-item">
-                                <div class="p-step-num">2</div>
-                                <div class="p-step-text">Quét mã VietQR MBBank chính thức bên dưới</div>
-                            </div>
-                            <div class="p-step-arrow">➔</div>
-                            <div class="p-step-item">
-                                <div class="p-step-num">3</div>
-                                <div class="p-step-text">Kiểm tra đúng nội dung CK: <strong>UR [SERIAL]</strong></div>
-                            </div>
+                        <!-- Toggle chuyển giữa Binance Pay & PayPal khi chọn Kênh Quốc Tế & Crypto -->
+                        <div class="qr-method-switcher" id="qr-intl-switcher" style="display: none;">
+                            <button type="button" class="btn-qr-sub-tab active" data-sub="binance" id="sub-tab-binance">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="#F0B90B"><path d="M16.624 13.9202l2.715-2.715-2.735-2.735-2.715 2.735 2.735 2.735zm-4.624-4.624l2.735-2.735-2.735-2.735-2.735 2.735 2.735 2.735zm-4.624 4.624l2.735-2.715-2.735-2.735-2.715 2.735 2.715 2.715zm4.624 4.624l2.735-2.735-2.735-2.735-2.735 2.735 2.735 2.735zm0-3.324l1.39-1.39-1.39-1.39-1.39 1.39 1.39 1.39zm0-10.22l8.03 8.03-3.32 3.32-4.71-4.71-4.71 4.71-3.32-3.32 8.03-8.03zm-8.03 12.03l3.32-3.32 4.71 4.71 4.71-4.71 3.32 3.32-8.03 8.03-8.03-8.03z"/></svg>
+                                <span>⚡ Binance Pay (5 USDT)</span>
+                            </button>
+                            <button type="button" class="btn-qr-sub-tab" data-sub="paypal" id="sub-tab-paypal">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="#38bdf8"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.82.83 4.722-.72 2.884-2.678 4.887-5.513 5.64 1.83.67 2.656 2.308 2.053 4.723-.628 2.512-2.737 4.442-5.748 4.442H8.884l-1.175 4.7c-.082.519-.53.901-1.054.901l.421-1.661zm4.183-11.455c1.78 0 3.003-.984 3.376-2.478.362-1.448-.616-2.544-2.42-2.544H7.572l-1.07 5.022h4.757z"/></svg>
+                                <span>🅿️ PayPal (5 USD)</span>
+                            </button>
                         </div>
 
                         <!-- Khung chi tiết tài khoản nhận ủng hộ -->
@@ -602,7 +613,7 @@
                                     <span class="payment-qr-dot"></span>
                                     <span id="payment-qr-badge-text">MBBank VietQR 24/7</span>
                                 </div>
-                                <img src="https://vietqr.app/img?bank=MBBank&acc=VQRQAMNWP9901&template=&showinfo=false&holder=NGUYEN%20TAN%20LUC"
+                                <img src="https://vietqr.app/img?bank=MBBank&acc=VQRQAMNWP9901&template=&showinfo=false&holder=NGUYEN%20TAN%20LUC&store=HyperUR"
                                      alt="QR thanh toán - Ngân hàng TMCP Quân Đội - 0562903904 - NGUYEN TAN LUC"
                                      width="300"
                                      class="payment-qr-img"
@@ -624,6 +635,7 @@
                                     </div>
                                 </div>
 
+                                <!-- Chi tiết khi chọn MBBank -->
                                 <div class="payment-info-item" id="bank-name-row">
                                     <span class="payment-info-label" id="bank-name-label">Ngân Hàng Tiếp Nhận:</span>
                                     <div class="payment-info-value-row">
@@ -653,36 +665,57 @@
                                     </div>
                                 </div>
 
-                                <!-- Hướng dẫn Binance Pay (hiển thị khi chọn Binance) -->
-                                <div class="payment-info-item" id="binance-guide-row" style="display: none;">
-                                    <span class="payment-info-label" style="color: #fbbf24;">Hướng Dẫn Thanh Toán Binance Pay:</span>
-                                    <div class="binance-guide-box">
-                                        <div>1. Mở app <strong>Binance</strong> &rarr; Chọn biểu tượng <strong>Pay</strong> (hoặc Quét QR).</div>
-                                        <div>2. Quét mã QR bên trái hoặc chuyển đến UID: <strong>833477683</strong>
-                                            <button type="button" class="btn-copy-mini" data-copy="833477683" style="margin-left: 0.4rem;">Chép UID</button>
+                                <!-- Chi tiết khi chọn Binance Pay -->
+                                <div id="binance-details-group" style="display: none;">
+                                    <div class="payment-info-item">
+                                        <span class="payment-info-label">Kênh Thanh Toán:</span>
+                                        <div class="payment-info-value-row">
+                                            <span class="payment-info-value" style="color: #fbbf24; font-weight: 700;">⚡ Binance Pay (Crypto)</span>
                                         </div>
-                                        <div>3. Kiểm tra Nickname: <strong>lucnguyen06</strong> & chuyển số tiền <strong>5 USDT</strong> (hoặc 5$).</div>
+                                    </div>
+                                    <div class="payment-info-item">
+                                        <span class="payment-info-label">UID Binance Tiếp Nhận:</span>
+                                        <div class="payment-info-value-row">
+                                            <span class="payment-info-value payment-acc-highlight" style="color: #fbbf24;">833477683</span>
+                                            <button type="button" class="btn-copy-mini" data-copy="833477683" aria-label="Sao chép UID Binance">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                                <span>Chép UID</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="payment-info-item">
+                                        <span class="payment-info-label">Nickname Binance:</span>
+                                        <div class="payment-info-value-row">
+                                            <span class="payment-info-value">lucnguyen06</span>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <!-- Hướng dẫn PayPal (hiển thị khi chọn PayPal) -->
-                                <div class="payment-info-item" id="paypal-guide-row" style="display: none;">
-                                    <span class="payment-info-label" style="color: #38bdf8;">Hướng Dẫn Thanh Toán PayPal:</span>
-                                    <div class="binance-guide-box" style="background: rgba(0, 121, 193, 0.08); border-color: rgba(56, 189, 248, 0.35); color: #bae6fd;">
-                                        <div>1. Quét mã QR bên trái hoặc nhấn nút mở link bên dưới:</div>
-                                        <div style="margin: 0.35rem 0;">
-                                            <a href="https://paypal.me/lucnguyeen" target="_blank" rel="noopener noreferrer" class="btn-paypal-link">
-                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                                                    <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.82.83 4.722-.72 2.884-2.678 4.887-5.513 5.64 1.83.67 2.656 2.308 2.053 4.723-.628 2.512-2.737 4.442-5.748 4.442H8.884l-1.175 4.7c-.082.519-.53.901-1.054.901l.421-1.661zm4.183-11.455c1.78 0 3.003-.984 3.376-2.478.362-1.448-.616-2.544-2.42-2.544H7.572l-1.07 5.022h4.757z"/>
-                                                </svg>
-                                                <span>Mở Trang PayPal (paypal.me/lucnguyeen)</span>
-                                            </a>
-                                            <button type="button" class="btn-copy-mini" data-copy="https://paypal.me/lucnguyeen" style="margin-left: 0.4rem;">Chép Link</button>
+                                <!-- Chi tiết khi chọn PayPal -->
+                                <div id="paypal-details-group" style="display: none;">
+                                    <div class="payment-info-item">
+                                        <span class="payment-info-label">Kênh Thanh Toán:</span>
+                                        <div class="payment-info-value-row">
+                                            <span class="payment-info-value" style="color: #38bdf8; font-weight: 700;">🅿️ PayPal (Quốc Tế)</span>
                                         </div>
-                                        <div>2. Kiểm tra tên người nhận: <strong>Nguyễn Lực</strong> • Số tiền: <strong>5$ (5 USD)</strong>.</div>
+                                    </div>
+                                    <div class="payment-info-item">
+                                        <span class="payment-info-label">Link Thanh Toán PayPal:</span>
+                                        <div class="payment-info-value-row">
+                                            <a href="https://paypal.me/lucnguyeen" target="_blank" rel="noopener noreferrer" class="payment-info-value payment-acc-highlight" style="color: #38bdf8; text-decoration: underline;">paypal.me/lucnguyeen</a>
+                                            <button type="button" class="btn-copy-mini" data-copy="https://paypal.me/lucnguyeen" aria-label="Sao chép link PayPal">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                                <span>Chép Link</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="payment-info-item">
+                                        <span class="payment-info-label">Tên Người Nhận PayPal:</span>
+                                        <div class="payment-info-value-row">
+                                            <span class="payment-info-value">Nguyễn Lực</span>
+                                        </div>
                                     </div>
                                 </div>
-
                                 <div class="payment-info-item payment-syntax-box" id="payment-syntax-row">
                                     <span class="payment-info-label">Nội Dung Chuyển Khoản (Bắt buộc):</span>
                                     <div class="payment-info-value-row">
@@ -698,112 +731,46 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Nhóm 2 trường thông tin đối soát trên 1 hàng -->
-                        <div class="reg-verify-inputs-row">
-                            <div class="reg-form-group">
-                                <label for="sender-name-input" class="reg-label">
-                                    <span class="reg-label-main">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                            <circle cx="12" cy="7" r="4"></circle>
-                                        </svg>
-                                        Tên người gửi chuyển khoản <span class="reg-required">*</span>
-                                    </span>
-                                    <span class="reg-hint">Tên tài khoản hoặc Nickname chuyển tiền</span>
-                                </label>
-                                <div class="reg-input-wrapper">
-                                    <span class="reg-input-icon">
-                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                            <circle cx="12" cy="7" r="4"></circle>
-                                        </svg>
-                                    </span>
-                                    <input
-                                        type="text"
-                                        id="sender-name-input"
-                                        name="senderName"
-                                        class="reg-input"
-                                        placeholder="VD: NGUYEN VAN A hoặc @username"
-                                        required
-                                    >
-                                </div>
-                            </div>
-
-                            <div class="reg-form-group">
-                                <label for="transaction-input" class="reg-label">
-                                    <span class="reg-label-main">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                                            <line x1="4" y1="9" x2="20" y2="9"></line>
-                                            <line x1="4" y1="15" x2="20" y2="15"></line>
-                                            <line x1="10" y1="3" x2="8" y2="21"></line>
-                                            <line x1="16" y1="3" x2="14" y2="21"></line>
-                                        </svg>
-                                        Mã giao dịch / Lời nhắn CK <span class="reg-required">*</span>
-                                    </span>
-                                    <span class="reg-hint">Mã GD ngân hàng, TxID hoặc UR A1B2C3D4</span>
-                                </label>
-                                <div class="reg-input-wrapper">
-                                    <span class="reg-input-icon">
-                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                                            <line x1="4" y1="9" x2="20" y2="9"></line>
-                                            <line x1="4" y1="15" x2="20" y2="15"></line>
-                                            <line x1="10" y1="3" x2="8" y2="21"></line>
-                                            <line x1="16" y1="3" x2="14" y2="21"></line>
-                                        </svg>
-                                    </span>
-                                    <input
-                                        type="text"
-                                        id="transaction-input"
-                                        name="transactionCode"
-                                        class="reg-input"
-                                        placeholder="VD: Mã GD ngân hàng hoặc UR A1B2C3D4..."
-                                        required
-                                    >
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <!-- =========================================================
                          HÀNH ĐỘNG GỬI ĐĂNG KÝ
                          ========================================================= -->
-                    <div class="reg-actions-wrapper">
-                        <button type="submit" id="btn-submit-form" class="btn-submit-main">
-                            <span class="btn-submit-glow"></span>
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
-                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                            </svg>
-                            <span>Xác Nhận & Gửi Serial Lên Hệ Thống</span>
-                        </button>
-
-                        <!-- Trust & Security Badges -->
-                        <div class="reg-trust-badges">
-                            <div class="reg-trust-item">
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                                <span>Bản quyền gắn liền phần cứng SN</span>
-                            </div>
-                            <div class="reg-trust-item">
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                <span>Đối soát duyệt tự động 5 – 30 phút</span>
-                            </div>
-                            <div class="reg-trust-item">
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v1"></path></svg>
-                                <span>Hỗ trợ Telegram HyperUR 24/7</span>
-                            </div>
-                        </div>
-
-                        <div class="reg-secondary-actions">
-                            <button type="button" id="btn-quick-lookup-tab" class="btn-secondary-copy">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                                    <circle cx="11" cy="11" r="8"></circle>
-                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                </svg>
-                                <span>Chuyển Sang Tab Tra Cứu Serial</span>
-                            </button>
+                    
                         </div>
                     </div>
+
+                    <!-- =========================================================
+                         HÀNH ĐỘNG GỬI ĐĂNG KÝ (GHIM CỐ ĐỊNH Ở GIỮA ĐÁY MÀN HÌNH)
+                         ========================================================= -->
+                    <div class="reg-floating-action-bar" id="reg-floating-action-bar">
+                        <div class="reg-floating-action-inner">
+                            <button type="submit" id="btn-submit-form" class="btn-submit-main">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                <span id="btn-submit-text">Xác Nhận & Gửi Serial Lên Hệ Thống</span>
+                            </button>
+
+                            <!-- Trust & Security Badges -->
+                            <div class="reg-trust-badges">
+                                <div class="reg-trust-item">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                    <span>Bản quyền phần cứng SN</span>
+                                </div>
+                                <div class="reg-trust-item">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    <span>Duyệt tự động 5 – 30 phút</span>
+                                </div>
+                                <div class="reg-trust-item">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v1"></path></svg>
+                                    <span>Hỗ trợ Telegram HyperUR 24/7</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </form>
             </section>
 
@@ -968,10 +935,6 @@
                     <span id="modal-amount-val" style="color: #fbbf24; font-weight: 700;">50.000đ / thiết bị</span>
                 </div>
                 <div>
-                    <span>Người Gửi:</span>
-                    <span id="modal-sender-val">---</span>
-                </div>
-                <div>
                     <span>Email Liên Hệ:</span>
                     <span id="modal-email-val" style="color: var(--accent-cyan); font-family: monospace;">---</span>
                 </div>
@@ -991,6 +954,34 @@
             </div>
         </div>
     </dialog>
+
+    <!-- =========================================================
+         LIGHTBOX MODAL PHÓNG TO MÃ QR THANH TOÁN
+         ========================================================= -->
+    <div class="qr-lightbox-modal" id="qr-lightbox-modal" aria-hidden="true" role="dialog" aria-label="Xem ảnh QR kích thước lớn">
+        <div class="qr-lightbox-backdrop" id="qr-lightbox-backdrop"></div>
+        <div class="qr-lightbox-container">
+            <button type="button" class="qr-lightbox-close" id="qr-lightbox-close" aria-label="Đóng xem ảnh QR">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="qr-lightbox-card">
+                <div class="qr-lightbox-header">
+                    <span class="qr-lightbox-badge" id="qr-lightbox-badge">QUÉT MÃ QR THANH TOÁN</span>
+                    <h3 class="qr-lightbox-title" id="qr-lightbox-title">MBBank VietQR 24/7 (HyperUR)</h3>
+                    <p class="qr-lightbox-subtitle" id="qr-lightbox-subtitle">Mở ứng dụng ngân hàng hoặc ví điện tử để quét mã thanh toán</p>
+                </div>
+                <div class="qr-lightbox-img-frame">
+                    <img src="" alt="Mã QR kích thước lớn" id="qr-lightbox-img" class="qr-lightbox-img">
+                </div>
+                <div class="qr-lightbox-footer">
+                    <span class="qr-lightbox-hint">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                        Nhấn ra ngoài vùng ảnh hoặc phím ESC để đóng
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Global Site Footer -->
     <footer class="site-footer">

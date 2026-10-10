@@ -182,11 +182,16 @@
     const bankNameRow = document.getElementById('bank-name-row');
     const bankOwnerRow = document.getElementById('bank-owner-row');
     const bankAccRow = document.getElementById('bank-acc-row');
-    const binanceGuideRow = document.getElementById('binance-guide-row');
-    const paypalGuideRow = document.getElementById('paypal-guide-row');
+    const paymentTierHint = document.getElementById('payment-tier-hint');
+    const binanceDetailsGroup = document.getElementById('binance-details-group');
+    const paypalDetailsGroup = document.getElementById('paypal-details-group');
+    const qrIntlSwitcher = document.getElementById('qr-intl-switcher');
+    const subTabBinance = document.getElementById('sub-tab-binance');
+    const subTabPaypal = document.getElementById('sub-tab-paypal');
     const paymentQrBadgeText = document.getElementById('payment-qr-badge-text');
     const paymentQrCaptionText = document.getElementById('payment-qr-caption-text');
     let currentPaymentMethod = 'mbbank';
+    let currentIntlSub = 'binance'; // 'binance' hoặc 'paypal'
 
     // Buttons & History
     const submitBtn = document.getElementById('btn-submit-form');
@@ -361,10 +366,12 @@
             if (regTypeValue) regTypeValue.value = 'Active Free (36 Ngày Trải Nghiệm)';
 
             if (submitBtn) {
-                const btnSpan = submitBtn.querySelector('span');
+                const btnSpan = document.getElementById('btn-submit-text') || submitBtn.querySelector('span');
                 if (btnSpan) btnSpan.textContent = 'Xác Nhận & Gửi Serial Active Free (36 Ngày)';
             }
             if (paymentSection) paymentSection.style.display = 'none';
+            const freeSummaryBox = document.getElementById('free-plan-summary-box');
+            if (freeSummaryBox) freeSummaryBox.style.display = 'block';
         } else {
             if (planCardFree) {
                 planCardFree.classList.remove('active');
@@ -379,10 +386,12 @@
             if (regTypeValue) regTypeValue.value = 'Đăng kí có Ủng hộ (Vĩnh viễn)';
 
             if (submitBtn) {
-                const btnSpan = submitBtn.querySelector('span');
+                const btnSpan = document.getElementById('btn-submit-text') || submitBtn.querySelector('span');
                 if (btnSpan) btnSpan.textContent = 'Xác Nhận & Gửi Serial Lên Hệ Thống';
             }
             if (paymentSection) paymentSection.style.display = 'block';
+            const freeSummaryBox = document.getElementById('free-plan-summary-box');
+            if (freeSummaryBox) freeSummaryBox.style.display = 'none';
         }
     }
 
@@ -470,10 +479,39 @@
     function updatePaymentQr(price, serial) {
         if (!paymentQrImg) return;
         if (currentPaymentMethod !== 'mbbank') return;
-        const base = 'https://vietqr.app/img?bank=MBBank&acc=VQRQAMNWP9901&template=&showinfo=false&holder=NGUYEN%20TAN%20LUC';
+        const base = 'https://vietqr.app/img?bank=MBBank&acc=VQRQAMNWP9901&template=&showinfo=false&holder=NGUYEN%20TAN%20LUC&store=HyperUR';
         const amountPart = price ? `&amount=${price}` : '';
         const desPart = serial ? `&des=${encodeURIComponent('UR ' + serial)}` : '';
         paymentQrImg.src = `${base}${amountPart}${desPart}`;
+    }
+
+    function selectIntlSub(subKey) {
+        currentIntlSub = subKey;
+        if (subTabBinance) subTabBinance.classList.toggle('active', subKey === 'binance');
+        if (subTabPaypal) subTabPaypal.classList.toggle('active', subKey === 'paypal');
+
+        if (subKey === 'binance') {
+            if (paymentQrImg) paymentQrImg.src = 'images/QR_BINANCE_DNT_HYPERUR.jpg';
+            if (paymentQrBadgeText) paymentQrBadgeText.textContent = 'Binance Pay (5 USDT)';
+            if (paymentQrCaptionText) paymentQrCaptionText.textContent = 'Quét mã bằng app Binance (5 USDT)';
+            if (binanceDetailsGroup) binanceDetailsGroup.style.display = 'block';
+            if (paypalDetailsGroup) paypalDetailsGroup.style.display = 'none';
+            if (donationAmountVal) donationAmountVal.textContent = '5 USDT (Only 5$)';
+        } else {
+            if (paymentQrImg) paymentQrImg.src = 'images/QR_PAYPAL_DNT_HYPERUR.jpg';
+            if (paymentQrBadgeText) paymentQrBadgeText.textContent = 'PayPal (5 USD)';
+            if (paymentQrCaptionText) paymentQrCaptionText.textContent = 'Quét mã hoặc mở PayPal gửi 5$';
+            if (binanceDetailsGroup) binanceDetailsGroup.style.display = 'none';
+            if (paypalDetailsGroup) paypalDetailsGroup.style.display = 'block';
+            if (donationAmountVal) donationAmountVal.textContent = '5 USD (Only 5$)';
+        }
+    }
+
+    if (subTabBinance) {
+        subTabBinance.addEventListener('click', () => selectIntlSub('binance'));
+    }
+    if (subTabPaypal) {
+        subTabPaypal.addEventListener('click', () => selectIntlSub('paypal'));
     }
 
     function selectPaymentMethod(methodKey) {
@@ -487,26 +525,22 @@
 
         const currentSerial = serialInput ? sanitizeSerial(serialInput.value).toUpperCase() : '';
 
-        if (methodKey === 'binance') {
-            if (paymentMethodVal) paymentMethodVal.value = 'Binance Pay (Crypto)';
-            if (paymentQrImg) paymentQrImg.src = 'images/QR_BINANCE_DNT_HYPERUR.jpg';
-            if (paymentQrBadgeText) paymentQrBadgeText.textContent = 'Binance Pay (Crypto)';
-            if (paymentQrCaptionText) paymentQrCaptionText.textContent = 'Quét mã trên app Binance';
+        if (methodKey === 'crypto_intl') {
+            if (paymentMethodVal) paymentMethodVal.value = 'Quốc Tế & Crypto (Binance Pay / PayPal - Only 5$)';
             if (bankNameRow) bankNameRow.style.display = 'none';
             if (bankOwnerRow) bankOwnerRow.style.display = 'none';
             if (bankAccRow) bankAccRow.style.display = 'none';
-            if (paypalGuideRow) paypalGuideRow.style.display = 'none';
-            if (binanceGuideRow) binanceGuideRow.style.display = 'flex';
-        } else if (methodKey === 'paypal') {
-            if (paymentMethodVal) paymentMethodVal.value = 'PayPal (Quốc Tế)';
-            if (paymentQrImg) paymentQrImg.src = 'images/QR_PAYPAL_DNT_HYPERUR.jpg';
-            if (paymentQrBadgeText) paymentQrBadgeText.textContent = 'PayPal (Quốc Tế)';
-            if (paymentQrCaptionText) paymentQrCaptionText.textContent = 'Quét mã hoặc mở PayPal';
-            if (bankNameRow) bankNameRow.style.display = 'none';
-            if (bankOwnerRow) bankOwnerRow.style.display = 'none';
-            if (bankAccRow) bankAccRow.style.display = 'none';
-            if (binanceGuideRow) binanceGuideRow.style.display = 'none';
-            if (paypalGuideRow) paypalGuideRow.style.display = 'flex';
+            if (qrIntlSwitcher) qrIntlSwitcher.style.display = 'flex';
+
+            if (paymentTierPill) {
+                paymentTierPill.textContent = 'Only 5$ • Giá cố định';
+                paymentTierPill.className = 'tier-pill tier-intl-fixed current-active';
+            }
+            if (paymentTierHint) {
+                paymentTierHint.style.display = 'none';
+            }
+
+            selectIntlSub(currentIntlSub || 'binance');
         } else {
             // MBBank (Mặc định)
             if (paymentMethodVal) paymentMethodVal.value = 'Chuyển Khoản MBBank (VietQR 24/7)';
@@ -515,8 +549,26 @@
             if (bankNameRow) bankNameRow.style.display = 'flex';
             if (bankOwnerRow) bankOwnerRow.style.display = 'flex';
             if (bankAccRow) bankAccRow.style.display = 'flex';
-            if (binanceGuideRow) binanceGuideRow.style.display = 'none';
-            if (paypalGuideRow) paypalGuideRow.style.display = 'none';
+            if (qrIntlSwitcher) qrIntlSwitcher.style.display = 'none';
+            if (binanceDetailsGroup) binanceDetailsGroup.style.display = 'none';
+            if (paypalDetailsGroup) paypalDetailsGroup.style.display = 'none';
+
+            // Trả về mức giá theo email
+            const email = senderEmailInput ? senderEmailInput.value.trim() : '';
+            const count = getDeviceCountForEmail(email);
+            const priceInfo = calculatePrice(count);
+
+            if (donationAmountVal) {
+                donationAmountVal.textContent = priceInfo.priceText;
+            }
+            if (paymentTierPill) {
+                paymentTierPill.textContent = priceInfo.tierLabel;
+                paymentTierPill.className = `tier-pill ${priceInfo.tierKey === 'base' ? 'tier-base' : (priceInfo.tierKey === 'tier30' ? 'tier-30' : 'tier-15')} current-active`;
+            }
+            if (paymentTierHint) {
+                paymentTierHint.style.display = '';
+            }
+
             updatePaymentQr(currentCalculatedPrice, currentSerial);
         }
     }
@@ -623,12 +675,28 @@
         }
 
         // 4. Mức Ủng Hộ Áp Dụng ở khung thanh toán
-        if (donationAmountVal) {
-            donationAmountVal.textContent = priceInfo.priceText;
-        }
-        if (paymentTierPill) {
-            paymentTierPill.textContent = priceInfo.tierLabel;
-            paymentTierPill.className = `tier-pill ${priceInfo.tierKey === 'base' ? 'tier-base' : (priceInfo.tierKey === 'tier30' ? 'tier-30' : 'tier-15')} current-active`;
+        if (currentPaymentMethod === 'crypto_intl') {
+            if (donationAmountVal) {
+                donationAmountVal.textContent = currentIntlSub === 'paypal' ? '5 USD (Only 5$)' : '5 USDT (Only 5$)';
+            }
+            if (paymentTierPill) {
+                paymentTierPill.textContent = 'Only 5$ • Giá cố định';
+                paymentTierPill.className = 'tier-pill tier-intl-fixed current-active';
+            }
+            if (paymentTierHint) {
+                paymentTierHint.style.display = 'none';
+            }
+        } else {
+            if (donationAmountVal) {
+                donationAmountVal.textContent = priceInfo.priceText;
+            }
+            if (paymentTierPill) {
+                paymentTierPill.textContent = priceInfo.tierLabel;
+                paymentTierPill.className = `tier-pill ${priceInfo.tierKey === 'base' ? 'tier-base' : (priceInfo.tierKey === 'tier30' ? 'tier-30' : 'tier-15')} current-active`;
+            }
+            if (paymentTierHint) {
+                paymentTierHint.style.display = '';
+            }
         }
 
         // 5. Badge ưu đãi dưới ô email (nếu có)
@@ -652,9 +720,11 @@
             }
         }
 
-        // 6. Cập nhật mã QR thanh toán với số tiền mới
-        const currentSerial = serialInput ? sanitizeSerial(serialInput.value).toUpperCase() : '';
-        updatePaymentQr(priceInfo.price, currentSerial);
+        // 6. Cập nhật mã QR thanh toán với số tiền mới (chỉ với MBBank)
+        if (currentPaymentMethod === 'mbbank') {
+            const currentSerial = serialInput ? sanitizeSerial(serialInput.value).toUpperCase() : '';
+            updatePaymentQr(priceInfo.price, currentSerial);
+        }
     }
 
     async function checkEmailAndUpdatePrice(email) {
@@ -853,6 +923,7 @@
             const transCodeVal = document.getElementById('transaction-input')?.value.trim() || '';
             const methodVal = paymentMethodVal ? paymentMethodVal.value : 'Chuyển Khoản MBBank (VietQR 24/7)';
 
+            const isCryptoIntl = currentPaymentMethod === 'crypto_intl';
             const payload = {
                 serial: serial,
                 codename: code,
@@ -861,7 +932,7 @@
                 paymentMethod: methodVal,
                 senderName: senderNameVal,
                 transactionCode: transCodeVal,
-                amount: currentCalculatedPrice,
+                amount: isFree ? 0 : (isCryptoIntl ? '5$' : currentCalculatedPrice),
                 timestamp: new Date().toISOString()
             };
 
@@ -920,7 +991,13 @@
             if (modalEmailVal) modalEmailVal.textContent = email;
             const modalAmountVal = document.getElementById('modal-amount-val');
             if (modalAmountVal) {
-                modalAmountVal.textContent = isFree ? '0đ (Active Free 36 Ngày)' : formatCurrency(currentCalculatedPrice);
+                if (isFree) {
+                    modalAmountVal.textContent = '0đ (Active Free 36 Ngày)';
+                } else if (isCryptoIntl) {
+                    modalAmountVal.textContent = '5$ (5 USDT / 5 USD)';
+                } else {
+                    modalAmountVal.textContent = formatCurrency(currentCalculatedPrice);
+                }
             }
             const modalSenderVal = document.getElementById('modal-sender-val');
             if (modalSenderVal) {
@@ -1490,6 +1567,77 @@
             });
         }
     }
+
+    // =========================================================
+    // 12B. QR LIGHTBOX MODAL (NHẤN VÀO ẢNH ĐỂ PHÓNG TO)
+    // =========================================================
+    const qrLightboxModal = document.getElementById('qr-lightbox-modal');
+    const qrLightboxImg = document.getElementById('qr-lightbox-img');
+    const qrLightboxTitle = document.getElementById('qr-lightbox-title');
+    const qrLightboxSubtitle = document.getElementById('qr-lightbox-subtitle');
+    const qrLightboxBadge = document.getElementById('qr-lightbox-badge');
+    const qrLightboxClose = document.getElementById('qr-lightbox-close');
+    const qrLightboxBackdrop = document.getElementById('qr-lightbox-backdrop');
+
+    function openQrLightbox() {
+        if (!qrLightboxModal || !qrLightboxImg || !paymentQrImg) return;
+        qrLightboxImg.src = paymentQrImg.src;
+
+        if (currentPaymentMethod === 'crypto_intl') {
+            if (currentIntlSub === 'paypal') {
+                if (qrLightboxBadge) qrLightboxBadge.textContent = 'PAYPAL (5 USD)';
+                if (qrLightboxTitle) qrLightboxTitle.textContent = '🅿️ PayPal QR Thanh Toán';
+                if (qrLightboxSubtitle) qrLightboxSubtitle.textContent = 'Quét mã QR bằng ứng dụng PayPal hoặc camera điện thoại';
+            } else {
+                if (qrLightboxBadge) qrLightboxBadge.textContent = 'BINANCE PAY (5 USDT)';
+                if (qrLightboxTitle) qrLightboxTitle.textContent = '⚡ Binance Pay QR Thanh Toán';
+                if (qrLightboxSubtitle) qrLightboxSubtitle.textContent = 'Mở ứng dụng Binance và quét mã QR để gửi 5 USDT';
+            }
+        } else {
+            if (qrLightboxBadge) qrLightboxBadge.textContent = 'VIETQR MBBANK 24/7';
+            if (qrLightboxTitle) qrLightboxTitle.textContent = 'MBBank VietQR Chính Thức';
+            if (qrLightboxSubtitle) qrLightboxSubtitle.textContent = 'Quét mã bằng ứng dụng ngân hàng bất kỳ để tự động điền tiền và nội dung';
+        }
+
+        qrLightboxModal.classList.add('active');
+        qrLightboxModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeQrLightbox() {
+        if (!qrLightboxModal) return;
+        qrLightboxModal.classList.remove('active');
+        qrLightboxModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    if (paymentQrImg) {
+        paymentQrImg.addEventListener('click', openQrLightbox);
+    }
+    const paymentQrWrap = document.getElementById('payment-qr-wrap');
+    if (paymentQrWrap) {
+        paymentQrWrap.addEventListener('click', function (e) {
+            if (e.target.tagName !== 'BUTTON') {
+                openQrLightbox();
+            }
+        });
+    }
+
+    if (qrLightboxClose) qrLightboxClose.addEventListener('click', closeQrLightbox);
+    if (qrLightboxBackdrop) qrLightboxBackdrop.addEventListener('click', closeQrLightbox);
+    if (qrLightboxModal) {
+        qrLightboxModal.addEventListener('click', function (e) {
+            if (e.target === qrLightboxModal || e.target === qrLightboxBackdrop) {
+                closeQrLightbox();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && qrLightboxModal && qrLightboxModal.classList.contains('active')) {
+            closeQrLightbox();
+        }
+    });
 
     // =========================================================
     // 13. KHỞI TẠO BAN ĐẦU
