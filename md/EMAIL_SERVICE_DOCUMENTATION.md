@@ -65,7 +65,7 @@ $data = [
     'serial' => 'ABC123456',
     'email' => 'user@example.com',
     'plan' => 'Pro',
-    'payment_method' => 'SePay',
+    'payment_method' => 'MoMo',
     'transaction_id' => 'TXN1234567',
     'amount' => 50000,
     'paid_at' => date('Y-m-d H:i:s'),
@@ -216,12 +216,9 @@ Email service error: Invalid email format
 
 ### **Currently Used In:**
 
-**1. api/sepay-webhook.php**
+**1. serial.php**
 ```php
-require_once 'email-service.php';
-
-// Send payment confirmation
-EmailService::paymentConfirmation($emailData);
+require_once 'api/email-service.php';
 ```
 
 **2. serial.php (Registration)**
@@ -367,13 +364,13 @@ if ($result) {
 
 ### **Example 2: Payment Confirmation**
 ```php
-// Payment received from SePay webhook
+// Payment received confirmation
 $emailData = [
     'serial' => 'ABC123456',
     'email' => 'john@example.com',
     'amount' => 50000,
     'transaction_id' => 'TXN123456789',
-    'payment_method' => 'SePay',
+    'payment_method' => 'MoMo',
     'activated_at' => '2026-10-10 10:32:00',
     'expired_at' => '2027-10-10'
 ];

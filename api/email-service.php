@@ -249,7 +249,7 @@ class EmailTemplate {
                 ['label' => 'Email', 'value' => $email],
                 ['label' => 'Ngày Đăng Ký', 'value' => $created_at]
             ],
-            "Bước tiếp theo: Chọn phương thức thanh toán (SePay, Momo, Binance, PayPal). Sau khi thanh toán, thiết bị sẽ được kích hoạt ngay lập tức.",
+            "Bước tiếp theo: Chọn phương thức thanh toán (Momo, Binance, PayPal). Sau khi thanh toán, thiết bị sẽ được kích hoạt ngay lập tức.",
             "https://hyperur.io.vn/serial.php?serial=" . urlencode($serial) . "#payment"
         );
     }
