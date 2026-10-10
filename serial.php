@@ -15,7 +15,7 @@ session_start();
 
 // Load configuration
 require_once 'api/config.php';
-require_once 'api/email-template.php';
+require_once 'api/email-service.php';  // Use new email service
 
 // ============================================================
 // CONFIGURATION & CONSTANTS

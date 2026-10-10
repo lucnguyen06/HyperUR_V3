@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 require_once 'config.php';
-require_once 'email-template.php';
+require_once 'email-service.php';  // New email service module
 
 try {
     // ============================================================
@@ -56,30 +56,61 @@ try {
     // ============================================================
     // VERIFY WEBHOOK SIGNATURE - HMAC-SHA256 (Prevent tampering)
     // ============================================================
-    // SePay may send: X-SePay-Signature or X-Signature header
-    // Signature = HMAC-SHA256(webhook_body, WEBHOOK_SECRET)
+    // SePay format: X-SePay-Signature: sha256=<hex>
+    // SePay format: X-SePay-Timestamp: <unix_seconds>
+    // Signature = HMAC-SHA256({timestamp}.{raw_body}, SECRET_KEY)
+    // Reference: https://docs.sepay.vn/webhooks
     
     $rawBody = file_get_contents('php://input');
-    $providedSignature = $_SERVER['HTTP_X_SEPAY_SIGNATURE'] ?? 
-                        $_SERVER['HTTP_X_SIGNATURE'] ?? 
-                        $_SERVER['HTTP_SIGNATURE'] ?? null;
+    $providedSignature = $_SERVER['HTTP_X_SEPAY_SIGNATURE'] ?? null;
+    $timestamp = $_SERVER['HTTP_X_SEPAY_TIMESTAMP'] ?? null;
     
-    // If SePay sends signature, verify it
-    if ($providedSignature) {
+    // If SePay sends signature, verify it (REQUIRED for security)
+    if ($providedSignature && $timestamp) {
         $webhookSecret = SEPAY_WEBHOOK_SECRET;
-        $expectedSignature = hash_hmac('sha256', $rawBody, $webhookSecret);
+        
+        // Prevent replay attacks: Check if timestamp is recent (within 5 minutes)
+        $currentTime = time();
+        $webhookTime = (int)$timestamp;
+        $timeDiff = abs($currentTime - $webhookTime);
+        $maxTimeDiff = 5 * 60; // 5 minutes in seconds
+        
+        if ($timeDiff > $maxTimeDiff) {
+            http_response_code(401);
+            error_log("SePay: Webhook timestamp too old (diff: {$timeDiff}s, max: {$maxTimeDiff}s)");
+            throw new Exception('Webhook timestamp too old - possible replay attack');
+        }
+        
+        // Build the signed string: {timestamp}.{raw_body}
+        $signedString = $timestamp . '.' . $rawBody;
+        
+        // Calculate expected signature: sha256=<hex>
+        $hmacHash = hash_hmac('sha256', $signedString, $webhookSecret);
+        $expectedSignature = 'sha256=' . $hmacHash;
         
         // Compare signatures (using hash_equals to prevent timing attacks)
         if (!hash_equals($expectedSignature, $providedSignature)) {
             http_response_code(401);
-            error_log("SePay: Invalid signature - Received: {$providedSignature}");
+            error_log("SePay: Invalid signature");
+            error_log("  Expected: {$expectedSignature}");
+            error_log("  Received: {$providedSignature}");
+            error_log("  Signed string: {$signedString}");
             throw new Exception('Invalid webhook signature - data may be tampered');
         }
         error_log("SePay: Webhook signature verified ✓");
     } else {
-        // No signature provided - log warning but continue
-        // (SePay may not send signature on all webhooks)
-        error_log("SePay: No signature provided (optional verification)");
+        // SePay REQUIRES signature verification for security
+        // Missing signature = reject webhook
+        if (!$providedSignature) {
+            http_response_code(401);
+            error_log("SePay: Missing X-SePay-Signature header");
+            throw new Exception('Missing webhook signature header');
+        }
+        if (!$timestamp) {
+            http_response_code(401);
+            error_log("SePay: Missing X-SePay-Timestamp header");
+            throw new Exception('Missing webhook timestamp header');
+        }
     }
     
     // ============================================================
@@ -182,31 +213,25 @@ try {
     
     $conn->close();
     
-    // Send confirmation email to user
+    // Send confirmation email using new email service
     $emailData = [
         'serial' => $serial,
-        'codename' => 'N/A',
+        'email' => $senderEmail,
         'plan' => $plan,
-        'paymentMethod' => 'SePay Bank Transfer',
-        'senderName' => $senderName,
-        'senderEmail' => $senderEmail,
-        'transactionCode' => $transactionId,
-        'amount' => $amount
+        'payment_method' => 'SePay Bank Transfer',
+        'transaction_id' => $transactionId,
+        'amount' => $amount,
+        'paid_at' => $activatedAt,
+        'activated_at' => $activatedAt,
+        'expired_at' => $expiredAt
     ];
     
-    $emailHtml = generateEmailTemplate($emailData);
-    $subject = "✅ Xác Nhận Thanh Toán - Serial {$serial} - HyperUR";
-    
-    $fromName = '=?UTF-8?B?' . base64_encode(EMAIL_FROM_NAME) . '?=';
-    $headers = "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-    $headers .= "From: {$fromName} <" . EMAIL_FROM . ">\r\n";
-    $headers .= "Reply-To: " . SUPPORT_EMAIL . "\r\n";
-    
-    $emailSent = mail($senderEmail, $subject, $emailHtml, $headers);
+    $emailSent = EmailService::paymentConfirmation($emailData);
     
     if (!$emailSent) {
-        error_log("Failed to send email to {$senderEmail} for serial {$serial}");
+        error_log("⚠️ Failed to send confirmation email to {$senderEmail} for serial {$serial}");
+    } else {
+        error_log("✓ Confirmation email sent to {$senderEmail}");
     }
     
     // Success response
