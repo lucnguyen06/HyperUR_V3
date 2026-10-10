@@ -235,10 +235,6 @@ $csrf_token = $_SESSION['csrf_token'];
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
-    
-    <!-- SePay Configuration -->
-    <script src="json/sepay-config.js"></script>
-    <script src="json/sepay-handler.js"></script>
 </head>
 <body>
     <!-- Include original navbar and content from serial.html -->
