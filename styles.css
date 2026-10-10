@@ -3829,6 +3829,7 @@ dialog:not([open]) {
   grid-template-columns: 1.08fr 0.92fr;
   gap: 2.25rem;
   align-items: start;
+  margin-bottom: 3rem; /* Khoảng cách rộng rãi phía dưới 2 cột */
 }
 
 @media (max-width: 1080px) {
