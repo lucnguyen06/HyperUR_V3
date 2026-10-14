@@ -50,3 +50,17 @@ build/
 # Test files
 test-*.php
 api/test-*.php
+
+# HyperUR scripts: Node deps + Service Account secrets
+scripts/node_modules/
+scripts/.secrets/
+
+# Google Apps Script deployment
+.clasp.json
+.claspignore
+
+# Deleted/obsolete scripts
+scripts/test_*.ps1
+scripts/debug_drive_api.html
+scripts/setup_service_account.ps1
+

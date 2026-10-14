@@ -30,9 +30,15 @@ activeKeys.forEach(code => {
       console.log(`      ↳ ${ver}: ${r.os} (Android ${r.android}) - Link: ${r.download ? 'Có' : 'Thiếu'}`);
     });
   } else {
-    console.warn(`   ⚠️ [${code}] - Không tìm thấy trong catalog!`);
+    // Không nằm trong catalog vẫn hiển thị được: devices.js lấy chính codename làm tên máy.
+    console.log(`   ℹ️ [${code}] - Chưa có trong catalog, web sẽ hiện tên = codename: ${romVersions.join(', ')}`);
   }
 });
 
 console.log(`3. Tổng số bản ROM sẵn sàng tải: ${totalActiveRoms}`);
-console.log(`\n🎉 Tất cả cấu trúc dữ liệu đã được kiểm tra và hoạt động hoàn hảo!\n`);
+if (activeKeys.length === 0) {
+  console.log(`\nℹ️ Drive chưa có file ROM nào ➔ website sẽ chưa hiện phần tải (đúng như thiết kế).`);
+  console.log(`   Kéo file ROM vào thư mục codename trong link tổng, rồi chạy: node scripts/scan_new_root.js --write\n`);
+} else {
+  console.log(`\n🎉 Cấu trúc dữ liệu hợp lệ.\n`);
+}

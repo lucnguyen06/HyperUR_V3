@@ -21,6 +21,10 @@
     activeRomsMap: {},
     activeDevicesCount: 0,
     totalRomsCount: 0,
+    // Danh sách codename có thư mục trên Google Drive (kể cả khi folder rỗng).
+    // Dùng để hiện máy ngay khi folder được tạo, dù chưa upload ROM.
+    driveCodenames: [],
+    driveCodenamesCount: 0,
     onlyActiveRoms: config.ONLY_SHOW_ACTIVE_ROMS !== false,
     devices: [],
     byBrand: {
@@ -31,7 +35,9 @@
     activeBrand: 'all',
     searchQuery: '',
     cache: {},
-    isSyncing: false
+    isSyncing: false,
+    lastSyncAt: null,
+    lastSyncError: null
   };
 
   // DOM Elements
@@ -55,7 +61,9 @@
     'in': 'Ấn Độ (IN)',
     'id': 'Indonesia (ID)',
     'tr': 'Thổ Nhĩ Kỳ (TR)',
-    'tw': 'Đài Loan (TW)'
+    'tw': 'Đài Loan (TW)',
+    'jp': 'Nhật Bản (JP)',
+    'kr': 'Hàn Quốc (KR)'
   };
 
   /**
@@ -88,11 +96,18 @@
       // 3. Hợp nhất dữ liệu danh mục máy với link tải Google Drive
       processDevicesAndRoms(catalogMap, state.activeRomsMap);
 
-      // 4. Render thanh trạng thái đồng bộ Google Drive
+      // 4. Ghi nhận thời điểm đồng bộ thành công
+      state.lastSyncAt = new Date();
+
+      // 5. Render thanh trạng thái đồng bộ Google Drive
       renderDriveSyncBar();
 
     } catch (error) {
       console.error('Lỗi khi tải thiết bị HyperUR:', error);
+      // Vẫn ghi nhận thời điểm đồng bộ (lỗi) để hiển thị trên thanh trạng thái
+      state.lastSyncAt = new Date();
+      state.lastSyncError = error && error.message ? error.message : 'Lỗi không xác định';
+      renderDriveSyncBar();
       if (gridEl) {
         gridEl.innerHTML = `
           <div class="no-results-box" style="grid-column: 1 / -1;">
@@ -117,28 +132,43 @@
 
     // Nếu có cấu hình Web App URL từ Google Apps Script
     if (apiUrl) {
-      try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 12000); // 12s timeout đảm bảo Apps Script khởi động kịp
+      // Cache lạnh trên Apps Script có thể mất 15-30s -> timeout dài hơn và thử lại 1 lần.
+      for (let attempt = 1; attempt <= 2; attempt++) {
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 30000);
 
-        // Chống browser cache dữ liệu cũ khi deploy hosting
-        const reqUrl = apiUrl + (apiUrl.includes('?') ? '&' : '?') + '_t=' + Date.now();
-        const response = await fetch(reqUrl, {
-          signal: controller.signal,
-          cache: 'no-store'
-        });
-        clearTimeout(timeoutId);
+          // Chống browser cache dữ liệu cũ khi deploy hosting
+          const reqUrl = apiUrl + (apiUrl.includes('?') ? '&' : '?') + '_t=' + Date.now();
+          const response = await fetch(reqUrl, {
+            signal: controller.signal,
+            cache: 'no-store'
+          });
+          clearTimeout(timeoutId);
 
-        if (response.ok) {
-          const driveData = await response.json();
-          if (driveData && !driveData.error && Object.keys(driveData).length > 1) {
-            console.log('⚡ Đã kết nối Google Drive API thành công:', driveData);
-            return driveData;
+          if (response.ok) {
+            const driveData = await response.json();
+            // Tin vào API khi nó trả về đúng định dạng, kể cả khi Drive đang chưa có ROM nào.
+            if (driveData && !driveData.error && driveData._metadata && !driveData._metadata.error) {
+              const deviceCount = Object.keys(driveData).filter(k => k !== '_metadata').length;
+              console.log(`⚡ Đã kết nối Google Drive API thành công: ${deviceCount} máy có ROM`);
+              try { localStorage.setItem('hyperur-active-roms', JSON.stringify(driveData)); } catch (_) {}
+              return driveData;
+            }
           }
+        } catch (err) {
+          console.warn(`Google Drive API lỗi (lần ${attempt}):`, err);
         }
-      } catch (err) {
-        console.warn('Không thể kết nối trực tiếp Google Drive API URL, chuyển sang đọc active_roms.json:', err);
       }
+
+      // API không phản hồi: dùng bản gần nhất đã lưu trong trình duyệt
+      try {
+        const saved = JSON.parse(localStorage.getItem('hyperur-active-roms') || 'null');
+        if (saved && saved._metadata) {
+          console.warn('Dùng dữ liệu ROM đã lưu trong trình duyệt (API chưa phản hồi).');
+          return saved;
+        }
+      } catch (_) {}
     }
 
     // Đọc từ file active_roms.json cục bộ
@@ -179,14 +209,30 @@
 
   /**
    * Hợp nhất danh mục thiết bị với dữ liệu ROM Google Drive
+   *
+   * Quy tắc hiển thị (theo yêu cầu của bạn):
+   *  - Codename NÀO CÓ THƯ MỤC trên Google Drive ➔ hiển thị máy đó trên web (kể cả khi folder rỗng).
+   *  - Codename chỉ có trong devices_catalog.json mà KHÔNG có folder Drive ➔ KHÔNG hiển thị
+   *    (vì mục đích là chỉ phục vụ máy có ROM thật trên Drive của bạn).
+   *  - Nếu folder Drive có ROM ➔ đẩy danh sách link tải; nếu rỗng ➔ hiện "Chưa có bản tải".
    */
   function processDevicesAndRoms(catalogMap, activeRoms) {
     state.allCatalogDevices = [];
     state.activeDevicesCount = 0;
     state.totalRomsCount = 0;
+    state.driveCodenames = [];
 
-    for (const [code, devData] of Object.entries(catalogMap)) {
-      if (!devData) continue;
+    // Danh sách codename từ Drive (mọi thư mục con cấp 1, kể cả rỗng)
+    const driveCodes = Object.keys(activeRoms).filter(k => k !== '_metadata');
+    state.driveCodenames = driveCodes.slice();
+    state.driveCodenamesCount = driveCodes.length;
+
+    // Chỉ xử lý codename CÓ THƯ MỤC trên Drive (theo yêu cầu của bạn).
+    // Codename nào có trong catalog nhưng chưa có folder Drive ➔ bỏ qua.
+    const allCodes = driveCodes;
+
+    for (const code of allCodes) {
+      const devData = catalogMap[code] || { name: { en: code }, brand: 'Xiaomi', type: 'phone' };
 
       const driveEntry = activeRoms[code];
       const hasDriveRoms = driveEntry && driveEntry.roms && Object.keys(driveEntry.roms).length > 0;
@@ -196,11 +242,13 @@
       let totalAvailableRoms = 0;
 
       if (hasDriveRoms) {
-        // Tạo branch đại diện cho bản build Google Drive chính thức
-        const osVersions = [];
+        // Gom ROM theo vùng (thư mục con CN / Global / EEA... trong folder codename)
+        const byRegion = {};
         for (const [rawKey, r] of Object.entries(driveEntry.roms)) {
           const majorKey = r.osKey || (r.os && r.os.match(/^OS\d+\.\d+/) ? r.os.match(/^OS\d+\.\d+/)[0] : rawKey.match(/^OS\d+\.\d+/) ? rawKey.match(/^OS\d+\.\d+/)[0] : rawKey);
-          osVersions.push({
+          const region = r.region || 'cn';
+          if (!byRegion[region]) byRegion[region] = [];
+          byRegion[region].push({
             key: majorKey,
             os: r.os || rawKey,
             android: r.android || (majorKey === 'OS2.0' ? '15.0' : (majorKey === 'OS1.0' ? '14.0' : '16.0')),
@@ -214,11 +262,13 @@
           if (r.download) totalAvailableRoms++;
         }
 
-        mergedBranches.push({
-          branchName: 'Google Drive Official Release',
-          region: 'cn',
-          isGoogleDrive: true,
-          osVersions: osVersions.sort(sortOsVersions)
+        Object.keys(byRegion).sort().forEach(region => {
+          mergedBranches.push({
+            branchName: 'Google Drive Official Release',
+            region: region,
+            isGoogleDrive: true,
+            osVersions: byRegion[region].sort(sortOsVersions)
+          });
         });
 
         state.activeDevicesCount++;
@@ -265,6 +315,11 @@
         supports: devData.supports || ['OS1.0', 'OS2.0'],
         branches: mergedBranches,
         hasDriveRoms: hasDriveRoms,
+        // Codename có folder trên Drive (kể cả rỗng) ➔ true
+        hasDriveFolder: true,
+        // Link mở folder Google Drive (dùng khi click thẻ rỗng)
+        folderId: driveEntry ? (driveEntry.folderId || '') : '',
+        folderUrl: driveEntry ? (driveEntry.folderUrl || '') : '',
         availableRomsCount: totalAvailableRoms
       };
 
@@ -292,7 +347,8 @@
 
   /**
    * Lọc thiết bị theo chế độ:
-   * - Chỉ máy có ROM trên Drive (state.onlyActiveRoms === true)
+   * - Chỉ máy có folder trên Google Drive (state.onlyActiveRoms === true) ➔ mặc định
+   *   Hiện TẤT CẢ codename có folder Drive, kể cả khi folder rỗng (chưa có ROM).
    * - Hoặc tất cả thiết bị
    */
   function applyFiltering() {
@@ -303,8 +359,11 @@
     };
 
     // Chọn nguồn danh sách thiết bị
+    // - onlyActiveRoms = true (mặc định): hiện tất cả codename có folder trên Drive
+    //   (kể cả folder rỗng - sẽ hiện thẻ "Chưa có bản tải").
+    // - onlyActiveRoms = false: hiện tất cả thiết bị trong catalog (kể cả máy chưa có folder Drive).
     const sourceList = state.onlyActiveRoms
-      ? state.allCatalogDevices.filter(d => d.availableRomsCount > 0)
+      ? state.allCatalogDevices.filter(d => d.hasDriveFolder)
       : state.allCatalogDevices;
 
     sourceList.forEach(dev => {
@@ -339,23 +398,38 @@
   function renderDriveSyncBar() {
     if (!syncContainer) return;
 
-    const activeCount = state.activeDevicesCount;
+    const folderCount = state.driveCodenamesCount || 0;
     const romCount = state.totalRomsCount;
     const isFiltered = state.onlyActiveRoms;
+
+    // Định dạng thời điểm đồng bộ gần nhất (giờ:phút theo locale của user)
+    let lastSyncText = 'Đang đồng bộ...';
+    if (state.lastSyncAt instanceof Date && !isNaN(state.lastSyncAt)) {
+      const hh = String(state.lastSyncAt.getHours()).padStart(2, '0');
+      const mm = String(state.lastSyncAt.getMinutes()).padStart(2, '0');
+      const ss = String(state.lastSyncAt.getSeconds()).padStart(2, '0');
+      const prefix = state.lastSyncError ? '⚠️ Đồng bộ lỗi lúc' : 'Đã đồng bộ lúc';
+      lastSyncText = `${prefix} ${hh}:${mm}:${ss}`;
+    }
 
     syncContainer.innerHTML = `
       <div class="drive-sync-bar">
         <div class="drive-sync-info">
           <span class="drive-sync-dot"></span>
           <span>
-            Đồng bộ Google Drive: 
-            <strong class="drive-sync-highlight">${activeCount} thiết bị</strong> đang có ROM sẵn sàng (${romCount} bản tải)
+            Google Drive:
+            <strong class="drive-sync-highlight">${folderCount} thư mục thiết bị</strong>
+            ·
+            <strong class="drive-sync-highlight">${romCount} bản tải sẵn sàng</strong>
+          </span>
+          <span class="drive-sync-timestamp" title="${state.lastSyncError ? 'Lần đồng bộ gần nhất gặp lỗi: ' + state.lastSyncError : 'Thời điểm đồng bộ Google Drive gần nhất'}">
+            · ${lastSyncText}
           </span>
         </div>
         ${config.ENABLE_VIEW_TOGGLE !== false ? `
           <div class="drive-toggle-wrapper">
             <button class="drive-toggle-btn ${isFiltered ? 'active' : ''}" id="toggle-active-view-btn">
-              <span>${isFiltered ? '✓ Chế độ: Chỉ hiện máy có ROM trên Drive' : 'Chế độ: Đang xem tất cả 121 máy'}</span>
+              <span>${isFiltered ? `✓ Đang xem ${folderCount} máy có folder Drive` : `Chế độ: Đang xem tất cả ${state.allCatalogDevices.length} máy`}</span>
             </button>
           </div>
         ` : ''}
@@ -411,7 +485,7 @@
           <h3 style="color: var(--text-strong); margin-bottom: 0.5rem;">Không tìm thấy thiết bị phù hợp</h3>
           <p style="color: var(--muted); font-size: 0.95rem; max-width: 500px; margin: 0 auto;">
             ${isOnlyActive
-          ? 'Hiện tại hệ thống chỉ hiển thị các dòng máy đã có file ROM trên Google Drive. Bạn có thể bấm nút "Chế độ xem" phía trên để xem toàn bộ 121 dòng máy.'
+          ? `Hiện tại hệ thống chỉ hiển thị các dòng máy đã có file ROM trên Google Drive. Bạn có thể bấm nút "Chế độ xem" phía trên để xem toàn bộ ${state.allCatalogDevices.length} dòng máy.`
           : 'Vui lòng thử tìm với từ khóa tên máy khác (ví dụ: K70, 14, F5) hoặc mã máy (houji, garnet).'}
           </p>
         </div>
@@ -462,17 +536,20 @@
 
             <div class="device-action-wrapper">
               ${availableCount > 0 ? `
-                <button class="device-download-btn" data-code="${dev.code}">
+                <a class="device-download-btn" href="${dev.folderUrl || '#'}" target="_blank" rel="noopener noreferrer" data-code="${dev.code}">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="7 10 12 15 17 10"></polyline>
-                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
                   </svg>
-                  <span>Xem Bản Tải</span>
+                  <span>Mở Folder Drive</span>
                   <span class="download-count">${availableCount} bản</span>
-                </button>
+                </a>
               ` : `
-                <span class="device-no-rom">Chưa có bản tải</span>
+                <a class="device-download-btn device-download-btn--empty" href="${dev.folderUrl || '#'}" target="_blank" rel="noopener noreferrer" data-code="${dev.code}">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                  </svg>
+                  <span>Mở Folder Drive</span>
+                </a>
               `}
             </div>
           </div>
@@ -495,12 +572,25 @@
     const branches = dev.branches || [];
 
     if (branches.length === 0 || dev.availableRomsCount === 0) {
+      const driveUrl = dev.folderUrl || ('https://drive.google.com/drive/folders/' + (dev.folderId || ''));
       dialogContent.innerHTML = `
-        <div style="text-align: center; padding: 2.5rem 1rem; color: var(--muted); font-style: italic;">
-          Chưa có bản ROM cập nhật cho thiết bị này trên Google Drive.
+        <div style="text-align: center; padding: 2.5rem 1rem; color: var(--muted);">
+          <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">📁</div>
+          <div style="font-weight: 600; color: var(--text-strong); margin-bottom: 0.5rem;">Folder Google Drive đang trống</div>
+          <div style="font-size: 0.95rem; font-style: italic; margin-bottom: 1.5rem;">
+            Thư mục <code>${dev.code}</code> trên Google Drive chưa có file ROM nào.
+            Khi bạn upload ROM lên, danh sách tải sẽ tự động xuất hiện.
+          </div>
+          <a href="${driveUrl}" target="_blank" rel="noopener noreferrer" class="popup-download-link" style="display: inline-flex;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span>Mở Folder Google Drive</span>
+          </a>
         </div>
       `;
     } else {
+      const driveUrl = dev.folderUrl || ('https://drive.google.com/drive/folders/' + (dev.folderId || ''));
       dialogContent.innerHTML = branches.map(branch => {
         const regionLabel = REGION_LABELS[branch.region] || branch.region?.toUpperCase() || 'Official';
 
@@ -549,17 +639,16 @@
                   </svg>
                 </button>
                 <a 
-                  href="${os.download}" 
+                  href="${driveUrl}" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   class="popup-download-link"
+                  title="Mở folder Google Drive chứa ROM"
                 >
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="7 10 12 15 17 10"></polyline>
-                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
                   </svg>
-                  <span>Tải Về</span>
+                  <span>Mở Folder Drive</span>
                 </a>
               </div>
             </div>
@@ -599,13 +688,18 @@
     }
   }
 
-  // Event Listeners cho nút tải
+  // Event Listeners cho nút tải — nút giờ là <a target="_blank"> mở folder Drive,
+  // nên chỉ xử lý click nếu href bị thiếu (fallback) hoặc user giữ Ctrl/Shift.
   if (gridEl) {
     gridEl.addEventListener('click', (e) => {
       const btn = e.target.closest('.device-download-btn[data-code]');
-      if (btn) {
-        e.preventDefault();
-        const code = btn.getAttribute('data-code');
+      if (!btn) return;
+      // Nếu là link có href hợp lệ, để trình duyệt tự mở (không preventDefault).
+      const href = btn.getAttribute('href');
+      if (href && href !== '#') return;
+      e.preventDefault();
+      const code = btn.getAttribute('data-code');
+      if (code && typeof openRomModal === 'function') {
         openRomModal(code);
       }
     });
@@ -709,10 +803,32 @@
     }
   }
 
-  // Khởi động
+  // Tự động đồng bộ lại Google Drive theo chu kỳ CACHE_DURATION_MINUTES (phút).
+  // Dùng setTimeout tự nối tiếp để tránh chồng request khi Drive phản hồi chậm.
+  let autoSyncTimer = null;
+
+  function scheduleNextSync() {
+    if (autoSyncTimer) clearTimeout(autoSyncTimer);
+    const minutes = Math.max(1, Number(config.CACHE_DURATION_MINUTES) || 15);
+    autoSyncTimer = setTimeout(async () => {
+      try {
+        console.log(`⏰ Auto-sync Google Drive (mỗi ${minutes} phút) đang chạy...`);
+        await loadDevices();
+      } catch (e) {
+        console.warn('Auto-sync lỗi, sẽ thử lại sau', minutes, 'phút:', e);
+      } finally {
+        scheduleNextSync();
+      }
+    }, minutes * 60 * 1000);
+  }
+
+  // Khởi động lần đầu, sau đó bật lịch tự đồng bộ.
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadDevices);
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadDevices();
+      scheduleNextSync();
+    });
   } else {
-    loadDevices();
+    loadDevices().then(scheduleNextSync);
   }
 })();

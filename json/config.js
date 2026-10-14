@@ -5,21 +5,27 @@
 
 window.HYPERUR_CONFIG = {
   // 1. Google Apps Script Web App URL (Realtime API)
-  GOOGLE_DRIVE_API_URL: "https://script.google.com/macros/s/AKfycbzaD5HJUbNeKUQYfRUQDzpe7p9oHijySTbnFw9Cujt2HK1PXYS87ssEY_TLqeDe2xZOeA/exec",
+  // Triển khai mới 2026-10-14 01:40 (đã có endpoint debug + 60s cache).
+  // Để trống -> website đọc file dự phòng json/active_roms.json (sinh bằng: node scripts/scan_new_root.js --write).
+  GOOGLE_DRIVE_API_URL: "https://script.google.com/macros/s/AKfycbyKp3hC87kGB_hpmNXoyDVrQGfqcIvnHhdWgHG124EajwJCguhIkxIJbjuR4ONij5oG/exec",
 
   // 2. Chế độ lọc thiết bị theo Google Drive:
   // true  -> CHỈ HIỂN THỊ những thiết bị ĐANG CÓ ROM trên Google Drive (theo yêu cầu của bạn).
-  // false -> Hiển thị tất cả 121 thiết bị (thiết bị chưa có ROM sẽ hiển thị "Chưa có bản tải").
+  // false -> Hiển thị toàn bộ thiết bị trong devices_catalog.json (máy chưa có ROM hiện "Chưa có bản tải").
   ONLY_SHOW_ACTIVE_ROMS: true,
 
   // 3. Cho phép người dùng bấm nút chuyển đổi qua lại giữa "Chỉ máy có ROM" và "Tất cả máy"
   ENABLE_VIEW_TOGGLE: true,
 
-  // 4. Thời gian lưu bộ nhớ cache (phút) để tăng tốc độ tải trang
-  CACHE_DURATION_MINUTES: 10,
+  // 4. Chu kỳ tự động quét lại Google Drive (phút).
+  // Sau khi trang tải xong, hệ thống sẽ tự gọi lại loadDevices() mỗi X phút
+  // để cập nhật ROM mới mà người dùng không cần F5.
+  CACHE_DURATION_MINUTES: 15,
 
   // 5. Link thư mục Google Drive chính (Link Tổng)
-  DRIVE_ROOT_FOLDER_URL: "https://drive.google.com/drive/u/2/folders/1WxXT6Mx7ZdknKh_gd-dQr0Jturtkypyq",
+  // Mỗi thư mục con cấp 1 trong link này là một codename (fuxi, ishtar, nuwa...).
+  // Codename nào có file ROM thì website mới hiển thị phần tải của máy đó.
+  DRIVE_ROOT_FOLDER_URL: "https://drive.google.com/drive/u/2/folders/1hxTHOs5ua7Q5uWs236hGW_6X7jxaifKq",
 
   // 6. Tên miền chính thức của website
   SITE_DOMAIN: "https://hyperur.io.vn",
