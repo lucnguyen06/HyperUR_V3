@@ -179,6 +179,23 @@
     let currentPaymentMethod = 'mbbank';
     let currentIntlSub = 'binance'; // 'binance' hoặc 'paypal'
 
+    // Hệ thống QR xoay vòng VietQR
+    const qrAccounts = [
+        {
+            name: 'NGUYEN TAN LUC',
+            acc: 'VQRQAMNWP9901',
+            url: 'https://vietqr.app/img?bank=MBBank&acc=VQRQAMNWP9901&template=&showinfo=true&holder=NGUYEN%20TAN%20LUC'
+        },
+        {
+            name: 'NGUYEN VAN TUC',
+            acc: '0379050602',
+            url: 'https://vietqr.app/img?bank=MBBank&acc=0379050602&template=&showinfo=true&holder=NGUYEN%20VAN%20TUC'
+        }
+    ];
+    let currentQrIndex = 0; // Index QR hiện tại
+    let qrPaymentCount = 0; // Số lần đã nhận chuyển khoản trên QR này
+    const QR_ROTATE_THRESHOLD = 5; // Xoay QR sau 5 lần chuyển khoản
+
     // Buttons & History
     const submitBtn = document.getElementById('btn-submit-form');
     const btnQuickLookupTab = document.getElementById('btn-quick-lookup-tab');
@@ -468,7 +485,10 @@
     function updatePaymentQr(price, serial) {
         if (!paymentQrImg) return;
         if (currentPaymentMethod !== 'mbbank') return;
-        const base = 'https://vietqr.app/img?bank=MBBank&acc=VQRQAMNWP9901&template=&showinfo=true&holder=NGUYEN%20TAN%20LUC';
+        
+        // Lấy QR account hiện tại
+        const currentQr = qrAccounts[currentQrIndex];
+        const baseUrl = currentQr.url;
         const amountPart = price ? `&amount=${price}` : '';
         
         // Tổ hợp nội dung: UR + CODENAME + SERIAL + EMAIL (giữ nguyên định dạng user nhập)
@@ -481,7 +501,7 @@
         if (email) description += ' ' + email;
         
         const desPart = description !== 'UR' ? `&des=${encodeURIComponent(description)}` : '';
-        paymentQrImg.src = `${base}${amountPart}${desPart}`;
+        paymentQrImg.src = `${baseUrl}${amountPart}${desPart}`;
     }
 
     function selectIntlSub(subKey) {
@@ -899,6 +919,71 @@
     }
 
     // =========================================================
+    // QR ACCOUNT ROTATION (Xoay vòng QR sau mỗi 5 lần CK)
+    // =========================================================
+    function rotateQrAccount() {
+        qrPaymentCount++;
+        
+        // Lưu trạng thái vào localStorage
+        localStorage.setItem('qr_payment_count', qrPaymentCount);
+        localStorage.setItem('qr_current_index', currentQrIndex);
+        
+        // Nếu đã đủ 5 lần thì chuyển QR
+        if (qrPaymentCount >= QR_ROTATE_THRESHOLD) {
+            currentQrIndex = (currentQrIndex + 1) % qrAccounts.length;
+            qrPaymentCount = 0;
+            
+            localStorage.setItem('qr_current_index', currentQrIndex);
+            localStorage.setItem('qr_payment_count', qrPaymentCount);
+            
+            const nextQr = qrAccounts[currentQrIndex];
+            console.log(`🔄 Chuyển sang QR mới: ${nextQr.name} - ${nextQr.acc}`);
+            
+            // Cập nhật QR ngay
+            updatePaymentQr(currentCalculatedPrice, serialInput ? serialInput.value.trim() : '');
+            
+            // Cập nhật hiển thị bank info
+            updateBankInfoDisplay();
+        }
+    }
+    
+    // Khôi phục trạng thái QR từ localStorage
+    function restoreQrState() {
+        const savedIndex = localStorage.getItem('qr_current_index');
+        const savedCount = localStorage.getItem('qr_payment_count');
+        
+        if (savedIndex !== null) {
+            currentQrIndex = parseInt(savedIndex, 10) || 0;
+        }
+        if (savedCount !== null) {
+            qrPaymentCount = parseInt(savedCount, 10) || 0;
+        }
+        
+        const currentQr = qrAccounts[currentQrIndex];
+        console.log(`✅ Đang dùng QR: ${currentQr.name} - ${currentQr.acc} (${qrPaymentCount}/${QR_ROTATE_THRESHOLD})`);
+        
+        // Cập nhật hiển thị bank info
+        updateBankInfoDisplay();
+    }
+    
+    function updateBankInfoDisplay() {
+        const currentQr = qrAccounts[currentQrIndex];
+        const bankNameText = document.getElementById('bank-name-val');
+        const bankOwnerText = document.getElementById('bank-owner-val');
+        const bankAccText = document.getElementById('bank-acc-val');
+        const btnCopyOwner = document.getElementById('btn-copy-owner');
+        const btnCopyAcc = document.getElementById('btn-copy-acc');
+        
+        if (bankNameText) bankNameText.textContent = 'MB Bank';
+        if (bankOwnerText) bankOwnerText.textContent = currentQr.name;
+        if (bankAccText) bankAccText.textContent = currentQr.acc;
+        
+        // Cập nhật data-copy attribute cho buttons
+        if (btnCopyOwner) btnCopyOwner.setAttribute('data-copy', currentQr.name);
+        if (btnCopyAcc) btnCopyAcc.setAttribute('data-copy', currentQr.acc);
+    }
+
+    // =========================================================
     // 10. SUBMIT FORM ĐĂNG KÝ
     // =========================================================
     if (regForm) {
@@ -989,6 +1074,11 @@
                 email: email,
                 time: new Date().toLocaleDateString('vi-VN') + ' ' + new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })
             });
+
+            // Xoay vòng QR account (chỉ với MBBank)
+            if (currentPaymentMethod === 'mbbank') {
+                rotateQrAccount();
+            }
 
             if (submitBtn) {
                 submitBtn.disabled = false;
@@ -1662,6 +1752,9 @@
     async function init() {
         // Tải dữ liệu email đã đăng ký từ data / localStorage
         await loadEmailRegistrationsData();
+
+        // Khôi phục trạng thái QR xoay vòng
+        restoreQrState();
 
         // Khởi tạo hiển thị giá ban đầu (mặc định 50k)
         applyPriceUI(calculatePrice(0), 0);
