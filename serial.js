@@ -88,26 +88,16 @@
 
     /**
      * Bảng giá bậc thang theo số lượng thiết bị:
-     * - 0 - 14 thiết bị:  50.000đ (Cơ bản)
-     * - 15 - 29 thiết bị: 40.000đ (Ưu đãi giảm 10k)
-     * - 30+ thiết bị:     35.000đ (Ưu đãi VIP giảm 15k)
+     * - 1 - 30 thiết bị:  50.000đ (Cơ bản)
+     * - 31+ thiết bị:     40.000đ (Ưu đãi giảm 10k)
      */
     function calculatePrice(deviceCount) {
-        if (deviceCount >= 30) {
-            return {
-                price: 35000,
-                priceText: '35.000đ',
-                tierKey: 'tier30',
-                tierLabel: 'Tích >30 con: 35k',
-                badge: '🎉 Ưu đãi VIP: Giảm 15k/thiết bị',
-                badgeColor: '#10b981'
-            };
-        } else if (deviceCount >= 15) {
+        if (deviceCount >= 31) {
             return {
                 price: 40000,
                 priceText: '40.000đ',
-                tierKey: 'tier15',
-                tierLabel: 'Tích >15 con: 40k',
+                tierKey: 'tier31',
+                tierLabel: 'Tích ≥31 con: 40k',
                 badge: '🎁 Ưu đãi: Giảm 10k/thiết bị',
                 badgeColor: '#3b82f6'
             };
