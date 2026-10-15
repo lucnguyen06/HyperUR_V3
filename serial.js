@@ -20,12 +20,8 @@
     const REG_STORAGE_KEY = 'hyperur_serial_regs';
     const LOOKUP_HISTORY_KEY = 'hyperur_lookup_history';
 
-    // Dữ liệu mẫu khởi đầu (đồng bộ theo md/EMAIL_PRICING_GUIDE.md)
-    let emailDataStore = {
-        'test@gmail.com': { count: 5, lastUpdated: new Date().toISOString() },
-        'tho@gmail.com': { count: 18, lastUpdated: new Date().toISOString() },
-        'sop@gmail.com': { count: 35, lastUpdated: new Date().toISOString() }
-    };
+    // Dữ liệu mẫu khởi đầu (đồng bộ theo json/email_registrations.json)
+    let emailDataStore = {};
 
     let currentSelectedPlan = 'vip'; // 'vip' hoặc 'free'
     let currentCalculatedPrice = 50000;
@@ -437,6 +433,7 @@
         const val = codenameInput.value.trim().toLowerCase();
         if (!val) {
             previewBox.classList.remove('show');
+            updatePaymentSyntax();
             return;
         }
 
@@ -449,6 +446,8 @@
             previewText.innerHTML = `Mã thiết bị nhập tay: <code>${val}</code>`;
             previewBox.classList.add('show');
         }
+        
+        updatePaymentSyntax();
     }
 
     if (codenameInput) {
@@ -463,15 +462,25 @@
         if (!raw) return '';
         let clean = raw.replace(/^(?:sn|serial)\s*[:=\s-]*/i, '');
         clean = clean.replace(/[^a-zA-Z0-9]/g, '');
-        return clean;
+        return clean; // Giữ nguyên chữ hoa/thường như user gõ
     }
 
     function updatePaymentQr(price, serial) {
         if (!paymentQrImg) return;
         if (currentPaymentMethod !== 'mbbank') return;
-        const base = 'https://vietqr.app/img?bank=MBBank&acc=VQRQAMNWP9901&template=&showinfo=false&holder=NGUYEN%20TAN%20LUC&store=HyperUR';
+        const base = 'https://vietqr.app/img?bank=MBBank&acc=VQRQAMNWP9901&template=&showinfo=true&holder=NGUYEN%20TAN%20LUC';
         const amountPart = price ? `&amount=${price}` : '';
-        const desPart = serial ? `&des=${encodeURIComponent('UR ' + serial)}` : '';
+        
+        // Tổ hợp nội dung: UR + CODENAME + SERIAL + EMAIL (giữ nguyên định dạng user nhập)
+        let description = 'UR';
+        const code = codenameInput ? codenameInput.value.trim() : '';
+        const email = senderEmailInput ? senderEmailInput.value.trim() : '';
+        
+        if (code) description += ' ' + code;
+        if (serial) description += ' ' + serial;
+        if (email) description += ' ' + email;
+        
+        const desPart = description !== 'UR' ? `&des=${encodeURIComponent(description)}` : '';
         paymentQrImg.src = `${base}${amountPart}${desPart}`;
     }
 
@@ -577,6 +586,26 @@
         });
     });
 
+    function updatePaymentSyntax() {
+        const serial = serialInput ? serialInput.value.trim() : '';
+        const code = codenameInput ? codenameInput.value.trim() : '';
+        const email = senderEmailInput ? senderEmailInput.value.trim() : '';
+        
+        if (suggestedSyntax) {
+            if (serial && code && email) {
+                suggestedSyntax.textContent = `UR ${code} ${serial} ${email}`;
+            } else if (serial || code || email) {
+                const parts = ['UR', code, serial, email].filter(p => p);
+                suggestedSyntax.textContent = parts.join(' ');
+            } else {
+                suggestedSyntax.textContent = 'UR [CODENAME] [SERIAL] [EMAIL]';
+            }
+        }
+        if (tipSyntaxExample) {
+            tipSyntaxExample.textContent = 'UR ABC 12345678 user@gmail.com';
+        }
+    }
+
     function handleSerialInput() {
         if (!serialInput) return;
         const rawVal = serialInput.value;
@@ -587,13 +616,12 @@
         }
 
         const len = sanitized.length;
-        const upperSerial = sanitized.toUpperCase();
 
         if (serialCleanBtn) serialCleanBtn.style.display = len > 0 ? 'block' : 'none';
 
         if (serialCleanPreview && serialValidTag) {
             if (len >= 6) {
-                serialCleanPreview.innerHTML = `Serial hợp lệ: <strong>${upperSerial}</strong>`;
+                serialCleanPreview.innerHTML = `Serial hợp lệ: <strong>${sanitized}</strong>`;
                 serialValidTag.style.display = 'inline-flex';
             } else if (len > 0) {
                 serialCleanPreview.innerHTML = `Đang nhập (${len}/8 ký tự)...`;
@@ -605,15 +633,10 @@
         }
 
         // Cập nhật gợi ý cú pháp chuyển khoản
-        if (suggestedSyntax) {
-            suggestedSyntax.textContent = len > 0 ? `UR ${upperSerial}` : 'UR [SERIAL]';
-        }
-        if (tipSyntaxExample) {
-            tipSyntaxExample.textContent = len > 0 ? `UR ${upperSerial}` : 'UR A1B2C3D4';
-        }
+        updatePaymentSyntax();
 
         // Cập nhật QR code với serial mới
-        updatePaymentQr(currentCalculatedPrice, len > 0 ? upperSerial : '');
+        updatePaymentQr(currentCalculatedPrice, len > 0 ? sanitized : '');
     }
 
     if (serialInput) {
@@ -772,6 +795,7 @@
             if (emailCheckLoader) emailCheckLoader.style.display = 'none';
 
             applyPriceUI(calculatePrice(0), 0);
+            updatePaymentSyntax();
             return false;
         }
 
@@ -787,6 +811,7 @@
             }
             if (emailRegStats) emailRegStats.style.display = 'none';
             if (emailCheckLoader) emailCheckLoader.style.display = 'none';
+            updatePaymentSyntax();
             return false;
         }
 
@@ -794,6 +819,8 @@
         emailCheckTimeout = setTimeout(() => {
             checkEmailAndUpdatePrice(email);
         }, 500);
+        
+        updatePaymentSyntax();
 
         return true;
     }
