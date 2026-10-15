@@ -543,7 +543,7 @@
             selectIntlSub(currentIntlSub || 'binance');
         } else {
             // MBBank (Mặc định)
-            if (paymentMethodVal) paymentMethodVal.value = 'Chuyển Khoản MBBank (VietQR 24/7)';
+            if (paymentMethodVal) paymentMethodVal.value = 'Chuyển Khoản VietQR (24/7)';
             if (paymentQrBadgeText) paymentQrBadgeText.textContent = 'MBBank VietQR 24/7';
             if (paymentQrCaptionText) paymentQrCaptionText.textContent = 'Quét bằng mọi ứng dụng ngân hàng';
             if (bankNameRow) bankNameRow.style.display = 'flex';
@@ -921,7 +921,7 @@
 
             const senderNameVal = document.getElementById('sender-name-input')?.value.trim() || '';
             const transCodeVal = document.getElementById('transaction-input')?.value.trim() || '';
-            const methodVal = paymentMethodVal ? paymentMethodVal.value : 'Chuyển Khoản MBBank (VietQR 24/7)';
+            const methodVal = paymentMethodVal ? paymentMethodVal.value : 'Chuyển Khoản VietQR (24/7)';
 
             const isCryptoIntl = currentPaymentMethod === 'crypto_intl';
             const payload = {
