@@ -124,12 +124,7 @@ function saveToSheet(data) {
       '' // Expired Date
     ]]);
   } else {
-    // Thêm mới
-    const isFree = data.plan.includes('Active Free') || data.plan.includes('36');
-    const status = isFree ? 'Active' : 'Pending';
-    const activatedDate = isFree ? new Date() : '';
-    const expiredDate = isFree ? new Date(Date.now() + 36 * 24 * 60 * 60 * 1000) : ''; // +36 ngày
-    
+    // Thêm mới (Mặc định Pending chờ đối soát và kích hoạt bản quyền vĩnh viễn)
     sheet.appendRow([
       new Date(),
       data.serial.toUpperCase(),
@@ -139,9 +134,9 @@ function saveToSheet(data) {
       data.senderName,
       data.senderEmail.toLowerCase(),
       data.transactionCode,
-      status,
-      activatedDate,
-      expiredDate
+      'Pending',
+      '',
+      ''
     ]);
   }
 }
@@ -198,12 +193,15 @@ function findSerialRow(serial) {
  * Gửi email xác nhận cho user
  */
 function sendConfirmationEmail(data) {
-  const isFree = data.plan.includes('Active Free') || data.plan.includes('36');
   const serial = data.serial.toUpperCase();
   const codename = data.codename.toUpperCase();
   
   const subject = `✅ Xác Nhận Đăng Ký Serial ${serial} - HyperUR`;
   
+  const amountDisplay = data.amount
+    ? (typeof data.amount === 'number' ? data.amount.toLocaleString('vi-VN') + 'đ' : data.amount)
+    : '50.000đ / thiết bị';
+
   const htmlBody = `
 <!DOCTYPE html>
 <html lang="vi">
@@ -261,10 +259,7 @@ function sendConfirmationEmail(data) {
       
       <!-- Description -->
       <p class="description">
-        ${isFree 
-          ? `Số Serial <strong>${serial}</strong> đã được gửi lên hệ thống máy chủ để xác nhận kích hoạt gói Active Free (36 ngày). Bạn có thể kiểm tra trạng thái kích hoạt ngay bên dưới.`
-          : `Số Serial <strong>${serial}</strong> đã được gửi lên hệ thống máy chủ để xác nhận kích hoạt bản quyền. Vui lòng đảm bảo bạn đã hoàn tất ủng hộ với nội dung cú pháp gợi ý để admin đối soát và kích hoạt trong vòng 5 - 30 phút.`
-        }
+        Số Serial <strong>${serial}</strong> đã được gửi lên hệ thống máy chủ để xác nhận kích hoạt bản quyền. Vui lòng đảm bảo bạn đã hoàn tất ủng hộ với nội dung cú pháp gợi ý để admin đối soát và kích hoạt trong vòng 5 - 30 phút.
       </p>
       
       <!-- Details Box -->
@@ -283,11 +278,11 @@ function sendConfirmationEmail(data) {
         </div>
         <div class="detail-row">
           <div class="detail-label">Mức Ủng Hộ:</div>
-          <div class="detail-value amount-value">${isFree ? '0đ (Miễn Phí 36 Ngày Trải Nghiệm)' : '50.000đ / thiết bị'}</div>
+          <div class="detail-value amount-value">${amountDisplay}</div>
         </div>
         <div class="detail-row">
           <div class="detail-label">Người Gửi:</div>
-          <div class="detail-value">${data.senderName || 'Không yêu cầu (Active Free)'}</div>
+          <div class="detail-value">${data.senderName || 'Chưa cung cấp'}</div>
         </div>
         <div class="detail-row">
           <div class="detail-label">Email Liên Hệ:</div>
@@ -306,10 +301,7 @@ function sendConfirmationEmail(data) {
       <div class="note-box">
         <div class="note-title">⚠️ LƯU Ý QUAN TRỌNG</div>
         <p class="note-text">
-          ${isFree
-            ? `Gói Active Free sẽ tự động kích hoạt trong vài phút. Bạn có thể kiểm tra trạng thái bằng cách tra cứu Serial trên website. Gói có hiệu lực 36 ngày kể từ ngày kích hoạt.`
-            : `Vui lòng chuyển khoản với nội dung: <strong>UR ${serial}</strong> để hệ thống admin duyệt tự động nhanh nhất. Admin sẽ kích hoạt bản quyền trong vòng 5-30 phút sau khi nhận được thanh toán. Nếu quá 30 phút chưa được kích hoạt, vui lòng liên hệ admin qua Telegram.`
-          }
+          Vui lòng chuyển khoản với nội dung: <strong>UR ${serial}</strong> để hệ thống admin duyệt tự động nhanh nhất. Admin sẽ kích hoạt bản quyền trong vòng 5-30 phút sau khi nhận được thanh toán. Nếu quá 30 phút chưa được kích hoạt, vui lòng liên hệ admin qua Telegram.
         </p>
       </div>
       
@@ -378,11 +370,12 @@ function testEmail() {
   const testData = {
     serial: 'TEST123456',
     codename: 'marble',
-    plan: 'Active Free (36 ngày)',
-    paymentMethod: 'Active Free (0đ - Dùng thử 36 ngày)',
+    plan: 'Đăng kí có Ủng hộ (Vĩnh viễn)',
+    paymentMethod: 'Chuyển Khoản VietQR (24/7)',
     senderName: 'Test User',
     senderEmail: 'your-email@gmail.com', // Thay bằng email của bạn để test
-    transactionCode: 'ACTIVE_FREE_36_DAYS'
+    transactionCode: 'UR TEST123456',
+    amount: 50000
   };
   
   sendConfirmationEmail(testData);

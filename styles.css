@@ -3912,95 +3912,6 @@ dialog:not([open]) {
   gap: 0.85rem;
 }
 
-/* Free Plan Summary Box */
-.free-plan-summary-box {
-  background: linear-gradient(145deg, rgba(16, 185, 129, 0.08) 0%, rgba(15, 23, 42, 0.85) 100%);
-  border: 1px solid rgba(52, 211, 153, 0.35);
-  border-radius: var(--radius-lg);
-  padding: 1.6rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-[data-theme="light"] .free-plan-summary-box {
-  background: linear-gradient(145deg, rgba(16, 185, 129, 0.06) 0%, #ffffff 100%);
-  border-color: rgba(16, 185, 129, 0.35);
-}
-
-.free-summary-header {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  margin-bottom: 1.15rem;
-  padding-bottom: 0.85rem;
-  border-bottom: 1px solid rgba(52, 211, 153, 0.2);
-}
-
-.free-summary-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: rgba(16, 185, 129, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  border: 1px solid rgba(52, 211, 153, 0.3);
-}
-
-.free-summary-titles {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.free-summary-title {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #34d399;
-  margin: 0;
-}
-
-.free-summary-badge {
-  font-size: 0.72rem;
-  font-weight: 800;
-  color: #34d399;
-  background: rgba(16, 185, 129, 0.15);
-  padding: 0.2rem 0.55rem;
-  border-radius: 4px;
-  display: inline-block;
-  letter-spacing: 0.03em;
-}
-
-.free-summary-body p {
-  font-size: 0.88rem;
-  color: var(--text-soft);
-  margin-bottom: 0.85rem;
-  line-height: 1.5;
-}
-
-.free-summary-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.free-summary-list li {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  font-size: 0.84rem;
-  color: var(--text-soft);
-}
-
-.free-summary-list li svg {
-  flex-shrink: 0;
-}
-
 .reg-section {
   margin-bottom: 2.5rem;
 }
@@ -4418,7 +4329,7 @@ dialog:not([open]) {
 /* Plan Selection & Cards - Comparative Grid */
 .reg-plans-selection {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 1.25rem;
   align-items: stretch;
 }
@@ -4561,38 +4472,6 @@ dialog:not([open]) {
   color: #2563eb;
 }
 
-/* Active Free Plan State */
-.reg-plan-card.plan-free-card.active {
-  background: linear-gradient(145deg, rgba(16, 185, 129, 0.14) 0%, rgba(6, 182, 212, 0.1) 100%);
-  border: 2px solid rgba(16, 185, 129, 0.85);
-  box-shadow: 0 10px 35px rgba(16, 185, 129, 0.22), inset 0 0 24px rgba(16, 185, 129, 0.08);
-}
-
-[data-theme="light"] .reg-plan-card.plan-free-card.active {
-  background: linear-gradient(145deg, rgba(236, 253, 245, 0.95) 0%, rgba(240, 253, 250, 0.95) 100%);
-  border-color: #10b981;
-  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.14);
-}
-
-.reg-plan-card.plan-free-card.active .plan-radio-circle {
-  border-color: #34d399;
-  background: #10b981;
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.65);
-}
-
-.reg-plan-card.plan-free-card.active .plan-radio-circle::after {
-  background: #ffffff;
-  transform: scale(1);
-}
-
-.reg-plan-card.plan-free-card.active .plan-selection-status {
-  color: #34d399;
-}
-
-[data-theme="light"] .reg-plan-card.plan-free-card.active .plan-selection-status {
-  color: #059669;
-}
-
 .reg-plan-header {
   display: flex;
   align-items: center;
@@ -4632,39 +4511,6 @@ dialog:not([open]) {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
-}
-
-.free-active-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.22rem 0.65rem;
-  border-radius: var(--radius-pill);
-  background: rgba(16, 185, 129, 0.16);
-  border: 1px solid rgba(16, 185, 129, 0.45);
-  color: #34d399;
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.free-sub-pill {
-  display: inline-flex;
-  align-items: center;
-  font-size: 0.74rem;
-  color: #34d399;
-  background: rgba(16, 185, 129, 0.08);
-  border: 1px dashed rgba(16, 185, 129, 0.3);
-  padding: 0.18rem 0.55rem;
-  border-radius: var(--radius-pill);
-  font-weight: 500;
-}
-
-[data-theme="light"] .free-sub-pill {
-  color: #059669;
-  background: rgba(16, 185, 129, 0.06);
-  border-color: rgba(5, 150, 105, 0.3);
 }
 
 /* Price row & tier note beside price */
@@ -6154,94 +6000,6 @@ dialog:not([open]) {
   padding: 0.15rem 0.5rem;
   border-radius: 4px;
   background: rgba(6, 182, 212, 0.12);
-}
-
-/* Notice Box for Active Free (36 Days Trial) */
-.free-active-notice-box {
-  margin-top: 1.25rem;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(6, 182, 212, 0.06) 100%);
-  border: 1px solid rgba(59, 130, 246, 0.28);
-  border-radius: var(--radius-md);
-  padding: 1.25rem 1.4rem;
-  display: flex;
-  gap: 1.1rem;
-  align-items: flex-start;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  position: relative;
-  overflow: hidden;
-}
-
-.free-active-notice-box::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: linear-gradient(180deg, var(--accent-primary), var(--accent-cyan));
-}
-
-.free-active-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(59, 130, 246, 0.15);
-  border: 1.5px solid rgba(59, 130, 246, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--accent-cyan);
-  flex-shrink: 0;
-  margin-top: 0.1rem;
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
-}
-
-.free-active-body {
-  flex: 1;
-}
-
-.free-active-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 0.45rem;
-}
-
-.free-active-title {
-  margin: 0;
-  font-size: 0.98rem;
-  font-weight: 700;
-  color: var(--text-strong);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.free-active-badge {
-  font-size: 0.76rem;
-  font-weight: 700;
-  padding: 0.2rem 0.65rem;
-  border-radius: var(--radius-full);
-  background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.4);
-  color: #34d399;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.free-active-desc {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--text-soft);
-  line-height: 1.6;
-}
-
-.free-active-desc strong {
-  color: var(--accent-cyan);
-  font-weight: 700;
 }
 
 /* ==========================================================================

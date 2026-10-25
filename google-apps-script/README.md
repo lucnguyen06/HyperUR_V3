@@ -8,7 +8,7 @@ Hệ thống tự động gửi email xác nhận khi user đăng ký Serial.
 - 💾 Lưu vào Google Sheets tự động
 - 📧 Gửi email xác nhận với template đẹp
 - 🔍 API tra cứu trạng thái Serial
-- 🆓 Tự động kích hoạt gói Active Free (36 ngày)
+- ⚡ Kích hoạt bản quyền vĩnh viễn (Có ủng hộ)
 
 ---
 
@@ -85,7 +85,7 @@ Script sẽ tự động tạo sheet **Registrations** với các cột:
 
 | Timestamp | Serial | Codename | Plan | Payment Method | Sender Name | Sender Email | Transaction Code | Status | Activated Date | Expired Date |
 |-----------|--------|----------|------|----------------|-------------|--------------|------------------|--------|----------------|--------------|
-| 2026-10-03 | TEST123 | marble | Free | Free | Test User | test@mail.com | FREE_36 | Active | 2026-10-03 | 2026-11-08 |
+| 2026-10-03 | TEST123 | marble | Có Ủng hộ (Vĩnh viễn) | VietQR | Test User | test@mail.com | UR TEST123 | Active | 2026-10-03 | |
 
 ### Status Values:
 - **Pending**: Chờ thanh toán
@@ -197,7 +197,7 @@ Email được gửi tự động có:
 - ✅ Tự động gửi email xác nhận
 - ✅ Lưu vào Google Sheets
 - ✅ API tra cứu Serial
-- ✅ Tự động kích hoạt gói Free
+- ✅ Kích hoạt bản quyền vĩnh viễn
 
 ---
 

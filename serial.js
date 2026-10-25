@@ -23,7 +23,7 @@
     // Dữ liệu mẫu khởi đầu (đồng bộ theo json/email_registrations.json)
     let emailDataStore = {};
 
-    let currentSelectedPlan = 'vip'; // 'vip' hoặc 'free'
+    let currentSelectedPlan = 'vip';
     let currentCalculatedPrice = 50000;
     let devicesMap = {};
     let emailCheckTimeout = null;
@@ -147,9 +147,7 @@
 
     // Plan Cards
     const planCardVip = document.getElementById('plan-card-vip');
-    const planCardFree = document.getElementById('plan-card-free');
     const statusVip = document.getElementById('status-vip');
-    const statusFree = document.getElementById('status-free');
     const regTypeValue = document.getElementById('reg-type-value');
     const planPriceVal = document.querySelector('#plan-card-vip .reg-plan-price-val');
     const pillBase = document.getElementById('tier-pill-base');
@@ -351,51 +349,22 @@
     }
 
     // =========================================================
-    // 5. PLAN SELECTION (VIP vs ACTIVE FREE)
+    // 5. PLAN SELECTION (BẢN QUYỀN VĨNH VIỄN)
     // =========================================================
     function selectPlan(planKey) {
-        currentSelectedPlan = planKey;
-        if (planKey === 'free') {
-            if (planCardVip) {
-                planCardVip.classList.remove('active');
-                planCardVip.setAttribute('aria-checked', 'false');
-            }
-            if (planCardFree) {
-                planCardFree.classList.add('active');
-                planCardFree.setAttribute('aria-checked', 'true');
-            }
-            if (statusVip) statusVip.textContent = 'Nhấn để chọn gói này';
-            if (statusFree) statusFree.textContent = '✓ Đang chọn gói này (Trải nghiệm 36 ngày)';
-            if (regTypeValue) regTypeValue.value = 'Active Free (36 Ngày Trải Nghiệm)';
-
-            if (submitBtn) {
-                const btnSpan = document.getElementById('btn-submit-text') || submitBtn.querySelector('span');
-                if (btnSpan) btnSpan.textContent = 'Xác Nhận & Gửi Serial Active Free (36 Ngày)';
-            }
-            if (paymentSection) paymentSection.style.display = 'none';
-            const freeSummaryBox = document.getElementById('free-plan-summary-box');
-            if (freeSummaryBox) freeSummaryBox.style.display = 'block';
-        } else {
-            if (planCardFree) {
-                planCardFree.classList.remove('active');
-                planCardFree.setAttribute('aria-checked', 'false');
-            }
-            if (planCardVip) {
-                planCardVip.classList.add('active');
-                planCardVip.setAttribute('aria-checked', 'true');
-            }
-            if (statusFree) statusFree.textContent = 'Nhấn để chọn gói này';
-            if (statusVip) statusVip.textContent = '✓ Đang chọn gói này (Mặc định)';
-            if (regTypeValue) regTypeValue.value = 'Đăng kí có Ủng hộ (Vĩnh viễn)';
-
-            if (submitBtn) {
-                const btnSpan = document.getElementById('btn-submit-text') || submitBtn.querySelector('span');
-                if (btnSpan) btnSpan.textContent = 'Xác Nhận & Gửi Serial Lên Hệ Thống';
-            }
-            if (paymentSection) paymentSection.style.display = 'block';
-            const freeSummaryBox = document.getElementById('free-plan-summary-box');
-            if (freeSummaryBox) freeSummaryBox.style.display = 'none';
+        currentSelectedPlan = 'vip';
+        if (planCardVip) {
+            planCardVip.classList.add('active');
+            planCardVip.setAttribute('aria-checked', 'true');
         }
+        if (statusVip) statusVip.textContent = '✓ Đang chọn gói này (Mặc định)';
+        if (regTypeValue) regTypeValue.value = 'Đăng kí có Ủng hộ (Vĩnh viễn)';
+
+        if (submitBtn) {
+            const btnSpan = document.getElementById('btn-submit-text') || submitBtn.querySelector('span');
+            if (btnSpan) btnSpan.textContent = 'Xác Nhận & Gửi Serial Lên Hệ Thống';
+        }
+        if (paymentSection) paymentSection.style.display = 'block';
     }
 
     if (planCardVip) {
@@ -404,16 +373,6 @@
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 selectPlan('vip');
-            }
-        });
-    }
-
-    if (planCardFree) {
-        planCardFree.addEventListener('click', () => selectPlan('free'));
-        planCardFree.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                selectPlan('free');
             }
         });
     }
@@ -993,7 +952,6 @@
             const serial = serialInput ? sanitizeSerial(serialInput.value).toUpperCase() : '';
             const code = codenameInput ? codenameInput.value.trim().toLowerCase() : '';
             const plan = (regTypeValue ? regTypeValue.value : '') || 'Đăng kí có Ủng hộ (Vĩnh viễn)';
-            const isFree = plan.includes('Active Free') || plan.includes('36');
             const emailRaw = senderEmailInput ? senderEmailInput.value.trim() : '';
             const email = emailRaw ? emailRaw.toLowerCase() : '';
 
@@ -1034,7 +992,7 @@
                 paymentMethod: methodVal,
                 senderName: senderNameVal,
                 transactionCode: transCodeVal,
-                amount: isFree ? 0 : (isCryptoIntl ? '5$' : currentCalculatedPrice),
+                amount: isCryptoIntl ? '5$' : currentCalculatedPrice,
                 timestamp: new Date().toISOString()
             };
 
@@ -1087,7 +1045,7 @@
                         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                         <polyline points="22 4 12 14.01 9 11.01"></polyline>
                     </svg>
-                    <span id="btn-submit-text">${isFree ? 'Xác Nhận & Gửi Serial Active Free (36 Ngày)' : 'Xác Nhận & Gửi Serial Lên Hệ Thống'}</span>
+                    <span id="btn-submit-text">Xác Nhận & Gửi Serial Lên Hệ Thống</span>
                 `;
             }
 
@@ -1098,9 +1056,7 @@
             if (modalEmailVal) modalEmailVal.textContent = email;
             const modalAmountVal = document.getElementById('modal-amount-val');
             if (modalAmountVal) {
-                if (isFree) {
-                    modalAmountVal.textContent = '0đ (Active Free 36 Ngày)';
-                } else if (isCryptoIntl) {
+                if (isCryptoIntl) {
                     modalAmountVal.textContent = '5$ (5 USDT / 5 USD)';
                 } else {
                     modalAmountVal.textContent = formatCurrency(currentCalculatedPrice);
@@ -1112,12 +1068,10 @@
             }
 
             if (modalDesc) {
-                modalDesc.textContent = isFree
-                    ? `Số Serial ${serial} đã được gửi lên hệ thống máy chủ để xác nhận kích hoạt gói Active Free (36 ngày). Bạn có thể kiểm tra trạng thái kích hoạt ngay bên dưới.`
-                    : `Số Serial ${serial} đã được gửi lên hệ thống máy chủ để xác nhận kích hoạt bản quyền. Bạn có thể kiểm tra trạng thái kích hoạt ngay bên dưới.`;
+                modalDesc.textContent = `Số Serial ${serial} đã được gửi lên hệ thống máy chủ để xác nhận kích hoạt bản quyền. Bạn có thể kiểm tra trạng thái kích hoạt ngay bên dưới.`;
             }
 
-            if (modalQrBox) modalQrBox.style.display = isFree ? 'none' : 'block';
+            if (modalQrBox) modalQrBox.style.display = 'block';
             if (modalQrSyntax) modalQrSyntax.textContent = `UR ${serial}`;
 
             showToast('✅ Đã gửi Serial lên hệ thống để xác nhận!');
