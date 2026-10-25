@@ -156,17 +156,24 @@
                     <div class="reg-step-item active">
                         <div class="reg-step-num">2</div>
                         <div class="reg-step-info">
-                            <span class="reg-step-title">Bản Quyền & Thanh Toán</span>
-                            <span class="reg-step-sub">Quét VietQR & Duyệt tự động</span>
+                            <span class="reg-step-title">Gói & Kênh TT</span>
+                            <span class="reg-step-sub">Chọn phương thức</span>
+                        </div>
+                    </div>
+                    <div class="reg-step-connector" aria-hidden="true"></div>
+                    <div class="reg-step-item active">
+                        <div class="reg-step-num">3</div>
+                        <div class="reg-step-info">
+                            <span class="reg-step-title">Quét QR Thanh Toán</span>
+                            <span class="reg-step-sub">Duyệt tự động siêu tốc</span>
                         </div>
                     </div>
                 </div>
 
                 <form id="serial-register-form" novalidate>
 
-                    <div class="reg-form-grid-layout">
-                        <!-- ================= CỘT TRÁI: MỤC 1 & MỤC 2 ================= -->
-                        <div class="reg-layout-col-left">
+                    <!-- ================= HÀNG TRÊN: BƯỚC 1 VÀ BƯỚC 2 (2 CỘT CÂN ĐỐI) ================= -->
+                    <div class="reg-top-steps-grid">
 <!-- =========================================================
                          MỤC 1: THÔNG TIN THIẾT BỊ & EMAIL XÁC THỰC
                          ========================================================= -->
@@ -365,10 +372,10 @@
                             <span>💡 Chỉ điền đúng số Serial phần cứng (không thêm "SN:", dấu cách hay dấu hai chấm).</span>
                         </div>
 
-                        <!-- Accordion hướng dẫn tìm serial -->
-                        <details class="serial-help-accordion">
+                        <!-- Accordion hướng dẫn tìm serial (luôn mở sẵn) -->
+                        <details class="serial-help-accordion" open>
                             <summary class="serial-help-summary">
-                                <span>🔍 Bạn chưa biết cách lấy số Serial thiết bị? Nhấn xem hướng dẫn</span>
+                                <span>🔍 Hướng dẫn lấy số Serial thiết bị chuẩn (Fastboot / ADB)</span>
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg>
@@ -492,11 +499,10 @@
                             <input type="hidden" name="paymentMethod" id="payment-method-value" value="Chuyển Khoản VietQR (24/7)">
                         </div>
                     </div>
-                        </div>
+                </div> <!-- /reg-top-steps-grid -->
 
-                        <!-- ================= CỘT PHẢI: CHI TIẾT THANH TOÁN (QR) & GỬI ================= -->
-                        <div class="reg-layout-col-right">
-
+                <!-- ================= HÀNG DƯỚI: KHỐI QR THANH TOÁN NẰM Ở CHÍNH GIỮA ================= -->
+                <div class="reg-center-payment-wrapper">
                     <div class="reg-section" id="payment-reg-section">
                         <!-- Toggle chuyển giữa Binance Pay & PayPal khi chọn Kênh Quốc Tế & Crypto -->
                         <div class="qr-method-switcher" id="qr-intl-switcher" style="display: none;">
@@ -636,18 +642,12 @@
                             </div>
                         </div>
                     </div>
+                </div> <!-- /reg-center-payment-wrapper -->
 
-                    <!-- =========================================================
-                         HÀNH ĐỘNG GỬI ĐĂNG KÝ
-                         ========================================================= -->
-                    
-                        </div>
-                    </div>
-
-                    <!-- =========================================================
-                         HÀNH ĐỘNG GỬI ĐĂNG KÝ (GHIM CỐ ĐỊNH Ở GIỮA ĐÁY MÀN HÌNH)
-                         ========================================================= -->
-                    <div class="reg-actions-wrapper reg-floating-action-bar" id="reg-floating-action-bar">
+                <!-- =========================================================
+                     HÀNH ĐỘNG GỬI ĐĂNG KÝ (GHIM CỐ ĐỊNH Ở GIỮA ĐÁY MÀN HÌNH)
+                     ========================================================= -->
+                <div class="reg-actions-wrapper reg-floating-action-bar" id="reg-floating-action-bar">
                         <div class="reg-floating-action-inner">
                             <button type="submit" id="btn-submit-form" class="btn-submit-main">
                                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">

@@ -1,0 +1,71 @@
+Attached Element Context from Integrated Browser
+
+Element: div.serial-help-body
+
+URL: file:///c%3A/Users/Moderator/Documents/GitHub/HyperUR_V3/serial.html
+
+HTML Path: div#panel-register.register-page-wrapper.serial-panel > section.register-card > form#serial-register-form > div.reg-top-steps-grid > div.reg-section > details.serial-help-accordion > div.serial-help-body
+
+Outer HTML:
+```html
+<div class="serial-help-body">
+                                <p>Bạn có thể lấy số Serial bằng một trong 2 cách chuẩn sau:</p>
+                                <ol>
+                                    <li><strong>Qua chế độ Fastboot (Khuyên dùng khi cài ROM):</strong> Đưa máy vào Fastboot, cắm cáp vào máy tính và mở Command Prompt gõ: <code>fastboot getvar serialno</code>.</li>
+                                    <li><strong>Qua ADB:</strong> Bật Gỡ lỗi USB và gõ lệnh: <code>adb get-serialno</code>.</li>
+                                </ol>
+                            </div>
+```
+
+Dimensions:
+- top: 649px
+- left: 316px
+- width: 535px
+- height: 142px
+
+CSS:
+```css
+*, *::before, *::after { margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+.serial-help-body { padding: 0.85rem 1rem;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--text-soft);
+  border-top: 1px solid var(--border); }
+
+/* Pseudo-elements */
+::-webkit-scrollbar { width: 10px;
+  height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb);
+  border-radius: 5px;
+  border: 2px solid var(--bg); }
+::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }
+::-webkit-scrollbar-track { background: var(--bg); }
+
+/* Inherited */
+body { font-family: 'Inter', 'Be Vietnam Pro', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--text); line-height: 1.6 }
+html { font-size: 16px }
+
+/* Resolved values */
+margin: 0px;
+padding: 13.6px 16px;
+border-radius: 0px;
+box-sizing: border-box;
+color: rgb(203, 213, 225);
+display: block;
+font-family: Inter, "Be Vietnam Pro", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+font-size: 13.44px;
+height: 141.719px;
+line-height: 20.832px;
+unicode-bidi: isolate /*UA*/;
+width: 535px;
+
+/* CSS variables */
+--border: rgba(255, 255, 255, 0.07);
+--bg: #080a11;
+--text-soft: #cbd5e1;
+--scrollbar-thumb: rgba(255, 255, 255, 0.15);
+--scrollbar-thumb-hover: rgba(255, 255, 255, 0.28);
+--text: #e2e8f0;
+```

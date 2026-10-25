@@ -3834,82 +3834,98 @@ dialog:not([open]) {
   }
 }
 
-/* 2-Column Split Layout for Registration Form */
-.reg-form-grid-layout {
+/* Top steps: 2 equal-height balanced columns on desktop, 1 column on mobile */
+.reg-top-steps-grid {
   display: grid;
-  grid-template-columns: 1.08fr 0.92fr;
-  gap: 2.25rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
   align-items: start;
-  margin-bottom: 3rem; /* Khoảng cách rộng rãi phía dưới 2 cột */
+  margin-bottom: 2.25rem;
 }
 
-@media (max-width: 1080px) {
-  .reg-form-grid-layout {
+@media (max-width: 960px) {
+  .reg-top-steps-grid {
     grid-template-columns: 1fr;
     gap: 1.75rem;
   }
 }
 
-.reg-layout-col-left {
-  display: flex;
-  flex-direction: column;
-  gap: 2.25rem;
-  min-width: 0;
+/* Centered QR Payment Block (Nằm ở chính giữa trang) */
+.reg-center-payment-wrapper {
+  max-width: 860px;
+  margin: 0 auto 3rem;
+  width: 100%;
 }
 
-.reg-layout-col-right {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  min-width: 0;
-}
-
-@media (min-width: 1081px) {
-  .reg-layout-col-right {
-    position: sticky;
-    top: 85px;
-  }
-}
-
-.reg-layout-col-right .reg-section {
+.reg-center-payment-wrapper .reg-section {
   margin-bottom: 0;
 }
 
-.reg-layout-col-right .payment-detail-box {
-  grid-template-columns: 1fr;
-  padding: 1.35rem;
-  gap: 1.25rem;
-  text-align: left;
+.reg-center-payment-wrapper .qr-method-switcher {
+  max-width: 440px;
+  margin: 0 auto 1.25rem;
 }
 
-.reg-layout-col-right .payment-qr-wrap {
+.reg-center-payment-wrapper .payment-detail-box {
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  gap: 2.25rem;
+  align-items: center;
+  padding: 2rem 2.25rem;
+  background: linear-gradient(145deg, rgba(16, 24, 40, 0.85) 0%, rgba(10, 16, 30, 0.95) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.32);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.4), 0 0 35px rgba(59, 130, 246, 0.12);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+[data-theme="light"] .reg-center-payment-wrapper .payment-detail-box {
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  border-color: rgba(59, 130, 246, 0.25);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+}
+
+.reg-center-payment-wrapper .payment-qr-wrap {
   margin: 0 auto;
-  max-width: 250px;
-  min-height: 250px;
-  max-height: 250px;
-}
-
-.reg-layout-col-right .payment-qr-img {
-  max-width: 100%;
-  max-height: 175px;
-  height: 175px;
-  width: auto;
-}
-
-.reg-layout-col-right .payment-steps-banner {
+  max-width: 270px;
+  width: 100%;
+  display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.95);
 }
 
-.reg-layout-col-right .p-step-arrow {
-  display: none;
+.reg-center-payment-wrapper .payment-qr-img {
+  max-width: 100%;
+  max-height: 200px;
+  height: 200px;
+  width: auto;
+  object-fit: contain;
 }
 
-.reg-layout-col-right .reg-verify-inputs-row {
-  grid-template-columns: 1fr;
+.reg-center-payment-wrapper .payment-info-rows {
+  display: flex;
+  flex-direction: column;
   gap: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .reg-center-payment-wrapper .payment-detail-box {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.4rem 1.15rem;
+    text-align: center;
+  }
+
+  .reg-center-payment-wrapper .payment-info-value-row {
+    justify-content: center;
+  }
 }
 
 .reg-section {
@@ -4299,6 +4315,15 @@ dialog:not([open]) {
   font-weight: 600;
   color: var(--accent-cyan);
   user-select: none;
+}
+
+.serial-help-summary svg {
+  transition: transform 0.22s ease;
+  flex-shrink: 0;
+}
+
+.serial-help-accordion[open] .serial-help-summary svg {
+  transform: rotate(180deg);
 }
 
 .serial-help-summary:hover {
