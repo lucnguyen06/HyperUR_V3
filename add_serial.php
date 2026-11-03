@@ -354,6 +354,31 @@ $existing = $chk->get_result()->fetch_assoc();
 $chk->close();
 
 if ($existing) {
+    if (strtolower(trim($existing['Time'] ?? '')) === 'pending') {
+        $upd = $conn->prepare("UPDATE serial SET Device = ?, Gmail = ?, Time = ? WHERE STT = ?");
+        $upd->bind_param('sssi', $device, $gmail, $time_store, $existing['STT']);
+        $upd->execute();
+        $upd->close();
+        @$conn->query("UPDATE registrations SET status = 'Active', activated_at = NOW() WHERE LOWER(TRIM(serial)) = LOWER('{$serial}')");
+        $conn->close();
+        if ($isJson) {
+            json_response_add(true, 'Kích hoạt serial thành công', [
+                'stt'    => (int)$existing['STT'],
+                'serial' => $existing['Serial'],
+                'device' => $device,
+                'gmail'  => $gmail,
+                'time'   => $time_store
+            ]);
+        }
+        html_response_add('Kích hoạt thành công', true, 'Serial vừa được kích hoạt thành công từ trạng thái chờ thanh toán.', [
+            'STT'    => '#' . $existing['STT'],
+            'Serial' => $existing['Serial'],
+            'Device' => $device,
+            'Gmail'  => $gmail,
+            'Time'   => $time_store
+        ]);
+    }
+
     $conn->close();
     if ($isJson) {
         json_response_add(false, 'Serial đã tồn tại trong hệ thống', [
