@@ -1,0 +1,7 @@
+# HyperUR V3 - Root .htaccess
+RewriteEngine On
+
+# Tự động chuyển hướng / rewrite các biến thể URL webhook SePay về endpoint chuẩn
+RewriteRule ^api/payment[_-]webhook\.php.*$ api/payment-webhook.php [L,QSA]
+RewriteRule ^payment[_-]webhook\.php.*$ api/payment-webhook.php [L,QSA]
+RewriteRule ^webhook/?$ api/payment-webhook.php [L,QSA]
