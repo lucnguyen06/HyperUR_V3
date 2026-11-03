@@ -90,14 +90,49 @@ function write_admin_log($conn, $admin_id, $username, $action, $description, $ta
     }
 }
 
+function sync_pending_registrations_to_serial($conn) {
+    try {
+        $res = $conn->query("
+            SELECT r.codename, r.serial, r.sender_email, r.status
+            FROM registrations r
+            WHERE NOT EXISTS (
+                SELECT 1 FROM serial s WHERE LOWER(TRIM(s.Serial)) = LOWER(TRIM(r.serial))
+            )
+        ");
+        if ($res && $res->num_rows > 0) {
+            $maxRow = $conn->query("SELECT IFNULL(MAX(STT), 0) AS m FROM serial")->fetch_assoc();
+            $nextStt = (int)$maxRow['m'] + 1;
+            $ins = $conn->prepare("INSERT INTO serial (STT, Device, Serial, Gmail, Time) VALUES (?, ?, ?, ?, ?)");
+            while ($row = $res->fetch_assoc()) {
+                $sn = trim($row['serial']);
+                if ($sn === '') continue;
+                $dev = trim($row['codename']) ?: 'Mobile';
+                $email = trim($row['sender_email']) ?: 'hyperur2026@gmail.com';
+                $time = (strtolower(trim($row['status'])) === 'active') ? 'unlimited' : 'pending';
+                if ($ins) {
+                    $ins->bind_param('issss', $nextStt, $dev, $sn, $email, $time);
+                    $ins->execute();
+                    $nextStt++;
+                }
+            }
+            if ($ins) $ins->close();
+        }
+    } catch (Throwable $e) {
+        error_log('sync_pending_registrations error: ' . $e->getMessage());
+    }
+}
+
 function parseTimeField($value) {
-    // Returns ['kind' => 'unlimited'|'fixed'|'invalid', 'date' => 'YYYY-MM-DD' or null]
+    // Returns ['kind' => 'unlimited'|'fixed'|'pending'|'invalid', 'date' => 'YYYY-MM-DD' or null]
     $v = trim((string)$value);
     if ($v === '') return ['kind' => 'invalid', 'date' => null];
 
     $lower = strtolower($v);
     if ($lower === 'unlimited' || $lower === 'lifetime' || $lower === 'vĩnh viễn' || $lower === 'vinh vien') {
         return ['kind' => 'unlimited', 'date' => null];
+    }
+    if ($lower === 'pending' || $lower === 'chờ duyệt' || $lower === 'chờ kích hoạt' || $lower === 'chờ bank' || $lower === 'chờ thanh toán') {
+        return ['kind' => 'pending', 'date' => null];
     }
 
     // Accept ddmmyyyy (legacy) -> convert
@@ -128,6 +163,7 @@ function formatTimeField($value) {
     // Convert stored value to display string. If stored is YYYY-MM-DD, return ddmmyyyy to mirror legacy import.
     $text = trim((string)$value);
     if ($text === '') return '';
+    if (strtolower($text) === 'pending') return 'pending';
     if (preg_match('/^(\d{4})-(\d{2})-(\d{2})$/', $text, $m)) {
         return "{$m[3]}/{$m[2]}/{$m[1]}";
     }
