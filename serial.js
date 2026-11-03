@@ -1476,6 +1476,100 @@
                 `- Gói: ${d.plan || 'Vĩnh viễn'}`
             );
 
+            // Khối thanh toán tự động hiển thị ngay khi tra cứu ra trạng thái Chờ Kích Hoạt
+            let paymentSectionHtml = '';
+            if (isPending) {
+                const currentQr = qrAccounts[currentQrIndex] || qrAccounts[0];
+                const email = d.senderEmail || '';
+                const count = getDeviceCountForEmail(email);
+                const priceInfo = calculatePrice(count);
+                const price = priceInfo.price;
+                const priceText = priceInfo.priceText;
+
+                let syntaxParts = ['UR'];
+                if (d.codename) syntaxParts.push(d.codename);
+                syntaxParts.push(serial);
+                if (email) syntaxParts.push(email);
+                const transferSyntax = syntaxParts.join(' ');
+
+                const qrUrl = `${currentQr.url}&amount=${price}&des=${encodeURIComponent(transferSyntax)}`;
+
+                paymentSectionHtml = `
+                    <div class="lookup-payment-box">
+                        <div style="display:flex; align-items:center; gap:0.65rem; margin-bottom:1.15rem; padding-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.08); flex-wrap:wrap;">
+                            <div style="width:34px; height:34px; border-radius:50%; background:rgba(245, 158, 11, 0.2); color:#fbbf24; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                                    <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                                    <line x1="2" y1="10" x2="22" y2="10"></line>
+                                </svg>
+                            </div>
+                            <div style="flex:1; min-width:240px;">
+                                <h3 style="margin:0; font-size:1.05rem; font-weight:800; color:#fbbf24;">Quét Mã QR Để Hoàn Tất Thanh Toán & Kích Hoạt Tự Động</h3>
+                                <p style="margin:0.25rem 0 0; font-size:0.83rem; color:#94a3b8;">Hệ thống SePay tự động đối soát nội dung và kích hoạt bản quyền trong 1-3 phút sau khi nhận tiền.</p>
+                            </div>
+                        </div>
+
+                        <div class="lookup-payment-grid">
+                            <div style="background:#ffffff; padding:0.85rem; border-radius:14px; text-align:center; box-shadow:0 8px 24px rgba(0,0,0,0.3); max-width:240px; margin:0 auto; width:100%;">
+                                <div style="font-size:0.75rem; font-weight:800; color:#0f172a; margin-bottom:0.45rem; display:flex; align-items:center; justify-content:center; gap:0.35rem;">
+                                    <span style="width:7px; height:7px; border-radius:50%; background:#10b981; display:inline-block;"></span>
+                                    <span>MBBank VietQR 24/7</span>
+                                </div>
+                                <img src="${qrUrl}" alt="QR thanh toán ${serial}" style="max-width:100%; height:auto; display:block; border-radius:8px; margin:0 auto;">
+                                <div style="font-size:0.72rem; color:#64748b; margin-top:0.45rem; font-weight:600;">Quét bằng mọi ứng dụng ngân hàng</div>
+                            </div>
+
+                            <div style="display:flex; flex-direction:column; gap:0.65rem;">
+                                <div style="display:flex; justify-content:space-between; align-items:center; padding:0.55rem 0.85rem; background:rgba(255,255,255,0.03); border-radius:8px; border:1px solid rgba(255,255,255,0.06);">
+                                    <span style="font-size:0.82rem; color:#94a3b8;">Mức Ủng Hộ:</span>
+                                    <span style="font-size:1.15rem; font-weight:800; color:#10b981; font-family:'JetBrains Mono', monospace;">${priceText}</span>
+                                </div>
+
+                                <div style="display:flex; justify-content:space-between; align-items:center; padding:0.55rem 0.85rem; background:rgba(255,255,255,0.03); border-radius:8px; border:1px solid rgba(255,255,255,0.06);">
+                                    <span style="font-size:0.82rem; color:#94a3b8;">Ngân Hàng Tiếp Nhận:</span>
+                                    <span style="font-size:0.88rem; font-weight:700; color:#e2e8f0;">MBBank (Ngân hàng Quân Đội)</span>
+                                </div>
+
+                                <div style="display:flex; justify-content:space-between; align-items:center; padding:0.55rem 0.85rem; background:rgba(255,255,255,0.03); border-radius:8px; border:1px solid rgba(255,255,255,0.06);">
+                                    <span style="font-size:0.82rem; color:#94a3b8;">Chủ Tài Khoản:</span>
+                                    <div style="display:flex; align-items:center; gap:0.5rem;">
+                                        <span style="font-size:0.88rem; font-weight:700; color:#e2e8f0;">${currentQr.name}</span>
+                                        <button type="button" class="btn-copy-mini" data-copy="${currentQr.name}">Chép</button>
+                                    </div>
+                                </div>
+
+                                <div style="display:flex; justify-content:space-between; align-items:center; padding:0.55rem 0.85rem; background:rgba(255,255,255,0.03); border-radius:8px; border:1px solid rgba(255,255,255,0.06);">
+                                    <span style="font-size:0.82rem; color:#94a3b8;">Số Tài Khoản MBBank:</span>
+                                    <div style="display:flex; align-items:center; gap:0.5rem;">
+                                        <span style="font-size:1.05rem; font-weight:800; color:#38bdf8; font-family:'JetBrains Mono', monospace;">${currentQr.acc}</span>
+                                        <button type="button" class="btn-copy-mini" data-copy="${currentQr.acc}">Chép</button>
+                                    </div>
+                                </div>
+
+                                <div style="padding:0.75rem 0.85rem; background:rgba(245, 158, 11, 0.08); border-radius:8px; border:1px solid rgba(245, 158, 11, 0.25);">
+                                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                                        <span style="font-size:0.82rem; font-weight:700; color:#fbbf24;">Nội Dung Chuyển Khoản (Bắt Buộc):</span>
+                                        <button type="button" class="btn-copy-accent" data-copy-syntax-btn="${transferSyntax}" style="padding:0.25rem 0.65rem; font-size:0.75rem;">Chép cú pháp</button>
+                                    </div>
+                                    <div style="font-family:'JetBrains Mono', monospace; font-size:0.95rem; font-weight:700; color:#fef08a; background:rgba(0,0,0,0.35); padding:0.45rem 0.65rem; border-radius:6px; word-break:break-all;">${transferSyntax}</div>
+                                    <div style="font-size:0.74rem; color:#fbbf24; margin-top:0.35rem;">⚠️ Cần ghi đúng nội dung này để SePay tự động kích hoạt vĩnh viễn ngay lập tức.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:1.25rem; display:flex; justify-content:center; gap:0.75rem; flex-wrap:wrap;">
+                            <button type="button" class="lookup-btn-main" id="btn-recheck-payment" style="max-width:340px; padding:0.8rem 1.4rem; font-size:0.92rem;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                                    <polyline points="23 4 23 10 17 10"></polyline>
+                                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                                </svg>
+                                <span>Đã Chuyển Khoản? Kiểm Tra Lại Ngay</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
             lookupResultContainer.innerHTML = `
                 <div class="lookup-result-card ${stateClass}">
                     <div class="lookup-result-header">
@@ -1534,6 +1628,8 @@
                         </div>
                     </div>
 
+                    ${paymentSectionHtml}
+
                     <div class="lookup-perks-box">
                         <div class="lookup-perks-title">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
@@ -1572,6 +1668,40 @@
                     </div>
                 </div>
             `;
+
+            // Nút kiểm tra lại thanh toán ngay
+            const btnRecheck = lookupResultContainer.querySelector('#btn-recheck-payment');
+            if (btnRecheck) {
+                btnRecheck.addEventListener('click', function () {
+                    performLookup(serial);
+                });
+            }
+
+            // Nút sao chép cú pháp chuyển khoản
+            lookupResultContainer.querySelectorAll('[data-copy-syntax-btn]').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const text = this.getAttribute('data-copy-syntax-btn');
+                    if (text && navigator.clipboard) {
+                        navigator.clipboard.writeText(text).then(() => {
+                            this.textContent = '✓ Đã chép';
+                            showToast(`Đã sao chép cú pháp: ${text}`);
+                            setTimeout(() => { this.textContent = 'Chép cú pháp'; }, 1800);
+                        });
+                    }
+                });
+            });
+
+            // Nút sao chép các thông tin STK, chủ TK
+            lookupResultContainer.querySelectorAll('[data-copy]').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const text = this.getAttribute('data-copy');
+                    if (text && navigator.clipboard) {
+                        navigator.clipboard.writeText(text).then(() => {
+                            showToast(`Đã sao chép: ${text}`);
+                        });
+                    }
+                });
+            });
         } else {
             const isEmail = String(query).includes('@');
             const notFoundText = encodeURIComponent(
