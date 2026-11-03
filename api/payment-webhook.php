@@ -94,12 +94,15 @@ if ($rawBody === false || $rawBody === '') {
 }
 
 // ============================================================
-// 5. Xác thực
+// 5. Xác thực (Hỗ trợ 1 hoặc NHIỀU tài khoản SePay cùng lúc)
 // ============================================================
-$secret  = (string)sepay_cfg('SEPAY_WEBHOOK_SECRET', '');
-$apiKey  = (string)sepay_cfg('SEPAY_API_KEY', '');
+$secretRaw  = (string)sepay_cfg('SEPAY_WEBHOOK_SECRET', '');
+$secretList = array_values(array_filter(array_map('trim', explode(',', $secretRaw))));
 
-if ($secret !== '') {
+$apiKeyRaw  = (string)sepay_cfg('SEPAY_API_KEY', '');
+$apiKeyList = array_values(array_filter(array_map('trim', explode(',', $apiKeyRaw))));
+
+if (!empty($secretList)) {
     // ---- Chế độ HMAC-SHA256 (khuyến nghị) ----
     $signature = $_SERVER['HTTP_X_SEPAY_SIGNATURE'] ?? '';
     $timestamp = (int)($_SERVER['HTTP_X_SEPAY_TIMESTAMP'] ?? 0);
@@ -110,19 +113,36 @@ if ($secret !== '') {
         sepay_respond(401, false, 'Request đã hết hạn');
     }
 
-    $expected = 'sha256=' . hash_hmac('sha256', $timestamp . '.' . $rawBody, $secret);
-    if (!hash_equals($expected, (string)$signature)) {
+    // So khớp chữ ký với bất kỳ Secret nào được khai báo (đa tài khoản SePay)
+    $validSignature = false;
+    foreach ($secretList as $sec) {
+        if ($sec === '') continue;
+        $expected = 'sha256=' . hash_hmac('sha256', $timestamp . '.' . $rawBody, $sec);
+        if (hash_equals($expected, (string)$signature)) {
+            $validSignature = true;
+            break;
+        }
+    }
+
+    if (!$validSignature) {
         error_log('[sepay-webhook] Sai chữ ký HMAC. Nhận: ' . substr((string)$signature, 0, 20) . '...');
         sepay_respond(401, false, 'Chữ ký không hợp lệ');
     }
-} elseif ($apiKey !== '') {
+} elseif (!empty($apiKeyList)) {
     // ---- Chế độ API Key (dự phòng) ----
     $authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? ($_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? '');
     $provided = '';
     if (preg_match('/^Apikey\s+(.+)$/i', trim((string)$authHeader), $m)) {
         $provided = trim($m[1]);
     }
-    if ($provided === '' || !hash_equals($apiKey, $provided)) {
+    $validApiKey = false;
+    foreach ($apiKeyList as $k) {
+        if ($provided !== '' && hash_equals($k, $provided)) {
+            $validApiKey = true;
+            break;
+        }
+    }
+    if (!$validApiKey) {
         error_log('[sepay-webhook] Sai API Key');
         sepay_respond(401, false, 'API Key không hợp lệ');
     }
