@@ -479,16 +479,28 @@ if ($regRow) {
 //      $alreadyActive vẫn = false -> sẽ INSERT trùng bản ghi.
 //    - Bảng `serial` KHÔNG có UNIQUE(Serial) nên DB không tự chặn.
 //    => Trường hợp user chuyển khoản lần 2 là hoàn toàn có thật.
-$chkExist = $conn->prepare("SELECT STT FROM serial WHERE UPPER(TRIM(Serial)) = ? LIMIT 1");
-$serialExisted = false;
+$chkExist = $conn->prepare("SELECT STT, Time FROM serial WHERE UPPER(TRIM(Serial)) = ? LIMIT 1");
+$serialRow = null;
 if ($chkExist) {
     $chkExist->bind_param('s', $matchedSerial);
     $chkExist->execute();
-    $serialExisted = $chkExist->get_result()->num_rows > 0;
+    $res = $chkExist->get_result();
+    if ($res && $res->num_rows > 0) {
+        $serialRow = $res->fetch_assoc();
+    }
     $chkExist->close();
 }
 
-if (!$serialExisted) {
+if ($serialRow) {
+    // Đã có trong bảng serial (ví dụ đã đăng ký trước ở web với trạng thái pending) -> Kích hoạt lên unlimited
+    $updExist = $conn->prepare("UPDATE serial SET Time = 'unlimited' WHERE STT = ?");
+    if ($updExist) {
+        $updExist->bind_param('i', $serialRow['STT']);
+        $updExist->execute();
+        $updExist->close();
+        $serialInserted = true;
+    }
+} else {
     // Lấy STT mới = MAX(STT) + 1, tự nhảy qua số đã dùng
     $maxRow = $conn->query("SELECT IFNULL(MAX(STT), 0) AS m FROM serial")->fetch_assoc();
     $newStt = (int)$maxRow['m'] + 1;
