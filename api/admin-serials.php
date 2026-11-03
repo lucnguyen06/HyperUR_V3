@@ -192,6 +192,7 @@ try {
     // ============================================================
     if ($action === 'list') {
         require_admin();
+        sync_pending_registrations_to_serial($conn);
 
         $page    = max(1, (int)($_GET['page'] ?? 1));
         $perPage = min(200, max(5, (int)($_GET['per_page'] ?? 50)));
@@ -199,7 +200,7 @@ try {
 
         $search  = trim($_GET['search'] ?? '');
         $device  = trim($_GET['device'] ?? '');
-        $status  = trim($_GET['status'] ?? ''); // 'unlimited' | 'active' | 'expired' | ''
+        $status  = trim($_GET['status'] ?? ''); // 'unlimited' | 'active' | 'expired' | 'pending' | ''
         $sortBy  = $_GET['sort_by'] ?? 'STT';
         $sortDir = strtoupper($_GET['sort_dir'] ?? 'DESC') === 'ASC' ? 'ASC' : 'DESC';
 
@@ -227,7 +228,7 @@ try {
 
         // Status filter - cannot be expressed purely in SQL because Time is varchar.
         // Fetch a slightly extended window (when status set) and re-filter & re-paginate in PHP.
-        $needClientStatus = in_array($status, ['unlimited', 'active', 'expired'], true);
+        $needClientStatus = in_array($status, ['unlimited', 'active', 'expired', 'pending'], true);
 
         if ($needClientStatus) {
             // Pull only STT + Time for client-side filtering (plus any other selected columns we need)
@@ -251,11 +252,12 @@ try {
             while ($row = $rs->fetch_assoc()) {
                 $kind = parseTimeField($row['Time'])['kind'];
                 if ($status === 'unlimited' && $kind !== 'unlimited') continue;
-                if ($status === 'active' && $kind !== 'fixed') continue;
-                if ($status === 'expired' && $kind === 'unlimited') continue;
+                if ($status === 'active' && ($kind !== 'fixed' || strtotime(parseTimeField($row['Time'])['date']) < strtotime(date('Y-m-d')))) continue;
+                if ($status === 'pending' && $kind !== 'pending') continue;
+                if ($status === 'expired' && ($kind === 'unlimited' || $kind === 'pending' || ($kind === 'fixed' && strtotime(parseTimeField($row['Time'])['date']) >= strtotime(date('Y-m-d'))))) continue;
 
                 $row['Time'] = formatTimeField($row['Time']);
-                $row['TimeStatus'] = ($kind === 'unlimited') ? 'unlimited' : (($kind === 'fixed' && strtotime(parseTimeField($row['Time'])['date']) >= strtotime(date('Y-m-d'))) ? 'active' : 'expired');
+                $row['TimeStatus'] = ($kind === 'unlimited') ? 'unlimited' : (($kind === 'pending') ? 'pending' : (($kind === 'fixed' && strtotime(parseTimeField($row['Time'])['date']) >= strtotime(date('Y-m-d'))) ? 'active' : 'expired'));
                 $filtered[] = $row;
             }
             $stmt->close();
@@ -284,7 +286,7 @@ try {
             while ($row = $rs->fetch_assoc()) {
                 $row['Time'] = formatTimeField($row['Time']);
                 $kind = parseTimeField($row['Time'])['kind'];
-                $row['TimeStatus'] = ($kind === 'unlimited') ? 'unlimited' : (($kind === 'fixed' && strtotime(parseTimeField($row['Time'])['date']) >= strtotime(date('Y-m-d'))) ? 'active' : 'expired');
+                $row['TimeStatus'] = ($kind === 'unlimited') ? 'unlimited' : (($kind === 'pending') ? 'pending' : (($kind === 'fixed' && strtotime(parseTimeField($row['Time'])['date']) >= strtotime(date('Y-m-d'))) ? 'active' : 'expired'));
                 $rows[] = $row;
             }
             $stmt->close();
@@ -328,12 +330,14 @@ try {
     // ============================================================
     if ($action === 'stats') {
         require_admin();
+        sync_pending_registrations_to_serial($conn);
 
         $stats = [
             'total'      => 0,
             'unlimited'  => 0,
             'active'     => 0,
             'expired'    => 0,
+            'pending'    => 0,
             'today'      => 0,
             'devices'    => 0,
             'top_devices'=> [],
@@ -351,6 +355,8 @@ try {
             $kind = parseTimeField($row['Time'])['kind'];
             if ($kind === 'unlimited') {
                 $stats['unlimited']++;
+            } elseif ($kind === 'pending') {
+                $stats['pending']++;
             } elseif ($kind === 'fixed') {
                 $ts = strtotime(parseTimeField($row['Time'])['date']);
                 if ($ts !== false && $ts >= $today) $stats['active']++;
@@ -444,7 +450,7 @@ try {
             if ($newStt > 10000000) { $conn->close(); json_response(false, 'Không thể cấp STT mới', null, 500); }
         }
 
-        $storeTime = ($parsed['kind'] === 'unlimited') ? 'unlimited' : $parsed['date'];
+        $storeTime = ($parsed['kind'] === 'unlimited') ? 'unlimited' : (($parsed['kind'] === 'pending') ? 'pending' : $parsed['date']);
 
         $ins = $conn->prepare("INSERT INTO serial (STT, Device, Serial, Gmail, Time) VALUES (?, ?, ?, ?, ?)");
         $ins->bind_param('issss', $newStt, $device, $serial, $gmail, $storeTime);
@@ -524,7 +530,7 @@ try {
             json_response(false, 'Không tìm thấy serial', null, 404);
         }
 
-        $storeTime = ($parsed['kind'] === 'unlimited') ? 'unlimited' : $parsed['date'];
+        $storeTime = ($parsed['kind'] === 'unlimited') ? 'unlimited' : (($parsed['kind'] === 'pending') ? 'pending' : $parsed['date']);
 
         $upd = $conn->prepare("UPDATE serial SET Device = ?, Serial = ?, Gmail = ?, Time = ? WHERE STT = ? LIMIT 1");
         $upd->bind_param('ssssi', $device, $serial, $gmail, $storeTime, $stt);
@@ -537,9 +543,10 @@ try {
         $upd->close();
 
         // Đồng bộ cập nhật sang bảng registrations nếu có
-        $updReg = $conn->prepare("UPDATE registrations SET serial = ?, codename = ?, sender_email = ? WHERE LOWER(TRIM(serial)) = LOWER(?)");
+        $newRegStatus = ($storeTime === 'pending') ? 'Pending' : 'Active';
+        $updReg = $conn->prepare("UPDATE registrations SET serial = ?, codename = ?, sender_email = ?, status = ? WHERE LOWER(TRIM(serial)) = LOWER(?)");
         if ($updReg) {
-            $updReg->bind_param('ssss', $serial, $device, $gmail, $oldRow['Serial']);
+            $updReg->bind_param('sssss', $serial, $device, $gmail, $newRegStatus, $oldRow['Serial']);
             $updReg->execute();
             $updReg->close();
         }
@@ -759,6 +766,15 @@ try {
         }
         $upd->close();
 
+        // Đồng bộ sang registrations nếu có
+        $updReg = $conn->prepare("UPDATE registrations SET status = 'Active', activated_at = NOW(), expired_at = ? WHERE LOWER(TRIM(serial)) = LOWER(?)");
+        if ($updReg) {
+            $expReg = ($newTime === 'unlimited') ? null : ($newTime . ' 23:59:59');
+            $updReg->bind_param('ss', $expReg, $row['Serial']);
+            $updReg->execute();
+            $updReg->close();
+        }
+
         write_admin_log(
             $conn,
             (int)$_SESSION['admin_id'],
@@ -814,6 +830,19 @@ try {
         $upd->bind_param($types2, ...$ids);
         $upd->execute();
         $upd->close();
+
+        // Đồng bộ sang registrations nếu có
+        $snList = array_column($serialsFound, 'serial');
+        if (!empty($snList)) {
+            $regPlace = implode(',', array_fill(0, count($snList), '?'));
+            $regT = str_repeat('s', count($snList));
+            $updReg = $conn->prepare("UPDATE registrations SET status = 'Active', activated_at = NOW(), expired_at = NULL WHERE serial IN ($regPlace)");
+            if ($updReg) {
+                $updReg->bind_param($regT, ...$snList);
+                $updReg->execute();
+                $updReg->close();
+            }
+        }
 
         write_admin_log(
             $conn,
