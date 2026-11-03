@@ -736,7 +736,7 @@
             if (apiRes.ok) {
                 const apiJson = await apiRes.json();
                 if (apiJson && apiJson.success && typeof apiJson.count === 'number') {
-                    deviceCount = Math.max(deviceCount, apiJson.count);
+                    deviceCount = apiJson.count;
                     saveEmailRegistration(email, deviceCount);
                 }
             }
@@ -1078,10 +1078,6 @@
                 }
             }
 
-            // Cập nhật số lượng thiết bị của email (+1) vào data store
-            const currentEmailCount = getDeviceCountForEmail(email);
-            saveEmailRegistration(email, currentEmailCount + 1);
-
             // Lưu lịch sử đăng ký cục bộ
             saveRegistrationHistory({
                 serial: serial,
@@ -1287,7 +1283,7 @@
             const phpRes = await fetch(`./api/serial-lookup.php?${param}`, { cache: 'no-store' });
             if (phpRes.ok) {
                 const phpJson = await phpRes.json();
-                if (phpJson && phpJson.found) {
+                if (phpJson && phpJson.success) {
                     resultData = phpJson;
                 }
             }
@@ -1295,8 +1291,8 @@
             console.warn('Lỗi kết nối PHP API serial-lookup:', phpErr);
         }
 
-        // 2. Dự phòng: nếu tra cứu Serial chưa có trong MySQL, thử qua Google Apps Script
-        if ((!resultData || !resultData.found) && !isEmail && LOOKUP_API_URL && LOOKUP_API_URL.trim() !== '') {
+        // 2. Dự phòng: chỉ khi MySQL API lỗi mạng/không phản hồi, thử qua Google Apps Script
+        if (!resultData && !isEmail && LOOKUP_API_URL && LOOKUP_API_URL.trim() !== '') {
             try {
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 10000);
@@ -1617,7 +1613,7 @@
                     </div>
 
                     <div class="lookup-actions">
-                        <button type="button" class="lookup-btn-main" data-jump-to-register="${encodeURIComponent(serial)}">
+                        <button type="button" class="lookup-btn-main" data-jump-to-register="${encodeURIComponent(query)}">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
                                 <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                                 <circle cx="8.5" cy="7" r="4"></circle>
