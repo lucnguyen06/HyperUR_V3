@@ -64,10 +64,10 @@ SERIAL_REGISTER_API_URL: "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec
 
 ---
 
-## 📖 Hướng Dẫn Người Dùng & Khách Hàng
+## 📖 Tài Liệu Hướng Dẫn & Kiến Trúc
 
-Xem sơ đồ quy trình trực quan và hướng dẫn kích hoạt bản quyền chi tiết:
-👉 **[Xem Hướng Dẫn Đăng Ký & Kích Hoạt Serial Chi Tiết](md/HUONG_DAN_KHACH_HANG.md)**
+- 👨‍💻 **Dành Cho Khách Hàng**: 👉 **[Quy Trình Đăng Ký & Kích Hoạt Serial Chi Tiết](md/HUONG_DAN_KHACH_HANG.md)**
+- 🛠️ **Dành Cho Developer**: 👉 **[Kiến Trúc Kỹ Thuật & Sơ Đồ Hệ Thống Chi Tiết](md/DEVELOPER_ARCHITECTURE.md)**
 
 ```mermaid
 flowchart LR
