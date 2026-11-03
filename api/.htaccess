@@ -1,0 +1,36 @@
+# Bảo vệ file cấu hình & log khỏi truy cập qua HTTP
+# Chỉ chặn các file nhạy cảm, KHÔNG chặn toàn bộ thư mục
+# (các endpoint .php bên dưới vẫn phải truy cập được).
+
+# --- Chặn config / log / template không phải endpoint ---
+<FilesMatch "^(config|config\.example)\.php$">
+    Require all denied
+</FilesMatch>
+
+<FilesMatch "\.(log|sql|bak|ini|sh)$">
+    Require all denied
+</FilesMatch>
+
+<FilesMatch "^_(bootstrap|sepay-lib)\.php$">
+    Require all denied
+</FilesMatch>
+
+# --- Chặn email-template.php (chỉ được include, không gọi trực tiếp) ---
+<Files "email-template.php">
+    Require all denied
+</Files>
+
+# --- Fallback cho Apache 2.2 ---
+<IfModule !mod_authz_core.c>
+    <FilesMatch "^(config|config\.example|_bootstrap|_sepay-lib|email-template)\.php$">
+        Order Allow,Deny
+        Deny from all
+    </FilesMatch>
+    <FilesMatch "\.(log|sql|bak|ini|sh)$">
+        Order Allow,Deny
+        Deny from all
+    </FilesMatch>
+</IfModule>
+
+# --- Không liệt kê thư mục ---
+Options -Indexes

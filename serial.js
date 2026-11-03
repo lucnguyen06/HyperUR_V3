@@ -727,11 +727,22 @@
         if (emailStateMsg) emailStateMsg.style.display = 'none';
         if (emailRegStats) emailRegStats.style.display = 'none';
 
-        // Đợi 250ms mô phỏng kiểm tra dữ liệu mượt mà
-        await new Promise(resolve => setTimeout(resolve, 250));
+        // 1. Lấy số lượng từ cache cục bộ trước (phản hồi nhanh)
+        let deviceCount = getDeviceCountForEmail(email);
 
-        // Tra cứu số lượng thiết bị trong kho dữ liệu
-        const deviceCount = getDeviceCountForEmail(email);
+        // 2. Tra cứu số lượng thiết bị thời gian thực từ MySQL Database
+        try {
+            const apiRes = await fetch(`./api/serial-lookup.php?email=${encodeURIComponent(email)}`, { cache: 'no-store' });
+            if (apiRes.ok) {
+                const apiJson = await apiRes.json();
+                if (apiJson && apiJson.success && typeof apiJson.count === 'number') {
+                    deviceCount = Math.max(deviceCount, apiJson.count);
+                    saveEmailRegistration(email, deviceCount);
+                }
+            }
+        } catch (fetchErr) {
+            console.warn('Lỗi kết nối API tra cứu số thiết bị của email:', fetchErr);
+        }
 
         // Tính mức ủng hộ áp dụng tương ứng
         const priceInfo = calculatePrice(deviceCount);
@@ -1006,7 +1017,18 @@
                 `;
             }
 
-            // Gửi dữ liệu lên Google Apps Script Web App API
+            // 1. Gửi dữ liệu lưu trực tiếp vào MySQL Database qua PHP API
+            try {
+                await fetch('./api/serial-register.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+            } catch (phpErr) {
+                console.warn('Lỗi khi gửi PHP API serial-register:', phpErr);
+            }
+
+            // 2. Gửi dữ liệu lên Google Apps Script Web App API (dự phòng)
             if (REGISTER_API_URL && REGISTER_API_URL.trim() !== '') {
                 try {
                     await fetch(REGISTER_API_URL, {
@@ -1118,14 +1140,22 @@
     }
 
     // =========================================================
-    // 11. TRA CỨU SERIAL LOGIC (LOOKUP)
+    // 11. TRA CỨU SERIAL HOẶC EMAIL LOGIC (LOOKUP)
     // =========================================================
-    function cleanSerialString(val, toUpper = false) {
+    function cleanLookupInput(val) {
         if (!val) return '';
         let s = val.trim();
+        if (s.includes('@')) {
+            // Email: giữ lại các ký tự hợp lệ của email
+            return s.replace(/[^A-Za-z0-9._%+\-@]/g, '');
+        }
+        // Serial: bỏ tiền tố SN/NO và ký tự đặc biệt
         s = s.replace(/^(SN|SERIAL|S\/N|S\/NO|NO)[\s:=-]*/i, '');
-        s = s.replace(/[^A-Za-z0-9_-]/g, '');
-        return toUpper ? s.toUpperCase() : s;
+        return s.replace(/[^A-Za-z0-9_-]/g, '');
+    }
+
+    function cleanSerialString(val, toUpper = false) {
+        return cleanLookupInput(val);
     }
 
     function updateLookupCounter() {
@@ -1136,7 +1166,7 @@
 
     if (lookupSerialInput) {
         lookupSerialInput.addEventListener('input', function () {
-            const cleaned = cleanSerialString(this.value);
+            const cleaned = cleanLookupInput(this.value);
             if (this.value !== cleaned) {
                 this.value = cleaned;
             }
@@ -1178,13 +1208,16 @@
         }
     } catch (e) { }
 
-    async function performLookup(serial) {
-        const cleanSerial = cleanSerialString(serial, true);
-        if (!cleanSerial) {
-            alert('Vui lòng nhập số Serial cần tra cứu!');
+    async function performLookup(rawInput) {
+        const query = cleanLookupInput(rawInput);
+        if (!query) {
+            alert('Vui lòng nhập số Serial hoặc Email cần tra cứu!');
             if (lookupSerialInput) lookupSerialInput.focus();
             return;
         }
+
+        const isEmail = query.includes('@');
+        const displayQuery = isEmail ? query.toLowerCase() : query.toUpperCase();
 
         if (lookupSubmitBtn) {
             lookupSubmitBtn.disabled = true;
@@ -1205,20 +1238,35 @@
                         </svg>
                     </div>
                     <h3 class="lookup-empty-title">Đang Kết Nối Máy Chủ Xác Thực...</h3>
-                    <p class="lookup-empty-desc">Đang đối soát số Serial <strong>${cleanSerial}</strong> với cơ sở dữ liệu bản quyền HyperUR thời gian thực.</p>
+                    <p class="lookup-empty-desc">Đang đối soát <strong>${displayQuery}</strong> với cơ sở dữ liệu bản quyền HyperUR thời gian thực.</p>
                 </div>
             `;
         }
 
         let resultData = null;
 
-        if (LOOKUP_API_URL && LOOKUP_API_URL.trim() !== '') {
+        // 1. Ưu tiên tra cứu trực tiếp từ MySQL Database qua PHP API
+        try {
+            const param = isEmail ? `email=${encodeURIComponent(displayQuery)}` : `serial=${encodeURIComponent(displayQuery)}`;
+            const phpRes = await fetch(`./api/serial-lookup.php?${param}`, { cache: 'no-store' });
+            if (phpRes.ok) {
+                const phpJson = await phpRes.json();
+                if (phpJson && phpJson.found) {
+                    resultData = phpJson;
+                }
+            }
+        } catch (phpErr) {
+            console.warn('Lỗi kết nối PHP API serial-lookup:', phpErr);
+        }
+
+        // 2. Dự phòng: nếu tra cứu Serial chưa có trong MySQL, thử qua Google Apps Script
+        if ((!resultData || !resultData.found) && !isEmail && LOOKUP_API_URL && LOOKUP_API_URL.trim() !== '') {
             try {
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 10000);
 
                 const fetchUrl = LOOKUP_API_URL + (LOOKUP_API_URL.includes('?') ? '&' : '?')
-                    + 'action=check_serial&serial=' + encodeURIComponent(cleanSerial)
+                    + 'action=check_serial&serial=' + encodeURIComponent(displayQuery)
                     + '&_t=' + Date.now();
 
                 const res = await fetch(fetchUrl, {
@@ -1242,8 +1290,11 @@
             resultData = {
                 success: true,
                 found: false,
-                serial: cleanSerial,
-                message: 'Không tìm thấy số Serial ' + cleanSerial + ' trong cơ sở dữ liệu bản quyền HyperUR.'
+                query: displayQuery,
+                isEmail: isEmail,
+                message: isEmail
+                    ? `Không tìm thấy thiết bị nào gắn với email ${displayQuery}.`
+                    : `Không tìm thấy số Serial ${displayQuery} trong cơ sở dữ liệu bản quyền HyperUR.`
             };
         }
 
@@ -1258,15 +1309,111 @@
             `;
         }
 
-        renderLookupResultCard(resultData, cleanSerial);
-        saveToLookupHistory(cleanSerial, resultData);
+        renderLookupResultCard(resultData, displayQuery);
+        saveToLookupHistory(displayQuery, resultData);
     }
 
-    function renderLookupResultCard(res, serial) {
+    function renderLookupResultCard(res, query) {
         if (!lookupResultContainer) return;
 
+        // Trường hợp 1: Tra cứu theo Email -> Hiển thị danh sách thiết bị
+        if (res && res.type === 'email' && res.found) {
+            const list = res.devices || [];
+            const count = res.count || list.length;
+            const email = res.email || query;
+
+            const devicesHtml = list.map((item, idx) => {
+                const isActive = (item.status === 'Active' || item.statusCode === 'active');
+                return `
+                    <div style="display:flex; justify-content:space-between; align-items:center; padding:0.9rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); gap:0.75rem; flex-wrap:wrap;">
+                        <div style="display:flex; flex-direction:column; gap:0.25rem;">
+                            <div style="font-weight:700; color:#e2e8f0; font-size:0.95rem;">
+                                ${idx + 1}. ${item.codename}
+                            </div>
+                            <div style="font-family:'JetBrains Mono',monospace; color:var(--accent-primary, #10b981); font-size:0.85rem; display:flex; align-items:center; gap:0.5rem;">
+                                <span>SN: <strong>${item.serial}</strong></span>
+                                <button type="button" class="btn-copy-mini" data-copy-device-sn="${item.serial}" style="padding:0.15rem 0.45rem; font-size:0.75rem;">Chép</button>
+                            </div>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:0.6rem;">
+                            <span style="font-size:0.8rem; color:#94a3b8;">${item.plan || item.time}</span>
+                            <span class="lookup-status-pill" style="font-size:0.75rem; padding:0.25rem 0.6rem; background:${isActive ? 'rgba(16,185,129,0.15)' : 'rgba(234,179,8,0.15)'}; color:${isActive ? '#10b981' : '#facc15'}; border:1px solid ${isActive ? 'rgba(16,185,129,0.3)' : 'rgba(234,179,8,0.3)'};">
+                                ${item.statusText || item.status}
+                            </span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            lookupResultContainer.innerHTML = `
+                <div class="lookup-result-card state-active">
+                    <div class="lookup-result-header">
+                        <div class="lookup-header-left">
+                            <div class="lookup-status-icon-box">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <div class="lookup-title-area">
+                                <h2 class="lookup-result-title">Danh Sách Thiết Bị Của Email</h2>
+                                <div class="lookup-result-serial">
+                                    <span>${email}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lookup-status-pill">
+                            <span class="lookup-pulse-dot"></span>
+                            <span>Đã Kích Hoạt: ${count} Máy</span>
+                        </div>
+                    </div>
+
+                    <div style="background:rgba(0,0,0,0.25); border-radius:12px; margin:1rem 0; border:1px solid rgba(255,255,255,0.06); max-height:420px; overflow-y:auto;">
+                        ${devicesHtml}
+                    </div>
+
+                    <div class="lookup-actions">
+                        <a href="download.html" class="lookup-btn-main">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            <span>Đến Kho Tải ROM</span>
+                        </a>
+                        <a href="guide.html" class="lookup-btn-outline">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>Xem Hướng Dẫn Flash</span>
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            // Gắn event copy cho các nút chép serial
+            lookupResultContainer.querySelectorAll('[data-copy-device-sn]').forEach(b => {
+                b.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sn = this.getAttribute('data-copy-device-sn');
+                    if (sn && navigator.clipboard) {
+                        navigator.clipboard.writeText(sn).then(() => {
+                            this.textContent = '✓ Đã chép';
+                            setTimeout(() => { this.textContent = 'Chép'; }, 1800);
+                            showToast(`Đã sao chép Serial: ${sn}`);
+                        });
+                    }
+                });
+            });
+            return;
+        }
+
+        // Trường hợp 2: Tra cứu theo Serial đơn
         if (res && res.found && res.data) {
             const d = res.data;
+            const serial = d.serial || query;
             const isActive = d.statusCode === 'active';
             const stateClass = isActive ? 'state-active' : 'state-pending';
 
@@ -1385,8 +1532,9 @@
                 </div>
             `;
         } else {
+            const isEmail = String(query).includes('@');
             const notFoundText = encodeURIComponent(
-                `Chào Admin @lcnguy06, tôi vừa tra cứu số Serial: ${serial} nhưng chưa thấy trên hệ thống. Nhờ Admin kiểm tra giúp tôi.`
+                `Chào Admin @lcnguy06, tôi vừa tra cứu: ${query} nhưng chưa thấy trên hệ thống. Nhờ Admin kiểm tra giúp tôi.`
             );
 
             lookupResultContainer.innerHTML = `
@@ -1401,10 +1549,10 @@
                                 </svg>
                             </div>
                             <div class="lookup-title-area">
-                                <h2 class="lookup-result-title">Chưa Tìm Thấy Bản Quyền Serial</h2>
+                                <h2 class="lookup-result-title">${isEmail ? 'Chưa Tìm Thấy Thiết Bị Của Email' : 'Chưa Tìm Thấy Bản Quyền Serial'}</h2>
                                 <div class="lookup-result-serial">
-                                    <span>SN:</span>
-                                    <span>${serial}</span>
+                                    <span>${isEmail ? 'Email:' : 'SN:'}</span>
+                                    <span>${query}</span>
                                 </div>
                             </div>
                         </div>
@@ -1415,7 +1563,10 @@
                     </div>
 
                     <p style="color: var(--text-soft); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.75rem;">
-                        Số Serial <strong>${serial}</strong> hiện chưa có trên hệ thống bản quyền chính thức HyperUR hoặc vừa được chuyển khoản và đang trong quá trình ghi nhận.
+                        ${isEmail 
+                            ? `Email <strong>${query}</strong> hiện chưa có thiết bị nào được ghi nhận trên hệ thống bản quyền chính thức HyperUR.`
+                            : `Số Serial <strong>${query}</strong> hiện chưa có trên hệ thống bản quyền chính thức HyperUR hoặc vừa được chuyển khoản và đang trong quá trình ghi nhận.`
+                        }
                     </p>
 
                     <div class="lookup-info-grid">
@@ -1425,7 +1576,7 @@
                         </div>
                         <div class="lookup-info-card">
                             <span class="lookup-info-label">Nguyên Nhân Có Thể 2</span>
-                            <span class="lookup-info-val" style="font-size: 0.9rem; font-weight: 500;">Số Serial nhập bị nhầm lẫn ký tự (O với 0, I với 1)</span>
+                            <span class="lookup-info-val" style="font-size: 0.9rem; font-weight: 500;">Nhập bị nhầm ký tự hoặc chưa đúng email lúc đăng ký</span>
                         </div>
                     </div>
 
@@ -1758,6 +1909,11 @@
                 }
             }
         } catch (e) { }
+
+        // Tự động kiểm tra số lượng thiết bị từ DB nếu email đã có sẵn (autofill/F5)
+        if (senderEmailInput && senderEmailInput.value.trim()) {
+            handleEmailInput();
+        }
     }
 
     // Chạy khởi tạo

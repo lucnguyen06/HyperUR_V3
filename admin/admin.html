@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HyperUR - Trang quản trị Serial bản quyền ROM. Thêm, sửa, xóa, gia hạn serial và theo dõi nhật ký hoạt động admin.">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Quản Lý Serial - HyperUR Admin</title>
+    <link rel="icon" type="image/jpeg" href="../images/logo_hyperur.jpg">
+    <link rel="apple-touch-icon" href="../images/logo_hyperur.jpg">
+
+    <!-- Preconnect & Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Design System Stylesheet -->
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- =================================================================
+         TOP BAR (Tái sử dụng navbar style)
+         ================================================================= -->
+    <header class="navbar-wrapper">
+        <nav class="navbar glass" id="navbar">
+            <div class="navbar-inner">
+                <a href="../index.html" class="navbar-brand">
+                    <span>Hyper<span class="brand-accent">UR</span></span>
+                </a>
+                <ul class="navbar-menu" id="nav-menu">
+                    <li><a href="../index.html" class="navbar-link">Trang Chủ</a></li>
+                    <li><a href="../download.html" class="navbar-link">Tải ROM</a></li>
+                    <li><a href="../firmware.html" class="navbar-link">Thông Tin FW</a></li>
+                    <li><a href="../guide.html" class="navbar-link">Hướng Dẫn</a></li>
+                    <li><a href="../serial.html" class="navbar-link">Đăng Ký &amp; Tra Cứu Serial</a></li>
+                    <li><a href="admin.html" class="navbar-link active" aria-current="page">Quản Lý Serial</a></li>
+                </ul>
+                <div class="navbar-actions">
+                    <button class="btn-icon" id="theme-btn" aria-label="Đổi giao diện Sáng/Tối" title="Chuyển chế độ sáng/tối">
+                        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="display: none;">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <!-- =================================================================
+             LOGIN SCREEN
+             ================================================================= -->
+        <section id="auth-screen" class="admin-auth-wrap" aria-label="Đăng nhập quản trị">
+            <div class="admin-auth-card">
+                <div class="admin-auth-logo">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                </div>
+                <h1 class="admin-auth-title">Đăng Nhập Quản Trị</h1>
+                <p class="admin-auth-subtitle">Sử dụng tài khoản <strong>admin_users</strong> trong database để truy cập.</p>
+
+                <form id="login-form" autocomplete="on" novalidate>
+                    <div class="admin-form-group">
+                        <label class="admin-form-label" for="login-username">Tài khoản</label>
+                        <input
+                            type="text"
+                            id="login-username"
+                            name="username"
+                            class="admin-input"
+                            autocomplete="username"
+                            spellcheck="false"
+                            required>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label class="admin-form-label" for="login-password">Mật khẩu</label>
+                        <input
+                            type="password"
+                            id="login-password"
+                            name="password"
+                            class="admin-input"
+                            autocomplete="current-password"
+                            required>
+                    </div>
+
+                    <div id="login-error" class="admin-error-text" style="display: none;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        <span id="login-error-text"></span>
+                    </div>
+
+                    <button type="submit" id="login-btn" class="admin-btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                            <polyline points="10 17 15 12 10 7"></polyline>
+                            <line x1="15" y1="12" x2="3" y2="12"></line>
+                        </svg>
+                        <span id="login-btn-text">Đăng Nhập</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             ADMIN DASHBOARD (sẽ được hiển thị sau khi đăng nhập)
+             ================================================================= -->
+        <section id="admin-screen" style="display: none;" aria-label="Bảng quản trị">
+            <div class="admin-layout">
+                <!-- TOOLBAR -->
+                <div class="admin-toolbar">
+                    <div>
+                        <div class="admin-toolbar-title">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                            <span>Bảng Quản Trị Serial</span>
+                            <span class="admin-pill role-superadmin" id="admin-role-pill">SUPERADMIN</span>
+                        </div>
+                        <div class="admin-toolbar-meta">
+                            Xin chào <strong id="admin-name">—</strong> ·
+                            Đăng nhập lúc <span id="admin-login-at">—</span>
+                        </div>
+                    </div>
+                    <div class="admin-toolbar-actions">
+                        <a href="admin-users.html" class="admin-btn primary" id="btn-manage-admins" style="display: none;" title="Quản lý tài khoản admin (chỉ Super Admin)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            <span>Quản Lý Admin</span>
+                        </a>
+                        <button type="button" class="admin-btn" id="btn-refresh" title="Tải lại">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <polyline points="23 4 23 10 17 10"></polyline>
+                                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                            </svg>
+                            <span>Tải lại</span>
+                        </button>
+                        <button type="button" class="admin-btn ghost" id="btn-change-pass" title="Đổi mật khẩu">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                            <span>Đổi MK</span>
+                        </button>
+                        <button type="button" class="admin-btn danger" id="btn-logout" title="Đăng xuất">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                <polyline points="16 17 21 12 16 7"></polyline>
+                                <line x1="21" y1="12" x2="9" y2="12"></line>
+                            </svg>
+                            <span>Đăng xuất</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STATS -->
+                <div class="admin-stats" id="admin-stats">
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon tot">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                                <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+                                <line x1="6" y1="10" x2="6.01" y2="10"></line>
+                                <line x1="10" y1="10" x2="10.01" y2="10"></line>
+                            </svg>
+                        </div>
+                        <div class="admin-stat-label">Tổng serial</div>
+                        <div class="admin-stat-value" id="stat-total">—</div>
+                        <div class="admin-stat-hint">Đã đăng ký trong hệ thống</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon uni">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                            </svg>
+                        </div>
+                        <div class="admin-stat-label">Vĩnh viễn</div>
+                        <div class="admin-stat-value" id="stat-unlimited">—</div>
+                        <div class="admin-stat-hint">Time = "unlimited"</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon act">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <div class="admin-stat-label">Đang hiệu lực</div>
+                        <div class="admin-stat-value" id="stat-active">—</div>
+                        <div class="admin-stat-hint">Còn hạn sử dụng</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon exp">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="12"></line>
+                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                            </svg>
+                        </div>
+                        <div class="admin-stat-label">Đã hết hạn</div>
+                        <div class="admin-stat-value" id="stat-expired">—</div>
+                        <div class="admin-stat-hint">Quá ngày Time</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon dev">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                            </svg>
+                        </div>
+                        <div class="admin-stat-label">Thiết bị</div>
+                        <div class="admin-stat-value" id="stat-devices">—</div>
+                        <div class="admin-stat-hint">Số codename khác nhau</div>
+                    </div>
+                </div>
+
+                <!-- TABS -->
+                <div class="admin-tabs" role="tablist">
+                    <button type="button" class="admin-tab active" data-tab="serials" role="tab" aria-selected="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        Quản lý Serial
+                    </button>
+                    <button type="button" class="admin-tab" data-tab="logs" role="tab" aria-selected="false">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="9" y1="13" x2="15" y2="13"></line>
+                            <line x1="9" y1="17" x2="15" y2="17"></line>
+                        </svg>
+                        Nhật ký hoạt động
+                    </button>
+                </div>
+
+                <!-- TAB: SERIALS -->
+                <div id="panel-serials" class="admin-panel" role="tabpanel">
+                    <!-- Filter bar -->
+                    <div class="admin-filter-bar">
+                        <div class="admin-search">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <input
+                                type="text"
+                                id="filter-search"
+                                placeholder="Tìm theo STT, Serial, Email hoặc tên thiết bị...">
+                        </div>
+
+                        <div class="admin-filter-group">
+                            <span class="admin-filter-label">Thiết bị:</span>
+                            <select id="filter-device" class="admin-input">
+                                <option value="">— Tất cả —</option>
+                            </select>
+                        </div>
+
+                        <div class="admin-filter-group">
+                            <span class="admin-filter-label">Trạng thái:</span>
+                            <select id="filter-status" class="admin-input">
+                                <option value="">— Tất cả —</option>
+                                <option value="unlimited">Vĩnh viễn</option>
+                                <option value="active">Đang hiệu lực</option>
+                                <option value="expired">Hết hạn</option>
+                            </select>
+                        </div>
+
+                        <button type="button" class="admin-btn primary" id="btn-add">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                            <span>Thêm Serial</span>
+                        </button>
+
+                        <button type="button" class="admin-btn" id="btn-export">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            <span>Xuất CSV</span>
+                        </button>
+                    </div>
+
+                    <!-- Table -->
+                    <div class="admin-table-card">
+                        <div class="admin-table-wrap">
+                            <table class="admin-table" id="serials-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 38px;"><input type="checkbox" id="check-all" aria-label="Chọn tất cả"></th>
+                                        <th class="sortable sorted" data-sort="STT" style="width: 70px;">STT <span class="sort-icon">▼</span></th>
+                                        <th class="sortable" data-sort="Device">Device <span class="sort-icon">▼</span></th>
+                                        <th class="sortable" data-sort="Serial" style="min-width: 150px;">Serial <span class="sort-icon">▼</span></th>
+                                        <th class="sortable" data-sort="Gmail">Gmail <span class="sort-icon">▼</span></th>
+                                        <th class="sortable" data-sort="Time" style="width: 130px;">Time <span class="sort-icon">▼</span></th>
+                                        <th style="width: 120px; text-align: right;">Hành động</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="serials-tbody">
+                                    <tr><td colspan="7">
+                                        <div class="admin-loading">
+                                            <div class="admin-spinner"></div>
+                                            <div>Đang tải dữ liệu...</div>
+                                        </div>
+                                    </td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="admin-pagination" id="pagination"></div>
+                    </div>
+
+                    <!-- Bulk action bar -->
+                    <div class="admin-bulk-bar" id="bulk-bar">
+                        <div>
+                            Đã chọn <span class="count" id="bulk-count">0</span> serial
+                        </div>
+                        <div class="spacer" style="flex:1"></div>
+                        <button type="button" class="admin-btn" id="btn-bulk-unlimited">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                            </svg>
+                            Set Unlimited
+                        </button>
+                        <button type="button" class="admin-btn danger" id="btn-bulk-delete">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6l-1 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"></path>
+                            </svg>
+                            Xóa đã chọn
+                        </button>
+                        <button type="button" class="admin-btn ghost" id="btn-bulk-cancel">Bỏ chọn</button>
+                    </div>
+                </div>
+
+                <!-- TAB: LOGS -->
+                <div id="panel-logs" class="admin-panel" role="tabpanel" style="display: none;">
+                    <div class="admin-filter-bar">
+                        <div class="admin-search">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <input type="text" id="log-search" placeholder="Tìm trong mô tả...">
+                        </div>
+
+                        <div class="admin-filter-group">
+                            <span class="admin-filter-label">Admin:</span>
+                            <select id="log-username" class="admin-input">
+                                <option value="">— Tất cả —</option>
+                            </select>
+                        </div>
+
+                        <div class="admin-filter-group">
+                            <span class="admin-filter-label">Hành động:</span>
+                            <select id="log-action" class="admin-input">
+                                <option value="">— Tất cả —</option>
+                                <option value="add">Thêm</option>
+                                <option value="update">Cập nhật</option>
+                                <option value="delete">Xóa</option>
+                                <option value="bulk_delete">Xóa hàng loạt</option>
+                                <option value="renew">Gia hạn</option>
+                                <option value="bulk_unlimited">Set unlimited hàng loạt</option>
+                                <option value="login">Đăng nhập</option>
+                                <option value="logout">Đăng xuất</option>
+                                <option value="change_password">Đổi mật khẩu</option>
+                            </select>
+                        </div>
+
+                        <div class="admin-filter-group">
+                            <span class="admin-filter-label">Từ:</span>
+                            <input type="date" id="log-from" class="admin-input" style="width: 150px;">
+                        </div>
+                        <div class="admin-filter-group">
+                            <span class="admin-filter-label">Đến:</span>
+                            <input type="date" id="log-to" class="admin-input" style="width: 150px;">
+                        </div>
+                    </div>
+
+                    <div class="admin-table-card">
+                        <div class="admin-table-wrap">
+                            <table class="admin-table admin-log-table" id="logs-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 60px;">ID</th>
+                                        <th style="width: 150px;">Thời gian</th>
+                                        <th style="width: 140px;">Admin</th>
+                                        <th style="width: 110px;">Hành động</th>
+                                        <th>Mô tả</th>
+                                        <th style="width: 130px;">IP</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="logs-tbody">
+                                    <tr><td colspan="6">
+                                        <div class="admin-loading">
+                                            <div class="admin-spinner"></div>
+                                            <div>Đang tải nhật ký...</div>
+                                        </div>
+                                    </td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="admin-pagination" id="logs-pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- =================================================================
+         MODALS
+         ================================================================= -->
+    <!-- Modal: Add/Edit Serial -->
+    <div class="admin-modal-backdrop" id="modal-serial" aria-hidden="true" role="dialog">
+        <div class="admin-modal">
+            <div class="admin-modal-header">
+                <div class="admin-modal-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                        <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+                        <line x1="6" y1="10" x2="6.01" y2="10"></line>
+                        <line x1="10" y1="10" x2="10.01" y2="10"></line>
+                    </svg>
+                    <span id="modal-serial-heading">Thêm Serial Mới</span>
+                </div>
+                <button type="button" class="admin-modal-close" data-close-modal aria-label="Đóng">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="admin-modal-body">
+                <form id="form-serial" novalidate>
+                    <input type="hidden" id="serial-stt" value="">
+
+                    <div class="admin-form-group">
+                        <label class="admin-form-label" for="serial-device">Tên thiết bị (Device) <span style="color:#fda4af">*</span></label>
+                        <input type="text" id="serial-device" class="admin-input" list="device-suggest-list"
+                               placeholder="VD: Xiaomi 14 - HOUJI" autocomplete="off" required>
+                        <datalist id="device-suggest-list"></datalist>
+                        <div class="admin-stat-hint" style="margin-top: 0.35rem;">Tên hiển thị kèm codename thiết bị</div>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label class="admin-form-label" for="serial-serial">Số Serial <span style="color:#fda4af">*</span></label>
+                        <input type="text" id="serial-serial" class="admin-input" placeholder="VD: a8c19d2f"
+                               autocomplete="off" spellcheck="false" required style="font-family: 'JetBrains Mono', monospace;">
+                        <div class="admin-stat-hint" style="margin-top: 0.35rem;">4-32 ký tự chữ và số (A-Z, 0-9), không phân biệt hoa/thường khi lưu trùng.</div>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label class="admin-form-label" for="serial-gmail">Email người đăng ký (Gmail) <span style="color:#fda4af">*</span></label>
+                        <input type="email" id="serial-gmail" class="admin-input" placeholder="VD: example@gmail.com"
+                               autocomplete="off" required>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label class="admin-form-label" for="serial-time">Thời hạn (Time) <span style="color:#fda4af">*</span></label>
+                        <input type="text" id="serial-time" class="admin-input" placeholder="unlimited  •  31102026  •  2026-10-31" required>
+                        <div class="admin-stat-hint" style="margin-top: 0.35rem;">
+                            Chấp nhận: <code>unlimited</code>, <code>ddmmyyyy</code> (VD: <code>31102026</code>) hoặc <code>YYYY-MM-DD</code>.
+                        </div>
+                    </div>
+
+                    <div id="form-error" class="admin-error-text" style="display:none;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        <span id="form-error-text"></span>
+                    </div>
+                </form>
+            </div>
+            <div class="admin-modal-footer">
+                <button type="button" class="admin-btn ghost" data-close-modal>Hủy</button>
+                <div class="spacer" style="flex:1"></div>
+                <button type="button" class="admin-btn primary" id="btn-save-serial">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span id="btn-save-text">Lưu Serial</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Renew -->
+    <div class="admin-modal-backdrop" id="modal-renew" aria-hidden="true" role="dialog">
+        <div class="admin-modal" style="max-width: 420px;">
+            <div class="admin-modal-header">
+                <div class="admin-modal-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span>Gia hạn Serial</span>
+                </div>
+                <button type="button" class="admin-modal-close" data-close-modal aria-label="Đóng">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="admin-modal-body">
+                <p style="margin: 0 0 1rem; color: var(--text-soft, #cbd5e1); font-size: 0.9rem;">
+                    Đang gia hạn cho serial <strong id="render-target" style="color:#6ee7b7; font-family: 'JetBrains Mono', monospace;"></strong>
+                    <br>Hiện tại: <span id="render-current" style="font-family: 'JetBrains Mono', monospace; color: #fcd34d;"></span>
+                </p>
+
+                <div class="admin-form-group">
+                    <label class="admin-form-label">Gia hạn nhanh</label>
+                    <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+                        <button type="button" class="admin-btn" data-days="7">+7 ngày</button>
+                        <button type="button" class="admin-btn" data-days="30">+30 ngày</button>
+                        <button type="button" class="admin-btn" data-days="90">+90 ngày</button>
+                        <button type="button" class="admin-btn" data-days="180">+180 ngày</button>
+                        <button type="button" class="admin-btn" data-days="365">+1 năm</button>
+                        <button type="button" class="admin-btn primary" data-days="-1">∞ Unlimited</button>
+                    </div>
+                </div>
+
+                <div class="admin-form-group">
+                    <label class="admin-form-label" for="renew-days">Hoặc nhập số ngày (1-3650, hoặc -1 = unlimited)</label>
+                    <input type="number" id="renew-days" class="admin-input" min="-1" max="3650" value="30">
+                </div>
+            </div>
+            <div class="admin-modal-footer">
+                <button type="button" class="admin-btn ghost" data-close-modal>Hủy</button>
+                <div class="spacer" style="flex:1"></div>
+                <button type="button" class="admin-btn primary" id="btn-confirm-renew">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span>Xác nhận gia hạn</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Change Password -->
+    <div class="admin-modal-backdrop" id="modal-changepass" aria-hidden="true" role="dialog">
+        <div class="admin-modal" style="max-width: 440px;">
+            <div class="admin-modal-header">
+                <div class="admin-modal-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    <span>Đổi mật khẩu</span>
+                </div>
+                <button type="button" class="admin-modal-close" data-close-modal aria-label="Đóng">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="admin-modal-body">
+                <div class="admin-form-group">
+                    <label class="admin-form-label" for="cp-old">Mật khẩu hiện tại</label>
+                    <input type="password" id="cp-old" class="admin-input" autocomplete="current-password" required>
+                </div>
+                <div class="admin-form-group">
+                    <label class="admin-form-label" for="cp-new">Mật khẩu mới (≥ 6 ký tự)</label>
+                    <input type="password" id="cp-new" class="admin-input" autocomplete="new-password" required>
+                </div>
+                <div class="admin-form-group">
+                    <label class="admin-form-label" for="cp-new2">Nhập lại mật khẩu mới</label>
+                    <input type="password" id="cp-new2" class="admin-input" autocomplete="new-password" required>
+                </div>
+                <div id="cp-error" class="admin-error-text" style="display:none;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                    <span id="cp-error-text"></span>
+                </div>
+            </div>
+            <div class="admin-modal-footer">
+                <button type="button" class="admin-btn ghost" data-close-modal>Hủy</button>
+                <div class="spacer" style="flex:1"></div>
+                <button type="button" class="admin-btn primary" id="btn-confirm-changepass">Đổi mật khẩu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Confirm -->
+    <div class="admin-modal-backdrop" id="modal-confirm" aria-hidden="true" role="dialog">
+        <div class="admin-modal" style="max-width: 420px;">
+            <div class="admin-modal-header">
+                <div class="admin-modal-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    <span id="confirm-title">Xác nhận</span>
+                </div>
+                <button type="button" class="admin-modal-close" data-close-modal aria-label="Đóng">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="admin-modal-body">
+                <p id="confirm-message" style="margin: 0; color: var(--text-soft, #cbd5e1); font-size: 0.95rem; line-height: 1.55;"></p>
+            </div>
+            <div class="admin-modal-footer">
+                <button type="button" class="admin-btn ghost" data-close-modal>Hủy</button>
+                <div class="spacer" style="flex:1"></div>
+                <button type="button" class="admin-btn danger" id="btn-confirm-yes">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast stack -->
+    <div class="admin-toast-stack" id="toast-stack" aria-live="polite"></div>
+
+    <!-- Scripts -->
+    <script src="admin.js" defer></script>
+</body>
+</html>

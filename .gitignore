@@ -2,14 +2,21 @@
 
 # PHP Configuration (contains sensitive data)
 api/config.php
+config.php
 
 # Logs
 api/error.log
 *.log
 
-# Database backups
+# Database backups & dumps
+*.sql
+!sql/schema.sql
 *.sql.bak
 database/*.sql.bak
+
+# Test files
+test_*.php
+tests/
 
 # Composer dependencies
 vendor/
@@ -38,6 +45,7 @@ desktop.ini
 *.tmp
 *.temp
 *.cache
+*.zip
 
 # Node modules (if any)
 node_modules/
@@ -50,6 +58,8 @@ build/
 # Test files
 test-*.php
 api/test-*.php
+scripts/sepay-e2e/app/
+scripts/sepay-e2e/**/test-error.log
 
 # HyperUR scripts: Node deps + Service Account secrets
 scripts/node_modules/
