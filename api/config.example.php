@@ -57,6 +57,9 @@ define('API_SECRET', 'CHANGE_ME_RANDOM_SECRET');
 //
 // 1) HMAC-SHA256 (KHUYẾN NGHỊ): Dashboard SePay -> Webhooks -> Bảo mật
 //    -> HMAC-SHA256 -> copy Secret Key (chỉ hiện đầy đủ 1 lần).
+//    Nếu dùng NHIỀU tài khoản SePay khác nhau (mỗi STK 1 tài khoản SePay riêng),
+//    hãy phân cách các Secret Key bằng dấu phẩy:
+//    'whsec_TK1, whsec_TK2'
 // define('SEPAY_WEBHOOK_SECRET', 'CHANGE_ME_SEPAY_HMAC_SECRET');
 //
 // 2) API Key (dự phòng): header "Authorization: Apikey <key>"
