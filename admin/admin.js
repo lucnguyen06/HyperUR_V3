@@ -336,6 +336,9 @@
             $('#stat-active').textContent    = s.active.toLocaleString('vi-VN');
             $('#stat-expired').textContent   = s.expired.toLocaleString('vi-VN');
             $('#stat-devices').textContent   = s.devices.toLocaleString('vi-VN');
+            if ($('#stat-pending')) {
+                $('#stat-pending').textContent = (s.pending || 0).toLocaleString('vi-VN');
+            }
         } catch (err) {
             toast('Không thể tải thống kê: ' + err.message, 'error');
         }
@@ -417,6 +420,7 @@
     function statusBadge(timeStatus) {
         if (timeStatus === 'unlimited') return `<span class="status-badge unlimited"><span class="dot"></span> Unlimited</span>`;
         if (timeStatus === 'active')    return `<span class="status-badge active"><span class="dot"></span> Active</span>`;
+        if (timeStatus === 'pending')   return `<span class="status-badge pending"><span class="dot"></span> Chờ Bank</span>`;
         return `<span class="status-badge expired"><span class="dot"></span> Expired</span>`;
     }
 
