@@ -111,16 +111,54 @@ try {
                 $isUnl = ($tLower === 'unlimited');
                 $isPending = ($tLower === 'pending');
 
-                $statusCode = $isPending ? 'pending' : 'active';
-                $statusText = $isPending ? 'Chờ Kích Hoạt' : 'Đã Kích Hoạt';
-                $timeText = $isUnl ? 'Vĩnh viễn' : ($isPending ? 'Chờ thanh toán' : $r['Time']);
-                $planText = $isUnl ? 'Trọn Đời (Lifetime)' : ($isPending ? 'Chờ kích hoạt' : ('Hạn dùng: ' . $r['Time']));
+                $isExp = false;
+                $formattedExp = '';
+                $ts = false;
+                if (!$isUnl && !$isPending) {
+                    $tVal = trim($r['Time'] ?? '');
+                    if (preg_match('/^(\d{4})-(\d{2})-(\d{2})$/', $tVal, $m)) {
+                        $ts = strtotime($tVal);
+                        $formattedExp = "{$m[3]}/{$m[2]}/{$m[1]}";
+                    } elseif (preg_match('/^(\d{2})(\d{2})(\d{4})$/', $tVal, $m)) {
+                        $ts = strtotime("{$m[3]}-{$m[2]}-{$m[1]}");
+                        $formattedExp = "{$m[1]}/{$m[2]}/{$m[3]}";
+                    } else {
+                        $ts = strtotime($tVal);
+                        if ($ts !== false) $formattedExp = date('d/m/Y', $ts);
+                    }
+                    if ($ts !== false && $ts < strtotime(date('Y-m-d'))) {
+                        $isExp = true;
+                    }
+                }
+
+                if ($isPending) {
+                    $statusCode = 'pending';
+                    $statusText = 'Chờ Kích Hoạt';
+                    $planText   = 'Chờ kích hoạt';
+                    $timeText   = 'Chờ thanh toán';
+                } elseif ($isUnl) {
+                    $statusCode = 'active';
+                    $statusText = 'Đã Kích Hoạt';
+                    $planText   = 'Trọn Đời (Lifetime)';
+                    $timeText   = 'Vĩnh viễn';
+                } elseif ($isExp) {
+                    $statusCode = 'expired';
+                    $statusText = 'Đã Hết Hạn';
+                    $planText   = 'Đã hết hạn (' . $formattedExp . ')';
+                    $timeText   = 'Hết hạn: ' . $formattedExp;
+                } else {
+                    $daysLeft = $ts !== false ? max(0, (int)ceil(($ts - strtotime(date('Y-m-d'))) / 86400)) : 0;
+                    $statusCode = 'active';
+                    $statusText = 'Đang Hiệu Lực';
+                    $planText   = "Còn {$daysLeft} ngày (Đến {$formattedExp})";
+                    $timeText   = 'Hạn: ' . $formattedExp;
+                }
 
                 $devices[] = [
                     'serial'     => $sn,
                     'codename'   => $r['Device'] ?: 'Mobile',
                     'plan'       => $planText,
-                    'status'     => $isPending ? 'Pending' : 'Active',
+                    'status'     => ($statusCode === 'active') ? 'Active' : (($statusCode === 'pending') ? 'Pending' : 'Expired'),
                     'statusCode' => $statusCode,
                     'statusText' => $statusText,
                     'time'       => $timeText
@@ -224,37 +262,70 @@ try {
         $deviceDisplay = $sRow['Device'] ?: ($regRow['codename'] ?? 'Mobile');
         $timeVal = trim($sRow['Time'] ?? '');
         $isExpired = false;
+        $expiryDateFormatted = '';
+        $ts = false;
         if (!$isUnlimited && !$isPending) {
-            $ts = false;
             if (preg_match('/^(\d{4})-(\d{2})-(\d{2})$/', $timeVal, $m)) {
                 $ts = strtotime($timeVal);
+                $expiryDateFormatted = "{$m[3]}/{$m[2]}/{$m[1]}";
             } elseif (preg_match('/^(\d{2})(\d{2})(\d{4})$/', $timeVal, $m)) {
                 $ts = strtotime("{$m[3]}-{$m[2]}-{$m[1]}");
+                $expiryDateFormatted = "{$m[1]}/{$m[2]}/{$m[3]}";
             } else {
                 $ts = strtotime($timeVal);
+                if ($ts !== false) {
+                    $expiryDateFormatted = date('d/m/Y', $ts);
+                }
             }
             if ($ts !== false && $ts < strtotime(date('Y-m-d'))) {
                 $isExpired = true;
             }
         }
-        $statusCode = $isPending ? 'pending' : ($isExpired ? 'expired' : 'active');
-        $statusText = $isPending ? 'Chờ Kích Hoạt' : ($isExpired ? 'Đã Hết Hạn' : 'Đã Kích Hoạt');
+
+        // TÍNH TOÁN GÓI BẢN QUYỀN VÀ TRẠNG THÁI THEO HẠN DÙNG THỰC TẾ TRONG BẢNG SERIAL
+        if ($isPending) {
+            $planDisplay      = 'Chờ Kích Hoạt (Chưa thanh toán)';
+            $statusCode       = 'pending';
+            $statusText       = 'Chờ Kích Hoạt';
+            $expiredDisplay   = 'Chưa kích hoạt';
+            $activatedDisplay = 'Chờ thanh toán';
+        } elseif ($isUnlimited) {
+            $planDisplay      = 'Bản Quyền Vĩnh Viễn (Lifetime)';
+            $statusCode       = 'active';
+            $statusText       = 'Đã Kích Hoạt';
+            $expiredDisplay   = 'Vĩnh viễn (Trọn đời)';
+            $activatedDisplay = ($regRow && !empty($regRow['activated_at'])) ? $formatDate($regRow['activated_at']) : 'Vĩnh Viễn';
+        } elseif ($isExpired) {
+            $planDisplay      = 'Đã Hết Hạn (' . $expiryDateFormatted . ')';
+            $statusCode       = 'expired';
+            $statusText       = 'Đã Hết Hạn';
+            $expiredDisplay   = 'Hết hạn ngày ' . $expiryDateFormatted;
+            $activatedDisplay = ($regRow && !empty($regRow['activated_at'])) ? $formatDate($regRow['activated_at']) : 'Hệ Thống';
+        } else {
+            // Còn hạn (VD: 7 ngày, 30 ngày, 36 ngày...)
+            $daysLeft = $ts !== false ? max(0, (int)ceil(($ts - strtotime(date('Y-m-d'))) / 86400)) : 0;
+            $planDisplay      = "Có Thời Hạn (Còn {$daysLeft} ngày - Đến {$expiryDateFormatted})";
+            $statusCode       = 'active';
+            $statusText       = 'Đang Hiệu Lực';
+            $expiredDisplay   = $expiryDateFormatted;
+            $activatedDisplay = ($regRow && !empty($regRow['activated_at'])) ? $formatDate($regRow['activated_at']) : 'Hệ Thống';
+        }
 
         $responseData = [
             'serial'          => $sRow['Serial'],
             'codename'        => $regRow['codename'] ?? $deviceDisplay,
             'deviceName'      => $deviceDisplay,
-            'plan'            => $regRow['plan'] ?? ($isUnlimited ? 'Trọn Đời (Lifetime)' : ($isPending ? 'Chờ kích hoạt' : ('Hạn dùng: ' . $sRow['Time']))),
+            'plan'            => $planDisplay,
             'statusCode'      => $statusCode,
             'statusText'      => $statusText,
             'paymentMethod'   => $regRow['payment_method'] ?? 'Hệ Thống Bản Quyền HyperUR',
             'senderName'      => $regRow['sender_name'] ?? 'Thành Viên HyperUR',
             'senderEmail'     => $sRow['Gmail'] ?: ($regRow['sender_email'] ?? ''),
             'transactionCode' => $regRow['transaction_code'] ?? ('STT-' . $sRow['STT']),
-            'status'          => $isPending ? 'Pending' : ($isExpired ? 'Expired' : 'Active'),
+            'status'          => ($statusCode === 'pending') ? 'Pending' : (($statusCode === 'expired') ? 'Expired' : 'Active'),
             'registeredDate'  => $regRow ? $formatDate($regRow['created_at']) : 'Hệ Thống',
-            'activatedDate'   => $isPending ? 'Chờ thanh toán' : ($regRow ? $formatDate($regRow['activated_at']) : ($isUnlimited ? 'Vĩnh Viễn' : 'Hệ Thống')),
-            'expiredDate'     => $isPending ? 'Chưa kích hoạt' : ($isUnlimited ? 'Vĩnh viễn' : $sRow['Time']),
+            'activatedDate'   => $activatedDisplay,
+            'expiredDate'     => $expiredDisplay,
             'updatedDate'     => $regRow ? $formatDate($regRow['updated_at']) : '',
             'features'        => [
                 'Mở khóa toàn quyền bản ROM HyperUR',
