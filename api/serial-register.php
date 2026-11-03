@@ -207,6 +207,28 @@ try {
     $logStmt->execute();
     $logStmt->close();
     
+    // Nếu là gói miễn phí được auto-activate, đồng bộ lưu vào bảng `serial`
+    if ($isFree) {
+        $chkS = $conn->prepare("SELECT STT FROM serial WHERE LOWER(TRIM(Serial)) = LOWER(?) LIMIT 1");
+        if ($chkS) {
+            $chkS->bind_param('s', $serial);
+            $chkS->execute();
+            $hasS = $chkS->get_result()->num_rows > 0;
+            $chkS->close();
+            if (!$hasS) {
+                $maxRow = $conn->query("SELECT IFNULL(MAX(STT), 0) AS m FROM serial")->fetch_assoc();
+                $newStt = (int)$maxRow['m'] + 1;
+                $expDateStr = date('Y-m-d', strtotime('+36 days'));
+                $insS = $conn->prepare("INSERT INTO serial (STT, Device, Serial, Gmail, Time) VALUES (?, ?, ?, ?, ?)");
+                if ($insS) {
+                    $insS->bind_param('issss', $newStt, $codename, $serial, $senderEmail, $expDateStr);
+                    $insS->execute();
+                    $insS->close();
+                }
+            }
+        }
+    }
+
     $conn->close();
     
     // Send confirmation email
