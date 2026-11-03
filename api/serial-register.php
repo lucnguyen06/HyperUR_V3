@@ -207,24 +207,53 @@ try {
     $logStmt->execute();
     $logStmt->close();
     
-    // Nếu là gói miễn phí được auto-activate, đồng bộ lưu vào bảng `serial`
-    if ($isFree) {
-        $chkS = $conn->prepare("SELECT STT FROM serial WHERE LOWER(TRIM(Serial)) = LOWER(?) LIMIT 1");
-        if ($chkS) {
-            $chkS->bind_param('s', $serial);
-            $chkS->execute();
-            $hasS = $chkS->get_result()->num_rows > 0;
-            $chkS->close();
-            if (!$hasS) {
-                $maxRow = $conn->query("SELECT IFNULL(MAX(STT), 0) AS m FROM serial")->fetch_assoc();
-                $newStt = (int)$maxRow['m'] + 1;
+    // Đồng bộ sang bảng `serial` để hiển thị trên Bảng Quản Trị Admin
+    $chkS = $conn->prepare("SELECT STT, Time FROM serial WHERE LOWER(TRIM(Serial)) = LOWER(?) LIMIT 1");
+    if ($chkS) {
+        $chkS->bind_param('s', $serial);
+        $chkS->execute();
+        $sRow = $chkS->get_result()->fetch_assoc();
+        $chkS->close();
+        if ($sRow) {
+            $curTime = strtolower(trim($sRow['Time'] ?? ''));
+            if ($curTime === 'pending' && $isFree) {
                 $expDateStr = date('Y-m-d', strtotime('+36 days'));
-                $insS = $conn->prepare("INSERT INTO serial (STT, Device, Serial, Gmail, Time) VALUES (?, ?, ?, ?, ?)");
-                if ($insS) {
-                    $insS->bind_param('issss', $newStt, $codename, $serial, $senderEmail, $expDateStr);
-                    $insS->execute();
-                    $insS->close();
+                $updS = $conn->prepare("UPDATE serial SET Device = ?, Gmail = ?, Time = ? WHERE STT = ?");
+                if ($updS) {
+                    $updS->bind_param('sssi', $codename, $senderEmail, $expDateStr, $sRow['STT']);
+                    $updS->execute();
+                    $updS->close();
                 }
+            } elseif ($curTime === 'pending') {
+                $updS = $conn->prepare("UPDATE serial SET Device = ?, Gmail = ? WHERE STT = ?");
+                if ($updS) {
+                    $updS->bind_param('ssi', $codename, $senderEmail, $sRow['STT']);
+                    $updS->execute();
+                    $updS->close();
+                }
+            }
+        } else {
+            // Cấp STT mới và thêm vào bảng serial (Time='pending' nếu chưa bank, hoặc date nếu Free)
+            $maxRow = $conn->query("SELECT IFNULL(MAX(STT), 0) AS m FROM serial")->fetch_assoc();
+            $newStt = (int)$maxRow['m'] + 1;
+            $guard = 0;
+            while (true) {
+                $test = $conn->prepare("SELECT STT FROM serial WHERE STT = ? LIMIT 1");
+                $test->bind_param('i', $newStt);
+                $test->execute();
+                $r = $test->get_result();
+                $test->close();
+                if ($r->num_rows === 0) break;
+                $newStt++;
+                if (++$guard > 10000) break;
+            }
+
+            $storeTime = $isFree ? date('Y-m-d', strtotime('+36 days')) : 'pending';
+            $insS = $conn->prepare("INSERT INTO serial (STT, Device, Serial, Gmail, Time) VALUES (?, ?, ?, ?, ?)");
+            if ($insS) {
+                $insS->bind_param('issss', $newStt, $codename, $serial, $senderEmail, $storeTime);
+                $insS->execute();
+                $insS->close();
             }
         }
     }
