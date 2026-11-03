@@ -6853,6 +6853,21 @@ dialog:not([open]) {
   background: linear-gradient(90deg, #f59e0b, #fbbf24, #f59e0b);
 }
 
+/* State: Expired (Rose / Red) */
+.lookup-result-card.state-expired {
+  border: 1.5px solid rgba(244, 63, 94, 0.4);
+  box-shadow: var(--shadow-lg), 0 0 50px rgba(244, 63, 94, 0.18);
+}
+.lookup-result-card.state-expired::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f43f5e, #fda4af, #f43f5e);
+}
+
 /* State: Not Found (Rose) */
 .lookup-result-card.state-not-found {
   border: 1.5px solid rgba(244, 63, 94, 0.4);
@@ -6910,7 +6925,8 @@ dialog:not([open]) {
   box-shadow: 0 0 20px rgba(245, 158, 11, 0.35);
 }
 
-.state-not-found .lookup-status-icon-box {
+.state-not-found .lookup-status-icon-box,
+.state-expired .lookup-status-icon-box {
   background: rgba(244, 63, 94, 0.15);
   border: 2px solid var(--accent-rose);
   color: var(--accent-rose);
@@ -6964,7 +6980,8 @@ dialog:not([open]) {
   color: #fbbf24;
 }
 
-.state-not-found .lookup-status-pill {
+.state-not-found .lookup-status-pill,
+.state-expired .lookup-status-pill {
   background: rgba(244, 63, 94, 0.15);
   border: 1px solid rgba(244, 63, 94, 0.5);
   color: #fb7185;
@@ -6988,7 +7005,8 @@ dialog:not([open]) {
   box-shadow: 0 0 10px #f59e0b;
 }
 
-.state-not-found .lookup-pulse-dot {
+.state-not-found .lookup-pulse-dot,
+.state-expired .lookup-pulse-dot {
   background: #f43f5e;
   box-shadow: 0 0 10px #f43f5e;
 }
