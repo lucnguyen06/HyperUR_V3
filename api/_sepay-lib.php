@@ -93,6 +93,32 @@ if (!function_exists('sepay_is_serial')) {
     }
 }
 
+if (!function_exists('sepay_strip_emails')) {
+    /**
+     * Xoá các địa chỉ email khỏi nội dung trước khi tách token.
+     *
+     * Vì sao cần: cú pháp website là "UR <codename> <serial> <email>".
+     * Nếu để nguyên email, phần đuôi (user + gmail + com) tạo ra nhiều
+     * token rác làm lệch việc xác định vị trí serial. Khi user KHÔNG nhập
+     * codename ("UR A1B2C3D4 user@gmail.com"), email sẽ chiếm đúng vị trí
+     * của serial và có thể gây kích hoạt nhầm.
+     *
+     * Bỏ email đi thì cú pháp còn:
+     *   - có codename:    "UR alioth A1B2C3D4"  -> serial ở UR+2
+     *   - không codename: "UR A1B2C3D4"         -> serial ở UR+1
+     */
+    function sepay_strip_emails($text)
+    {
+        $text = (string)$text;
+        if ($text === '') {
+            return '';
+        }
+        // Xoá cả email đầy đủ và dạng bị ngân hàng cắt mất phần sau @
+        $cleaned = preg_replace('/[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}/u', ' ', $text);
+        return $cleaned === null ? $text : $cleaned;
+    }
+}
+
 if (!function_exists('sepay_serial_candidates')) {
     /**
      * Bóc tách các SERIAL tiềm năng từ nội dung chuyển khoản,
@@ -100,24 +126,27 @@ if (!function_exists('sepay_serial_candidates')) {
      *
      * Cú pháp website sinh ra:  "UR <codename> <serial> <email>"
      *
-     * Vì sao phải chấm điểm thay vì lấy cứng vị trí thứ 2 sau "UR":
-     *   - User có thể không nhập codename  -> "UR A1B2C3D4 user@gmail.com"
-     *     (lúc đó vị trí thứ 2 là email, không phải serial)
-     *   - Codename / email / chữ rác cũng là token A-Z0-9 nên đều "hợp lệ"
-     *     về mặt regex, nếu thử sai thứ tự có thể kích hoạt nhầm serial.
+     * Hai bước:
+     *   1. Bỏ địa chỉ email -> cấu trúc còn lại rõ ràng (xem sepay_strip_emails)
+     *   2. Chấm điểm các token còn lại
      *
      * Cách chấm điểm:
-     *   +100  nằm đúng vị trí serial (ngay sau codename) và đủ dài
+     *   +100  nằm đúng vị trí serial (UR + codename), trừ khi trông giống
+     *         số tiền (toàn số & ngắn) — tránh nhầm "50000" thành serial
      *   + 50  nằm sau chữ "UR"
-     *   + độ dài token  (serial thường 8+ ký tự, số tiền thì ngắn)
+     *   + độ dài token (serial thường dài hơn codename ngắn)
      *   + 20  có cả chữ và số (đặc trưng của serial)
-     *   - 40  toàn số và ngắn (dễ là số tiền)
+     *   - 40  toàn số và ngắn (rất dễ là số tiền)
+     *
+     * Lưu ý: KHÔNG yêu cầu độ dài tối thiểu cho điểm vị trí, vì serial
+     * hợp lệ chỉ cần 4 ký tự (đồng bộ regex của serial-register.php).
+     * Nếu bắt buộc >= 6, serial ngắn sẽ bị codename dài đè điểm.
      *
      * @return string[]
      */
     function sepay_serial_candidates($content, $limit = 10)
     {
-        $tokens = sepay_tokens($content);
+        $tokens = sepay_tokens(sepay_strip_emails($content));
         if (count($tokens) === 0) {
             return [];
         }
@@ -135,15 +164,15 @@ if (!function_exists('sepay_serial_candidates')) {
             }
             $seen[$token] = true;
 
-            $len   = strlen($token);
-            $score = $len;
+            $len      = strlen($token);
+            $score    = $len;
             $hasAlpha = (bool)preg_match('/[A-Z]/', $token);
             $hasDigit = (bool)preg_match('/[0-9]/', $token);
+            $looksLikeAmount = (!$hasAlpha && $len <= 8);
 
             if ($urIndex !== false && $i > $urIndex) {
                 $score += 50;
-                // Vị trí serial kỳ vọng: UR + codename + serial
-                if ($i === $urIndex + 2 && $len >= 6) {
+                if ($i === $urIndex + 2 && !$looksLikeAmount) {
                     $score += 100;
                 }
             }
@@ -152,8 +181,7 @@ if (!function_exists('sepay_serial_candidates')) {
                 $score += 20;
             }
 
-            // Toàn số + ngắn => rất dễ là số tiền
-            if (!$hasAlpha && $len <= 8) {
+            if ($looksLikeAmount) {
                 $score -= 40;
             }
 

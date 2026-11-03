@@ -1,11 +1,11 @@
-﻿# ============================================================
-#  Script chạy E2E test cho SePay webhook (Windows / PowerShell)
 # ============================================================
-#  Tạo một "bản sao sandbox" của api/ trong scripts/sepay-e2e/app/
-#  với config.php trỏ vào DATABASE TEST, rồi khởi động PHP built-in
-#  server và chạy client test.
+#  Script ch?y E2E test cho SePay webhook (Windows / PowerShell)
+# ============================================================
+#  T?o m?t "b?n sao sandbox" c?a api/ trong scripts/sepay-e2e/app/
+#  v?i config.php tr? v?o DATABASE TEST, r?i kh?i ??ng PHP built-in
+#  server v? ch?y client test.
 #
-#  KHÔNG đụng vào api/config.php thật (DB production).
+#  KH?NG ??ng v?o api/config.php th?t (DB production).
 # ============================================================
 
 $ErrorActionPreference = 'Stop'
@@ -26,7 +26,7 @@ Write-Host "==> Copy cac file API can thiet..." -ForegroundColor Cyan
 Copy-Item (Join-Path $root 'api\payment-webhook.php') $appDir
 Copy-Item (Join-Path $root 'api\_sepay-lib.php')     $appDir
 
-# config.php riêng cho test
+# config.php ri?ng cho test
 $testConfig = @'
 <?php
 define('DB_HOST', '127.0.0.1');
@@ -35,7 +35,7 @@ define('DB_PASS', '');
 define('DB_NAME', 'hyperur_sepay_test');
 
 define('SEPAY_WEBHOOK_SECRET', 'test_secret_key_1234567890');
-define('SEPAY_MIN_AMOUNT', 20000);
+define('SEPAY_MIN_AMOUNT', 40000);
 define('SEPAY_DEFAULT_EMAIL', 'default@hyperur.test');
 
 define('WEBSITE_URL', 'http://localhost');
@@ -50,9 +50,9 @@ ini_set('log_errors', '1');
 ini_set('error_log', __DIR__ . '/test-error.log');
 '@
 Set-Content -Path (Join-Path $appDir 'config.php') -Value $testConfig -Encoding ASCII
-# Lưu ý: KHÔNG dùng -Encoding UTF8 với PowerShell 5.1
-# (nó thêm BOM -> BOM bị in ra trước header, làm header() / http_response_code()
-#  thất bại và JSON response bị lỗi parse)
+# L?u ?: KH?NG d?ng -Encoding UTF8 v?i PowerShell 5.1
+# (n? th?m BOM -> BOM b? in ra tr??c header, l?m header() / http_response_code()
+#  th?t b?i v? JSON response b? l?i parse)
 
 Write-Host "==> Tao database test '$dbName'..." -ForegroundColor Cyan
 & $mysql -u root -e "CREATE DATABASE IF NOT EXISTS $dbName CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
@@ -144,12 +144,25 @@ $srv = Start-Process -FilePath $php `
 Start-Sleep -Seconds 3
 
 try {
-    Write-Host "==> Chay E2E test..." -ForegroundColor Cyan
+    Write-Host "==> Chay E2E test (bo chinh)..." -ForegroundColor Cyan
     & $php (Join-Path $e2e 'client.php') "http://127.0.0.1:$port/payment-webhook.php"
-    $code = $LASTEXITCODE
+    $code1 = $LASTEXITCODE
+
+    Write-Host ""
+    Write-Host "==> Chay test thanh toan LAN 2 (chong trung serial)..." -ForegroundColor Cyan
+    & $php (Join-Path $e2e 'client-dup.php') "http://127.0.0.1:$port/payment-webhook.php"
+    $code2 = $LASTEXITCODE
+
+    Write-Host ""
+    Write-Host "==> Chay test RETRY sau khi xu ly that bai..." -ForegroundColor Cyan
+    & $php (Join-Path $e2e 'client-retry.php') "http://127.0.0.1:$port/payment-webhook.php"
+    $code3 = $LASTEXITCODE
+
+    $code = if ($code1 -ne 0 -or $code2 -ne 0 -or $code3 -ne 0) { 1 } else { 0 }
 } finally {
     Write-Host "==> Dung PHP server..." -ForegroundColor Cyan
     if ($srv -and -not $srv.HasExited) { Stop-Process -Id $srv.Id -Force }
 }
 
 exit $code
+

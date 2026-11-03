@@ -62,9 +62,11 @@ define('API_SECRET', 'CHANGE_ME_RANDOM_SECRET');
 // 2) API Key (dự phòng): header "Authorization: Apikey <key>"
 // define('SEPAY_API_KEY', 'CHANGE_ME_SEPAY_API_KEY');
 
-// Số tiền tối thiểu để coi là đã thanh toán hợp lệ (mặc định 20.000đ).
-// Dưới mức này webhook chỉ ghi log, KHÔNG kích hoạt.
-// define('SEPAY_MIN_AMOUNT', 20000);
+// Số tiền tối thiểu để coi là đã thanh toán hợp lệ.
+// Mặc định 40.000đ = mức giá THẤP NHẤT của website
+// (serial.js: 1-30 thiết bị = 50.000đ, từ 31 thiết bị = 40.000đ).
+// Đổi bảng giá thì phải cập nhật cả đây.
+// define('SEPAY_MIN_AMOUNT', 40000);
 
 // Email dùng khi không đọc được email từ nội dung chuyển khoản.
 // define('SEPAY_DEFAULT_EMAIL', 'hyperur2026@gmail.com');

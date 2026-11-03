@@ -257,12 +257,32 @@ $isDuplicate = ($insTx->affected_rows === 0);
 $insTx->close();
 
 if ($isDuplicate) {
-    // Giao dịch đã xử lý trước đó -> trả success để SePay không retry
-    $conn->close();
-    sepay_respond(200, true, 'Giao dịch đã được xử lý trước đó', [
-        'sepayId' => $sepayId,
-        'duplicate' => true,
-    ]);
+    // Giao dịch đã từng được ghi nhận. NHƯNG không được trả success ngay:
+    // nếu lần xử lý trước bị lỗi giữa chừng (DB timeout, fatal, deploy...)
+    // thì status vẫn là 'unmatched' và serial CHƯA được kích hoạt.
+    // Trả success ngay lúc này = tiền đã nhận nhưng vĩnh viễn không kích hoạt.
+    $prev = $conn->prepare("SELECT status FROM payment_transactions WHERE sepay_id = ? LIMIT 1");
+    $prevStatus = '';
+    if ($prev) {
+        $prev->bind_param('i', $sepayId);
+        $prev->execute();
+        $prevRow = $prev->get_result()->fetch_assoc();
+        $prevStatus = (string)($prevRow['status'] ?? '');
+        $prev->close();
+    }
+
+    if ($prevStatus === 'matched') {
+        // Đã xử lý xong thực sự -> báo trùng để SePay thôi retry
+        $conn->close();
+        sepay_respond(200, true, 'Giao dịch đã được xử lý trước đó', [
+            'sepayId'   => $sepayId,
+            'duplicate' => true,
+        ]);
+    }
+
+    // Lần trước chưa hoàn tất -> chạy lại phần kích hoạt (idempotent:
+    // đã kiểm tra tồn tại ở cả registrations và serial trước khi ghi)
+    error_log('[sepay-webhook] Retry cho giao dịch chưa hoàn tất: ' . $sepayId . ' (status cũ: ' . $prevStatus . ')');
 }
 
 /** Cập nhật trạng thái giao dịch đã ghi */
@@ -295,7 +315,6 @@ $candidateSerials = sepay_serial_candidates($matchText, 10);
 $matchedSerial = null;
 $matchedEmail  = null;
 $regRow        = null;
-$alreadyActive = false;
 
 foreach ($candidateSerials as $candidate) {
     // 10a. Tìm trong registrations (đơn đăng ký từ website)
@@ -330,14 +349,18 @@ foreach ($candidateSerials as $candidate) {
         if ($row) {
             $matchedSerial = strtoupper(trim($row['Serial']));
             $matchedEmail  = strtolower(trim($row['Gmail']));
-            $alreadyActive = true;
             break;
         }
     }
 }
 
-// Số tiền tối thiểu để coi là thanh toán hợp lệ
-$minAmount = (int)sepay_cfg('SEPAY_MIN_AMOUNT', 20000);
+// Số tiền tối thiểu để coi là thanh toán hợp lệ.
+// ⚠️ Mặc định 40.000đ = MỨC GIÁ THẤP NHẤT của website
+//    (serial.js: 1-30 thiết bị = 50.000đ, từ 31 thiết bị = 40.000đ).
+//    Đặt cao hơn giá thật -> khách trả đủ vẫn bị chặn.
+//    Đặt thấp hơn -> khách trả thiếu vẫn được kích hoạt (thất thoát).
+//    Nếu sau này đổi bảng giá, PHẢI cập nhật cả hằng số này.
+$minAmount = (int)sepay_cfg('SEPAY_MIN_AMOUNT', 40000);
 $amountOk  = ($transferAmount >= $minAmount);
 
 // Trường hợp không tìm thấy serial trong hệ thống
@@ -394,6 +417,7 @@ if (!$amountOk) {
 }
 
 // 11a. Cập nhật bảng registrations -> Active
+//      (chỉ khi serial này có đơn đăng ký trên website)
 if ($regRow) {
     $updReg = $conn->prepare("
         UPDATE registrations
@@ -407,8 +431,8 @@ if ($regRow) {
          LIMIT 1
     ");
     if ($updReg) {
-        $transCode = 'SEPAY-' . $sepayId;
-        $regId     = (int)$regRow['id'];
+        $transCode    = 'SEPAY-' . $sepayId;
+        $regId        = (int)$regRow['id'];
         $statusActive = 'Active';
         $updReg->bind_param('ssi', $statusActive, $transCode, $regId);
         if ($updReg->execute()) {
@@ -421,7 +445,24 @@ if ($regRow) {
 }
 
 // 11b. Ghi vào bảng `serial` (bảng quyết định bản quyền khi tra cứu)
-if (!$alreadyActive) {
+//
+// ⚠️ Phải kiểm tra bảng `serial` một cách ĐỘC LẬP, không dựa vào
+//    $alreadyActive ở bước 10. Lý do:
+//    - Bước 10 dừng ngay khi tìm thấy serial trong `registrations`,
+//      nên nếu serial đã được kích hoạt trước đó (có ở CẢ 2 bảng) thì
+//      $alreadyActive vẫn = false -> sẽ INSERT trùng bản ghi.
+//    - Bảng `serial` KHÔNG có UNIQUE(Serial) nên DB không tự chặn.
+//    => Trường hợp user chuyển khoản lần 2 là hoàn toàn có thật.
+$chkExist = $conn->prepare("SELECT STT FROM serial WHERE UPPER(TRIM(Serial)) = ? LIMIT 1");
+$serialExisted = false;
+if ($chkExist) {
+    $chkExist->bind_param('s', $matchedSerial);
+    $chkExist->execute();
+    $serialExisted = $chkExist->get_result()->num_rows > 0;
+    $chkExist->close();
+}
+
+if (!$serialExisted) {
     // Lấy STT mới = MAX(STT) + 1, tự nhảy qua số đã dùng
     $maxRow = $conn->query("SELECT IFNULL(MAX(STT), 0) AS m FROM serial")->fetch_assoc();
     $newStt = (int)$maxRow['m'] + 1;
@@ -470,8 +511,6 @@ if (!$alreadyActive) {
         }
         $insSerial->close();
     }
-} else {
-    $serialExisted = true;
 }
 
 // 11c. Ghi audit log (admin_logs) để soi lại về sau
@@ -509,6 +548,15 @@ try {
 $finalNote = 'Kích hoạt OK'
     . ($serialInserted ? ' (thêm mới bảng serial)' : ($serialExisted ? ' (serial đã có sẵn)' : ''));
 sepay_finalize_tx($conn, $sepayId, 'matched', $matchedSerial, $matchedEmail, sepay_cut($finalNote, 250));
+
+// 11e. Tự động tăng lượt giao dịch xoay QR VietQR (mỗi 5 giao dịch đổi tài khoản)
+try {
+    @$conn->query("
+        INSERT INTO `system_settings` (`setting_key`, `setting_value`)
+        VALUES ('qr_rotation_count', '1')
+        ON DUPLICATE KEY UPDATE `setting_value` = CAST(`setting_value` AS UNSIGNED) + 1
+    ");
+} catch (\Throwable $e) {}
 
 $conn->close();
 

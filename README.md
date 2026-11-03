@@ -64,6 +64,18 @@ SERIAL_REGISTER_API_URL: "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec
 
 ---
 
+## 📖 Hướng Dẫn Người Dùng & Khách Hàng
+
+Xem sơ đồ quy trình trực quan và hướng dẫn kích hoạt bản quyền chi tiết:
+👉 **[Xem Hướng Dẫn Đăng Ký & Kích Hoạt Serial Chi Tiết](md/HUONG_DAN_KHACH_HANG.md)**
+
+```mermaid
+flowchart LR
+    A["📱 1. Lấy Serial"] --> B["📝 2. Nhập Form Web"] --> C["💳 3. Quét VietQR"] --> D["⚡ 4. Tự Động Kích Hoạt (10-30s)"] --> E["🎉 5. Cài & Dùng ROM"]
+```
+
+---
+
 ## 👥 Đội Ngũ Phát Triển & Cộng Đồng
 
 ### Đội ngũ phát triển

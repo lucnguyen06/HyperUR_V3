@@ -890,34 +890,64 @@
 
     // =========================================================
     // QR ACCOUNT ROTATION (Xoay vòng QR sau mỗi 5 lần CK)
+    // Đồng bộ thời gian thực qua Server Database (MySQL)
     // =========================================================
-    function rotateQrAccount() {
-        qrPaymentCount++;
-        
-        // Lưu trạng thái vào localStorage
-        localStorage.setItem('qr_payment_count', qrPaymentCount);
-        localStorage.setItem('qr_current_index', currentQrIndex);
-        
-        // Nếu đã đủ 5 lần thì chuyển QR
-        if (qrPaymentCount >= QR_ROTATE_THRESHOLD) {
-            currentQrIndex = (currentQrIndex + 1) % qrAccounts.length;
-            qrPaymentCount = 0;
-            
-            localStorage.setItem('qr_current_index', currentQrIndex);
-            localStorage.setItem('qr_payment_count', qrPaymentCount);
-            
-            const nextQr = qrAccounts[currentQrIndex];
-            console.log(`🔄 Chuyển sang QR mới: ${nextQr.name} - ${nextQr.acc}`);
-            
-            // Cập nhật QR ngay
-            updatePaymentQr(currentCalculatedPrice, serialInput ? serialInput.value.trim() : '');
-            
-            // Cập nhật hiển thị bank info
-            updateBankInfoDisplay();
+    async function syncQrStateFromServer() {
+        try {
+            const res = await fetch('./api/qr-active.php', { cache: 'no-store' });
+            if (!res.ok) return;
+            const data = await res.json();
+            if (data && data.success && typeof data.index === 'number') {
+                currentQrIndex = data.index % qrAccounts.length;
+                qrPaymentCount = data.count || 0;
+
+                localStorage.setItem('qr_current_index', currentQrIndex);
+                localStorage.setItem('qr_payment_count', qrPaymentCount);
+
+                const activeQr = qrAccounts[currentQrIndex];
+                console.log(`✅ [Server Sync] MBBank QR: ${activeQr.name} - ${activeQr.acc} (${qrPaymentCount}/${QR_ROTATE_THRESHOLD})`);
+
+                updateBankInfoDisplay();
+                updatePaymentQr(currentCalculatedPrice, serialInput ? sanitizeSerial(serialInput.value) : '');
+            }
+        } catch (err) {
+            console.warn('Không thể đồng bộ QR từ server, dùng cache:', err);
         }
     }
+
+    function rotateQrAccount() {
+        // Ghi nhận lượt submit/quét lên server để đếm đồng bộ toàn hệ thống
+        fetch('./api/qr-active.php?action=record_submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data && data.success && typeof data.index === 'number') {
+                currentQrIndex = data.index % qrAccounts.length;
+                qrPaymentCount = data.count || 0;
+                localStorage.setItem('qr_current_index', currentQrIndex);
+                localStorage.setItem('qr_payment_count', qrPaymentCount);
+
+                updateBankInfoDisplay();
+                updatePaymentQr(currentCalculatedPrice, serialInput ? sanitizeSerial(serialInput.value) : '');
+            }
+        })
+        .catch(err => {
+            // Fallback offline nếu server mất kết nối
+            qrPaymentCount++;
+            if (qrPaymentCount >= QR_ROTATE_THRESHOLD) {
+                currentQrIndex = (currentQrIndex + 1) % qrAccounts.length;
+                qrPaymentCount = 0;
+            }
+            localStorage.setItem('qr_current_index', currentQrIndex);
+            localStorage.setItem('qr_payment_count', qrPaymentCount);
+            updateBankInfoDisplay();
+            updatePaymentQr(currentCalculatedPrice, serialInput ? sanitizeSerial(serialInput.value) : '');
+        });
+    }
     
-    // Khôi phục trạng thái QR từ localStorage
+    // Khôi phục trạng thái QR ban đầu (cache) và đồng bộ ngay với server
     function restoreQrState() {
         const savedIndex = localStorage.getItem('qr_current_index');
         const savedCount = localStorage.getItem('qr_payment_count');
@@ -929,28 +959,34 @@
             qrPaymentCount = parseInt(savedCount, 10) || 0;
         }
         
-        const currentQr = qrAccounts[currentQrIndex];
-        console.log(`✅ Đang dùng QR: ${currentQr.name} - ${currentQr.acc} (${qrPaymentCount}/${QR_ROTATE_THRESHOLD})`);
-        
-        // Cập nhật hiển thị bank info
+        // Cập nhật hiển thị giao diện và ảnh QR khớp nhau ngay lập tức
         updateBankInfoDisplay();
+        updatePaymentQr(currentCalculatedPrice, serialInput ? sanitizeSerial(serialInput.value) : '');
+
+        // Kéo dữ liệu mới nhất từ server DB
+        syncQrStateFromServer();
     }
     
     function updateBankInfoDisplay() {
-        const currentQr = qrAccounts[currentQrIndex];
+        const currentQr = qrAccounts[currentQrIndex] || qrAccounts[0];
         const bankNameText = document.getElementById('bank-name-val');
         const bankOwnerText = document.getElementById('bank-owner-val');
         const bankAccText = document.getElementById('bank-acc-val');
         const btnCopyOwner = document.getElementById('btn-copy-owner');
         const btnCopyAcc = document.getElementById('btn-copy-acc');
         
-        if (bankNameText) bankNameText.textContent = 'MB Bank';
+        if (bankNameText) bankNameText.textContent = 'MBBank (Ngân hàng TMCP Quân Đội)';
         if (bankOwnerText) bankOwnerText.textContent = currentQr.name;
         if (bankAccText) bankAccText.textContent = currentQr.acc;
         
         // Cập nhật data-copy attribute cho buttons
         if (btnCopyOwner) btnCopyOwner.setAttribute('data-copy', currentQr.name);
         if (btnCopyAcc) btnCopyAcc.setAttribute('data-copy', currentQr.acc);
+
+        // Cập nhật thẻ alt của ảnh QR
+        if (paymentQrImg) {
+            paymentQrImg.alt = `QR thanh toán - MBBank - ${currentQr.acc} - ${currentQr.name}`;
+        }
     }
 
     // =========================================================

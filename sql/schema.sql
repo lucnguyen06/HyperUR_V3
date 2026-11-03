@@ -146,8 +146,17 @@ CREATE TABLE IF NOT EXISTS `payment_transactions` (
     INDEX `idx_created` (`created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- ------------------------------------------------------------
+-- 7. system_settings - cấu hình & bộ đếm toàn hệ thống
+-- ------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `system_settings` (
+    `setting_key`   VARCHAR(50) PRIMARY KEY,
+    `setting_value` TEXT NOT NULL,
+    `updated_at`    TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- ============================================================
--- 7. Tạo tài khoản Super Admin đầu tiên
+-- 8. Tạo tài khoản Super Admin đầu tiên
 -- ============================================================
 -- ⚠️ THAY MẬT KHẨU BÊN DƯỚI TRƯỚC KHI CHẠY.
 -- Hash dưới đây là của mật khẩu mẫu: HyperUR@2026
