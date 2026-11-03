@@ -107,15 +107,23 @@ try {
                 if ($sn === '' || in_array(strtolower($sn), $existingSerials, true)) continue;
                 $existingSerials[] = strtolower($sn);
 
-                $isUnl = (strtolower(trim($r['Time'] ?? '')) === 'unlimited');
+                $tLower = strtolower(trim($r['Time'] ?? ''));
+                $isUnl = ($tLower === 'unlimited');
+                $isPending = ($tLower === 'pending');
+
+                $statusCode = $isPending ? 'pending' : 'active';
+                $statusText = $isPending ? 'Chờ Kích Hoạt' : 'Đã Kích Hoạt';
+                $timeText = $isUnl ? 'Vĩnh viễn' : ($isPending ? 'Chờ thanh toán' : $r['Time']);
+                $planText = $isUnl ? 'Trọn Đời (Lifetime)' : ($isPending ? 'Chờ kích hoạt' : ('Hạn dùng: ' . $r['Time']));
+
                 $devices[] = [
                     'serial'     => $sn,
                     'codename'   => $r['Device'] ?: 'Mobile',
-                    'plan'       => $isUnl ? 'Trọn Đời (Lifetime)' : ('Hạn dùng: ' . $r['Time']),
-                    'status'     => 'Active',
-                    'statusCode' => 'active',
-                    'statusText' => 'Đã Kích Hoạt',
-                    'time'       => $isUnl ? 'Vĩnh viễn' : $r['Time']
+                    'plan'       => $planText,
+                    'status'     => $isPending ? 'Pending' : 'Active',
+                    'statusCode' => $statusCode,
+                    'statusText' => $statusText,
+                    'time'       => $timeText
                 ];
             }
             $stmtSerial->close();
@@ -208,13 +216,15 @@ try {
         return $dt->format('d/m/Y H:i');
     };
 
-    // Trường hợp 1: Có trong bảng serial -> Bản quyền hợp lệ
+    // Trường hợp 1: Có trong bảng serial -> Bản quyền hợp lệ hoặc Chờ kích hoạt
     if ($sRow) {
-        $isUnlimited = (strtolower(trim($sRow['Time'] ?? '')) === 'unlimited');
+        $tLower = strtolower(trim($sRow['Time'] ?? ''));
+        $isUnlimited = ($tLower === 'unlimited');
+        $isPending = ($tLower === 'pending');
         $deviceDisplay = $sRow['Device'] ?: ($regRow['codename'] ?? 'Mobile');
         $timeVal = trim($sRow['Time'] ?? '');
         $isExpired = false;
-        if (!$isUnlimited) {
+        if (!$isUnlimited && !$isPending) {
             $ts = false;
             if (preg_match('/^(\d{4})-(\d{2})-(\d{2})$/', $timeVal, $m)) {
                 $ts = strtotime($timeVal);
@@ -227,24 +237,24 @@ try {
                 $isExpired = true;
             }
         }
-        $statusCode = $isExpired ? 'expired' : 'active';
-        $statusText = $isExpired ? 'Đã Hết Hạn' : 'Đã Kích Hoạt';
+        $statusCode = $isPending ? 'pending' : ($isExpired ? 'expired' : 'active');
+        $statusText = $isPending ? 'Chờ Kích Hoạt' : ($isExpired ? 'Đã Hết Hạn' : 'Đã Kích Hoạt');
 
         $responseData = [
             'serial'          => $sRow['Serial'],
             'codename'        => $regRow['codename'] ?? $deviceDisplay,
             'deviceName'      => $deviceDisplay,
-            'plan'            => $regRow['plan'] ?? ($isUnlimited ? 'Trọn Đời (Lifetime)' : ('Hạn dùng: ' . $sRow['Time'])),
+            'plan'            => $regRow['plan'] ?? ($isUnlimited ? 'Trọn Đời (Lifetime)' : ($isPending ? 'Chờ kích hoạt' : ('Hạn dùng: ' . $sRow['Time']))),
             'statusCode'      => $statusCode,
             'statusText'      => $statusText,
             'paymentMethod'   => $regRow['payment_method'] ?? 'Hệ Thống Bản Quyền HyperUR',
             'senderName'      => $regRow['sender_name'] ?? 'Thành Viên HyperUR',
             'senderEmail'     => $sRow['Gmail'] ?: ($regRow['sender_email'] ?? ''),
             'transactionCode' => $regRow['transaction_code'] ?? ('STT-' . $sRow['STT']),
-            'status'          => $isExpired ? 'Expired' : 'Active',
+            'status'          => $isPending ? 'Pending' : ($isExpired ? 'Expired' : 'Active'),
             'registeredDate'  => $regRow ? $formatDate($regRow['created_at']) : 'Hệ Thống',
-            'activatedDate'   => $regRow ? $formatDate($regRow['activated_at']) : ($isUnlimited ? 'Vĩnh Viễn' : 'Hệ Thống'),
-            'expiredDate'     => $isUnlimited ? 'Vĩnh viễn' : $sRow['Time'],
+            'activatedDate'   => $isPending ? 'Chờ thanh toán' : ($regRow ? $formatDate($regRow['activated_at']) : ($isUnlimited ? 'Vĩnh Viễn' : 'Hệ Thống')),
+            'expiredDate'     => $isPending ? 'Chưa kích hoạt' : ($isUnlimited ? 'Vĩnh viễn' : $sRow['Time']),
             'updatedDate'     => $regRow ? $formatDate($regRow['updated_at']) : '',
             'features'        => [
                 'Mở khóa toàn quyền bản ROM HyperUR',
