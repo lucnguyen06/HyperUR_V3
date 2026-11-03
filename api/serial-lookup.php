@@ -96,7 +96,7 @@ try {
         $devices = [];
         $existingSerials = [];
 
-        // Lấy từ bảng serial gốc
+        // Lấy từ bảng serial gốc (nguồn chuẩn quyết định bản quyền)
         $stmtSerial = $conn->prepare("SELECT STT, Device, Serial, Gmail, Time FROM serial WHERE LOWER(TRIM(Gmail)) = ? ORDER BY STT DESC");
         if ($stmtSerial) {
             $stmtSerial->bind_param("s", $email);
@@ -130,32 +130,44 @@ try {
             while ($r = $rReg->fetch_assoc()) {
                 $sn = trim($r['serial'] ?? '');
                 if ($sn === '' || in_array(strtolower($sn), $existingSerials, true)) continue;
-                $existingSerials[] = strtolower($sn);
 
                 $st = $r['status'] ?: 'Pending';
-                $isActive = (strtolower($st) === 'active');
+                // Nếu bản ghi ghi là Active nhưng không có trong bảng serial -> đã bị admin xóa
+                if (strtolower($st) === 'active') {
+                    // Dọn dẹp bản ghi mồ côi
+                    @$conn->query("DELETE FROM registrations WHERE LOWER(TRIM(serial)) = '" . $conn->real_escape_string(strtolower($sn)) . "'");
+                    continue;
+                }
+
+                $existingSerials[] = strtolower($sn);
                 $devices[] = [
                     'serial'     => $sn,
                     'codename'   => $r['codename'],
-                    'plan'       => $r['plan'] ?: 'Active Free',
+                    'plan'       => $r['plan'] ?: 'Chờ duyệt',
                     'status'     => $st,
-                    'statusCode' => strtolower($st),
-                    'statusText' => $isActive ? 'Đã Kích Hoạt' : 'Chờ Kích Hoạt',
-                    'time'       => $r['expired_at'] ? date('d/m/Y', strtotime($r['expired_at'])) : 'Vĩnh viễn'
+                    'statusCode' => 'pending',
+                    'statusText' => 'Chờ Kích Hoạt',
+                    'time'       => 'Chờ duyệt'
                 ];
             }
             $stmtReg->close();
         }
 
-        $totalCount = count($devices);
+        // Đếm chính xác số thiết bị đã kích hoạt
+        $activeCount = 0;
+        foreach ($devices as $d) {
+            if ($d['statusCode'] === 'active') {
+                $activeCount++;
+            }
+        }
         $conn->close();
 
         echo json_encode([
             'success' => true,
-            'found'   => ($totalCount > 0),
+            'found'   => ($activeCount > 0 || count($devices) > 0),
             'type'    => 'email',
             'email'   => $email,
-            'count'   => $totalCount,
+            'count'   => $activeCount,
             'devices' => $devices
         ], JSON_UNESCAPED_UNICODE);
         exit;
@@ -164,171 +176,157 @@ try {
     // =========================================================
     // 2. Tra cứu chi tiết bản quyền theo Serial
     // =========================================================
-    $stmt = $conn->prepare("
-        SELECT 
-            serial,
-            codename,
-            plan,
-            payment_method,
-            sender_name,
-            sender_email,
-            transaction_code,
-            status,
-            created_at,
-            activated_at,
-            expired_at,
-            updated_at
-        FROM registrations 
-        WHERE serial = ?
-    ");
-    
-    $stmt->bind_param("s", $serial);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows === 0) {
-        $stmt->close();
-
-        // Fallback: tra cứu trong bảng serial gốc của hệ thống (hơn 500 serial có sẵn)
-        $stmt2 = $conn->prepare("SELECT STT, Device, Serial, Gmail, Time FROM serial WHERE LOWER(Serial) = LOWER(?) LIMIT 1");
-        if ($stmt2) {
-            $stmt2->bind_param("s", $serial);
-            $stmt2->execute();
-            $res2 = $stmt2->get_result();
-            if ($res2 && $res2->num_rows > 0) {
-                $sRow = $res2->fetch_assoc();
-                $stmt2->close();
-                
-                $isUnlimited = (strtolower(trim($sRow['Time'] ?? '')) === 'unlimited');
-                $deviceDisplay = $sRow['Device'] ?: 'Mobile';
-                $timeVal = trim($sRow['Time'] ?? '');
-                $isExpired = false;
-                if (!$isUnlimited) {
-                    $ts = false;
-                    if (preg_match('/^(\d{4})-(\d{2})-(\d{2})$/', $timeVal, $m)) {
-                        $ts = strtotime($timeVal);
-                    } elseif (preg_match('/^(\d{2})(\d{2})(\d{4})$/', $timeVal, $m)) {
-                        $ts = strtotime("{$m[3]}-{$m[2]}-{$m[1]}");
-                    } else {
-                        $ts = strtotime($timeVal);
-                    }
-                    if ($ts !== false && $ts < strtotime(date('Y-m-d'))) {
-                        $isExpired = true;
-                    }
-                }
-                $statusCode = $isExpired ? 'expired' : 'active';
-                $statusText = $isExpired ? 'Đã Hết Hạn' : 'Đã Kích Hoạt';
-
-                $responseData = [
-                    'serial' => $sRow['Serial'],
-                    'codename' => $deviceDisplay,
-                    'deviceName' => $deviceDisplay,
-                    'plan' => $isUnlimited ? 'Trọn Đời (Lifetime)' : ('Hạn dùng: ' . $sRow['Time']),
-                    'statusCode' => $statusCode,
-                    'statusText' => $statusText,
-                    'paymentMethod' => 'Hệ Thống Bản Quyền HyperUR',
-                    'senderName' => 'Thành Viên HyperUR',
-                    'senderEmail' => $sRow['Gmail'],
-                    'transactionCode' => 'STT-' . $sRow['STT'],
-                    'status' => $isExpired ? 'Expired' : 'Active',
-                    'registeredDate' => 'Hệ Thống',
-                    'activatedDate' => 'Vĩnh Viễn',
-                    'expiredDate' => $isUnlimited ? 'Vĩnh viễn' : $sRow['Time'],
-                    'updatedDate' => '',
-                    'features' => [
-                        'Mở khóa toàn quyền bản ROM HyperUR',
-                        'Bypass Play Integrity mặc định (mọi app ngân hàng, VNeID)',
-                        'Hỗ trợ kỹ thuật và OTA trực tiếp từ Admin'
-                    ]
-                ];
-                
-                $ip = $_SERVER['REMOTE_ADDR'] ?? 'Unknown';
-                $userAgent = substr($_SERVER['HTTP_USER_AGENT'] ?? 'Unknown', 0, 500);
-                @$conn->query("INSERT INTO activity_logs (serial, action, description, ip_address, user_agent) VALUES ('" . $conn->real_escape_string($serial) . "', 'lookup', 'Tra cứu serial gốc thành công', '" . $conn->real_escape_string($ip) . "', '" . $conn->real_escape_string($userAgent) . "')");
-                $conn->close();
-                
-                echo json_encode([
-                    'success' => true,
-                    'found'   => true,
-                    'message' => 'Tìm thấy Serial',
-                    'data'    => $responseData
-                ], JSON_UNESCAPED_UNICODE);
-                exit;
-            }
-            $stmt2->close();
+    // Tra cứu trong bảng `serial` trước (nguồn chuẩn quyết định bản quyền)
+    $stmtSerial = $conn->prepare("SELECT STT, Device, Serial, Gmail, Time FROM serial WHERE LOWER(TRIM(Serial)) = LOWER(?) LIMIT 1");
+    $sRow = null;
+    if ($stmtSerial) {
+        $stmtSerial->bind_param("s", $serial);
+        $stmtSerial->execute();
+        $resSerial = $stmtSerial->get_result();
+        if ($resSerial && $resSerial->num_rows > 0) {
+            $sRow = $resSerial->fetch_assoc();
         }
-        
-        $conn->close();
-        echo json_encode([
-            'success' => true,
-            'found'   => false,
-            'message' => 'Không tìm thấy Serial này trong hệ thống'
-        ], JSON_UNESCAPED_UNICODE);
-        exit;
+        $stmtSerial->close();
     }
-    
-    $row = $result->fetch_assoc();
-    
-    // Format dates
+
+    // Tra cứu thông tin từ bảng `registrations` (nếu có)
+    $stmtReg = $conn->prepare("SELECT serial, codename, plan, payment_method, sender_name, sender_email, transaction_code, status, created_at, activated_at, expired_at, updated_at FROM registrations WHERE LOWER(TRIM(serial)) = LOWER(?) LIMIT 1");
+    $regRow = null;
+    if ($stmtReg) {
+        $stmtReg->bind_param("s", $serial);
+        $stmtReg->execute();
+        $resReg = $stmtReg->get_result();
+        if ($resReg && $resReg->num_rows > 0) {
+            $regRow = $resReg->fetch_assoc();
+        }
+        $stmtReg->close();
+    }
+
     $formatDate = function($datetime) {
         if (!$datetime) return '';
         $dt = new DateTime($datetime);
         return $dt->format('d/m/Y H:i');
     };
-    
-    $st = $row['status'] ?: 'Pending';
-    $isExp = (strtolower($st) === 'expired') || (!empty($row['expired_at']) && strtotime($row['expired_at']) < time());
-    if ($isExp && strtolower($st) === 'active') {
-        $st = 'Expired';
+
+    // Trường hợp 1: Có trong bảng serial -> Bản quyền hợp lệ
+    if ($sRow) {
+        $isUnlimited = (strtolower(trim($sRow['Time'] ?? '')) === 'unlimited');
+        $deviceDisplay = $sRow['Device'] ?: ($regRow['codename'] ?? 'Mobile');
+        $timeVal = trim($sRow['Time'] ?? '');
+        $isExpired = false;
+        if (!$isUnlimited) {
+            $ts = false;
+            if (preg_match('/^(\d{4})-(\d{2})-(\d{2})$/', $timeVal, $m)) {
+                $ts = strtotime($timeVal);
+            } elseif (preg_match('/^(\d{2})(\d{2})(\d{4})$/', $timeVal, $m)) {
+                $ts = strtotime("{$m[3]}-{$m[2]}-{$m[1]}");
+            } else {
+                $ts = strtotime($timeVal);
+            }
+            if ($ts !== false && $ts < strtotime(date('Y-m-d'))) {
+                $isExpired = true;
+            }
+        }
+        $statusCode = $isExpired ? 'expired' : 'active';
+        $statusText = $isExpired ? 'Đã Hết Hạn' : 'Đã Kích Hoạt';
+
+        $responseData = [
+            'serial'          => $sRow['Serial'],
+            'codename'        => $regRow['codename'] ?? $deviceDisplay,
+            'deviceName'      => $deviceDisplay,
+            'plan'            => $regRow['plan'] ?? ($isUnlimited ? 'Trọn Đời (Lifetime)' : ('Hạn dùng: ' . $sRow['Time'])),
+            'statusCode'      => $statusCode,
+            'statusText'      => $statusText,
+            'paymentMethod'   => $regRow['payment_method'] ?? 'Hệ Thống Bản Quyền HyperUR',
+            'senderName'      => $regRow['sender_name'] ?? 'Thành Viên HyperUR',
+            'senderEmail'     => $sRow['Gmail'] ?: ($regRow['sender_email'] ?? ''),
+            'transactionCode' => $regRow['transaction_code'] ?? ('STT-' . $sRow['STT']),
+            'status'          => $isExpired ? 'Expired' : 'Active',
+            'registeredDate'  => $regRow ? $formatDate($regRow['created_at']) : 'Hệ Thống',
+            'activatedDate'   => $regRow ? $formatDate($regRow['activated_at']) : ($isUnlimited ? 'Vĩnh Viễn' : 'Hệ Thống'),
+            'expiredDate'     => $isUnlimited ? 'Vĩnh viễn' : $sRow['Time'],
+            'updatedDate'     => $regRow ? $formatDate($regRow['updated_at']) : '',
+            'features'        => [
+                'Mở khóa toàn quyền bản ROM HyperUR',
+                'Bypass Play Integrity mặc định (mọi app ngân hàng, VNeID)',
+                'Hỗ trợ kỹ thuật và OTA trực tiếp từ Admin'
+            ]
+        ];
+
+        $ip = $_SERVER['REMOTE_ADDR'] ?? 'Unknown';
+        $userAgent = substr($_SERVER['HTTP_USER_AGENT'] ?? 'Unknown', 0, 500);
+        @$conn->query("INSERT INTO activity_logs (serial, action, description, ip_address, user_agent) VALUES ('" . $conn->real_escape_string($serial) . "', 'lookup', 'Tra cứu serial gốc thành công', '" . $conn->real_escape_string($ip) . "', '" . $conn->real_escape_string($userAgent) . "')");
+        $conn->close();
+
+        echo json_encode([
+            'success' => true,
+            'found'   => true,
+            'message' => 'Tìm thấy Serial',
+            'data'    => $responseData
+        ], JSON_UNESCAPED_UNICODE);
+        exit;
     }
-    $isActive = (strtolower($st) === 'active');
-    
-    // Prepare response data
-    $responseData = [
-        'serial' => $row['serial'],
-        'codename' => $row['codename'],
-        'deviceName' => 'Thiết bị ' . $row['codename'],
-        'plan' => $row['plan'],
-        'statusCode' => $isExp ? 'expired' : strtolower($st),
-        'statusText' => $isExp ? 'Đã Hết Hạn' : ($isActive ? 'Đã Kích Hoạt' : 'Chờ Kích Hoạt'),
-        'paymentMethod' => $row['payment_method'],
-        'senderName' => $row['sender_name'],
-        'senderEmail' => $row['sender_email'],
-        'transactionCode' => $row['transaction_code'],
-        'status' => $st,
-        'registeredDate' => $formatDate($row['created_at']),
-        'activatedDate' => $formatDate($row['activated_at']),
-        'expiredDate' => $formatDate($row['expired_at']),
-        'updatedDate' => $formatDate($row['updated_at']),
-        'features' => [
-            'Mở khóa toàn quyền bản ROM HyperUR',
-            'Bypass Play Integrity mặc định (mọi app ngân hàng, VNeID)',
-            'Hỗ trợ kỹ thuật và OTA trực tiếp từ Admin'
-        ]
-    ];
-    
-    // Log activity
-    $ip = $_SERVER['REMOTE_ADDR'] ?? 'Unknown';
-    $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? 'Unknown';
-    $logStmt = $conn->prepare("
-        INSERT INTO activity_logs (serial, action, description, ip_address, user_agent) 
-        VALUES (?, 'lookup', ?, ?, ?)
-    ");
-    $logDesc = "Tra cứu serial {$serial}";
-    $logStmt->bind_param("ssss", $serial, $logDesc, $ip, $userAgent);
-    $logStmt->execute();
-    $logStmt->close();
-    
-    $stmt->close();
+
+    // Trường hợp 2: Không có trong bảng serial
+    // Kiểm tra xem có trong registrations không
+    if ($regRow) {
+        $st = $regRow['status'] ?: 'Pending';
+        if (strtolower($st) === 'active') {
+            // Đã từng active nhưng hiện không có trong bảng serial -> serial ĐÃ BỊ XÓA BỞI ADMIN
+            // Dọn dẹp bản ghi mồ côi trong registrations
+            @$conn->query("DELETE FROM registrations WHERE LOWER(TRIM(serial)) = '" . $conn->real_escape_string(strtolower($serial)) . "'");
+            $conn->close();
+
+            echo json_encode([
+                'success' => true,
+                'found'   => false,
+                'message' => 'Không tìm thấy Serial này trong hệ thống'
+            ], JSON_UNESCAPED_UNICODE);
+            exit;
+        }
+
+        // Đơn hàng đang chờ duyệt
+        $responseData = [
+            'serial'          => $regRow['serial'],
+            'codename'        => $regRow['codename'],
+            'deviceName'      => 'Thiết bị ' . $regRow['codename'],
+            'plan'            => $regRow['plan'],
+            'statusCode'      => 'pending',
+            'statusText'      => 'Chờ Kích Hoạt',
+            'paymentMethod'   => $regRow['payment_method'],
+            'senderName'      => $regRow['sender_name'],
+            'senderEmail'     => $regRow['sender_email'],
+            'transactionCode' => $regRow['transaction_code'],
+            'status'          => $st,
+            'registeredDate'  => $formatDate($regRow['created_at']),
+            'activatedDate'   => '',
+            'expiredDate'     => '',
+            'updatedDate'     => $formatDate($regRow['updated_at']),
+            'features'        => [
+                'Mở khóa toàn quyền bản ROM HyperUR',
+                'Bypass Play Integrity mặc định (mọi app ngân hàng, VNeID)',
+                'Hỗ trợ kỹ thuật và OTA trực tiếp từ Admin'
+            ]
+        ];
+
+        $conn->close();
+        echo json_encode([
+            'success' => true,
+            'found'   => true,
+            'message' => 'Serial đang chờ đối soát & kích hoạt',
+            'data'    => $responseData
+        ], JSON_UNESCAPED_UNICODE);
+        exit;
+    }
+
+    // Không tìm thấy ở cả 2 bảng
     $conn->close();
-    
-    // Return success response
     echo json_encode([
         'success' => true,
-        'found'   => true,
-        'message' => 'Tìm thấy Serial',
-        'data'    => $responseData
+        'found'   => false,
+        'message' => 'Không tìm thấy Serial này trong hệ thống'
     ], JSON_UNESCAPED_UNICODE);
+    exit;
     
 } catch (Exception $e) {
     http_response_code(500);
