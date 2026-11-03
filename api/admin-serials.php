@@ -500,6 +500,14 @@ try {
         }
         $upd->close();
 
+        // Đồng bộ cập nhật sang bảng registrations nếu có
+        $updReg = $conn->prepare("UPDATE registrations SET serial = ?, codename = ?, sender_email = ? WHERE LOWER(TRIM(serial)) = LOWER(?)");
+        if ($updReg) {
+            $updReg->bind_param('ssss', $serial, $device, $gmail, $oldRow['Serial']);
+            $updReg->execute();
+            $updReg->close();
+        }
+
         $oldData = [
             'STT'    => (int)$oldRow['STT'],
             'Device' => $oldRow['Device'],
@@ -561,6 +569,16 @@ try {
             json_response(false, 'Lỗi xóa: ' . $err, null, 500);
         }
         $del->close();
+
+        // Đồng bộ xóa trong bảng registrations
+        if (!empty($oldRow['Serial'])) {
+            $delReg = $conn->prepare("DELETE FROM registrations WHERE LOWER(TRIM(serial)) = LOWER(?)");
+            if ($delReg) {
+                $delReg->bind_param('s', $oldRow['Serial']);
+                $delReg->execute();
+                $delReg->close();
+            }
+        }
 
         $oldData = [
             'STT'    => (int)$oldRow['STT'],
@@ -625,6 +643,18 @@ try {
         $del->bind_param($types2, ...$deleted);
         $del->execute();
         $del->close();
+
+        // Đồng bộ xóa trong bảng registrations
+        if (!empty($deletedSerials)) {
+            $regPlaceholders = implode(',', array_fill(0, count($deletedSerials), '?'));
+            $regTypes = str_repeat('s', count($deletedSerials));
+            $delReg = $conn->prepare("DELETE FROM registrations WHERE serial IN ($regPlaceholders)");
+            if ($delReg) {
+                $delReg->bind_param($regTypes, ...$deletedSerials);
+                $delReg->execute();
+                $delReg->close();
+            }
+        }
 
         write_admin_log(
             $conn,
