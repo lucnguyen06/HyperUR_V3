@@ -6868,6 +6868,30 @@ dialog:not([open]) {
   background: linear-gradient(90deg, #f43f5e, #fda4af, #f43f5e);
 }
 
+/* Lookup Payment Box (Hiển thị khi tra cứu ra serial đang Chờ Kích Hoạt) */
+.lookup-payment-box {
+  margin: 1.5rem 0 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(145deg, rgba(16, 24, 40, 0.95) 0%, rgba(10, 16, 30, 0.98) 100%);
+  border: 1.5px solid rgba(245, 158, 11, 0.45);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+}
+
+.lookup-payment-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .lookup-payment-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
 /* State: Not Found (Rose) */
 .lookup-result-card.state-not-found {
   border: 1.5px solid rgba(244, 63, 94, 0.4);
