@@ -67,6 +67,7 @@ SERIAL_REGISTER_API_URL: "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec
 ## 📖 Tài Liệu Hướng Dẫn & Kiến Trúc
 
 - 👨‍💻 **Dành Cho Khách Hàng**: 👉 **[Quy Trình Đăng Ký & Kích Hoạt Serial Chi Tiết](md/HUONG_DAN_KHACH_HANG.md)**
+- ⚡ **Cấu Hình Webhook SePay**: 👉 **[Hướng Dẫn Cấu Hình Webhook Tự Động Duyệt Serial 24/7](md/SEPAY_WEBHOOK_GUIDE.md)**
 - 🛠️ **Dành Cho Developer**: 👉 **[Kiến Trúc Kỹ Thuật & Sơ Đồ Hệ Thống Chi Tiết](md/DEVELOPER_ARCHITECTURE.md)**
 
 ```mermaid
