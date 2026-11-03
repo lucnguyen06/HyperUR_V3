@@ -89,16 +89,37 @@ $existing = $chk->get_result()->fetch_assoc();
 $chk->close();
 
 if ($existing) {
-    $conn->close();
-    // Đã có trong DB -> Trả về success=true để Bot Telegram xác nhận kích hoạt thành công
-    bot_api_res(true, 'Serial đã được kích hoạt trước đó', [
-        'stt'    => (int)$existing['STT'],
-        'serial' => $existing['Serial'],
-        'device' => $existing['Device'],
-        'email'  => $existing['Gmail'],
-        'time'   => $existing['Time'],
-        'status' => 'Active'
-    ]);
+    $curTime = strtolower(trim($existing['Time'] ?? ''));
+    if ($curTime !== 'pending') {
+        $conn->close();
+        // Đã có trong DB -> Trả về success=true để Bot Telegram xác nhận kích hoạt thành công
+        bot_api_res(true, 'Serial đã được kích hoạt trước đó', [
+            'stt'    => (int)$existing['STT'],
+            'serial' => $existing['Serial'],
+            'device' => $existing['Device'],
+            'email'  => $existing['Gmail'],
+            'time'   => $existing['Time'],
+            'status' => 'Active'
+        ]);
+    } else {
+        // Đang là pending -> Cập nhật kích hoạt thành công
+        $upd = $conn->prepare("UPDATE serial SET Device = ?, Gmail = ?, Time = ? WHERE STT = ?");
+        $upd->bind_param('sssi', $device, $email, $timeStore, $existing['STT']);
+        $upd->execute();
+        $upd->close();
+
+        @$conn->query("UPDATE registrations SET status = 'Active', activated_at = NOW() WHERE LOWER(TRIM(serial)) = LOWER('{$serial}')");
+        $conn->close();
+
+        bot_api_res(true, 'Kích hoạt Serial thành công', [
+            'stt'    => (int)$existing['STT'],
+            'serial' => $existing['Serial'],
+            'device' => $device,
+            'email'  => $email,
+            'time'   => $timeStore,
+            'status' => 'Active'
+        ]);
+    }
 }
 
 // 5. Cấp STT mới (MAX(STT) + 1)
