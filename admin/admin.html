@@ -230,6 +230,17 @@
                         <div class="admin-stat-value" id="stat-devices">—</div>
                         <div class="admin-stat-hint">Số codename khác nhau</div>
                     </div>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon" style="color: #fcd34d; background: rgba(245, 158, 11, 0.15);">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 14 14"></polyline>
+                            </svg>
+                        </div>
+                        <div class="admin-stat-label">Chờ Bank</div>
+                        <div class="admin-stat-value" id="stat-pending" style="color: #fcd34d;">—</div>
+                        <div class="admin-stat-hint">Đăng ký chưa chuyển khoản</div>
+                    </div>
                 </div>
 
                 <!-- TABS -->
@@ -278,6 +289,7 @@
                             <span class="admin-filter-label">Trạng thái:</span>
                             <select id="filter-status" class="admin-input">
                                 <option value="">— Tất cả —</option>
+                                <option value="pending">Chờ Bank (Pending)</option>
                                 <option value="unlimited">Vĩnh viễn</option>
                                 <option value="active">Đang hiệu lực</option>
                                 <option value="expired">Hết hạn</option>
