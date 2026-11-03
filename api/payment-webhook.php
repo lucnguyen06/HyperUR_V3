@@ -157,7 +157,12 @@ if (!empty($secretList)) {
 // ============================================================
 $payload = json_decode($rawBody, true);
 if (!is_array($payload)) {
-    sepay_respond(400, false, 'Payload không phải JSON hợp lệ');
+    parse_str($rawBody, $formParsed);
+    if (!empty($formParsed) && is_array($formParsed)) {
+        $payload = $formParsed;
+    } else {
+        sepay_respond(400, false, 'Payload không phải JSON hợp lệ');
+    }
 }
 
 $sepayId        = (int)($payload['id'] ?? 0);
@@ -170,8 +175,9 @@ $accountNumber  = trim((string)($payload['accountNumber'] ?? ''));
 $referenceCode  = trim((string)($payload['referenceCode'] ?? ''));
 $transactionDate = trim((string)($payload['transactionDate'] ?? ''));
 
+// Hỗ trợ request "Gửi thử" từ SePay Dashboard (thường không có id hoặc id <= 0)
 if ($sepayId <= 0) {
-    sepay_respond(400, false, 'Thiếu trường id giao dịch');
+    sepay_respond(200, true, 'Test webhook received successfully', ['test' => true]);
 }
 
 // Chỉ xử lý tiền vào
