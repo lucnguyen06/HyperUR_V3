@@ -92,6 +92,8 @@ function write_admin_log($conn, $admin_id, $username, $action, $description, $ta
 
 function sync_pending_registrations_to_serial($conn) {
     try {
+        reconcile_pending_with_payments($conn);
+
         $res = $conn->query("
             SELECT r.codename, r.serial, r.sender_email, r.status
             FROM registrations r
@@ -119,6 +121,43 @@ function sync_pending_registrations_to_serial($conn) {
         }
     } catch (Throwable $e) {
         error_log('sync_pending_registrations error: ' . $e->getMessage());
+    }
+}
+
+/**
+ * Tự động đối soát các serial đang 'pending' với các giao dịch ngân hàng đã ghi nhận
+ */
+function reconcile_pending_with_payments($conn) {
+    try {
+        $minAmount = defined('SEPAY_MIN_AMOUNT') ? (int)SEPAY_MIN_AMOUNT : 40000;
+        $tblChk = $conn->query("SHOW TABLES LIKE 'payment_transactions'");
+        if (!$tblChk || $tblChk->num_rows === 0) return;
+
+        $rs = $conn->query("
+            SELECT s.STT, s.Serial, s.Device, s.Gmail, pt.sepay_id, pt.transfer_amount
+            FROM serial s
+            JOIN payment_transactions pt ON (
+                UPPER(TRIM(pt.matched_serial)) = UPPER(TRIM(s.Serial))
+                OR UPPER(pt.content) LIKE CONCAT('%', UPPER(TRIM(s.Serial)), '%')
+                OR UPPER(pt.description) LIKE CONCAT('%', UPPER(TRIM(s.Serial)), '%')
+            )
+            WHERE LOWER(TRIM(s.Time)) = 'pending'
+              AND pt.transfer_amount >= {$minAmount}
+        ");
+
+        if ($rs && $rs->num_rows > 0) {
+            while ($row = $rs->fetch_assoc()) {
+                $stt = (int)$row['STT'];
+                $sn = $conn->real_escape_string(trim($row['Serial']));
+                $sepayId = (int)$row['sepay_id'];
+
+                $conn->query("UPDATE serial SET Time = 'unlimited' WHERE STT = {$stt}");
+                $conn->query("UPDATE registrations SET status = 'Active', activated_at = IFNULL(activated_at, NOW()), transaction_code = 'SEPAY-{$sepayId}' WHERE UPPER(TRIM(serial)) = UPPER('{$sn}')");
+                $conn->query("UPDATE payment_transactions SET status = 'matched', matched_serial = '{$sn}', note = 'Tự động đối soát thành công' WHERE sepay_id = {$sepayId}");
+            }
+        }
+    } catch (Throwable $e) {
+        error_log('reconcile_pending_with_payments error: ' . $e->getMessage());
     }
 }
 
@@ -250,14 +289,16 @@ try {
 
             $filtered = [];
             while ($row = $rs->fetch_assoc()) {
-                $kind = parseTimeField($row['Time'])['kind'];
+                $rawTime = $row['Time'];
+                $kindData = parseTimeField($rawTime);
+                $kind = $kindData['kind'];
                 if ($status === 'unlimited' && $kind !== 'unlimited') continue;
-                if ($status === 'active' && ($kind !== 'fixed' || strtotime(parseTimeField($row['Time'])['date']) < strtotime(date('Y-m-d')))) continue;
+                if ($status === 'active' && ($kind !== 'fixed' || strtotime($kindData['date'] ?? '') < strtotime(date('Y-m-d')))) continue;
                 if ($status === 'pending' && $kind !== 'pending') continue;
-                if ($status === 'expired' && ($kind === 'unlimited' || $kind === 'pending' || ($kind === 'fixed' && strtotime(parseTimeField($row['Time'])['date']) >= strtotime(date('Y-m-d'))))) continue;
+                if ($status === 'expired' && ($kind === 'unlimited' || $kind === 'pending' || ($kind === 'fixed' && strtotime($kindData['date'] ?? '') >= strtotime(date('Y-m-d'))))) continue;
 
-                $row['Time'] = formatTimeField($row['Time']);
-                $row['TimeStatus'] = ($kind === 'unlimited') ? 'unlimited' : (($kind === 'pending') ? 'pending' : (($kind === 'fixed' && strtotime(parseTimeField($row['Time'])['date']) >= strtotime(date('Y-m-d'))) ? 'active' : 'expired'));
+                $row['Time'] = formatTimeField($rawTime);
+                $row['TimeStatus'] = ($kind === 'unlimited') ? 'unlimited' : (($kind === 'pending') ? 'pending' : (($kind === 'fixed' && strtotime($kindData['date'] ?? '') >= strtotime(date('Y-m-d'))) ? 'active' : 'expired'));
                 $filtered[] = $row;
             }
             $stmt->close();
@@ -284,9 +325,11 @@ try {
             $rs = $stmt->get_result();
             $rows = [];
             while ($row = $rs->fetch_assoc()) {
-                $row['Time'] = formatTimeField($row['Time']);
-                $kind = parseTimeField($row['Time'])['kind'];
-                $row['TimeStatus'] = ($kind === 'unlimited') ? 'unlimited' : (($kind === 'pending') ? 'pending' : (($kind === 'fixed' && strtotime(parseTimeField($row['Time'])['date']) >= strtotime(date('Y-m-d'))) ? 'active' : 'expired'));
+                $rawTime = $row['Time'];
+                $kindData = parseTimeField($rawTime);
+                $kind = $kindData['kind'];
+                $row['Time'] = formatTimeField($rawTime);
+                $row['TimeStatus'] = ($kind === 'unlimited') ? 'unlimited' : (($kind === 'pending') ? 'pending' : (($kind === 'fixed' && strtotime($kindData['date'] ?? '') >= strtotime(date('Y-m-d'))) ? 'active' : 'expired'));
                 $rows[] = $row;
             }
             $stmt->close();

@@ -34,6 +34,15 @@ define('TELEGRAM_CHAT',    'https://t.me/HuperUltraRateChat');
 define('EMAIL_FROM',      'hyperur2026@gmail.com');
 define('EMAIL_FROM_NAME', 'HyperUR');
 
+// ===== SMTP (Khuyến nghị dùng để gửi email vào Inbox 100%, không bị chặn DMARC) =====
+// Tạo App Password tại: Google Account -> Security -> 2-Step Verification -> App passwords
+define('SMTP_ENABLED', true);
+define('SMTP_HOST',    'smtp.gmail.com');
+define('SMTP_PORT',    587);
+define('SMTP_SECURE',  'tls');
+define('SMTP_USER',    'hyperur2026@gmail.com');
+define('SMTP_PASS',    'CHANGE_ME_GMAIL_APP_PASSWORD'); // Điền Mật khẩu ứng dụng 16 ký tự của Gmail
+
 // ===== Security =====
 // Mã bí mật dùng chung (đổi thành chuỗi random dài, ví dụ: openssl rand -hex 32)
 define('API_SECRET', 'CHANGE_ME_RANDOM_SECRET');

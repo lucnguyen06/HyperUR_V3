@@ -113,9 +113,28 @@ if (!function_exists('sepay_strip_emails')) {
         if ($text === '') {
             return '';
         }
-        // Xoá cả email đầy đủ và dạng bị ngân hàng cắt mất phần sau @
+        // Xoá cả email đầy đủ và dạng bị ngân hàng cắt mất ký tự @ hoặc dấu chấm
         $cleaned = preg_replace('/[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}/u', ' ', $text);
+        $cleaned = preg_replace('/\b[A-Za-z0-9._%+\-]+(?:gmail|yahoo|icloud|hotmail|outlook)(?:com|vn)\b/i', ' ', (string)$cleaned);
         return $cleaned === null ? $text : $cleaned;
+    }
+}
+
+if (!function_exists('sepay_extract_email')) {
+    /**
+     * Bóc tách địa chỉ email từ nội dung chuyển khoản
+     * Hỗ trợ cả định dạng chuẩn (có @) và dạng bị ngân hàng lọc mất @/dấu chấm
+     */
+    function sepay_extract_email($content)
+    {
+        $str = (string)$content;
+        if (preg_match('/[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}/', $str, $m)) {
+            return strtolower(trim($m[0]));
+        }
+        if (preg_match('/\b([A-Za-z0-9._%+\-]+)(gmail|yahoo|icloud|hotmail|outlook)(com|vn)\b/i', $str, $m)) {
+            return strtolower($m[1] . '@' . $m[2] . '.' . $m[3]);
+        }
+        return '';
     }
 }
 

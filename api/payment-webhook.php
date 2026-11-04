@@ -102,10 +102,12 @@ $secretList = array_values(array_filter(array_map('trim', explode(',', $secretRa
 $apiKeyRaw  = (string)sepay_cfg('SEPAY_API_KEY', '');
 $apiKeyList = array_values(array_filter(array_map('trim', explode(',', $apiKeyRaw))));
 
+$allReqHeaders = function_exists('getallheaders') ? array_change_key_case(getallheaders(), CASE_LOWER) : [];
+
 if (!empty($secretList)) {
     // ---- Chế độ HMAC-SHA256 (khuyến nghị) ----
-    $signature = $_SERVER['HTTP_X_SEPAY_SIGNATURE'] ?? '';
-    $timestamp = (int)($_SERVER['HTTP_X_SEPAY_TIMESTAMP'] ?? 0);
+    $signature = $_SERVER['HTTP_X_SEPAY_SIGNATURE'] ?? ($allReqHeaders['x-sepay-signature'] ?? '');
+    $timestamp = (int)($_SERVER['HTTP_X_SEPAY_TIMESTAMP'] ?? ($allReqHeaders['x-sepay-timestamp'] ?? 0));
 
     // Chống replay: lệch quá 5 phút thì từ chối
     if ($timestamp <= 0 || abs(time() - $timestamp) > 300) {
@@ -130,7 +132,7 @@ if (!empty($secretList)) {
     }
 } elseif (!empty($apiKeyList)) {
     // ---- Chế độ API Key (dự phòng) ----
-    $authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? ($_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? '');
+    $authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? ($_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? ($allReqHeaders['authorization'] ?? ''));
     $provided = '';
     if (preg_match('/^Apikey\s+(.+)$/i', trim((string)$authHeader), $m)) {
         $provided = trim($m[1]);
@@ -380,6 +382,45 @@ foreach ($candidateSerials as $candidate) {
     }
 }
 
+// 10c. KHÁCH CHUYỂN KHOẢN TRƯỚC KHI BẤM NÚT ĐĂNG KÝ TRÊN WEB
+// Nếu serial chưa có trong DB nhưng nội dung CK chứa serial hợp lệ (>= 4 ký tự):
+// Vẫn tự động chấp nhận và kích hoạt ngay, không bắt khách phải submit form trước!
+$extractedCodename = 'Mobile';
+if ($matchedSerial === null && !empty($candidateSerials)) {
+    $topCandidate = $candidateSerials[0];
+    if (sepay_is_serial($topCandidate)) {
+        $matchedSerial = strtoupper(trim($topCandidate));
+        $allTokens = sepay_tokens($matchText);
+        $urIdx = array_search('UR', $allTokens, true);
+        if ($urIdx !== false && isset($allTokens[$urIdx + 1])) {
+            $nextTok = $allTokens[$urIdx + 1];
+            if ($nextTok !== $matchedSerial && preg_match('/^[A-Z0-9._-]{2,30}$/i', $nextTok)) {
+                $extractedCodename = strtolower($nextTok);
+            }
+        }
+        $autoEmail = sepay_extract_email($matchText);
+        $matchedEmail = $autoEmail ?: (string)sepay_cfg('SEPAY_DEFAULT_EMAIL', 'hyperur2026@gmail.com');
+
+        // Tạo sẵn bản ghi trong registrations để đồng bộ
+        $insReg = $conn->prepare("
+            INSERT INTO registrations 
+            (serial, codename, plan, payment_method, sender_name, sender_email, transaction_code, status, activated_at)
+            VALUES (?, ?, 'Đăng kí có Ủng hộ (Vĩnh viễn)', 'SePay (Chuyển khoản tự động)', 'Khách chuyển khoản VietQR', ?, ?, 'Active', NOW())
+            ON DUPLICATE KEY UPDATE 
+                status = 'Active', 
+                activated_at = IFNULL(activated_at, NOW()),
+                transaction_code = VALUES(transaction_code)
+        ");
+        if ($insReg) {
+            $txCode = 'SEPAY-' . $sepayId;
+            $insReg->bind_param('ssss', $matchedSerial, $extractedCodename, $matchedEmail, $txCode);
+            $insReg->execute();
+            $insReg->close();
+            $regUpdated = true;
+        }
+    }
+}
+
 // Số tiền tối thiểu để coi là thanh toán hợp lệ.
 // ⚠️ Mặc định 40.000đ = MỨC GIÁ THẤP NHẤT của website
 //    (serial.js: 1-30 thiết bị = 50.000đ, từ 31 thiết bị = 40.000đ).
@@ -505,7 +546,7 @@ if ($serialRow) {
     $maxRow = $conn->query("SELECT IFNULL(MAX(STT), 0) AS m FROM serial")->fetch_assoc();
     $newStt = (int)$maxRow['m'] + 1;
 
-    $codename = $regRow ? trim($regRow['codename']) : 'Mobile';
+    $codename = $regRow ? trim($regRow['codename']) : ($extractedCodename ?: 'Mobile');
     if ($codename === '') {
         $codename = 'Mobile';
     }

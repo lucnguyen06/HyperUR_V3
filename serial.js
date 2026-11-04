@@ -1054,14 +1054,31 @@
             }
 
             // 1. Gửi dữ liệu lưu trực tiếp vào MySQL Database qua PHP API
+            let regResult = null;
             try {
-                await fetch('./api/serial-register.php', {
+                const res = await fetch('./api/serial-register.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
+                regResult = await res.json();
             } catch (phpErr) {
                 console.warn('Lỗi khi gửi PHP API serial-register:', phpErr);
+            }
+
+            if (regResult && regResult.success === false) {
+                showToast(`❌ ${regResult.message || 'Đăng ký không thành công'}`);
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        <span id="btn-submit-text">Xác Nhận & Gửi Serial Lên Hệ Thống</span>
+                    `;
+                }
+                return;
             }
 
             // 2. Gửi dữ liệu lên Google Apps Script Web App API (dự phòng)
@@ -1092,14 +1109,22 @@
                 rotateQrAccount();
             }
 
+            // Hiển thị phần QR thanh toán sau khi đã lưu Serial thành công
+            const paymentWrapper = document.getElementById('reg-center-payment-wrapper');
+            if (paymentWrapper) {
+                paymentWrapper.style.display = 'block';
+                setTimeout(() => {
+                    paymentWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 150);
+            }
+
             if (submitBtn) {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = `
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
-                    <span id="btn-submit-text">Xác Nhận & Gửi Serial Lên Hệ Thống</span>
+                    <span id="btn-submit-text">Đã Lưu Serial — Quét Mã QR Bên Dưới Để Kích Hoạt</span>
                 `;
             }
 
@@ -1122,13 +1147,21 @@
             }
 
             if (modalDesc) {
-                modalDesc.textContent = `Số Serial ${serial} đã được gửi lên hệ thống máy chủ để xác nhận kích hoạt bản quyền. Bạn có thể kiểm tra trạng thái kích hoạt ngay bên dưới.`;
+                if (regResult && regResult.data && regResult.data.emailSent === false) {
+                    modalDesc.innerHTML = `Số Serial <strong>${serial}</strong> đã được lưu lên máy chủ.<br><span style="color: #fb923c; font-size: 0.9em; display: inline-block; margin-top: 6px;">⚠️ Email xác nhận tạm thời chưa gửi được tới <strong>${email}</strong> (vui lòng lưu lại Serial hoặc tra cứu trực tiếp).</span>`;
+                } else {
+                    modalDesc.innerHTML = `Số Serial <strong>${serial}</strong> đã được gửi lên hệ thống máy chủ để xác nhận kích hoạt bản quyền. Email xác nhận đã được gửi đến <strong>${email}</strong> (vui lòng kiểm tra cả hòm thư Spam).`;
+                }
             }
 
             if (modalQrBox) modalQrBox.style.display = 'block';
             if (modalQrSyntax) modalQrSyntax.textContent = `UR ${serial}`;
 
-            showToast('✅ Đã gửi Serial lên hệ thống để xác nhận!');
+            if (regResult && regResult.data && regResult.data.emailSent === false) {
+                showToast('⚠️ Đã lưu Serial, chưa gửi được email xác nhận!');
+            } else {
+                showToast('✅ Đã gửi Serial và email xác nhận!');
+            }
 
             // Nút "Kiểm tra trạng thái" trong dialog -> chuyển tab Tra Cứu
             if (modalLookupLink) {

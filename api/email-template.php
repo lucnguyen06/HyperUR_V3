@@ -14,7 +14,8 @@ function generateEmailTemplate($data) {
     $codename = $esc(strtoupper($data['codename'] ?? ''));
     $planRaw = (string)($data['plan'] ?? '');
     $plan = $esc($planRaw);
-    $senderName = $esc($data['senderName'] ?? 'Không yêu cầu (Active Free)');
+    $rawSenderName = trim((string)($data['senderName'] ?? ''));
+    $senderName = $esc($rawSenderName !== '' ? $rawSenderName : 'Không yêu cầu (Active Free)');
     $senderEmail = $esc($data['senderEmail'] ?? '');
 
     // Check if Free plan - SO KHỚP CHÍNH XÁC (không dùng strpos '36')
@@ -147,3 +148,168 @@ HTML;
 
     return $html;
 }
+
+/**
+ * Gửi email qua SMTP socket thuần (Zero-dependency, hỗ trợ TLS/SSL & AUTH LOGIN)
+ * ponytail: Socket SMTP client tối giản; nâng cấp lên PHPMailer nếu cần S/MIME hoặc DKIM signing trực tiếp.
+ */
+function smtp_send($to, $subject, $htmlBody, $config = []) {
+    $host = $config['host'] ?? (defined('SMTP_HOST') ? SMTP_HOST : 'smtp.gmail.com');
+    $port = (int)($config['port'] ?? (defined('SMTP_PORT') ? SMTP_PORT : 587));
+    $secure = strtolower($config['secure'] ?? (defined('SMTP_SECURE') ? SMTP_SECURE : 'tls'));
+    $user = $config['user'] ?? (defined('SMTP_USER') ? SMTP_USER : '');
+    $pass = $config['pass'] ?? (defined('SMTP_PASS') ? SMTP_PASS : '');
+    $from = $config['from'] ?? (defined('EMAIL_FROM') ? EMAIL_FROM : $user);
+    $fromName = $config['from_name'] ?? (defined('EMAIL_FROM_NAME') ? EMAIL_FROM_NAME : 'HyperUR');
+    $replyTo = $config['reply_to'] ?? (defined('SUPPORT_EMAIL') ? SUPPORT_EMAIL : $from);
+
+    $timeout = 12;
+    $prefix = ($secure === 'ssl' || $port === 465) ? 'ssl://' : 'tcp://';
+    $ctx = stream_context_create([
+        'ssl' => [
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true,
+        ]
+    ]);
+
+    $socket = @stream_socket_client("{$prefix}{$host}:{$port}", $errno, $errstr, $timeout, STREAM_CLIENT_CONNECT, $ctx);
+    if (!$socket) {
+        throw new Exception("Kết nối SMTP {$host}:{$port} thất bại: {$errstr} ({$errno})");
+    }
+    stream_set_timeout($socket, $timeout);
+
+    $read = function () use ($socket) {
+        $res = '';
+        while (!feof($socket)) {
+            $line = fgets($socket, 512);
+            if ($line === false) break;
+            $res .= $line;
+            if (isset($line[3]) && $line[3] === ' ') break;
+        }
+        return $res;
+    };
+
+    $expect = function ($expectedCode, $cmd = null) use ($socket, $read) {
+        if ($cmd !== null) {
+            fputs($socket, $cmd . "\r\n");
+        }
+        $resp = $read();
+        $code = (int)substr($resp, 0, 3);
+        if ($expectedCode && $code !== $expectedCode) {
+            throw new Exception("Lỗi SMTP lệnh '{$cmd}' (mong đợi {$expectedCode}, nhận {$code}): " . trim($resp));
+        }
+        return $resp;
+    };
+
+    $expect(220);
+
+    $helloHost = !empty($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : 'localhost';
+    $expect(250, "EHLO {$helloHost}");
+
+    if ($secure === 'tls' && $port !== 465) {
+        $expect(220, "STARTTLS");
+        $cryptoMethod = STREAM_CRYPTO_METHOD_TLS_CLIENT;
+        if (defined('STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT')) {
+            $cryptoMethod |= STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT;
+        }
+        if (defined('STREAM_CRYPTO_METHOD_TLSv1_3_CLIENT')) {
+            $cryptoMethod |= STREAM_CRYPTO_METHOD_TLSv1_3_CLIENT;
+        }
+        if (!@stream_socket_enable_crypto($socket, true, $cryptoMethod)) {
+            throw new Exception("Không thể bật mã hóa TLS với máy chủ SMTP");
+        }
+        $expect(250, "EHLO {$helloHost}");
+    }
+
+    if (!empty($user) && !empty($pass)) {
+        $expect(334, "AUTH LOGIN");
+        $expect(334, base64_encode($user));
+        $expect(235, base64_encode($pass));
+    }
+
+    $expect(250, "MAIL FROM:<{$from}>");
+    $expect(250, "RCPT TO:<{$to}>");
+    $expect(354, "DATA");
+
+    $encSubject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
+    $encFromName = '=?UTF-8?B?' . base64_encode($fromName) . '?=';
+
+    $headers = [
+        "From: {$encFromName} <{$from}>",
+        "Reply-To: <{$replyTo}>",
+        "To: <{$to}>",
+        "Subject: {$encSubject}",
+        "MIME-Version: 1.0",
+        "Content-Type: text/html; charset=UTF-8",
+        "Content-Transfer-Encoding: base64",
+        "X-Mailer: HyperUR-Mailer/1.0",
+        "Date: " . date('r'),
+    ];
+
+    $body = implode("\r\n", $headers) . "\r\n\r\n" . chunk_split(base64_encode($htmlBody)) . "\r\n.";
+    $expect(250, $body);
+
+    @fputs($socket, "QUIT\r\n");
+    @fclose($socket);
+    return true;
+}
+
+/**
+ * Gửi email thống nhất: ưu tiên SMTP, tự động fallback sang mail() PHP
+ */
+function sendHyperEmail($toEmail, $subject, $htmlBody) {
+    // 1. Thử gửi bằng SMTP nếu bật và có pass
+    $smtpEnabled = defined('SMTP_ENABLED') && SMTP_ENABLED;
+    $smtpHost = defined('SMTP_HOST') ? SMTP_HOST : '';
+    $smtpUser = defined('SMTP_USER') ? SMTP_USER : '';
+    $smtpPass = defined('SMTP_PASS') ? SMTP_PASS : '';
+
+    if ($smtpEnabled && !empty($smtpHost) && !empty($smtpUser) && !empty($smtpPass)) {
+        try {
+            smtp_send($toEmail, $subject, $htmlBody);
+            return ['success' => true, 'method' => 'smtp'];
+        } catch (\Throwable $e) {
+            error_log("[sendHyperEmail] SMTP error: " . $e->getMessage() . " -> Thử fallback sang mail()");
+        }
+    }
+
+    // 2. Fallback sang PHP mail()
+    // ponytail: fallback mail() dùng envelope -f; nếu From là gmail.com thì dùng domain hosting để tránh DMARC reject
+    $fromEmail = defined('EMAIL_FROM') ? EMAIL_FROM : 'noreply@hyperur.io.vn';
+    $fromName = defined('EMAIL_FROM_NAME') ? EMAIL_FROM_NAME : 'HyperUR';
+    $replyTo = defined('SUPPORT_EMAIL') ? SUPPORT_EMAIL : $fromEmail;
+
+    $envelopeFrom = $fromEmail;
+    if (stripos($fromEmail, '@gmail.com') !== false) {
+        $hostDomain = !empty($_SERVER['HTTP_HOST']) ? preg_replace('/:\d+$/', '', $_SERVER['HTTP_HOST']) : 'hyperur.io.vn';
+        if (!in_array($hostDomain, ['localhost', '127.0.0.1'], true)) {
+            $envelopeFrom = 'noreply@' . ltrim($hostDomain, 'www.');
+            $fromEmail = $envelopeFrom;
+        }
+    }
+
+    $encSubject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
+    $encFromName = '=?UTF-8?B?' . base64_encode($fromName) . '?=';
+
+    $headers = "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+    $headers .= "From: {$encFromName} <" . $fromEmail . ">\r\n";
+    $headers .= "Reply-To: " . $replyTo . "\r\n";
+    $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
+
+    $sent = @mail($toEmail, $encSubject, $htmlBody, $headers, "-f " . escapeshellarg($envelopeFrom));
+    if (!$sent) {
+        $sent = @mail($toEmail, $encSubject, $htmlBody, $headers);
+    }
+
+    if (!$sent) {
+        $err = error_get_last();
+        $msg = $err['message'] ?? 'mail() trả về false';
+        error_log("[sendHyperEmail] Gửi mail tới {$toEmail} thất bại: {$msg}");
+        return ['success' => false, 'error' => $msg, 'method' => 'mail'];
+    }
+
+    return ['success' => true, 'method' => 'mail'];
+}
+

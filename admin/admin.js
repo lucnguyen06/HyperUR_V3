@@ -95,6 +95,7 @@
     function statusFromTimeValue(value) {
         if (!value) return 'expired';
         if (/^unlimited$/i.test(value)) return 'unlimited';
+        if (/^pending$/i.test(value)) return 'pending';
         const d = parseDateFromTimeField(value);
         if (!d) return 'expired';
         const today = new Date();

@@ -133,18 +133,62 @@ try {
     
     // Check if Free plan (auto-activate) - SO KHỚP CHÍNH XÁC theo whitelist
     $isFree = in_array($plan, FREE_PLAN_WHITELIST, true);
-    $status = $isFree ? 'Active' : 'Pending';
-    $activatedAt = $isFree ? date('Y-m-d H:i:s') : null;
-    $expiredAt = $isFree ? date('Y-m-d H:i:s', strtotime('+36 days')) : null;
+    
+    // Kiểm tra xem serial này đã được thanh toán qua SePay trước đó chưa
+    $paidTx = null;
+    $minPayAmount = defined('SEPAY_MIN_AMOUNT') ? (int)SEPAY_MIN_AMOUNT : 40000;
+    $chkPay = $conn->prepare("
+        SELECT sepay_id, transfer_amount 
+        FROM payment_transactions 
+        WHERE (UPPER(TRIM(matched_serial)) = UPPER(?) 
+               OR UPPER(content) LIKE CONCAT('%', UPPER(?), '%')
+               OR UPPER(description) LIKE CONCAT('%', UPPER(?), '%'))
+          AND transfer_amount >= ?
+        ORDER BY id DESC LIMIT 1
+    ");
+    if ($chkPay) {
+        $chkPay->bind_param('sssi', $serial, $serial, $serial, $minPayAmount);
+        $chkPay->execute();
+        $paidTx = $chkPay->get_result()->fetch_assoc();
+        $chkPay->close();
+    }
+
+    $isPaid = !empty($paidTx);
+    if ($isPaid) {
+        $status = 'Active';
+        $activatedAt = date('Y-m-d H:i:s');
+        $expiredAt = null;
+        $transactionCode = 'SEPAY-' . $paidTx['sepay_id'];
+        $paymentMethod = 'SePay (Chuyển khoản tự động)';
+
+        // Đánh dấu matched trong payment_transactions
+        $updTx = $conn->prepare("
+            UPDATE payment_transactions 
+            SET status = 'matched', matched_serial = ?, matched_email = ?, note = 'Khớp tự động khi user gửi form'
+            WHERE sepay_id = ?
+        ");
+        if ($updTx) {
+            $updTx->bind_param('ssi', $serial, $senderEmail, $paidTx['sepay_id']);
+            $updTx->execute();
+            $updTx->close();
+        }
+    } else {
+        $status = $isFree ? 'Active' : 'Pending';
+        $activatedAt = $isFree ? date('Y-m-d H:i:s') : null;
+        $expiredAt = $isFree ? date('Y-m-d H:i:s', strtotime('+36 days')) : null;
+    }
     
     // Check if serial already exists
-    $checkStmt = $conn->prepare("SELECT id FROM registrations WHERE serial = ?");
+    $checkStmt = $conn->prepare("SELECT id, status FROM registrations WHERE serial = ?");
     $checkStmt->bind_param("s", $serial);
     $checkStmt->execute();
     $result = $checkStmt->get_result();
     
     if ($result->num_rows > 0) {
-        // Update existing record
+        $existingReg = $result->fetch_assoc();
+        // Giữ Active nếu bản ghi cũ đã Active hoặc vừa phát hiện thanh toán
+        $finalStatus = ($existingReg['status'] === 'Active' || $status === 'Active') ? 'Active' : 'Pending';
+        
         $updateStmt = $conn->prepare("
             UPDATE registrations 
             SET codename = ?, 
@@ -152,22 +196,27 @@ try {
                 payment_method = ?, 
                 sender_name = ?, 
                 sender_email = ?, 
-                transaction_code = ?,
+                transaction_code = IF(transaction_code IS NULL OR transaction_code = '', ?, transaction_code),
+                status = ?,
+                activated_at = IF(? = 'Active' AND activated_at IS NULL, NOW(), activated_at),
                 updated_at = NOW()
             WHERE serial = ?
         ");
         $updateStmt->bind_param(
-            "sssssss",
+            "sssssssss",
             $codename,
             $plan,
             $paymentMethod,
             $senderName,
             $senderEmail,
             $transactionCode,
+            $finalStatus,
+            $finalStatus,
             $serial
         );
         $updateStmt->execute();
         $updateStmt->close();
+        $status = $finalStatus;
         
     } else {
         // Insert new record
@@ -216,7 +265,15 @@ try {
         $chkS->close();
         if ($sRow) {
             $curTime = strtolower(trim($sRow['Time'] ?? ''));
-            if ($curTime === 'pending' && $isFree) {
+            if ($isPaid) {
+                // Khách đã chuyển khoản thành công -> kích hoạt unlimited
+                $updS = $conn->prepare("UPDATE serial SET Device = ?, Gmail = ?, Time = 'unlimited' WHERE STT = ?");
+                if ($updS) {
+                    $updS->bind_param('ssi', $codename, $senderEmail, $sRow['STT']);
+                    $updS->execute();
+                    $updS->close();
+                }
+            } elseif ($curTime === 'pending' && $isFree) {
                 $expDateStr = date('Y-m-d', strtotime('+36 days'));
                 $updS = $conn->prepare("UPDATE serial SET Device = ?, Gmail = ?, Time = ? WHERE STT = ?");
                 if ($updS) {
@@ -233,7 +290,7 @@ try {
                 }
             }
         } else {
-            // Cấp STT mới và thêm vào bảng serial (Time='pending' nếu chưa bank, hoặc date nếu Free)
+            // Cấp STT mới và thêm vào bảng serial (Time='pending' nếu chưa bank, unlimited nếu đã bank, hoặc date nếu Free)
             $maxRow = $conn->query("SELECT IFNULL(MAX(STT), 0) AS m FROM serial")->fetch_assoc();
             $newStt = (int)$maxRow['m'] + 1;
             $guard = 0;
@@ -248,7 +305,7 @@ try {
                 if (++$guard > 10000) break;
             }
 
-            $storeTime = $isFree ? date('Y-m-d', strtotime('+36 days')) : 'pending';
+            $storeTime = $isPaid ? 'unlimited' : ($isFree ? date('Y-m-d', strtotime('+36 days')) : 'pending');
             $insS = $conn->prepare("INSERT INTO serial (STT, Device, Serial, Gmail, Time) VALUES (?, ?, ?, ?, ?)");
             if ($insS) {
                 $insS->bind_param('issss', $newStt, $codename, $serial, $senderEmail, $storeTime);
@@ -264,30 +321,22 @@ try {
     $emailHtml = generateEmailTemplate($data);
     $subject = "✅ Xác Nhận Đăng Ký Serial {$serial} - HyperUR";
     
-    // Properly encode email headers to prevent issues with special characters
-    $fromName = '=?UTF-8?B?' . base64_encode(EMAIL_FROM_NAME) . '?=';
-    
-    $headers = "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-    $headers .= "From: {$fromName} <" . EMAIL_FROM . ">\r\n";
-    $headers .= "Reply-To: " . SUPPORT_EMAIL . "\r\n";
-    $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
-    
-    $emailSent = mail($senderEmail, $subject, $emailHtml, $headers);
-    
-    if (!$emailSent) {
-        error_log("Failed to send email to {$senderEmail} for serial {$serial}");
-    }
+    $mailRes = sendHyperEmail($senderEmail, $subject, $emailHtml);
+    $emailSent = !empty($mailRes['success']);
     
     // Return success response
     echo json_encode([
         'success' => true,
-        'message' => 'Đăng ký thành công và email xác nhận đã được gửi',
+        'message' => $emailSent
+            ? 'Đăng ký thành công và email xác nhận đã được gửi'
+            : 'Đăng ký thành công (chưa thể gửi email xác nhận)',
         'data' => [
             'serial' => $serial,
             'email' => $senderEmail,
             'status' => $status,
-            'emailSent' => $emailSent
+            'emailSent' => $emailSent,
+            'emailMethod' => $mailRes['method'] ?? null,
+            'emailError' => $mailRes['error'] ?? null
         ]
     ]);
     
