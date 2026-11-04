@@ -177,17 +177,12 @@
     let currentPaymentMethod = 'mbbank';
     let currentIntlSub = 'binance'; // 'binance' hoặc 'paypal'
 
-    // Hệ thống QR xoay vòng VietQR
+    // Hệ thống QR VietQR SePay chính thức (Tài khoản ảo VA MBBank)
     const qrAccounts = [
         {
             name: 'NGUYEN TAN LUC',
             acc: 'VQRQAMNWP9901',
-            url: 'https://vietqr.app/img?bank=MBBank&acc=VQRQAMNWP9901&template=&showinfo=true&holder=NGUYEN%20TAN%20LUC'
-        },
-        {
-            name: 'NGUYEN VAN TUC',
-            acc: '0379050602',
-            url: 'https://vietqr.app/img?bank=MBBank&acc=0379050602&template=&showinfo=true&holder=NGUYEN%20VAN%20TUC'
+            url: 'https://qr.sepay.vn/img?bank=MBBank&acc=VQRQAMNWP9901&template=compact'
         }
     ];
     let currentQrIndex = 0; // Index QR hiện tại
@@ -445,22 +440,23 @@
         if (!paymentQrImg) return;
         if (currentPaymentMethod !== 'mbbank') return;
         
-        // Lấy QR account hiện tại
-        const currentQr = qrAccounts[currentQrIndex];
-        const baseUrl = currentQr.url;
-        const amountPart = price ? `&amount=${price}` : '';
-        
-        // Tổ hợp nội dung: UR + CODENAME + SERIAL + EMAIL (giữ nguyên định dạng user nhập)
+        // Tổ hợp nội dung: UR + CODENAME + SERIAL + EMAIL (lọc bỏ @ và . để tương thích chuẩn VietQR)
         let description = 'UR';
         const code = codenameInput ? codenameInput.value.trim() : '';
-        const email = senderEmailInput ? senderEmailInput.value.trim() : '';
+        const email = senderEmailInput ? senderEmailInput.value.trim().replace(/[@.]/g, '') : '';
         
         if (code) description += ' ' + code;
         if (serial) description += ' ' + serial;
         if (email) description += ' ' + email;
         
-        const desPart = description !== 'UR' ? `&des=${encodeURIComponent(description)}` : '';
-        paymentQrImg.src = `${baseUrl}${amountPart}${desPart}`;
+        const finalPrice = price || currentCalculatedPrice || 50000;
+        const qrUrl = `https://qr.sepay.vn/img?bank=MBBank&acc=VQRQAMNWP9901&template=compact&amount=${finalPrice}&des=${encodeURIComponent(description)}`;
+        
+        paymentQrImg.src = qrUrl;
+        const modalQrImg = document.getElementById('modal-qr-img');
+        if (modalQrImg) {
+            modalQrImg.src = qrUrl;
+        }
     }
 
     function selectIntlSub(subKey) {
@@ -1104,10 +1100,8 @@
                 time: new Date().toLocaleDateString('vi-VN') + ' ' + new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })
             });
 
-            // Xoay vòng QR account (chỉ với MBBank)
-            if (currentPaymentMethod === 'mbbank') {
-                rotateQrAccount();
-            }
+            // Cập nhật lại QR theo đúng serial và giá
+            updatePaymentQr(currentCalculatedPrice, serial);
 
             // Hiển thị phần QR thanh toán sau khi đã lưu Serial thành công
             const paymentWrapper = document.getElementById('reg-center-payment-wrapper');
@@ -1146,21 +1140,57 @@
                 modalSenderVal.textContent = senderNameVal || 'Chưa cung cấp';
             }
 
-            if (modalDesc) {
-                if (regResult && regResult.data && regResult.data.emailSent === false) {
-                    modalDesc.innerHTML = `Số Serial <strong>${serial}</strong> đã được lưu lên máy chủ.<br><span style="color: #fb923c; font-size: 0.9em; display: inline-block; margin-top: 6px;">⚠️ Email xác nhận tạm thời chưa gửi được tới <strong>${email}</strong> (vui lòng lưu lại Serial hoặc tra cứu trực tiếp).</span>`;
-                } else {
-                    modalDesc.innerHTML = `Số Serial <strong>${serial}</strong> đã được gửi lên hệ thống máy chủ để xác nhận kích hoạt bản quyền. Email xác nhận đã được gửi đến <strong>${email}</strong> (vui lòng kiểm tra cả hòm thư Spam).`;
+            const modalTitle = document.querySelector('#success-dialog .reg-modal-title');
+            const modalQrImg = document.getElementById('modal-qr-img');
+            const modalBtnCopy = document.getElementById('modal-btn-copy-syntax');
+            const modalBtnCopyText = document.getElementById('modal-btn-copy-text');
+            const isFree = (plan && plan.toLowerCase().includes('free'));
+
+            // Luôn tạo nội dung chuyển khoản đầy đủ
+            const cleanCode = (code || '').trim();
+            const cleanSerial = (serial || '').trim();
+            const cleanEmail = (email || '').trim().replace(/[@.]/g, '');
+
+            let fullSyntax = 'UR';
+            if (cleanCode) fullSyntax += ' ' + cleanCode;
+            if (cleanSerial) fullSyntax += ' ' + cleanSerial;
+            if (cleanEmail) fullSyntax += ' ' + cleanEmail;
+
+            const qrUrl = `https://qr.sepay.vn/img?bank=MBBank&acc=VQRQAMNWP9901&template=compact&amount=${currentCalculatedPrice || 50000}&des=${encodeURIComponent(fullSyntax)}`;
+
+            if (isFree) {
+                if (modalTitle) modalTitle.textContent = 'Serial Đã Được Kích Hoạt!';
+                if (modalDesc) {
+                    modalDesc.innerHTML = `Số Serial <strong>${serial}</strong> đã được kích hoạt thành công gói Trải nghiệm miễn phí (36 ngày).`;
+                }
+                if (modalQrBox) modalQrBox.style.display = 'none';
+            } else {
+                if (modalTitle) modalTitle.textContent = 'Quét Mã QR Để Kích Hoạt!';
+                if (modalDesc) {
+                    modalDesc.innerHTML = `Đã lưu Serial <strong>${serial}</strong> lên máy chủ. Vui lòng quét mã VietQR bên dưới bằng app ngân hàng để hoàn tất kích hoạt:`;
+                }
+                if (modalQrBox) {
+                    modalQrBox.style.display = 'block';
+                    if (modalQrImg) modalQrImg.src = qrUrl;
+                    if (paymentQrImg) paymentQrImg.src = qrUrl;
+                    if (modalQrSyntax) modalQrSyntax.textContent = fullSyntax;
+                    if (modalBtnCopy) {
+                        modalBtnCopy.onclick = function() {
+                            navigator.clipboard.writeText(fullSyntax).then(() => {
+                                if (modalBtnCopyText) modalBtnCopyText.textContent = 'Đã chép!';
+                                setTimeout(() => { if (modalBtnCopyText) modalBtnCopyText.textContent = 'Chép'; }, 2000);
+                            });
+                        };
+                    }
                 }
             }
 
-            if (modalQrBox) modalQrBox.style.display = 'block';
-            if (modalQrSyntax) modalQrSyntax.textContent = `UR ${serial}`;
-
             if (regResult && regResult.data && regResult.data.emailSent === false) {
                 showToast('⚠️ Đã lưu Serial, chưa gửi được email xác nhận!');
+            } else if (isFree) {
+                showToast('✅ Serial đã ở trạng thái Kích Hoạt!');
             } else {
-                showToast('✅ Đã gửi Serial và email xác nhận!');
+                showToast('✅ Đã lưu Serial! Hãy quét mã QR để kích hoạt.');
             }
 
             // Nút "Kiểm tra trạng thái" trong dialog -> chuyển tab Tra Cứu

@@ -523,8 +523,8 @@
                                     <span class="payment-qr-dot"></span>
                                     <span id="payment-qr-badge-text">MBBank VietQR 24/7</span>
                                 </div>
-                                <img src="https://vietqr.app/img?bank=MBBank&acc=VQRQAMNWP9901&template=&showinfo=true&holder=NGUYEN%20TAN%20LUC"
-                                     alt="QR thanh toán - Ngân hàng TMCP Quân Đội - 0562903904 - NGUYEN TAN LUC"
+                                <img src="https://qr.sepay.vn/img?bank=MBBank&acc=VQRQAMNWP9901&template=compact&amount=50000"
+                                     alt="QR thanh toán - Ngân hàng TMCP Quân Đội (MBBank) - VQRQAMNWP9901 - NGUYEN TAN LUC"
                                      width="300"
                                      class="payment-qr-img"
                                      id="payment-qr-img"
@@ -844,6 +844,30 @@
                 </div>
             </div>
 
+            <!-- Khung QR Thanh Toán Hiển Thị Ngay Trong Modal -->
+            <div class="modal-qr-box" id="modal-payment-qr-box" style="display: none; margin: 1rem 0; padding: 1.15rem; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: var(--radius-md); text-align: center;">
+                <div style="font-weight: 700; color: #10b981; font-size: 0.95rem; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 0.45rem;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>Quét QR Bằng App Ngân Hàng Để Kích Hoạt</span>
+                </div>
+                <div style="display: flex; justify-content: center; margin-bottom: 0.75rem;">
+                    <img id="modal-qr-img" src="" alt="Mã QR thanh toán" width="220" height="220" style="border-radius: 12px; background: #fff; padding: 6px; box-shadow: 0 8px 24px rgba(0,0,0,0.5);" loading="lazy">
+                </div>
+                <div style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 0.65rem 0.85rem; margin-bottom: 0.75rem; text-align: left;">
+                    <div style="font-size: 0.76rem; color: #94a3b8; margin-bottom: 0.2rem;">Cú pháp chuyển khoản bắt buộc:</div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
+                        <code id="modal-qr-syntax" style="font-family: monospace; font-size: 0.88rem; font-weight: 700; color: #34d399; word-break: break-all;">UR ...</code>
+                        <button type="button" class="btn-copy-mini" id="modal-btn-copy-syntax" style="flex-shrink: 0;" aria-label="Sao chép cú pháp">
+                            <span id="modal-btn-copy-text">Chép</span>
+                        </button>
+                    </div>
+                </div>
+                <div style="font-size: 0.78rem; color: #cbd5e1; line-height: 1.45;">
+                    MBBank (Tài khoản ảo VA SePay): <strong style="color: #fff;">VQRQAMNWP9901</strong> • <strong style="color: #fff;">NGUYEN TAN LUC</strong><br>
+                    <span style="color: #fbbf24; font-weight: 600;">⚡ Chuyển đúng cú pháp để hệ thống SePay tự động duyệt trong 10 giây</span>
+                </div>
+            </div>
+
             <div style="display: flex; flex-direction: column; gap: 0.65rem;">
                 <button type="button" id="modal-lookup-link" class="btn-primary" style="justify-content: center; text-decoration: none; width: 100%; cursor: pointer;">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
@@ -994,6 +1018,6 @@
     <script src="json/config.js"></script>
 
     <!-- Serial Hub Logic (File độc lập, liên kết data & mức giá động) -->
-    <script src="serial.js?v=3.3"></script>
+    <script src="serial.js?v=20261104_1855"></script>
 </body>
 </html>

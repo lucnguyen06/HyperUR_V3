@@ -248,41 +248,6 @@ try {
         $stmtReg->close();
     }
 
-    // Tự động đối soát kích hoạt nếu serial đang 'pending' mà đã có tiền vào SePay
-    $tCur = strtolower(trim($sRow['Time'] ?? ($regRow['status'] ?? '')));
-    if ($tCur === 'pending') {
-        $minPayAmount = defined('SEPAY_MIN_AMOUNT') ? (int)SEPAY_MIN_AMOUNT : 40000;
-        $chkPay = $conn->prepare("
-            SELECT sepay_id, transfer_amount 
-            FROM payment_transactions 
-            WHERE (UPPER(TRIM(matched_serial)) = UPPER(?) 
-                   OR UPPER(content) LIKE CONCAT('%', UPPER(?), '%')
-                   OR UPPER(description) LIKE CONCAT('%', UPPER(?), '%'))
-              AND transfer_amount >= ?
-            ORDER BY id DESC LIMIT 1
-        ");
-        if ($chkPay) {
-            $chkPay->bind_param('sssi', $serial, $serial, $serial, $minPayAmount);
-            $chkPay->execute();
-            $pTx = $chkPay->get_result()->fetch_assoc();
-            $chkPay->close();
-            if ($pTx) {
-                $sepayId = (int)$pTx['sepay_id'];
-                if ($sRow) {
-                    $conn->query("UPDATE serial SET Time = 'unlimited' WHERE STT = " . (int)$sRow['STT']);
-                    $sRow['Time'] = 'unlimited';
-                }
-                $conn->query("UPDATE registrations SET status = 'Active', activated_at = IFNULL(activated_at, NOW()), transaction_code = 'SEPAY-{$sepayId}' WHERE UPPER(TRIM(serial)) = UPPER('{$conn->real_escape_string($serial)}')");
-                if ($regRow) {
-                    $regRow['status'] = 'Active';
-                    $regRow['activated_at'] = date('Y-m-d H:i:s');
-                    $regRow['transaction_code'] = 'SEPAY-' . $sepayId;
-                }
-                $conn->query("UPDATE payment_transactions SET status = 'matched', matched_serial = '{$conn->real_escape_string($serial)}' WHERE sepay_id = {$sepayId}");
-            }
-        }
-    }
-
     $formatDate = function($datetime) {
         if (!$datetime) return '';
         $dt = new DateTime($datetime);

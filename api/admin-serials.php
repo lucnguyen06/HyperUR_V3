@@ -92,8 +92,6 @@ function write_admin_log($conn, $admin_id, $username, $action, $description, $ta
 
 function sync_pending_registrations_to_serial($conn) {
     try {
-        reconcile_pending_with_payments($conn);
-
         $res = $conn->query("
             SELECT r.codename, r.serial, r.sender_email, r.status
             FROM registrations r
@@ -137,12 +135,15 @@ function reconcile_pending_with_payments($conn) {
             SELECT s.STT, s.Serial, s.Device, s.Gmail, pt.sepay_id, pt.transfer_amount
             FROM serial s
             JOIN payment_transactions pt ON (
-                UPPER(TRIM(pt.matched_serial)) = UPPER(TRIM(s.Serial))
-                OR UPPER(pt.content) LIKE CONCAT('%', UPPER(TRIM(s.Serial)), '%')
-                OR UPPER(pt.description) LIKE CONCAT('%', UPPER(TRIM(s.Serial)), '%')
+                (pt.matched_serial IS NOT NULL AND pt.matched_serial != '' AND UPPER(TRIM(pt.matched_serial)) = UPPER(TRIM(s.Serial)))
+                OR (LENGTH(TRIM(s.Serial)) >= 4 AND (
+                    UPPER(pt.content) LIKE CONCAT('%', UPPER(TRIM(s.Serial)), '%')
+                    OR UPPER(pt.description) LIKE CONCAT('%', UPPER(TRIM(s.Serial)), '%')
+                ))
             )
             WHERE LOWER(TRIM(s.Time)) = 'pending'
               AND pt.transfer_amount >= {$minAmount}
+              AND (pt.matched_serial IS NULL OR pt.matched_serial = '' OR UPPER(TRIM(pt.matched_serial)) = UPPER(TRIM(s.Serial)))
         ");
 
         if ($rs && $rs->num_rows > 0) {
