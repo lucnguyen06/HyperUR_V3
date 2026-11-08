@@ -28,13 +28,13 @@ const I18n = {
             'splash.tagline': 'HYPEROS OPTIMIZATION ECOSYSTEM',
             'splash.welcome': 'WELCOME',
             'splash.to': 'TO',
-            'splash.subtext': 'Khai phóng tiềm năng • Mượt mà tuyệt đỉnh',
+            'splash.subtext': 'Khai phá tiềm năng • Mượt mà tuyệt đỉnh',
             'splash.skip': 'Bỏ qua',
             'splash.skipAria': 'Bỏ qua màn hình chào',
 
             // Hero
-            'hero.title': 'Tối ưu hiệu năng.',
-            'hero.titleAccent': 'Khai phóng tiềm năng.',
+            'hero.title': 'Tối ưu hiệu suất',
+            'hero.titleAccent': 'Khai phá tiềm năng',
             'hero.desc': 'Mượt mà tuyệt đỉnh, mở khóa tối đa FPS gaming, giữ nguyên thuật toán Camera Leica và hoạt động 100% ứng dụng ngân hàng. Chào mừng bạn đến với HyperUR.',
             'hero.ctaExplore': 'Khám Phá Thiết Bị',
             'hero.ctaGuide': 'Hướng Dẫn Flash',
