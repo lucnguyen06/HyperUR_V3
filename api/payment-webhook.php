@@ -358,7 +358,7 @@ foreach ($candidateSerials as $candidate) {
         $row = $stmt->get_result()->fetch_assoc();
         $stmt->close();
         if ($row) {
-            $matchedSerial = strtoupper(trim($row['serial']));
+            $matchedSerial = trim($row['serial']);
             $matchedEmail  = strtolower(trim($row['sender_email']));
             $regRow        = $row;
             break;
@@ -375,7 +375,7 @@ foreach ($candidateSerials as $candidate) {
         $row = $stmt->get_result()->fetch_assoc();
         $stmt->close();
         if ($row) {
-            $matchedSerial = strtoupper(trim($row['Serial']));
+            $matchedSerial = trim($row['Serial']);
             $matchedEmail  = strtolower(trim($row['Gmail']));
             break;
         }
@@ -389,7 +389,7 @@ $extractedCodename = 'Mobile';
 if ($matchedSerial === null && !empty($candidateSerials)) {
     $topCandidate = $candidateSerials[0];
     if (sepay_is_serial($topCandidate)) {
-        $matchedSerial = strtoupper(trim($topCandidate));
+        $matchedSerial = trim($topCandidate);
         $allTokens = sepay_tokens($matchText);
         $urIdx = array_search('UR', $allTokens, true);
         if ($urIdx !== false && isset($allTokens[$urIdx + 1])) {
@@ -534,9 +534,9 @@ if ($chkExist) {
 
 if ($serialRow) {
     // Đã có trong bảng serial (ví dụ đã đăng ký trước ở web với trạng thái pending) -> Kích hoạt lên unlimited
-    $updExist = $conn->prepare("UPDATE serial SET Time = 'unlimited' WHERE STT = ?");
+    $updExist = $conn->prepare("UPDATE serial SET Time = 'unlimited', Serial = ? WHERE STT = ?");
     if ($updExist) {
-        $updExist->bind_param('i', $serialRow['STT']);
+        $updExist->bind_param('si', $matchedSerial, $serialRow['STT']);
         $updExist->execute();
         $updExist->close();
         $serialInserted = true;
