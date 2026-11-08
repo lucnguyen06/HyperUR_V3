@@ -10,7 +10,7 @@ function generateEmailTemplate($data) {
         return htmlspecialchars((string)$v, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     };
 
-    $serial = $esc(strtoupper($data['serial'] ?? ''));
+    $serial = $esc($data['serial'] ?? '');
     $codename = $esc(strtoupper($data['codename'] ?? ''));
     $planRaw = (string)($data['plan'] ?? '');
     $plan = $esc($planRaw);
