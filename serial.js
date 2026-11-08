@@ -183,6 +183,11 @@
             name: 'NGUYEN TAN LUC',
             acc: 'VQRQAMNWP9901',
             url: 'https://qr.sepay.vn/img?bank=MBBank&acc=VQRQAMNWP9901&template=compact'
+        },
+        {
+            name: 'NGUYEN VAN TUC',
+            acc: 'VQRQANJTA5424',
+            url: 'https://qr.sepay.vn/img?bank=MBBank&acc=VQRQANJTA5424&template=compact'
         }
     ];
     let currentQrIndex = 0; // Index QR hiện tại
@@ -450,7 +455,8 @@
         if (email) description += ' ' + email;
         
         const finalPrice = price || currentCalculatedPrice || 50000;
-        const qrUrl = `https://qr.sepay.vn/img?bank=MBBank&acc=VQRQAMNWP9901&template=compact&amount=${finalPrice}&des=${encodeURIComponent(description)}`;
+        const activeQr = qrAccounts[currentQrIndex] || qrAccounts[0];
+        const qrUrl = `${activeQr.url}&amount=${finalPrice}&des=${encodeURIComponent(description)}`;
         
         paymentQrImg.src = qrUrl;
         const modalQrImg = document.getElementById('modal-qr-img');
@@ -1156,7 +1162,8 @@
             if (cleanSerial) fullSyntax += ' ' + cleanSerial;
             if (cleanEmail) fullSyntax += ' ' + cleanEmail;
 
-            const qrUrl = `https://qr.sepay.vn/img?bank=MBBank&acc=VQRQAMNWP9901&template=compact&amount=${currentCalculatedPrice || 50000}&des=${encodeURIComponent(fullSyntax)}`;
+            const activeQr = qrAccounts[currentQrIndex] || qrAccounts[0];
+            const qrUrl = `${activeQr.url}&amount=${currentCalculatedPrice || 50000}&des=${encodeURIComponent(fullSyntax)}`;
 
             if (isFree) {
                 if (modalTitle) modalTitle.textContent = 'Serial Đã Được Kích Hoạt!';
@@ -1174,6 +1181,11 @@
                     if (modalQrImg) modalQrImg.src = qrUrl;
                     if (paymentQrImg) paymentQrImg.src = qrUrl;
                     if (modalQrSyntax) modalQrSyntax.textContent = fullSyntax;
+                    // Cập nhật tên tài khoản động trong modal
+                    const modalQrAccVal = document.getElementById('modal-qr-acc-val');
+                    const modalQrOwnerVal = document.getElementById('modal-qr-owner-val');
+                    if (modalQrAccVal) modalQrAccVal.textContent = activeQr.acc;
+                    if (modalQrOwnerVal) modalQrOwnerVal.textContent = activeQr.name;
                     if (modalBtnCopy) {
                         modalBtnCopy.onclick = function() {
                             navigator.clipboard.writeText(fullSyntax).then(() => {
