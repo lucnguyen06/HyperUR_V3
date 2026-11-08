@@ -37,9 +37,9 @@ const QR_ACCOUNTS = [
     [
         'id'   => 1,
         'name' => 'NGUYEN VAN TUC',
-        'acc'  => '0379050602',
+        'acc'  => 'VQRQANJTA5424',
         'bank' => 'MBBank',
-        'url'  => 'https://vietqr.app/img?bank=MBBank&acc=0379050602&template=&showinfo=true&holder=NGUYEN%20VAN%20TUC'
+        'url'  => 'https://vietqr.app/img?bank=MBBank&acc=VQRQANJTA5424&template=&showinfo=true&holder=NGUYEN%20VAN%20TUC'
     ]
 ];
 
