@@ -57,7 +57,7 @@ try {
     }
 
     // Sanitize inputs
-    $serial = strtoupper(trim($data['serial']));
+    $serial = trim($data['serial']);
     $codename = strtolower(trim($data['codename']));
     $plan = trim($data['plan'] ?? '');
     $paymentMethod = trim($data['paymentMethod'] ?? '');
@@ -65,8 +65,8 @@ try {
     $senderEmail = strtolower(trim($data['senderEmail']));
     $transactionCode = trim($data['transactionCode'] ?? '');
 
-    // Validate serial format (4-32 ký tự A-Z0-9) - chặn ký tự lạ lọt vào DB/log
-    if (!preg_match('/^[A-Z0-9]{4,32}$/', $serial)) {
+    // Validate serial format (4-32 ký tự A-Za-z0-9) - chặn ký tự lạ lọt vào DB/log
+    if (!preg_match('/^[A-Za-z0-9]{4,32}$/', $serial)) {
         throw new Exception('Serial không hợp lệ (4-32 ký tự chữ và số)');
     }
 
@@ -138,7 +138,7 @@ try {
     $expiredAt = $isFree ? date('Y-m-d H:i:s', strtotime('+36 days')) : null;
     
     // Check if serial already exists
-    $checkStmt = $conn->prepare("SELECT id, status FROM registrations WHERE serial = ?");
+    $checkStmt = $conn->prepare("SELECT id, status FROM registrations WHERE LOWER(serial) = LOWER(?)");
     $checkStmt->bind_param("s", $serial);
     $checkStmt->execute();
     $result = $checkStmt->get_result();
@@ -158,11 +158,12 @@ try {
                 transaction_code = IF(transaction_code IS NULL OR transaction_code = '', ?, transaction_code),
                 status = ?,
                 activated_at = IF(? = 'Active' AND activated_at IS NULL, NOW(), activated_at),
+                serial = ?,
                 updated_at = NOW()
-            WHERE serial = ?
+            WHERE LOWER(serial) = LOWER(?)
         ");
         $updateStmt->bind_param(
-            "sssssssss",
+            "ssssssssss",
             $codename,
             $plan,
             $paymentMethod,
@@ -171,6 +172,7 @@ try {
             $transactionCode,
             $finalStatus,
             $finalStatus,
+            $serial,
             $serial
         );
         $updateStmt->execute();
@@ -226,16 +228,16 @@ try {
             $curTime = strtolower(trim($sRow['Time'] ?? ''));
             if ($curTime === 'pending' && $isFree) {
                 $expDateStr = date('Y-m-d', strtotime('+36 days'));
-                $updS = $conn->prepare("UPDATE serial SET Device = ?, Gmail = ?, Time = ? WHERE STT = ?");
+                $updS = $conn->prepare("UPDATE serial SET Device = ?, Serial = ?, Gmail = ?, Time = ? WHERE STT = ?");
                 if ($updS) {
-                    $updS->bind_param('sssi', $codename, $senderEmail, $expDateStr, $sRow['STT']);
+                    $updS->bind_param('ssssi', $codename, $serial, $senderEmail, $expDateStr, $sRow['STT']);
                     $updS->execute();
                     $updS->close();
                 }
             } elseif ($curTime === 'pending') {
-                $updS = $conn->prepare("UPDATE serial SET Device = ?, Gmail = ? WHERE STT = ?");
+                $updS = $conn->prepare("UPDATE serial SET Device = ?, Serial = ?, Gmail = ? WHERE STT = ?");
                 if ($updS) {
-                    $updS->bind_param('ssi', $codename, $senderEmail, $sRow['STT']);
+                    $updS->bind_param('sssi', $codename, $serial, $senderEmail, $sRow['STT']);
                     $updS->execute();
                     $updS->close();
                 }
