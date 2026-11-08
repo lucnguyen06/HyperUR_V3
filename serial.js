@@ -497,7 +497,7 @@
             card.setAttribute('aria-checked', isMatch ? 'true' : 'false');
         });
 
-        const currentSerial = serialInput ? sanitizeSerial(serialInput.value).toUpperCase() : '';
+        const currentSerial = serialInput ? sanitizeSerial(serialInput.value) : '';
 
         if (methodKey === 'crypto_intl') {
             if (paymentMethodVal) paymentMethodVal.value = 'Quốc Tế & Crypto (Binance Pay / PayPal - Only 5$)';
@@ -710,7 +710,7 @@
 
         // 6. Cập nhật mã QR thanh toán với số tiền mới (chỉ với MBBank)
         if (currentPaymentMethod === 'mbbank') {
-            const currentSerial = serialInput ? sanitizeSerial(serialInput.value).toUpperCase() : '';
+            const currentSerial = serialInput ? sanitizeSerial(serialInput.value) : '';
             updatePaymentQr(priceInfo.price, currentSerial);
         }
     }
@@ -992,7 +992,7 @@
         regForm.addEventListener('submit', async function (e) {
             e.preventDefault();
 
-            const serial = serialInput ? sanitizeSerial(serialInput.value).toUpperCase() : '';
+            const serial = serialInput ? sanitizeSerial(serialInput.value) : '';
             const code = codenameInput ? codenameInput.value.trim().toLowerCase() : '';
             const plan = (regTypeValue ? regTypeValue.value : '') || 'Đăng kí có Ủng hộ (Vĩnh viễn)';
             const emailRaw = senderEmailInput ? senderEmailInput.value.trim() : '';
@@ -1312,7 +1312,7 @@
         }
 
         const isEmail = query.includes('@');
-        const displayQuery = isEmail ? query.toLowerCase() : query.toUpperCase();
+        const displayQuery = isEmail ? query.toLowerCase() : query;
 
         if (lookupSubmitBtn) {
             lookupSubmitBtn.disabled = true;
@@ -2138,7 +2138,7 @@
             if (prefillSerial && prefillSerial.trim() !== '') {
                 activateTab('register', false);
                 if (serialInput) {
-                    serialInput.value = prefillSerial.trim().toUpperCase();
+                    serialInput.value = prefillSerial.trim();
                     handleSerialInput();
                 }
             }
