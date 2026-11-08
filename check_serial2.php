@@ -49,7 +49,7 @@ if (empty($params['serial'])) {
     }
 }
 
-$serial = strtoupper(trim($params['serial'] ?? ''));
+$serial = trim($params['serial'] ?? '');
 $device = trim($params['device'] ?? ($params['codename'] ?? 'Mobile'));
 $email  = strtolower(trim($params['email'] ?? ($params['gmail'] ?? 'hyperur2026@gmail.com')));
 $timeRaw = strtolower(trim($params['time'] ?? 'unlimited'));
@@ -60,7 +60,7 @@ if (empty($serial)) {
 }
 
 // Làm sạch serial (chỉ giữ chữ và số)
-$cleanSerial = preg_replace('/[^A-Z0-9]/', '', $serial);
+$cleanSerial = preg_replace('/[^A-Za-z0-9]/', '', $serial);
 if (strlen($cleanSerial) < 4 || strlen($cleanSerial) > 32) {
     bot_api_res(false, 'Serial không hợp lệ (4-32 ký tự)', ['received' => $serial], 400);
 }
@@ -103,17 +103,17 @@ if ($existing) {
         ]);
     } else {
         // Đang là pending -> Cập nhật kích hoạt thành công
-        $upd = $conn->prepare("UPDATE serial SET Device = ?, Gmail = ?, Time = ? WHERE STT = ?");
-        $upd->bind_param('sssi', $device, $email, $timeStore, $existing['STT']);
+        $upd = $conn->prepare("UPDATE serial SET Device = ?, Serial = ?, Gmail = ?, Time = ? WHERE STT = ?");
+        $upd->bind_param('ssssi', $device, $serial, $email, $timeStore, $existing['STT']);
         $upd->execute();
         $upd->close();
 
-        @$conn->query("UPDATE registrations SET status = 'Active', activated_at = NOW() WHERE LOWER(TRIM(serial)) = LOWER('{$serial}')");
+        @$conn->query("UPDATE registrations SET status = 'Active', activated_at = NOW(), serial = '" . $conn->real_escape_string($serial) . "' WHERE LOWER(TRIM(serial)) = LOWER('{$serial}')");
         $conn->close();
 
         bot_api_res(true, 'Kích hoạt Serial thành công', [
             'stt'    => (int)$existing['STT'],
-            'serial' => $existing['Serial'],
+            'serial' => $serial,
             'device' => $device,
             'email'  => $email,
             'time'   => $timeStore,
