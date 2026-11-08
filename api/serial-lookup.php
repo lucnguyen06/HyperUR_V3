@@ -37,7 +37,7 @@ require_once __DIR__ . '/config.php';
 
 try {
     // Get query parameters (hỗ trợ cả serial và email)
-    $serial = isset($_GET['serial']) ? strtoupper(trim($_GET['serial'])) : '';
+    $serial = isset($_GET['serial']) ? trim($_GET['serial']) : '';
     $email  = isset($_GET['email']) ? strtolower(trim($_GET['email'])) : '';
     
     if (empty($serial) && empty($email)) {
