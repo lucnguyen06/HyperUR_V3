@@ -132,7 +132,6 @@ Deploy lên:
 - Email và thông tin cá nhân được mã hóa khi gửi lên server
 - Google Apps Script xử lý dữ liệu an toàn
 - HTTPS cho tất cả API calls
-- Local storage cho lịch sử đăng ký
 
 ---
 
@@ -166,7 +165,6 @@ License: MIT
 - ✅ Validation thông tin realtime
 - 📧 Tự động gửi email xác nhận
 - 🔍 Tra cứu trạng thái kích hoạt
-- 💾 Lưu lịch sử đăng ký local
 - 📊 Thống kê số thiết bị đã đăng ký theo email
 
 ---

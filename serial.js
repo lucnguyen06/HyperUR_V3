@@ -17,7 +17,6 @@
 
     const EMAIL_REGEX = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
     const EMAIL_STORAGE_KEY = 'hyperur_email_registrations';
-    const REG_STORAGE_KEY = 'hyperur_serial_regs';
     const LOOKUP_HISTORY_KEY = 'hyperur_lookup_history';
 
     // Dữ liệu mẫu khởi đầu (đồng bộ theo json/email_registrations.json)
@@ -194,12 +193,9 @@
     let qrPaymentCount = 0; // Số lần đã nhận chuyển khoản trên QR này
     const QR_ROTATE_THRESHOLD = 5; // Xoay QR sau 5 lần chuyển khoản
 
-    // Buttons & History
+    // Buttons
     const submitBtn = document.getElementById('btn-submit-form');
     const btnQuickLookupTab = document.getElementById('btn-quick-lookup-tab');
-    const historyCard = document.getElementById('reg-history-card');
-    const historyList = document.getElementById('reg-history-list');
-    const btnClearHistory = document.getElementById('btn-clear-history');
     const toast = document.getElementById('reg-toast');
     const toastText = document.getElementById('toast-text');
 
@@ -221,7 +217,6 @@
     const lookupClearBtn = document.getElementById('lookup-clear-btn');
     const lookupSubmitBtn = document.getElementById('lookup-submit-btn');
     const lookupResultContainer = document.getElementById('lookup-result-container');
-    const pasteLastBtn = document.getElementById('btn-paste-last-registered');
     const lookupHistoryWrapper = document.getElementById('lookup-history-wrapper');
     const lookupHistoryGrid = document.getElementById('lookup-history-grid');
     const clearLookupHistoryBtn = document.getElementById('btn-clear-lookup-history');
@@ -829,67 +824,6 @@
     }
 
     // =========================================================
-    // 9. LỊCH SỬ ĐĂNG KÝ CỤC BỘ (REGISTER HISTORY)
-    // =========================================================
-    function getRegistrationHistory() {
-        try {
-            return JSON.parse(localStorage.getItem(REG_STORAGE_KEY) || '[]');
-        } catch (e) {
-            return [];
-        }
-    }
-
-    function saveRegistrationHistory(item) {
-        const list = getRegistrationHistory();
-        list.unshift(item);
-        if (list.length > 10) list.pop();
-        try {
-            localStorage.setItem(REG_STORAGE_KEY, JSON.stringify(list));
-        } catch (e) { }
-        renderRegistrationHistory();
-    }
-
-    function renderRegistrationHistory() {
-        if (!historyCard || !historyList) return;
-        const list = getRegistrationHistory();
-        if (!list || list.length === 0) {
-            historyCard.style.display = 'none';
-            return;
-        }
-        historyCard.style.display = 'block';
-        historyList.innerHTML = '';
-
-        list.forEach(item => {
-            const row = document.createElement('div');
-            row.className = 'reg-history-item';
-            row.innerHTML = `
-                <div class="reg-history-meta">
-                    <span class="reg-history-serial">Serial: ${item.serial} • Mã máy: ${item.codename}</span>
-                    <span class="reg-history-sub">${item.plan} | ${item.email || ''} | ${item.time}</span>
-                </div>
-                <button type="button" class="btn-copy-mini" data-copy-serial="${item.serial}">Chép Serial</button>
-            `;
-            historyList.appendChild(row);
-        });
-
-        historyList.querySelectorAll('[data-copy-serial]').forEach(b => {
-            b.addEventListener('click', function () {
-                const s = this.getAttribute('data-copy-serial');
-                if (navigator.clipboard) {
-                    navigator.clipboard.writeText(s).then(() => showToast(`Đã chép: ${s}`));
-                }
-            });
-        });
-    }
-
-    if (btnClearHistory) {
-        btnClearHistory.addEventListener('click', function () {
-            localStorage.removeItem(REG_STORAGE_KEY);
-            renderRegistrationHistory();
-            showToast('Đã xóa lịch sử đăng ký.');
-        });
-    }
-
     // =========================================================
     // QR ACCOUNT ROTATION (Xoay vòng QR sau mỗi 5 lần CK)
     // Đồng bộ thời gian thực qua Server Database (MySQL)
@@ -1097,14 +1031,6 @@
                 }
             }
 
-            // Lưu lịch sử đăng ký cục bộ
-            saveRegistrationHistory({
-                serial: serial,
-                codename: code,
-                plan: plan,
-                email: email,
-                time: new Date().toLocaleDateString('vi-VN') + ' ' + new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })
-            });
 
             // Cập nhật lại QR theo đúng serial và giá
             updatePaymentQr(currentCalculatedPrice, serial);
@@ -1291,29 +1217,6 @@
         });
     }
 
-    // Lịch sử đăng ký cục bộ -> nút Dán Serial vừa đăng ký
-    try {
-        const regHistRaw = localStorage.getItem(REG_STORAGE_KEY);
-        if (regHistRaw) {
-            const regHist = JSON.parse(regHistRaw);
-            if (Array.isArray(regHist) && regHist.length > 0 && regHist[0].serial) {
-                const lastSerial = regHist[0].serial;
-                const chipsWrapper = document.getElementById('lookup-quick-chips');
-                if (chipsWrapper) chipsWrapper.style.display = 'flex';
-                if (pasteLastBtn) {
-                    pasteLastBtn.style.display = 'inline-flex';
-                    pasteLastBtn.title = 'Tra cứu Serial: ' + lastSerial;
-                    pasteLastBtn.addEventListener('click', function () {
-                        if (lookupSerialInput) {
-                            lookupSerialInput.value = lastSerial;
-                            updateLookupCounter();
-                            performLookup(lastSerial);
-                        }
-                    });
-                }
-            }
-        }
-    } catch (e) { }
 
     async function performLookup(rawInput) {
         const query = cleanLookupInput(rawInput);
@@ -2110,8 +2013,6 @@
         // Khởi tạo hiển thị giá ban đầu (mặc định 50k)
         applyPriceUI(calculatePrice(0), 0);
 
-        // Render lịch sử
-        renderRegistrationHistory();
         renderLookupHistory();
 
         // Kiểm tra URL query ?tab=lookup

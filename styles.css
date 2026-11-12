@@ -5734,61 +5734,6 @@ dialog:not([open]) {
   transform: translateY(-2px);
 }
 
-/* History Box */
-.reg-history-card {
-  margin-top: 2.5rem;
-  background: var(--surface-card);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-md);
-  padding: 1.25rem;
-}
-
-.reg-history-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--text-strong);
-  margin-bottom: 0.85rem;
-}
-
-.reg-history-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-}
-
-.reg-history-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 0.95rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  font-size: 0.85rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.reg-history-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.reg-history-serial {
-  font-family: monospace;
-  font-weight: 700;
-  color: var(--accent-cyan);
-}
-
-.reg-history-sub {
-  font-size: 0.76rem;
-  color: var(--muted);
-}
-
 /* Success Modal Dialog */
 .reg-modal {
   border: none;
@@ -6721,43 +6666,6 @@ dialog:not([open]) {
 .lookup-submit-btn:disabled {
   opacity: 0.65;
   cursor: not-allowed;
-}
-
-/* Quick Examples / Chips */
-.lookup-quick-chips {
-  margin-top: 1.25rem;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-  font-size: 0.85rem;
-}
-
-.lookup-chips-label {
-  color: var(--muted);
-  font-size: 0.82rem;
-}
-
-.lookup-chip-item {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border);
-  color: var(--text-soft);
-  padding: 0.28rem 0.75rem;
-  border-radius: var(--radius-full);
-  font-family: monospace;
-  font-size: 0.82rem;
-  cursor: pointer;
-  transition: var(--transition-fast);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.lookup-chip-item:hover {
-  background: rgba(59, 130, 246, 0.15);
-  border-color: rgba(59, 130, 246, 0.4);
-  color: var(--accent-primary);
-  transform: translateY(-1px);
 }
 
 /* Results Display Container */
