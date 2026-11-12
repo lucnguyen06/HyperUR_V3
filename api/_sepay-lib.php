@@ -70,6 +70,51 @@ if (!function_exists('sepay_cfg')) {
     }
 }
 
+if (!function_exists('sepay_cfg_list')) {
+    /**
+     * Đọc một hoặc nhiều giá trị cấu hình dạng chuỗi / mảng.
+     * Hỗ trợ cả cấu hình cũ phân tách bằng dấu phẩy và các hằng số hậu tố _1, _2...
+     */
+    function sepay_cfg_list($name)
+    {
+        $values = [];
+        $append = function ($value) use (&$values) {
+            if (is_array($value)) {
+                foreach ($value as $item) {
+                    $thisValue = trim((string)$item);
+                    if ($thisValue !== '') $values[] = $thisValue;
+                }
+                return;
+            }
+            foreach (preg_split('/[,\r\n]+/', (string)$value) as $item) {
+                $item = trim($item);
+                if ($item !== '') $values[] = $item;
+            }
+        };
+
+        if (defined($name)) $append(constant($name));
+        for ($i = 1; $i <= 20; $i++) {
+            $indexedName = $name . '_' . $i;
+            if (defined($indexedName)) $append(constant($indexedName));
+        }
+
+        return array_values(array_unique($values));
+    }
+}
+
+if (!function_exists('sepay_profile_secret_list')) {
+    /** Lấy secret của đúng profile webhook, nếu endpoint có chọn profile. */
+    function sepay_profile_secret_list($baseName)
+    {
+        $profile = trim((string)sepay_cfg('SEPAY_WEBHOOK_PROFILE', ''));
+        if ($profile !== '') {
+            $profileName = $baseName . '_' . strtoupper($profile);
+            return sepay_cfg_list($profileName);
+        }
+        return sepay_cfg_list($baseName);
+    }
+}
+
 if (!function_exists('sepay_cut')) {
     /** mb_substr an toàn khi server thiếu mbstring */
     function sepay_cut($text, $max)

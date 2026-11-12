@@ -15,7 +15,9 @@ Khi khách hàng thanh toán qua VietQR trên website `serial.html`:
 2. Khách chuyển khoản ➔ Tiền vào tài khoản MBBank ➔ Cổng SePay bắt giao dịch trong 1 - 3 giây.
 3. SePay gửi HTTP POST Webhook đến máy chủ HyperUR:
    ```text
-   https://hyperur.io.vn/api/payment-webhook.php
+   https://hyperur.io.vn/api/payment-webhook-dev1.php
+   hoặc
+   https://hyperur.io.vn/api/payment-webhook-dev2.php
    ```
 4. Server xác thực chữ ký bảo mật **HMAC-SHA256**, bóc tách mã Serial từ nội dung chuyển khoản, kiểm tra chống trùng lặp và tự động nâng cấp trạng thái bản quyền thành **Active (Vĩnh viễn)**.
 5. Thời gian hoàn tất toàn bộ quy trình: **10 - 30 giây** kể từ khi khách bấm xác nhận trên app ngân hàng.
@@ -31,7 +33,9 @@ Truy cập: [my.sepay.vn](https://my.sepay.vn/) ➔ Mục **Cài đặt Webhooks
 - **Tên webhook**: `HyperUR`
 - **URL nhận webhook \***:
   ```text
-  https://hyperur.io.vn/api/payment-webhook.php
+  https://hyperur.io.vn/api/payment-webhook-dev1.php
+   hoặc
+   https://hyperur.io.vn/api/payment-webhook-dev2.php
   ```
 - **Loại giao dịch**: Chọn `Tiền vào` (`transferType: in`).
 - **Định dạng dữ liệu**: Chọn `JSON (khuyến nghị)`.
@@ -54,12 +58,16 @@ Mở file `api/config.php` trên hosting cPanel hoặc máy chủ web:
 ```php
 // ===== SePay Webhook Configuration =====
 
-// 1. Secret Key HMAC-SHA256 từ SePay Dashboard:
-define('SEPAY_WEBHOOK_SECRET', 'whsec_AtVlWG36RT8pZFCbVn81jGfxsvr3RApX');
-
-// 2. TRƯỜNG HỢP DÙNG NHIỀU TÀI KHOẢN SEPAY KHÁC NHAU:
-// Nếu 2 STK nằm ở 2 tài khoản SePay riêng biệt, chỉ cần phân cách các Secret bằng dấu phẩy:
+// 1. Secret Key HMAC-SHA256 từ từng webhook SePay:
+define('SEPAY_WEBHOOK_SECRET_DEV_1', 'whsec_KEY_DEV_1');
+define('SEPAY_WEBHOOK_SECRET_DEV_2', 'whsec_KEY_DEV_2');
+// Có thể giữ secret dùng chung / cấu hình cũ nếu đang có:
 // define('SEPAY_WEBHOOK_SECRET', 'whsec_KEY_TAI_KHOAN_1, whsec_KEY_TAI_KHOAN_2');
+
+// URL webhook riêng:
+// Dev 1: https://hyperur.io.vn/api/payment-webhook-dev1.php
+// Dev 2: https://hyperur.io.vn/api/payment-webhook-dev2.php
+// Không còn endpoint URL chung.
 
 // 3. Số tiền tối thiểu để tự động kích hoạt (dưới mức này chỉ ghi log, không kích hoạt):
 define('SEPAY_MIN_AMOUNT', 20000); // 20.000 VNĐ
@@ -76,7 +84,7 @@ define('TELEGRAM_ADMIN_CHAT_ID', 'YOUR_TELEGRAM_CHAT_ID');
 
 ## 4. 🛡️ Cơ Chế An Toàn & Bảo Mật 4 Lớp
 
-File `api/payment-webhook.php` được thiết kế chuẩn an toàn tài chính:
+Hai endpoint `api/payment-webhook-dev1.php` và `api/payment-webhook-dev2.php` dùng chung bộ xử lý xác thực và được thiết kế chuẩn an toàn tài chính:
 
 ```
 [Request từ SePay]
@@ -122,7 +130,9 @@ File `api/payment-webhook.php` được thiết kế chuẩn an toàn tài chín
 ### Trường hợp 3: Kiểm tra Webhook còn hoạt động không
 Mở trực tiếp trên trình duyệt:
 ```text
-https://hyperur.io.vn/api/payment-webhook.php
+https://hyperur.io.vn/api/payment-webhook-dev1.php
+   hoặc
+   https://hyperur.io.vn/api/payment-webhook-dev2.php
 ```
 Kết quả trả về JSON chuẩn:
 ```json

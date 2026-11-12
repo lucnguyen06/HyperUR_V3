@@ -4,7 +4,7 @@
  *  HyperUR V3 - SePay Payment Webhook (tự động kích hoạt)
  * ============================================================
  *  URL cấu hình trên SePay Dashboard:
- *      https://hyperur.io.vn/api/payment-webhook.php
+ *      https://hyperur.io.vn/api/payment-webhook-dev1.php hoặc https://hyperur.io.vn/api/payment-webhook-dev2.php
  *
  *  Sự kiện chọn: "Có tiền vào"  (transferType = 'in')
  *  Bảo mật chọn: HMAC-SHA256 (khuyến nghị) hoặc API Key
@@ -57,6 +57,12 @@ function sepay_respond($httpCode, $success, $message, $extra = [])
     exit;
 }
 
+// Chỉ cho phép truy cập qua endpoint đã gắn profile của từng dev.
+// URL chung cũ và các file fallback sẽ bị khóa để tránh cấu hình nhầm.
+if (trim((string)sepay_cfg('SEPAY_WEBHOOK_PROFILE', '')) === '') {
+    sepay_respond(410, false, 'Endpoint webhook chung đã bị vô hiệu hóa. Hãy dùng URL riêng của từng dev.');
+}
+
 // ============================================================
 // 2. Kiểm tra method & môi trường
 // ============================================================
@@ -65,8 +71,8 @@ $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 // GET chỉ dùng để health-check, không lộ thông tin nhạy cảm
 if ($method === 'GET') {
     sepay_respond(200, true, 'SePay webhook endpoint is alive', [
-        'hmacConfigured' => sepay_cfg('SEPAY_WEBHOOK_SECRET', '') !== '',
-        'apiKeyConfigured' => sepay_cfg('SEPAY_API_KEY', '') !== '',
+        'hmacConfigured' => count(sepay_profile_secret_list('SEPAY_WEBHOOK_SECRET')) > 0,
+        'apiKeyConfigured' => count(sepay_profile_secret_list('SEPAY_API_KEY')) > 0,
     ]);
 }
 
@@ -96,11 +102,8 @@ if ($rawBody === false || $rawBody === '') {
 // ============================================================
 // 5. Xác thực (Hỗ trợ 1 hoặc NHIỀU tài khoản SePay cùng lúc)
 // ============================================================
-$secretRaw  = (string)sepay_cfg('SEPAY_WEBHOOK_SECRET', '');
-$secretList = array_values(array_filter(array_map('trim', explode(',', $secretRaw))));
-
-$apiKeyRaw  = (string)sepay_cfg('SEPAY_API_KEY', '');
-$apiKeyList = array_values(array_filter(array_map('trim', explode(',', $apiKeyRaw))));
+$secretList = sepay_profile_secret_list('SEPAY_WEBHOOK_SECRET');
+$apiKeyList = sepay_profile_secret_list('SEPAY_API_KEY');
 
 $allReqHeaders = function_exists('getallheaders') ? array_change_key_case(getallheaders(), CASE_LOWER) : [];
 

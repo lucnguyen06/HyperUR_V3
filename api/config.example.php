@@ -60,16 +60,19 @@ define('API_SECRET', 'CHANGE_ME_RANDOM_SECRET');
 // (Tuỳ chọn) Thời gian sống của phiên đăng nhập admin (giây). Mặc định 8 giờ.
 // define('SESSION_TTL', 8 * 3600);
 
-// ===== SePay - Webhook tự động kích hoạt (api/payment-webhook.php) =====
+// ===== SePay - Webhook tự động kích hoạt (api/payment-webhook-dev1.php hoặc api/payment-webhook-dev2.php) =====
 // Bắt buộc phải khai báo ÍT NHẤT MỘT trong hai hằng dưới đây,
 // nếu không endpoint sẽ từ chối mọi request (fail-closed).
 //
 // 1) HMAC-SHA256 (KHUYẾN NGHỊ): Dashboard SePay -> Webhooks -> Bảo mật
 //    -> HMAC-SHA256 -> copy Secret Key (chỉ hiện đầy đủ 1 lần).
-//    Nếu dùng NHIỀU tài khoản SePay khác nhau (mỗi STK 1 tài khoản SePay riêng),
-//    hãy phân cách các Secret Key bằng dấu phẩy:
-//    'whsec_TK1, whsec_TK2'
+//    Nếu có nhiều dev / nhiều tài khoản SePay, khai báo mỗi secret riêng.
+//    Mỗi webhook của SePay ký bằng một secret khác nhau, server sẽ thử lần lượt:
 // define('SEPAY_WEBHOOK_SECRET', 'CHANGE_ME_SEPAY_HMAC_SECRET');
+// define('SEPAY_WEBHOOK_SECRET_DEV_1', 'CHANGE_ME_SEPAY_HMAC_SECRET_DEV_1');
+// define('SEPAY_WEBHOOK_SECRET_DEV_2', 'CHANGE_ME_SEPAY_HMAC_SECRET_DEV_2');
+// Cấu hình cũ dạng chuỗi phân tách bằng dấu phẩy vẫn được hỗ trợ:
+// define('SEPAY_WEBHOOK_SECRET', 'whsec_TK1, whsec_TK2');
 //
 // 2) API Key (dự phòng): header "Authorization: Apikey <key>"
 // define('SEPAY_API_KEY', 'CHANGE_ME_SEPAY_API_KEY');

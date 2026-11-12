@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `serial` (
 
 -- ============================================================
 -- 6. payment_transactions - sổ nhận tiền từ webhook SePay
---    (api/payment-webhook.php tự tạo nếu thiếu, nhưng nên tạo
+--    (các endpoint payment-webhook-dev1.php / payment-webhook-dev2.php tự tạo nếu thiếu, nhưng nên tạo
 --     sẵn để kiểm soát index / collation)
 --    UNIQUE(sepay_id) là cơ chế CHỐNG TRÙNG giao dịch:
 --    SePay có thể retry cùng một giao dịch nhiều lần.

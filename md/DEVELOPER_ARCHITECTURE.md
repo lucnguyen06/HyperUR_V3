@@ -25,7 +25,7 @@ graph TB
         API_Lookup["serial-lookup.php<br/>Tra cứu SN/Email"]
         API_Reg["serial-register.php<br/>Đăng ký gói Free/Paid"]
         API_QR["qr-active.php<br/>Xoay QR 5 lượt / MySQL"]
-        API_Hook["payment-webhook.php<br/>Xử lý thanh toán tự động"]
+        API_Hook["payment-webhook-dev1.php hoặc payment-webhook-dev2.php<br/>Xử lý thanh toán tự động"]
         API_Serials["admin-serials.php<br/>CRUD / Renew / Export CSV"]
         API_Users["admin-users.php<br/>CRUD tài khoản admin"]
         API_Logs["admin-logs.php<br/>Audit trail log viewer"]
@@ -86,7 +86,7 @@ sequenceDiagram
     participant Web as serial.html / serial.js
     participant QRAPI as api/qr-active.php
     participant SePay as Cổng SePay
-    participant Webhook as api/payment-webhook.php
+    participant Webhook as api/payment-webhook-dev1.php hoặc api/payment-webhook-dev2.php
     participant DB as MySQL Database
     participant Telegram as Telegram Bot Admin
 
