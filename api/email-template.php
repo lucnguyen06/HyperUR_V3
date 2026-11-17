@@ -15,133 +15,136 @@ function generateEmailTemplate($data) {
     $planRaw = (string)($data['plan'] ?? '');
     $plan = $esc($planRaw);
     $rawSenderName = trim((string)($data['senderName'] ?? ''));
-    $senderName = $esc($rawSenderName !== '' ? $rawSenderName : 'Không yêu cầu (Active Free)');
+    $senderName = $esc($rawSenderName !== '' ? $rawSenderName : 'Không cung cấp');
     $senderEmail = $esc($data['senderEmail'] ?? '');
 
     // Check if Free plan - SO KHỚP CHÍNH XÁC (không dùng strpos '36')
     $isFree = ($planRaw === 'Active Free' || strcasecmp($planRaw, 'Active Free (36 ngày)') === 0);
 
-    $description = $isFree 
-        ? "Số Serial <strong>{$serial}</strong> đã được gửi lên hệ thống máy chủ để xác nhận kích hoạt gói Active Free (36 ngày). Bạn có thể kiểm tra trạng thái kích hoạt ngay bên dưới."
-        : "Số Serial <strong>{$serial}</strong> đã được gửi lên hệ thống máy chủ để xác nhận kích hoạt bản quyền. Vui lòng đảm bảo bạn đã hoàn tất ủng hộ với nội dung cú pháp gợi ý để admin đối soát và kích hoạt trong vòng 5 - 30 phút.";
+    $description = $isFree
+        ? "Serial <strong>{$serial}</strong> đã được gửi lên hệ thống để xác nhận kích hoạt gói <strong>Active Free 36 ngày</strong>. Bạn có thể kiểm tra trạng thái kích hoạt bằng nút bên dưới."
+        : "Serial <strong>{$serial}</strong> đã được gửi lên hệ thống để xác nhận kích hoạt bản quyền. Vui lòng hoàn tất ủng hộ để admin đối soát và kích hoạt trong khoảng <strong>5–30 phút</strong>.";
     
-    $amount = $isFree ? '0đ (Miễn Phí 36 Ngày Trải Nghiệm)' : '50.000đ / thiết bị';
+    $amount = $isFree ? 'Miễn phí' : '50.000đ / thiết bị';
     
     $noteText = $isFree
-        ? "Gói Active Free sẽ tự động kích hoạt trong vài phút. Bạn có thể kiểm tra trạng thái bằng cách tra cứu Serial trên website. Gói có hiệu lực 36 ngày kể từ ngày kích hoạt."
-        : "Vui lòng chuyển khoản với nội dung: <strong>UR {$serial}</strong> để hệ thống admin duyệt tự động nhanh nhất. Admin sẽ kích hoạt bản quyền trong vòng 5-30 phút sau khi nhận được thanh toán. Nếu quá 30 phút chưa được kích hoạt, vui lòng liên hệ admin qua Telegram.";
+        ? "Gói Active Free tự động kích hoạt trong vài phút và có hiệu lực 36 ngày kể từ ngày kích hoạt. Bạn có thể tra cứu Serial trên website để theo dõi trạng thái."
+        : "Khi chuyển khoản, vui lòng để lại nội dung <strong>UR {$serial}</strong> để admin đối soát nhanh chóng. Thời gian kích hoạt dự kiến từ 5–30 phút. Nếu quá 30 phút, hãy liên hệ admin qua Telegram.";
     
+    $noteTitle = $isFree ? 'Thông tin gói trải nghiệm' : 'Hướng dẫn hoàn tất kích hoạt';
+    $preheader = $esc('Đã tiếp nhận Serial ' . ($data['serial'] ?? '') . '. Tra cứu trạng thái kích hoạt HyperUR của bạn.');
+
     $html = <<<HTML
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+  <title>HyperUR — Đã tiếp nhận Serial</title>
   <style>
-    body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; background-color: #0F172A; }
-    .container { max-width: 600px; margin: 0 auto; background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.98) 100%); border: 1px solid rgba(148, 163, 184, 0.15); border-radius: 16px; overflow: hidden; }
-    .header { padding: 32px 40px 24px; text-align: center; border-bottom: 1px solid rgba(148, 163, 184, 0.1); }
-    .logo { font-size: 28px; font-weight: 800; color: #F8FAFC; margin-bottom: 8px; }
-    .accent { color: #10b981; }
-    .subtitle { font-size: 13px; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 600; }
-    .icon-wrapper { padding: 32px 40px 16px; text-align: center; }
-    .success-icon { display: inline-block; width: 64px; height: 64px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 50%; line-height: 64px; font-size: 36px; margin-bottom: 16px; }
-    .title { padding: 0 40px 16px; text-align: center; font-size: 24px; font-weight: 700; color: #F8FAFC; margin: 0; }
-    .description { padding: 0 40px 32px; text-align: center; font-size: 15px; color: #CBD5E1; line-height: 1.6; margin: 0; }
-    .details-box { margin: 0 40px 32px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(148, 163, 184, 0.12); border-radius: 12px; overflow: hidden; }
-    .detail-row { padding: 16px 20px; border-bottom: 1px solid rgba(148, 163, 184, 0.08); }
-    .detail-row:last-child { border-bottom: none; }
-    .detail-label { font-size: 13px; color: #94A3B8; margin-bottom: 4px; }
-    .detail-value { font-size: 15px; color: #F8FAFC; font-weight: 600; }
-    .serial-value { color: #22D3EE; font-family: 'Courier New', monospace; font-size: 16px; }
-    .plan-value { color: #10b981; }
-    .amount-value { color: #fbbf24; font-size: 16px; }
-    .cta-wrapper { padding: 0 40px 32px; text-align: center; }
-    .cta-button { display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; text-decoration: none; border-radius: 10px; font-weight: 600; font-size: 15px; }
-    .note-box { margin: 0 40px 32px; background: rgba(249, 115, 22, 0.08); border: 1px solid rgba(249, 115, 22, 0.2); border-radius: 10px; padding: 16px 20px; }
-    .note-title { font-size: 13px; color: #fb923c; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
-    .note-text { font-size: 14px; color: #CBD5E1; line-height: 1.6; margin: 0; }
-    .footer { padding: 24px 40px; background: rgba(15, 23, 42, 0.8); border-top: 1px solid rgba(148, 163, 184, 0.1); text-align: center; }
-    .footer-text { font-size: 13px; color: #94A3B8; margin: 0 0 12px; }
-    .footer-links { margin-top: 16px; }
-    .footer-link { display: inline-block; margin: 0 8px; color: #22D3EE; text-decoration: none; font-size: 13px; }
-    .divider { color: #475569; margin: 0 4px; }
+    body { margin: 0; padding: 0; }
+    table { border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    a { text-decoration: none; }
+    @media only screen and (max-width: 620px) {
+      .outer-pad { padding: 16px 8px !important; }
+      .content-pad { padding-left: 22px !important; padding-right: 22px !important; }
+      .email-title { font-size: 26px !important; line-height: 34px !important; }
+      .detail-label, .detail-value { display: block !important; width: auto !important; text-align: left !important; }
+      .detail-label { padding: 12px 0 3px !important; border-bottom: 0 !important; }
+      .detail-value { padding: 0 0 12px !important; }
+      .cta-button { display: block !important; padding-left: 12px !important; padding-right: 12px !important; }
+    }
   </style>
 </head>
-<body>
-  <div style="padding: 40px 20px; background-color: #0F172A;">
-    <div class="container">
-      
-      <!-- Header -->
-      <div class="header">
-        <div class="logo">Hyper<span class="accent">UR</span></div>
-        <div class="subtitle">CỔNG BẢN QUYỀN CHÍNH THỨC</div>
-      </div>
-      
-      <!-- Success Icon -->
-      <div class="icon-wrapper">
-        <div class="success-icon">✓</div>
-      </div>
-      
-      <!-- Title -->
-      <h1 class="title">Đã Gửi Serial Lên Hệ Thống!</h1>
-      
-      <!-- Description -->
-      <p class="description">{$description}</p>
-      
-      <!-- Details Box -->
-      <div class="details-box">
-        <div class="detail-row">
-          <div class="detail-label">Số Serial:</div>
-          <div class="detail-value serial-value">{$serial}</div>
-        </div>
-        <div class="detail-row">
-          <div class="detail-label">Mã Thiết Bị (Codename):</div>
-          <div class="detail-value">{$codename}</div>
-        </div>
-        <div class="detail-row">
-          <div class="detail-label">Gói Đăng Ký:</div>
-          <div class="detail-value plan-value">{$plan}</div>
-        </div>
-        <div class="detail-row">
-          <div class="detail-label">Mức Ủng Hộ:</div>
-          <div class="detail-value amount-value">{$amount}</div>
-        </div>
-        <div class="detail-row">
-          <div class="detail-label">Người Gửi:</div>
-          <div class="detail-value">{$senderName}</div>
-        </div>
-        <div class="detail-row">
-          <div class="detail-label">Email Liên Hệ:</div>
-          <div class="detail-value serial-value">{$senderEmail}</div>
-        </div>
-      </div>
-      
-      <!-- CTA Button -->
-      <div class="cta-wrapper">
-        <a href="https://hyperur.io.vn/serial.html#lookup" class="cta-button">
-          🔍 Kiểm Tra Trạng Thái Kích Hoạt Serial Ngay
-        </a>
-      </div>
-      
-      <!-- Important Note -->
-      <div class="note-box">
-        <div class="note-title">⚠️ LƯU Ý QUAN TRỌNG</div>
-        <p class="note-text">{$noteText}</p>
-      </div>
-      
-      <!-- Footer -->
-      <div class="footer">
-        <p class="footer-text">Cảm ơn bạn đã tin dùng HyperUR!</p>
-        <div class="footer-links">
-          <a href="https://t.me/hypermodupdate" class="footer-link">📢 Kênh Telegram</a>
-          <span class="divider">•</span>
-          <a href="https://t.me/HuperUltraRateChat" class="footer-link">💬 Hỗ Trợ 24/7</a>
-        </div>
-      </div>
-      
-    </div>
-  </div>
+<body style="margin:0; padding:0; background-color:#f4f7fb; color:#172033; font-family:Arial,Helvetica,sans-serif;">
+  <div style="display:none; max-height:0; overflow:hidden; opacity:0;">{$preheader}</div>
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%; background-color:#f4f7fb;">
+    <tr>
+      <td class="outer-pad" align="center" style="padding:36px 16px;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%; max-width:600px; background:#ffffff; border-radius:16px; overflow:hidden; box-shadow:0 8px 30px rgba(23,32,51,0.08);">
+          <tr>
+            <td align="center" style="padding:30px 32px 26px; background:#0b1220; border-bottom:3px solid #14b8a6;">
+              <div style="font-size:28px; line-height:34px; font-weight:800; letter-spacing:-0.5px; color:#ffffff;">Hyper<span style="color:#5eead4;">UR</span></div>
+              <div style="padding-top:6px; font-size:12px; line-height:18px; font-weight:700; letter-spacing:1.5px; color:#94a3b8;">CỔNG BẢN QUYỀN CHÍNH THỨC</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="content-pad" align="center" style="padding:34px 32px 12px;">
+              <div style="display:inline-block; width:58px; height:58px; line-height:58px; border-radius:50%; background:#d1fae5; color:#047857; font-size:32px; font-weight:bold;">&#10003;</div>
+              <h1 class="email-title" style="margin:18px 0 12px; font-size:30px; line-height:38px; font-weight:750; color:#111827;">Đã tiếp nhận Serial của bạn</h1>
+              <p style="margin:0; font-size:16px; line-height:26px; color:#596579;">{$description}</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="content-pad" style="padding:24px 32px 0;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%; background:#f0fdfa; border:1px solid #99f6e4; border-radius:12px;">
+                <tr>
+                  <td style="padding:16px 20px; border-bottom:1px solid #ccfbf1;">
+                    <div class="detail-label" style="font-size:12px; line-height:18px; font-weight:700; letter-spacing:0.7px; color:#55766f; text-transform:uppercase;">Số serial</div>
+                    <div class="detail-value" style="padding-top:4px; font-size:21px; line-height:29px; font-weight:800; color:#0f766e; font-family:'Courier New',Consolas,monospace; word-break:break-all;">{$serial}</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:14px 20px;">
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                      <tr>
+                        <td width="38%" class="detail-label" style="font-size:14px; line-height:21px; color:#64748b;">Thiết bị</td>
+                        <td width="62%" class="detail-value" align="right" style="font-size:14px; line-height:21px; font-weight:700; color:#1e293b;">{$codename}</td>
+                      </tr>
+                      <tr>
+                        <td class="detail-label" style="padding-top:10px; font-size:14px; line-height:21px; color:#64748b;">Gói đăng ký</td>
+                        <td class="detail-value" align="right" style="padding-top:10px; font-size:14px; line-height:21px; font-weight:700; color:#0f766e;">{$plan}</td>
+                      </tr>
+                      <tr>
+                        <td class="detail-label" style="padding-top:10px; font-size:14px; line-height:21px; color:#64748b;">Mức ủng hộ</td>
+                        <td class="detail-value" align="right" style="padding-top:10px; font-size:14px; line-height:21px; font-weight:700; color:#b45309;">{$amount}</td>
+                      </tr>
+                      <tr>
+                        <td class="detail-label" style="padding-top:10px; font-size:14px; line-height:21px; color:#64748b;">Người gửi</td>
+                        <td class="detail-value" align="right" style="padding-top:10px; font-size:14px; line-height:21px; font-weight:700; color:#1e293b;">{$senderName}</td>
+                      </tr>
+                      <tr>
+                        <td class="detail-label" style="padding-top:10px; font-size:14px; line-height:21px; color:#64748b;">Email liên hệ</td>
+                        <td class="detail-value" align="right" style="padding-top:10px; font-size:14px; line-height:21px; font-weight:700; color:#0f766e; word-break:break-all;">{$senderEmail}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="content-pad" align="center" style="padding:26px 32px 0;">
+              <a href="https://hyperur.io.vn/serial.html#lookup" class="cta-button" style="display:inline-block; padding:14px 24px; background:#0f766e; color:#ffffff; font-size:15px; line-height:22px; font-weight:700; border-radius:9px; box-shadow:0 4px 12px rgba(15,118,110,0.20);">Tra cứu trạng thái kích hoạt &rarr;</a>
+            </td>
+          </tr>
+          <tr>
+            <td class="content-pad" style="padding:24px 32px 32px;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%; background:#fffbeb; border-left:4px solid #f59e0b; border-radius:8px;">
+                <tr>
+                  <td style="padding:16px 18px;">
+                    <div style="font-size:13px; line-height:20px; font-weight:800; color:#92400e;">{$noteTitle}</div>
+                    <p style="margin:5px 0 0; font-size:14px; line-height:23px; color:#6b5727;">{$noteText}</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="padding:24px 32px; background:#f8fafc; border-top:1px solid #e8edf3;">
+              <p style="margin:0 0 10px; font-size:13px; line-height:20px; color:#64748b;">Cảm ơn bạn đã tin dùng HyperUR!</p>
+              <p style="margin:0; font-size:13px; line-height:22px;">
+                <a href="https://t.me/hypermodupdate" style="color:#0f766e; font-weight:700;">Kênh Telegram</a>
+                <span style="padding:0 8px; color:#cbd5e1;">&bull;</span>
+                <a href="https://t.me/HuperUltraRateChat" style="color:#0f766e; font-weight:700;">Hỗ trợ 24/7</a>
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
 </body>
 </html>
 HTML;
@@ -197,7 +200,8 @@ function smtp_send($to, $subject, $htmlBody, $config = []) {
         $resp = $read();
         $code = (int)substr($resp, 0, 3);
         if ($expectedCode && $code !== $expectedCode) {
-            throw new Exception("Lỗi SMTP lệnh '{$cmd}' (mong đợi {$expectedCode}, nhận {$code}): " . trim($resp));
+            // Không ghi lệnh SMTP: có thể chứa mật khẩu AUTH hoặc toàn bộ nội dung email.
+            throw new Exception("Lỗi phản hồi SMTP (mong đợi {$expectedCode}, nhận {$code}): " . trim($resp));
         }
         return $resp;
     };
@@ -264,14 +268,27 @@ function sendHyperEmail($toEmail, $subject, $htmlBody) {
     $smtpHost = defined('SMTP_HOST') ? SMTP_HOST : '';
     $smtpUser = defined('SMTP_USER') ? SMTP_USER : '';
     $smtpPass = defined('SMTP_PASS') ? SMTP_PASS : '';
+    $smtpError = null;
 
     if ($smtpEnabled && !empty($smtpHost) && !empty($smtpUser) && !empty($smtpPass)) {
         try {
             smtp_send($toEmail, $subject, $htmlBody);
             return ['success' => true, 'method' => 'smtp'];
         } catch (\Throwable $e) {
-            error_log("[sendHyperEmail] SMTP error: " . $e->getMessage() . " -> Thử fallback sang mail()");
+            $smtpError = $e->getMessage();
+            error_log("[sendHyperEmail] SMTP error: " . $smtpError . " -> Thử fallback sang mail()");
         }
+    } elseif ($smtpEnabled) {
+        $smtpError = 'SMTP đã bật nhưng thiếu SMTP_HOST, SMTP_USER hoặc SMTP_PASS trong api/config.php';
+        error_log('[sendHyperEmail] ' . $smtpError);
+    } else {
+        $smtpError = 'SMTP chưa được bật trong api/config.php';
+    }
+
+    if (!function_exists('mail')) {
+        $error = $smtpError . '; hosting không hỗ trợ hoặc đã vô hiệu hóa hàm mail()';
+        error_log('[sendHyperEmail] ' . $error);
+        return ['success' => false, 'error' => $error, 'method' => 'mail'];
     }
 
     // 2. Fallback sang PHP mail()
@@ -298,14 +315,24 @@ function sendHyperEmail($toEmail, $subject, $htmlBody) {
     $headers .= "Reply-To: " . $replyTo . "\r\n";
     $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
 
-    $sent = @mail($toEmail, $encSubject, $htmlBody, $headers, "-f " . escapeshellarg($envelopeFrom));
-    if (!$sent) {
-        $sent = @mail($toEmail, $encSubject, $htmlBody, $headers);
+    $mailError = null;
+    try {
+        error_clear_last();
+        $sent = @mail($toEmail, $encSubject, $htmlBody, $headers, "-f " . escapeshellarg($envelopeFrom));
+        if (!$sent) {
+            $sent = @mail($toEmail, $encSubject, $htmlBody, $headers);
+        }
+        if (!$sent) {
+            $err = error_get_last();
+            $mailError = $err['message'] ?? 'mail() trả về false';
+        }
+    } catch (\Throwable $e) {
+        $sent = false;
+        $mailError = $e->getMessage();
     }
 
     if (!$sent) {
-        $err = error_get_last();
-        $msg = $err['message'] ?? 'mail() trả về false';
+        $msg = $smtpError . '; PHP mail(): ' . $mailError;
         error_log("[sendHyperEmail] Gửi mail tới {$toEmail} thất bại: {$msg}");
         return ['success' => false, 'error' => $msg, 'method' => 'mail'];
     }
