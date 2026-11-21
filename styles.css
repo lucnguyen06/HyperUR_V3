@@ -43,7 +43,7 @@ html {
   --blue-500: #3b82f6;
   --blue-600: #2563eb;
   --indigo-500: #6366f1;
-  --purple-500: #10b981;
+  --purple-500: #6366f1;
   --cyan-500: #06b6d4;
   --teal-400: #2dd4bf;
   --teal-500: #14b8a6;
@@ -54,7 +54,7 @@ html {
   --mint-300: #a7f3d0;
   --mint-400: #6ee7b7;
   --amber-500: #f59e0b;
-  --rose-500: #f43f5e;
+  --rose-500: #e11d48;
   --slate-50: #f8fafc;
   --slate-100: #f1f5f9;
   --slate-200: #e2e8f0;
@@ -63,26 +63,26 @@ html {
   --slate-500: #64748b;
   --slate-800: #1e293b;
   --slate-900: #0f172a;
-  --slate-950: #080a11;
+  --slate-950: #05070f;
 
-  /* Layer 2: Semantic Tokens (Dark Theme Default) */
-  --bg: var(--slate-950);
-  --bg-gradient: radial-gradient(circle at 50% 0%, #0d1e1a 0%, #080a11 60%, #05060a 100%);
-  --surface: rgba(16, 28, 24, 0.65);
-  --surface-hover: rgba(20, 38, 32, 0.85);
-  --surface-solid: #0d1b17;
-  --surface-card: rgba(16, 26, 23, 0.55);
-  --surface-elevated: rgba(20, 42, 36, 0.75);
+  /* Layer 2: Semantic Tokens (Xiaomi Flagship Launch Obsidian & HyperOS 3.0 Iridescent) */
+  --bg: #05070f;
+  --bg-gradient: radial-gradient(circle at 75% 15%, rgba(59, 130, 246, 0.16) 0%, rgba(99, 102, 241, 0.08) 32%, #05070f 65%, #030408 100%);
+  --surface: rgba(15, 22, 38, 0.68);
+  --surface-hover: rgba(22, 32, 54, 0.88);
+  --surface-solid: #0b101d;
+  --surface-card: rgba(14, 20, 35, 0.65);
+  --surface-elevated: rgba(20, 30, 52, 0.82);
 
-  --glass-bg: rgba(11, 24, 20, 0.75);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-border-hover: rgba(16, 185, 129, 0.4);
-  --glass-highlight: rgba(255, 255, 255, 0.04);
+  --glass-bg: rgba(11, 16, 29, 0.76);
+  --glass-border: rgba(255, 255, 255, 0.09);
+  --glass-border-hover: rgba(56, 189, 248, 0.45);
+  --glass-highlight: rgba(255, 255, 255, 0.05);
   --glass-blur: 24px;
 
-  --border: rgba(255, 255, 255, 0.07);
-  --border-strong: rgba(255, 255, 255, 0.14);
-  --border-focus: rgba(16, 185, 129, 0.6);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.15);
+  --border-focus: rgba(59, 130, 246, 0.65);
 
   --text-strong: #ffffff;
   --text: var(--slate-200);
@@ -90,11 +90,12 @@ html {
   --muted: var(--slate-400);
   --muted-soft: var(--slate-500);
 
-  --accent-primary: var(--emerald-500);
-  --accent-primary-hover: var(--emerald-600);
-  --accent-secondary: var(--teal-400);
-  --accent-gradient: linear-gradient(135deg, var(--emerald-500) 0%, var(--teal-500) 50%, var(--cyan-500) 100%);
-  --accent-gradient-glow: linear-gradient(135deg, rgba(16, 185, 129, 0.4), rgba(20, 184, 166, 0.4));
+  --accent-primary: #3b82f6;
+  --accent-primary-hover: #2563eb;
+  --accent-secondary: #06b6d4;
+  --accent-leica: #e11d48;
+  --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #6366f1 50%, #06b6d4 100%);
+  --accent-gradient-glow: linear-gradient(135deg, rgba(59, 130, 246, 0.42), rgba(6, 182, 212, 0.38));
   --accent-cyan: var(--cyan-500);
   --accent-teal: var(--teal-500);
   --accent-emerald: var(--emerald-500);
@@ -102,18 +103,18 @@ html {
   --accent-amber: var(--amber-500);
   --accent-rose: var(--rose-500);
 
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.55);
-  --shadow-glow: 0 0 35px rgba(16, 185, 129, 0.25);
-  --shadow-glow-purple: 0 0 35px rgba(20, 184, 166, 0.25);
-  --shadow-glow-teal: 0 0 35px rgba(20, 184, 166, 0.25);
-  --shadow-glow-emerald: 0 0 35px rgba(16, 185, 129, 0.3);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 40px rgba(59, 130, 246, 0.28);
+  --shadow-glow-purple: 0 0 35px rgba(99, 102, 241, 0.28);
+  --shadow-glow-teal: 0 0 35px rgba(6, 182, 212, 0.25);
+  --shadow-glow-emerald: 0 0 35px rgba(16, 185, 129, 0.25);
 
   --scrollbar-thumb: rgba(255, 255, 255, 0.15);
   --scrollbar-thumb-hover: rgba(255, 255, 255, 0.28);
 
-  --input-bg: rgba(13, 17, 28, 0.85);
+  --input-bg: rgba(11, 16, 29, 0.88);
   --input-border: rgba(255, 255, 255, 0.1);
   --input-placeholder: var(--slate-500);
 
@@ -129,25 +130,25 @@ html {
   color-scheme: dark;
 }
 
-/* Light Theme Variables */
+/* Light Theme Variables (Xiaomi Showroom Titanium Pearl) */
 [data-theme="light"] {
-  --bg: var(--slate-50);
-  --bg-gradient: radial-gradient(circle at 50% 0%, #e6f4f1 0%, #f1f5f9 60%, #f8fafc 100%);
-  --surface: rgba(255, 255, 255, 0.75);
-  --surface-hover: rgba(255, 255, 255, 0.95);
+  --bg: #f4f6fb;
+  --bg-gradient: radial-gradient(circle at 75% 10%, #e0eafc 0%, #f1f5f9 55%, #f8fafc 100%);
+  --surface: rgba(255, 255, 255, 0.78);
+  --surface-hover: rgba(255, 255, 255, 0.96);
   --surface-solid: #ffffff;
-  --surface-card: rgba(255, 255, 255, 0.85);
+  --surface-card: rgba(255, 255, 255, 0.88);
   --surface-elevated: #ffffff;
 
-  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-bg: rgba(255, 255, 255, 0.84);
   --glass-border: rgba(15, 23, 42, 0.08);
-  --glass-border-hover: rgba(5, 150, 105, 0.4);
-  --glass-highlight: rgba(255, 255, 255, 0.9);
+  --glass-border-hover: rgba(37, 99, 235, 0.4);
+  --glass-highlight: rgba(255, 255, 255, 0.92);
   --glass-blur: 24px;
 
   --border: rgba(15, 23, 42, 0.08);
   --border-strong: rgba(15, 23, 42, 0.15);
-  --border-focus: rgba(5, 150, 105, 0.6);
+  --border-focus: rgba(37, 99, 235, 0.6);
 
   --text-strong: var(--slate-900);
   --text: #1e293b;
@@ -155,19 +156,20 @@ html {
   --muted: var(--slate-500);
   --muted-soft: var(--slate-400);
 
-  --accent-primary: var(--emerald-600);
-  --accent-primary-hover: #047857;
-  --accent-secondary: var(--teal-600);
-  --accent-gradient: linear-gradient(135deg, #059669 0%, #0d9488 50%, #0891b2 100%);
-  --accent-gradient-glow: linear-gradient(135deg, rgba(5, 150, 105, 0.2), rgba(13, 148, 136, 0.2));
+  --accent-primary: #2563eb;
+  --accent-primary-hover: #1d4ed8;
+  --accent-secondary: #0891b2;
+  --accent-leica: #e11d48;
+  --accent-gradient: linear-gradient(135deg, #2563eb 0%, #4f46e5 50%, #0891b2 100%);
+  --accent-gradient-glow: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(8, 145, 178, 0.2));
 
   --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
   --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
   --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.12);
-  --shadow-glow: 0 0 35px rgba(5, 150, 105, 0.15);
-  --shadow-glow-purple: 0 0 35px rgba(13, 148, 136, 0.15);
-  --shadow-glow-teal: 0 0 35px rgba(13, 148, 136, 0.15);
-  --shadow-glow-emerald: 0 0 35px rgba(5, 150, 105, 0.18);
+  --shadow-glow: 0 0 35px rgba(37, 99, 235, 0.16);
+  --shadow-glow-purple: 0 0 35px rgba(79, 70, 229, 0.15);
+  --shadow-glow-teal: 0 0 35px rgba(8, 145, 178, 0.15);
+  --shadow-glow-emerald: 0 0 35px rgba(5, 150, 105, 0.16);
 
   --scrollbar-thumb: rgba(15, 23, 42, 0.15);
   --scrollbar-thumb-hover: rgba(15, 23, 42, 0.28);
@@ -204,9 +206,9 @@ body::before {
   width: 100%;
   height: 100%;
   background:
-    radial-gradient(circle 800px at 15% 10%, rgba(16, 185, 129, 0.12), transparent 70%),
-    radial-gradient(circle 900px at 85% 25%, rgba(20, 184, 166, 0.1), transparent 70%),
-    radial-gradient(circle 700px at 50% 80%, rgba(6, 182, 212, 0.08), transparent 70%);
+    radial-gradient(circle 850px at 15% 12%, rgba(59, 130, 246, 0.13), transparent 70%),
+    radial-gradient(circle 920px at 85% 22%, rgba(99, 102, 241, 0.12), transparent 70%),
+    radial-gradient(circle 750px at 52% 82%, rgba(6, 182, 212, 0.09), transparent 70%);
   pointer-events: none;
   z-index: 0;
   animation: auroraFloat 25s ease-in-out infinite alternate;
@@ -250,7 +252,7 @@ body::before {
 
 .section-header {
   text-align: center;
-  max-width: 680px;
+  max-width: 1080px;
   margin: 0 auto 3.5rem;
 }
 
@@ -265,7 +267,7 @@ body::before {
 }
 
 .section-header h2 {
-  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-size: clamp(1.45rem, 2.8vw, 2.4rem);
   font-weight: 800;
   color: var(--text-strong);
   letter-spacing: -0.025em;
@@ -275,7 +277,14 @@ body::before {
 .section-header p {
   color: var(--muted);
   font-size: 1.05rem;
-  margin-top: 0.75rem;
+  max-width: 680px;
+  margin: 0.75rem auto 0;
+}
+
+@media (min-width: 900px) {
+  .section-header h2 {
+    white-space: nowrap;
+  }
 }
 
 /* ===== Glass Utility ===== */
@@ -409,7 +418,15 @@ body::before {
 
 .navbar-link.active {
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(59, 130, 246, 0.16);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+}
+
+[data-theme="light"] .navbar-link.active {
+  color: #ffffff;
+  background: var(--accent-gradient);
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
 }
 
 /* Mobile-only elements hidden on desktop */
@@ -6036,7 +6053,7 @@ dialog:not([open]) {
   height: 500px;
   bottom: 15%;
   right: 20%;
-  background: radial-gradient(circle, #10b981 0%, rgba(16, 185, 129, 0) 70%);
+  background: radial-gradient(circle, #6366f1 0%, rgba(99, 102, 241, 0) 70%);
   animation-delay: -3s;
 }
 
@@ -6079,7 +6096,7 @@ dialog:not([open]) {
   position: absolute;
   inset: -12px;
   border-radius: 32px;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.5), rgba(20, 184, 166, 0.5));
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.55), rgba(99, 102, 241, 0.5), rgba(6, 182, 212, 0.45));
   filter: blur(20px);
   animation: splashHaloPulse 3s ease-in-out infinite alternate;
 }
@@ -6173,12 +6190,12 @@ dialog:not([open]) {
 }
 
 .splash-brand-text {
-  background: linear-gradient(135deg, #34d399 0%, #14b8a6 50%, #38bdf8 100%);
+  background: linear-gradient(135deg, #60a5fa 0%, #818cf8 50%, #22d3ee 100%);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: splashTextShine 3s ease infinite;
-  filter: drop-shadow(0 4px 16px rgba(16, 185, 129, 0.45));
+  filter: drop-shadow(0 4px 16px rgba(59, 130, 246, 0.45));
 }
 
 .splash-brand-text .brand-accent {
@@ -6215,9 +6232,9 @@ dialog:not([open]) {
   top: 0;
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #10b981, #14b8a6, #06b6d4);
+  background: linear-gradient(90deg, #3b82f6, #6366f1, #06b6d4);
   border-radius: 999px;
-  box-shadow: 0 0 14px rgba(16, 185, 129, 0.85);
+  box-shadow: 0 0 14px rgba(59, 130, 246, 0.85);
   transition: width 0.1s ease;
 }
 
@@ -7736,3 +7753,1746 @@ dialog.rom-dialog[open]::backdrop {
 }
 
 
+
+/* ==========================================================================
+   XIAOMI ULTRA FLAGSHIP LAUNCH SHOWCASE & 3D ANIMATION ENGINE (HyperUR V3)
+   ========================================================================== */
+
+/* ===== 1. Splash Screen Xiaomi Ultra Reveal ===== */
+.splash-ultra-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+  position: relative;
+}
+
+.splash-ultra-phone-preview {
+  position: relative;
+  width: 92px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: splashPhoneReveal 1.1s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.splash-ultra-phone-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 32px rgba(59, 130, 246, 0.45));
+  z-index: 2;
+  animation: ultraFloatGentle 3.6s ease-in-out infinite alternate;
+}
+
+.splash-leica-ring {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(225, 29, 72, 0.55);
+  box-shadow: 0 0 24px rgba(225, 29, 72, 0.25), inset 0 0 20px rgba(59, 130, 246, 0.2);
+  animation: leicaSpinCW 14s linear infinite;
+  pointer-events: none;
+}
+
+.splash-leica-ring::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e11d48;
+  box-shadow: 0 0 12px #e11d48;
+}
+
+@keyframes splashPhoneReveal {
+  0% { opacity: 0; transform: translateY(24px) scale(0.84) rotateY(-18deg); }
+  100% { opacity: 1; transform: translateY(0) scale(1) rotateY(0deg); }
+}
+
+@keyframes ultraFloatGentle {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+/* ===== 2. 2-Column Flagship Launch Hero ===== */
+.hero.hero-ultra-showcase {
+  padding: 3.5rem 1.5rem 4rem;
+  text-align: left;
+  overflow: visible;
+}
+
+.hero-ultra-showcase .hero-inner {
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.hero-ultra-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero-copy-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  min-width: 0;
+}
+
+.hero-copy-col .welcome-hero-badge {
+  margin-bottom: 1.35rem;
+}
+
+.hero-copy-col .hero-title {
+  font-size: clamp(2.45rem, 4.4vw, 3.85rem);
+  margin-bottom: 1.15rem;
+}
+
+.hero-copy-col .hero-desc {
+  margin: 0 0 1.85rem;
+  max-width: 580px;
+  font-size: clamp(1rem, 1.4vw, 1.12rem);
+}
+
+.hero-copy-col .hero-cta {
+  justify-content: flex-start;
+  margin-bottom: 2rem;
+}
+
+.hero-copy-col .hero-mockup-wrapper {
+  width: 100%;
+  max-width: 600px;
+  margin: 0;
+  animation: none;
+}
+
+.hero-copy-col .hero-mockup-card {
+  padding: 1.4rem 1.5rem;
+  border-radius: 22px;
+}
+
+.hero-copy-col .mockup-header {
+  padding-bottom: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.hero-copy-col .mockup-stats-grid {
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.hero-copy-col .hero-mockup-card .stat-item {
+  padding: 0.9rem 0.75rem;
+  border-radius: 14px;
+}
+
+.hero-copy-col .stat-value {
+  font-size: 1.65rem;
+}
+
+.hero-copy-col .mockup-feature-box.mockup-feature-full {
+  padding: 0.95rem 1.15rem;
+}
+
+/* ===== 3. 3D Xiaomi Ultra Interactive Stage ===== */
+.hero-stage-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.35rem;
+  min-width: 0;
+}
+
+.ultra-stage-3d {
+  --rx: 0deg;
+  --ry: 0deg;
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  min-height: 490px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1400px;
+  transform-style: preserve-3d;
+  border-radius: 32px;
+  padding: 1.5rem;
+  background: radial-gradient(circle at 50% 45%, rgba(59, 130, 246, 0.14) 0%, rgba(99, 102, 241, 0.08) 45%, transparent 75%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 30px 70px rgba(0, 0, 0, 0.45);
+  overflow: visible;
+}
+
+[data-theme="light"] .ultra-stage-3d {
+  background: radial-gradient(circle at 50% 45%, rgba(37, 99, 235, 0.1) 0%, rgba(8, 145, 178, 0.07) 48%, rgba(255, 255, 255, 0.75) 85%);
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 24px 60px rgba(15, 23, 42, 0.08);
+}
+
+/* Stage Top Live Tag */
+.ultra-stage-top-pill {
+  position: absolute;
+  top: 1rem;
+  left: 1.25rem;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  background: rgba(8, 13, 26, 0.78);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  backdrop-filter: blur(14px);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #93c5fd;
+}
+
+[data-theme="light"] .ultra-stage-top-pill {
+  background: rgba(255, 255, 255, 0.9);
+  color: #1d4ed8;
+  border-color: rgba(37, 99, 235, 0.25);
+}
+
+.leica-red-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e11d48;
+  box-shadow: 0 0 10px #e11d48;
+  animation: pulseDot 1.8s infinite;
+  flex-shrink: 0;
+}
+
+/* Leica Optical Halo & Light Beam Behind Phone */
+.ultra-light-beam {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(from 180deg at 50% 48%, rgba(59, 130, 246, 0.22), rgba(225, 29, 72, 0.12), rgba(6, 182, 212, 0.18), rgba(59, 130, 246, 0.22));
+  filter: blur(48px);
+  opacity: 0.65;
+  animation: leicaSpinCW 18s linear infinite;
+  pointer-events: none;
+}
+
+.ultra-leica-halo {
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.leica-ring-outer {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(96, 165, 250, 0.4);
+  animation: leicaSpinCW 26s linear infinite;
+}
+
+.leica-ring-outer::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 14px #38bdf8;
+}
+
+.leica-ring-inner {
+  position: absolute;
+  inset: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(225, 29, 72, 0.35);
+  box-shadow: 0 0 30px rgba(225, 29, 72, 0.14);
+  animation: leicaSpinCCW 16s linear infinite;
+}
+
+.leica-ring-inner::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e11d48;
+  box-shadow: 0 0 12px #e11d48;
+}
+
+.leica-sonar-wave {
+  position: absolute;
+  inset: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(59, 130, 246, 0.45);
+  animation: leicaSonarPulse 3.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes leicaSpinCW {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes leicaSpinCCW {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes leicaSonarPulse {
+  0% { transform: scale(0.78); opacity: 0.75; }
+  100% { transform: scale(1.22); opacity: 0; }
+}
+
+/* 3D Device Rig (Driven by Mouse Parallax --rx / --ry + Float) */
+.ultra-device-rig {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  height: 390px;
+}
+
+.ultra-rig-float {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  animation: ultraFloat3D 6.5s ease-in-out infinite;
+}
+
+@keyframes ultraFloat3D {
+  0%, 100% { transform: translateY(0px) rotateZ(0deg); }
+  50% { transform: translateY(-12px) rotateZ(0.6deg); }
+}
+
+.ultra-main-phone {
+  position: relative;
+  width: 245px;
+  height: 345px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateZ(26px);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+}
+
+.ultra-main-phone.is-switching {
+  opacity: 0.15;
+  transform: translateZ(10px) scale(0.92) rotateY(14deg);
+}
+
+.ultra-main-phone img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 28px 42px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 28px rgba(59, 130, 246, 0.25));
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Overlapping 3D Live Firmware Screen Card */
+.ultra-live-screen-card {
+  position: relative;
+  margin-left: -68px;
+  margin-top: 24px;
+  width: 174px;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  transform: translateZ(56px) rotateY(-10deg) rotateZ(2.5deg);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+  overflow: visible;
+}
+
+.ultra-live-screen-card.is-switching {
+  opacity: 0.15;
+  transform: translateZ(30px) rotateY(12deg) scale(0.92);
+}
+
+.ultra-live-screen-inner {
+  position: relative;
+  width: 100%;
+  border-radius: 26px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.ultra-live-screen-inner img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 24px 44px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 24px rgba(59, 130, 246, 0.25));
+}
+
+.ultra-screen-caption {
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  padding: 0.32rem 0.5rem;
+  border-radius: 10px;
+  background: rgba(5, 8, 18, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(10px);
+  color: #f8fafc;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Glare Sweep Animation */
+.ultra-glare-sweep {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.24) 48%, rgba(56, 189, 248, 0.16) 54%, transparent 70%);
+  transform: translateX(-140%);
+  animation: ultraGlareSweep 4.8s ease-in-out infinite;
+  z-index: 4;
+}
+
+@keyframes ultraGlareSweep {
+  0%, 55% { transform: translateX(-140%); }
+  85%, 100% { transform: translateX(150%); }
+}
+
+/* 4 Floating 3D Orbit Telemetry Cards */
+.ultra-orbit-badge {
+  position: absolute;
+  z-index: 8;
+  transform: translateZ(85px);
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 14px;
+  background: rgba(11, 17, 32, 0.84);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+  color: #f8fafc;
+  font-size: 0.76rem;
+  line-height: 1.25;
+  pointer-events: none;
+}
+
+[data-theme="light"] .ultra-orbit-badge {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(15, 23, 42, 0.1);
+  color: #0f172a;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+}
+
+.ultra-orbit-badge strong {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.ultra-orbit-badge span {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+
+.orbit-top-left {
+  top: 4.1rem;
+  left: -0.75rem;
+  animation: orbitFloat1 4.4s ease-in-out infinite alternate;
+}
+
+.orbit-top-right {
+  top: 3.1rem;
+  right: -0.75rem;
+  animation: orbitFloat2 4.8s ease-in-out infinite alternate;
+}
+
+.orbit-bottom-left {
+  bottom: 2.8rem;
+  left: -0.5rem;
+  animation: orbitFloat2 5.1s ease-in-out infinite alternate;
+}
+
+.orbit-bottom-right {
+  bottom: 1.5rem;
+  right: -0.5rem;
+  animation: orbitFloat1 4.6s ease-in-out infinite alternate;
+}
+
+@keyframes orbitFloat1 {
+  0% { transform: translate3d(0, 0, 85px); }
+  100% { transform: translate3d(0, -8px, 85px); }
+}
+
+@keyframes orbitFloat2 {
+  0% { transform: translate3d(0, -6px, 85px); }
+  100% { transform: translate3d(0, 4px, 85px); }
+}
+
+.orbit-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid rgba(59, 130, 246, 0.45);
+  flex-shrink: 0;
+}
+
+/* Animated FPS Equalizer Bars */
+.fps-equalizer {
+  display: flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.fps-equalizer i {
+  display: block;
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #22d3ee, #3b82f6);
+  animation: eqPulse 1.1s ease-in-out infinite alternate;
+}
+
+.fps-equalizer i:nth-child(1) { height: 8px; animation-delay: 0s; }
+.fps-equalizer i:nth-child(2) { height: 15px; animation-delay: 0.2s; }
+.fps-equalizer i:nth-child(3) { height: 11px; animation-delay: 0.4s; }
+.fps-equalizer i:nth-child(4) { height: 18px; animation-delay: 0.1s; }
+
+@keyframes eqPulse {
+  0% { transform: scaleY(0.55); opacity: 0.75; }
+  100% { transform: scaleY(1); opacity: 1; }
+}
+
+/* Interactive Mode Switcher Dock */
+.ultra-mode-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.4rem;
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow-sm);
+  max-width: 100%;
+}
+
+.ultra-mode-btn {
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.ultra-mode-btn:hover {
+  color: var(--text-strong);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.ultra-mode-btn.active {
+  background: var(--accent-gradient);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.35);
+}
+
+/* ===== 4. Visual Bento Showcase Stages inside 3 Core Pillars ===== */
+.pillar-visual-stage {
+  width: 100%;
+  height: 156px;
+  border-radius: 16px;
+  margin-bottom: 1.25rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 55%, rgba(59, 130, 246, 0.14), rgba(15, 23, 42, 0.45));
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+[data-theme="light"] .pillar-visual-stage {
+  background: radial-gradient(circle at 50% 55%, rgba(37, 99, 235, 0.09), rgba(241, 245, 249, 0.9));
+  border-color: rgba(15, 23, 42, 0.07);
+}
+
+/* Pillar 1: 3-Device Fan */
+.pillar-phone-fan {
+  position: relative;
+  width: 220px;
+  height: 136px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pillar-phone-fan img {
+  position: absolute;
+  height: 118px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.45));
+}
+
+.pillar-phone-fan img:nth-child(1) {
+  transform: translateX(-46px) rotate(-10deg) scale(0.86);
+  z-index: 1;
+  opacity: 0.85;
+}
+
+.pillar-phone-fan img:nth-child(2) {
+  transform: translateY(-4px) scale(1);
+  z-index: 3;
+}
+
+.pillar-phone-fan img:nth-child(3) {
+  transform: translateX(46px) rotate(10deg) scale(0.86);
+  z-index: 2;
+  opacity: 0.85;
+}
+
+.highlight-card:hover .pillar-phone-fan img:nth-child(1) {
+  transform: translateX(-64px) rotate(-15deg) scale(0.92);
+  opacity: 1;
+}
+
+.highlight-card:hover .pillar-phone-fan img:nth-child(2) {
+  transform: translateY(-10px) scale(1.07);
+}
+
+.highlight-card:hover .pillar-phone-fan img:nth-child(3) {
+  transform: translateX(64px) rotate(15deg) scale(0.92);
+  opacity: 1;
+}
+
+/* Pillar 2: 3 Real Firmware Screenshots Stack */
+.pillar-screen-stack {
+  position: relative;
+  width: 230px;
+  height: 136px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pillar-screen-mini {
+  position: absolute;
+  width: 68px;
+  height: 124px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  background: #020617;
+}
+
+.pillar-screen-mini img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.pillar-screen-mini:nth-child(1) {
+  transform: translateX(-50px) rotate(-9deg) scale(0.9);
+  z-index: 1;
+}
+
+.pillar-screen-mini:nth-child(2) {
+  transform: translateY(-2px) scale(1.02);
+  z-index: 3;
+  border-color: rgba(56, 189, 248, 0.6);
+}
+
+.pillar-screen-mini:nth-child(3) {
+  transform: translateX(50px) rotate(9deg) scale(0.9);
+  z-index: 2;
+}
+
+.highlight-card:hover .pillar-screen-mini:nth-child(1) {
+  transform: translateX(-68px) rotate(-14deg) scale(0.95);
+}
+
+.highlight-card:hover .pillar-screen-mini:nth-child(2) {
+  transform: translateY(-8px) scale(1.08);
+}
+
+.highlight-card:hover .pillar-screen-mini:nth-child(3) {
+  transform: translateX(68px) rotate(14deg) scale(0.95);
+}
+
+/* Pillar 3: Fastboot & Serial Flow Graphic */
+.pillar-flash-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+.flow-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  color: #e2e8f0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  transition: transform 0.35s ease, border-color 0.35s ease;
+}
+
+[data-theme="light"] .flow-node {
+  background: rgba(255, 255, 255, 0.92);
+  color: #1e293b;
+}
+
+.highlight-card:hover .flow-node {
+  transform: translateY(-4px);
+  border-color: rgba(56, 189, 248, 0.65);
+}
+
+.flow-pulse-line {
+  width: 34px;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  position: relative;
+  border-radius: 2px;
+}
+
+.flow-pulse-line::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8;
+  animation: flowSignalTravel 1.8s linear infinite;
+}
+
+@keyframes flowSignalTravel {
+  0% { left: 0; opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { left: calc(100% - 8px); opacity: 0.4; }
+}
+
+/* ===== 5. Interactive Xiaomi 17 Ultra Live Firmware Explorer ===== */
+.ultra-fw-explorer-section {
+  padding-top: 2rem;
+}
+
+.ultra-fw-explorer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 2.25rem;
+  align-items: center;
+  background: var(--surface-card);
+  border: 1px solid var(--glass-border);
+  border-radius: 28px;
+  padding: 2rem;
+  backdrop-filter: blur(24px);
+  box-shadow: var(--shadow-lg);
+}
+
+.ultra-explorer-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.ultra-explorer-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+  padding: 0.9rem 1.1rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--border);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all var(--transition-fast);
+}
+
+[data-theme="light"] .ultra-explorer-tab {
+  background: rgba(15, 23, 42, 0.025);
+}
+
+.ultra-explorer-tab:hover {
+  background: rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.35);
+  transform: translateX(4px);
+}
+
+.ultra-explorer-tab.active {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.16), rgba(6, 182, 212, 0.1));
+  border-color: rgba(59, 130, 246, 0.55);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.16);
+}
+
+.explorer-tab-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(59, 130, 246, 0.14);
+  color: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+.ultra-explorer-tab.active .explorer-tab-icon {
+  background: var(--accent-gradient);
+  color: #ffffff;
+}
+
+.explorer-tab-text strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text-strong);
+  margin-bottom: 0.15rem;
+}
+
+.explorer-tab-text span {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.ultra-explorer-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 1.5rem 1rem;
+  border-radius: 22px;
+  background: radial-gradient(circle at 50% 40%, rgba(59, 130, 246, 0.18), rgba(6, 182, 212, 0.06) 55%, transparent 80%);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.ultra-explorer-visual-pair {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.ultra-explorer-hw {
+  width: 210px;
+  height: auto;
+  object-fit: contain;
+  margin-right: -52px;
+  filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.55));
+  animation: ultraFloatGentle 4.2s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+.ultra-explorer-phone {
+  position: relative;
+  width: 215px;
+  aspect-ratio: 9 / 19.3;
+  border-radius: 28px;
+  padding: 6px;
+  background: linear-gradient(145deg, rgba(148, 163, 184, 0.6), rgba(15, 23, 42, 0.95), rgba(59, 130, 246, 0.55));
+  box-shadow: 0 26px 55px rgba(0, 0, 0, 0.6), 0 0 36px rgba(59, 130, 246, 0.25);
+  z-index: 2;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+
+.ultra-explorer-phone.is-swapping {
+  opacity: 0.2;
+  transform: scale(0.95) rotateY(10deg);
+}
+
+.ultra-explorer-phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 23px;
+  overflow: hidden;
+  background: #020617;
+}
+
+.ultra-explorer-phone-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.ultra-explorer-specs {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px solid var(--border);
+  font-size: 0.8rem;
+}
+
+[data-theme="light"] .ultra-explorer-specs {
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.ultra-explorer-specs .spec-pill {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+/* ===== 6. Responsive Breakpoints for Flagship Xiaomi Ultra Showcase ===== */
+@media (max-width: 1080px) {
+  .hero-ultra-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .hero-copy-col {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-copy-col .hero-desc {
+    margin: 0 auto 1.75rem;
+  }
+
+  .hero-copy-col .hero-cta {
+    justify-content: center;
+  }
+
+  .hero-copy-col .hero-mockup-wrapper {
+    margin: 0 auto;
+  }
+
+  .ultra-fw-explorer {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero.hero-ultra-showcase {
+    padding: 2.5rem 1rem 3rem;
+  }
+
+  .ultra-stage-3d {
+    min-height: 410px;
+    padding: 1rem;
+  }
+
+  .ultra-device-rig {
+    height: 330px;
+  }
+
+  .ultra-main-phone {
+    width: 195px;
+    height: 280px;
+  }
+
+  .ultra-live-screen-card {
+    width: 136px;
+    margin-left: -52px;
+  }
+
+  .ultra-leica-halo {
+    width: 260px;
+    height: 260px;
+  }
+
+  .orbit-top-left {
+    top: 3.4rem;
+    left: 0.35rem;
+  }
+
+  .orbit-top-right {
+    top: 2.8rem;
+    right: 0.35rem;
+  }
+
+  .orbit-bottom-left {
+    bottom: 2.1rem;
+    left: 0.35rem;
+  }
+
+  .orbit-bottom-right {
+    bottom: 0.9rem;
+    right: 0.35rem;
+  }
+
+  .ultra-explorer-hw {
+    width: 150px;
+    margin-right: -38px;
+  }
+
+  .ultra-explorer-phone {
+    width: 175px;
+  }
+}
+
+@media (max-width: 520px) {
+  .ultra-orbit-badge {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.68rem;
+  }
+
+  .ultra-orbit-badge strong {
+    font-size: 0.7rem;
+  }
+
+  .ultra-orbit-badge span {
+    font-size: 0.62rem;
+  }
+
+  .ultra-mode-btn {
+    padding: 0.38rem 0.65rem;
+    font-size: 0.72rem;
+  }
+
+  .ultra-fw-explorer {
+    padding: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash-ultra-phone-preview,
+  .splash-ultra-phone-preview img,
+  .splash-leica-ring,
+  .ultra-light-beam,
+  .leica-ring-outer,
+  .leica-ring-inner,
+  .leica-sonar-wave,
+  .ultra-rig-float,
+  .ultra-glare-sweep,
+  .ultra-orbit-badge,
+  .fps-equalizer i,
+  .flow-pulse-line::after,
+  .ultra-explorer-hw {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ===== 7. Floating Glass Spec Dock for Hero Telemetry (.spec-dock-shell) ===== */
+.spec-dock-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.spec-dock-status-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-pill);
+  background: rgba(13, 19, 34, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] .spec-dock-status-pill {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(15, 23, 42, 0.09);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.spec-dock-status-pill .mockup-chip-info {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.spec-dock-card {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  background: linear-gradient(160deg, rgba(16, 24, 44, 0.78), rgba(9, 13, 25, 0.88));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(26px) saturate(160%);
+  -webkit-backdrop-filter: blur(26px) saturate(160%);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+[data-theme="light"] .spec-dock-card {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.92), rgba(244, 247, 252, 0.88));
+  border-color: rgba(15, 23, 42, 0.09);
+  box-shadow: 0 20px 46px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.98);
+}
+
+.spec-dock-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.spec-dock-col {
+  position: relative;
+  padding: 1.25rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  transition: background-color var(--transition-fast);
+}
+
+.spec-dock-col:hover {
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.spec-dock-col:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 16%;
+  bottom: 16%;
+  right: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.16), transparent);
+}
+
+[data-theme="light"] .spec-dock-col:not(:last-child)::after {
+  background: linear-gradient(180deg, transparent, rgba(15, 23, 42, 0.13), transparent);
+}
+
+.spec-dock-val-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.spec-dock-val {
+  font-size: 1.48rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  background: linear-gradient(135deg, #ffffff 25%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="light"] .spec-dock-val {
+  background: linear-gradient(135deg, #0f172a 25%, #0891b2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.spec-dock-cyan-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22d3ee;
+  box-shadow: 0 0 10px #22d3ee;
+  flex-shrink: 0;
+}
+
+.spec-dock-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-strong);
+  line-height: 1.35;
+  margin-top: 0.15rem;
+}
+
+.spec-dock-sub {
+  font-size: 0.74rem;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+.spec-dock-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.2rem;
+  background: rgba(255, 255, 255, 0.035);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] .spec-dock-footer {
+  background: rgba(15, 23, 42, 0.03);
+  border-top-color: rgba(15, 23, 42, 0.08);
+}
+
+.spec-dock-footer-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.spec-dock-footer-icon {
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.spec-dock-footer-text {
+  min-width: 0;
+}
+
+.spec-dock-footer-text h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-strong);
+  margin: 0 0 0.1rem;
+}
+
+.spec-dock-footer-text p {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.spec-dock-max-pill {
+  flex-shrink: 0;
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-pill);
+  background: rgba(59, 130, 246, 0.14);
+  border: 1px solid rgba(59, 130, 246, 0.28);
+  color: var(--accent-primary);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .spec-dock-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .spec-dock-col:not(:last-child)::after {
+    top: auto;
+    bottom: 0;
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+  }
+
+  [data-theme="light"] .spec-dock-col:not(:last-child)::after {
+    background: linear-gradient(90deg, transparent, rgba(15, 23, 42, 0.12), transparent);
+  }
+}
+
+/* ===== 8. All-in-One 3-Column Firmware Studio & Serial Portal Pillar ===== */
+.pillar-serial-card {
+  width: 230px;
+  padding: 0.95rem 1.05rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #121829 0%, #1e293b 48%, #0f172a 100%);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+.highlight-card:hover .pillar-serial-card {
+  transform: translateY(-6px) scale(1.03);
+  border-color: rgba(16, 185, 129, 0.6);
+}
+
+.pillar-serial-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.06em;
+}
+
+.pillar-serial-key {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+}
+
+.pillar-serial-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #34d399;
+}
+
+.fw-studio-shell {
+  background: var(--surface-card);
+  border: 1px solid var(--glass-border);
+  border-radius: 28px;
+  padding: 1.75rem;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: var(--shadow-lg);
+}
+
+.fw-studio-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 0.9fr) minmax(0, 1.25fr);
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+/* Column 1: 5 Module Tabs */
+.fw-studio-modules {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.fw-studio-mod-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.9rem 1rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--border);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all var(--transition-fast);
+  flex: 1;
+}
+
+[data-theme="light"] .fw-studio-mod-btn {
+  background: rgba(15, 23, 42, 0.025);
+}
+
+.fw-studio-mod-btn:hover {
+  background: rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.35);
+  transform: translateX(3px);
+}
+
+.fw-studio-mod-btn.active {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.16), rgba(6, 182, 212, 0.1));
+  border-color: rgba(59, 130, 246, 0.55);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.16);
+}
+
+.fw-studio-mod-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(59, 130, 246, 0.14);
+  color: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+.fw-studio-mod-btn.active .fw-studio-mod-icon {
+  background: var(--accent-gradient);
+  color: #ffffff;
+}
+
+.fw-studio-mod-text {
+  min-width: 0;
+  flex: 1;
+}
+
+.fw-studio-mod-text strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-strong);
+  margin-bottom: 0.12rem;
+}
+
+.fw-studio-mod-text span {
+  display: block;
+  font-size: 0.76rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Column 2: Interactive Xiaomi 17 Ultra Screen & 8-Screen Switcher */
+.fw-studio-phone-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9rem;
+  padding: 1.15rem;
+  border-radius: 22px;
+  background: radial-gradient(circle at 50% 45%, rgba(59, 130, 246, 0.16), rgba(6, 182, 212, 0.05) 55%, rgba(15, 23, 42, 0.35) 100%);
+  border: 1px solid var(--border);
+}
+
+[data-theme="light"] .fw-studio-phone-col {
+  background: radial-gradient(circle at 50% 45%, rgba(37, 99, 235, 0.09), rgba(241, 245, 249, 0.92));
+}
+
+.fw-studio-screen-nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.fw-studio-nav-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.fw-studio-nav-btn:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.fw-studio-screen-counter {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+.fw-studio-dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.fw-studio-dot-btn {
+  padding: 0.2rem 0.45rem;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.fw-studio-dot-btn:hover {
+  color: var(--text-strong);
+  border-color: var(--border-strong);
+}
+
+.fw-studio-dot-btn.active {
+  background: var(--accent-gradient);
+  border-color: transparent;
+  color: #ffffff;
+}
+
+.fw-studio-phone-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.fw-studio-hw {
+  width: 148px;
+  height: auto;
+  object-fit: contain;
+  margin-right: -46px;
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.5));
+  z-index: 1;
+}
+
+.fw-studio-phone {
+  position: relative;
+  width: 190px;
+  aspect-ratio: auto;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  z-index: 2;
+  overflow: visible;
+  cursor: zoom-in;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease;
+}
+
+.fw-studio-phone:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+.fw-studio-phone.is-swapping {
+  opacity: 0.2;
+  transform: scale(0.94) rotateY(10deg);
+}
+
+.fw-studio-phone-screen {
+  position: relative;
+  width: 100%;
+  border-radius: 26px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.fw-studio-phone-screen img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 28px rgba(59, 130, 246, 0.22));
+}
+
+.fw-studio-screen-cap {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-strong);
+  text-align: center;
+  line-height: 1.35;
+}
+
+.fw-studio-zoom-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 12px;
+  background: rgba(59, 130, 246, 0.14);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  color: var(--text-strong);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.fw-studio-zoom-btn:hover {
+  background: var(--accent-gradient);
+  border-color: transparent;
+  color: #ffffff;
+}
+
+/* Column 3: Active Module Verified Feature Checklist */
+.fw-studio-detail-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--border);
+}
+
+[data-theme="light"] .fw-studio-detail-col {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.fw-studio-detail-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.fw-studio-detail-title h3 {
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: var(--text-strong);
+  margin: 0 0 0.2rem;
+}
+
+.fw-studio-detail-title span {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.fw-studio-detail-badge {
+  flex-shrink: 0;
+  padding: 0.24rem 0.6rem;
+  border-radius: var(--radius-pill);
+  background: rgba(16, 185, 129, 0.14);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #34d399;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+[data-theme="light"] .fw-studio-detail-badge {
+  color: #059669;
+}
+
+.fw-studio-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  flex: 1;
+}
+
+.fw-studio-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  font-size: 0.84rem;
+  line-height: 1.48;
+  color: var(--text-soft);
+}
+
+[data-theme="light"] .fw-studio-check-item {
+  background: rgba(15, 23, 42, 0.025);
+}
+
+.fw-studio-check-item svg {
+  color: var(--accent-emerald);
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.fw-studio-check-item strong {
+  color: var(--text-strong);
+}
+
+.fw-studio-specs-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.78rem;
+}
+
+.fw-studio-specs-bar .spec-pill {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+@media (max-width: 1120px) {
+  .fw-studio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fw-studio-modules {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .fw-studio-shell {
+    padding: 1.15rem;
+  }
+
+  .fw-studio-hw {
+    width: 120px;
+    margin-right: -32px;
+  }
+
+  .fw-studio-phone {
+    width: 152px;
+  }
+}

@@ -44,10 +44,10 @@ const I18n = {
 
             // Stats
             'stats.devices': 'Thiết Bị Hỗ Trợ',
-            'stats.os': 'HyperOS 1.0 - 3.0',
+            'stats.os': 'HyperOS 1.0 - 4.0 (Android 14 - 17)',
             'stats.fps': 'Mở Khóa Gaming',
-            'stats.devicesValue': '121+',
-            'stats.osValue': 'OS 3.0',
+            'stats.devicesValue': '189+',
+            'stats.osValue': 'OS 1.0 - 4.0',
             'stats.fpsValue': '120 FPS',
 
             // Mockup
@@ -63,8 +63,8 @@ const I18n = {
             'section.exploreDesc': 'Khám phá kho bản build, tìm hiểu các giải pháp tối ưu hệ thống hoặc bắt đầu cài đặt với cẩm nang chi tiết.',
 
             // Highlights
-            'highlight.romTitle': 'Kho ROM 121 Thiết Bị',
-            'highlight.romDesc': 'Tra cứu nhanh chóng theo tên máy hoặc mã thiết bị (codename). Tải trực tiếp các bản build HyperOS 1.0, 2.0 và 3.0 mới nhất được cập nhật liên tục.',
+            'highlight.romTitle': 'Kho ROM 189 Thiết Bị',
+            'highlight.romDesc': 'Tra cứu nhanh chóng theo tên máy hoặc mã thiết bị (codename). Tải trực tiếp các bản build HyperOS mới nhất được cập nhật liên tục.',
             'highlight.romLink': 'Truy Cập Kho ROM',
             'highlight.fwTitle': 'Thông Tin Firmware',
             'highlight.fwDesc': 'Khám phá ảnh chụp màn hình thực tế trên máy, bảng thông số kỹ thuật chuyên sâu và các tính năng, tinh chỉnh có sẵn trên bản ROM HyperUR.',
@@ -72,6 +72,9 @@ const I18n = {
             'highlight.guideTitle': 'Hướng Dẫn Cài Đặt',
             'highlight.guideDesc': 'Quy trình 3 bước nhanh chóng từ tải ROM, cài đặt driver đến flash qua công cụ Flashing Tool Windows tự động và thiết lập máy.',
             'highlight.guideLink': 'Xem Quy Trình Flash',
+            'highlight.serialTitle': 'Đăng Ký & Tra Cứu Serial',
+            'highlight.serialDesc': 'Kích hoạt bản quyền vĩnh viễn qua VietQR tự động 24/7 chỉ trong 10 giây và kiểm tra trạng thái Serial theo thời gian thực.',
+            'highlight.serialLink': 'Mở Cổng Serial',
 
             // Team Section
             'team.kicker': 'ĐỘI NGŨ & CỘNG ĐỒNG',
@@ -142,10 +145,10 @@ const I18n = {
 
             // Stats
             'stats.devices': 'Supported Devices',
-            'stats.os': 'HyperOS 1.0 - 3.0',
+            'stats.os': 'HyperOS 1.0 - 4.0 (Android 14 - 17)',
             'stats.fps': 'Gaming Unlock',
-            'stats.devicesValue': '121+',
-            'stats.osValue': 'OS 3.0',
+            'stats.devicesValue': '189+',
+            'stats.osValue': 'OS 1.0 - 4.0',
             'stats.fpsValue': '120 FPS',
 
             // Mockup
@@ -161,8 +164,8 @@ const I18n = {
             'section.exploreDesc': 'Explore the build repository, learn about system optimization solutions or start installation with detailed guides.',
 
             // Highlights
-            'highlight.romTitle': 'ROM Repository - 121 Devices',
-            'highlight.romDesc': 'Quick lookup by device name or codename. Download latest HyperOS 1.0, 2.0 and 3.0 builds updated continuously.',
+            'highlight.romTitle': 'ROM Repository - 189 Devices',
+            'highlight.romDesc': 'Quick lookup by device name or codename. Download the latest HyperOS builds updated continuously.',
             'highlight.romLink': 'Access ROM Repository',
             'highlight.fwTitle': 'Firmware Information',
             'highlight.fwDesc': 'Explore real device screenshots, deep-dive technical specs and features available on HyperUR ROM.',
@@ -170,6 +173,9 @@ const I18n = {
             'highlight.guideTitle': 'Installation Guide',
             'highlight.guideDesc': 'Quick 3-step process from downloading ROM, installing drivers to flashing via automatic Windows Flashing Tool and setup.',
             'highlight.guideLink': 'View Flash Process',
+            'highlight.serialTitle': 'Register & Serial Lookup',
+            'highlight.serialDesc': 'Activate permanent license via automatic 24/7 VietQR in 10 seconds and verify device serial status in real time.',
+            'highlight.serialLink': 'Open Serial Portal',
 
             // Team Section
             'team.kicker': 'TEAM & COMMUNITY',

@@ -8,10 +8,10 @@
     <link rel="icon" type="image/jpeg" href="images/logo_hyperur.jpg">
     <link rel="apple-touch-icon" href="images/logo_hyperur.jpg">
     
-    <!-- Preconnect & Fonts (Inter, Be Vietnam Pro) -->
+    <!-- Preconnect & Fonts (Inter, Be Vietnam Pro, JetBrains Mono) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
     
     <!-- Design System Stylesheet -->
     <link rel="stylesheet" href="styles.css">
@@ -67,7 +67,6 @@
                 <ul class="navbar-menu" id="nav-menu">
                     <li><a href="index.html" class="navbar-link active" data-i18n="nav.home">Trang Chủ</a></li>
                     <li><a href="download.html" class="navbar-link" data-i18n="nav.download">Tải ROM</a></li>
-                    <li><a href="firmware.html" class="navbar-link" data-i18n="nav.firmware">Thông Tin FW</a></li>
                     <li><a href="guide.html" class="navbar-link" data-i18n="nav.guide">Hướng Dẫn</a></li>
                     <li><a href="serial.html" class="navbar-link" data-i18n="nav.serial">Đăng Ký & Tra Cứu Serial</a></li>
                     <li class="mobile-nav-divider" aria-hidden="true"></li>
@@ -130,97 +129,195 @@
     <!-- Main Semantic Content -->
     <main class="main-content">
         <!-- =================================================================
-             1. HERO SECTION
+             1. HERO SECTION (XIAOMI ULTRA FLAGSHIP LAUNCH SHOWCASE)
              ================================================================= -->
-        <section id="hero" class="hero">
+        <section id="hero" class="hero hero-ultra-showcase">
             <div class="hero-inner">
-                <!-- Unified Hero Welcome Badge -->
-                <div class="welcome-hero-badge" id="welcome-hero-badge" title="Nhấn để xem lại hiệu ứng chào mừng">
-                    <div class="welcome-badge-glow"></div>
-                    <span class="welcome-badge-icon" aria-hidden="true">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                        </svg>
-                    </span>
-                    <span class="welcome-badge-text">
-                        <span class="welcome-prefix">WELCOME TO</span>
-                        <span class="welcome-name">HYPERUR</span>
-                    </span>
-                    <span class="welcome-badge-status">
-                        <span class="welcome-status-dot"></span>
-                        <span>STOCK-BASED CUSTOM ROM • XIAOMI / REDMI</span>
-                    </span>
-                </div>
-
-                <!-- Main Headline -->
-                <h1 class="hero-title">
-                    <span data-i18n="hero.title">Tối ưu hiệu năng.</span><br />
-                    <span class="grad" data-i18n="hero.titleAccent">Khai phá tiềm năng.</span>
-                </h1>
-
-                <!-- Subtitle -->
-                <p class="hero-desc" data-i18n="hero.desc">
-                    Mượt mà tuyệt đỉnh, mở khóa tối đa FPS gaming và giữ nguyên thuật toán Camera Leica. Chào mừng bạn đến với HyperUR.
-                </p>
-
-                <!-- CTA Buttons -->
-                <div class="hero-cta">
-                    <a href="download.html" class="btn-primary">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="7 10 12 15 17 10"></polyline>
-                            <line x1="12" y1="15" x2="12" y2="3"></line>
-                        </svg>
-                        <span data-i18n="hero.ctaExplore">Khám Phá Thiết Bị</span>
-                    </a>
-                    <a href="guide.html" class="btn-ghost">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
-                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                        </svg>
-                        <span data-i18n="hero.ctaGuide">Hướng Dẫn Flash</span>
-                    </a>
-                </div>
-
-                <!-- Unified Hero System Mockup & Stats Dashboard -->
-                <div class="hero-mockup-wrapper">
-                    <div class="hero-mockup-card">
-                        <div class="mockup-header">
-                            <div class="mockup-status-dot" data-i18n="mockup.status">
-                                HyperUR V3.0 Stable • Online
-                            </div>
-                            <div class="mockup-chip-info">
-                                HYPEROS OPTIMIZATION
-                            </div>
-                        </div>
-
-                        <!-- 3 Core Stats Grid -->
-                        <div class="mockup-stats-grid">
-                            <div class="stat-item">
-                                <div class="stat-value" data-i18n="stats.devicesValue">189+</div>
-                                <div class="stat-label" data-i18n="stats.devices">Thiết Bị Hỗ Trợ</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value" data-i18n="stats.osValue">OS 3.0</div>
-                                <div class="stat-label" data-i18n="stats.os">HyperOS 1.0 - 3.0</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value" data-i18n="stats.fpsValue">120 FPS</div>
-                                <div class="stat-label" data-i18n="stats.fps">Mở Khóa Gaming</div>
-                            </div>
-                        </div>
-
-                        <!-- Highlight Feature Box -->
-                        <div class="mockup-feature-box mockup-feature-full">
-                            <div class="mockup-feature-svg">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <div class="hero-ultra-layout">
+                    <!-- Left Column: Flagship Editorial Copy & Telemetry -->
+                    <div class="hero-copy-col">
+                        <!-- Unified Hero Welcome Badge -->
+                        <div class="welcome-hero-badge" id="welcome-hero-badge" title="Nhấn để xem lại hiệu ứng chào mừng">
+                            <div class="welcome-badge-glow"></div>
+                            <span class="welcome-badge-icon" aria-hidden="true">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                                 </svg>
+                            </span>
+                            <span class="welcome-badge-text">
+                                <span class="welcome-prefix">WELCOME TO</span>
+                                <span class="welcome-name">HYPERUR</span>
+                            </span>
+                            <span class="welcome-badge-status">
+                                <span class="welcome-status-dot"></span>
+                                <span>STOCK-BASED CUSTOM ROM • XIAOMI / REDMI</span>
+                            </span>
+                        </div>
+
+                        <!-- Main Headline -->
+                        <h1 class="hero-title">
+                            <span data-i18n="hero.title">Tối ưu hiệu năng.</span><br />
+                            <span class="grad" data-i18n="hero.titleAccent">Khai phá tiềm năng.</span>
+                        </h1>
+
+                        <!-- Subtitle -->
+                        <p class="hero-desc" data-i18n="hero.desc">
+                            Mượt mà tuyệt đỉnh, mở khóa tối đa FPS gaming và giữ nguyên thuật toán Camera Leica. Chào mừng bạn đến với HyperUR.
+                        </p>
+
+                        <!-- CTA Buttons -->
+                        <div class="hero-cta">
+                            <a href="download.html" class="btn-primary">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                <span data-i18n="hero.ctaExplore">Khám Phá Thiết Bị</span>
+                            </a>
+                            <a href="guide.html" class="btn-ghost">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                                </svg>
+                                <span data-i18n="hero.ctaGuide">Hướng Dẫn Flash</span>
+                            </a>
+                        </div>
+
+                        <!-- Unified Hero Floating Glass Spec Dock -->
+                        <div class="hero-mockup-wrapper">
+                            <div class="spec-dock-shell">
+                                <!-- Top Translucent Status Pill -->
+                                <div class="spec-dock-status-pill">
+                                    <div class="mockup-status-dot" data-i18n="mockup.status">
+                                        HyperUR V3.0 Stable • Online
+                                    </div>
+                                    <div class="mockup-chip-info">
+                                        HYPEROS OPTIMIZATION
+                                    </div>
+                                </div>
+
+                                <!-- Unified Glass Spec Dock -->
+                                <div class="spec-dock-card">
+                                    <div class="spec-dock-grid">
+                                        <div class="spec-dock-col">
+                                            <div class="spec-dock-val" data-i18n="stats.devicesValue">189+</div>
+                                            <div class="spec-dock-label" data-i18n="stats.devices">Thiết Bị Hỗ Trợ</div>
+                                            <div class="spec-dock-sub">Xiaomi • Redmi • POCO</div>
+                                        </div>
+
+                                        <div class="spec-dock-col">
+                                            <div class="spec-dock-val" data-i18n="stats.osValue">OS 1.0 - 4.0</div>
+                                            <div class="spec-dock-label" data-i18n="stats.os">HyperOS 1.0 - 4.0 (Android 14 - 17)</div>
+                                            <div class="spec-dock-sub">Stock-based Core</div>
+                                        </div>
+
+                                        <div class="spec-dock-col">
+                                            <div class="spec-dock-val-row">
+                                                <span class="spec-dock-val" data-i18n="stats.fpsValue">120 FPS</span>
+                                                <span class="spec-dock-cyan-dot" aria-hidden="true"></span>
+                                            </div>
+                                            <div class="spec-dock-label" data-i18n="stats.fps">Mở Khóa Gaming</div>
+                                            <div class="spec-dock-sub">Max Frame Stability</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Integrated Bottom Feature Strip -->
+                                    <div class="spec-dock-footer">
+                                        <div class="spec-dock-footer-info">
+                                            <span class="spec-dock-footer-icon" aria-hidden="true">
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                                </svg>
+                                            </span>
+                                            <div class="spec-dock-footer-text">
+                                                <h4 data-i18n="mockup.fpsTitle">Tối Ưu Cảm Ứng &amp; FPS</h4>
+                                                <p data-i18n="mockup.fpsDesc">Mở khóa 90/120 FPS, tối ưu touch sampling rate cho game thủ</p>
+                                            </div>
+                                        </div>
+                                        <span class="spec-dock-max-pill">MAX FPS</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mockup-feature-content">
-                                <h4 data-i18n="mockup.fpsTitle">Tối Ưu Cảm Ứng & FPS</h4>
-                                <p data-i18n="mockup.fpsDesc">Mở khóa 90/120 FPS, tối ưu touch sampling rate cho game thủ</p>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: 3D Animated Xiaomi Ultra Flagship Stage -->
+                    <div class="hero-stage-col">
+                        <div class="ultra-stage-3d" id="ultra-stage-3d">
+                            <div class="ultra-stage-top-pill">
+                                <span class="leica-red-dot"></span>
+                                <span id="ultra-stage-label">XIAOMI 17 ULTRA • NEZHA</span>
                             </div>
+
+                            <!-- Optical Light Beam & Rotating Leica Rings -->
+                            <div class="ultra-light-beam" aria-hidden="true"></div>
+                            <div class="ultra-leica-halo" aria-hidden="true">
+                                <div class="leica-ring-outer"></div>
+                                <div class="leica-ring-inner"></div>
+                                <div class="leica-sonar-wave"></div>
+                            </div>
+
+                            <!-- 3D Mouse-Tracked & Floating Device Rig -->
+                            <div class="ultra-device-rig" id="ultra-device-rig">
+                                <div class="ultra-rig-float">
+                                    <div class="ultra-main-phone" id="ultra-main-phone">
+                                        <img id="ultra-main-phone-img" src="images/nezha.png" alt="Xiaomi 17 Ultra (nezha) Render">
+                                    </div>
+                                    <div class="ultra-live-screen-card" id="ultra-live-screen-card">
+                                        <div class="ultra-live-screen-inner">
+                                            <img id="ultra-live-screen-img" src="images_devices/Screenshot_2026-11-22-05-04-08-316_com.android.settings-edit.png" onerror="this.onerror=null;this.src='images_devices/01_about_phone.png'" alt="HyperUR Firmware Live Screen">
+                                            <div class="ultra-glare-sweep" aria-hidden="true"></div>
+                                            <div class="ultra-screen-caption" id="ultra-screen-caption">HyperOS 3.0 • Xiaomi 17 Ultra (nezha)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 4 Floating 3D Orbit Telemetry Cards -->
+                            <div class="ultra-orbit-badge orbit-top-left">
+                                <span class="leica-red-dot"></span>
+                                <div>
+                                    <strong>Leica Summilux</strong>
+                                    <span>Optical Core RAW+</span>
+                                </div>
+                            </div>
+
+                            <div class="ultra-orbit-badge orbit-top-right">
+                                <div class="fps-equalizer" aria-hidden="true">
+                                    <i></i><i></i><i></i><i></i>
+                                </div>
+                                <div>
+                                    <strong>120 FPS Max</strong>
+                                    <span>SM8850 • Gaming Core</span>
+                                </div>
+                            </div>
+
+                            <div class="ultra-orbit-badge orbit-bottom-left">
+                                <img src="images_devices/Screenshot_2026-11-22-05-05-24-468_com.wukong.manager-edit.png" onerror="this.onerror=null;this.src='images_devices/02_ur_manager_home.png'" class="orbit-thumb" alt="UR Manager">
+                                <div>
+                                    <strong>UR Manager v3.0</strong>
+                                    <span>LiveBridge OTP</span>
+                                </div>
+                            </div>
+
+                            <div class="ultra-orbit-badge orbit-bottom-right">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" aria-hidden="true">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    <polyline points="9 12 11 14 15 10"></polyline>
+                                </svg>
+                                <div>
+                                    <strong>Play Integrity Strong</strong>
+                                    <span>Banking &amp; VNeID 100%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Interactive Mode Switcher Dock -->
+                        <div class="ultra-mode-switcher" id="ultra-mode-switcher" role="tablist" aria-label="Chọn góc nhìn Xiaomi 17 Ultra">
+                            <button type="button" class="ultra-mode-btn active" data-ultra-mode="nezha">Xiaomi 17 Ultra</button>
+                            <button type="button" class="ultra-mode-btn" data-ultra-mode="urmanager">UR Manager v3.0</button>
+                            <button type="button" class="ultra-mode-btn" data-ultra-mode="spoof">Spoof &amp; 120 FPS</button>
                         </div>
                     </div>
                 </div>
@@ -228,7 +325,7 @@
         </section>
 
         <!-- =================================================================
-             2. THREE CORE PILLARS SECTION (Highlights Grid)
+             2. THREE CORE PILLARS SECTION (Visual Bento Stages)
              ================================================================= -->
         <section class="section" style="padding-top: 1rem;">
             <header class="section-header">
@@ -240,14 +337,21 @@
             <div class="home-highlights-grid">
                 <!-- Pillar 1: Kho ROM -->
                 <div class="highlight-card">
+                    <div class="pillar-visual-stage" aria-hidden="true">
+                        <div class="pillar-phone-fan">
+                            <img src="images/aurora.png" alt="" loading="lazy">
+                            <img src="images/nezha.png" alt="" loading="lazy">
+                            <img src="images/xuanyuan.png" alt="" loading="lazy">
+                        </div>
+                    </div>
                     <div class="highlight-card-icon blue">
                         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                             <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
                             <line x1="12" y1="18" x2="12.01" y2="18"></line>
                         </svg>
                     </div>
-                    <h3 data-i18n="highlight.romTitle">Kho ROM 121 Thiết Bị</h3>
-                    <p data-i18n="highlight.romDesc">Tra cứu nhanh chóng theo tên máy hoặc mã thiết bị (codename). Tải trực tiếp các bản build HyperOS 1.0, 2.0 và 3.0 mới nhất được cập nhật liên tục.</p>
+                    <h3 data-i18n="highlight.romTitle">Kho ROM 189 Thiết Bị</h3>
+                    <p data-i18n="highlight.romDesc">Tra cứu nhanh chóng theo tên máy hoặc mã thiết bị (codename). Tải trực tiếp các bản build HyperOS mới nhất được cập nhật liên tục.</p>
                     <a href="download.html" class="btn-link">
                         <span data-i18n="highlight.romLink">Truy Cập Kho ROM</span>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -257,28 +361,36 @@
                     </a>
                 </div>
 
-                <!-- Pillar 2: Thông Tin Firmware -->
+                <!-- Pillar 2: Hướng Dẫn -->
                 <div class="highlight-card">
-                    <div class="highlight-card-icon cyan">
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-                            <line x1="12" y1="18" x2="12.01" y2="18"></line>
-                        </svg>
+                    <div class="pillar-visual-stage" aria-hidden="true">
+                        <div class="pillar-flash-flow">
+                            <div class="flow-node">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                <span>.TGZ ROM</span>
+                            </div>
+                            <div class="flow-pulse-line"></div>
+                            <div class="flow-node">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2">
+                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                </svg>
+                                <span>FASTBOOT</span>
+                            </div>
+                            <div class="flow-pulse-line"></div>
+                            <div class="flow-node">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    <polyline points="9 12 11 14 15 10"></polyline>
+                                </svg>
+                                <span>SẴN SÀNG</span>
+                            </div>
+                        </div>
                     </div>
-                    <h3 data-i18n="highlight.fwTitle">Thông Tin Firmware</h3>
-                    <p data-i18n="highlight.fwDesc">Khám phá ảnh chụp màn hình thực tế trên máy, bảng thông số kỹ thuật chuyên sâu và các tính năng, tinh chỉnh có sẵn trên bản ROM HyperUR.</p>
-                    <a href="firmware.html" class="btn-link">
-                        <span data-i18n="highlight.fwLink">Xem Thông Tin FW</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </a>
-                </div>
-
-                <!-- Pillar 3: Hướng Dẫn -->
-                <div class="highlight-card">
-                    <div class="highlight-card-icon purple">
+                    <div class="highlight-card-icon cyan">
                         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                             <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
                             <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
@@ -293,6 +405,214 @@
                             <polyline points="12 5 19 12 12 19"></polyline>
                         </svg>
                     </a>
+                </div>
+
+                <!-- Pillar 3: Đăng Ký & Tra Cứu Serial -->
+                <div class="highlight-card">
+                    <div class="pillar-visual-stage" aria-hidden="true">
+                        <div class="pillar-serial-card">
+                            <div class="pillar-serial-top">
+                                <span>HYPERUR PRO LICENSE</span>
+                                <span>VIETQR 24/7</span>
+                            </div>
+                            <div class="pillar-serial-key">HUR-9921-NEZHA</div>
+                            <div class="pillar-serial-status">
+                                <span>ACTIVE • LIFETIME</span>
+                                <span>10S AUTO</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="highlight-card-icon purple">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <polyline points="9 12 11 14 15 10"></polyline>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="highlight.serialTitle">Đăng Ký &amp; Tra Cứu Serial</h3>
+                    <p data-i18n="highlight.serialDesc">Kích hoạt bản quyền vĩnh viễn qua VietQR tự động 24/7 chỉ trong 10 giây và kiểm tra trạng thái Serial theo thời gian thực.</p>
+                    <a href="serial.html" class="btn-link">
+                        <span data-i18n="highlight.serialLink">Mở Cổng Serial</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             2.5. ALL-IN-ONE 3-COLUMN FIRMWARE STUDIO (Gộp Thông Tin FW)
+             ================================================================= -->
+        <section id="firmware-showcase" class="section ultra-fw-explorer-section">
+            <header class="section-header">
+                <span class="kicker">THÔNG TIN &amp; ẢNH CHỤP THỰC TẾ • XIAOMI 17 ULTRA (NEZHA)</span>
+                <h2>Firmware Studio &amp; Tính Năng Thực Tế</h2>
+                <p>Khám phá 5 nhóm tính năng độc quyền và lật xem toàn bộ 11 ảnh chụp màn hình thực tế từ Xiaomi 17 Ultra (nezha).</p>
+            </header>
+
+            <div class="fw-studio-shell" id="firmware-studio">
+                <div class="fw-studio-grid">
+                    <!-- Column 1: 5 Module Selector Buttons -->
+                    <div class="fw-studio-modules" id="studio-modules" role="tablist" aria-label="Chọn nhóm tính năng Firmware">
+                        <button type="button" class="fw-studio-mod-btn active" data-module="manager">
+                            <span class="fw-studio-mod-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                </svg>
+                            </span>
+                            <span class="fw-studio-mod-text">
+                                <strong>1. UR Manager &amp; Keybox</strong>
+                                <span>36 gói app bảo vệ &amp; ẩn Mở khóa Mi</span>
+                            </span>
+                        </button>
+
+                        <button type="button" class="fw-studio-mod-btn" data-module="livebridge">
+                            <span class="fw-studio-mod-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                </svg>
+                            </span>
+                            <span class="fw-studio-mod-text">
+                                <strong>2. LiveBridge &amp; OTP</strong>
+                                <span>Thẻ nổi OTP &amp; Overlay 8 thông số</span>
+                            </span>
+                        </button>
+
+                        <button type="button" class="fw-studio-mod-btn" data-module="photos">
+                            <span class="fw-studio-mod-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                    <circle cx="12" cy="13" r="4"></circle>
+                                </svg>
+                            </span>
+                            <span class="fw-studio-mod-text">
+                                <strong>3. Google Photos &amp; Spoof</strong>
+                                <span>Pixel XL vô hạn, Galaxy S24 Ultra &amp; Play Store</span>
+                            </span>
+                        </button>
+
+                        <button type="button" class="fw-studio-mod-btn" data-module="mods">
+                            <span class="fw-studio-mod-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    <polyline points="9 12 11 14 15 10"></polyline>
+                                </svg>
+                            </span>
+                            <span class="fw-studio-mod-text">
+                                <strong>4. Mods, Thermal &amp; 120Hz</strong>
+                                <span>Max FPS, Gemini, CTS &amp; Tần số quét 1-120Hz</span>
+                            </span>
+                        </button>
+
+                        <button type="button" class="fw-studio-mod-btn" data-module="vietnamese">
+                            <span class="fw-studio-mod-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                </svg>
+                            </span>
+                            <span class="fw-studio-mod-text">
+                                <strong>5. Giao Diện, AOD &amp; Lịch Âm</strong>
+                                <span>Tiếng Việt 100%, Ambient AOD &amp; Real Blur</span>
+                            </span>
+                        </button>
+                    </div>
+
+                    <!-- Column 2: Interactive 11-Screen Xiaomi 17 Ultra Preview -->
+                    <div class="fw-studio-phone-col">
+                        <div class="fw-studio-screen-nav">
+                            <button type="button" class="fw-studio-nav-btn" id="studio-prev-btn" aria-label="Ảnh màn hình trước">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <polyline points="15 18 9 12 15 6"></polyline>
+                                </svg>
+                            </button>
+                            <span class="fw-studio-screen-counter" id="studio-screen-counter">Màn hình 2 / 11</span>
+                            <button type="button" class="fw-studio-nav-btn" id="studio-next-btn" aria-label="Ảnh màn hình tiếp theo">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="fw-studio-dots" id="studio-screen-dots" aria-label="Chọn nhanh 11 màn hình thực tế">
+                            <button type="button" class="fw-studio-dot-btn" data-screen-idx="0">01</button>
+                            <button type="button" class="fw-studio-dot-btn active" data-screen-idx="1">02</button>
+                            <button type="button" class="fw-studio-dot-btn" data-screen-idx="2">03</button>
+                            <button type="button" class="fw-studio-dot-btn" data-screen-idx="3">04</button>
+                            <button type="button" class="fw-studio-dot-btn" data-screen-idx="4">05</button>
+                            <button type="button" class="fw-studio-dot-btn" data-screen-idx="5">06</button>
+                            <button type="button" class="fw-studio-dot-btn" data-screen-idx="6">07</button>
+                            <button type="button" class="fw-studio-dot-btn" data-screen-idx="7">08</button>
+                            <button type="button" class="fw-studio-dot-btn" data-screen-idx="8">09</button>
+                            <button type="button" class="fw-studio-dot-btn" data-screen-idx="9">10</button>
+                            <button type="button" class="fw-studio-dot-btn" data-screen-idx="10">11</button>
+                        </div>
+
+                        <div class="fw-studio-phone-stage">
+                            <img src="images/nezha.png" alt="Xiaomi 17 Ultra (nezha) Hardware" class="fw-studio-hw" loading="lazy">
+                            <div class="fw-studio-phone" id="studio-phone-frame" title="Nhấp để phóng to ảnh màn hình thực tế">
+                                <div class="fw-studio-phone-screen">
+                                    <img id="studio-screen-img" src="images_devices/Screenshot_2026-11-22-05-05-24-468_com.wukong.manager-edit.png" onerror="this.onerror=null;this.src='images_devices/02_ur_manager_home.png'" alt="Ứng Dụng UR Manager - Dashboard">
+                                    <div class="ultra-glare-sweep" aria-hidden="true"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fw-studio-screen-cap" id="studio-screen-caption">Ứng Dụng UR Manager - Dashboard &amp; Phần Cứng</div>
+
+                        <button type="button" class="fw-studio-zoom-btn" id="studio-zoom-btn">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                <line x1="11" y1="8" x2="11" y2="14"></line>
+                                <line x1="8" y1="11" x2="14" y2="11"></line>
+                            </svg>
+                            <span>Phóng to màn hình thực tế</span>
+                        </button>
+                    </div>
+
+                    <!-- Column 3: Active Module Verified Feature Checklist -->
+                    <div class="fw-studio-detail-col">
+                        <div class="fw-studio-detail-head">
+                            <div class="fw-studio-detail-title">
+                                <h3 id="studio-detail-title">UR Manager &amp; HyperUR Keybox</h3>
+                                <span id="studio-detail-sub">Ứng Dụng Quản Lý Hệ Thống</span>
+                            </div>
+                            <span class="fw-studio-detail-badge">NEZHA • ĐÃ KIỂM NGHIỆM</span>
+                        </div>
+
+                        <ul class="fw-studio-checklist" id="studio-checklist">
+                            <li class="fw-studio-check-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <div><strong>Cập nhật HyperUR Keybox 1-Click:</strong> Nút tải trực tiếp chứng chỉ keybox.xml mới nhất khi Google quét. <span class="fw-tag new">Mới</span></div>
+                            </li>
+                            <li class="fw-studio-check-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <div><strong>Quản lý 36 gói app:</strong> Tùy chọn gán chứng chỉ Keybox bảo vệ cho từng ứng dụng ngân hàng riêng biệt. <span class="fw-tag opt">Tối ưu</span></div>
+                            </li>
+                            <li class="fw-studio-check-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <div><strong>Ẩn trạng thái Mở khóa Mi:</strong> Hiển thị "Thiết bị này đã khóa • Điện thoại an toàn" ngay trong Cài đặt. <span class="fw-tag orig">An toàn</span></div>
+                            </li>
+                            <li class="fw-studio-check-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <div><strong>Theo dõi phần cứng trực quan:</strong> Đo RAM, bộ nhớ, pin, màn hình 446dpi và thời tiết ngay tại Dashboard.</div>
+                            </li>
+                        </ul>
+
+                        <div class="fw-studio-specs-bar" style="justify-content: flex-end;">
+                            <a href="download.html" class="btn-link" style="display:inline-flex;align-items:center;gap:0.35rem;color:var(--accent-primary);font-weight:700;text-decoration:none;">
+                                <span>Tải ROM ngay</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -509,6 +829,21 @@
         </div>
     </footer>
 
+    <!-- Interactive Lightbox Modal (Phóng to 8 màn hình thực tế) -->
+    <div class="fw-lightbox" id="fw-lightbox" aria-hidden="true" role="dialog" aria-label="Xem ảnh màn hình thực tế">
+        <button class="fw-lightbox-close" id="fw-lightbox-close" type="button" aria-label="Đóng cửa sổ xem ảnh">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="fw-lightbox-dialog">
+            <div class="fw-lightbox-img-pane">
+                <img src="images/fw/ur_manager_home.jpg" alt="Firmware screenshot full view" id="fw-lightbox-img">
+            </div>
+        </div>
+    </div>
+
     <!-- Floating Scroll to Top Action -->
     <a href="#hero" class="scroll-to-top" id="scroll-to-top" data-i18n-aria-label="footer.scrollTop" aria-label="Lên đầu trang">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -675,6 +1010,373 @@
 
             // Listen for language changes to update nav links
             document.addEventListener('DOMContentLoaded', updateLangLabel);
+        })();
+    </script>
+
+    <!-- Xiaomi Ultra 3D Stage & Firmware Explorer Script -->
+    <script>
+        (function() {
+            const stage = document.getElementById('ultra-stage-3d');
+            const phoneWrap = document.getElementById('ultra-main-phone');
+            const phoneImg = document.getElementById('ultra-main-phone-img');
+            const screenWrap = document.getElementById('ultra-live-screen-card');
+            const screenImg = document.getElementById('ultra-live-screen-img');
+            const screenCaption = document.getElementById('ultra-screen-caption');
+            const stageLabel = document.getElementById('ultra-stage-label');
+            const modeBtns = document.querySelectorAll('.ultra-mode-btn');
+
+            const ULTRA_MODES = {
+                nezha: {
+                    label: 'XIAOMI 17 ULTRA • NEZHA',
+                    phone: 'images/nezha.png',
+                    screen: 'images_devices/Screenshot_2026-11-22-05-04-08-316_com.android.settings-edit.png',
+                    altScreen: 'images_devices/01_about_phone.png',
+                    caption: 'HyperOS 3.0 • Xiaomi 17 Ultra (nezha)'
+                },
+                urmanager: {
+                    label: 'UR MANAGER V3.0 • NEZHA',
+                    phone: 'images/nezha.png',
+                    screen: 'images_devices/Screenshot_2026-11-22-05-05-24-468_com.wukong.manager-edit.png',
+                    altScreen: 'images_devices/02_ur_manager_home.png',
+                    caption: 'UR Manager v3.0 • Dashboard'
+                },
+                spoof: {
+                    label: 'PLAY INTEGRITY • 120 FPS UNLOCK',
+                    phone: 'images/nezha.png',
+                    screen: 'images_devices/Screenshot_2026-11-22-05-05-33-092_com.wukong.manager-edit.png',
+                    altScreen: 'images_devices/03_ur_manager_spoof.png',
+                    caption: 'Spoof Keybox • 36 Gói App'
+                }
+            };
+
+            const modeOrder = ['nezha', 'urmanager', 'spoof'];
+            let activeModeIdx = 0;
+            let switchTimer = null;
+            let autoCycleTimer = null;
+            let stageHovered = false;
+
+            function setUltraMode(modeKey) {
+                const data = ULTRA_MODES[modeKey];
+                if (!data || !phoneWrap || !screenWrap) return;
+
+                modeBtns.forEach(function(btn) {
+                    btn.classList.toggle('active', btn.getAttribute('data-ultra-mode') === modeKey);
+                });
+
+                phoneWrap.classList.add('is-switching');
+                screenWrap.classList.add('is-switching');
+
+                clearTimeout(switchTimer);
+                switchTimer = setTimeout(function() {
+                    if (phoneImg) phoneImg.src = data.phone;
+                    if (screenImg) {
+                        screenImg.onerror = function() {
+                            screenImg.onerror = null;
+                            if (data.altScreen) screenImg.src = data.altScreen;
+                        };
+                        screenImg.src = data.screen;
+                    }
+                    if (screenCaption) screenCaption.textContent = data.caption;
+                    if (stageLabel) stageLabel.textContent = data.label;
+                    phoneWrap.classList.remove('is-switching');
+                    screenWrap.classList.remove('is-switching');
+                }, 220);
+            }
+
+            if (stage && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                stage.addEventListener('mousemove', function(e) {
+                    const rect = stage.getBoundingClientRect();
+                    const xRatio = (e.clientX - rect.left) / rect.width - 0.5;
+                    const yRatio = (e.clientY - rect.top) / rect.height - 0.5;
+                    const ry = (xRatio * 14).toFixed(2) + 'deg';
+                    const rx = (-yRatio * 12).toFixed(2) + 'deg';
+                    stage.style.setProperty('--rx', rx);
+                    stage.style.setProperty('--ry', ry);
+                });
+
+                stage.addEventListener('mouseenter', function() {
+                    stageHovered = true;
+                });
+
+                stage.addEventListener('mouseleave', function() {
+                    stageHovered = false;
+                    stage.style.setProperty('--rx', '0deg');
+                    stage.style.setProperty('--ry', '0deg');
+                });
+            }
+
+            modeBtns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    const key = btn.getAttribute('data-ultra-mode');
+                    const idx = modeOrder.indexOf(key);
+                    if (idx !== -1) activeModeIdx = idx;
+                    setUltraMode(key);
+                });
+            });
+
+            if (modeBtns.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                autoCycleTimer = setInterval(function() {
+                    if (stageHovered) return;
+                    activeModeIdx = (activeModeIdx + 1) % modeOrder.length;
+                    setUltraMode(modeOrder[activeModeIdx]);
+                }, 4800);
+            }
+        })();
+    </script>
+
+    <!-- All-in-One 3-Column Firmware Studio & 11-Screen Lightbox Script -->
+    <script>
+        (function() {
+            const STUDIO_SCREENS = [
+                {
+                    img: 'images_devices/Screenshot_2026-11-22-05-04-08-316_com.android.settings-edit.png',
+                    altImg: 'images_devices/01_about_phone.png',
+                    title: 'Giới Thiệu Máy Xiaomi 17 Ultra (HyperUR 3.0.312.0)'
+                },
+                {
+                    img: 'images_devices/Screenshot_2026-11-22-05-05-24-468_com.wukong.manager-edit.png',
+                    altImg: 'images_devices/02_ur_manager_home.png',
+                    title: 'Ứng Dụng UR Manager - Dashboard & Phần Cứng'
+                },
+                {
+                    img: 'images_devices/Screenshot_2026-11-22-05-05-33-092_com.wukong.manager-edit.png',
+                    altImg: 'images_devices/03_ur_manager_spoof.png',
+                    title: 'Trung Tâm Spoof & HyperUR Keybox (36 Gói App)'
+                },
+                {
+                    img: 'images_devices/Screenshot_2026_11_22_04_29_02_352_com_google_android_apps_photos.png',
+                    altImg: 'images_devices/04_google_photos_setup.png',
+                    title: 'Google Photos: Sao Lưu Chất Lượng Gốc Không Tính Hạn Mức'
+                },
+                {
+                    img: 'images_devices/Screenshot_2026_11_22_04_29_25_167_com_google_android_apps_photos.png',
+                    altImg: 'images_devices/05_google_photos_unlimited.png',
+                    title: 'Google Photos: Pixel XL Sao Lưu Không Giới Hạn Miễn Phí'
+                },
+                {
+                    img: 'images_devices/Screenshot_2026-11-22-05-05-46-188_com.wukong.manager-edit.png',
+                    altImg: 'images_devices/06_ur_manager_tweaks.png',
+                    title: 'Tweaks: LiveBridge OTP & Overlay 8 Thông Số'
+                },
+                {
+                    img: 'images_devices/Screenshot_2026-11-22-05-05-53-317_com.wukong.manager-edit.png',
+                    altImg: 'images_devices/07_ur_manager_mods.png',
+                    title: 'Hệ Thống Mods: Max FPS, Gemini, CTS & Thermal'
+                },
+                {
+                    img: 'images_devices/Screenshot_2026-11-22-05-03-24-507_com.android.settings-edit.png',
+                    altImg: 'images_devices/08_bootloader_locked.png',
+                    title: 'Trạng Thái Mở Khóa Mi: Đã Khóa & An Toàn'
+                },
+                {
+                    img: 'images_devices/Screenshot_2026-11-22-05-04-52-265_com.xiaomi.misettings-edit.png',
+                    altImg: 'images_devices/09_refresh_rate_120hz.png',
+                    title: 'Tùy Chỉnh Tần Số Quét 1Hz / 60Hz / 90Hz / 120Hz'
+                },
+                {
+                    img: 'images_devices/Screenshot_2026-11-22-05-04-33-840_com.miui.aod-edit.png',
+                    altImg: 'images_devices/10_ambient_display.png',
+                    title: 'Màn Hình Ambient (AOD Toàn Màn Hình)'
+                },
+                {
+                    img: 'images_devices/Screenshot_2026-11-22-05-07-44-471_com.miui.home-edit.png',
+                    altImg: 'images_devices/11_notification_blur.png',
+                    title: 'Trung Tâm Thông Báo, Real Blur & Lịch Âm'
+                }
+            ];
+
+            const STUDIO_MODULES = {
+                manager: {
+                    title: 'UR Manager & HyperUR Keybox',
+                    sub: 'Ứng Dụng Quản Lý Hệ Thống',
+                    defaultScreen: 1,
+                    items: [
+                        { lead: 'Cập nhật HyperUR Keybox 1-Click:', desc: 'Nút tải trực tiếp chứng chỉ keybox.xml mới nhất khi Google quét.', tag: 'Mới', tagCls: 'new' },
+                        { lead: 'Quản lý 36 gói app:', desc: 'Tùy chọn gán chứng chỉ Keybox bảo vệ cho từng ứng dụng ngân hàng riêng biệt.', tag: 'Tối ưu', tagCls: 'opt' },
+                        { lead: 'Ẩn trạng thái Mở khóa Mi:', desc: 'Hiển thị "Thiết bị này đã khóa • Điện thoại an toàn" ngay trong Cài đặt.', tag: 'Gốc', tagCls: 'orig' },
+                        { lead: 'Theo dõi phần cứng trực quan:', desc: 'Đo RAM, bộ nhớ, pin, màn hình 446dpi và thời tiết ngay tại Dashboard.' }
+                    ]
+                },
+                livebridge: {
+                    title: 'LiveBridge & Thông Báo OTP',
+                    sub: 'Thông Báo Thông Minh Thế Hệ Mới',
+                    defaultScreen: 5,
+                    items: [
+                        { lead: 'Phản chiếu mã OTP tự động:', desc: 'Tự động lọc số OTP và tiến trình dạng văn bản thành thẻ live gọn.', tag: 'Mới', tagCls: 'new' },
+                        { lead: 'Overlay hiệu năng 8 thông số:', desc: 'Hiển thị RAM, xung nhịp từng lõi CPU, GPU, phần trăm pin, FPS và công suất.', tag: 'Tối ưu', tagCls: 'opt' },
+                        { lead: 'Phím bật nhanh Developer & USB:', desc: 'Bật/tắt Gỡ lỗi qua USB và Tùy chọn nhà phát triển chỉ với 1 gạt.' },
+                        { lead: 'Default Payment Wallet:', desc: 'Tùy chọn cài đặt ứng dụng ví thanh toán mặc định mượt mà.' }
+                    ]
+                },
+                photos: {
+                    title: 'Google Photos & Spoofing',
+                    sub: 'Photos & App Spoof Flagship',
+                    defaultScreen: 4,
+                    items: [
+                        { lead: 'Photos Spoof Pixel XL:', desc: 'Sao lưu ảnh/video chất lượng gốc không tính vào hạn mức bộ nhớ Google.', tag: 'Gốc', tagCls: 'orig' },
+                        { lead: 'Play Store Spoof 14 khóa:', desc: 'Giả lập prop tùy chỉnh giúp tải đầy đủ mọi ứng dụng trên CH Play.', tag: 'Tối ưu', tagCls: 'opt' },
+                        { lead: 'Messenger Spoof Galaxy S24 Ultra:', desc: 'Hưởng trọn các tính năng mới và chất lượng gửi ảnh cao nhất.' },
+                        { lead: 'Games Spoof đồ họa cao cấp:', desc: 'Giả lập thiết bị chuyên game để mở khóa mức đồ họa tối đa.' }
+                    ]
+                },
+                mods: {
+                    title: 'Hệ Thống Mods, Thermal & 120Hz',
+                    sub: 'Max FPS, Phím Tắt AI & Quản Lý Xung Nhịp',
+                    defaultScreen: 6,
+                    items: [
+                        { lead: 'Max FPS In All Apps & 1–120Hz:', desc: 'Ép tối đa FPS mọi app kèm bộ chọn tần số quét 1Hz / 60Hz / 90Hz / 120Hz.', tag: 'Tối ưu', tagCls: 'opt' },
+                        { lead: 'Disable flag secure & Hide Gesture Line:', desc: 'Cho phép chụp màn hình mọi app và ẩn thanh gạch trắng điều hướng.', tag: 'Mới', tagCls: 'new' },
+                        { lead: 'Thermal Manager & Profile:', desc: 'Quản lý xung CPU và chọn profile nhiệt độ Balanced cho từng app.', tag: 'Mới', tagCls: 'new' },
+                        { lead: 'Phím nguồn CTS & Gemini:', desc: 'Giữ nút nguồn bật CTS, nhấn 2 lần nút nguồn bật Gemini & Private DNS.' }
+                    ]
+                },
+                vietnamese: {
+                    title: 'Giao Diện, Ambient AOD & Lịch Âm',
+                    sub: 'Bản Địa Hóa Gốc 100% & Real Blur',
+                    defaultScreen: 10,
+                    items: [
+                        { lead: 'Tiếng Việt 100% toàn hệ thống:', desc: 'Việt hóa đồng bộ toàn bộ menu Cài đặt, UR Manager và Tần số quét.', tag: 'Gốc', tagCls: 'orig' },
+                        { lead: 'Màn hình Ambient (AOD) thông minh:', desc: 'Chủ đề đồng bộ màn hình khóa, hiển thị thông báo toàn màn hình cực nét.', tag: 'Mới', tagCls: 'new' },
+                        { lead: 'Lịch Âm Việt Nam & Real Blur:', desc: 'Hiển thị ngày âm lịch (VD: 14/10 Bính Ngọ) trên nền kính mờ thực.', tag: 'Mới', tagCls: 'new' }
+                    ]
+                }
+            };
+
+            const modBtns = document.querySelectorAll('.fw-studio-mod-btn');
+            const detailTitle = document.getElementById('studio-detail-title');
+            const detailSub = document.getElementById('studio-detail-sub');
+            const checklistEl = document.getElementById('studio-checklist');
+            const phoneFrame = document.getElementById('studio-phone-frame');
+            const studioScreenImg = document.getElementById('studio-screen-img');
+            const screenCap = document.getElementById('studio-screen-caption');
+            const screenCounter = document.getElementById('studio-screen-counter');
+            const dotBtns = document.querySelectorAll('.fw-studio-dot-btn');
+            const prevBtn = document.getElementById('studio-prev-btn');
+            const nextBtn = document.getElementById('studio-next-btn');
+            const zoomBtn = document.getElementById('studio-zoom-btn');
+
+            const lightbox = document.getElementById('fw-lightbox');
+            const lightboxImg = document.getElementById('fw-lightbox-img');
+            const lightboxClose = document.getElementById('fw-lightbox-close');
+
+            let activeStudioMod = 'manager';
+            let activeScreenIdx = 1;
+            let studioSwapTimer = null;
+
+            function renderStudioScreen(idx, animate) {
+                activeScreenIdx = (idx + STUDIO_SCREENS.length) % STUDIO_SCREENS.length;
+                const scr = STUDIO_SCREENS[activeScreenIdx];
+
+                dotBtns.forEach(function(dot) {
+                    dot.classList.toggle('active', Number(dot.getAttribute('data-screen-idx')) === activeScreenIdx);
+                });
+                if (screenCounter) screenCounter.textContent = 'Màn hình ' + (activeScreenIdx + 1) + ' / ' + STUDIO_SCREENS.length;
+
+                if (!phoneFrame || !studioScreenImg) return;
+                if (!animate) {
+                    studioScreenImg.onerror = function() {
+                        studioScreenImg.onerror = null;
+                        if (scr.altImg) studioScreenImg.src = scr.altImg;
+                    };
+                    studioScreenImg.src = scr.img;
+                    studioScreenImg.alt = scr.title;
+                    if (screenCap) screenCap.textContent = scr.title;
+                    return;
+                }
+
+                phoneFrame.classList.add('is-swapping');
+                clearTimeout(studioSwapTimer);
+                studioSwapTimer = setTimeout(function() {
+                    studioScreenImg.onerror = function() {
+                        studioScreenImg.onerror = null;
+                        if (scr.altImg) studioScreenImg.src = scr.altImg;
+                    };
+                    studioScreenImg.src = scr.img;
+                    studioScreenImg.alt = scr.title;
+                    if (screenCap) screenCap.textContent = scr.title;
+                    phoneFrame.classList.remove('is-swapping');
+                }, 170);
+            }
+
+            function renderStudioModule(modKey, switchScreen) {
+                const mod = STUDIO_MODULES[modKey];
+                if (!mod || !checklistEl) return;
+                activeStudioMod = modKey;
+
+                modBtns.forEach(function(btn) {
+                    btn.classList.toggle('active', btn.getAttribute('data-module') === modKey);
+                });
+
+                if (detailTitle) detailTitle.textContent = mod.title;
+                if (detailSub) detailSub.textContent = mod.sub;
+
+                checklistEl.innerHTML = '';
+                mod.items.forEach(function(item) {
+                    const li = document.createElement('li');
+                    li.className = 'fw-studio-check-item';
+                    const tagHtml = item.tag ? ' <span class="fw-tag ' + item.tagCls + '">' + item.tag + '</span>' : '';
+                    li.innerHTML =
+                        '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>' +
+                        '<div><strong>' + item.lead + '</strong> ' + item.desc + tagHtml + '</div>';
+                    checklistEl.appendChild(li);
+                });
+
+                if (switchScreen) {
+                    renderStudioScreen(mod.defaultScreen, true);
+                }
+            }
+
+            function openStudioLightbox() {
+                if (!lightbox || !lightboxImg) return;
+                const scr = STUDIO_SCREENS[activeScreenIdx];
+                lightboxImg.onerror = function() {
+                    lightboxImg.onerror = null;
+                    if (scr.altImg) lightboxImg.src = scr.altImg;
+                };
+                lightboxImg.src = scr.img;
+                lightboxImg.alt = scr.title;
+                lightbox.classList.add('active');
+                lightbox.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeStudioLightbox() {
+                if (!lightbox) return;
+                lightbox.classList.remove('active');
+                lightbox.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            modBtns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    renderStudioModule(btn.getAttribute('data-module'), true);
+                });
+            });
+
+            dotBtns.forEach(function(dot) {
+                dot.addEventListener('click', function() {
+                    renderStudioScreen(Number(dot.getAttribute('data-screen-idx')), true);
+                });
+            });
+
+            if (prevBtn) prevBtn.addEventListener('click', function() { renderStudioScreen(activeScreenIdx - 1, true); });
+            if (nextBtn) nextBtn.addEventListener('click', function() { renderStudioScreen(activeScreenIdx + 1, true); });
+            if (phoneFrame) phoneFrame.addEventListener('click', openStudioLightbox);
+            if (zoomBtn) zoomBtn.addEventListener('click', openStudioLightbox);
+            if (lightboxClose) lightboxClose.addEventListener('click', closeStudioLightbox);
+            if (lightbox) {
+                lightbox.addEventListener('click', function(e) {
+                    if (!e.target.closest('#fw-lightbox-img')) closeStudioLightbox();
+                });
+            }
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
+                    closeStudioLightbox();
+                }
+            });
+
+            renderStudioModule('manager', false);
+            renderStudioScreen(1, false);
         })();
     </script>
 </body>
