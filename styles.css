@@ -3590,12 +3590,18 @@ dialog:not([open]) {
 }
 
 .footer-minimal-desc {
-  max-width: 580px;
+  max-width: 100%;
   margin: 0 auto;
   text-align: center;
   font-size: 0.92rem;
   line-height: 1.6;
   color: var(--muted);
+}
+
+@media (min-width: 768px) {
+  .footer-minimal-desc {
+    white-space: nowrap;
+  }
 }
 
 .footer-minimal-bottom {
