@@ -11,7 +11,7 @@ const I18n = {
     translations: {
         vi: {
             // Meta
-            'meta.description': 'HyperUR - Kho ROM Custom Stock-based tối ưu hóa cho Xiaomi, Redmi. Hỗ trợ 121 thiết bị HyperOS 1.0, 2.0, 3.0 với độ mượt tuyệt đỉnh, bypass app ngân hàng và mở khóa FPS.',
+            'meta.description': 'HyperUR - Kho ROM Custom Stock-based tối ưu hóa cho Xiaomi, Redmi. Hỗ trợ 189+ thiết bị HyperOS 1.0 - 4.0 với độ mượt tuyệt đỉnh, bypass app ngân hàng và mở khóa FPS.',
             'meta.title': 'HyperUR - HyperOS Custom ROM Portal',
 
             // Navigation
@@ -81,22 +81,22 @@ const I18n = {
             'team.title': 'Hyper Ultra Rate',
             'team.desc': 'Dự án được khởi xướng, phát triển và hỗ trợ liên tục bởi đội ngũ nòng cốt cùng cộng đồng người dùng đam mê HyperOS.',
             'team.devTitle': 'Đội Ngũ Phát Triển',
-            'team.devSub': 'Core Developers & Project Leads',
+            'team.devSub': 'Core Leads',
             'team.roleLead': 'Project Lead & Developer',
             'team.message': 'Nhắn tin',
-            'team.commTitle': 'Hyper Ultra Rate',
-            'team.commSub': 'Kênh Thông Báo & Nhóm Thảo Luận',
-            'team.channelOfficial': 'Channel Chính Thức',
-            'team.channelName': 'Channel Huper Ultra Rate',
+            'team.commTitle': 'Cộng Đồng Hyper Ultra Rate',
+            'team.commSub': 'Telegram Official',
+            'team.channelOfficial': 'Kênh cập nhật ROM, bản vá & Keybox',
+            'team.channelName': 'Channel Hyper Ultra Rate',
             'team.join': 'Tham gia',
-            'team.chatGroup': 'Nhóm Chat Thảo Luận',
-            'team.chatName': 'Chat Huper Ultra Rate',
+            'team.chatGroup': 'Hỗ trợ cài đặt & thảo luận 24/7',
+            'team.chatName': 'Chat Hyper Ultra Rate',
             'team.enterGroup': 'Vào nhóm',
 
             // Footer
             'footer.version': 'V3.0',
-            'footer.desc': 'Dự án ROM Custom Stock-based hàng đầu cho hệ sinh thái thiết bị Xiaomi tại Việt Nam. Tinh chỉnh hiệu năng mượt mà, tối ưu pin và an toàn tuyệt đối.',
-            'footer.status': 'Hỗ trợ 121 thiết bị Xiaomi / Redmi / POCO',
+            'footer.desc': 'Dự án ROM Custom Stock-based tối ưu hiệu năng mượt mà, tối ưu pin và an toàn tuyệt đối.',
+            'footer.status': 'Hỗ trợ 189+ thiết bị • OS 1.0 - 4.0',
             'footer.devTeam': 'Đội Ngũ Phát Triển',
             'footer.community': 'Hyper Ultra Rate',
             'footer.leadDev': 'Lead & Dev',
@@ -112,7 +112,7 @@ const I18n = {
         },
         en: {
             // Meta
-            'meta.description': 'HyperUR - Stock-based Custom ROM optimized for Xiaomi, Redmi. Support for 121 devices on HyperOS 1.0, 2.0, 3.0 with ultimate smoothness, banking app bypass and FPS unlock.',
+            'meta.description': 'HyperUR - Stock-based Custom ROM optimized for Xiaomi, Redmi. Support for 189+ devices on HyperOS 1.0 - 4.0 with ultimate smoothness, banking app bypass and FPS unlock.',
             'meta.title': 'HyperUR - HyperOS Custom ROM Portal',
 
             // Navigation
@@ -182,22 +182,22 @@ const I18n = {
             'team.title': 'Hyper Ultra Rate',
             'team.desc': 'Project initiated, developed and continuously supported by core team and passionate HyperOS community.',
             'team.devTitle': 'Development Team',
-            'team.devSub': 'Core Developers & Project Leads',
+            'team.devSub': 'Core Leads',
             'team.roleLead': 'Project Lead & Developer',
             'team.message': 'Message',
-            'team.commTitle': 'Hyper Ultra Rate',
-            'team.commSub': 'Notification Channels & Discussion Groups',
-            'team.channelOfficial': 'Official Channel',
-            'team.channelName': 'Hyper Ultra Rate Channel',
+            'team.commTitle': 'Hyper Ultra Rate Community',
+            'team.commSub': 'Telegram Official',
+            'team.channelOfficial': 'ROM updates, patches & Keybox channel',
+            'team.channelName': 'Channel Hyper Ultra Rate',
             'team.join': 'Join',
-            'team.chatGroup': 'Discussion Chat Group',
-            'team.chatName': 'Hyper Ultra Rate Chat',
+            'team.chatGroup': '24/7 installation support & discussion',
+            'team.chatName': 'Chat Hyper Ultra Rate',
             'team.enterGroup': 'Join Group',
 
             // Footer
             'footer.version': 'V3.0',
-            'footer.desc': 'Leading Stock-based Custom ROM project for Xiaomi device ecosystem in Vietnam. Smooth performance tuning, battery optimization and absolute safety.',
-            'footer.status': 'Supports 121 Xiaomi / Redmi / POCO devices',
+            'footer.desc': 'Stock-based Custom ROM project tuned for ultimate smoothness, battery life, and absolute security.',
+            'footer.status': 'Supports 189+ devices • OS 1.0 - 4.0',
             'footer.devTeam': 'Development Team',
             'footer.community': 'Hyper Ultra Rate',
             'footer.leadDev': 'Lead & Dev',
