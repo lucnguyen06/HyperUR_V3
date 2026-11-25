@@ -37,7 +37,8 @@
     cache: {},
     isSyncing: false,
     lastSyncAt: null,
-    lastSyncError: null
+    lastSyncError: null,
+    openModalCode: null
   };
 
   // DOM Elements
@@ -45,35 +46,123 @@
   const syncContainer = document.getElementById('drive-sync-container');
   const searchInput = document.getElementById('device-search-input');
   const searchClearBtn = document.getElementById('search-clear-btn');
+  const searchKbd = document.getElementById('dl-search-kbd');
+  const quickChipsEl = document.getElementById('dl-quick-chips');
   const brandTabs = document.getElementById('brand-tabs');
   const romDialog = document.getElementById('rom-dialog');
   const dialogName = document.getElementById('dialog-device-name');
   const dialogCode = document.getElementById('dialog-device-code');
   const dialogContent = document.getElementById('dialog-rom-content');
   const dialogCloseBtn = document.getElementById('dialog-close-btn');
+  const toastEl = document.getElementById('dl-toast');
+  const heroDescEl = document.getElementById('dl-hero-desc');
 
-  // Region display labels
-  const REGION_LABELS = {
-    'cn': 'Nội Địa Trung (CN)',
-    'global': 'Quốc Tế (Global)',
-    'eea': 'Châu Âu (EEA)',
-    'ru': 'Nga (RU)',
-    'in': 'Ấn Độ (IN)',
-    'id': 'Indonesia (ID)',
-    'tr': 'Thổ Nhĩ Kỳ (TR)',
-    'tw': 'Đài Loan (TW)',
-    'jp': 'Nhật Bản (JP)',
-    'kr': 'Hàn Quốc (KR)'
+  function updateHeroDesc() {
+    if (!heroDescEl) return;
+    const count = state.driveCodenamesCount || 0;
+    if (count > 0) {
+      heroDescEl.textContent = tr(
+        'download.descWithCount',
+        'Khám phá và tải về các bản ROM HyperUR chính thức. Hiện đang đồng bộ {count} dòng điện thoại và máy tính bảng Xiaomi, Redmi trực tiếp từ Google Drive.',
+        { count }
+      );
+    } else {
+      heroDescEl.textContent = tr(
+        'download.desc',
+        'Khám phá và tải về các bản ROM HyperUR chính thức cho các dòng điện thoại và máy tính bảng Xiaomi, Redmi được đồng bộ trực tiếp từ Google Drive.'
+      );
+    }
+  }
+
+  let toastTimer = null;
+  function showToast(msg) {
+    if (!toastEl) return;
+    toastEl.textContent = msg;
+    toastEl.classList.add('is-visible');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toastEl.classList.remove('is-visible');
+    }, 2400);
+  }
+
+  // i18n helper (tương thích an toàn khi không nạp i18n.js)
+  function getLang() {
+    return (typeof I18n !== 'undefined' && I18n.currentLang) ? I18n.currentLang : 'vi';
+  }
+  function tr(key, fallback, vars) {
+    if (typeof I18n !== 'undefined' && typeof I18n.t === 'function') {
+      const val = I18n.t(key, vars);
+      if (val && val !== key) return val;
+    }
+    let out = fallback;
+    if (vars && typeof vars === 'object') {
+      Object.keys(vars).forEach(k => {
+        out = out.replace(new RegExp('\\{' + k + '\\}', 'g'), String(vars[k]));
+      });
+    }
+    return out;
+  }
+
+  // Region display labels (VI / EN)
+  const REGION_LABELS_BY_LANG = {
+    vi: {
+      'cn': 'Nội Địa Trung (CN)',
+      'global': 'Quốc Tế (Global)',
+      'eea': 'Châu Âu (EEA)',
+      'ru': 'Nga (RU)',
+      'in': 'Ấn Độ (IN)',
+      'id': 'Indonesia (ID)',
+      'tr': 'Thổ Nhĩ Kỳ (TR)',
+      'tw': 'Đài Loan (TW)',
+      'jp': 'Nhật Bản (JP)',
+      'kr': 'Hàn Quốc (KR)'
+    },
+    en: {
+      'cn': 'China (CN)',
+      'global': 'Global',
+      'eea': 'Europe (EEA)',
+      'ru': 'Russia (RU)',
+      'in': 'India (IN)',
+      'id': 'Indonesia (ID)',
+      'tr': 'Turkey (TR)',
+      'tw': 'Taiwan (TW)',
+      'jp': 'Japan (JP)',
+      'kr': 'Korea (KR)'
+    }
   };
+  function getRegionLabel(code) {
+    const lang = getLang();
+    const map = REGION_LABELS_BY_LANG[lang] || REGION_LABELS_BY_LANG.vi;
+    return map[code] || (code ? String(code).toUpperCase() : 'Official');
+  }
+
+  /**
+   * Đọc dữ liệu ROM Google Drive đã cache trong phiên duyệt web hiện tại (sessionStorage).
+   * Cache tự động bị trình duyệt xóa hoàn toàn khi người dùng đóng tab / thoát web.
+   */
+  const DRIVE_CACHE_KEY = 'hyperur-active-roms';
+  try { localStorage.removeItem(DRIVE_CACHE_KEY); } catch (_) {}
+
+  function getCachedDriveRoms() {
+    try {
+      const saved = JSON.parse(sessionStorage.getItem(DRIVE_CACHE_KEY) || 'null');
+      if (saved && saved._metadata && Object.keys(saved).some(k => k !== '_metadata')) {
+        return saved;
+      }
+    } catch (_) {}
+    return null;
+  }
 
   /**
    * Tải danh mục thiết bị và dữ liệu ROM từ Google Drive
+   * Dùng cơ chế Stale-While-Revalidate: nếu trình duyệt đã có cache Drive gần nhất,
+   * render danh sách máy ngay lập tức (<50ms) rồi đồng bộ nền dữ liệu mới từ Drive.
    */
   async function loadDevices() {
     if (!gridEl) return;
 
     try {
-      // 1. Tải danh mục thiết bị (devices_catalog.json tập trung)
+      // 1. Tải danh mục thiết bị (devices_catalog.json cục bộ — rất nhanh)
       let catalogMap = null;
       try {
         const catRes = await fetch('./json/devices_catalog.json');
@@ -84,38 +173,56 @@
         console.warn('Không tải được devices_catalog.json, thử fallback manifest:', e);
       }
 
-      // Fallback nếu chưa có catalog: Tải từ manifest.json truyền thống
       if (!catalogMap) {
         catalogMap = await fallbackLoadManifest();
       }
 
-      // 2. Tải danh sách ROM động từ Google Drive API hoặc active_roms.json
-      const activeRoms = await fetchActiveDriveRoms();
-      state.activeRomsMap = activeRoms || {};
+      // 2. Hiển thị ngay dữ liệu đã lưu trong phiên hiện tại (sessionStorage) để reload không bị kẹt spinner
+      const cachedRoms = getCachedDriveRoms();
+      state.isSyncing = true;
+      state.lastSyncError = null;
 
-      // 3. Hợp nhất dữ liệu danh mục máy với link tải Google Drive
-      processDevicesAndRoms(catalogMap, state.activeRomsMap);
+      if (cachedRoms) {
+        state.activeRomsMap = cachedRoms;
+        processDevicesAndRoms(catalogMap, state.activeRomsMap);
+      }
+      renderDriveSyncBar();
 
-      // 4. Ghi nhận thời điểm đồng bộ thành công
+      // 3. Đồng bộ dữ liệu mới nhất từ Google Drive API ở chế độ nền
+      const freshRoms = await fetchActiveDriveRoms();
+      state.isSyncing = false;
       state.lastSyncAt = new Date();
 
-      // 5. Render thanh trạng thái đồng bộ Google Drive
+      if (freshRoms && Object.keys(freshRoms).length > 0) {
+        state.activeRomsMap = freshRoms;
+        processDevicesAndRoms(catalogMap, state.activeRomsMap);
+      } else if (!cachedRoms) {
+        state.activeRomsMap = {};
+        processDevicesAndRoms(catalogMap, state.activeRomsMap);
+      }
+
+      // 4. Cập nhật thanh trạng thái đồng bộ Google Drive
       renderDriveSyncBar();
 
     } catch (error) {
       console.error('Lỗi khi tải thiết bị HyperUR:', error);
-      // Vẫn ghi nhận thời điểm đồng bộ (lỗi) để hiển thị trên thanh trạng thái
+      state.isSyncing = false;
       state.lastSyncAt = new Date();
-      state.lastSyncError = error && error.message ? error.message : 'Lỗi không xác định';
+      state.lastSyncError = error && error.message ? error.message : tr('download.unknownError', 'Lỗi không xác định');
       renderDriveSyncBar();
-      if (gridEl) {
+      // Chỉ hiện khung lỗi nếu chưa có dữ liệu thiết bị nào đang hiển thị
+      if (gridEl && state.allCatalogDevices.length === 0) {
         gridEl.innerHTML = `
-          <div class="no-results-box" style="grid-column: 1 / -1;">
-            <span class="no-results-icon">⚠️</span>
-            <h3 style="color: var(--text-strong); margin-bottom: 0.5rem;">Không thể kết nối danh mục thiết bị</h3>
-            <p style="color: var(--muted); font-size: 0.95rem;">
-              Vui lòng kiểm tra kết nối mạng hoặc thử làm mới trang.
-            </p>
+          <div class="dl-empty-state">
+            <div class="dl-empty-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <h3>${tr('download.loadErrTitle', 'Không thể kết nối danh mục thiết bị')}</h3>
+            <p>${tr('download.loadErrDesc', 'Vui lòng kiểm tra kết nối mạng hoặc thử làm mới trang.')}</p>
           </div>
         `;
       }
@@ -152,7 +259,7 @@
             if (driveData && !driveData.error && driveData._metadata && !driveData._metadata.error) {
               const deviceCount = Object.keys(driveData).filter(k => k !== '_metadata').length;
               console.log(`⚡ Đã kết nối Google Drive API thành công: ${deviceCount} máy có ROM`);
-              try { localStorage.setItem('hyperur-active-roms', JSON.stringify(driveData)); } catch (_) {}
+              try { sessionStorage.setItem(DRIVE_CACHE_KEY, JSON.stringify(driveData)); } catch (_) {}
               return driveData;
             }
           }
@@ -161,11 +268,11 @@
         }
       }
 
-      // API không phản hồi: dùng bản gần nhất đã lưu trong trình duyệt
+      // API không phản hồi: dùng bản gần nhất trong phiên hiện tại (sessionStorage)
       try {
-        const saved = JSON.parse(localStorage.getItem('hyperur-active-roms') || 'null');
+        const saved = JSON.parse(sessionStorage.getItem(DRIVE_CACHE_KEY) || 'null');
         if (saved && saved._metadata) {
-          console.warn('Dùng dữ liệu ROM đã lưu trong trình duyệt (API chưa phản hồi).');
+          console.warn('Dùng dữ liệu ROM trong phiên hiện tại (API chưa phản hồi).');
           return saved;
         }
       } catch (_) {}
@@ -327,6 +434,7 @@
       state.allCatalogDevices.push(devItem);
     }
 
+    updateHeroDesc();
     applyFiltering();
   }
 
@@ -389,11 +497,45 @@
     state.devices = state.byBrand.all;
 
     updateCounters();
+    renderQuickChips();
     renderGrid();
   }
 
   /**
-   * Hiển thị thanh thông tin đồng bộ Google Drive
+   * Hiển thị các chip gợi ý tìm kiếm nhanh codename ngay dưới thanh Spotlight
+   */
+  function renderQuickChips() {
+    if (!quickChipsEl) return;
+
+    const preferred = ['nezha', 'xuanyuan', 'dada', 'aurora', 'houji', 'miro', 'vermeer', 'garnet', 'manet', 'peridot'];
+    const availableCodes = new Set(state.byBrand.all.map(d => d.code));
+    const chips = [];
+
+    preferred.forEach(c => {
+      if (availableCodes.has(c) && chips.length < 5) chips.push(c);
+    });
+    for (const dev of state.byBrand.all) {
+      if (chips.length >= 5) break;
+      if (!chips.includes(dev.code)) chips.push(dev.code);
+    }
+
+    if (chips.length === 0) {
+      quickChipsEl.innerHTML = '';
+      return;
+    }
+
+    const activeQ = state.searchQuery.trim().toLowerCase();
+    quickChipsEl.innerHTML = `
+      <span class="dl-quick-label">${tr('download.quickSearch', 'Tìm nhanh:')}</span>
+      ${chips.map(code => `
+        <button type="button" class="dl-quick-chip ${activeQ === code.toLowerCase() ? 'active' : ''}" data-quick-code="${code}">${code}</button>
+      `).join('')}
+      ${activeQ ? `<button type="button" class="dl-quick-chip dl-quick-reset" data-quick-code="">${tr('download.resetSearch', 'Đặt lại')}</button>` : ''}
+    `;
+  }
+
+  /**
+   * Hiển thị thanh thông tin đồng bộ Google Drive tích hợp gọn trong toolbar
    */
   function renderDriveSyncBar() {
     if (!syncContainer) return;
@@ -402,38 +544,37 @@
     const romCount = state.totalRomsCount;
     const isFiltered = state.onlyActiveRoms;
 
-    // Định dạng thời điểm đồng bộ gần nhất (giờ:phút theo locale của user)
-    let lastSyncText = 'Đang đồng bộ...';
+    let timeShort = '';
     if (state.lastSyncAt instanceof Date && !isNaN(state.lastSyncAt)) {
       const hh = String(state.lastSyncAt.getHours()).padStart(2, '0');
       const mm = String(state.lastSyncAt.getMinutes()).padStart(2, '0');
-      const ss = String(state.lastSyncAt.getSeconds()).padStart(2, '0');
-      const prefix = state.lastSyncError ? '⚠️ Đồng bộ lỗi lúc' : 'Đã đồng bộ lúc';
-      lastSyncText = `${prefix} ${hh}:${mm}:${ss}`;
+      timeShort = `${hh}:${mm}`;
     }
 
+    const syncTooltip = state.isSyncing
+      ? tr('download.syncing', 'Đang đồng bộ...')
+      : (state.lastSyncError
+        ? tr('download.syncTooltipErr', 'Lần đồng bộ gần nhất gặp lỗi: {error}', { error: state.lastSyncError })
+        : tr('download.syncTooltipOk', 'Thời điểm đồng bộ Google Drive gần nhất') + (timeShort ? ` (${timeShort})` : ''));
+
+    const dotClass = state.isSyncing ? 'is-syncing' : (state.lastSyncError ? 'is-error' : '');
+    const statusRight = state.isSyncing
+      ? `<span class="dl-sync-time">· ${tr('download.syncing', 'Đang đồng bộ...')}</span>`
+      : (timeShort ? `<span class="dl-sync-time">· ${timeShort}</span>` : '');
+
     syncContainer.innerHTML = `
-      <div class="drive-sync-bar">
-        <div class="drive-sync-info">
-          <span class="drive-sync-dot"></span>
-          <span>
-            Google Drive:
-            <strong class="drive-sync-highlight">${folderCount} thư mục thiết bị</strong>
-            ·
-            <strong class="drive-sync-highlight">${romCount} bản tải sẵn sàng</strong>
-          </span>
-          <span class="drive-sync-timestamp" title="${state.lastSyncError ? 'Lần đồng bộ gần nhất gặp lỗi: ' + state.lastSyncError : 'Thời điểm đồng bộ Google Drive gần nhất'}">
-            · ${lastSyncText}
-          </span>
-        </div>
-        ${config.ENABLE_VIEW_TOGGLE !== false ? `
-          <div class="drive-toggle-wrapper">
-            <button class="drive-toggle-btn ${isFiltered ? 'active' : ''}" id="toggle-active-view-btn">
-              <span>${isFiltered ? `✓ Đang xem ${folderCount} máy có folder Drive` : `Chế độ: Đang xem tất cả ${state.allCatalogDevices.length} máy`}</span>
-            </button>
-          </div>
-        ` : ''}
+      <div class="dl-sync-meta" title="${syncTooltip}">
+        <span class="dl-sync-dot ${dotClass}" aria-hidden="true"></span>
+        <span>${tr('download.driveSyncShort', 'Drive: {folders} máy · {roms} bản', { folders: folderCount, roms: romCount })}</span>
+        ${statusRight}
       </div>
+      ${config.ENABLE_VIEW_TOGGLE !== false && state.allCatalogDevices.length > 0 ? `
+        <button type="button" class="dl-view-toggle ${isFiltered ? 'active' : ''}" id="toggle-active-view-btn">
+          ${isFiltered
+            ? tr('download.viewActiveShort', 'Có folder ({count})', { count: folderCount })
+            : tr('download.viewAllShort', 'Tất cả ({count})', { count: state.allCatalogDevices.length })}
+        </button>
+      ` : ''}
     `;
 
     const toggleBtn = document.getElementById('toggle-active-view-btn');
@@ -480,80 +621,87 @@
     if (filtered.length === 0) {
       const isOnlyActive = state.onlyActiveRoms;
       gridEl.innerHTML = `
-        <div class="no-results-box">
-          <span class="no-results-icon">🔍</span>
-          <h3 style="color: var(--text-strong); margin-bottom: 0.5rem;">Không tìm thấy thiết bị phù hợp</h3>
-          <p style="color: var(--muted); font-size: 0.95rem; max-width: 500px; margin: 0 auto;">
+        <div class="dl-empty-state">
+          <div class="dl-empty-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <h3>${tr('download.noResultsTitle', 'Không tìm thấy thiết bị phù hợp')}</h3>
+          <p>
             ${isOnlyActive
-          ? `Hiện tại hệ thống chỉ hiển thị các dòng máy đã có file ROM trên Google Drive. Bạn có thể bấm nút "Chế độ xem" phía trên để xem toàn bộ ${state.allCatalogDevices.length} dòng máy.`
-          : 'Vui lòng thử tìm với từ khóa tên máy khác (ví dụ: K70, 14, F5) hoặc mã máy (houji, garnet).'}
+          ? tr('download.noResultsActive', 'Hiện tại hệ thống chỉ hiển thị các dòng máy đã có file ROM trên Google Drive. Bạn có thể bấm nút "Chế độ xem" phía trên để xem toàn bộ {count} dòng máy.', { count: state.allCatalogDevices.length })
+          : tr('download.noResultsAll', 'Vui lòng thử tìm với từ khóa tên máy khác (ví dụ: K70, 14, F5) hoặc mã máy (houji, garnet).')}
           </p>
         </div>
       `;
       return;
     }
 
+    const lang = getLang();
+    const openDriveLabel = tr('download.openDriveShort', 'Mở Drive');
+    const detailsLabel = tr('download.detailsBtn', 'Chi tiết');
+
     gridEl.innerHTML = filtered.map(dev => {
-      const devName = dev.name.vi || dev.name.en || dev.code;
+      const devName = (dev.name && (dev.name[lang] || dev.name.en || dev.name.vi)) || dev.code;
       const altName = dev.brand || 'Xiaomi';
       const availableCount = dev.availableRomsCount;
-      const supportedOsList = Array.isArray(dev.supports) && dev.supports.length > 0 ? dev.supports : ['OS1.0', 'OS2.0'];
+      const hasBuilds = availableCount > 0;
+      const statusText = hasBuilds
+        ? tr('download.readyBuilds', '{count} bản sẵn sàng', { count: availableCount })
+        : tr('download.emptyFolderShort', 'Folder trống');
 
       return `
-        <div class="device-card">
-          <div class="device-card-header">
-            <span class="device-code-badge">${dev.code}</span>
-            <span class="device-type-badge">${dev.type || 'Phone'}</span>
-          </div>
-
-          <div class="device-image-container">
-            <img 
-              src="images/${dev.code}.png" 
-              alt="${devName}"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-              loading="lazy"
-            />
-            <div class="device-image-placeholder" style="display: none;">📱</div>
-          </div>
-
-          <div class="device-details">
-            <h3 class="device-title">${devName}</h3>
-            <div class="device-subtitle">
-              ${altName}
-              ${dev.hasDriveRoms ? '<span class="rom-badge-gdrive">⚡ Google Drive</span>' : ''}
+        <article class="dl-card">
+          <div class="dl-card-main">
+            <div class="dl-card-thumb">
+              <img
+                src="images/${dev.code}.png"
+                alt="${devName}"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                loading="lazy"
+              />
+              <div class="dl-card-thumb-fallback" style="display: none;" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="6" y="2" width="12" height="20" rx="2.5" ry="2.5"></rect>
+                  <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                </svg>
+              </div>
             </div>
 
-            <div class="device-os-chips">
-              ${supportedOsList.slice(0, 3).map(osKey => {
-        const isAvail = dev.branches.some(b => b.osVersions.some(o => o.key === osKey && o.hasDownload));
-        return `
-                  <span class="os-chip ${isAvail ? 'available' : 'coming'}">
-                    ${osKey}
-                  </span>
-                `;
-      }).join('')}
-            </div>
-
-            <div class="device-action-wrapper">
-              ${availableCount > 0 ? `
-                <a class="device-download-btn" href="${dev.folderUrl || '#'}" target="_blank" rel="noopener noreferrer" data-code="${dev.code}">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
-                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                  </svg>
-                  <span>Mở Folder Drive</span>
-                  <span class="download-count">${availableCount} bản</span>
-                </a>
-              ` : `
-                <a class="device-download-btn device-download-btn--empty" href="${dev.folderUrl || '#'}" target="_blank" rel="noopener noreferrer" data-code="${dev.code}">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
-                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                  </svg>
-                  <span>Mở Folder Drive</span>
-                </a>
-              `}
+            <div class="dl-card-info">
+              <h3 class="dl-card-title">${devName}</h3>
+              <div class="dl-card-meta">
+                <span class="dl-card-code">${dev.code}</span>
+                <span class="dl-meta-sep" aria-hidden="true">·</span>
+                <span class="dl-card-brand">${altName}</span>
+              </div>
+              <div class="dl-card-status ${hasBuilds ? 'is-ready' : 'is-empty'}">
+                <span class="dl-status-dot" aria-hidden="true"></span>
+                <span>${statusText}</span>
+              </div>
             </div>
           </div>
-        </div>
+
+          <div class="dl-card-actions">
+            <a
+              class="dl-btn-primary device-download-btn ${hasBuilds ? '' : 'is-muted'}"
+              href="${dev.folderUrl || '#'}"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-code="${dev.code}"
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <span>${openDriveLabel}</span>
+            </a>
+            <button type="button" class="dl-btn-secondary js-open-details" data-code="${dev.code}">
+              ${detailsLabel}
+            </button>
+          </div>
+        </article>
       `;
     }).join('');
   }
@@ -565,103 +713,105 @@
     const dev = state.cache[code];
     if (!dev || !romDialog) return;
 
-    const devName = dev.name.vi || dev.name.en || dev.code;
+    state.openModalCode = code;
+    const lang = getLang();
+    const devName = (dev.name && (dev.name[lang] || dev.name.en || dev.name.vi)) || dev.code;
     dialogName.textContent = devName;
     dialogCode.textContent = dev.code;
 
     const branches = dev.branches || [];
+    const driveUrl = dev.folderUrl || ('https://drive.google.com/drive/folders/' + (dev.folderId || ''));
 
     if (branches.length === 0 || dev.availableRomsCount === 0) {
-      const driveUrl = dev.folderUrl || ('https://drive.google.com/drive/folders/' + (dev.folderId || ''));
       dialogContent.innerHTML = `
-        <div style="text-align: center; padding: 2.5rem 1rem; color: var(--muted);">
-          <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">📁</div>
-          <div style="font-weight: 600; color: var(--text-strong); margin-bottom: 0.5rem;">Folder Google Drive đang trống</div>
-          <div style="font-size: 0.95rem; font-style: italic; margin-bottom: 1.5rem;">
-            Thư mục <code>${dev.code}</code> trên Google Drive chưa có file ROM nào.
-            Khi bạn upload ROM lên, danh sách tải sẽ tự động xuất hiện.
-          </div>
-          <a href="${driveUrl}" target="_blank" rel="noopener noreferrer" class="popup-download-link" style="display: inline-flex;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <div class="dl-modal-empty">
+          <div class="dl-empty-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
             </svg>
-            <span>Mở Folder Google Drive</span>
+          </div>
+          <div class="dl-modal-empty-title">${tr('download.emptyFolderTitle', 'Folder Google Drive đang trống')}</div>
+          <p class="dl-modal-empty-desc">
+            ${tr('download.emptyFolderDesc', 'Thư mục <code>{code}</code> trên Google Drive chưa có file ROM nào. Khi bạn upload ROM lên, danh sách tải sẽ tự động xuất hiện.', { code: dev.code })}
+          </p>
+          <a href="${driveUrl}" target="_blank" rel="noopener noreferrer" class="dl-btn-primary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span>${tr('download.openGDriveFolder', 'Mở Folder Google Drive')}</span>
           </a>
         </div>
       `;
     } else {
-      const driveUrl = dev.folderUrl || ('https://drive.google.com/drive/folders/' + (dev.folderId || ''));
       dialogContent.innerHTML = branches.map(branch => {
-        const regionLabel = REGION_LABELS[branch.region] || branch.region?.toUpperCase() || 'Official';
+        const regionLabel = getRegionLabel(branch.region);
 
         const osCards = branch.osVersions.map(os => {
           if (!os.hasDownload) {
             return `
-              <div class="popup-os-card coming">
-                <div class="popup-os-meta">
-                  <div class="popup-os-title">
-                    <span>${os.key}</span>
-                    ${os.android ? `<span class="popup-android-badge">Android ${os.android}</span>` : ''}
+              <div class="dl-build-item is-coming">
+                <div class="dl-build-top">
+                  <div class="dl-build-tags">
+                    <span class="dl-tag">${os.key}</span>
+                    ${os.android ? `<span class="dl-tag">Android ${os.android}</span>` : ''}
                   </div>
-                  <div class="popup-os-version-text">${os.os}</div>
+                  <span class="dl-tag is-amber">${tr('download.comingSoon', '⏳ Sắp ra mắt')}</span>
                 </div>
-                <span class="popup-coming-tag">⏳ Sắp ra mắt</span>
+                <div class="dl-build-ver">${os.os}</div>
               </div>
             `;
           }
 
           return `
-            <div class="popup-os-card">
-              <div class="popup-os-meta">
-                <div class="popup-os-title">
-                  <span>${os.key}</span>
-                  ${os.android ? `<span class="popup-android-badge">Android ${os.android}</span>` : ''}
-                  ${os.isGoogleDrive ? `<span class="rom-badge-gdrive">⚡ Google Drive</span>` : ''}
+            <div class="dl-build-item">
+              <div class="dl-build-top">
+                <div class="dl-build-tags">
+                  <span class="dl-tag is-ready">${os.key}</span>
+                  ${os.android ? `<span class="dl-tag">Android ${os.android}</span>` : ''}
                 </div>
-                <div class="popup-os-version-text">${os.os}</div>
-                ${os.size || os.date ? `
-                  <div class="popup-file-meta">
-                    ${os.size ? `<span>📦 ${os.size}</span>` : ''}
-                    ${os.date ? `<span>📅 ${os.date}</span>` : ''}
-                  </div>
-                ` : ''}
+                ${os.size ? `<span class="dl-build-size">${os.size}</span>` : ''}
               </div>
-              <div class="popup-os-actions">
-                <button
-                  class="btn-icon copy-link-btn popup-copy-btn"
-                  data-url="${os.download}"
-                  title="Sao chép link tải Google Drive"
-                  aria-label="Sao chép link tải Google Drive"
-                >
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                  </svg>
-                </button>
-                <a 
-                  href="${driveUrl}" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  class="popup-download-link"
-                  title="Mở folder Google Drive chứa ROM"
-                >
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                  </svg>
-                  <span>Mở Folder Drive</span>
-                </a>
+              <div class="dl-build-ver">${os.os}</div>
+              <div class="dl-build-foot">
+                <span class="dl-build-date">${os.date || 'Google Drive'}</span>
+                <div class="dl-build-actions">
+                  <button
+                    type="button"
+                    class="dl-btn-secondary dl-btn-sm copy-link-btn"
+                    data-url="${os.download}"
+                    title="${tr('download.copyLinkTitle', 'Sao chép link tải Google Drive')}"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span>${tr('download.copyShort', 'Chép link')}</span>
+                  </button>
+                  <a
+                    href="${driveUrl}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="dl-btn-primary dl-btn-sm"
+                    title="${tr('download.openFolderTitle', 'Mở folder Google Drive chứa ROM')}"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                      <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span>${tr('download.openDriveShort', 'Mở Drive')}</span>
+                  </a>
+                </div>
               </div>
             </div>
           `;
         }).join('');
 
         return `
-          <div class="popup-branch">
-            <div class="popup-branch-header">
-              <span class="popup-branch-name">${branch.branchName}</span>
-              <span class="popup-branch-region">${regionLabel}</span>
+          <div class="dl-branch-group">
+            <div class="dl-branch-header">
+              <span class="dl-branch-name">${branch.branchName}</span>
+              <span class="dl-branch-region">${regionLabel}</span>
             </div>
-            <div class="popup-os-list">
+            <div class="dl-build-list">
               ${osCards}
             </div>
           </div>
@@ -669,10 +819,12 @@
       }).join('');
     }
 
-    if (typeof romDialog.showModal === 'function') {
-      romDialog.showModal();
-    } else {
-      romDialog.setAttribute('open', '');
+    if (!romDialog.open) {
+      if (typeof romDialog.showModal === 'function') {
+        romDialog.showModal();
+      } else {
+        romDialog.setAttribute('open', '');
+      }
     }
   }
 
@@ -680,6 +832,7 @@
    * Đóng modal tải ROM
    */
   function closeRomModal() {
+    state.openModalCode = null;
     if (!romDialog) return;
     if (typeof romDialog.close === 'function') {
       romDialog.close();
@@ -688,33 +841,35 @@
     }
   }
 
-  // Event Listeners cho nút tải — nút giờ là <a target="_blank"> mở folder Drive,
-  // nên chỉ xử lý click nếu href bị thiếu (fallback) hoặc user giữ Ctrl/Shift.
+  // Event Listeners trong grid: Mở Chi tiết modal hoặc fallback Mở Drive
   if (gridEl) {
     gridEl.addEventListener('click', (e) => {
+      const detailBtn = e.target.closest('.js-open-details[data-code]');
+      if (detailBtn) {
+        const code = detailBtn.getAttribute('data-code');
+        if (code) openRomModal(code);
+        return;
+      }
       const btn = e.target.closest('.device-download-btn[data-code]');
       if (!btn) return;
-      // Nếu là link có href hợp lệ, để trình duyệt tự mở (không preventDefault).
       const href = btn.getAttribute('href');
       if (href && href !== '#') return;
       e.preventDefault();
       const code = btn.getAttribute('data-code');
-      if (code && typeof openRomModal === 'function') {
-        openRomModal(code);
-      }
+      if (code) openRomModal(code);
     });
   }
 
-  // Sao chép link trong dialog
+  // Sao chép link trong dialog (dùng toast thay vì alert chặn UI)
   if (dialogContent) {
     dialogContent.addEventListener('click', (e) => {
       const copyBtn = e.target.closest('.copy-link-btn[data-url]');
       if (copyBtn) {
         const url = copyBtn.getAttribute('data-url');
         navigator.clipboard.writeText(url).then(() => {
-          alert('Đã sao chép link tải Google Drive vào bộ nhớ tạm!');
+          showToast(tr('download.copiedAlert', 'Đã sao chép link tải Google Drive vào bộ nhớ tạm!'));
         }).catch(() => {
-          prompt('Link tải ROM Google Drive:', url);
+          prompt(tr('download.copyPrompt', 'Link tải ROM Google Drive:'), url);
         });
       }
     });
@@ -725,6 +880,9 @@
   }
 
   if (romDialog) {
+    romDialog.addEventListener('close', () => {
+      state.openModalCode = null;
+    });
     romDialog.addEventListener('click', (e) => {
       const rect = romDialog.getBoundingClientRect();
       const isInDialog = (
@@ -737,13 +895,18 @@
     });
   }
 
+  function updateSearchControls() {
+    const hasQuery = !!state.searchQuery;
+    if (searchClearBtn) searchClearBtn.style.display = hasQuery ? 'flex' : 'none';
+    if (searchKbd) searchKbd.style.display = hasQuery ? 'none' : '';
+  }
+
   // Ô tìm kiếm
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
       state.searchQuery = e.target.value;
-      if (searchClearBtn) {
-        searchClearBtn.style.display = state.searchQuery ? 'flex' : 'none';
-      }
+      updateSearchControls();
+      renderQuickChips();
       renderGrid();
     });
   }
@@ -755,18 +918,47 @@
         searchInput.value = '';
         searchInput.focus();
       }
-      searchClearBtn.style.display = 'none';
+      updateSearchControls();
+      renderQuickChips();
       renderGrid();
     });
   }
 
+  // Click nhanh chip codename
+  if (quickChipsEl) {
+    quickChipsEl.addEventListener('click', (e) => {
+      const chip = e.target.closest('[data-quick-code]');
+      if (!chip) return;
+      state.searchQuery = chip.getAttribute('data-quick-code') || '';
+      if (searchInput) searchInput.value = state.searchQuery;
+      updateSearchControls();
+      renderQuickChips();
+      renderGrid();
+    });
+  }
+
+  // Phím tắt "/" để focus nhanh ô tìm kiếm
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && searchInput && document.activeElement !== searchInput) {
+      const tag = document.activeElement ? document.activeElement.tagName : '';
+      if (tag !== 'INPUT' && tag !== 'TEXTAREA' && !(romDialog && romDialog.open)) {
+        e.preventDefault();
+        searchInput.focus();
+      }
+    }
+  });
+
   // Phân loại hãng
   if (brandTabs) {
     brandTabs.addEventListener('click', (e) => {
-      const tab = e.target.closest('.brand-tab[data-brand]');
+      const tab = e.target.closest('[data-brand]');
       if (tab) {
-        brandTabs.querySelectorAll('.brand-tab').forEach(b => b.classList.remove('active'));
+        brandTabs.querySelectorAll('[data-brand]').forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
         tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
         state.activeBrand = tab.getAttribute('data-brand') || 'all';
         renderGrid();
       }
@@ -821,6 +1013,23 @@
       }
     }, minutes * 60 * 1000);
   }
+
+  // Tự động cập nhật UI khi người dùng chuyển đổi ngôn ngữ VI / EN
+  window.addEventListener('hyperur:langchange', () => {
+    updateHeroDesc();
+    if (syncContainer && state.lastSyncAt) {
+      renderDriveSyncBar();
+    }
+    if (quickChipsEl && state.allCatalogDevices.length > 0) {
+      renderQuickChips();
+    }
+    if (gridEl && state.allCatalogDevices.length > 0) {
+      renderGrid();
+    }
+    if (state.openModalCode && romDialog && romDialog.open) {
+      openRomModal(state.openModalCode);
+    }
+  });
 
   // Khởi động lần đầu, sau đó bật lịch tự đồng bộ.
   if (document.readyState === 'loading') {

@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kho tải ROM HyperUR V3.0 - Danh sách 189 thiết bị Xiaomi, Redmi hỗ trợ HyperOS 1.0, 2.0, 3.0. Tìm kiếm và tải bản build ROM mượt mà, ổn định nhất.">
-    <title>Kho Tải ROM - HyperUR Custom ROM Portal</title>
+    <meta name="description" content="Kho tải ROM HyperUR - Tải các bản ROM HyperUR chính thức cho thiết bị Xiaomi, Redmi được đồng bộ trực tiếp từ Google Drive." data-i18n-meta-key="download.metaDesc">
+    <title data-i18n-title-key="download.metaTitle">Kho Tải ROM - HyperUR Custom ROM Portal</title>
     <link rel="icon" type="image/jpeg" href="images/logo_hyperur.jpg">
     <link rel="apple-touch-icon" href="images/logo_hyperur.jpg">
-    
+
     <!-- Preconnect & Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Design System Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -22,32 +22,42 @@
         <nav class="navbar glass" id="navbar">
             <div class="navbar-inner">
                 <!-- Brand Logo -->
-                <a href="index.html" class="navbar-brand">
+                <a href="index.html" class="navbar-brand" translate="no">
                     <span>Hyper<span class="brand-accent">UR</span></span>
                 </a>
 
                 <!-- Navigation Links -->
                 <ul class="navbar-menu" id="nav-menu">
-                    <li><a href="index.html" class="navbar-link">Trang Chủ</a></li>
-                    <li><a href="download.html" class="navbar-link active">Tải ROM</a></li>
-                    <li><a href="guide.html" class="navbar-link">Hướng Dẫn</a></li>
-                    <li><a href="serial.html" class="navbar-link">Đăng Ký & Tra Cứu Serial</a></li>
+                    <li><a href="index.html" class="navbar-link" data-i18n="nav.home">Trang Chủ</a></li>
+                    <li><a href="download.html" class="navbar-link active" aria-current="page" data-i18n="nav.download">Tải ROM</a></li>
+                    <li><a href="guide.html" class="navbar-link" data-i18n="nav.guide">Hướng Dẫn</a></li>
+                    <li><a href="serial.html" class="navbar-link" data-i18n="nav.serial">Đăng Ký &amp; Tra Cứu Serial</a></li>
                     <li class="mobile-nav-divider" aria-hidden="true"></li>
                     <li class="mobile-nav-footer">
                         <a href="https://t.me/hypermodupdate" target="_blank" rel="noopener noreferrer" class="mobile-nav-ext-link" aria-label="Tham gia kênh Telegram">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
                             </svg>
-                            <span>Kênh Telegram</span>
+                            <span data-i18n="nav.telegram">Kênh Telegram</span>
                         </a>
                     </li>
                 </ul>
 
                 <!-- Navbar Actions -->
                 <div class="navbar-actions">
-                    <!-- Mobile Menu Hamburger Toggle (được ẩn trên desktop, hiện trên mobile/tablet) -->
-                    <button class="btn-icon mobile-menu-btn" id="mobile-menu-btn" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="nav-menu" title="Menu">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                    <!-- Language Selector (VI / EN) -->
+                    <button type="button" class="btn-icon lang-selector" id="lang-btn" aria-label="Chuyển ngôn ngữ" title="Chuyển ngôn ngữ" data-i18n-aria-label="lang.switch" data-i18n-title="lang.switch">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <span class="lang-label" id="lang-label" translate="no">VI</span>
+                    </button>
+
+                    <!-- Mobile Menu Hamburger Toggle -->
+                    <button type="button" class="btn-icon mobile-menu-btn" id="mobile-menu-btn" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="nav-menu" title="Menu" data-i18n-title="nav.menu">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
                             <line x1="4" y1="7" x2="20" y2="7" class="bar-top"></line>
                             <line x1="4" y1="12" x2="20" y2="12" class="bar-mid"></line>
                             <line x1="4" y1="17" x2="20" y2="17" class="bar-bot"></line>
@@ -55,11 +65,11 @@
                     </button>
 
                     <!-- Theme Toggle Button -->
-                    <button class="btn-icon" id="theme-btn" aria-label="Đổi giao diện Sáng/Tối" title="Chuyển chế độ sáng/tối">
-                        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <button type="button" class="btn-icon" id="theme-btn" aria-label="Đổi giao diện Sáng/Tối" title="Chuyển chế độ sáng/tối" data-i18n-aria-label="nav.toggleTheme" data-i18n-title="nav.toggleTheme">
+                        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
                             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                         </svg>
-                        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="display: none;">
+                        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="display: none;" aria-hidden="true">
                             <circle cx="12" cy="12" r="5"></circle>
                             <line x1="12" y1="1" x2="12" y2="3"></line>
                             <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -76,142 +86,150 @@
         </nav>
     </header>
 
-    <!-- Mobile Menu Backdrop (overlay đóng menu khi bấm ra ngoài) -->
+    <!-- Mobile Menu Backdrop -->
     <div class="mobile-nav-backdrop" id="mobile-nav-backdrop" aria-hidden="true"></div>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Page Hero -->
-        <section class="page-hero">
-            <span class="kicker">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="7 10 12 15 17 10"></polyline>
-                    <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
-                KHO BẢN BUILD FIRMWARE
-            </span>
-            <h1>Danh Sách Thiết Bị Hỗ Trợ</h1>
-            <p>Khám phá và tải về các bản ROM HyperUR V3 chính thức. Tự động tương thích với hơn 189 mẫu điện thoại và máy tính bảng Xiaomi, Redmi.</p>
-        </section>
+    <!-- Main Content (Command Spotlight & Clean Bento Layout) -->
+    <main class="main-content dl-page">
+        <div class="dl-shell">
+            <!-- Command Spotlight Hero -->
+            <section class="dl-spotlight">
+                <span class="dl-kicker" data-i18n="download.kicker">KHO BẢN BUILD FIRMWARE</span>
+                <h1 class="dl-title" data-i18n="download.title">Danh Sách Thiết Bị Hỗ Trợ</h1>
+                <p class="dl-desc" id="dl-hero-desc" data-i18n="download.desc">Khám phá và tải về các bản ROM HyperUR chính thức cho các dòng điện thoại và máy tính bảng Xiaomi, Redmi được đồng bộ trực tiếp từ Google Drive.</p>
 
-        <!-- Devices Catalog Section -->
-        <section id="devices-catalog" class="section devices-section" style="padding-top: 1rem;">
-            <!-- Search Controls -->
-            <div class="search-controls">
-                <div class="search-input-wrapper">
-                    <span class="search-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                <!-- Spotlight Search Bar -->
+                <div class="dl-search-box">
+                    <span class="dl-search-icon" aria-hidden="true">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
                             <circle cx="11" cy="11" r="8"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg>
                     </span>
-                    <input 
-                        type="text" 
-                        class="search-input" 
+                    <input
+                        type="text"
+                        class="dl-search-input"
                         id="device-search-input"
                         placeholder="Tìm theo tên máy hoặc mã máy (codename)..."
+                        data-i18n-placeholder="download.searchPlaceholder"
                         autocomplete="off"
                     />
-                    <button class="search-clear-btn" id="search-clear-btn" style="display: none;" title="Xóa tìm kiếm">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <span class="dl-search-kbd" id="dl-search-kbd" aria-hidden="true">/</span>
+                    <button type="button" class="dl-search-clear" id="search-clear-btn" style="display: none;" title="Xóa tìm kiếm" data-i18n-title="download.clearSearch" data-i18n-aria-label="download.clearSearch">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                             <line x1="18" y1="6" x2="6" y2="18"></line>
                             <line x1="6" y1="6" x2="18" y2="18"></line>
                         </svg>
                     </button>
                 </div>
-            </div>
 
-            <!-- Brand Segmented Tabs -->
-            <div class="brand-tabs-wrapper">
-                <div class="brand-tabs" id="brand-tabs">
-                    <button class="brand-tab active" data-brand="all">
-                        <span>Tất Cả</span>
-                        <span class="brand-count-pill" id="count-all">189</span>
-                    </button>
-                    <button class="brand-tab" data-brand="xiaomi">
-                        <span>Xiaomi</span>
-                        <span class="brand-count-pill" id="count-xiaomi">...</span>
-                    </button>
-                    <button class="brand-tab" data-brand="redmi">
-                        <span>Redmi</span>
-                        <span class="brand-count-pill" id="count-redmi">...</span>
-                    </button>
+                <!-- Dynamic Quick-Search Codename Chips -->
+                <div class="dl-quick-chips" id="dl-quick-chips" aria-label="Gợi ý tìm nhanh"></div>
+            </section>
+
+            <!-- Unified Filter & Google Drive Sync Toolbar -->
+            <section id="devices-catalog" class="dl-catalog">
+                <div class="dl-toolbar">
+                    <div class="dl-brand-tabs" id="brand-tabs" role="tablist">
+                        <button type="button" class="dl-brand-tab active" data-brand="all" role="tab" aria-selected="true">
+                            <span data-i18n="download.tabAll">Tất Cả</span>
+                            <span class="dl-tab-count" id="count-all">—</span>
+                        </button>
+                        <button type="button" class="dl-brand-tab" data-brand="xiaomi" role="tab" aria-selected="false">
+                            <span>Xiaomi</span>
+                            <span class="dl-tab-count" id="count-xiaomi">—</span>
+                        </button>
+                        <button type="button" class="dl-brand-tab" data-brand="redmi" role="tab" aria-selected="false">
+                            <span>Redmi</span>
+                            <span class="dl-tab-count" id="count-redmi">—</span>
+                        </button>
+                    </div>
+
+                    <!-- Drive Live Sync Status & Mode Toggle (Rendered dynamically) -->
+                    <div class="dl-sync-wrap" id="drive-sync-container"></div>
                 </div>
-            </div>
 
-            <!-- Drive Live Sync Status & Mode Toggle (Rendered dynamically) -->
-            <div id="drive-sync-container"></div>
-
-            <!-- Devices Dynamic Grid (Loaded via devices.js) -->
-            <div class="device-grid" id="devices-grid">
-                <div class="loading" id="devices-loading">
-                    <div class="loading-spinner"></div>
-                    <p style="font-weight: 600; font-size: 1.1rem; color: var(--text-strong);">Đang tải danh sách thiết bị...</p>
-                    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--muted);">Đang kết nối kho ROM Google Drive & Catalog</p>
+                <!-- Devices Clean Bento Grid (Loaded via devices.js) -->
+                <div class="dl-grid" id="devices-grid">
+                    <div class="dl-loading" id="devices-loading">
+                        <div class="loading-spinner"></div>
+                        <p class="dl-loading-title" data-i18n="download.loadingTitle">Đang tải danh sách thiết bị...</p>
+                        <p class="dl-loading-desc" data-i18n="download.loadingDesc">Đang kết nối kho ROM Google Drive &amp; Catalog</p>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
 
-    <!-- Global Site Footer (Option 1B: Centered Minimalist Flagship) -->
+    <!-- Global Site Footer -->
     <footer class="site-footer site-footer-minimal">
         <div class="footer-glow-layer" aria-hidden="true"></div>
         <div class="footer-inner footer-minimal-inner">
             <div class="footer-minimal-brand-row">
                 <a href="index.html" class="footer-logo">
-                    <img src="https://t.me/i/userpic/320/hyperur.jpg" alt="HyperUR Logo" class="footer-brand-icon" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><rect width=%2240%22 height=%2240%22 rx=%2210%22 fill=%22%232563eb%22/><text x=%2250%25%22 y=%2256%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22800%22 font-size=%2218%22>H</text></svg>'">
-                    <span class="logo-text">Hyper<span class="brand-accent">UR</span></span>
+                    <img src="https://t.me/i/userpic/320/hyperur.jpg" alt="HyperUR Logo" width="36" height="36" class="footer-brand-icon" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><rect width=%2240%22 height=%2240%22 rx=%2210%22 fill=%22%232563eb%22/><text x=%2250%25%22 y=%2256%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22800%22 font-size=%2218%22>H</text></svg>'">
+                    <span class="logo-text" translate="no">Hyper<span class="brand-accent">UR</span></span>
                 </a>
                 <div class="footer-status-pill">
-                    <span class="status-pulse-dot"></span>
-                    <span>Hỗ trợ 189+ thiết bị • OS 1.0 - 4.0</span>
+                    <span class="status-pulse-dot" aria-hidden="true"></span>
+                    <span data-i18n="footer.status">Hỗ trợ 189+ thiết bị • OS 1.0 - 4.0</span>
                 </div>
             </div>
 
-            <p class="footer-desc footer-minimal-desc">Dự án ROM Custom Stock-based tối ưu hiệu năng mượt mà, tối ưu pin và an toàn tuyệt đối.</p>
+            <p class="footer-desc footer-minimal-desc" data-i18n="footer.desc">Dự án ROM Custom Stock-based tối ưu hiệu năng mượt mà, tối ưu pin và an toàn tuyệt đối.</p>
 
             <div class="footer-bottom footer-minimal-bottom">
                 <div class="footer-copyright">
-                    <p>© 2026 HYPERUR TEAM. BẢO LƯU MỌI QUYỀN.</p>
+                    <p data-i18n="footer.copyright">© 2026 HYPERUR TEAM. BẢO LƯU MỌI QUYỀN.</p>
                 </div>
             </div>
         </div>
     </footer>
 
     <!-- ROM Download Modal (Native HTML5 <dialog> API) -->
-    <dialog id="rom-dialog" class="rom-dialog">
-        <div class="rom-popup-header">
-            <div class="rom-popup-header-info">
-                <h3 class="rom-popup-title" id="dialog-device-name">Tên Thiết Bị</h3>
-                <span class="rom-popup-subtitle">Codename: <strong id="dialog-device-code" style="color: var(--accent-cyan);">codename</strong></span>
+    <dialog id="rom-dialog" class="rom-dialog dl-dialog">
+        <div class="dl-dialog-header">
+            <div class="dl-dialog-header-info">
+                <h3 class="dl-dialog-title" id="dialog-device-name" data-i18n="download.dialogDefaultName">Tên Thiết Bị</h3>
+                <span class="dl-dialog-sub">Codename: <strong id="dialog-device-code">codename</strong></span>
             </div>
-            <button class="rom-popup-close" id="dialog-close-btn" aria-label="Đóng">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <button type="button" class="dl-dialog-close" id="dialog-close-btn" aria-label="Đóng" data-i18n-aria-label="download.dialogCloseAria">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
             </button>
         </div>
-        <div class="rom-popup-content" id="dialog-rom-content">
+        <div class="dl-dialog-body" id="dialog-rom-content">
             <!-- Populated on click by devices.js -->
         </div>
     </dialog>
 
+    <!-- Non-blocking Toast Notification -->
+    <div class="dl-toast" id="dl-toast" role="status" aria-live="polite"></div>
+
     <!-- Floating Scroll to Top Action -->
-    <a href="#" class="scroll-to-top" id="scroll-to-top" aria-label="Lên đầu trang">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <a href="#" class="scroll-to-top" id="scroll-to-top" aria-label="Lên đầu trang" data-i18n-aria-label="footer.scrollTop">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
     </a>
 
-    <!-- CONFIGURATION & DYNAMIC DEVICES LOADER MODULE -->
+    <!-- CONFIGURATION, i18n & DYNAMIC DEVICES LOADER -->
     <script src="json/config.js"></script>
+    <script src="json/i18n.js"></script>
     <script src="json/devices.js"></script>
 
-    <!-- Mobile Menu Toggle Script -->
+    <!-- Language Toggle & Mobile Menu Script -->
     <script>
         (function() {
+            const langBtn = document.getElementById('lang-btn');
+            if (langBtn) {
+                langBtn.addEventListener('click', function() {
+                    if (typeof I18n !== 'undefined') I18n.toggleLang();
+                });
+            }
+
             const menuBtn = document.getElementById('mobile-menu-btn');
             const navMenu = document.getElementById('nav-menu');
             const backdrop = document.getElementById('mobile-nav-backdrop');

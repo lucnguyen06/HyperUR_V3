@@ -26,6 +26,22 @@
     let currentCalculatedPrice = 50000;
     let devicesMap = {};
     let emailCheckTimeout = null;
+    let lastLookupResult = null;
+    let lastLookupQuery = '';
+
+    function tr(key, fallback, vars) {
+        if (typeof I18n !== 'undefined' && typeof I18n.t === 'function') {
+            const val = I18n.t(key, vars);
+            if (val && val !== key) return val;
+        }
+        let out = fallback;
+        if (vars && typeof vars === 'object') {
+            Object.keys(vars).forEach(k => {
+                out = out.replace(new RegExp('\\{' + k + '\\}', 'g'), String(vars[k]));
+            });
+        }
+        return out;
+    }
 
     // =========================================================
     // 1. DATA LOAD & EMAIL REGISTRATION STORAGE
@@ -44,17 +60,25 @@
             // Chạy file:// hoặc mạng offline thì dùng fallback bộ nhớ cục bộ
         }
 
-        // 2. Hợp nhất với localStorage (để lưu giữ lịch sử người dùng đã đăng ký thành công trên máy này)
+        // Dọn cache cũ trong localStorage nếu còn sót từ phiên bản trước
         try {
-            const localRaw = localStorage.getItem(EMAIL_STORAGE_KEY);
-            if (localRaw) {
-                const localData = JSON.parse(localRaw);
-                if (localData && typeof localData === 'object') {
-                    emailDataStore = Object.assign({}, emailDataStore, localData);
+            localStorage.removeItem(EMAIL_STORAGE_KEY);
+            localStorage.removeItem('qr_current_index');
+            localStorage.removeItem('qr_payment_count');
+            localStorage.removeItem(LOOKUP_HISTORY_KEY);
+        } catch (_) {}
+
+        // 2. Hợp nhất với sessionStorage (cache tự xóa hoàn toàn khi đóng tab / thoát web)
+        try {
+            const sessionRaw = sessionStorage.getItem(EMAIL_STORAGE_KEY);
+            if (sessionRaw) {
+                const sessionData = JSON.parse(sessionRaw);
+                if (sessionData && typeof sessionData === 'object') {
+                    emailDataStore = Object.assign({}, emailDataStore, sessionData);
                 }
             }
         } catch (e) {
-            console.warn('Lỗi đọc localStorage email registrations:', e);
+            console.warn('Lỗi đọc sessionStorage email registrations:', e);
         }
     }
 
@@ -66,9 +90,9 @@
             lastUpdated: new Date().toISOString()
         };
         try {
-            localStorage.setItem(EMAIL_STORAGE_KEY, JSON.stringify(emailDataStore));
+            sessionStorage.setItem(EMAIL_STORAGE_KEY, JSON.stringify(emailDataStore));
         } catch (e) {
-            console.error('Không thể lưu email registration vào localStorage:', e);
+            console.error('Không thể lưu email registration vào sessionStorage:', e);
         }
     }
 
@@ -92,8 +116,8 @@
                 price: 40000,
                 priceText: '40.000đ',
                 tierKey: 'tier31',
-                tierLabel: 'Tích ≥31 con: 40k',
-                badge: '🎁 Ưu đãi: Giảm 10k/thiết bị',
+                tierLabel: tr('serial.tier31', 'Tích ≥31 con: 40k'),
+                badge: tr('serial.tierBadgeDiscount', '🎁 Ưu đãi: Giảm 10k/thiết bị'),
                 badgeColor: '#3b82f6'
             };
         } else {
@@ -101,7 +125,7 @@
                 price: 50000,
                 priceText: '50.000đ',
                 tierKey: 'base',
-                tierLabel: 'Cơ bản: 50k',
+                tierLabel: tr('serial.tierBase', 'Cơ bản: 50k'),
                 badge: null,
                 badgeColor: null
             };
@@ -238,7 +262,7 @@
             const text = this.getAttribute('data-copy');
             if (text && navigator.clipboard) {
                 navigator.clipboard.writeText(text).then(() => {
-                    showToast(`Đã sao chép: ${text}`);
+                    showToast(tr('serial.toastCopied', 'Đã sao chép: {text}', { text }));
                 });
             }
         });
@@ -250,9 +274,9 @@
             if (navigator.clipboard) {
                 navigator.clipboard.writeText(text).then(() => {
                     const span = document.getElementById('btn-copy-syntax-text');
-                    if (span) span.textContent = '✓ Đã chép';
-                    showToast(`Đã sao chép cú pháp: ${text}`);
-                    setTimeout(() => { if (span) span.textContent = 'Chép'; }, 2000);
+                    if (span) span.textContent = tr('serial.copiedShort', '✓ Đã chép');
+                    showToast(tr('serial.toastCopiedSyntax', 'Đã sao chép cú pháp: {text}', { text }));
+                    setTimeout(() => { if (span) span.textContent = tr('serial.copySyntax', 'Sao chép cú pháp'); }, 2000);
                 });
             }
         });
@@ -352,12 +376,12 @@
             planCardVip.classList.add('active');
             planCardVip.setAttribute('aria-checked', 'true');
         }
-        if (statusVip) statusVip.textContent = '✓ Đang chọn gói này (Mặc định)';
+        if (statusVip) statusVip.textContent = tr('serial.planSelected', '✓ Đang chọn gói này (Mặc định)');
         if (regTypeValue) regTypeValue.value = 'Đăng kí có Ủng hộ (Vĩnh viễn)';
 
         if (submitBtn) {
             const btnSpan = document.getElementById('btn-submit-text') || submitBtn.querySelector('span');
-            if (btnSpan) btnSpan.textContent = 'Xác Nhận & Gửi Serial Lên Hệ Thống';
+            if (btnSpan) btnSpan.textContent = tr('serial.submitBtnSend', 'Xác Nhận & Gửi Serial Lên Hệ Thống');
         }
         if (paymentSection) paymentSection.style.display = 'block';
     }
@@ -411,10 +435,14 @@
         if (devicesMap[val]) {
             const dev = devicesMap[val];
             const devName = dev.name && dev.name.en ? dev.name.en : val;
-            previewText.innerHTML = `Thiết bị: <strong>${devName}</strong> (${dev.brand || 'Xiaomi'}) • Codename: <code>${val}</code>`;
+            previewText.innerHTML = tr('serial.previewFound', 'Thiết bị: <strong>{name}</strong> ({brand}) • Codename: <code>{code}</code>', {
+                name: devName,
+                brand: dev.brand || 'Xiaomi',
+                code: val
+            });
             previewBox.classList.add('show');
         } else {
-            previewText.innerHTML = `Mã thiết bị nhập tay: <code>${val}</code>`;
+            previewText.innerHTML = tr('serial.previewManual', 'Mã thiết bị nhập tay: <code>{code}</code>', { code: val });
             previewBox.classList.add('show');
         }
         
@@ -468,14 +496,14 @@
         if (subKey === 'binance') {
             if (paymentQrImg) paymentQrImg.src = 'images/QR_BINANCE_DNT_HYPERUR.jpg';
             if (paymentQrBadgeText) paymentQrBadgeText.textContent = 'Binance Pay (5 USDT)';
-            if (paymentQrCaptionText) paymentQrCaptionText.textContent = 'Quét mã bằng app Binance (5 USDT)';
+            if (paymentQrCaptionText) paymentQrCaptionText.textContent = tr('serial.qrCaptionBinance', 'Quét mã bằng app Binance (5 USDT)');
             if (binanceDetailsGroup) binanceDetailsGroup.style.display = 'block';
             if (paypalDetailsGroup) paypalDetailsGroup.style.display = 'none';
             if (donationAmountVal) donationAmountVal.textContent = '5 USDT (Only 5$)';
         } else {
             if (paymentQrImg) paymentQrImg.src = 'images/QR_PAYPAL_DNT_HYPERUR.jpg';
             if (paymentQrBadgeText) paymentQrBadgeText.textContent = 'PayPal (5 USD)';
-            if (paymentQrCaptionText) paymentQrCaptionText.textContent = 'Quét mã hoặc mở PayPal gửi 5$';
+            if (paymentQrCaptionText) paymentQrCaptionText.textContent = tr('serial.qrCaptionPaypal', 'Quét mã hoặc mở PayPal gửi 5$');
             if (binanceDetailsGroup) binanceDetailsGroup.style.display = 'none';
             if (paypalDetailsGroup) paypalDetailsGroup.style.display = 'block';
             if (donationAmountVal) donationAmountVal.textContent = '5 USD (Only 5$)';
@@ -508,7 +536,7 @@
             if (qrIntlSwitcher) qrIntlSwitcher.style.display = 'flex';
 
             if (paymentTierPill) {
-                paymentTierPill.textContent = 'Only 5$ • Giá cố định';
+                paymentTierPill.textContent = tr('serial.payIntlTag', 'Only 5$ • Giá cố định');
                 paymentTierPill.className = 'tier-pill tier-intl-fixed current-active';
             }
             if (paymentTierHint) {
@@ -520,7 +548,7 @@
             // MBBank (Mặc định)
             if (paymentMethodVal) paymentMethodVal.value = 'Chuyển Khoản VietQR (24/7)';
             if (paymentQrBadgeText) paymentQrBadgeText.textContent = 'MBBank VietQR 24/7';
-            if (paymentQrCaptionText) paymentQrCaptionText.textContent = 'Quét bằng mọi ứng dụng ngân hàng';
+            if (paymentQrCaptionText) paymentQrCaptionText.textContent = tr('serial.qrCaptionBank', 'Quét bằng mọi ứng dụng ngân hàng');
             if (bankNameRow) bankNameRow.style.display = 'flex';
             if (bankOwnerRow) bankOwnerRow.style.display = 'flex';
             if (bankAccRow) bankAccRow.style.display = 'flex';
@@ -597,13 +625,13 @@
 
         if (serialCleanPreview && serialValidTag) {
             if (len >= 6) {
-                serialCleanPreview.innerHTML = `Serial hợp lệ: <strong>${sanitized}</strong>`;
+                serialCleanPreview.innerHTML = tr('serial.snValidPreview', 'Serial hợp lệ: <strong>{sn}</strong>', { sn: sanitized });
                 serialValidTag.style.display = 'inline-flex';
             } else if (len > 0) {
-                serialCleanPreview.innerHTML = `Đang nhập (${len}/8 ký tự)...`;
+                serialCleanPreview.innerHTML = tr('serial.snTyping', 'Đang nhập ({len}/8 ký tự)...', { len });
                 serialValidTag.style.display = 'none';
             } else {
-                serialCleanPreview.textContent = 'Đang chờ nhập serial hợp lệ...';
+                serialCleanPreview.textContent = tr('serial.snWaiting', 'Đang chờ nhập serial hợp lệ...');
                 serialValidTag.style.display = 'none';
             }
         }
@@ -637,7 +665,7 @@
 
         // 1. Thẻ thống kê dưới ô email
         if (emailDevicesCount) {
-            emailDevicesCount.textContent = `${deviceCount} thiết bị`;
+            emailDevicesCount.textContent = tr('serial.deviceCount', '{count} thiết bị', { count: deviceCount });
         }
         if (emailNextPrice) {
             emailNextPrice.textContent = priceInfo.priceText;
@@ -669,7 +697,7 @@
                 donationAmountVal.textContent = currentIntlSub === 'paypal' ? '5 USD (Only 5$)' : '5 USDT (Only 5$)';
             }
             if (paymentTierPill) {
-                paymentTierPill.textContent = 'Only 5$ • Giá cố định';
+                paymentTierPill.textContent = tr('serial.payIntlTag', 'Only 5$ • Giá cố định');
                 paymentTierPill.className = 'tier-pill tier-intl-fixed current-active';
             }
             if (paymentTierHint) {
@@ -754,7 +782,7 @@
             emailStateMsg.classList.remove('invalid');
         }
         if (emailStateText) {
-            emailStateText.textContent = '✓ Email hợp lệ';
+            emailStateText.textContent = tr('serial.emailValid', '✓ Email hợp lệ');
         }
 
         // Hiển thị thông tin thống kê số thiết bị và giá
@@ -794,7 +822,7 @@
                 emailStateMsg.classList.remove('valid');
             }
             if (emailStateText) {
-                emailStateText.textContent = '⚠️ Email chưa đúng định dạng (VD: ten@gmail.com)';
+                emailStateText.textContent = tr('serial.emailInvalid', '⚠️ Email chưa đúng định dạng (VD: ten@gmail.com)');
             }
             if (emailRegStats) emailRegStats.style.display = 'none';
             if (emailCheckLoader) emailCheckLoader.style.display = 'none';
@@ -837,8 +865,10 @@
                 currentQrIndex = data.index % qrAccounts.length;
                 qrPaymentCount = data.count || 0;
 
-                localStorage.setItem('qr_current_index', currentQrIndex);
-                localStorage.setItem('qr_payment_count', qrPaymentCount);
+                try {
+                    sessionStorage.setItem('qr_current_index', currentQrIndex);
+                    sessionStorage.setItem('qr_payment_count', qrPaymentCount);
+                } catch (_) {}
 
                 const activeQr = qrAccounts[currentQrIndex];
                 console.log(`✅ [Server Sync] MBBank QR: ${activeQr.name} - ${activeQr.acc} (${qrPaymentCount}/${QR_ROTATE_THRESHOLD})`);
@@ -847,46 +877,24 @@
                 updatePaymentQr(currentCalculatedPrice, serialInput ? sanitizeSerial(serialInput.value) : '');
             }
         } catch (err) {
-            console.warn('Không thể đồng bộ QR từ server, dùng cache:', err);
+            console.warn('Không thể đồng bộ QR từ server, dùng cache phiên hiện tại:', err);
         }
     }
 
     function rotateQrAccount() {
-        // Ghi nhận lượt submit/quét lên server để đếm đồng bộ toàn hệ thống
-        fetch('./api/qr-active.php?action=record_submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' }
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data && data.success && typeof data.index === 'number') {
-                currentQrIndex = data.index % qrAccounts.length;
-                qrPaymentCount = data.count || 0;
-                localStorage.setItem('qr_current_index', currentQrIndex);
-                localStorage.setItem('qr_payment_count', qrPaymentCount);
-
-                updateBankInfoDisplay();
-                updatePaymentQr(currentCalculatedPrice, serialInput ? sanitizeSerial(serialInput.value) : '');
-            }
-        })
-        .catch(err => {
-            // Fallback offline nếu server mất kết nối
-            qrPaymentCount++;
-            if (qrPaymentCount >= QR_ROTATE_THRESHOLD) {
-                currentQrIndex = (currentQrIndex + 1) % qrAccounts.length;
-                qrPaymentCount = 0;
-            }
-            localStorage.setItem('qr_current_index', currentQrIndex);
-            localStorage.setItem('qr_payment_count', qrPaymentCount);
-            updateBankInfoDisplay();
-            updatePaymentQr(currentCalculatedPrice, serialInput ? sanitizeSerial(serialInput.value) : '');
-        });
+        // Bộ đếm xoay vòng QR được cập nhật phía server bởi SePay webhook sau mỗi giao dịch hợp lệ.
+        // Client chỉ cần đồng bộ lại trạng thái mới nhất từ server.
+        syncQrStateFromServer();
     }
     
-    // Khôi phục trạng thái QR ban đầu (cache) và đồng bộ ngay với server
+    // Khôi phục trạng thái QR trong phiên hiện tại (sessionStorage) và đồng bộ ngay với server
     function restoreQrState() {
-        const savedIndex = localStorage.getItem('qr_current_index');
-        const savedCount = localStorage.getItem('qr_payment_count');
+        let savedIndex = null;
+        let savedCount = null;
+        try {
+            savedIndex = sessionStorage.getItem('qr_current_index');
+            savedCount = sessionStorage.getItem('qr_payment_count');
+        } catch (_) {}
         
         if (savedIndex !== null) {
             currentQrIndex = parseInt(savedIndex, 10) || 0;
@@ -911,7 +919,7 @@
         const btnCopyOwner = document.getElementById('btn-copy-owner');
         const btnCopyAcc = document.getElementById('btn-copy-acc');
         
-        if (bankNameText) bankNameText.textContent = 'MBBank (Ngân hàng TMCP Quân Đội)';
+        if (bankNameText) bankNameText.textContent = tr('serial.bankNameVal', 'MBBank (Ngân hàng TMCP Quân Đội)');
         if (bankOwnerText) bankOwnerText.textContent = currentQr.name;
         if (bankAccText) bankAccText.textContent = currentQr.acc;
         
@@ -921,7 +929,7 @@
 
         // Cập nhật thẻ alt của ảnh QR
         if (paymentQrImg) {
-            paymentQrImg.alt = `QR thanh toán - MBBank - ${currentQr.acc} - ${currentQr.name}`;
+            paymentQrImg.alt = tr('serial.qrAlt', 'QR thanh toán - MBBank - {acc} - {name}', { acc: currentQr.acc, name: currentQr.name });
         }
     }
 
@@ -939,25 +947,25 @@
             const email = emailRaw ? emailRaw.toLowerCase() : '';
 
             if (!serial || serial.length < 4) {
-                showToast('⚠️ Vui lòng nhập số Serial hợp lệ (tối thiểu 4 ký tự)');
+                showToast(tr('serial.errSnShort', '⚠️ Vui lòng nhập số Serial hợp lệ (tối thiểu 4 ký tự)'));
                 if (serialInput) serialInput.focus();
                 return;
             }
 
             if (!code) {
-                showToast('⚠️ Vui lòng nhập mã thiết bị (codename)');
+                showToast(tr('serial.errCodenameEmpty', '⚠️ Vui lòng nhập mã thiết bị (codename)'));
                 if (codenameInput) codenameInput.focus();
                 return;
             }
 
             if (!email) {
-                showToast('⚠️ Vui lòng nhập Email liên hệ.');
+                showToast(tr('serial.errEmailEmpty', '⚠️ Vui lòng nhập Email liên hệ.'));
                 if (senderEmailInput) senderEmailInput.focus();
                 return;
             }
 
             if (!EMAIL_REGEX.test(email)) {
-                showToast('⚠️ Email chưa đúng định dạng. Vui lòng kiểm tra lại.');
+                showToast(tr('serial.errEmailInvalid', '⚠️ Email chưa đúng định dạng. Vui lòng kiểm tra lại.'));
                 if (senderEmailInput) senderEmailInput.focus();
                 return;
             }
@@ -985,7 +993,7 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="spin">
                         <circle cx="12" cy="12" r="10" stroke-dasharray="30" stroke-dashoffset="10"></circle>
                     </svg>
-                    <span id="btn-submit-text">Đang gửi Serial lên hệ thống để xác nhận...</span>
+                    <span id="btn-submit-text">${tr('serial.submitSending', 'Đang gửi Serial lên hệ thống để xác nhận...')}</span>
                 `;
             }
 
@@ -1003,7 +1011,7 @@
             }
 
             if (regResult && regResult.success === false) {
-                showToast(`❌ ${regResult.message || 'Đăng ký không thành công'}`);
+                showToast(`❌ ${regResult.message || tr('serial.errRegFailed', 'Đăng ký không thành công')}`);
                 if (submitBtn) {
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = `
@@ -1011,7 +1019,7 @@
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                             <polyline points="22 4 12 14.01 9 11.01"></polyline>
                         </svg>
-                        <span id="btn-submit-text">Xác Nhận & Gửi Serial Lên Hệ Thống</span>
+                        <span id="btn-submit-text">${tr('serial.submitBtnSend', 'Xác Nhận & Gửi Serial Lên Hệ Thống')}</span>
                     `;
                 }
                 return;
@@ -1050,7 +1058,7 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
                         <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
-                    <span id="btn-submit-text">Đã Lưu Serial — Quét Mã QR Bên Dưới Để Kích Hoạt</span>
+                    <span id="btn-submit-text">${tr('serial.submitSavedScanQr', 'Đã Lưu Serial — Quét Mã QR Bên Dưới Để Kích Hoạt')}</span>
                 `;
             }
 
@@ -1069,7 +1077,7 @@
             }
             const modalSenderVal = document.getElementById('modal-sender-val');
             if (modalSenderVal) {
-                modalSenderVal.textContent = senderNameVal || 'Chưa cung cấp';
+                modalSenderVal.textContent = senderNameVal || tr('serial.notProvided', 'Chưa cung cấp');
             }
 
             const modalTitle = document.querySelector('#success-dialog .reg-modal-title');
@@ -1092,15 +1100,15 @@
             const qrUrl = `${activeQr.url}&amount=${currentCalculatedPrice || 50000}&des=${encodeURIComponent(fullSyntax)}`;
 
             if (isFree) {
-                if (modalTitle) modalTitle.textContent = 'Serial Đã Được Kích Hoạt!';
+                if (modalTitle) modalTitle.textContent = tr('serial.modalFreeTitle', 'Serial Đã Được Kích Hoạt!');
                 if (modalDesc) {
-                    modalDesc.innerHTML = `Số Serial <strong>${serial}</strong> đã được kích hoạt thành công gói Trải nghiệm miễn phí (36 ngày).`;
+                    modalDesc.innerHTML = tr('serial.modalFreeDesc', 'Số Serial <strong>{sn}</strong> đã được kích hoạt thành công gói Trải nghiệm miễn phí (36 ngày).', { sn: serial });
                 }
                 if (modalQrBox) modalQrBox.style.display = 'none';
             } else {
-                if (modalTitle) modalTitle.textContent = 'Quét Mã QR Để Kích Hoạt!';
+                if (modalTitle) modalTitle.textContent = tr('serial.modalPaidTitle', 'Quét Mã QR Để Kích Hoạt!');
                 if (modalDesc) {
-                    modalDesc.innerHTML = `Đã lưu Serial <strong>${serial}</strong> lên máy chủ. Vui lòng quét mã VietQR bên dưới bằng app ngân hàng để hoàn tất kích hoạt:`;
+                    modalDesc.innerHTML = tr('serial.modalPaidDesc', 'Đã lưu Serial <strong>{sn}</strong> lên máy chủ. Vui lòng quét mã VietQR bên dưới bằng app ngân hàng để hoàn tất kích hoạt:', { sn: serial });
                 }
                 if (modalQrBox) {
                     modalQrBox.style.display = 'block';
@@ -1115,8 +1123,8 @@
                     if (modalBtnCopy) {
                         modalBtnCopy.onclick = function() {
                             navigator.clipboard.writeText(fullSyntax).then(() => {
-                                if (modalBtnCopyText) modalBtnCopyText.textContent = 'Đã chép!';
-                                setTimeout(() => { if (modalBtnCopyText) modalBtnCopyText.textContent = 'Chép'; }, 2000);
+                                if (modalBtnCopyText) modalBtnCopyText.textContent = tr('serial.copiedShort', '✓ Đã chép');
+                                setTimeout(() => { if (modalBtnCopyText) modalBtnCopyText.textContent = tr('serial.copyShort', 'Chép'); }, 2000);
                             });
                         };
                     }
@@ -1124,11 +1132,11 @@
             }
 
             if (regResult && regResult.data && regResult.data.emailSent === false) {
-                showToast('⚠️ Đã lưu Serial, chưa gửi được email xác nhận!');
+                showToast(tr('serial.toastSavedNoMail', '⚠️ Đã lưu Serial, chưa gửi được email xác nhận!'));
             } else if (isFree) {
-                showToast('✅ Serial đã ở trạng thái Kích Hoạt!');
+                showToast(tr('serial.toastActivated', '✅ Serial đã ở trạng thái Kích Hoạt!'));
             } else {
-                showToast('✅ Đã lưu Serial! Hãy quét mã QR để kích hoạt.');
+                showToast(tr('serial.toastSavedScanQr', '✅ Đã lưu Serial! Hãy quét mã QR để kích hoạt.'));
             }
 
             // Nút "Kiểm tra trạng thái" trong dialog -> chuyển tab Tra Cứu
@@ -1150,7 +1158,7 @@
             if (successDialog && typeof successDialog.showModal === 'function') {
                 successDialog.showModal();
             } else {
-                alert(`Đã gửi số Serial ${serial} lên hệ thống thành công! Bạn có thể chuyển sang tab Tra Cứu để kiểm tra trạng thái kích hoạt.`);
+                alert(tr('serial.alertSubmitted', 'Đã gửi số Serial {sn} lên hệ thống thành công! Bạn có thể chuyển sang tab Tra Cứu để kiểm tra trạng thái kích hoạt.', { sn: serial }));
             }
         });
     }
@@ -1221,7 +1229,7 @@
     async function performLookup(rawInput) {
         const query = cleanLookupInput(rawInput);
         if (!query) {
-            alert('Vui lòng nhập số Serial hoặc Email cần tra cứu!');
+            alert(tr('serial.alertEmptyLookup', 'Vui lòng nhập số Serial hoặc Email cần tra cứu!'));
             if (lookupSerialInput) lookupSerialInput.focus();
             return;
         }
@@ -1235,7 +1243,7 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="spin">
                     <circle cx="12" cy="12" r="10" stroke-dasharray="30" stroke-dashoffset="10"></circle>
                 </svg>
-                <span>Đang Tra Cứu...</span>
+                <span>${tr('serial.lookupLoadingBtn', 'Đang Tra Cứu...')}</span>
             `;
         }
 
@@ -1247,8 +1255,8 @@
                             <circle cx="12" cy="12" r="10" stroke-dasharray="32" stroke-dashoffset="12"></circle>
                         </svg>
                     </div>
-                    <h3 class="lookup-empty-title">Đang Kết Nối Máy Chủ Xác Thực...</h3>
-                    <p class="lookup-empty-desc">Đang đối soát <strong>${displayQuery}</strong> với cơ sở dữ liệu bản quyền HyperUR thời gian thực.</p>
+                    <h3 class="lookup-empty-title">${tr('serial.lookupConnecting', 'Đang Kết Nối Máy Chủ Xác Thực...')}</h3>
+                    <p class="lookup-empty-desc">${tr('serial.lookupChecking', 'Đang đối soát <strong>{query}</strong> với cơ sở dữ liệu bản quyền HyperUR thời gian thực.', { query: displayQuery })}</p>
                 </div>
             `;
         }
@@ -1303,8 +1311,8 @@
                 query: displayQuery,
                 isEmail: isEmail,
                 message: isEmail
-                    ? `Không tìm thấy thiết bị nào gắn với email ${displayQuery}.`
-                    : `Không tìm thấy số Serial ${displayQuery} trong cơ sở dữ liệu bản quyền HyperUR.`
+                    ? tr('serial.notFoundEmailMsg', 'Không tìm thấy thiết bị nào gắn với email {query}.', { query: displayQuery })
+                    : tr('serial.notFoundSnMsg', 'Không tìm thấy số Serial {query} trong cơ sở dữ liệu bản quyền HyperUR.', { query: displayQuery })
             };
         }
 
@@ -1315,10 +1323,12 @@
                     <circle cx="11" cy="11" r="8"></circle>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
-                <span>Tra Cứu Ngay</span>
+                <span data-i18n="serial.lookupBtn">${tr('serial.lookupBtn', 'Tra Cứu Ngay')}</span>
             `;
         }
 
+        lastLookupResult = resultData;
+        lastLookupQuery = displayQuery;
         renderLookupResultCard(resultData, displayQuery);
         saveToLookupHistory(displayQuery, resultData);
     }
@@ -1342,7 +1352,7 @@
                             </div>
                             <div style="font-family:'JetBrains Mono',monospace; color:var(--accent-primary, #10b981); font-size:0.85rem; display:flex; align-items:center; gap:0.5rem;">
                                 <span>SN: <strong>${item.serial}</strong></span>
-                                <button type="button" class="btn-copy-mini" data-copy-device-sn="${item.serial}" style="padding:0.15rem 0.45rem; font-size:0.75rem;">Chép</button>
+                                <button type="button" class="btn-copy-mini" data-copy-device-sn="${item.serial}" style="padding:0.15rem 0.45rem; font-size:0.75rem;">${tr('serial.copyShort', 'Chép')}</button>
                             </div>
                         </div>
                         <div style="display:flex; align-items:center; gap:0.6rem;">
@@ -1366,7 +1376,7 @@
                                 </svg>
                             </div>
                             <div class="lookup-title-area">
-                                <h2 class="lookup-result-title">Danh Sách Thiết Bị Của Email</h2>
+                                <h2 class="lookup-result-title">${tr('serial.lookupEmailTitle', 'Danh Sách Thiết Bị Của Email')}</h2>
                                 <div class="lookup-result-serial">
                                     <span>${email}</span>
                                 </div>
@@ -1374,7 +1384,7 @@
                         </div>
                         <div class="lookup-status-pill">
                             <span class="lookup-pulse-dot"></span>
-                            <span>Đã Kích Hoạt: ${count} Máy</span>
+                            <span>${tr('serial.lookupEmailActiveCount', 'Đã Kích Hoạt: {count} Máy', { count })}</span>
                         </div>
                     </div>
 
@@ -1389,7 +1399,7 @@
                                 <polyline points="7 10 12 15 17 10"></polyline>
                                 <line x1="12" y1="15" x2="12" y2="3"></line>
                             </svg>
-                            <span>Đến Kho Tải ROM</span>
+                            <span>${tr('serial.lookupGoDownload', 'Đến Kho Tải ROM')}</span>
                         </a>
                         <a href="guide.html" class="lookup-btn-outline">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
@@ -1397,7 +1407,7 @@
                                 <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
                                 <line x1="12" y1="17" x2="12.01" y2="17"></line>
                             </svg>
-                            <span>Xem Hướng Dẫn Flash</span>
+                            <span>${tr('serial.lookupGoGuide', 'Xem Hướng Dẫn Flash')}</span>
                         </a>
                     </div>
                 </div>
@@ -1410,9 +1420,9 @@
                     const sn = this.getAttribute('data-copy-device-sn');
                     if (sn && navigator.clipboard) {
                         navigator.clipboard.writeText(sn).then(() => {
-                            this.textContent = '✓ Đã chép';
-                            setTimeout(() => { this.textContent = 'Chép'; }, 1800);
-                            showToast(`Đã sao chép Serial: ${sn}`);
+                            this.textContent = tr('serial.copiedShort', '✓ Đã chép');
+                            setTimeout(() => { this.textContent = tr('serial.copyShort', 'Chép'); }, 1800);
+                            showToast(tr('serial.toastCopiedSn', 'Đã sao chép Serial: {sn}', { sn }));
                         });
                     }
                 });
@@ -1430,11 +1440,11 @@
             const stateClass = isActive ? 'state-active' : (isExpired ? 'state-expired' : 'state-pending');
 
             const statusTitle = isActive
-                ? (d.statusText === 'Đang Hiệu Lực' ? 'Bản Quyền Đang Hiệu Lực' : 'Bản Quyền Đã Kích Hoạt')
-                : (isExpired ? 'Bản Quyền Đã Hết Hạn' : 'Đang Chờ Đối Soát & Kích Hoạt');
+                ? (d.statusText === 'Đang Hiệu Lực' ? tr('serial.statusValid', 'Bản Quyền Đang Hiệu Lực') : tr('serial.statusActivated', 'Bản Quyền Đã Kích Hoạt'))
+                : (isExpired ? tr('serial.statusExpired', 'Bản Quyền Đã Hết Hạn') : tr('serial.statusPending', 'Đang Chờ Đối Soát & Kích Hoạt'));
 
-            const codenameDisplay = d.codename ? d.codename.toUpperCase() : 'KHÔNG XÁC ĐỊNH';
-            const deviceNameDisplay = d.deviceName ? d.deviceName : (d.codename ? 'Thiết bị ' + d.codename : 'Chưa cập nhật');
+            const codenameDisplay = d.codename ? d.codename.toUpperCase() : tr('serial.unknownCode', 'KHÔNG XÁC ĐỊNH');
+            const deviceNameDisplay = d.deviceName ? d.deviceName : (d.codename ? tr('serial.devicePrefix', 'Thiết bị {code}', { code: d.codename }) : tr('serial.notUpdated', 'Chưa cập nhật'));
 
             const featuresListHtml = (d.features && d.features.length > 0)
                 ? d.features.map(f => `
@@ -1448,10 +1458,11 @@
                 : '';
 
             const telegramSyntax = encodeURIComponent(
-                `Chào Admin @lcnguy06, tôi cần hỗ trợ kiểm tra kích hoạt Serial HyperUR:\n` +
-                `- Số Serial: ${serial}\n` +
-                `- Mã máy: ${d.codename || 'chưa rõ'}\n` +
-                `- Gói: ${d.plan || 'Vĩnh viễn'}`
+                tr('serial.tgSupportMsg', 'Chào Admin @lcnguy06, tôi cần hỗ trợ kiểm tra kích hoạt Serial HyperUR:\n- Số Serial: {sn}\n- Mã máy: {code}\n- Gói: {plan}', {
+                    sn: serial,
+                    code: d.codename || tr('serial.unknownValue', 'chưa rõ'),
+                    plan: d.plan || tr('serial.expiryLifetimeFallback', 'Vĩnh viễn')
+                })
             );
 
             // Khối thanh toán tự động hiển thị ngay khi tra cứu ra trạng thái Chờ Kích Hoạt
@@ -1482,8 +1493,8 @@
                                 </svg>
                             </div>
                             <div style="flex:1; min-width:240px;">
-                                <h3 style="margin:0; font-size:1.05rem; font-weight:800; color:#fbbf24;">Quét Mã QR Để Hoàn Tất Thanh Toán & Kích Hoạt Tự Động</h3>
-                                <p style="margin:0.25rem 0 0; font-size:0.83rem; color:#94a3b8;">Hệ thống SePay tự động đối soát nội dung và kích hoạt bản quyền trong 1-3 phút sau khi nhận tiền.</p>
+                                <h3 style="margin:0; font-size:1.05rem; font-weight:800; color:#fbbf24;">${tr('serial.pendingQrTitle', 'Quét Mã QR Để Hoàn Tất Thanh Toán & Kích Hoạt Tự Động')}</h3>
+                                <p style="margin:0.25rem 0 0; font-size:0.83rem; color:#94a3b8;">${tr('serial.pendingQrSub', 'Hệ thống SePay tự động đối soát nội dung và kích hoạt bản quyền trong 1-3 phút sau khi nhận tiền.')}</p>
                             </div>
                         </div>
 
@@ -1493,44 +1504,44 @@
                                     <span style="width:7px; height:7px; border-radius:50%; background:#10b981; display:inline-block;"></span>
                                     <span>MBBank VietQR 24/7</span>
                                 </div>
-                                <img src="${qrUrl}" alt="QR thanh toán ${serial}" style="max-width:100%; height:auto; display:block; border-radius:8px; margin:0 auto;">
-                                <div style="font-size:0.72rem; color:#64748b; margin-top:0.45rem; font-weight:600;">Quét bằng mọi ứng dụng ngân hàng</div>
+                                <img src="${qrUrl}" alt="${tr('serial.qrAltSn', 'QR thanh toán {sn}', { sn: serial })}" style="max-width:100%; height:auto; display:block; border-radius:8px; margin:0 auto;">
+                                <div style="font-size:0.72rem; color:#64748b; margin-top:0.45rem; font-weight:600;">${tr('serial.qrCaptionBank', 'Quét bằng mọi ứng dụng ngân hàng')}</div>
                             </div>
 
                             <div style="display:flex; flex-direction:column; gap:0.65rem;">
                                 <div style="display:flex; justify-content:space-between; align-items:center; padding:0.55rem 0.85rem; background:rgba(255,255,255,0.03); border-radius:8px; border:1px solid rgba(255,255,255,0.06);">
-                                    <span style="font-size:0.82rem; color:#94a3b8;">Mức Ủng Hộ:</span>
+                                    <span style="font-size:0.82rem; color:#94a3b8;">${tr('serial.modalLabelAmount', 'Mức Ủng Hộ:')}</span>
                                     <span style="font-size:1.15rem; font-weight:800; color:#10b981; font-family:'JetBrains Mono', monospace;">${priceText}</span>
                                 </div>
 
                                 <div style="display:flex; justify-content:space-between; align-items:center; padding:0.55rem 0.85rem; background:rgba(255,255,255,0.03); border-radius:8px; border:1px solid rgba(255,255,255,0.06);">
-                                    <span style="font-size:0.82rem; color:#94a3b8;">Ngân Hàng Tiếp Nhận:</span>
-                                    <span style="font-size:0.88rem; font-weight:700; color:#e2e8f0;">MBBank (Ngân hàng Quân Đội)</span>
+                                    <span style="font-size:0.82rem; color:#94a3b8;">${tr('serial.bankNameLabel', 'Ngân Hàng Tiếp Nhận:')}</span>
+                                    <span style="font-size:0.88rem; font-weight:700; color:#e2e8f0;">${tr('serial.bankNameVal', 'MBBank (Ngân hàng TMCP Quân Đội)')}</span>
                                 </div>
 
                                 <div style="display:flex; justify-content:space-between; align-items:center; padding:0.55rem 0.85rem; background:rgba(255,255,255,0.03); border-radius:8px; border:1px solid rgba(255,255,255,0.06);">
-                                    <span style="font-size:0.82rem; color:#94a3b8;">Chủ Tài Khoản:</span>
+                                    <span style="font-size:0.82rem; color:#94a3b8;">${tr('serial.bankOwnerLabel', 'Chủ Tài Khoản:')}</span>
                                     <div style="display:flex; align-items:center; gap:0.5rem;">
                                         <span style="font-size:0.88rem; font-weight:700; color:#e2e8f0;">${currentQr.name}</span>
-                                        <button type="button" class="btn-copy-mini" data-copy="${currentQr.name}">Chép</button>
+                                        <button type="button" class="btn-copy-mini" data-copy="${currentQr.name}">${tr('serial.copyShort', 'Chép')}</button>
                                     </div>
                                 </div>
 
                                 <div style="display:flex; justify-content:space-between; align-items:center; padding:0.55rem 0.85rem; background:rgba(255,255,255,0.03); border-radius:8px; border:1px solid rgba(255,255,255,0.06);">
-                                    <span style="font-size:0.82rem; color:#94a3b8;">Số Tài Khoản MBBank:</span>
+                                    <span style="font-size:0.82rem; color:#94a3b8;">${tr('serial.bankAccLabel', 'Số Tài Khoản MBBank:')}</span>
                                     <div style="display:flex; align-items:center; gap:0.5rem;">
                                         <span style="font-size:1.05rem; font-weight:800; color:#38bdf8; font-family:'JetBrains Mono', monospace;">${currentQr.acc}</span>
-                                        <button type="button" class="btn-copy-mini" data-copy="${currentQr.acc}">Chép</button>
+                                        <button type="button" class="btn-copy-mini" data-copy="${currentQr.acc}">${tr('serial.copyShort', 'Chép')}</button>
                                     </div>
                                 </div>
 
                                 <div style="padding:0.75rem 0.85rem; background:rgba(245, 158, 11, 0.08); border-radius:8px; border:1px solid rgba(245, 158, 11, 0.25);">
                                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-                                        <span style="font-size:0.82rem; font-weight:700; color:#fbbf24;">Nội Dung Chuyển Khoản (Bắt Buộc):</span>
-                                        <button type="button" class="btn-copy-accent" data-copy-syntax-btn="${transferSyntax}" style="padding:0.25rem 0.65rem; font-size:0.75rem;">Chép cú pháp</button>
+                                        <span style="font-size:0.82rem; font-weight:700; color:#fbbf24;">${tr('serial.syntaxLabel', 'Nội Dung Chuyển Khoản (Bắt Buộc):')}</span>
+                                        <button type="button" class="btn-copy-accent" data-copy-syntax-btn="${transferSyntax}" style="padding:0.25rem 0.65rem; font-size:0.75rem;">${tr('serial.copySyntaxShort', 'Chép cú pháp')}</button>
                                     </div>
                                     <div style="font-family:'JetBrains Mono', monospace; font-size:0.95rem; font-weight:700; color:#fef08a; background:rgba(0,0,0,0.35); padding:0.45rem 0.65rem; border-radius:6px; word-break:break-all;">${transferSyntax}</div>
-                                    <div style="font-size:0.74rem; color:#fbbf24; margin-top:0.35rem;">⚠️ Cần ghi đúng nội dung này để SePay tự động kích hoạt vĩnh viễn ngay lập tức.</div>
+                                    <div style="font-size:0.74rem; color:#fbbf24; margin-top:0.35rem;">${tr('serial.pendingWarning', '⚠️ Cần ghi đúng nội dung này để SePay tự động kích hoạt vĩnh viễn ngay lập tức.')}</div>
                                 </div>
                             </div>
                         </div>
@@ -1541,7 +1552,7 @@
                                     <polyline points="23 4 23 10 17 10"></polyline>
                                     <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
                                 </svg>
-                                <span>Đã Chuyển Khoản? Kiểm Tra Lại Ngay</span>
+                                <span>${tr('serial.pendingRecheck', 'Đã Chuyển Khoản? Kiểm Tra Lại Ngay')}</span>
                             </button>
                         </div>
                     </div>
@@ -1581,27 +1592,27 @@
                         </div>
                         <div class="lookup-status-pill">
                             <span class="lookup-pulse-dot"></span>
-                            <span>${d.statusText || 'Trạng Thái'}</span>
+                            <span>${d.statusText || tr('serial.statusFallback', 'Trạng Thái')}</span>
                         </div>
                     </div>
 
                     <div class="lookup-info-grid">
                         <div class="lookup-info-card">
-                            <span class="lookup-info-label">Thiết Bị / Mã Máy</span>
+                            <span class="lookup-info-label">${tr('serial.infoDevice', 'Thiết Bị / Mã Máy')}</span>
                             <span class="lookup-info-val val-cyan">${deviceNameDisplay} (${codenameDisplay})</span>
                         </div>
                         <div class="lookup-info-card">
-                            <span class="lookup-info-label">Gói Bản Quyền</span>
-                            <span class="lookup-info-val val-accent">${d.plan || 'Vĩnh Viễn'}</span>
+                            <span class="lookup-info-label">${tr('serial.infoPlan', 'Gói Bản Quyền')}</span>
+                            <span class="lookup-info-val val-accent">${d.plan || tr('serial.planLifetimeFallback', 'Vĩnh Viễn')}</span>
                         </div>
                         <div class="lookup-info-card">
-                            <span class="lookup-info-label">Ngày Đăng Ký / Cập Nhật</span>
-                            <span class="lookup-info-val">${d.registeredDate || 'Hôm nay'}</span>
+                            <span class="lookup-info-label">${tr('serial.infoDate', 'Ngày Đăng Ký / Cập Nhật')}</span>
+                            <span class="lookup-info-val">${d.registeredDate || '—'}</span>
                         </div>
                         <div class="lookup-info-card">
-                            <span class="lookup-info-label">Thời Hạn Sử Dụng</span>
+                            <span class="lookup-info-label">${tr('serial.infoExpiry', 'Thời Hạn Sử Dụng')}</span>
                             <span class="lookup-info-val" style="color: ${isActive ? '#10b981' : (isExpired ? '#f43f5e' : '#fbbf24')}; font-family: 'JetBrains Mono', monospace;">
-                                ${d.expiredDate || 'Vĩnh viễn'}
+                                ${d.expiredDate || tr('serial.expiryLifetimeFallback', 'Vĩnh viễn')}
                             </span>
                         </div>
                     </div>
@@ -1613,7 +1624,7 @@
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                             </svg>
-                            <span>Quyền Lợi Giấy Phép ROM HyperUR Đi Kèm:</span>
+                            <span>${tr('serial.perksTitle', 'Quyền Lợi Giấy Phép ROM HyperUR Đi Kèm:')}</span>
                         </div>
                         <ul class="lookup-perks-list">
                             ${featuresListHtml}
@@ -1627,13 +1638,13 @@
                                 <polyline points="7 10 12 15 17 10"></polyline>
                                 <line x1="12" y1="15" x2="12" y2="3"></line>
                             </svg>
-                            <span>Đến Kho Tải ROM HyperUR</span>
+                            <span>${tr('serial.lookupGoDownload', 'Đến Kho Tải ROM')}</span>
                         </a>
                         <a href="https://t.me/lcnguy06?text=${telegramSyntax}" target="_blank" rel="noopener noreferrer" class="lookup-btn-telegram">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
                             </svg>
-                            <span>${isActive ? 'Hỗ Trợ Kỹ Thuật Admin' : (isExpired ? 'Nhắn Admin Gia Hạn' : 'Nhắn Admin Kích Hoạt Nhanh')}</span>
+                            <span>${isActive ? tr('serial.btnSupportActive', 'Hỗ Trợ Kỹ Thuật Admin') : (isExpired ? tr('serial.btnSupportExpired', 'Nhắn Admin Gia Hạn') : tr('serial.btnSupportPending', 'Nhắn Admin Kích Hoạt Nhanh'))}</span>
                         </a>
                         <a href="guide.html" class="lookup-btn-outline">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
@@ -1641,7 +1652,7 @@
                                 <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
                                 <line x1="12" y1="17" x2="12.01" y2="17"></line>
                             </svg>
-                            <span>Xem Hướng Dẫn Flash ROM</span>
+                            <span>${tr('serial.lookupGoGuide', 'Xem Hướng Dẫn Flash')}</span>
                         </a>
                     </div>
                 </div>
@@ -1661,9 +1672,9 @@
                     const text = this.getAttribute('data-copy-syntax-btn');
                     if (text && navigator.clipboard) {
                         navigator.clipboard.writeText(text).then(() => {
-                            this.textContent = '✓ Đã chép';
-                            showToast(`Đã sao chép cú pháp: ${text}`);
-                            setTimeout(() => { this.textContent = 'Chép cú pháp'; }, 1800);
+                            this.textContent = tr('serial.copiedShort', '✓ Đã chép');
+                            showToast(tr('serial.toastCopiedSyntax', 'Đã sao chép cú pháp: {text}', { text }));
+                            setTimeout(() => { this.textContent = tr('serial.copySyntaxShort', 'Chép cú pháp'); }, 1800);
                         });
                     }
                 });
@@ -1675,7 +1686,7 @@
                     const text = this.getAttribute('data-copy');
                     if (text && navigator.clipboard) {
                         navigator.clipboard.writeText(text).then(() => {
-                            showToast(`Đã sao chép: ${text}`);
+                            showToast(tr('serial.toastCopied', 'Đã sao chép: {text}', { text }));
                         });
                     }
                 });
@@ -1683,7 +1694,7 @@
         } else {
             const isEmail = String(query).includes('@');
             const notFoundText = encodeURIComponent(
-                `Chào Admin @lcnguy06, tôi vừa tra cứu: ${query} nhưng chưa thấy trên hệ thống. Nhờ Admin kiểm tra giúp tôi.`
+                tr('serial.tgNotFoundMsg', 'Chào Admin @lcnguy06, tôi vừa tra cứu: {query} nhưng chưa thấy trên hệ thống. Nhờ Admin kiểm tra giúp tôi.', { query })
             );
 
             lookupResultContainer.innerHTML = `
@@ -1698,7 +1709,7 @@
                                 </svg>
                             </div>
                             <div class="lookup-title-area">
-                                <h2 class="lookup-result-title">${isEmail ? 'Chưa Tìm Thấy Thiết Bị Của Email' : 'Chưa Tìm Thấy Bản Quyền Serial'}</h2>
+                                <h2 class="lookup-result-title">${isEmail ? tr('serial.notFoundEmailTitle', 'Chưa Tìm Thấy Thiết Bị Của Email') : tr('serial.notFoundSnTitle', 'Chưa Tìm Thấy Bản Quyền Serial')}</h2>
                                 <div class="lookup-result-serial">
                                     <span>${isEmail ? 'Email:' : 'SN:'}</span>
                                     <span>${query}</span>
@@ -1707,25 +1718,25 @@
                         </div>
                         <div class="lookup-status-pill">
                             <span class="lookup-pulse-dot"></span>
-                            <span>Chưa Kích Hoạt</span>
+                            <span>${tr('serial.statusNotFound', 'Chưa Kích Hoạt')}</span>
                         </div>
                     </div>
 
                     <p style="color: var(--text-soft); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.75rem;">
-                        ${isEmail 
-                            ? `Email <strong>${query}</strong> hiện chưa có thiết bị nào được ghi nhận trên hệ thống bản quyền chính thức HyperUR.`
-                            : `Số Serial <strong>${query}</strong> hiện chưa có trên hệ thống bản quyền chính thức HyperUR hoặc vừa được chuyển khoản và đang trong quá trình ghi nhận.`
+                        ${isEmail
+                            ? tr('serial.notFoundEmailDesc', 'Email <strong>{query}</strong> hiện chưa có thiết bị nào được ghi nhận trên hệ thống bản quyền chính thức HyperUR.', { query })
+                            : tr('serial.notFoundSnDesc', 'Số Serial <strong>{query}</strong> hiện chưa có trên hệ thống bản quyền chính thức HyperUR hoặc vừa được chuyển khoản và đang trong quá trình ghi nhận.', { query })
                         }
                     </p>
 
                     <div class="lookup-info-grid">
                         <div class="lookup-info-card">
-                            <span class="lookup-info-label">Nguyên Nhân Có Thể 1</span>
-                            <span class="lookup-info-val" style="font-size: 0.9rem; font-weight: 500;">Bạn chưa gửi đơn đăng ký kích hoạt bản quyền</span>
+                            <span class="lookup-info-label">${tr('serial.reason1Label', 'Nguyên Nhân Có Thể 1')}</span>
+                            <span class="lookup-info-val" style="font-size: 0.9rem; font-weight: 500;">${tr('serial.reason1Text', 'Bạn chưa gửi đơn đăng ký kích hoạt bản quyền')}</span>
                         </div>
                         <div class="lookup-info-card">
-                            <span class="lookup-info-label">Nguyên Nhân Có Thể 2</span>
-                            <span class="lookup-info-val" style="font-size: 0.9rem; font-weight: 500;">Nhập bị nhầm ký tự hoặc chưa đúng email lúc đăng ký</span>
+                            <span class="lookup-info-label">${tr('serial.reason2Label', 'Nguyên Nhân Có Thể 2')}</span>
+                            <span class="lookup-info-val" style="font-size: 0.9rem; font-weight: 500;">${tr('serial.reason2Text', 'Nhập bị nhầm ký tự hoặc chưa đúng email lúc đăng ký')}</span>
                         </div>
                     </div>
 
@@ -1737,13 +1748,13 @@
                                 <line x1="20" y1="8" x2="20" y2="14"></line>
                                 <line x1="23" y1="11" x2="17" y2="11"></line>
                             </svg>
-                            <span>Đăng Ký Bản Quyền Serial Này Ngay</span>
+                            <span>${tr('serial.btnRegisterThisSn', 'Đăng Ký Bản Quyền Serial Này Ngay')}</span>
                         </button>
                         <a href="https://t.me/lcnguy06?text=${notFoundText}" target="_blank" rel="noopener noreferrer" class="lookup-btn-telegram">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
                             </svg>
-                            <span>Hỏi Admin Qua Telegram</span>
+                            <span>${tr('serial.btnAskAdmin', 'Hỏi Admin Qua Telegram')}</span>
                         </a>
                     </div>
                 </div>
@@ -1771,14 +1782,14 @@
     function saveToLookupHistory(serial, result) {
         try {
             let history = [];
-            const raw = localStorage.getItem(LOOKUP_HISTORY_KEY);
+            const raw = sessionStorage.getItem(LOOKUP_HISTORY_KEY);
             if (raw) history = JSON.parse(raw);
 
             history = history.filter(h => h.serial !== serial);
 
             const status = (result && result.found && result.data)
-                ? result.data.statusText || 'Đã tìm thấy'
-                : 'Chưa kích hoạt';
+                ? result.data.statusText || tr('serial.histFound', 'Đã tìm thấy')
+                : tr('serial.histNotActive', 'Chưa kích hoạt');
 
             history.unshift({
                 serial: serial,
@@ -1787,7 +1798,7 @@
             });
 
             history = history.slice(0, 6);
-            localStorage.setItem(LOOKUP_HISTORY_KEY, JSON.stringify(history));
+            sessionStorage.setItem(LOOKUP_HISTORY_KEY, JSON.stringify(history));
             renderLookupHistory();
         } catch (e) { }
     }
@@ -1795,7 +1806,7 @@
     function renderLookupHistory() {
         if (!lookupHistoryWrapper || !lookupHistoryGrid) return;
         try {
-            const raw = localStorage.getItem(LOOKUP_HISTORY_KEY);
+            const raw = sessionStorage.getItem(LOOKUP_HISTORY_KEY);
             if (!raw) {
                 lookupHistoryWrapper.style.display = 'none';
                 return;
@@ -1809,7 +1820,7 @@
             const filtered = list.filter(item => item && item.serial && !item.serial.startsWith('DEMO_') && item.serial !== '11111111');
             if (filtered.length !== list.length) {
                 list = filtered;
-                localStorage.setItem(LOOKUP_HISTORY_KEY, JSON.stringify(list));
+                sessionStorage.setItem(LOOKUP_HISTORY_KEY, JSON.stringify(list));
             }
 
             if (list.length === 0) {
@@ -1847,7 +1858,7 @@
 
     if (clearLookupHistoryBtn) {
         clearLookupHistoryBtn.addEventListener('click', function () {
-            localStorage.removeItem(LOOKUP_HISTORY_KEY);
+            sessionStorage.removeItem(LOOKUP_HISTORY_KEY);
             renderLookupHistory();
         });
     }
@@ -1947,17 +1958,17 @@
         if (currentPaymentMethod === 'crypto_intl') {
             if (currentIntlSub === 'paypal') {
                 if (qrLightboxBadge) qrLightboxBadge.textContent = 'PAYPAL (5 USD)';
-                if (qrLightboxTitle) qrLightboxTitle.textContent = '🅿️ PayPal QR Thanh Toán';
-                if (qrLightboxSubtitle) qrLightboxSubtitle.textContent = 'Quét mã QR bằng ứng dụng PayPal hoặc camera điện thoại';
+                if (qrLightboxTitle) qrLightboxTitle.textContent = tr('serial.lightboxPaypalTitle', '🅿️ PayPal QR Thanh Toán');
+                if (qrLightboxSubtitle) qrLightboxSubtitle.textContent = tr('serial.lightboxPaypalSub', 'Quét mã QR bằng ứng dụng PayPal hoặc camera điện thoại');
             } else {
                 if (qrLightboxBadge) qrLightboxBadge.textContent = 'BINANCE PAY (5 USDT)';
-                if (qrLightboxTitle) qrLightboxTitle.textContent = '⚡ Binance Pay QR Thanh Toán';
-                if (qrLightboxSubtitle) qrLightboxSubtitle.textContent = 'Mở ứng dụng Binance và quét mã QR để gửi 5 USDT';
+                if (qrLightboxTitle) qrLightboxTitle.textContent = tr('serial.lightboxBinanceTitle', '⚡ Binance Pay QR Thanh Toán');
+                if (qrLightboxSubtitle) qrLightboxSubtitle.textContent = tr('serial.lightboxBinanceSub', 'Mở ứng dụng Binance và quét mã QR để gửi 5 USDT');
             }
         } else {
             if (qrLightboxBadge) qrLightboxBadge.textContent = 'VIETQR MBBANK 24/7';
-            if (qrLightboxTitle) qrLightboxTitle.textContent = 'MBBank VietQR Chính Thức';
-            if (qrLightboxSubtitle) qrLightboxSubtitle.textContent = 'Quét mã bằng ứng dụng ngân hàng bất kỳ để tự động điền tiền và nội dung';
+            if (qrLightboxTitle) qrLightboxTitle.textContent = tr('serial.lightboxTitle', 'MBBank VietQR Chính Thức');
+            if (qrLightboxSubtitle) qrLightboxSubtitle.textContent = tr('serial.lightboxSub', 'Quét mã bằng ứng dụng ngân hàng bất kỳ để tự động điền tiền và nội dung');
         }
 
         qrLightboxModal.classList.add('active');
@@ -2004,7 +2015,7 @@
     // 13. KHỞI TẠO BAN ĐẦU
     // =========================================================
     async function init() {
-        // Tải dữ liệu email đã đăng ký từ data / localStorage
+        // Tải dữ liệu email đã đăng ký từ data / sessionStorage
         await loadEmailRegistrationsData();
 
         // Khôi phục trạng thái QR xoay vòng
@@ -2062,6 +2073,35 @@
             handleEmailInput();
         }
     }
+
+    // Nút chuyển đổi ngôn ngữ VI / EN & tự đồng bộ UI động khi đổi ngôn ngữ
+    const langBtn = document.getElementById('lang-btn');
+    if (langBtn) {
+        langBtn.addEventListener('click', function () {
+            if (typeof I18n !== 'undefined') I18n.toggleLang();
+        });
+    }
+
+    window.addEventListener('hyperur:langchange', function () {
+        const email = senderEmailInput ? senderEmailInput.value.trim() : '';
+        const count = getDeviceCountForEmail(email);
+        applyPriceUI(calculatePrice(count), count);
+        updateBankInfoDisplay();
+        if (currentPaymentMethod === 'crypto_intl') {
+            selectIntlSub(currentIntlSub || 'binance');
+        } else if (paymentQrCaptionText) {
+            paymentQrCaptionText.textContent = tr('serial.qrCaptionBank', 'Quét bằng mọi ứng dụng ngân hàng');
+        }
+        if (codenameInput && codenameInput.value.trim()) {
+            handleCodenameInput();
+        }
+        if (serialInput && serialInput.value.trim()) {
+            handleSerialInput();
+        }
+        if (lastLookupResult && lastLookupQuery) {
+            renderLookupResultCard(lastLookupResult, lastLookupQuery);
+        }
+    });
 
     // Chạy khởi tạo
     if (document.readyState === 'loading') {

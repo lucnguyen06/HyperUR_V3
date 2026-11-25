@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="0; url=index.html#firmware-showcase">
-    <title>Đang chuyển hướng - HyperUR Firmware Showcase</title>
+    <title data-i18n-title-key="redirect.firmwareMetaTitle">Đang chuyển hướng - HyperUR Firmware Showcase</title>
     <link rel="stylesheet" href="styles.css">
     <script>
         window.location.replace('index.html#firmware-showcase');
@@ -12,9 +12,10 @@
 </head>
 <body style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:1.5rem;text-align:center;">
     <div class="glass" style="padding:2rem;border-radius:20px;max-width:440px;">
-        <h2 style="margin-bottom:0.75rem;color:var(--text-strong);">Thông Tin Firmware đã được tích hợp vào Trang Chủ</h2>
-        <p style="color:var(--muted);margin-bottom:1.25rem;font-size:0.95rem;">Đang tự động chuyển hướng tới khu vực Firmware Studio trên Trang Chủ...</p>
-        <a href="index.html#firmware-showcase" class="btn-primary">Mở Firmware Studio Ngay</a>
+        <h2 style="margin-bottom:0.75rem;color:var(--text-strong);" data-i18n="redirect.firmwareTitle">Thông Tin Firmware đã được tích hợp vào Trang Chủ</h2>
+        <p style="color:var(--muted);margin-bottom:1.25rem;font-size:0.95rem;" data-i18n="redirect.firmwareDesc">Đang tự động chuyển hướng tới khu vực Firmware Studio trên Trang Chủ...</p>
+        <a href="index.html#firmware-showcase" class="btn-primary" data-i18n="redirect.firmwareBtn">Mở Firmware Studio Ngay</a>
     </div>
+    <script src="json/i18n.js"></script>
 </body>
 </html>

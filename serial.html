@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="HyperUR - Cổng Đăng Ký & Tra Cứu Serial bản quyền ROM HyperUR V3 chính thức. Kích hoạt vĩnh viễn, xác thực trực tuyến thời gian thực cho Xiaomi, Redmi.">
-    <title>Đăng Ký & Tra Cứu Serial - HyperUR V3</title>
+    <meta name="description" content="HyperUR - Cổng Đăng Ký & Tra Cứu Serial bản quyền ROM HyperUR chính thức. Kích hoạt vĩnh viễn, xác thực trực tuyến thời gian thực cho Xiaomi, Redmi." data-i18n-meta-key="serial.metaDesc">
+    <title data-i18n-title-key="serial.metaTitle">Đăng Ký & Tra Cứu Serial - HyperUR</title>
     <link rel="icon" type="image/jpeg" href="images/logo_hyperur.jpg">
     <link rel="apple-touch-icon" href="images/logo_hyperur.jpg">
 
@@ -28,26 +28,36 @@
 
                 <!-- Navigation Links -->
                 <ul class="navbar-menu" id="nav-menu">
-                    <li><a href="index.html" class="navbar-link">Trang Chủ</a></li>
-                    <li><a href="download.html" class="navbar-link">Tải ROM</a></li>
-                    <li><a href="guide.html" class="navbar-link">Hướng Dẫn</a></li>
-                    <li><a href="serial.html" class="navbar-link active" id="nav-serial-link">Đăng Ký & Tra Cứu Serial</a></li>
+                    <li><a href="index.html" class="navbar-link" data-i18n="nav.home">Trang Chủ</a></li>
+                    <li><a href="download.html" class="navbar-link" data-i18n="nav.download">Tải ROM</a></li>
+                    <li><a href="guide.html" class="navbar-link" data-i18n="nav.guide">Hướng Dẫn</a></li>
+                    <li><a href="serial.html" class="navbar-link active" id="nav-serial-link" aria-current="page" data-i18n="nav.serial">Đăng Ký &amp; Tra Cứu Serial</a></li>
                     <li class="mobile-nav-divider" aria-hidden="true"></li>
                     <li class="mobile-nav-footer">
                         <a href="https://t.me/hypermodupdate" target="_blank" rel="noopener noreferrer" class="mobile-nav-ext-link" aria-label="Tham gia kênh Telegram">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
                             </svg>
-                            <span>Kênh Telegram</span>
+                            <span data-i18n="nav.telegram">Kênh Telegram</span>
                         </a>
                     </li>
                 </ul>
 
                 <!-- Navbar Actions -->
                 <div class="navbar-actions">
+                    <!-- Language Selector (VI / EN) -->
+                    <button type="button" class="btn-icon lang-selector" id="lang-btn" aria-label="Chuyển ngôn ngữ" title="Chuyển ngôn ngữ" data-i18n-aria-label="lang.switch" data-i18n-title="lang.switch">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <span class="lang-label" id="lang-label" translate="no">VI</span>
+                    </button>
+
                     <!-- Mobile Menu Hamburger Toggle -->
-                    <button class="btn-icon mobile-menu-btn" id="mobile-menu-btn" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="nav-menu" title="Menu">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                    <button type="button" class="btn-icon mobile-menu-btn" id="mobile-menu-btn" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="nav-menu" title="Menu" data-i18n-title="nav.menu">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
                             <line x1="4" y1="7" x2="20" y2="7" class="bar-top"></line>
                             <line x1="4" y1="12" x2="20" y2="12" class="bar-mid"></line>
                             <line x1="4" y1="17" x2="20" y2="17" class="bar-bot"></line>
@@ -55,7 +65,7 @@
                     </button>
 
                     <!-- Theme Toggle Button -->
-                    <button class="btn-icon" id="theme-btn" aria-label="Đổi giao diện Sáng/Tối" title="Chuyển chế độ sáng/tối">
+                    <button type="button" class="btn-icon" id="theme-btn" aria-label="Đổi giao diện Sáng/Tối" title="Chuyển chế độ sáng/tối" data-i18n-aria-label="nav.toggleTheme" data-i18n-title="nav.toggleTheme">
                         <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                         </svg>
@@ -87,10 +97,10 @@
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                 </svg>
-                CỔNG BẢN QUYỀN HYPERUR
+                <span data-i18n="serial.kicker">CỔNG BẢN QUYỀN HYPERUR</span>
             </span>
-            <h1>Đăng Ký & Tra Cứu Serial</h1>
-            <p>Đăng ký kích hoạt bản quyền vĩnh viễn hoặc tra cứu trạng thái kích hoạt của thiết bị Xiaomi/Redmi của bạn theo thời gian thực.</p>
+            <h1 data-i18n="serial.heroTitle">Đăng Ký &amp; Tra Cứu Serial</h1>
+            <p data-i18n="serial.heroDesc">Đăng ký kích hoạt bản quyền vĩnh viễn hoặc tra cứu trạng thái kích hoạt của thiết bị Xiaomi/Redmi của bạn theo thời gian thực.</p>
         </section>
 
         <!-- Tab Switcher (Đăng Ký | Tra Cứu) -->
@@ -100,14 +110,14 @@
                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
-                <span>Đăng Ký Serial</span>
+                <span data-i18n="serial.tabRegister">Đăng Ký Serial</span>
             </button>
             <button type="button" class="serial-tab-btn" id="tab-lookup-btn" role="tab" aria-selected="false" aria-controls="panel-lookup" data-tab="lookup">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
                     <circle cx="11" cy="11" r="8"></circle>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
-                <span>Tra Cứu Serial</span>
+                <span data-i18n="serial.tabLookup">Tra Cứu Serial</span>
             </button>
             <span class="serial-tab-slider" id="serial-tab-slider" aria-hidden="true"></span>
         </div>
@@ -116,7 +126,6 @@
         <div class="register-page-wrapper serial-panel" id="panel-register" role="tabpanel" aria-labelledby="tab-register-btn">
             <!-- Hero Header (hidden by default - reuse page hero above) -->
 
-            <!-- Cross Banner: Link sang Tra cứu Serial -->
             <!-- Cross Banner: Link sang Tra cứu Serial -->
             <div class="lookup-cross-banner">
                 <div class="lookup-cross-info">
@@ -127,12 +136,12 @@
                         </svg>
                     </div>
                     <div class="lookup-cross-text">
-                        <strong>Đã có Serial hoặc vừa hoàn tất chuyển khoản?</strong>
-                        <span>Kiểm tra trạng thái kích hoạt bản quyền của thiết bị theo thời gian thực.</span>
+                        <strong data-i18n="serial.crossToLookupTitle">Đã có Serial hoặc vừa hoàn tất chuyển khoản?</strong>
+                        <span data-i18n="serial.crossToLookupDesc">Kiểm tra trạng thái kích hoạt bản quyền của thiết bị theo thời gian thực.</span>
                     </div>
                 </div>
                 <button type="button" class="lookup-cross-btn" data-jump-tab="lookup">
-                    <span>Tra Cứu Serial Ngay</span>
+                    <span data-i18n="serial.crossToLookupBtn">Tra Cứu Serial Ngay</span>
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                         <polyline points="12 5 19 12 12 19"></polyline>
@@ -147,24 +156,24 @@
                     <div class="reg-step-item active">
                         <div class="reg-step-num">1</div>
                         <div class="reg-step-info">
-                            <span class="reg-step-title">Thiết Bị & Email</span>
-                            <span class="reg-step-sub">Thông tin kích hoạt</span>
+                            <span class="reg-step-title" data-i18n="serial.step1Title">Thiết Bị &amp; Email</span>
+                            <span class="reg-step-sub" data-i18n="serial.step1Sub">Thông tin kích hoạt</span>
                         </div>
                     </div>
                     <div class="reg-step-connector" aria-hidden="true"></div>
                     <div class="reg-step-item active">
                         <div class="reg-step-num">2</div>
                         <div class="reg-step-info">
-                            <span class="reg-step-title">Gói & Kênh TT</span>
-                            <span class="reg-step-sub">Chọn phương thức</span>
+                            <span class="reg-step-title" data-i18n="serial.step2Title">Gói &amp; Kênh TT</span>
+                            <span class="reg-step-sub" data-i18n="serial.step2Sub">Chọn phương thức</span>
                         </div>
                     </div>
                     <div class="reg-step-connector" aria-hidden="true"></div>
                     <div class="reg-step-item active">
                         <div class="reg-step-num">3</div>
                         <div class="reg-step-info">
-                            <span class="reg-step-title">Quét QR Thanh Toán</span>
-                            <span class="reg-step-sub">Duyệt tự động siêu tốc</span>
+                            <span class="reg-step-title" data-i18n="serial.step3Title">Quét QR Thanh Toán</span>
+                            <span class="reg-step-sub" data-i18n="serial.step3Sub">Duyệt tự động siêu tốc</span>
                         </div>
                     </div>
                 </div>
@@ -180,8 +189,8 @@
                         <div class="reg-section-header">
                             <span class="reg-section-badge">1</span>
                             <div class="reg-section-header-text">
-                                <h2 class="reg-section-title" id="form-heading">Thông Tin Thiết Bị & Email Xác Thực</h2>
-                                <p class="reg-section-subtitle">Nhập email để hệ thống kiểm tra ưu đãi tích lũy tự động và thông báo kích hoạt.</p>
+                                <h2 class="reg-section-title" id="form-heading" data-i18n="serial.sec1Title">Thông Tin Thiết Bị &amp; Email Xác Thực</h2>
+                                <p class="reg-section-subtitle" data-i18n="serial.sec1Sub">Nhập email để hệ thống kiểm tra ưu đãi tích lũy tự động và thông báo kích hoạt.</p>
                             </div>
                         </div>
 
@@ -193,9 +202,9 @@
                                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                                         <polyline points="22,6 12,13 2,6"></polyline>
                                     </svg>
-                                    Email liên hệ của bạn <span class="reg-required">*</span>
+                                    <span data-i18n-html="serial.emailLabel">Email liên hệ của bạn <span class="reg-required">*</span></span>
                                 </span>
-                                <span class="reg-hint">Nhận thông báo kích hoạt & tính ưu đãi tự động</span>
+                                <span class="reg-hint" data-i18n="serial.emailHint">Nhận thông báo kích hoạt &amp; tính ưu đãi tự động</span>
                             </label>
                             <div class="reg-input-wrapper">
                                 <span class="reg-input-icon">
@@ -210,6 +219,7 @@
                                     name="senderEmail"
                                     class="reg-input email-field"
                                     placeholder="VD: emailcuaban@gmail.com"
+                                    data-i18n-placeholder="serial.emailPlaceholder"
                                     autocomplete="email"
                                     spellcheck="false"
                                     inputmode="email"
@@ -240,7 +250,7 @@
                                         </svg>
                                     </div>
                                     <div class="email-stats-content">
-                                        <div class="email-stats-label">Số thiết bị đã kích hoạt</div>
+                                        <div class="email-stats-label" data-i18n="serial.emailDevicesLabel">Số thiết bị đã kích hoạt</div>
                                         <div class="email-stats-value" id="email-devices-count">0 thiết bị</div>
                                     </div>
                                 </div>
@@ -254,10 +264,10 @@
                                         </svg>
                                     </div>
                                     <div class="email-price-content">
-                                        <div class="email-price-label">Mức giá áp dụng</div>
+                                        <div class="email-price-label" data-i18n="serial.emailPriceLabel">Mức giá áp dụng</div>
                                         <div class="email-price-value" id="email-next-price">50.000đ</div>
                                         <div class="email-price-badge" id="email-price-badge" style="display: none;"></div>
-                                        <div class="email-price-tier-hint">💡 50k / 1 con • Tích từ 31 con trở lên: 40k</div>
+                                        <div class="email-price-tier-hint" data-i18n="serial.emailTierHint">💡 50k / 1 con • Tích từ 31 con trở lên: 40k</div>
                                     </div>
                                 </div>
                             </div>
@@ -273,9 +283,9 @@
                                             <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
                                             <line x1="12" y1="18" x2="12.01" y2="18"></line>
                                         </svg>
-                                        Mã thiết bị (Codename) <span class="reg-required">*</span>
+                                        <span data-i18n-html="serial.codenameLabel">Mã thiết bị (Codename) <span class="reg-required">*</span></span>
                                     </span>
-                                    <span class="reg-hint">VD: amethyst, houji...</span>
+                                    <span class="reg-hint" data-i18n="serial.codenameHint">VD: amethyst, houji...</span>
                                 </label>
 
                                 <div class="reg-input-wrapper">
@@ -291,6 +301,7 @@
                                         name="deviceCodename"
                                         class="reg-input"
                                         placeholder="Nhập mã máy (amethyst, aurora...)"
+                                        data-i18n-placeholder="serial.codenamePlaceholder"
                                         list="devices-datalist"
                                         autocomplete="off"
                                         spellcheck="false"
@@ -307,7 +318,7 @@
                                         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                         <polyline points="22 4 12 14.01 9 11.01"></polyline>
                                     </svg>
-                                    <span id="device-preview-text">Nhận diện: Đang chọn...</span>
+                                    <span id="device-preview-text" data-i18n="serial.codenamePreviewInit">Nhận diện: Đang chọn...</span>
                                 </div>
                             </div>
 
@@ -319,9 +330,9 @@
                                             <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
                                             <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
                                         </svg>
-                                        Số Serial phần cứng (SN) <span class="reg-required">*</span>
+                                        <span data-i18n-html="serial.snLabel">Số Serial phần cứng (SN) <span class="reg-required">*</span></span>
                                     </span>
-                                    <span class="reg-hint">8 ký tự chuẩn A-Z, 0-9</span>
+                                    <span class="reg-hint" data-i18n="serial.snHint">8 ký tự chuẩn A-Z, 0-9</span>
                                 </label>
 
                                 <div class="reg-input-wrapper">
@@ -342,12 +353,13 @@
                                         name="serialNumber"
                                         class="reg-input serial-field"
                                         placeholder="VD: 5A1C8D2F hoặc A1B2C3D4"
+                                        data-i18n-placeholder="serial.snPlaceholder"
                                         autocomplete="off"
                                         spellcheck="false"
                                         required
                                         aria-describedby="serial-status"
                                     >
-                                    <button type="button" id="serial-clean-btn" class="reg-input-clean-btn" aria-label="Xóa nhanh serial" title="Xóa nhanh">
+                                    <button type="button" id="serial-clean-btn" class="reg-input-clean-btn" aria-label="Xóa nhanh serial" title="Xóa nhanh" data-i18n-title="serial.snCleanTitle">
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <line x1="18" y1="6" x2="6" y2="18"></line>
                                             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -356,34 +368,34 @@
                                 </div>
 
                                 <div class="serial-clean-status" id="serial-status">
-                                    <span id="serial-clean-preview">Đang chờ nhập serial hợp lệ...</span>
+                                    <span id="serial-clean-preview" data-i18n="serial.snWaiting">Đang chờ nhập serial hợp lệ...</span>
                                     <span id="serial-valid-tag" class="serial-status-valid" style="display: none;">
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                             <polyline points="20 6 9 17 4 12"></polyline>
                                         </svg>
-                                        Chuẩn định dạng
+                                        <span data-i18n="serial.snValidTag">Chuẩn định dạng</span>
                                     </span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="serial-format-hint">
-                            <span>💡 Chỉ điền đúng số Serial phần cứng (không thêm "SN:", dấu cách hay dấu hai chấm).</span>
+                            <span data-i18n="serial.snFormatHint">💡 Chỉ điền đúng số Serial phần cứng (không thêm "SN:", dấu cách hay dấu hai chấm).</span>
                         </div>
 
                         <!-- Accordion hướng dẫn tìm serial (luôn mở sẵn) -->
                         <details class="serial-help-accordion" open>
                             <summary class="serial-help-summary">
-                                <span>🔍 Hướng dẫn lấy số Serial thiết bị chuẩn (Fastboot / ADB)</span>
+                                <span data-i18n="serial.helpSummary">🔍 Hướng dẫn lấy số Serial thiết bị chuẩn (Fastboot / ADB)</span>
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg>
                             </summary>
                             <div class="serial-help-body">
-                                <p>Bạn có thể lấy số Serial bằng một trong 2 cách chuẩn sau:</p>
+                                <p data-i18n="serial.helpIntro">Bạn có thể lấy số Serial bằng một trong 2 cách chuẩn sau:</p>
                                 <ol>
-                                    <li><strong>Qua chế độ Fastboot (Khuyên dùng khi cài ROM):</strong> Đưa máy vào Fastboot, cắm cáp vào máy tính và mở Command Prompt gõ: <code>fastboot getvar serialno</code>.</li>
-                                    <li><strong>Qua ADB:</strong> Bật Gỡ lỗi USB và gõ lệnh: <code>adb get-serialno</code>.</li>
+                                    <li data-i18n-html="serial.helpItem1"><strong>Qua chế độ Fastboot (Khuyên dùng khi cài ROM):</strong> Đưa máy vào Fastboot, cắm cáp vào máy tính và mở Command Prompt gõ: <code>fastboot getvar serialno</code>.</li>
+                                    <li data-i18n-html="serial.helpItem2"><strong>Qua ADB:</strong> Bật Gỡ lỗi USB và gõ lệnh: <code>adb get-serialno</code>.</li>
                                 </ol>
                             </div>
                         </details>
@@ -396,8 +408,8 @@
                         <div class="reg-section-header">
                             <span class="reg-section-badge">2</span>
                             <div class="reg-section-header-text">
-                                <h2 class="reg-section-title">Gói Bản Quyền & Kênh Thanh Toán</h2>
-                                <p class="reg-section-subtitle">Bản quyền kích hoạt vĩnh viễn trọn đời cho thiết bị Xiaomi / Redmi.</p>
+                                <h2 class="reg-section-title" data-i18n="serial.sec2Title">Gói Bản Quyền &amp; Kênh Thanh Toán</h2>
+                                <p class="reg-section-subtitle" data-i18n="serial.sec2Sub">Bản quyền kích hoạt vĩnh viễn trọn đời cho thiết bị Xiaomi / Redmi.</p>
                             </div>
                         </div>
 
@@ -407,13 +419,13 @@
                                 <div class="reg-plan-selection-bar">
                                     <div class="reg-plan-radio-wrap">
                                         <span class="plan-radio-circle"></span>
-                                        <span class="plan-selection-status" id="status-vip">✓ Đang chọn gói này (Mặc định)</span>
+                                        <span class="plan-selection-status" id="status-vip" data-i18n="serial.planSelected">✓ Đang chọn gói này (Mặc định)</span>
                                     </div>
                                     <span class="reg-vip-badge">
                                         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                                             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                                         </svg>
-                                        ★ PHỔ BIẾN NHẤT • VIP TRỌN ĐỜI
+                                        <span data-i18n="serial.planVipBadge">★ PHỔ BIẾN NHẤT • VIP TRỌN ĐỜI</span>
                                     </span>
                                 </div>
 
@@ -422,26 +434,26 @@
                                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color: var(--accent-primary);">
                                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
                                         </svg>
-                                        <span>Bản Quyền Vĩnh Viễn (Có Ủng Hộ)</span>
+                                        <span data-i18n="serial.planTitle">Bản Quyền Vĩnh Viễn (Có Ủng Hộ)</span>
                                     </div>
                                 </div>
 
-                                <p style="font-size: 0.88rem; color: var(--muted); margin: 0; line-height: 1.5;">Gói kích hoạt vĩnh viễn trọn đời dành cho người dùng ủng hộ đội ngũ phát triển ROM HyperUR. Quyền lợi kích hoạt vĩnh viễn trên thiết bị đăng ký.</p>
+                                <p style="font-size: 0.88rem; color: var(--muted); margin: 0; line-height: 1.5;" data-i18n="serial.planDesc">Gói kích hoạt vĩnh viễn trọn đời dành cho người dùng ủng hộ đội ngũ phát triển ROM HyperUR. Quyền lợi kích hoạt vĩnh viễn trên thiết bị đăng ký.</p>
 
                                 <ul class="reg-plan-features">
                                     <li>
                                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                        <span>Bản quyền <strong>vĩnh viễn trọn đời</strong> (1 Serial = 1 thiết bị)</span>
+                                        <span data-i18n-html="serial.planFeat1">Bản quyền <strong>vĩnh viễn trọn đời</strong> (1 Serial = 1 thiết bị)</span>
                                     </li>
                                     <li>
                                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                        <span>Duyệt kích hoạt nhanh từ <strong>5 – 30 phút</strong></span>
+                                        <span data-i18n-html="serial.planFeat2">Duyệt kích hoạt nhanh từ <strong>5 – 30 phút</strong></span>
                                     </li>
                                 </ul>
 
                                 <div class="reg-plan-card-note">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                                    <span>Lưu ý: Bản quyền kích hoạt gắn liền với số Serial phần cứng của thiết bị đăng ký.</span>
+                                    <span data-i18n="serial.planNote">Lưu ý: Bản quyền kích hoạt gắn liền với số Serial phần cứng của thiết bị đăng ký.</span>
                                 </div>
                             </div>
                         </div>
@@ -456,9 +468,9 @@
                                         <rect x="2" y="5" width="20" height="14" rx="2"></rect>
                                         <line x1="2" y1="10" x2="22" y2="10"></line>
                                     </svg>
-                                    Kênh Thanh Toán Tiếp Nhận <span class="reg-required">*</span>
+                                    <span data-i18n-html="serial.payChannelLabel">Kênh Thanh Toán Tiếp Nhận <span class="reg-required">*</span></span>
                                 </span>
-                                <span class="reg-hint">Kênh chính thức & minh bạch</span>
+                                <span class="reg-hint" data-i18n="serial.payChannelHint">Kênh chính thức &amp; minh bạch</span>
                             </label>
 
                             <div class="payment-methods-grid" id="payment-methods-grid" role="radiogroup" aria-label="Chọn phương thức thanh toán">
@@ -471,11 +483,11 @@
                                             </svg>
                                         </div>
                                         <div>
-                                            <div class="payment-method-name">Chuyển Khoản VietQR (24/7)</div>
-                                            <span class="payment-method-tag tag-vnd">Ngân hàng VN • Tính giá động</span>
+                                            <div class="payment-method-name" data-i18n="serial.payVietqrName">Chuyển Khoản VietQR (24/7)</div>
+                                            <span class="payment-method-tag tag-vnd" data-i18n="serial.payVietqrTag">Ngân hàng VN • Tính giá động</span>
                                         </div>
                                     </div>
-                                    <div class="payment-method-desc">Quét mã VietQR tự động từ mọi app ngân hàng (50k/con • ≥31 con: 40k)</div>
+                                    <div class="payment-method-desc" data-i18n="serial.payVietqrDesc">Quét mã VietQR tự động từ mọi app ngân hàng (50k/con • ≥31 con: 40k)</div>
                                 </div>
 
                                 <div class="payment-method-card" data-method="crypto_intl" role="radio" aria-checked="false" tabindex="0">
@@ -488,11 +500,11 @@
                                             </svg>
                                         </div>
                                         <div>
-                                            <div class="payment-method-name" style="color: #fbbf24;">Binance Pay & PayPal</div>
-                                            <span class="payment-method-tag tag-fixed-price">Only 5$ • Giá cố định</span>
+                                            <div class="payment-method-name" style="color: #fbbf24;" data-i18n="serial.payIntlName">Binance Pay &amp; PayPal</div>
+                                            <span class="payment-method-tag tag-fixed-price" data-i18n="serial.payIntlTag">Only 5$ • Giá cố định</span>
                                         </div>
                                     </div>
-                                    <div class="payment-method-desc">Quốc tế & Crypto • Chấp nhận 5 USDT (Binance) hoặc 5 USD (PayPal)</div>
+                                    <div class="payment-method-desc" data-i18n="serial.payIntlDesc">Quốc tế &amp; Crypto • Chấp nhận 5 USDT (Binance) hoặc 5 USD (PayPal)</div>
                                 </div>
                             </div>
                             <input type="hidden" name="paymentMethod" id="payment-method-value" value="Chuyển Khoản VietQR (24/7)">
@@ -530,46 +542,46 @@
                                      loading="lazy">
                                 <span class="payment-qr-caption" id="payment-qr-caption">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    <span id="payment-qr-caption-text">Quét bằng mọi ứng dụng ngân hàng</span>
+                                    <span id="payment-qr-caption-text" data-i18n="serial.qrCaptionBank">Quét bằng mọi ứng dụng ngân hàng</span>
                                 </span>
                             </div>
 
                             <div class="payment-info-rows">
                                 <div class="payment-info-item" id="donation-amount-row">
-                                    <span class="payment-info-label">Mức Ủng Hộ Áp Dụng:</span>
+                                    <span class="payment-info-label" data-i18n="serial.amountLabel">Mức Ủng Hộ Áp Dụng:</span>
                                     <div class="payment-info-value-row">
                                         <span class="payment-info-value payment-price-highlight" id="donation-amount-val">50.000đ</span>
-                                        <span class="tier-pill tier-base current-active" id="payment-tier-pill">Cơ bản: 50k</span>
-                                        <span class="payment-tier-inline-hint" id="payment-tier-hint">Tích từ 31 con trở lên: <strong>40k</strong></span>
+                                        <span class="tier-pill tier-base current-active" id="payment-tier-pill" data-i18n="serial.tierBase">Cơ bản: 50k</span>
+                                        <span class="payment-tier-inline-hint" id="payment-tier-hint" data-i18n-html="serial.tierHintInline">Tích từ 31 con trở lên: <strong>40k</strong></span>
                                     </div>
                                 </div>
 
                                 <!-- Chi tiết khi chọn MBBank -->
                                 <div class="payment-info-item" id="bank-name-row">
-                                    <span class="payment-info-label" id="bank-name-label">Ngân Hàng Tiếp Nhận:</span>
+                                    <span class="payment-info-label" id="bank-name-label" data-i18n="serial.bankNameLabel">Ngân Hàng Tiếp Nhận:</span>
                                     <div class="payment-info-value-row">
-                                        <span class="payment-info-value" id="bank-name-val">MBBank (Ngân hàng TMCP Quân Đội)</span>
+                                        <span class="payment-info-value" id="bank-name-val" data-i18n="serial.bankNameVal">MBBank (Ngân hàng TMCP Quân Đội)</span>
                                     </div>
                                 </div>
 
                                 <div class="payment-info-item" id="bank-owner-row">
-                                    <span class="payment-info-label" id="bank-owner-label">Chủ Tài Khoản:</span>
+                                    <span class="payment-info-label" id="bank-owner-label" data-i18n="serial.bankOwnerLabel">Chủ Tài Khoản:</span>
                                     <div class="payment-info-value-row">
                                         <span class="payment-info-value" id="bank-owner-val">NGUYEN TAN LUC</span>
                                         <button type="button" class="btn-copy-mini" id="btn-copy-owner" data-copy="NGUYEN TAN LUC" aria-label="Sao chép tên người nhận">
                                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                                            <span id="btn-copy-owner-text">Chép</span>
+                                            <span id="btn-copy-owner-text" data-i18n="serial.copyShort">Chép</span>
                                         </button>
                                     </div>
                                 </div>
 
                                 <div class="payment-info-item" id="bank-acc-row">
-                                    <span class="payment-info-label" id="bank-acc-label">Số Tài Khoản MBBank:</span>
+                                    <span class="payment-info-label" id="bank-acc-label" data-i18n="serial.bankAccLabel">Số Tài Khoản MBBank:</span>
                                     <div class="payment-info-value-row">
                                         <span class="payment-info-value payment-acc-highlight" id="bank-acc-val">VQRQAMNWP9901</span>
                                         <button type="button" class="btn-copy-mini" id="btn-copy-acc" data-copy="VQRQAMNWP9901" aria-label="Sao chép số tài khoản">
                                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                                            <span id="btn-copy-acc-text">Chép</span>
+                                            <span id="btn-copy-acc-text" data-i18n="serial.copyShort">Chép</span>
                                         </button>
                                     </div>
                                 </div>
@@ -577,23 +589,23 @@
                                 <!-- Chi tiết khi chọn Binance Pay -->
                                 <div id="binance-details-group" style="display: none;">
                                     <div class="payment-info-item">
-                                        <span class="payment-info-label">Kênh Thanh Toán:</span>
+                                        <span class="payment-info-label" data-i18n="serial.payChannelShort">Kênh Thanh Toán:</span>
                                         <div class="payment-info-value-row">
                                             <span class="payment-info-value" style="color: #fbbf24; font-weight: 700;">⚡ Binance Pay (Crypto)</span>
                                         </div>
                                     </div>
                                     <div class="payment-info-item">
-                                        <span class="payment-info-label">UID Binance Tiếp Nhận:</span>
+                                        <span class="payment-info-label" data-i18n="serial.binanceUidLabel">UID Binance Tiếp Nhận:</span>
                                         <div class="payment-info-value-row">
                                             <span class="payment-info-value payment-acc-highlight" style="color: #fbbf24;">833477683</span>
                                             <button type="button" class="btn-copy-mini" data-copy="833477683" aria-label="Sao chép UID Binance">
                                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                                                <span>Chép UID</span>
+                                                <span data-i18n="serial.copyUid">Chép UID</span>
                                             </button>
                                         </div>
                                     </div>
                                     <div class="payment-info-item">
-                                        <span class="payment-info-label">Nickname Binance:</span>
+                                        <span class="payment-info-label" data-i18n="serial.binanceNickLabel">Nickname Binance:</span>
                                         <div class="payment-info-value-row">
                                             <span class="payment-info-value">lucnguyen06</span>
                                         </div>
@@ -603,38 +615,38 @@
                                 <!-- Chi tiết khi chọn PayPal -->
                                 <div id="paypal-details-group" style="display: none;">
                                     <div class="payment-info-item">
-                                        <span class="payment-info-label">Kênh Thanh Toán:</span>
+                                        <span class="payment-info-label" data-i18n="serial.payChannelShort">Kênh Thanh Toán:</span>
                                         <div class="payment-info-value-row">
-                                            <span class="payment-info-value" style="color: #38bdf8; font-weight: 700;">🅿️ PayPal (Quốc Tế)</span>
+                                            <span class="payment-info-value" style="color: #38bdf8; font-weight: 700;">🅿️ PayPal (International)</span>
                                         </div>
                                     </div>
                                     <div class="payment-info-item">
-                                        <span class="payment-info-label">Link Thanh Toán PayPal:</span>
+                                        <span class="payment-info-label" data-i18n="serial.paypalLinkLabel">Link Thanh Toán PayPal:</span>
                                         <div class="payment-info-value-row">
                                             <a href="https://paypal.me/lucnguyeen" target="_blank" rel="noopener noreferrer" class="payment-info-value payment-acc-highlight" style="color: #38bdf8; text-decoration: underline;">paypal.me/lucnguyeen</a>
                                             <button type="button" class="btn-copy-mini" data-copy="https://paypal.me/lucnguyeen" aria-label="Sao chép link PayPal">
                                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                                                <span>Chép Link</span>
+                                                <span data-i18n="serial.copyLink">Chép Link</span>
                                             </button>
                                         </div>
                                     </div>
                                     <div class="payment-info-item">
-                                        <span class="payment-info-label">Tên Người Nhận PayPal:</span>
+                                        <span class="payment-info-label" data-i18n="serial.paypalOwnerLabel">Tên Người Nhận PayPal:</span>
                                         <div class="payment-info-value-row">
                                             <span class="payment-info-value">Nguyễn Lực</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="payment-info-item payment-syntax-box" id="payment-syntax-row">
-                                    <span class="payment-info-label">Nội Dung Chuyển Khoản (Bắt buộc):</span>
+                                    <span class="payment-info-label" data-i18n="serial.syntaxLabel">Nội Dung Chuyển Khoản (Bắt buộc):</span>
                                     <div class="payment-info-value-row">
                                         <span class="payment-syntax-code" id="suggested-syntax">UR [CODENAME] [SERIAL] [EMAIL]</span>
                                         <button type="button" class="btn-copy-accent" id="btn-copy-syntax-quick" aria-label="Sao chép cú pháp">
                                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                                            <span id="btn-copy-syntax-text">Sao chép cú pháp</span>
+                                            <span id="btn-copy-syntax-text" data-i18n="serial.copySyntax">Sao chép cú pháp</span>
                                         </button>
                                     </div>
-                                    <span class="payment-syntax-tip">
+                                    <span class="payment-syntax-tip" data-i18n-html="serial.syntaxTip">
                                         ⚠️ Bắt buộc điền đúng cú pháp (ví dụ: <strong id="tip-syntax-example">UR ABC 12345678 user@gmail.com</strong>) vào nội dung chuyển khoản trên app ngân hàng để hệ thống đối soát tự động nhanh nhất.
                                     </span>
                                 </div>
@@ -653,22 +665,22 @@
                                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                                 </svg>
-                                <span id="btn-submit-text">Xác Nhận & Lấy Mã QR Thanh Toán</span>
+                                <span id="btn-submit-text" data-i18n="serial.submitBtn">Xác Nhận &amp; Lấy Mã QR Thanh Toán</span>
                             </button>
 
                             <!-- Trust & Security Badges -->
                             <div class="reg-trust-badges">
                                 <div class="reg-trust-item">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                                    <span>Bản quyền phần cứng SN</span>
+                                    <span data-i18n="serial.trust1">Bản quyền phần cứng SN</span>
                                 </div>
                                 <div class="reg-trust-item">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                    <span>Duyệt tự động 5 – 30 phút</span>
+                                    <span data-i18n="serial.trust2">Duyệt tự động 5 – 30 phút</span>
                                 </div>
                                 <div class="reg-trust-item">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v1"></path></svg>
-                                    <span>Hỗ trợ Telegram HyperUR 24/7</span>
+                                    <span data-i18n="serial.trust3">Hỗ trợ Telegram HyperUR 24/7</span>
                                 </div>
                             </div>
                         </div>
@@ -687,10 +699,10 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                     </svg>
-                    <span>Bạn chưa đăng ký Serial bản quyền hoặc vừa gửi ủng hộ qua ngân hàng?</span>
+                    <span data-i18n="serial.crossToRegDesc">Bạn chưa đăng ký Serial bản quyền hoặc vừa gửi ủng hộ qua ngân hàng?</span>
                 </div>
                 <button type="button" class="lookup-cross-btn" data-jump-tab="register">
-                    <span>Đến Cổng Đăng Ký Serial</span>
+                    <span data-i18n="serial.crossToRegBtn">Đến Cổng Đăng Ký Serial</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                         <polyline points="9 18 15 12 9 6"></polyline>
                     </svg>
@@ -706,7 +718,7 @@
                                 <rect x="2" y="4" width="20" height="16" rx="2"></rect>
                                 <path d="M7 15h0M2 9.5h20"></path>
                             </svg>
-                            <span>Nhập Số Serial hoặc Email (Hardware SN / Gmail)</span>
+                            <span data-i18n="serial.lookupLabel">Nhập Số Serial hoặc Email (Hardware SN / Gmail)</span>
                         </label>
                     </div>
 
@@ -724,11 +736,12 @@
                                 name="serial"
                                 class="lookup-input"
                                 placeholder="VD: 5A1C8D2F hoặc emailcuaban@gmail.com..."
+                                data-i18n-placeholder="serial.lookupPlaceholder"
                                 autocomplete="off"
                                 spellcheck="false"
                                 required
                             >
-                            <button type="button" id="lookup-clear-btn" class="lookup-clear-btn" aria-label="Xóa nội dung nhập" title="Xóa">
+                            <button type="button" id="lookup-clear-btn" class="lookup-clear-btn" aria-label="Xóa nội dung nhập" title="Xóa" data-i18n-title="serial.snCleanTitle">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                     <line x1="18" y1="6" x2="6" y2="18"></line>
                                     <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -740,7 +753,7 @@
                                 <circle cx="11" cy="11" r="8"></circle>
                                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                             </svg>
-                            <span>Tra Cứu Ngay</span>
+                            <span data-i18n="serial.lookupBtn">Tra Cứu Ngay</span>
                         </button>
                     </div>
 
@@ -749,13 +762,13 @@
                 <!-- Help Accordion -->
                 <details class="serial-help-accordion" style="margin-top: 1.75rem;">
                     <summary class="serial-help-summary">
-                        <span>🔍 Bạn chưa biết cách lấy số Serial thiết bị? Nhấn xem hướng dẫn</span>
+                        <span data-i18n="serial.lookupHelpSummary">🔍 Bạn chưa biết cách lấy số Serial thiết bị? Nhấn xem hướng dẫn</span>
                     </summary>
                     <div class="serial-help-body">
-                        <p>Bạn có thể lấy số Serial phần cứng bằng một trong 2 cách sau:</p>
+                        <p data-i18n="serial.helpIntro">Bạn có thể lấy số Serial phần cứng bằng một trong 2 cách sau:</p>
                         <ol>
-                            <li><strong>Qua chế độ Fastboot (Khuyên dùng khi cài ROM):</strong> Đưa máy về Fastboot, cắm cáp USB vào máy tính và gõ lệnh: <code>fastboot getvar serialno</code>.</li>
-                            <li><strong>Qua ADB:</strong> Bật Gỡ lỗi USB trên điện thoại và gõ: <code>adb get-serialno</code>.</li>
+                            <li data-i18n-html="serial.helpItem1"><strong>Qua chế độ Fastboot (Khuyên dùng khi cài ROM):</strong> Đưa máy về Fastboot, cắm cáp USB vào máy tính và gõ lệnh: <code>fastboot getvar serialno</code>.</li>
+                            <li data-i18n-html="serial.helpItem2"><strong>Qua ADB:</strong> Bật Gỡ lỗi USB trên điện thoại và gõ: <code>adb get-serialno</code>.</li>
                         </ol>
                     </div>
                 </details>
@@ -770,8 +783,8 @@
                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                         </svg>
                     </div>
-                    <h3 class="lookup-empty-title">Sẵn Sàng Tra Cứu Bản Quyền</h3>
-                    <p class="lookup-empty-desc">
+                    <h3 class="lookup-empty-title" data-i18n="serial.lookupEmptyTitle">Sẵn Sàng Tra Cứu Bản Quyền</h3>
+                    <p class="lookup-empty-desc" data-i18n-html="serial.lookupEmptyDesc">
                         Vui lòng nhập số Serial phần cứng của máy vào ô bên trên và nhấn <strong>Tra Cứu Ngay</strong> để kiểm tra tình trạng kích hoạt trực tuyến.
                     </p>
                 </div>
@@ -786,9 +799,9 @@
                             <circle cx="12" cy="12" r="10"></circle>
                             <polyline points="12 6 12 12 16 14"></polyline>
                         </svg>
-                        <span>Lịch Sử Tra Cứu Gần Đây</span>
+                        <span data-i18n="serial.historyTitle">Lịch Sử Tra Cứu Gần Đây</span>
                     </h4>
-                    <button type="button" class="lookup-history-clear" id="btn-clear-lookup-history">Xóa lịch sử</button>
+                    <button type="button" class="lookup-history-clear" id="btn-clear-lookup-history" data-i18n="serial.historyClear">Xóa lịch sử</button>
                 </div>
                 <div class="lookup-history-grid" id="lookup-history-grid"></div>
             </section>
@@ -803,28 +816,28 @@
                     <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
             </div>
-            <h2 class="reg-modal-title">Đã Gửi Serial Lên Hệ Thống!</h2>
-            <p class="reg-modal-desc" id="modal-desc-text">Số Serial của bạn đã được gửi lên hệ thống máy chủ để xác nhận và kích hoạt bản quyền. Email xác nhận đã được gửi đến địa chỉ email của bạn.</p>
+            <h2 class="reg-modal-title" data-i18n="serial.modalTitleDefault">Đã Gửi Serial Lên Hệ Thống!</h2>
+            <p class="reg-modal-desc" id="modal-desc-text" data-i18n="serial.modalDescDefault">Số Serial của bạn đã được gửi lên hệ thống máy chủ để xác nhận và kích hoạt bản quyền. Email xác nhận đã được gửi đến địa chỉ email của bạn.</p>
 
             <div class="reg-modal-details">
                 <div>
-                    <span>Số Serial:</span>
+                    <span data-i18n="serial.modalLabelSn">Số Serial:</span>
                     <span id="modal-serial-val" style="font-family: monospace; font-weight: 700; color: var(--accent-cyan);">---</span>
                 </div>
                 <div>
-                    <span>Mã Thiết Bị (Codename):</span>
+                    <span data-i18n="serial.modalLabelCodename">Mã Thiết Bị (Codename):</span>
                     <span id="modal-codename-val">---</span>
                 </div>
                 <div>
-                    <span>Gói Đăng Ký:</span>
+                    <span data-i18n="serial.modalLabelPlan">Gói Đăng Ký:</span>
                     <span id="modal-plan-val">Có Ủng hộ (Vĩnh viễn)</span>
                 </div>
                 <div>
-                    <span>Mức Ủng Hộ:</span>
+                    <span data-i18n="serial.modalLabelAmount">Mức Ủng Hộ:</span>
                     <span id="modal-amount-val" style="color: #fbbf24; font-weight: 700;">50.000đ / thiết bị</span>
                 </div>
                 <div>
-                    <span>Email Liên Hệ:</span>
+                    <span data-i18n="serial.modalLabelEmail">Email Liên Hệ:</span>
                     <span id="modal-email-val" style="color: var(--accent-cyan); font-family: monospace;">---</span>
                 </div>
             </div>
@@ -833,23 +846,23 @@
             <div class="modal-qr-box" id="modal-payment-qr-box" style="display: none; margin: 1rem 0; padding: 1.15rem; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: var(--radius-md); text-align: center;">
                 <div style="font-weight: 700; color: #10b981; font-size: 0.95rem; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 0.45rem;">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>Quét QR Bằng App Ngân Hàng Để Kích Hoạt</span>
+                    <span data-i18n="serial.modalQrHead">Quét QR Bằng App Ngân Hàng Để Kích Hoạt</span>
                 </div>
                 <div style="display: flex; justify-content: center; margin-bottom: 0.75rem;">
                     <img id="modal-qr-img" src="" alt="Mã QR thanh toán" width="220" height="220" style="border-radius: 12px; background: #fff; padding: 6px; box-shadow: 0 8px 24px rgba(0,0,0,0.5);" loading="lazy">
                 </div>
                 <div style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 0.65rem 0.85rem; margin-bottom: 0.75rem; text-align: left;">
-                    <div style="font-size: 0.76rem; color: #94a3b8; margin-bottom: 0.2rem;">Cú pháp chuyển khoản bắt buộc:</div>
+                    <div style="font-size: 0.76rem; color: #94a3b8; margin-bottom: 0.2rem;" data-i18n="serial.modalQrSyntaxLabel">Cú pháp chuyển khoản bắt buộc:</div>
                     <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
                         <code id="modal-qr-syntax" style="font-family: monospace; font-size: 0.88rem; font-weight: 700; color: #34d399; word-break: break-all;">UR ...</code>
                         <button type="button" class="btn-copy-mini" id="modal-btn-copy-syntax" style="flex-shrink: 0;" aria-label="Sao chép cú pháp">
-                            <span id="modal-btn-copy-text">Chép</span>
+                            <span id="modal-btn-copy-text" data-i18n="serial.copyShort">Chép</span>
                         </button>
                     </div>
                 </div>
                 <div style="font-size: 0.78rem; color: #cbd5e1; line-height: 1.45;">
-                    MBBank (Tài khoản ảo VA SePay): <strong style="color: #fff;" id="modal-qr-acc-val">VQRQAMNWP9901</strong> • <strong style="color: #fff;" id="modal-qr-owner-val">NGUYEN TAN LUC</strong><br>
-                    <span style="color: #fbbf24; font-weight: 600;">⚡ Chuyển đúng cú pháp để hệ thống SePay tự động duyệt trong 10 giây</span>
+                    MBBank (VA SePay): <strong style="color: #fff;" id="modal-qr-acc-val">VQRQAMNWP9901</strong> • <strong style="color: #fff;" id="modal-qr-owner-val">NGUYEN TAN LUC</strong><br>
+                    <span style="color: #fbbf24; font-weight: 600;" data-i18n="serial.modalQrHint">⚡ Chuyển đúng cú pháp để hệ thống SePay tự động duyệt trong 10 giây</span>
                 </div>
             </div>
 
@@ -859,10 +872,10 @@
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
-                    <span>Kiểm Tra Trạng Thái Kích Hoạt Serial Ngay</span>
+                    <span data-i18n="serial.modalCheckBtn">Kiểm Tra Trạng Thái Kích Hoạt Serial Ngay</span>
                 </button>
                 <button type="button" class="btn-ghost" id="modal-close-btn" style="justify-content: center;">
-                    <span>Đóng Cửa Sổ</span>
+                    <span data-i18n="serial.modalCloseBtn">Đóng Cửa Sổ</span>
                 </button>
             </div>
         </div>
@@ -879,9 +892,9 @@
             </button>
             <div class="qr-lightbox-card">
                 <div class="qr-lightbox-header">
-                    <span class="qr-lightbox-badge" id="qr-lightbox-badge">QUÉT MÃ QR THANH TOÁN</span>
-                    <h3 class="qr-lightbox-title" id="qr-lightbox-title">MBBank VietQR 24/7 (HyperUR)</h3>
-                    <p class="qr-lightbox-subtitle" id="qr-lightbox-subtitle">Mở ứng dụng ngân hàng hoặc ví điện tử để quét mã thanh toán</p>
+                    <span class="qr-lightbox-badge" id="qr-lightbox-badge" data-i18n="serial.lightboxBadge">QUÉT MÃ QR THANH TOÁN</span>
+                    <h3 class="qr-lightbox-title" id="qr-lightbox-title" data-i18n="serial.lightboxTitle">MBBank VietQR Chính Thức</h3>
+                    <p class="qr-lightbox-subtitle" id="qr-lightbox-subtitle" data-i18n="serial.lightboxSub">Quét mã bằng ứng dụng ngân hàng bất kỳ để tự động điền tiền và nội dung</p>
                 </div>
                 <div class="qr-lightbox-img-frame">
                     <img src="" alt="Mã QR kích thước lớn" id="qr-lightbox-img" class="qr-lightbox-img">
@@ -889,7 +902,7 @@
                 <div class="qr-lightbox-footer">
                     <span class="qr-lightbox-hint">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                        Nhấn ra ngoài vùng ảnh hoặc phím ESC để đóng
+                        <span data-i18n="serial.lightboxHint">Nhấn ra ngoài vùng ảnh hoặc phím ESC để đóng</span>
                     </span>
                 </div>
             </div>
@@ -902,20 +915,20 @@
         <div class="footer-inner footer-minimal-inner">
             <div class="footer-minimal-brand-row">
                 <a href="index.html" class="footer-logo">
-                    <img src="https://t.me/i/userpic/320/hyperur.jpg" alt="HyperUR Logo" class="footer-brand-icon" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><rect width=%2240%22 height=%2240%22 rx=%2210%22 fill=%22%232563eb%22/><text x=%2250%25%22 y=%2256%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22800%22 font-size=%2218%22>H</text></svg>'">
-                    <span class="logo-text">Hyper<span class="brand-accent">UR</span></span>
+                    <img src="https://t.me/i/userpic/320/hyperur.jpg" alt="HyperUR Logo" width="36" height="36" class="footer-brand-icon" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><rect width=%2240%22 height=%2240%22 rx=%2210%22 fill=%22%232563eb%22/><text x=%2250%25%22 y=%2256%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22800%22 font-size=%2218%22>H</text></svg>'">
+                    <span class="logo-text" translate="no">Hyper<span class="brand-accent">UR</span></span>
                 </a>
                 <div class="footer-status-pill">
-                    <span class="status-pulse-dot"></span>
-                    <span>Hỗ trợ 189+ thiết bị • OS 1.0 - 4.0</span>
+                    <span class="status-pulse-dot" aria-hidden="true"></span>
+                    <span data-i18n="footer.status">Hỗ trợ 189+ thiết bị • OS 1.0 - 4.0</span>
                 </div>
             </div>
 
-            <p class="footer-desc footer-minimal-desc">Dự án ROM Custom Stock-based tối ưu hiệu năng mượt mà, tối ưu pin và an toàn tuyệt đối.</p>
+            <p class="footer-desc footer-minimal-desc" data-i18n="footer.desc">Dự án ROM Custom Stock-based tối ưu hiệu năng mượt mà, tối ưu pin và an toàn tuyệt đối.</p>
 
             <div class="footer-bottom footer-minimal-bottom">
                 <div class="footer-copyright">
-                    <p>© 2026 HYPERUR TEAM. BẢO LƯU MỌI QUYỀN.</p>
+                    <p data-i18n="footer.copyright">© 2026 HYPERUR TEAM. BẢO LƯU MỌI QUYỀN.</p>
                 </div>
             </div>
         </div>
@@ -929,8 +942,9 @@
         <span id="toast-text">Thông báo</span>
     </div>
 
-    <!-- Configuration Script -->
+    <!-- Configuration & i18n Scripts -->
     <script src="json/config.js"></script>
+    <script src="json/i18n.js"></script>
 
     <!-- Serial Hub Logic (File độc lập, liên kết data & mức giá động) -->
     <script src="serial.js?v=20261104_1855"></script>

@@ -3,63 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Hướng dẫn chi tiết cài đặt và flash ROM HyperUR V3 cho thiết bị Xiaomi, Redmi. Hướng dẫn mở khóa Bootloader, cài Driver và flash an toàn qua Fastboot / Recovery.">
-    <title>Hướng Dẫn Cài Đặt - HyperUR Custom ROM Portal</title>
+    <meta name="theme-color" content="#05070f">
+    <meta name="description" content="Hướng dẫn cài đặt và flash ROM HyperUR cho thiết bị Xiaomi, Redmi qua Fastboot Windows (Flashing Tool) hoặc Custom Recovery (TWRP / OrangeFox)." data-i18n-meta-key="guide.metaDesc">
+    <title data-i18n-title-key="guide.metaTitle">Hướng Dẫn Cài Đặt - HyperUR Custom ROM Portal</title>
     <link rel="icon" type="image/jpeg" href="images/logo_hyperur.jpg">
     <link rel="apple-touch-icon" href="images/logo_hyperur.jpg">
-    
+
     <!-- Preconnect & Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
     <!-- Design System Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="guide-page-body">
+    <a href="#guide-main" class="guide-skip-link" data-i18n="guide.skipToMain">Chuyển tới nội dung chính</a>
+
     <!-- Floating Glass Header & Navbar -->
     <header class="navbar-wrapper">
-        <nav class="navbar glass" id="navbar">
+        <nav class="navbar glass" id="navbar" aria-label="Điều hướng chính">
             <div class="navbar-inner">
                 <!-- Brand Logo -->
-                <a href="index.html" class="navbar-brand">
+                <a href="index.html" class="navbar-brand" translate="no">
                     <span>Hyper<span class="brand-accent">UR</span></span>
                 </a>
 
                 <!-- Navigation Links -->
                 <ul class="navbar-menu" id="nav-menu">
-                    <li><a href="index.html" class="navbar-link">Trang Chủ</a></li>
-                    <li><a href="download.html" class="navbar-link">Tải ROM</a></li>
-                    <li><a href="guide.html" class="navbar-link active">Hướng Dẫn</a></li>
-                    <li><a href="serial.html" class="navbar-link">Đăng Ký & Tra Cứu Serial</a></li>
+                    <li><a href="index.html" class="navbar-link" data-i18n="nav.home">Trang Chủ</a></li>
+                    <li><a href="download.html" class="navbar-link" data-i18n="nav.download">Tải ROM</a></li>
+                    <li><a href="guide.html" class="navbar-link active" aria-current="page" data-i18n="nav.guide">Hướng Dẫn</a></li>
+                    <li><a href="serial.html" class="navbar-link" data-i18n="nav.serial">Đăng Ký &amp; Tra Cứu Serial</a></li>
                     <li class="mobile-nav-divider" aria-hidden="true"></li>
                     <li class="mobile-nav-footer">
                         <a href="https://t.me/hypermodupdate" target="_blank" rel="noopener noreferrer" class="mobile-nav-ext-link" aria-label="Tham gia kênh Telegram">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
                             </svg>
-                            <span>Kênh Telegram</span>
+                            <span data-i18n="nav.telegram">Kênh Telegram</span>
                         </a>
                     </li>
                 </ul>
 
                 <!-- Navbar Actions -->
                 <div class="navbar-actions">
-                    <!-- Mobile Menu Hamburger Toggle (được ẩn trên desktop, hiện trên mobile/tablet) -->
-                    <button class="btn-icon mobile-menu-btn" id="mobile-menu-btn" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="nav-menu" title="Menu">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                    <!-- Language Selector (VI / EN) -->
+                    <button type="button" class="btn-icon lang-selector" id="lang-btn" aria-label="Chuyển ngôn ngữ" title="Chuyển ngôn ngữ" data-i18n-aria-label="lang.switch" data-i18n-title="lang.switch">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <span class="lang-label" id="lang-label" translate="no">VI</span>
+                    </button>
+
+                    <button type="button" class="btn-icon mobile-menu-btn" id="mobile-menu-btn" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="nav-menu" title="Menu" data-i18n-title="nav.menu">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
                             <line x1="4" y1="7" x2="20" y2="7" class="bar-top"></line>
                             <line x1="4" y1="12" x2="20" y2="12" class="bar-mid"></line>
                             <line x1="4" y1="17" x2="20" y2="17" class="bar-bot"></line>
                         </svg>
                     </button>
 
-                    <!-- Theme Toggle Button -->
-                    <button class="btn-icon" id="theme-btn" aria-label="Đổi giao diện Sáng/Tối" title="Chuyển chế độ sáng/tối">
-                        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <button type="button" class="btn-icon" id="theme-btn" aria-label="Đổi giao diện Sáng/Tối" title="Chuyển chế độ sáng/tối" data-i18n-aria-label="nav.toggleTheme" data-i18n-title="nav.toggleTheme">
+                        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
                             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                         </svg>
-                        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="display: none;">
+                        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="display: none;" aria-hidden="true">
                             <circle cx="12" cy="12" r="5"></circle>
                             <line x1="12" y1="1" x2="12" y2="3"></line>
                             <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -76,240 +87,378 @@
         </nav>
     </header>
 
-    <!-- Mobile Menu Backdrop (overlay đóng menu khi bấm ra ngoài) -->
+    <!-- Mobile Menu Backdrop -->
     <div class="mobile-nav-backdrop" id="mobile-nav-backdrop" aria-hidden="true"></div>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Page Hero -->
-        <section class="page-hero">
-            <span class="kicker">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                </svg>
-                QUY TRÌNH CHUẨN & AN TOÀN
-            </span>
-            <h1>Hướng Dẫn Cài Đặt ROM HyperUR</h1>
-            <p>Quy trình 3 bước chi tiết giúp bạn cài đặt và nâng cấp chiếc điện thoại của mình lên phiên bản HyperUR V3 nhanh chóng, ổn định và bảo đảm an toàn dữ liệu.</p>
-        </section>
+    <!-- Main Editorial Content -->
+    <main class="main-content" id="guide-main">
+        <div class="guide-editorial-shell">
+            <!-- Header -->
+            <header class="guide-editorial-hero">
+                <h1 data-i18n-html="guide.heroTitle">Cài đặt ROM <span translate="no">HyperUR</span></h1>
+                <p class="guide-editorial-lead" data-i18n-html="guide.heroLead">
+                    Tài liệu thao tác chuẩn dành cho thiết bị Xiaomi và Redmi đã mở khóa <span translate="no">Bootloader</span>. Thực hiện lần lượt từ trên xuống dưới và kiểm tra kỹ điều kiện kết nối trước khi cắm cáp.
+                </p>
+                <nav class="guide-jump-nav" aria-label="Điều hướng nhanh các bước">
+                    <a href="#requirements" class="guide-jump-link" data-i18n="guide.jumpReq">Điều kiện bắt buộc</a>
+                    <a href="#step-1" class="guide-jump-link" data-i18n="guide.jumpStep1">Bước 1: Tải ROM &amp; Driver</a>
+                    <a href="#step-2" class="guide-jump-link" data-i18n="guide.jumpStep2">Bước 2: Flash ROM</a>
+                    <a href="#step-3" class="guide-jump-link" data-i18n="guide.jumpStep3">Bước 3: Khởi động</a>
+                    <a href="#troubleshooting" class="guide-jump-link" data-i18n="guide.jumpTrouble">Xử lý sự cố</a>
+                </nav>
+            </header>
 
-        <!-- Step-by-Step Full Detail Section -->
-        <section class="section" style="max-width: 900px; margin: 0 auto; padding-top: 1rem;">
-            <!-- Step 1 -->
-            <article class="guide-step-full">
-                <div class="guide-step-header">
-                    <div class="guide-step-badge">01</div>
-                    <div>
-                        <h3>Tải Bản Build HyperUR & Cài Đặt Driver</h3>
-                    </div>
+            <!-- Section 0: Requirements (Static List, No Checkboxes) -->
+            <section class="guide-editorial-row" id="requirements" aria-labelledby="heading-requirements">
+                <div class="guide-row-index">
+                    <h2 id="heading-requirements" data-i18n="guide.reqHeading">Điều kiện bắt buộc</h2>
+                    <p class="guide-row-caption" data-i18n="guide.reqCaption">Đảm bảo đáp ứng đầy đủ các yêu cầu này trước khi tiến hành nạp ROM.</p>
                 </div>
-                <div class="guide-step-body">
-                    <p>Xác định chính xác mã máy (Codename) của thiết bị trước khi tải ROM để tránh rủi ro cài nhầm phần sụn:</p>
-                    <ul>
-                        <li>Truy cập <a href="download.html" style="color: var(--accent-cyan); font-weight: 600;">Kho Tải ROM HyperUR</a> và tìm đúng tên thiết bị hoặc mã máy của bạn.</li>
-                        <li>Tải file nén ROM HyperUR (định dạng <code>.tgz</code> hoặc <code>.zip</code>) từ máy chủ SourceForge hoặc link dự phòng.</li>
-                        <li>Cài đặt đầy đủ <strong>Xiaomi Android USB Driver</strong> trên máy tính Windows để đảm bảo nhận diện thiết bị ở chế độ Fastboot.</li>
+                <div class="guide-row-content">
+                    <ul class="guide-req-list">
+                        <li class="guide-req-item">
+                            <div class="guide-req-main">
+                                <span class="guide-req-marker" aria-hidden="true"></span>
+                                <div>
+                                    <div class="guide-req-title" data-i18n-html="guide.req1Title"><span translate="no">Bootloader</span> đã mở khóa (<span translate="no">Unlocked</span>)</div>
+                                    <p class="guide-req-desc" data-i18n-html="guide.req1Desc">Kiểm tra tại <strong>Cài đặt &rsaquo; Tùy chọn nhà phát triển &rsaquo; Trạng thái mở khóa Mi</strong>.</p>
+                                </div>
+                            </div>
+                            <span class="guide-req-tag is-required" data-i18n="guide.tagRequired">Bắt buộc</span>
+                        </li>
+                        <li class="guide-req-item">
+                            <div class="guide-req-main">
+                                <span class="guide-req-marker" aria-hidden="true"></span>
+                                <div>
+                                    <div class="guide-req-title" data-i18n="guide.req2Title">Sao lưu dữ liệu cá nhân</div>
+                                    <p class="guide-req-desc" data-i18n="guide.req2Desc">Không bắt buộc, nhưng nếu bạn có dữ liệu quan trọng thì tốt nhất hãy sao lưu lại trước khi flash để đề phòng trường hợp xấu nhất.</p>
+                                </div>
+                            </div>
+                            <span class="guide-req-tag" data-i18n="guide.tagRecommended">Khuyến nghị</span>
+                        </li>
+                        <li class="guide-req-item">
+                            <div class="guide-req-main">
+                                <span class="guide-req-marker" aria-hidden="true"></span>
+                                <div>
+                                    <div class="guide-req-title" data-i18n="guide.req3Title">Pin thiết bị còn tối thiểu 50%</div>
+                                    <p class="guide-req-desc" data-i18n="guide.req3Desc">Tránh sập nguồn đột ngột khi công cụ đang ghi phân vùng hệ thống.</p>
+                                </div>
+                            </div>
+                            <span class="guide-req-tag" data-i18n="guide.tagSafety">An toàn</span>
+                        </li>
+                        <li class="guide-req-item">
+                            <div class="guide-req-main">
+                                <span class="guide-req-marker" aria-hidden="true"></span>
+                                <div>
+                                    <div class="guide-req-title" data-i18n-html="guide.req4Title">Cáp truyền dữ liệu tốt &amp; cắm trực tiếp vào cổng USB chuẩn</div>
+                                    <p class="guide-req-desc" data-i18n-html="guide.req4Desc">
+                                        Nếu bạn dùng <strong>PC</strong>, hãy cắm cáp trực tiếp vào các cổng USB trên <strong>mainboard (mặt sau)</strong> — tuyệt đối không cắm các cổng ở mặt trước vỏ case hay qua hub chia USB. Với <strong>laptop</strong> cũng tương tự: cắm trực tiếp vào cổng USB trên thân máy, tuyệt đối không dùng hub.
+                                    </p>
+                                </div>
+                            </div>
+                            <span class="guide-req-tag is-required" data-i18n="guide.tagRequired">Bắt buộc</span>
+                        </li>
                     </ul>
-                    <div class="callout-box info">
-                        <div class="callout-box-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="12" y1="16" x2="12" y2="12"></line>
-                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </div>
+            </section>
+
+            <!-- Step 1 -->
+            <article class="guide-editorial-row" id="step-1" aria-labelledby="heading-step-1">
+                <div class="guide-row-index">
+                    <div class="guide-step-meta" data-i18n="guide.step1Meta">Bước 1 / 3 · ~3 phút</div>
+                    <h2 id="heading-step-1" data-i18n="guide.step1Title">Tải ROM &amp; cài Driver</h2>
+                    <p class="guide-row-caption" data-i18n-html="guide.step1Caption">Xác định đúng mã máy (<span translate="no">Codename</span>) và chuẩn bị kết nối <span translate="no">Fastboot</span>.</p>
+                </div>
+                <div class="guide-row-content">
+                    <ul class="guide-bullet-list">
+                        <li data-i18n-html="guide.step1Item1">Mở <a href="download.html" class="guide-inline-link">Kho Tải ROM <span translate="no">HyperUR</span></a> và tìm đúng tên thiết bị hoặc mã máy (<span translate="no">Codename</span>) để tránh cài nhầm phần sụn.</li>
+                        <li data-i18n-html="guide.step1Item2">Tải file nén ROM <span translate="no">HyperUR</span> định dạng <code class="guide-inline-code" translate="no">.tgz</code> hoặc <code class="guide-inline-code" translate="no">.zip</code> về ổ cứng máy tính.</li>
+                        <li data-i18n-html="guide.step1Item3">Cài đặt đầy đủ <strong translate="no">Xiaomi Android USB Driver</strong> trên Windows để máy tính nhận diện thiết bị ở chế độ <span translate="no">Fastboot</span>.</li>
+                        <li data-i18n-html="guide.step1Item4">Tắt nguồn điện thoại hoàn toàn, sau đó nhấn giữ đồng thời <strong>Nút Nguồn + Giảm âm lượng</strong> cho đến khi màn hình hiện chữ <code class="guide-inline-code" translate="no">FASTBOOT</code> rồi cắm cáp vào máy tính.</li>
+                    </ul>
+
+                    <div class="guide-notice is-usb" role="note">
+                        <div class="guide-notice-icon" aria-hidden="true">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                                <line x1="12" y1="9" x2="12" y2="13"></line>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
                             </svg>
                         </div>
-                        <div class="callout-content">
-                            <h4>Kiểm tra kết nối Fastboot</h4>
-                            <p>Tắt nguồn điện thoại, sau đó nhấn giữ đồng thời <strong>Nút Nguồn + Giảm Âm Lượng</strong> cho đến khi màn hình hiện chữ FASTBOOT màu cam hoặc xanh. Cắm cáp kết nối vào máy tính (nên dùng cổng USB 2.0 phía sau mainboard).</p>
+                        <div class="guide-notice-body">
+                            <span class="guide-notice-title" data-i18n="guide.step1UsbTitle">Quy tắc cắm cáp USB bắt buộc</span>
+                            <p data-i18n-html="guide.step1UsbDesc">Nếu bạn dùng <strong>PC</strong>, hãy cắm cáp vào các cổng USB trực tiếp trên <strong>mainboard (phía sau máy)</strong>, <strong>tuyệt đối không</strong> cắm vào các cổng ở mặt trước vỏ case hay qua hub chia USB. Với <strong>laptop</strong> cũng tương tự — luôn cắm trực tiếp vào cổng USB trên thân máy, không cắm qua hub.</p>
                         </div>
                     </div>
                 </div>
             </article>
 
             <!-- Step 2 -->
-            <article class="guide-step-full">
-                <div class="guide-step-header">
-                    <div class="guide-step-badge">02</div>
-                    <div>
-                        <h3>Flash ROM qua Fastboot</h3>
-                        <p style="margin: 0; font-size: 0.95rem; color: var(--accent-cyan);">Cách flash ROM HyperUR qua Flashing Tool trên máy tính</p>
-                    </div>
+            <article class="guide-editorial-row" id="step-2" aria-labelledby="heading-step-2">
+                <div class="guide-row-index">
+                    <div class="guide-step-meta" data-i18n="guide.step2Meta">Bước 2 / 3 · 5–15 phút</div>
+                    <h2 id="heading-step-2" data-i18n="guide.step2Title">Flash ROM qua máy tính</h2>
+                    <p class="guide-row-caption" data-i18n-html="guide.step2Caption">Sử dụng <span translate="no">Flashing Tool Windows</span> (tự động nhận diện phân vùng) hoặc phương án dự phòng <span translate="no">TWRP</span>.</p>
                 </div>
-                <div class="guide-step-body">
-                    <h4 style="color: var(--text-strong); margin: 1.25rem 0 0.75rem; font-size: 1.15rem; display: flex; align-items: center; gap: 0.5rem;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color: var(--accent-primary);">
-                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                            <line x1="8" y1="21" x2="16" y2="21"></line>
-                            <line x1="12" y1="17" x2="12" y2="21"></line>
-                        </svg>
-                        <span>Quy trình Flash bằng Flashing Tool Windows</span>
-                    </h4>
-
-                    <ol style="padding-left: 1.5rem; margin-bottom: 1.25rem;">
-                        <li><strong>Tải ROM HyperUR</strong> (định dạng <code>.tgz</code> hoặc <code>.zip</code>) từ trang Kho Tải ROM.</li>
-                        <li><strong>Giải nén file ROM</strong> vào một thư mục bất kỳ trên máy tính (ví dụ: <code>D:\HyperUR_ROM\</code>).</li>
-                        <li><strong>Mở thư mục ROM đã giải nén</strong> vừa tạo.</li>
-                        <li><strong>Double-click file <code>Flashing_Tool_Windows_UR.bat</code></strong> để khởi chạy công cụ flash tự động.</li>
-                        <li><strong>Công cụ sẽ tự động nhận diện thiết bị</strong> (nếu điện thoại đã được kết nối ở Fastboot mode).</li>
-                        <li><strong>Nếu chưa vào Fastboot:</strong> Tắt máy hoàn toàn &rarr; Nhấn giữ tổ hợp <strong>Power (Nguồn) + Volume Down (Giảm âm lượng)</strong> cho đến khi máy rung và hiện biểu tượng Fastboot.</li>
-                        <li>Nhấn nút <strong>Flash</strong> trên công cụ và đợi quá trình cài đặt hoàn tất (khoảng <strong>5 - 15 phút</strong>).</li>
+                <div class="guide-row-content">
+                    <ol class="guide-ordered-list">
+                        <li data-i18n-html="guide.step2Item1">Giải nén file ROM đã tải vào thư mục có đường dẫn ngắn, không dấu tiếng Việt (ví dụ: <code class="guide-inline-code" translate="no">D:\HyperUR_ROM\</code>).</li>
+                        <li data-i18n-html="guide.step2Item2">Mở thư mục vừa giải nén và nhấp đúp tệp <code class="guide-inline-code" translate="no">Flashing_Tool_Windows_UR.bat</code> để chạy công cụ nạp ROM tự động.</li>
+                        <li data-i18n-html="guide.step2Item3">Công cụ sẽ tự nhận diện thiết bị đang kết nối ở chế độ <span translate="no">Fastboot</span>. Nếu chưa vào <span translate="no">Fastboot</span>, tắt nguồn và nhấn giữ <strong>Nguồn + Giảm âm lượng</strong> đến khi hiện biểu tượng <span translate="no">Fastboot</span>.</li>
+                        <li data-i18n-html="guide.step2Item4">Nhấn nút <strong>Flash</strong> trên công cụ và chờ quá trình cài đặt hoàn tất (khoảng <strong>5–15 phút</strong>).</li>
                     </ol>
 
-                    <div class="code-box" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
-                        <span>Script thực thi: <strong>Flashing_Tool_Windows_UR.bat</strong></span>
-                        <span style="color: var(--accent-cyan); font-size: 0.8rem; border: 1px solid rgba(6, 182, 212, 0.3); padding: 0.2rem 0.5rem; border-radius: 4px;">Tự động nhận diện phân vùng</span>
+                    <div class="guide-script-bar">
+                        <code translate="no">Flashing_Tool_Windows_UR.bat</code>
+                        <button type="button" class="guide-copy-btn" id="copy-script-btn" data-copy="Flashing_Tool_Windows_UR.bat">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            <span id="copy-script-label" data-i18n="guide.copyBtn">Sao chép</span>
+                        </button>
                     </div>
+                    <span id="copy-live-status" class="sr-only" aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);"></span>
 
-                    <div class="callout-box info" style="margin-top: 1rem;">
-                        <div class="callout-box-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                    <div class="guide-notice is-info" role="note">
+                        <div class="guide-notice-icon" aria-hidden="true">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <line x1="12" y1="16" x2="12" y2="12"></line>
                                 <line x1="12" y1="8" x2="12.01" y2="8"></line>
                             </svg>
                         </div>
-                        <div class="callout-content">
-                            <h4>Lưu ý trong quá trình Flash</h4>
-                            <p>Tool sẽ tự động flash đúng các phân vùng cần thiết. Lần đầu khởi động ROM mới có thể mất <strong>5 - 15 phút</strong>. <strong>Tuyệt đối không tháo pin, rút cáp USB hay tắt nguồn</strong> máy tính/điện thoại trong suốt quá trình này.</p>
+                        <div class="guide-notice-body">
+                            <span class="guide-notice-title" data-i18n="guide.step2NoteTitle">Giữ ổn định nguồn &amp; kết nối khi đang nạp</span>
+                            <p data-i18n-html="guide.step2NoteDesc">Công cụ tự động flash đúng các phân vùng cần thiết. <strong>Tuyệt đối không rút cáp USB, tháo pin hay tắt nguồn</strong> máy tính hoặc điện thoại cho đến khi quá trình kết thúc hoàn toàn.</p>
                         </div>
                     </div>
 
-                    <h4 style="color: var(--text-strong); margin: 2rem 0 0.5rem; font-size: 1.05rem;">Phương án dự phòng: Flash qua Custom Recovery (TWRP / OrangeFox)</h4>
-                    <p>Nếu điện thoại của bạn đã cài sẵn TWRP hoặc OrangeFox:</p>
-                    <ul>
-                        <li>Khởi động vào Recovery bằng cách tắt máy rồi nhấn giữ <strong>Nguồn + Tăng âm lượng</strong>.</li>
-                        <li>Vào mục <strong>Wipe &gt; Format Data</strong>, gõ <code>yes</code> để xác nhận giải mã phân vùng dữ liệu cũ.</li>
-                        <li>Chép file ROM vào bộ nhớ trong hoặc dùng USB OTG/ADB Sideload, chọn <strong>Install</strong> file ROM <code>.zip</code>.</li>
-                        <li>Sau khi báo flash thành công, chọn <strong>Reboot System</strong>.</li>
-                    </ul>
+                    <!-- Collapsible Custom Recovery Method -->
+                    <details class="guide-alt-details">
+                        <summary class="guide-alt-summary">
+                            <span data-i18n-html="guide.recoverySummary">Phương án dự phòng: Flash qua Custom Recovery (<span translate="no">TWRP / OrangeFox</span>)</span>
+                            <svg class="guide-alt-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </summary>
+                        <div class="guide-alt-body">
+                            <p data-i18n-html="guide.recoveryIntro">Áp dụng khi điện thoại của bạn đã cài sẵn <span translate="no">TWRP</span> hoặc <span translate="no">OrangeFox Recovery</span>:</p>
+                            <ol class="guide-ordered-list">
+                                <li data-i18n-html="guide.recoveryItem1">Tắt máy hoàn toàn, sau đó nhấn giữ <strong>Nguồn + Tăng âm lượng</strong> để vào <span translate="no">Recovery</span>.</li>
+                                <li data-i18n-html="guide.recoveryItem2">Vào mục <strong translate="no">Wipe &rsaquo; Format Data</strong>, gõ <code class="guide-inline-code" translate="no">yes</code> để xác nhận giải mã phân vùng dữ liệu cũ.</li>
+                                <li data-i18n-html="guide.recoveryItem3">Chép file ROM <code class="guide-inline-code" translate="no">.zip</code> vào bộ nhớ trong (hoặc dùng <span translate="no">USB OTG / ADB Sideload</span>) rồi chọn <strong translate="no">Install</strong>.</li>
+                                <li data-i18n-html="guide.recoveryItem4">Sau khi hệ thống báo flash thành công, chọn <strong translate="no">Reboot System</strong>.</li>
+                            </ol>
+                        </div>
+                    </details>
                 </div>
             </article>
 
             <!-- Step 3 -->
-            <article class="guide-step-full">
-                <div class="guide-step-header">
-                    <div class="guide-step-badge">03</div>
-                    <div>
-                        <h3>Khởi Động & Hoàn Tất Thiết Lập</h3>
-                    </div>
+            <article class="guide-editorial-row" id="step-3" aria-labelledby="heading-step-3">
+                <div class="guide-row-index">
+                    <div class="guide-step-meta" data-i18n="guide.step3Meta">Bước 3 / 3 · 3–5 phút</div>
+                    <h2 id="heading-step-3" data-i18n="guide.step3Title">Khởi động lần đầu &amp; hoàn tất</h2>
+                    <p class="guide-row-caption" data-i18n="guide.step3Caption">Chờ hệ thống tối ưu ứng dụng ở lần khởi chạy đầu tiên.</p>
                 </div>
-                <div class="guide-step-body">
-                    <p>Lần khởi động đầu tiên (First Boot) sau khi cài đặt ROM mới sẽ mất khoảng <strong>3 đến 5 phút</strong> để hệ thống tiến hành biên dịch ứng dụng và khởi tạo phân vùng bảo mật.</p>
-                    <ul>
-                        <li>Sau khi vào màn hình chào mừng của HyperUR, hãy thiết lập Wi-Fi và đăng nhập tài khoản Google.</li>
-                        <li>Vào <strong>Google Play Store</strong> tải về các ứng dụng ngân hàng và ví điện tử bạn sử dụng. Bạn sẽ thấy Play Integrity đạt chuẩn <strong>MEETS_DEVICE_INTEGRITY</strong> mặc định.</li>
-                        <li>Tiến hành đăng nhập ứng dụng ngân hàng và quét khuôn mặt eKYC như bình thường mà không cần bất kỳ module root phức tạp nào!</li>
-                    </ul>
+                <div class="guide-row-content">
+                    <p data-i18n-html="guide.step3Para1">Lần khởi động đầu tiên (<em translate="no">First Boot</em>) sau khi cài đặt ROM mới thường mất khoảng <strong>3–5 phút</strong> để hệ thống biên dịch ứng dụng và khởi tạo phân vùng hệ thống.</p>
+                    <p data-i18n-html="guide.step3Para2">Hãy giữ nguyên máy cho đến khi màn hình chào mừng của <span translate="no">HyperUR</span> hiện ra, sau đó hoàn tất các bước thiết lập cơ bản là có thể sử dụng bình thường.</p>
                 </div>
             </article>
 
-            <!-- Troubleshooting Box -->
-            <div class="callout-box warning" style="margin-top: 2.5rem;">
-                <div class="callout-box-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
-                        <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon>
-                        <line x1="12" y1="8" x2="12" y2="12"></line>
-                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                    </svg>
+            <!-- Troubleshooting Reference Table -->
+            <section class="guide-editorial-row" id="troubleshooting" aria-labelledby="heading-troubleshooting">
+                <div class="guide-row-index">
+                    <h2 id="heading-troubleshooting" data-i18n="guide.troubleTitle">Xử lý sự cố</h2>
+                    <p class="guide-row-caption" data-i18n="guide.troubleCaption">Tra cứu nhanh nguyên nhân và cách khắc phục phổ biến.</p>
                 </div>
-                <div class="callout-content">
-                    <h4>Khắc phục sự cố thường gặp (Troubleshooting)</h4>
-                    <p style="margin-bottom: 0.5rem;"><strong>Treo logo khởi động (Bootloop):</strong> Vào lại Recovery hoặc chạy lại script flash và chắc chắn rằng bạn đã Format Data (yes) sạch sẽ phân vùng dữ liệu cũ.</p>
-                    <p style="margin-bottom: 0.5rem;"><strong>Fastboot không nhận máy trên Windows 11:</strong> Đổi sang cổng USB 2.0 (màu đen) thay vì cổng USB 3.0/3.1 (màu xanh), hoặc cài driver <em>Android Bootloader Interface</em> qua Device Manager.</p>
-                    <p><strong>Tuyệt đối không chạy file flash_all_lock.bat</strong> của ROM khác khi đang ở ROM tùy biến để tránh tình trạng Hard-brick thiết bị.</p>
+                <div class="guide-row-content">
+                    <div class="guide-table-wrap">
+                        <table class="guide-ref-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" data-i18n="guide.troubleColSymptom">Triệu chứng</th>
+                                    <th scope="col" data-i18n="guide.troubleColFix">Cách xử lý</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td data-i18n-html="guide.troubleRow1Symptom">Treo logo khởi động (<span translate="no">Bootloop</span>)</td>
+                                    <td data-i18n-html="guide.troubleRow1Fix">Vào lại <span translate="no">Recovery</span> hoặc chạy lại công cụ flash và đảm bảo bạn đã <strong translate="no">Format Data</strong> (<code class="guide-inline-code" translate="no">yes</code>) sạch phân vùng dữ liệu cũ.</td>
+                                </tr>
+                                <tr>
+                                    <td data-i18n-html="guide.troubleRow2Symptom">Windows 11 không nhận <span translate="no">Fastboot</span></td>
+                                    <td data-i18n-html="guide.troubleRow2Fix">Kiểm tra lại dây cáp đã cắm trực tiếp vào cổng USB trên <strong>mainboard</strong> (PC) hoặc cổng trực tiếp trên <strong>thân laptop</strong> (không cắm cổng trước case hay hub chia USB), ưu tiên cổng USB 2.0 (màu đen), hoặc cập nhật driver <em translate="no">Android Bootloader Interface</em> trong <span translate="no">Device Manager</span>.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            </section>
 
-            <!-- Bottom CTA -->
-            <div class="highlight-card" style="margin-top: 3rem; text-align: center; align-items: center;">
-                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Đã nắm vững quy trình?</h3>
-                <p style="max-width: 500px; margin-bottom: 1.5rem;">Truy cập ngay kho ROM HyperUR để tìm kiếm thiết bị của bạn và tải bản build mới nhất.</p>
-                <a href="download.html" class="btn-primary">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="7 10 12 15 17 10"></polyline>
-                        <line x1="12" y1="15" x2="12" y2="3"></line>
-                    </svg>
-                    <span>Truy Cập Kho ROM Thiết Bị</span>
-                </a>
-            </div>
-        </section>
+            <!-- Bottom Action Row -->
+            <section class="guide-action-bar" aria-label="Bước tiếp theo">
+                <div class="guide-action-copy">
+                    <h2 data-i18n="guide.ctaHeading">Đã nắm vững quy trình cài đặt?</h2>
+                    <p data-i18n-html="guide.ctaDesc">Mở kho ROM <span translate="no">HyperUR</span> để chọn đúng thiết bị và tải bản build mới nhất.</p>
+                </div>
+                <div class="guide-action-links">
+                    <a href="download.html" class="guide-cta-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" aria-hidden="true">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <span data-i18n="guide.ctaPrimary">Truy Cập Kho ROM Thiết Bị</span>
+                    </a>
+                    <a href="https://t.me/HuperUltraRateChat" target="_blank" rel="noopener noreferrer" class="guide-cta-secondary">
+                        <span data-i18n="guide.ctaSecondary">Hỗ Trợ Qua Telegram</span>
+                    </a>
+                </div>
+            </section>
+        </div>
     </main>
 
-    <!-- Global Site Footer (Option 1B: Centered Minimalist Flagship) -->
+    <!-- Global Site Footer -->
     <footer class="site-footer site-footer-minimal">
         <div class="footer-glow-layer" aria-hidden="true"></div>
         <div class="footer-inner footer-minimal-inner">
             <div class="footer-minimal-brand-row">
                 <a href="index.html" class="footer-logo">
-                    <img src="https://t.me/i/userpic/320/hyperur.jpg" alt="HyperUR Logo" class="footer-brand-icon" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><rect width=%2240%22 height=%2240%22 rx=%2210%22 fill=%22%232563eb%22/><text x=%2250%25%22 y=%2256%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22800%22 font-size=%2218%22>H</text></svg>'">
-                    <span class="logo-text">Hyper<span class="brand-accent">UR</span></span>
+                    <img src="https://t.me/i/userpic/320/hyperur.jpg" alt="HyperUR Logo" width="36" height="36" class="footer-brand-icon" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><rect width=%2240%22 height=%2240%22 rx=%2210%22 fill=%22%232563eb%22/><text x=%2250%25%22 y=%2256%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22800%22 font-size=%2218%22>H</text></svg>'">
+                    <span class="logo-text" translate="no">Hyper<span class="brand-accent">UR</span></span>
                 </a>
                 <div class="footer-status-pill">
-                    <span class="status-pulse-dot"></span>
-                    <span>Hỗ trợ 189+ thiết bị • OS 1.0 - 4.0</span>
+                    <span class="status-pulse-dot" aria-hidden="true"></span>
+                    <span data-i18n="footer.status">Hỗ trợ 189+ thiết bị • OS 1.0 - 4.0</span>
                 </div>
             </div>
 
-            <p class="footer-desc footer-minimal-desc">Dự án ROM Custom Stock-based tối ưu hiệu năng mượt mà, tối ưu pin và an toàn tuyệt đối.</p>
+            <p class="footer-desc footer-minimal-desc" data-i18n="footer.desc">Dự án ROM Custom Stock-based tối ưu hiệu năng mượt mà, tối ưu pin và an toàn tuyệt đối.</p>
 
             <div class="footer-bottom footer-minimal-bottom">
                 <div class="footer-copyright">
-                    <p>© 2026 HYPERUR TEAM. BẢO LƯU MỌI QUYỀN.</p>
+                    <p data-i18n="footer.copyright">© 2026 HYPERUR TEAM. BẢO LƯU MỌI QUYỀN.</p>
                 </div>
             </div>
         </div>
     </footer>
 
     <!-- Floating Scroll to Top Action -->
-    <a href="#" class="scroll-to-top" id="scroll-to-top" aria-label="Lên đầu trang">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <a href="#" class="scroll-to-top" id="scroll-to-top" aria-label="Lên đầu trang" data-i18n-aria-label="footer.scrollTop">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
     </a>
 
-    <!-- Theme Toggle Handler -->
+    <!-- Theme Toggle, Scroll-to-Top & i18n Handlers -->
     <script src="json/devices.js"></script>
+    <script src="json/i18n.js"></script>
 
-    <!-- Mobile Menu Toggle Script -->
+    <!-- Guide Interactions, Language Switcher & Mobile Menu -->
     <script>
-        (function() {
+        (function () {
+            'use strict';
+
+            // Language toggle handler (synced with json/i18n.js)
+            const langBtn = document.getElementById('lang-btn');
+            if (langBtn) {
+                langBtn.addEventListener('click', function () {
+                    if (typeof I18n !== 'undefined') {
+                        I18n.toggleLang();
+                    }
+                });
+            }
+
+            // Mobile menu drawer
             const menuBtn = document.getElementById('mobile-menu-btn');
             const navMenu = document.getElementById('nav-menu');
             const backdrop = document.getElementById('mobile-nav-backdrop');
-            if (!menuBtn || !navMenu || !backdrop) return;
+            if (menuBtn && navMenu && backdrop) {
+                function closeMenu() {
+                    menuBtn.classList.remove('active');
+                    navMenu.classList.remove('is-open');
+                    backdrop.classList.remove('is-open');
+                    menuBtn.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                }
+                function openMenu() {
+                    menuBtn.classList.add('active');
+                    navMenu.classList.add('is-open');
+                    backdrop.classList.add('is-open');
+                    menuBtn.setAttribute('aria-expanded', 'true');
+                    document.body.style.overflow = 'hidden';
+                }
 
-            function closeMenu() {
-                menuBtn.classList.remove('active');
-                navMenu.classList.remove('is-open');
-                backdrop.classList.remove('is-open');
-                menuBtn.setAttribute('aria-expanded', 'false');
-                document.body.style.overflow = '';
-            }
-            function openMenu() {
-                menuBtn.classList.add('active');
-                navMenu.classList.add('is-open');
-                backdrop.classList.add('is-open');
-                menuBtn.setAttribute('aria-expanded', 'true');
-                document.body.style.overflow = 'hidden';
+                menuBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    if (navMenu.classList.contains('is-open')) {
+                        closeMenu();
+                    } else {
+                        openMenu();
+                    }
+                });
+                backdrop.addEventListener('click', closeMenu);
+                document.querySelectorAll('#nav-menu .navbar-link, #nav-menu .mobile-nav-ext-link').forEach(function (link) {
+                    link.addEventListener('click', closeMenu);
+                });
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') closeMenu();
+                });
+                window.addEventListener('resize', function () {
+                    if (window.innerWidth > 768) closeMenu();
+                });
             }
 
-            menuBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const isOpen = navMenu.classList.contains('is-open');
-                isOpen ? closeMenu() : openMenu();
-            });
-            backdrop.addEventListener('click', closeMenu);
-            document.querySelectorAll('#nav-menu .navbar-link, #nav-menu .mobile-nav-ext-link').forEach(function(link) {
-                link.addEventListener('click', closeMenu);
-            });
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') closeMenu();
-            });
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 768) closeMenu();
-            });
+            // Copy script filename button
+            const copyBtn = document.getElementById('copy-script-btn');
+            const copyLabel = document.getElementById('copy-script-label');
+            const liveStatus = document.getElementById('copy-live-status');
+            if (copyBtn && copyLabel) {
+                let resetTimer = null;
+                function t(key, fallback) {
+                    return (typeof I18n !== 'undefined' && typeof I18n.t === 'function') ? I18n.t(key) : fallback;
+                }
+                function markCopied() {
+                    copyBtn.setAttribute('data-copied', 'true');
+                    copyLabel.textContent = t('guide.copiedBtn', 'Đã sao chép');
+                    if (liveStatus) liveStatus.textContent = t('guide.copiedLive', 'Đã sao chép tên tệp Flashing_Tool_Windows_UR.bat');
+                    if (resetTimer) clearTimeout(resetTimer);
+                    resetTimer = setTimeout(function () {
+                        copyBtn.removeAttribute('data-copied');
+                        copyLabel.textContent = t('guide.copyBtn', 'Sao chép');
+                    }, 1800);
+                }
+
+                copyBtn.addEventListener('click', function () {
+                    const value = copyBtn.getAttribute('data-copy') || '';
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(value).then(markCopied).catch(function () {
+                            const ta = document.createElement('textarea');
+                            ta.value = value;
+                            ta.setAttribute('readonly', '');
+                            ta.style.position = 'fixed';
+                            ta.style.opacity = '0';
+                            document.body.appendChild(ta);
+                            ta.select();
+                            try { document.execCommand('copy'); markCopied(); } catch (_) {}
+                            document.body.removeChild(ta);
+                        });
+                    } else {
+                        const ta = document.createElement('textarea');
+                        ta.value = value;
+                        ta.setAttribute('readonly', '');
+                        ta.style.position = 'fixed';
+                        ta.style.opacity = '0';
+                        document.body.appendChild(ta);
+                        ta.select();
+                        try { document.execCommand('copy'); markCopied(); } catch (_) {}
+                        document.body.removeChild(ta);
+                    }
+                });
+            }
         })();
     </script>
 </body>
