@@ -72,6 +72,7 @@ Before implementing, inspect repository manifests (`package.json`, `pyproject.to
 | Distinctive visual direction & typography for new UI | `frontend-design` | `skills/frontend-design/SKILL.md` | `anthropics/skills` |
 | Motion animations (React/Vue/Nuxt/shadcn/Radix/icons) | `animate-ui` | `skills/animate-ui/SKILL.md` | `imskyleen/animate-ui` |
 | Web Interface Guidelines & UX/a11y compliance | `web-design-guidelines` | `skills/web-design-guidelines/SKILL.md` | `vercel-labs/agent-skills` |
+| Meta Astryx design system (`@astryxdesign/*`, React 19+ UI, or when requested) | `astryx` | `skills/astryx/SKILL.md` | `meta/astryx` |
 
 #### D. Browser Debugging & Web Performance (Chrome DevTools MCP)
 | Trigger / Branch | Skill | Path | Source |

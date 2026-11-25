@@ -1,7 +1,7 @@
 # Project Handoff — HyperUR V3
 
 > **Last updated**: 2026-11-25  
-> **Git status**: All work below is committed and pushed on `main` (see `git log -n 5 --oneline`).
+> **Git status**: Clean — Spec `001`–`005`, `download.html` copy feedback (`Đã chép link`), `AGENTS.md` (`astryx` sync), and `serial.html` Concept A polish (`RadioList` CSS cleanup, EN two-column alignment, `con` → `máy` copy) are committed and pushed to `origin/main`.
 
 ---
 
@@ -23,7 +23,7 @@ All specifications, plans, and completed task checklists live under `specs/` (in
      - Explicit USB rule included: connect directly to PC motherboard rear ports or laptop direct ports — never front-case ports or USB hubs.
 
 3. **Full Public-Site i18n (VI / EN)** — see `specs/003-public-pages-i18n/`
-   - Upgraded `json/i18n.js` (`I18n.t(key, vars)`, `hyperur:langchange` custom event, `data-i18n-html`, `data-i18n-title`, page title/meta translation, **415/415 VI/EN keys verified 100% in sync**).
+   - Upgraded `json/i18n.js` (`I18n.t(key, vars)`, `hyperur:langchange` custom event, `data-i18n-html`, `data-i18n-title`, page title/meta translation, **429/429 VI/EN keys verified 100% in sync**).
    - Localized all 6 public pages (`index.html`, `download.html`, `guide.html`, `serial.html`, `features.html`, `firmware.html`) + dynamic JS (`json/devices.js`, `serial.js`).
    - **Scope constraint (DO NOT change)**: `admin/admin.html` and `admin/admin-users.html` are intentionally **Vietnamese-only**.
    - **Backend compatibility (DO NOT change)**: Hidden form values in `serial.html` / `serial.js` (`#reg-type-value`, `#payment-method-value`) and `api/serial-register.php` payload fields must remain in their original Vietnamese strings to match PHP/DB expectations.
@@ -37,12 +37,16 @@ All specifications, plans, and completed task checklists live under `specs/` (in
      - Hero subtitle (`#dl-hero-desc`) dynamically displays the **real live Google Drive device count** (`state.driveCodenamesCount`), replacing the old hardcoded `189+`.
      - **Stale-While-Revalidate + Session-only caching**: All site data caches (`hyperur-active-roms` in `json/devices.js`; `EMAIL_STORAGE_KEY`, `qr_current_index`, `qr_payment_count`, `LOOKUP_HISTORY_KEY` in `serial.js`; `hyperur_splash_viewed` in `index.html`) use **`sessionStorage`** so reloading in-session is instant while closing the tab/browser automatically wipes all cached data. Only UI preferences (`hyperur-theme`, `hyperur-lang`) remain in `localStorage`.
 
+5. **Redesigned `serial.html` (Concept A — Astryx Payment Split)** — see `specs/005-redesign-serial-page/`
+   - Built with Meta Astryx `payment-form` grammar + Animate UI motion tokens/rules (gliding `#serial-tab-slider` tabs, hairline-divided flat sections, Collapsible Fastboot/ADB helper, Astryx `RadioList` payment selector with tabular pricing, sticky Order Summary & inline QR checkout, stroke-draw animated copy feedback, hover-gated rules, `prefers-reduced-motion` support, zero `transition: all`).
+   - Preserves all PHP/GAS backend API contracts, SePay QR rotation, URL params (`?tab=lookup`, `?serial=`, `?serial_prefill=`), and `sessionStorage` caches.
+   - Post-redesign polish: removed legacy `.payment-method-card` CSS leakage on `#payment-methods-grid` and scoped `.sr-price-meta .tier-pill`, stacked `.sr-two-col` field headers and shortened placeholders (`amethyst, fuxi` / `5A1C8D2F`) for clean VI/EN alignment, and unified Vietnamese unit wording (`con` → `máy`).
+
 ---
 
 ## 2. Suggested Next Steps
-1. **Review & Commit** the current working tree changes (consider splitting commits by spec: `001` backend fixes, `002` guide redesign, `003` public i18n, `004` download redesign + sessionStorage caching).
-2. **Runtime PHP/MySQL Verification**: Test `api/serial-register.php`, `api/payment-webhook.php`, `api/qr-active.php`, `check_serial2.php`, and `add_serial.php` on an environment with PHP 8.x + MySQL (or run `scripts/sepay-e2e/run.ps1`).
-3. **Optional Next UI Redecorations**: If continuing page-by-page redesigns after `guide.html` and `download.html`, the remaining main public pages are `serial.html` and `index.html` (also check whether the shared footer pill `"Hỗ trợ 189+ thiết bị"` should be updated to remove `189+`).
+1. **Runtime PHP/MySQL Verification**: Test `api/serial-register.php`, `api/payment-webhook.php`, `api/qr-active.php`, `check_serial2.php`, and `add_serial.php` on an environment with PHP 8.x + MySQL (or run `scripts/sepay-e2e/run.ps1`).
+2. **Optional Next UI Redecorations**: The remaining major public page after `guide.html`, `download.html`, and `serial.html` is `index.html` (also check whether the shared footer pill `"Hỗ trợ 189+ thiết bị"` across pages should be updated to remove `189+`).
 
 ---
 
