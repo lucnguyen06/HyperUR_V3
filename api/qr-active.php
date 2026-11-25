@@ -2,26 +2,14 @@
 /**
  * HyperUR V3 - QR Account Rotation API
  *
- * Tự động xoay vòng tài khoản VietQR sau mỗi 5 lần quét / giao dịch
+ * Tự động xoay vòng tài khoản VietQR sau mỗi 5 lần giao dịch hợp lệ (tăng từ SePay webhook)
  * Đồng bộ toàn hệ thống qua Database (MySQL)
  *
  * Endpoints:
- *   GET  /api/qr-active.php                    -> Lấy thông tin tài khoản đang kích hoạt
- *   POST /api/qr-active.php?action=record_scan -> Ghi nhận 1 lượt quét/đăng ký mới (+1)
- *   POST /api/qr-active.php?action=switch_next -> Chuyển ngay sang tài khoản tiếp theo
+ *   GET  /api/qr-active.php                    -> (Public) Lấy thông tin tài khoản đang kích hoạt
+ *   POST /api/qr-active.php?action=record_scan -> (Admin only) Ghi nhận 1 lượt (+1)
+ *   POST /api/qr-active.php?action=switch_next -> (Admin only) Chuyển ngay sang tài khoản tiếp theo
  */
-
-header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
-header('X-Content-Type-Options: nosniff');
-header('Cache-Control: no-store, max-age=0');
-
-if (($_SERVER['REQUEST_METHOD'] ?? '') === 'OPTIONS') {
-    http_response_code(200);
-    exit;
-}
 
 require_once __DIR__ . '/config.php';
 
@@ -45,17 +33,50 @@ const QR_ACCOUNTS = [
 
 const QR_ROTATE_THRESHOLD = 5;
 
-function qr_response($success, $data = [], $message = '') {
+function qr_response($success, $data = [], $message = '', $httpCode = 200) {
+    http_response_code($httpCode);
     echo json_encode(array_merge([
-        'success'   => (bool)$success,
-        'message'   => $message,
+        'success' => (bool)$success,
+        'message' => $message,
     ], $data), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     exit;
 }
 
+$action = $_GET['action'] ?? ($_POST['action'] ?? 'get');
+$method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+
+// Bảo vệ mọi thao tác ghi thay đổi trạng thái xoay QR: chỉ khởi động phiên Admin qua _bootstrap.php khi cần ghi
+$mutatingActions = ['record_scan', 'record_submit', 'switch_next'];
+if (in_array($action, $mutatingActions, true)) {
+    require_once __DIR__ . '/_bootstrap.php';   // JSON headers + safe CORS + admin session
+    if ($method !== 'POST') {
+        qr_response(false, [], 'Chỉ hỗ trợ phương thức POST cho thao tác này', 405);
+    }
+    if (!isset($_SESSION['admin_id'], $_SESSION['admin_username'])) {
+        qr_response(false, [], 'Bạn cần đăng nhập quản trị để thực hiện thao tác này', 401);
+    }
+} else {
+    // Public read-only GET: không tạo session cookie ẩn danh, giữ CORS công khai chỉ đọc
+    header('Content-Type: application/json; charset=utf-8');
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Methods: GET, OPTIONS');
+    header('Access-Control-Allow-Headers: Content-Type');
+    header('X-Content-Type-Options: nosniff');
+    header('Cache-Control: no-store, max-age=0');
+
+    if ($method === 'OPTIONS') {
+        http_response_code(204);
+        exit;
+    }
+    if ($method !== 'GET') {
+        qr_response(false, [], 'Chỉ hỗ trợ phương thức GET cho thao tác đọc', 405);
+    }
+}
+
 try {
-    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    $conn = @new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     if ($conn->connect_error) {
+        error_log('[qr-active] DB connect failed: ' . $conn->connect_error);
         // Fallback an toàn nếu DB lỗi: dùng tài khoản 0
         qr_response(true, [
             'index'     => 0,
@@ -63,7 +84,7 @@ try {
             'threshold' => QR_ROTATE_THRESHOLD,
             'total'     => 0,
             'account'   => QR_ACCOUNTS[0],
-            'warning'   => 'DB connection failed, fallback to default account'
+            'warning'   => 'Fallback to default account'
         ]);
     }
     $conn->set_charset('utf8mb4');
@@ -77,10 +98,7 @@ try {
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
     ");
 
-    $action = $_GET['action'] ?? ($_POST['action'] ?? 'get');
-    $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
-
-    // 1. Thao tác ghi nhận lượt quét/đăng ký mới (+1)
+    // 1. Thao tác ghi nhận lượt mới (+1) — chỉ Admin
     if ($action === 'record_scan' || $action === 'record_submit') {
         @$conn->query("
             INSERT INTO `system_settings` (`setting_key`, `setting_value`)
@@ -89,22 +107,24 @@ try {
         ");
     }
 
-    // 2. Thao tác chuyển ngay sang tài khoản tiếp theo
+    // 2. Thao tác chuyển ngay sang tài khoản tiếp theo — chỉ Admin
     if ($action === 'switch_next') {
         $curVal = 0;
         $r = $conn->query("SELECT `setting_value` FROM `system_settings` WHERE `setting_key` = 'qr_rotation_count' LIMIT 1");
         if ($r && $row = $r->fetch_assoc()) {
             $curVal = (int)$row['setting_value'];
         }
-        $nextMultiple = ((int)floor($curVal / QR_ROTATE_THRESHOLD) + 1) * QR_ROTATE_THRESHOLD;
+        $nextMultiple = (string)(((int)floor($curVal / QR_ROTATE_THRESHOLD) + 1) * QR_ROTATE_THRESHOLD);
         $stmt = $conn->prepare("
             INSERT INTO `system_settings` (`setting_key`, `setting_value`)
             VALUES ('qr_rotation_count', ?)
             ON DUPLICATE KEY UPDATE `setting_value` = VALUES(`setting_value`)
         ");
-        $stmt->bind_param('s', $nextMultiple);
-        $stmt->execute();
-        $stmt->close();
+        if ($stmt) {
+            $stmt->bind_param('s', $nextMultiple);
+            $stmt->execute();
+            $stmt->close();
+        }
     }
 
     // 3. Đọc tổng số lượt hiện tại
@@ -118,10 +138,16 @@ try {
         if ($txRes && $txRow = $txRes->fetch_assoc()) {
             $totalCount = (int)$txRow['c'];
         }
-        @$conn->query("
+        $initStmt = $conn->prepare("
             INSERT IGNORE INTO `system_settings` (`setting_key`, `setting_value`)
-            VALUES ('qr_rotation_count', '{$totalCount}')
+            VALUES ('qr_rotation_count', ?)
         ");
+        if ($initStmt) {
+            $totalStr = (string)$totalCount;
+            $initStmt->bind_param('s', $totalStr);
+            $initStmt->execute();
+            $initStmt->close();
+        }
     }
 
     $conn->close();
@@ -141,12 +167,13 @@ try {
     ], "Đang sử dụng tài khoản: {$activeAccount['name']} ({$cycleCount}/" . QR_ROTATE_THRESHOLD . ")");
 
 } catch (Throwable $e) {
+    error_log('[qr-active] Unexpected error: ' . $e->getMessage());
     qr_response(true, [
         'index'     => 0,
         'count'     => 0,
         'threshold' => QR_ROTATE_THRESHOLD,
         'total'     => 0,
         'account'   => QR_ACCOUNTS[0],
-        'error'     => $e->getMessage()
+        'warning'   => 'Fallback to default account'
     ]);
 }

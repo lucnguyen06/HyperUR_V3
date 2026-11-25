@@ -89,7 +89,7 @@ function write_admin_log($conn, $admin_id, $username, $action, $description, $ta
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ");
         $stmt->bind_param(
-            'iissssssss',
+            'isssssssss',
             $admin_id, $username, $action, $table_name, $record_id, $description, $oldJson, $newJson, $ip, $ua
         );
         $stmt->execute();

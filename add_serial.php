@@ -186,12 +186,18 @@ function ip_in_cidr($ip, $cidr) {
     if (strpos($cidr, '/') === false) {
         return $ip === $cidr;
     }
-    list($subnet, $bits) = explode('/', $cidr, 2);
-    if ($bits === '') $bits = 32;
-    $bits = (int)$bits;
+    list($subnet, $bitsRaw) = explode('/', $cidr, 2);
+    $bitsRaw = trim($bitsRaw);
+    if ($bitsRaw === '') {
+        $bits = 32;
+    } elseif (!ctype_digit($bitsRaw)) {
+        return false;
+    } else {
+        $bits = (int)$bitsRaw;
+    }
     $ip_long     = ip2long($ip);
     $subnet_long = ip2long($subnet);
-    if ($ip_long === false || $subnet_long === false) return false;
+    if ($ip_long === false || $subnet_long === false || $bits < 0 || $bits > 32) return false;
     if ($bits === 0) return true;
     $mask = -1 << (32 - $bits);
     return ($ip_long & $mask) === ($subnet_long & $mask);
@@ -231,9 +237,9 @@ function build_canonical_url($serial, $device, $gmail, $time, $extra = []) {
 $format = strtolower($_GET['format'] ?? $_POST['format'] ?? 'html');
 $isJson = ($format === 'json') || (isset($_SERVER['HTTP_ACCEPT']) && stripos($_SERVER['HTTP_ACCEPT'], 'application/json') !== false);
 
-$ip = client_ip();
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 
-// IP whitelist (optional)
+// IP whitelist (optional - chỉ dùng REMOTE_ADDR để tránh giả mạo X-Forwarded-For)
 if (!is_ip_allowed($ip)) {
     if ($isJson) {
         json_response_add(false, 'IP ' . $ip . ' không được phép truy cập endpoint này', null, 403);
@@ -359,7 +365,12 @@ if ($existing) {
         $upd->bind_param('sssi', $device, $gmail, $time_store, $existing['STT']);
         $upd->execute();
         $upd->close();
-        @$conn->query("UPDATE registrations SET status = 'Active', activated_at = NOW() WHERE LOWER(TRIM(serial)) = LOWER('{$serial}')");
+        $updReg = $conn->prepare("UPDATE registrations SET status = 'Active', activated_at = NOW() WHERE LOWER(TRIM(serial)) = LOWER(?)");
+        if ($updReg) {
+            $updReg->bind_param('s', $serial);
+            $updReg->execute();
+            $updReg->close();
+        }
         $conn->close();
         if ($isJson) {
             json_response_add(true, 'Kích hoạt serial thành công', [
@@ -451,10 +462,11 @@ $new_data = [
     'source_ip' => $ip
 ];
 $new_json    = json_encode($new_data, JSON_UNESCAPED_UNICODE);
-$sys_user_id = null;
+$sys_user_id = 0;
 $sys_user    = 'system';
 $table_name  = 'serial';
 $record_id   = (string)$newStt;
+$log_id      = null;
 
 try {
     $log = $conn->prepare("

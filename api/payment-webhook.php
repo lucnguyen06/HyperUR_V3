@@ -386,40 +386,34 @@ foreach ($candidateSerials as $candidate) {
 }
 
 // 10c. KHÁCH CHUYỂN KHOẢN TRƯỚC KHI BẤM NÚT ĐĂNG KÝ TRÊN WEB
-// Nếu serial chưa có trong DB nhưng nội dung CK chứa serial hợp lệ (>= 4 ký tự):
-// Vẫn tự động chấp nhận và kích hoạt ngay, không bắt khách phải submit form trước!
-$extractedCodename = 'Mobile';
+// Chỉ chấp nhận khi nội dung CK có đúng tiền tố "UR" và token serial đứng SAU "UR"
+// (tránh kích hoạt nhầm giao dịch thường như "chuyen tien mua rom").
+// ⚠️ CHƯA ghi DB ở đây — chỉ ghi sau khi xác nhận đủ số tiền ($amountOk) ở bước 11!
+$extractedCodename    = 'Mobile';
+$needsDirectRegInsert = false;
 if ($matchedSerial === null && !empty($candidateSerials)) {
-    $topCandidate = $candidateSerials[0];
-    if (sepay_is_serial($topCandidate)) {
-        $matchedSerial = trim($topCandidate);
-        $allTokens = sepay_tokens($matchText);
-        $urIdx = array_search('UR', $allTokens, true);
-        if ($urIdx !== false && isset($allTokens[$urIdx + 1])) {
-            $nextTok = $allTokens[$urIdx + 1];
-            if ($nextTok !== $matchedSerial && preg_match('/^[A-Z0-9._-]{2,30}$/i', $nextTok)) {
-                $extractedCodename = strtolower($nextTok);
+    $strippedTokens = sepay_tokens(sepay_strip_emails($matchText));
+    $urIdx = array_search('UR', $strippedTokens, true);
+    if ($urIdx !== false) {
+        $postUrTokens = array_slice($strippedTokens, $urIdx + 1);
+        $directCandidate = null;
+        foreach ($candidateSerials as $cand) {
+            if (in_array($cand, $postUrTokens, true) && sepay_is_serial($cand)) {
+                $directCandidate = $cand;
+                break;
             }
         }
-        $autoEmail = sepay_extract_email($matchText);
-        $matchedEmail = $autoEmail ?: (string)sepay_cfg('SEPAY_DEFAULT_EMAIL', 'hyperur2026@gmail.com');
-
-        // Tạo sẵn bản ghi trong registrations để đồng bộ
-        $insReg = $conn->prepare("
-            INSERT INTO registrations 
-            (serial, codename, plan, payment_method, sender_name, sender_email, transaction_code, status, activated_at)
-            VALUES (?, ?, 'Đăng kí có Ủng hộ (Vĩnh viễn)', 'SePay (Chuyển khoản tự động)', 'Khách chuyển khoản VietQR', ?, ?, 'Active', NOW())
-            ON DUPLICATE KEY UPDATE 
-                status = 'Active', 
-                activated_at = IFNULL(activated_at, NOW()),
-                transaction_code = VALUES(transaction_code)
-        ");
-        if ($insReg) {
-            $txCode = 'SEPAY-' . $sepayId;
-            $insReg->bind_param('ssss', $matchedSerial, $extractedCodename, $matchedEmail, $txCode);
-            $insReg->execute();
-            $insReg->close();
-            $regUpdated = true;
+        if ($directCandidate !== null) {
+            $matchedSerial = trim($directCandidate);
+            if (isset($strippedTokens[$urIdx + 1])) {
+                $nextTok = $strippedTokens[$urIdx + 1];
+                if ($nextTok !== $matchedSerial && preg_match('/^[A-Z0-9._-]{2,30}$/i', $nextTok)) {
+                    $extractedCodename = strtolower($nextTok);
+                }
+            }
+            $autoEmail = sepay_extract_email($matchText);
+            $matchedEmail = $autoEmail ?: (string)sepay_cfg('SEPAY_DEFAULT_EMAIL', 'hyperur2026@gmail.com');
+            $needsDirectRegInsert = true;
         }
     }
 }
@@ -456,6 +450,7 @@ if ($matchedSerial === null) {
 $regUpdated     = false;
 $serialInserted = false;
 $serialExisted  = false;
+$serialUpgraded = false;
 
 if (!$amountOk) {
     // Tiền chưa đủ -> chỉ ghi nhận, KHÔNG kích hoạt, báo admin xử lý tay
@@ -487,7 +482,7 @@ if (!$amountOk) {
 }
 
 // 11a. Cập nhật bảng registrations -> Active
-//      (chỉ khi serial này có đơn đăng ký trên website)
+//      (hoặc tạo mới nếu khách chuyển khoản trực tiếp trước khi bấm đăng ký trên web)
 if ($regRow) {
     $updReg = $conn->prepare("
         UPDATE registrations
@@ -511,6 +506,29 @@ if ($regRow) {
             error_log('[sepay-webhook] update registrations failed: ' . $updReg->error);
         }
         $updReg->close();
+    }
+} elseif ($needsDirectRegInsert) {
+    $insReg = $conn->prepare("
+        INSERT INTO registrations
+            (serial, codename, plan, payment_method, sender_name, sender_email, transaction_code, status, activated_at)
+        VALUES (?, ?, 'Đăng kí có Ủng hộ (Vĩnh viễn)', 'SePay (Chuyển khoản tự động)', 'Khách chuyển khoản VietQR', ?, ?, 'Active', NOW())
+        ON DUPLICATE KEY UPDATE
+            status           = 'Active',
+            activated_at     = IFNULL(activated_at, NOW()),
+            expired_at       = NULL,
+            payment_method   = 'SePay (Chuyển khoản tự động)',
+            transaction_code = VALUES(transaction_code),
+            updated_at       = NOW()
+    ");
+    if ($insReg) {
+        $txCode = 'SEPAY-' . $sepayId;
+        $insReg->bind_param('ssss', $matchedSerial, $extractedCodename, $matchedEmail, $txCode);
+        if ($insReg->execute()) {
+            $regUpdated = true;
+        } else {
+            error_log('[sepay-webhook] insert registrations failed: ' . $insReg->error);
+        }
+        $insReg->close();
     }
 }
 
@@ -536,13 +554,20 @@ if ($chkExist) {
 }
 
 if ($serialRow) {
-    // Đã có trong bảng serial (ví dụ đã đăng ký trước ở web với trạng thái pending) -> Kích hoạt lên unlimited
-    $updExist = $conn->prepare("UPDATE serial SET Time = 'unlimited', Serial = ? WHERE STT = ?");
-    if ($updExist) {
-        $updExist->bind_param('si', $matchedSerial, $serialRow['STT']);
-        $updExist->execute();
-        $updExist->close();
-        $serialInserted = true;
+    $serialExisted = true;
+    $curTime = strtolower(trim((string)($serialRow['Time'] ?? '')));
+    if ($curTime !== 'unlimited') {
+        // Đã có trong bảng serial (ví dụ đang pending hoặc có thời hạn) -> nâng cấp lên unlimited
+        $updExist = $conn->prepare("UPDATE serial SET Time = 'unlimited', Serial = ? WHERE STT = ?");
+        if ($updExist) {
+            $updExist->bind_param('si', $matchedSerial, $serialRow['STT']);
+            if ($updExist->execute()) {
+                $serialUpgraded = true;
+            } else {
+                error_log('[sepay-webhook] upgrade serial failed: ' . $updExist->error);
+            }
+            $updExist->close();
+        }
     }
 } else {
     // Lấy STT mới = MAX(STT) + 1, tự nhảy qua số đã dùng
@@ -628,7 +653,7 @@ try {
 
 // 11d. Chốt trạng thái giao dịch
 $finalNote = 'Kích hoạt OK'
-    . ($serialInserted ? ' (thêm mới bảng serial)' : ($serialExisted ? ' (serial đã có sẵn)' : ''));
+    . ($serialInserted ? ' (thêm mới bảng serial)' : ($serialUpgraded ? ' (nâng cấp lên unlimited)' : ($serialExisted ? ' (serial đã có sẵn)' : '')));
 sepay_finalize_tx($conn, $sepayId, 'matched', $matchedSerial, $matchedEmail, sepay_cut($finalNote, 250));
 
 // 11e. Tự động tăng lượt giao dịch xoay QR VietQR (mỗi 5 giao dịch đổi tài khoản)
@@ -651,7 +676,7 @@ $tgMsg = "✅ TIỀN VÀO - SePay\n"
        . "Số tiền: " . number_format($transferAmount) . "đ\n"
        . "Nội dung: " . ($matchText !== '' ? $matchText : '(trống)')
        . "\nGD #{$sepayId} • {$gateway}"
-       . "\nĐã TỰ ĐỘNG KÍCH HOẠT" . ($serialInserted ? ' (thêm mới)' : ' (đã có sẵn)');
+       . "\nĐã TỰ ĐỘNG KÍCH HOẠT" . ($serialInserted ? ' (thêm mới)' : ($serialUpgraded ? ' (nâng cấp unlimited)' : ' (đã có sẵn)'));
 sepay_notify_telegram($tgMsg);
 
 // ============================================================

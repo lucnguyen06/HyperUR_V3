@@ -53,6 +53,14 @@ define('API_SECRET', 'CHANGE_ME_RANDOM_SECRET');
 // define('ADD_SERIAL_TOKEN', 'CHANGE_ME_ADD_SERIAL_TOKEN');
 // define('ADD_SERIAL_IP_ALLOW', '127.0.0.1,113.161.0.0/16');
 
+// Bảo vệ endpoint check_serial2.php (Telegram Bot / Quick Activation qua HTTP):
+//   - Bắt buộc khai báo CHECK_SERIAL_TOKEN (hoặc ADD_SERIAL_TOKEN / API_SECRET không phải placeholder)
+//     khi gọi qua HTTP; truyền qua header "X-API-Token", "Authorization: Bearer <token>" hoặc ?token=...
+//   - Gọi trực tiếp qua CLI (php check_serial2.php "serial=...") không cần HTTP token.
+//   - Tuỳ chọn đặt CHECK_SERIAL_IP_ALLOW để giới hạn IP (CIDR, kiểm tra theo REMOTE_ADDR).
+// define('CHECK_SERIAL_TOKEN', 'CHANGE_ME_CHECK_SERIAL_TOKEN');
+// define('CHECK_SERIAL_IP_ALLOW', '127.0.0.1');
+
 // (Tuỳ chọn) CORS cho admin panel khi chạy ở domain khác (phân tách bằng dấu phẩy).
 // Mặc định: chỉ same-origin. KHÔNG dùng '*' ở đây.
 // define('ADMIN_ALLOWED_ORIGINS', 'https://admin.hyperur.io.vn');

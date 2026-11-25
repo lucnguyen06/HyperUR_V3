@@ -52,7 +52,7 @@ graph TB
     %% Client -> Middleware / API
     UI_Serial -->|GET| API_Lookup
     UI_Serial -->|POST| API_Reg
-    UI_Serial <-->|GET / POST| API_QR
+    UI_Serial -->|GET| API_QR
     UI_Admin --> CORS --> API_Serials & API_Logs
     UI_Users --> CORS --> AuthMid --> API_Users
 
@@ -190,15 +190,16 @@ const QR_ACCOUNTS = [
 ];
 ```
 
-### B. Kiểm thử tự động (Unit / Integration Test Suite)
-Sau khi chỉnh sửa code backend, luôn chạy bộ test toàn diện 81 trường hợp kiểm thử tự động:
+### B. Kiểm thử tự động (SePay Webhook E2E Test Suite)
+Sau khi chỉnh sửa code webhook hoặc backend thanh toán, chạy bộ E2E test (yêu cầu XAMPP PHP + MySQL local):
 ```powershell
-& C:\xampp\php\php.exe tests/test_all_features.php
+powershell -ExecutionPolicy Bypass -File scripts/sepay-e2e/run.ps1
 ```
-Bộ test bao gồm:
-- Tra cứu Serial (Active, Unlimited, Expired, Legacy, Email)
-- Đăng ký gói Free & Paid
-- Quick Add qua URL (`add_serial.php`) & Telegram Bot API (`check_serial2.php`)
-- SePay Webhook HMAC-SHA256, Idempotency, Auto Active
-- Admin Auth, CRUD Serial, CRUD Admin Users, Audit Logs
-- QR Rotation API (Xoay vòng tài khoản thời gian thực)
+Bộ test tạo sandbox tạm trong `scripts/sepay-e2e/app/` với `api/payment-webhook-dev1.php` + DB `hyperur_sepay_test` (không đụng DB production) và kiểm thử:
+- Xác thực HMAC-SHA256 & chống replay (`client.php`)
+- Chống trùng giao dịch & kích hoạt lần 2 (`client-dup.php`)
+- Phục hồi retry khi giao dịch trước lỗi giữa chừng (`client-retry.php`)
+
+### C. Quy ước bảo mật endpoint
+- `api/qr-active.php`: `GET` công khai (chỉ đọc); các action ghi (`record_scan`, `record_submit`, `switch_next`) yêu cầu `POST` + phiên Admin (`_bootstrap.php`).
+- `check_serial2.php`: chạy trực tiếp qua CLI không cần token; gọi qua HTTP bắt buộc xác thực token (`CHECK_SERIAL_TOKEN` / `ADD_SERIAL_TOKEN` / `API_SECRET`, fail-closed) và hỗ trợ IP whitelist theo `REMOTE_ADDR`.

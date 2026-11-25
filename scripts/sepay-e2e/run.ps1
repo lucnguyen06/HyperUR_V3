@@ -23,10 +23,11 @@ if (Test-Path $appDir) { Remove-Item $appDir -Recurse -Force }
 New-Item -ItemType Directory -Path $appDir -Force | Out-Null
 
 Write-Host "==> Copy cac file API can thiet..." -ForegroundColor Cyan
-Copy-Item (Join-Path $root 'api\payment-webhook.php') $appDir
-Copy-Item (Join-Path $root 'api\_sepay-lib.php')     $appDir
+Copy-Item (Join-Path $root 'api\payment-webhook.php')      $appDir
+Copy-Item (Join-Path $root 'api\payment-webhook-dev1.php') $appDir
+Copy-Item (Join-Path $root 'api\_sepay-lib.php')           $appDir
 
-# config.php ri?ng cho test
+# config.php rieng cho test (khop profile DEV_1 cua payment-webhook-dev1.php)
 $testConfig = @'
 <?php
 define('DB_HOST', '127.0.0.1');
@@ -34,7 +35,7 @@ define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'hyperur_sepay_test');
 
-define('SEPAY_WEBHOOK_SECRET', 'test_secret_key_1234567890');
+define('SEPAY_WEBHOOK_SECRET_DEV_1', 'test_secret_key_1234567890');
 define('SEPAY_MIN_AMOUNT', 40000);
 define('SEPAY_DEFAULT_EMAIL', 'default@hyperur.test');
 
@@ -123,6 +124,12 @@ CREATE TABLE IF NOT EXISTS ``payment_transactions`` (
     INDEX ``idx_serial`` (``matched_serial``),
     INDEX ``idx_status`` (``status``)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS ``system_settings`` (
+    ``setting_key``   VARCHAR(50) PRIMARY KEY,
+    ``setting_value`` TEXT NOT NULL,
+    ``updated_at``    TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 "@
 
 Write-Host "==> Khoi dong PHP server (port $port)..." -ForegroundColor Cyan
@@ -143,19 +150,21 @@ $srv = Start-Process -FilePath $php `
 
 Start-Sleep -Seconds 3
 
+$webhookUrl = "http://127.0.0.1:$port/payment-webhook-dev1.php"
+
 try {
     Write-Host "==> Chay E2E test (bo chinh)..." -ForegroundColor Cyan
-    & $php (Join-Path $e2e 'client.php') "http://127.0.0.1:$port/payment-webhook.php"
+    & $php (Join-Path $e2e 'client.php') $webhookUrl
     $code1 = $LASTEXITCODE
 
     Write-Host ""
     Write-Host "==> Chay test thanh toan LAN 2 (chong trung serial)..." -ForegroundColor Cyan
-    & $php (Join-Path $e2e 'client-dup.php') "http://127.0.0.1:$port/payment-webhook.php"
+    & $php (Join-Path $e2e 'client-dup.php') $webhookUrl
     $code2 = $LASTEXITCODE
 
     Write-Host ""
     Write-Host "==> Chay test RETRY sau khi xu ly that bai..." -ForegroundColor Cyan
-    & $php (Join-Path $e2e 'client-retry.php') "http://127.0.0.1:$port/payment-webhook.php"
+    & $php (Join-Path $e2e 'client-retry.php') $webhookUrl
     $code3 = $LASTEXITCODE
 
     $code = if ($code1 -ne 0 -or $code2 -ne 0 -or $code3 -ne 0) { 1 } else { 0 }

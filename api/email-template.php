@@ -12,14 +12,19 @@ function generateEmailTemplate($data) {
 
     $serial = $esc($data['serial'] ?? '');
     $codename = $esc(strtoupper($data['codename'] ?? ''));
-    $planRaw = (string)($data['plan'] ?? '');
+    $planRaw = trim((string)($data['plan'] ?? ''));
     $plan = $esc($planRaw);
     $rawSenderName = trim((string)($data['senderName'] ?? ''));
     $senderName = $esc($rawSenderName !== '' ? $rawSenderName : 'Không cung cấp');
     $senderEmail = $esc($data['senderEmail'] ?? '');
 
-    // Check if Free plan - SO KHỚP CHÍNH XÁC (không dùng strpos '36')
-    $isFree = ($planRaw === 'Active Free' || strcasecmp($planRaw, 'Active Free (36 ngày)') === 0);
+    // Check if Free plan - SO KHỚP CHÍNH XÁC (đồng bộ FREE_PLAN_WHITELIST ở serial-register.php)
+    $freePlans = [
+        'Active Free',
+        'Active Free (36 ngày)',
+        'Active Free (36 ngày trải nghiệm)',
+    ];
+    $isFree = in_array($planRaw, $freePlans, true);
 
     $description = $isFree
         ? "Serial <strong>{$serial}</strong> đã được gửi lên hệ thống để xác nhận kích hoạt gói <strong>Active Free 36 ngày</strong>. Bạn có thể kiểm tra trạng thái kích hoạt bằng nút bên dưới."
