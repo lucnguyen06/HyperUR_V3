@@ -1828,6 +1828,23 @@ dialog:not([open]) {
   opacity: 1;
 }
 
+.scroll-to-top[data-auto-hide] {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+}
+
+.scroll-to-top[data-auto-hide].is-visible {
+  opacity: 0.85;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.scroll-to-top[data-auto-hide].is-visible:hover {
+  opacity: 1;
+  transform: translateY(-4px) scale(1.05);
+}
+
 /* Loading Spinner */
 .loading {
   text-align: center;

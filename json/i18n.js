@@ -35,12 +35,13 @@ const I18n = {
             // Hero
             'hero.title': 'Tối ưu hiệu suất',
             'hero.titleAccent': 'Khai phá tiềm năng',
-            'hero.desc': 'Mượt mà tuyệt đỉnh, mở khóa tối đa FPS gaming, giữ nguyên thuật toán Camera Leica và hoạt động 100% ứng dụng ngân hàng. Chào mừng bạn đến với HyperUR.',
+            'hero.desc': 'Mượt mà tuyệt đỉnh, mở khóa tối đa FPS gaming và giữ nguyên thuật toán Camera Leica. Chào mừng bạn đến với HyperUR.',
             'hero.ctaExplore': 'Khám Phá Thiết Bị',
             'hero.ctaGuide': 'Hướng Dẫn Flash',
             'hero.welcomePrefix': 'WELCOME TO',
             'hero.brandName': 'HYPERUR',
             'hero.statusText': 'STOCK-BASED CUSTOM ROM • XIAOMI / REDMI',
+            'hero.replayBadgeTitle': 'Nhấn để xem lại hiệu ứng chào mừng',
 
             // Stats
             'stats.devices': 'Thiết Bị Hỗ Trợ',
@@ -51,7 +52,7 @@ const I18n = {
             'stats.fpsValue': '120 FPS',
 
             // Mockup
-            'mockup.status': 'HyperUR V3.0 Stable • Online',
+            'mockup.status': 'HyperUR Stable • Online',
             'mockup.bankingTitle': 'Bảo Mật Ngân Hàng',
             'mockup.bankingDesc': 'Ẩn Bootloader mặc định, sẵn sàng app ngân hàng và sinh trắc eKYC',
             'mockup.fpsTitle': 'Tối Ưu Cảm Ứng & FPS',
@@ -72,6 +73,7 @@ const I18n = {
             'highlight.guideTitle': 'Hướng Dẫn Cài Đặt',
             'highlight.guideDesc': 'Quy trình 3 bước nhanh chóng từ tải ROM, cài đặt driver đến flash qua công cụ Flashing Tool Windows tự động và thiết lập máy.',
             'highlight.guideLink': 'Xem Quy Trình Flash',
+            'highlight.flowReady': 'SẴN SÀNG',
             'highlight.serialTitle': 'Đăng Ký & Tra Cứu Serial',
             'highlight.serialDesc': 'Kích hoạt bản quyền vĩnh viễn qua VietQR tự động 24/7 chỉ trong 10 giây và kiểm tra trạng thái Serial theo thời gian thực.',
             'highlight.serialLink': 'Mở Cổng Serial',
@@ -497,12 +499,13 @@ const I18n = {
             // Hero
             'hero.title': 'Optimize Performance.',
             'hero.titleAccent': 'Unlock Potential.',
-            'hero.desc': 'Ultimate smoothness, maximum FPS gaming unlock, preserve Leica Camera algorithms and 100% banking app compatibility. Welcome to HyperUR.',
+            'hero.desc': 'Ultimate smoothness, maximum FPS gaming unlock, and preserved Leica Camera algorithms. Welcome to HyperUR.',
             'hero.ctaExplore': 'Explore Devices',
             'hero.ctaGuide': 'Flash Guide',
             'hero.welcomePrefix': 'WELCOME TO',
             'hero.brandName': 'HYPERUR',
             'hero.statusText': 'STOCK-BASED CUSTOM ROM • XIAOMI / REDMI',
+            'hero.replayBadgeTitle': 'Click to replay the welcome animation',
 
             // Stats
             'stats.devices': 'Supported Devices',
@@ -513,7 +516,7 @@ const I18n = {
             'stats.fpsValue': '120 FPS',
 
             // Mockup
-            'mockup.status': 'HyperUR V3.0 Stable • Online',
+            'mockup.status': 'HyperUR Stable • Online',
             'mockup.bankingTitle': 'Banking Security',
             'mockup.bankingDesc': 'Hide bootloader by default, ready for banking apps and eKYC biometric',
             'mockup.fpsTitle': 'Touch & FPS Optimization',
@@ -534,6 +537,7 @@ const I18n = {
             'highlight.guideTitle': 'Installation Guide',
             'highlight.guideDesc': 'Quick 3-step process from downloading ROM, installing drivers to flashing via automatic Windows Flashing Tool and setup.',
             'highlight.guideLink': 'View Flash Process',
+            'highlight.flowReady': 'READY',
             'highlight.serialTitle': 'Register & Serial Lookup',
             'highlight.serialDesc': 'Activate permanent license via automatic 24/7 VietQR in 10 seconds and verify device serial status in real time.',
             'highlight.serialLink': 'Open Serial Portal',

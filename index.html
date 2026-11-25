@@ -30,7 +30,7 @@
             <div class="splash-logo-container">
                 <div class="splash-logo-halo"></div>
                 <div class="splash-logo-core">
-                    <img src="https://t.me/i/userpic/320/hyperur.jpg" alt="HyperUR" style="width: 100%; height: 100%; object-fit: cover; border-radius: 26px; z-index: 2;" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='images/avatar_channel.jpg'">
+                    <img src="https://t.me/i/userpic/320/hyperur.jpg" alt="HyperUR" style="width: 100%; height: 100%; object-fit: cover; border-radius: 26px; z-index: 2;" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='images/logo_hyperur.jpg'">
                     <div class="splash-ring splash-ring-1"></div>
                     <div class="splash-ring splash-ring-2"></div>
                 </div>
@@ -59,7 +59,7 @@
         <nav class="navbar glass" id="navbar">
             <div class="navbar-inner">
                 <!-- Brand Logo -->
-                <a href="index.html" class="navbar-brand">
+                <a href="index.html" class="navbar-brand" translate="no">
                     <span>Hyper<span class="brand-accent">UR</span></span>
                 </a>
 
@@ -83,17 +83,17 @@
                 <!-- Navbar Actions -->
                 <div class="navbar-actions">
                     <!-- Language Selector -->
-                    <button class="btn-icon lang-selector" id="lang-btn" aria-label="Chuyển ngôn ngữ" title="Chuyển ngôn ngữ">
+                    <button type="button" class="btn-icon lang-selector" id="lang-btn" aria-label="Chuyển ngôn ngữ" title="Chuyển ngôn ngữ" data-i18n-aria-label="lang.switch" data-i18n-title="lang.switch">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                             <circle cx="12" cy="12" r="10"></circle>
                             <line x1="2" y1="12" x2="22" y2="12"></line>
                             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                         </svg>
-                        <span class="lang-label" id="lang-label">VI</span>
+                        <span class="lang-label" id="lang-label" translate="no">VI</span>
                     </button>
 
                     <!-- Mobile Menu Hamburger Toggle (được ẩn trên desktop, hiện trên mobile/tablet) -->
-                    <button class="btn-icon mobile-menu-btn" id="mobile-menu-btn" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="nav-menu" title="Menu">
+                    <button type="button" class="btn-icon mobile-menu-btn" id="mobile-menu-btn" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="nav-menu" title="Menu" data-i18n-title="nav.menu">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
                             <line x1="4" y1="7" x2="20" y2="7" class="bar-top"></line>
                             <line x1="4" y1="12" x2="20" y2="12" class="bar-mid"></line>
@@ -102,7 +102,7 @@
                     </button>
 
                     <!-- Theme Toggle Button (Light/Dark) -->
-                    <button class="btn-icon" id="theme-btn" aria-label="Đổi giao diện Sáng/Tối" title="Chuyển chế độ sáng/tối">
+                    <button type="button" class="btn-icon" id="theme-btn" aria-label="Đổi giao diện Sáng/Tối" title="Chuyển chế độ sáng/tối" data-i18n-aria-label="nav.toggleTheme" data-i18n-title="nav.toggleTheme">
                         <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                         </svg>
@@ -137,7 +137,7 @@
                     <!-- Left Column: Flagship Editorial Copy & Telemetry -->
                     <div class="hero-copy-col">
                         <!-- Unified Hero Welcome Badge -->
-                        <div class="welcome-hero-badge" id="welcome-hero-badge" title="Nhấn để xem lại hiệu ứng chào mừng">
+                        <div class="welcome-hero-badge" id="welcome-hero-badge" role="button" tabindex="0" title="Nhấn để xem lại hiệu ứng chào mừng" data-i18n-title="hero.replayBadgeTitle">
                             <div class="welcome-badge-glow"></div>
                             <span class="welcome-badge-icon" aria-hidden="true">
                                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -156,14 +156,8 @@
 
                         <!-- Main Headline -->
                         <h1 class="hero-title">
-                            <span data-i18n="hero.title">Tối ưu hiệu năng.</span><br />
-                            <span class="grad" data-i18n="hero.titleAccent">Khai phá tiềm năng.</span>
+                            <span data-i18n="hero.title">Tối ưu hiệu năng.</span>
                         </h1>
-
-                        <!-- Subtitle -->
-                        <p class="hero-desc" data-i18n="hero.desc">
-                            Mượt mà tuyệt đỉnh, mở khóa tối đa FPS gaming và giữ nguyên thuật toán Camera Leica. Chào mừng bạn đến với HyperUR.
-                        </p>
 
                         <!-- CTA Buttons -->
                         <div class="hero-cta">
@@ -190,7 +184,7 @@
                                 <!-- Top Translucent Status Pill -->
                                 <div class="spec-dock-status-pill">
                                     <div class="mockup-status-dot" data-i18n="mockup.status">
-                                        HyperUR V3.0 Stable • Online
+                                        HyperUR Stable • Online
                                     </div>
                                     <div class="mockup-chip-info">
                                         HYPEROS OPTIMIZATION
@@ -266,7 +260,7 @@
                                     </div>
                                     <div class="ultra-live-screen-card" id="ultra-live-screen-card">
                                         <div class="ultra-live-screen-inner">
-                                            <img id="ultra-live-screen-img" src="images_devices/Screenshot_2026-11-22-05-04-08-316_com.android.settings-edit.png" onerror="this.onerror=null;this.src='images_devices/01_about_phone.png'" alt="HyperUR Firmware Live Screen">
+                                            <img id="ultra-live-screen-img" src="images_devices/Screenshot_2026-11-22-05-04-08-316_com.android.settings-edit.png" alt="HyperUR Firmware Live Screen">
                                             <div class="ultra-glare-sweep" aria-hidden="true"></div>
                                             <div class="ultra-screen-caption" id="ultra-screen-caption">HyperOS 3.0 • Xiaomi 17 Ultra (nezha)</div>
                                         </div>
@@ -294,7 +288,7 @@
                             </div>
 
                             <div class="ultra-orbit-badge orbit-bottom-left">
-                                <img src="images_devices/Screenshot_2026-11-22-05-05-24-468_com.wukong.manager-edit.png" onerror="this.onerror=null;this.src='images_devices/02_ur_manager_home.png'" class="orbit-thumb" alt="UR Manager">
+                                <img src="images_devices/Screenshot_2026-11-22-05-05-24-468_com.wukong.manager-edit.png" class="orbit-thumb" alt="UR Manager">
                                 <div>
                                     <strong>UR Manager v3.0</strong>
                                     <span>LiveBridge OTP</span>
@@ -315,9 +309,9 @@
 
                         <!-- Interactive Mode Switcher Dock -->
                         <div class="ultra-mode-switcher" id="ultra-mode-switcher" role="tablist" aria-label="Chọn góc nhìn Xiaomi 17 Ultra">
-                            <button type="button" class="ultra-mode-btn active" data-ultra-mode="nezha">Xiaomi 17 Ultra</button>
-                            <button type="button" class="ultra-mode-btn" data-ultra-mode="urmanager">UR Manager v3.0</button>
-                            <button type="button" class="ultra-mode-btn" data-ultra-mode="spoof">Spoof &amp; 120 FPS</button>
+                            <button type="button" class="ultra-mode-btn active" data-ultra-mode="nezha" role="tab" aria-selected="true">Xiaomi 17 Ultra</button>
+                            <button type="button" class="ultra-mode-btn" data-ultra-mode="urmanager" role="tab" aria-selected="false">UR Manager v3.0</button>
+                            <button type="button" class="ultra-mode-btn" data-ultra-mode="spoof" role="tab" aria-selected="false">Spoof &amp; 120 FPS</button>
                         </div>
                     </div>
                 </div>
@@ -386,7 +380,7 @@
                                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                                     <polyline points="9 12 11 14 15 10"></polyline>
                                 </svg>
-                                <span>SẴN SÀNG</span>
+                                <span data-i18n="highlight.flowReady">SẴN SÀNG</span>
                             </div>
                         </div>
                     </div>
@@ -455,7 +449,7 @@
                 <div class="fw-studio-grid">
                     <!-- Column 1: 5 Module Selector Buttons -->
                     <div class="fw-studio-modules" id="studio-modules" role="tablist" aria-label="Chọn nhóm tính năng Firmware">
-                        <button type="button" class="fw-studio-mod-btn active" data-module="manager">
+                        <button type="button" class="fw-studio-mod-btn active" data-module="manager" role="tab" aria-selected="true">
                             <span class="fw-studio-mod-icon">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                                     <circle cx="12" cy="12" r="3"></circle>
@@ -468,7 +462,7 @@
                             </span>
                         </button>
 
-                        <button type="button" class="fw-studio-mod-btn" data-module="livebridge">
+                        <button type="button" class="fw-studio-mod-btn" data-module="livebridge" role="tab" aria-selected="false">
                             <span class="fw-studio-mod-icon">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                                     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
@@ -480,7 +474,7 @@
                             </span>
                         </button>
 
-                        <button type="button" class="fw-studio-mod-btn" data-module="photos">
+                        <button type="button" class="fw-studio-mod-btn" data-module="photos" role="tab" aria-selected="false">
                             <span class="fw-studio-mod-icon">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                                     <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
@@ -493,7 +487,7 @@
                             </span>
                         </button>
 
-                        <button type="button" class="fw-studio-mod-btn" data-module="mods">
+                        <button type="button" class="fw-studio-mod-btn" data-module="mods" role="tab" aria-selected="false">
                             <span class="fw-studio-mod-icon">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
@@ -506,7 +500,7 @@
                             </span>
                         </button>
 
-                        <button type="button" class="fw-studio-mod-btn" data-module="vietnamese">
+                        <button type="button" class="fw-studio-mod-btn" data-module="vietnamese" role="tab" aria-selected="false">
                             <span class="fw-studio-mod-icon">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                                     <circle cx="12" cy="12" r="10"></circle>
@@ -553,9 +547,9 @@
 
                         <div class="fw-studio-phone-stage">
                             <img src="images/nezha.png" alt="Xiaomi 17 Ultra (nezha) Hardware" class="fw-studio-hw" loading="lazy">
-                            <div class="fw-studio-phone" id="studio-phone-frame" title="Nhấp để phóng to ảnh màn hình thực tế" data-i18n-title="studio.zoomTitle">
+                            <div class="fw-studio-phone" id="studio-phone-frame" role="button" tabindex="0" title="Nhấp để phóng to ảnh màn hình thực tế" data-i18n-title="studio.zoomTitle">
                                 <div class="fw-studio-phone-screen">
-                                    <img id="studio-screen-img" src="images_devices/Screenshot_2026-11-22-05-05-24-468_com.wukong.manager-edit.png" onerror="this.onerror=null;this.src='images_devices/02_ur_manager_home.png'" alt="Ứng Dụng UR Manager - Dashboard">
+                                    <img id="studio-screen-img" src="images_devices/Screenshot_2026-11-22-05-05-24-468_com.wukong.manager-edit.png" alt="Ứng Dụng UR Manager - Dashboard">
                                     <div class="ultra-glare-sweep" aria-hidden="true"></div>
                                 </div>
                             </div>
@@ -741,7 +735,7 @@
             <div class="footer-minimal-brand-row">
                 <a href="index.html" class="footer-logo">
                     <img src="https://t.me/i/userpic/320/hyperur.jpg" alt="HyperUR Logo" class="footer-brand-icon" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><rect width=%2240%22 height=%2240%22 rx=%2210%22 fill=%22%232563eb%22/><text x=%2250%25%22 y=%2256%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22800%22 font-size=%2218%22>H</text></svg>'">
-                    <span class="logo-text">Hyper<span class="brand-accent">UR</span></span>
+                    <span class="logo-text" translate="no">Hyper<span class="brand-accent">UR</span></span>
                 </a>
                 <div class="footer-status-pill">
                     <span class="status-pulse-dot"></span>
@@ -769,13 +763,13 @@
         </button>
         <div class="fw-lightbox-dialog">
             <div class="fw-lightbox-img-pane">
-                <img src="images/fw/ur_manager_home.jpg" alt="Firmware screenshot full view" id="fw-lightbox-img">
+                <img src="images_devices/Screenshot_2026-11-22-05-05-24-468_com.wukong.manager-edit.png" alt="Firmware screenshot full view" id="fw-lightbox-img">
             </div>
         </div>
     </div>
 
     <!-- Floating Scroll to Top Action -->
-    <a href="#hero" class="scroll-to-top" id="scroll-to-top" data-i18n-aria-label="footer.scrollTop" aria-label="Lên đầu trang">
+    <a href="#hero" class="scroll-to-top" id="scroll-to-top" data-auto-hide data-i18n-aria-label="footer.scrollTop" aria-label="Lên đầu trang">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
@@ -787,39 +781,53 @@
             const menuBtn = document.getElementById('mobile-menu-btn');
             const navMenu = document.getElementById('nav-menu');
             const backdrop = document.getElementById('mobile-nav-backdrop');
-            if (!menuBtn || !navMenu || !backdrop) return;
+            if (menuBtn && navMenu && backdrop) {
+                function closeMenu() {
+                    menuBtn.classList.remove('active');
+                    navMenu.classList.remove('is-open');
+                    backdrop.classList.remove('is-open');
+                    menuBtn.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                }
+                function openMenu() {
+                    menuBtn.classList.add('active');
+                    navMenu.classList.add('is-open');
+                    backdrop.classList.add('is-open');
+                    menuBtn.setAttribute('aria-expanded', 'true');
+                    document.body.style.overflow = 'hidden';
+                }
 
-            function closeMenu() {
-                menuBtn.classList.remove('active');
-                navMenu.classList.remove('is-open');
-                backdrop.classList.remove('is-open');
-                menuBtn.setAttribute('aria-expanded', 'false');
-                document.body.style.overflow = '';
-            }
-            function openMenu() {
-                menuBtn.classList.add('active');
-                navMenu.classList.add('is-open');
-                backdrop.classList.add('is-open');
-                menuBtn.setAttribute('aria-expanded', 'true');
-                document.body.style.overflow = 'hidden';
+                menuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const isOpen = navMenu.classList.contains('is-open');
+                    isOpen ? closeMenu() : openMenu();
+                });
+                backdrop.addEventListener('click', closeMenu);
+                document.querySelectorAll('#nav-menu .navbar-link, #nav-menu .mobile-nav-ext-link').forEach(function(link) {
+                    link.addEventListener('click', closeMenu);
+                });
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') closeMenu();
+                });
+                // Đồng bộ trạng thái khi resize qua desktop
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768) closeMenu();
+                });
             }
 
-            menuBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const isOpen = navMenu.classList.contains('is-open');
-                isOpen ? closeMenu() : openMenu();
-            });
-            backdrop.addEventListener('click', closeMenu);
-            document.querySelectorAll('#nav-menu .navbar-link, #nav-menu .mobile-nav-ext-link').forEach(function(link) {
-                link.addEventListener('click', closeMenu);
-            });
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') closeMenu();
-            });
-            // Đồng bộ trạng thái khi resize qua desktop
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 768) closeMenu();
-            });
+            const scrollTopBtn = document.getElementById('scroll-to-top');
+            if (scrollTopBtn) {
+                function toggleScrollTop() {
+                    scrollTopBtn.classList.toggle('is-visible', window.scrollY > 320);
+                }
+                window.addEventListener('scroll', toggleScrollTop, { passive: true });
+                toggleScrollTop();
+                scrollTopBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+                });
+            }
         })();
     </script>
 
@@ -834,8 +842,13 @@
 
             let isDismissed = false;
             let progressInterval = null;
+            let dismissTimer = null;
+            let hideTimer = null;
 
             function runIntro() {
+                clearInterval(progressInterval);
+                clearTimeout(dismissTimer);
+                clearTimeout(hideTimer);
                 isDismissed = false;
                 splash.style.display = 'flex';
                 // Trigger reflow to restart CSS animations if replaying
@@ -847,7 +860,6 @@
                     progressBar.style.width = '0%';
                     const startTime = performance.now();
                     const totalDuration = 3000; // 3.0s hiển thị êm ái, rõ ràng
-                    clearInterval(progressInterval);
 
                     progressInterval = setInterval(function() {
                         const elapsed = performance.now() - startTime;
@@ -859,11 +871,11 @@
 
                         if (ratio >= 1) {
                             clearInterval(progressInterval);
-                            setTimeout(dismissIntro, 300);
+                            dismissTimer = setTimeout(dismissIntro, 300);
                         }
                     }, 20);
                 } else {
-                    setTimeout(dismissIntro, 3700);
+                    dismissTimer = setTimeout(dismissIntro, 3700);
                 }
             }
 
@@ -871,12 +883,14 @@
                 if (isDismissed) return;
                 isDismissed = true;
                 clearInterval(progressInterval);
+                clearTimeout(dismissTimer);
+                clearTimeout(hideTimer);
                 splash.classList.add('splash-dismissed');
                 splash.setAttribute('aria-hidden', 'true');
                 try {
                     sessionStorage.setItem('hyperur_splash_viewed', 'true');
                 } catch (e) {}
-                setTimeout(function() {
+                hideTimer = setTimeout(function() {
                     if (isDismissed) splash.style.display = 'none';
                 }, 850);
             }
@@ -894,23 +908,66 @@
                 }
             });
 
-            // Interactive Replay: Clicking the Welcome badge in Hero section replays the intro
+            // Interactive Replay: Clicking or activating the Welcome badge in Hero section replays the intro
             if (welcomeBadge) {
                 welcomeBadge.addEventListener('click', function() {
                     runIntro();
                 });
+                welcomeBadge.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        runIntro();
+                    }
+                });
             }
 
-            // Start intro on page load
-            runIntro();
+            // Start intro once per browser session (and skip under reduced motion)
+            let alreadyViewed = false;
+            try {
+                alreadyViewed = sessionStorage.getItem('hyperur_splash_viewed') === 'true';
+            } catch (e) {}
+            const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (alreadyViewed || reduceMotion) {
+                isDismissed = true;
+                splash.classList.add('splash-dismissed');
+                splash.setAttribute('aria-hidden', 'true');
+                splash.style.display = 'none';
+            } else {
+                runIntro();
+            }
         })();
     </script>
 
-    <!-- Site Configuration (Google Drive API, flags) -->
-    <script src="json/config.js"></script>
+    <!-- Theme Toggle Handler (Lightweight, no devices.js overhead on Home) -->
+    <script>
+        (function() {
+            const themeBtn = document.getElementById('theme-btn');
+            const iconMoon = document.querySelector('.icon-moon');
+            const iconSun = document.querySelector('.icon-sun');
 
-    <!-- Theme Toggle Handler -->
-    <script src="json/devices.js"></script>
+            function updateThemeIcon(theme) {
+                if (iconMoon && iconSun) {
+                    iconMoon.style.display = theme === 'light' ? 'none' : 'block';
+                    iconSun.style.display = theme === 'light' ? 'block' : 'none';
+                }
+            }
+
+            const savedTheme = localStorage.getItem('hyperur-theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+
+            if (themeBtn) {
+                themeBtn.addEventListener('click', function() {
+                    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+                    const next = current === 'dark' ? 'light' : 'dark';
+                    document.documentElement.setAttribute('data-theme', next);
+                    try { localStorage.setItem('hyperur-theme', next); } catch (e) {}
+                    updateThemeIcon(next);
+                });
+            }
+        })();
+    </script>
 
     <!-- i18n Internationalization -->
     <script src="json/i18n.js"></script>
@@ -960,21 +1017,18 @@
                     label: 'XIAOMI 17 ULTRA • NEZHA',
                     phone: 'images/nezha.png',
                     screen: 'images_devices/Screenshot_2026-11-22-05-04-08-316_com.android.settings-edit.png',
-                    altScreen: 'images_devices/01_about_phone.png',
                     caption: 'HyperOS 3.0 • Xiaomi 17 Ultra (nezha)'
                 },
                 urmanager: {
                     label: 'UR MANAGER V3.0 • NEZHA',
                     phone: 'images/nezha.png',
                     screen: 'images_devices/Screenshot_2026-11-22-05-05-24-468_com.wukong.manager-edit.png',
-                    altScreen: 'images_devices/02_ur_manager_home.png',
                     caption: 'UR Manager v3.0 • Dashboard'
                 },
                 spoof: {
                     label: 'PLAY INTEGRITY • 120 FPS UNLOCK',
                     phone: 'images/nezha.png',
                     screen: 'images_devices/Screenshot_2026-11-22-05-05-33-092_com.wukong.manager-edit.png',
-                    altScreen: 'images_devices/03_ur_manager_spoof.png',
                     caption: { vi: 'Spoof Keybox • 36 Gói App', en: 'Spoof Keybox • 36 App Packages' }
                 }
             };
@@ -996,7 +1050,9 @@
                 if (!data || !phoneWrap || !screenWrap) return;
 
                 modeBtns.forEach(function(btn) {
-                    btn.classList.toggle('active', btn.getAttribute('data-ultra-mode') === modeKey);
+                    const isMatch = btn.getAttribute('data-ultra-mode') === modeKey;
+                    btn.classList.toggle('active', isMatch);
+                    btn.setAttribute('aria-selected', isMatch ? 'true' : 'false');
                 });
 
                 phoneWrap.classList.add('is-switching');
@@ -1005,13 +1061,7 @@
                 clearTimeout(switchTimer);
                 switchTimer = setTimeout(function() {
                     if (phoneImg) phoneImg.src = data.phone;
-                    if (screenImg) {
-                        screenImg.onerror = function() {
-                            screenImg.onerror = null;
-                            if (data.altScreen) screenImg.src = data.altScreen;
-                        };
-                        screenImg.src = data.screen;
-                    }
+                    if (screenImg) screenImg.src = data.screen;
                     if (screenCaption) screenCaption.textContent = resolveCaption(data.caption);
                     if (stageLabel) stageLabel.textContent = data.label;
                     phoneWrap.classList.remove('is-switching');
@@ -1075,7 +1125,6 @@
             const STUDIO_SCREENS = [
                 {
                     img: 'images_devices/Screenshot_2026-11-22-05-04-08-316_com.android.settings-edit.png',
-                    altImg: 'images_devices/01_about_phone.png',
                     title: {
                         vi: 'Giới Thiệu Máy Xiaomi 17 Ultra (HyperUR 3.0.312.0)',
                         en: 'About Phone — Xiaomi 17 Ultra (HyperUR 3.0.312.0)'
@@ -1083,7 +1132,6 @@
                 },
                 {
                     img: 'images_devices/Screenshot_2026-11-22-05-05-24-468_com.wukong.manager-edit.png',
-                    altImg: 'images_devices/02_ur_manager_home.png',
                     title: {
                         vi: 'Ứng Dụng UR Manager - Dashboard & Phần Cứng',
                         en: 'UR Manager App — Dashboard & Hardware Telemetry'
@@ -1091,7 +1139,6 @@
                 },
                 {
                     img: 'images_devices/Screenshot_2026-11-22-05-05-33-092_com.wukong.manager-edit.png',
-                    altImg: 'images_devices/03_ur_manager_spoof.png',
                     title: {
                         vi: 'Trung Tâm Spoof & HyperUR Keybox (36 Gói App)',
                         en: 'Spoof Center & HyperUR Keybox (36 Protected Apps)'
@@ -1099,7 +1146,6 @@
                 },
                 {
                     img: 'images_devices/Screenshot_2026_11_22_04_29_02_352_com_google_android_apps_photos.png',
-                    altImg: 'images_devices/04_google_photos_setup.png',
                     title: {
                         vi: 'Google Photos: Sao Lưu Chất Lượng Gốc Không Tính Hạn Mức',
                         en: 'Google Photos: Original-Quality Backup Without Quota'
@@ -1107,7 +1153,6 @@
                 },
                 {
                     img: 'images_devices/Screenshot_2026_11_22_04_29_25_167_com_google_android_apps_photos.png',
-                    altImg: 'images_devices/05_google_photos_unlimited.png',
                     title: {
                         vi: 'Google Photos: Pixel XL Sao Lưu Không Giới Hạn Miễn Phí',
                         en: 'Google Photos: Unlimited Free Pixel XL Backup'
@@ -1115,7 +1160,6 @@
                 },
                 {
                     img: 'images_devices/Screenshot_2026-11-22-05-05-46-188_com.wukong.manager-edit.png',
-                    altImg: 'images_devices/06_ur_manager_tweaks.png',
                     title: {
                         vi: 'Tweaks: LiveBridge OTP & Overlay 8 Thông Số',
                         en: 'Tweaks: LiveBridge OTP & 8-Metric Performance Overlay'
@@ -1123,7 +1167,6 @@
                 },
                 {
                     img: 'images_devices/Screenshot_2026-11-22-05-05-53-317_com.wukong.manager-edit.png',
-                    altImg: 'images_devices/07_ur_manager_mods.png',
                     title: {
                         vi: 'Hệ Thống Mods: Max FPS, Gemini, CTS & Thermal',
                         en: 'System Mods: Max FPS, Gemini, CTS & Thermal Manager'
@@ -1131,7 +1174,6 @@
                 },
                 {
                     img: 'images_devices/Screenshot_2026-11-22-05-03-24-507_com.android.settings-edit.png',
-                    altImg: 'images_devices/08_bootloader_locked.png',
                     title: {
                         vi: 'Trạng Thái Mở Khóa Mi: Đã Khóa & An Toàn',
                         en: 'Mi Unlock Status: Locked & Verified Secure'
@@ -1139,7 +1181,6 @@
                 },
                 {
                     img: 'images_devices/Screenshot_2026-11-22-05-04-52-265_com.xiaomi.misettings-edit.png',
-                    altImg: 'images_devices/09_refresh_rate_120hz.png',
                     title: {
                         vi: 'Tùy Chỉnh Tần Số Quét 1Hz / 60Hz / 90Hz / 120Hz',
                         en: 'Custom Refresh Rate 1Hz / 60Hz / 90Hz / 120Hz'
@@ -1147,7 +1188,6 @@
                 },
                 {
                     img: 'images_devices/Screenshot_2026-11-22-05-04-33-840_com.miui.aod-edit.png',
-                    altImg: 'images_devices/10_ambient_display.png',
                     title: {
                         vi: 'Màn Hình Ambient (AOD Toàn Màn Hình)',
                         en: 'Ambient Display (Full-Screen AOD)'
@@ -1155,7 +1195,6 @@
                 },
                 {
                     img: 'images_devices/Screenshot_2026-11-22-05-07-44-471_com.miui.home-edit.png',
-                    altImg: 'images_devices/11_notification_blur.png',
                     title: {
                         vi: 'Trung Tâm Thông Báo, Real Blur & Lịch Âm',
                         en: 'Notification Center, Real Blur & Lunar Calendar'
@@ -1317,10 +1356,6 @@
 
                 if (!phoneFrame || !studioScreenImg) return;
                 if (!animate) {
-                    studioScreenImg.onerror = function() {
-                        studioScreenImg.onerror = null;
-                        if (scr.altImg) studioScreenImg.src = scr.altImg;
-                    };
                     studioScreenImg.src = scr.img;
                     studioScreenImg.alt = scrTitle;
                     if (screenCap) screenCap.textContent = scrTitle;
@@ -1330,10 +1365,6 @@
                 phoneFrame.classList.add('is-swapping');
                 clearTimeout(studioSwapTimer);
                 studioSwapTimer = setTimeout(function() {
-                    studioScreenImg.onerror = function() {
-                        studioScreenImg.onerror = null;
-                        if (scr.altImg) studioScreenImg.src = scr.altImg;
-                    };
                     studioScreenImg.src = scr.img;
                     studioScreenImg.alt = scrTitle;
                     if (screenCap) screenCap.textContent = scrTitle;
@@ -1349,7 +1380,9 @@
                 const mod = modWrap[lang] || modWrap.vi;
 
                 modBtns.forEach(function(btn) {
-                    btn.classList.toggle('active', btn.getAttribute('data-module') === modKey);
+                    const isMatch = btn.getAttribute('data-module') === modKey;
+                    btn.classList.toggle('active', isMatch);
+                    btn.setAttribute('aria-selected', isMatch ? 'true' : 'false');
                 });
 
                 if (detailTitle) detailTitle.textContent = mod.title;
@@ -1375,10 +1408,6 @@
                 if (!lightbox || !lightboxImg) return;
                 const scr = STUDIO_SCREENS[activeScreenIdx];
                 const lang = curLang();
-                lightboxImg.onerror = function() {
-                    lightboxImg.onerror = null;
-                    if (scr.altImg) lightboxImg.src = scr.altImg;
-                };
                 lightboxImg.src = scr.img;
                 lightboxImg.alt = scr.title[lang] || scr.title.vi;
                 lightbox.classList.add('active');
@@ -1407,7 +1436,15 @@
 
             if (prevBtn) prevBtn.addEventListener('click', function() { renderStudioScreen(activeScreenIdx - 1, true); });
             if (nextBtn) nextBtn.addEventListener('click', function() { renderStudioScreen(activeScreenIdx + 1, true); });
-            if (phoneFrame) phoneFrame.addEventListener('click', openStudioLightbox);
+            if (phoneFrame) {
+                phoneFrame.addEventListener('click', openStudioLightbox);
+                phoneFrame.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openStudioLightbox();
+                    }
+                });
+            }
             if (zoomBtn) zoomBtn.addEventListener('click', openStudioLightbox);
             if (lightboxClose) lightboxClose.addEventListener('click', closeStudioLightbox);
             if (lightbox) {
