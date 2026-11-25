@@ -8028,7 +8028,33 @@ dialog.rom-dialog[open]::backdrop {
 }
 
 .hero-copy-col .welcome-hero-badge {
-  margin-bottom: 1.35rem;
+  margin-bottom: 0.85rem;
+}
+
+.hero-rom-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.38rem 0.9rem;
+  margin-bottom: 1.55rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.34);
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #34d399;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  max-width: 100%;
+}
+
+[data-theme="light"] .hero-rom-pill {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(5, 150, 105, 0.34);
+  color: #047857;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.1);
 }
 
 .hero-copy-col .hero-title {
@@ -8915,6 +8941,13 @@ dialog.rom-dialog[open]::backdrop {
 @media (max-width: 768px) {
   .hero.hero-ultra-showcase {
     padding: 2.5rem 1rem 3rem;
+  }
+
+  .hero-rom-pill {
+    font-size: 0.72rem;
+    padding: 0.34rem 0.78rem;
+    justify-content: center;
+    text-align: center;
   }
 
   .ultra-stage-3d {
