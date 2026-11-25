@@ -918,21 +918,8 @@
                 });
             }
 
-            // Start intro once per browser session (and skip under reduced motion)
-            let alreadyViewed = false;
-            try {
-                alreadyViewed = sessionStorage.getItem('hyperur_splash_viewed') === 'true';
-            } catch (e) {}
-            const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-            if (alreadyViewed || reduceMotion) {
-                isDismissed = true;
-                splash.classList.add('splash-dismissed');
-                splash.setAttribute('aria-hidden', 'true');
-                splash.style.display = 'none';
-            } else {
-                runIntro();
-            }
+            // Start intro on page load
+            runIntro();
         })();
     </script>
 
