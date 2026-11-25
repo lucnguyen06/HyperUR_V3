@@ -28,6 +28,7 @@
     let emailCheckTimeout = null;
     let lastLookupResult = null;
     let lastLookupQuery = '';
+    let activeTabState = null;
 
     function tr(key, fallback, vars) {
         if (typeof I18n !== 'undefined' && typeof I18n.t === 'function') {
@@ -116,7 +117,7 @@
                 price: 40000,
                 priceText: '40.000đ',
                 tierKey: 'tier31',
-                tierLabel: tr('serial.tier31', 'Tích ≥31 con: 40k'),
+                tierLabel: tr('serial.tier31', 'Tích ≥31 máy: 40k'),
                 badge: tr('serial.tierBadgeDiscount', '🎁 Ưu đãi: Giảm 10k/thiết bị'),
                 badgeColor: '#3b82f6'
             };
@@ -140,11 +141,16 @@
     // 2. DOM ELEMENTS
     // =========================================================
     // Tab switching
+    const tabsWrap = document.getElementById('serial-tabs-wrap');
     const tabRegisterBtn = document.getElementById('tab-register-btn');
     const tabLookupBtn = document.getElementById('tab-lookup-btn');
     const panelRegister = document.getElementById('panel-register');
     const panelLookup = document.getElementById('panel-lookup');
     const tabSlider = document.getElementById('serial-tab-slider');
+    const summaryDeviceEl = document.getElementById('sr-summary-device');
+    const summarySerialEl = document.getElementById('sr-summary-serial');
+    const radioVndPriceEl = document.getElementById('sr-radio-vnd-price');
+    const srLiveStatus = document.getElementById('sr-live-status');
 
     // Register Form Elements
     const regForm = document.getElementById('serial-register-form');
@@ -246,46 +252,153 @@
     const clearLookupHistoryBtn = document.getElementById('btn-clear-lookup-history');
 
     // =========================================================
-    // 3. TOAST & CLIPBOARD HELPER
+    // 3. TOAST, LIVE REGION & ANIMATE UI CLIPBOARD HELPERS
     // =========================================================
+    const COPY_ICON_SVG = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+    const CHECK_DRAW_SVG = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline class="sr-draw-check" points="20 6 9 17 4 12"/></svg>';
+
+    let toastTimer = null;
     function showToast(msg) {
+        if (srLiveStatus) srLiveStatus.textContent = msg;
         if (!toast || !toastText) return;
         toastText.textContent = msg;
         toast.classList.add('show');
-        setTimeout(() => {
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
             toast.classList.remove('show');
         }, 2800);
+    }
+
+    function copyTextToClipboard(text) {
+        const fallbackCopy = () => new Promise((resolve, reject) => {
+            try {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.setAttribute('readonly', '');
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                const ok = document.execCommand('copy');
+                document.body.removeChild(ta);
+                ok ? resolve() : reject(new Error('execCommand failed'));
+            } catch (err) {
+                reject(err);
+            }
+        });
+
+        if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+            return navigator.clipboard.writeText(text).catch(() => fallbackCopy());
+        }
+        return fallbackCopy();
+    }
+
+    function markCopyBtnCopied(btn, toastMsg) {
+        if (toastMsg) showToast(toastMsg);
+        if (!btn) return;
+
+        const iconSlot = btn.querySelector('.sr-copy-icon');
+        const labelSlot = btn.querySelector('.sr-copy-label');
+
+        if (!btn.dataset.origLabel && labelSlot) {
+            btn.dataset.origLabel = labelSlot.textContent.trim();
+        }
+        btn.classList.add('is-copied');
+
+        if (iconSlot && labelSlot) {
+            iconSlot.innerHTML = CHECK_DRAW_SVG;
+            iconSlot.classList.remove('sr-swap-anim');
+            void iconSlot.offsetWidth;
+            iconSlot.classList.add('sr-swap-anim');
+
+            labelSlot.textContent = tr('serial.copiedBtn', 'Đã chép');
+            labelSlot.classList.remove('sr-blur-anim');
+            void labelSlot.offsetWidth;
+            labelSlot.classList.add('sr-blur-anim');
+        } else {
+            if (!btn.dataset.origHtml) btn.dataset.origHtml = btn.innerHTML;
+            btn.textContent = tr('serial.copiedBtn', 'Đã chép');
+        }
+
+        if (btn._resetTimer) clearTimeout(btn._resetTimer);
+        btn._resetTimer = setTimeout(() => {
+            btn.classList.remove('is-copied');
+            if (iconSlot && labelSlot) {
+                iconSlot.innerHTML = COPY_ICON_SVG;
+                labelSlot.textContent = btn.dataset.origLabel || tr('serial.copyShort', 'Chép');
+            } else if (btn.dataset.origHtml) {
+                btn.innerHTML = btn.dataset.origHtml;
+            }
+            delete btn.dataset.origLabel;
+            delete btn.dataset.origHtml;
+            btn._resetTimer = null;
+        }, 2000);
     }
 
     document.querySelectorAll('[data-copy]').forEach(btn => {
         btn.addEventListener('click', function () {
             const text = this.getAttribute('data-copy');
-            if (text && navigator.clipboard) {
-                navigator.clipboard.writeText(text).then(() => {
-                    showToast(tr('serial.toastCopied', 'Đã sao chép: {text}', { text }));
-                });
-            }
+            if (!text) return;
+            copyTextToClipboard(text).then(() => {
+                markCopyBtnCopied(this, tr('serial.toastCopied', 'Đã sao chép: {text}', { text }));
+            }).catch(() => {});
         });
     });
 
     if (btnCopySyntaxQuick) {
         btnCopySyntaxQuick.addEventListener('click', function () {
             const text = suggestedSyntax ? suggestedSyntax.textContent.trim() : 'UR';
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(text).then(() => {
-                    const span = document.getElementById('btn-copy-syntax-text');
-                    if (span) span.textContent = tr('serial.copiedShort', '✓ Đã chép');
-                    showToast(tr('serial.toastCopiedSyntax', 'Đã sao chép cú pháp: {text}', { text }));
-                    setTimeout(() => { if (span) span.textContent = tr('serial.copySyntax', 'Sao chép cú pháp'); }, 2000);
-                });
-            }
+            copyTextToClipboard(text).then(() => {
+                markCopyBtnCopied(this, tr('serial.toastCopiedSyntax', 'Đã sao chép cú pháp: {text}', { text }));
+            }).catch(() => {});
         });
     }
 
+    // Astryx Collapsible toggles (Fastboot / ADB guides)
+    document.querySelectorAll('.sr-collapsible-trigger').forEach(trig => {
+        trig.addEventListener('click', function () {
+            const box = this.closest('.sr-collapsible');
+            if (!box) return;
+            const nextOpen = !box.classList.contains('is-open');
+            box.classList.toggle('is-open', nextOpen);
+            this.setAttribute('aria-expanded', nextOpen ? 'true' : 'false');
+        });
+    });
+
     // =========================================================
-    // 4. TAB SWITCHING (ĐĂNG KÝ <-> TRA CỨU)
+    // 4. TAB SWITCHING (ĐĂNG KÝ <-> TRA CỨU) & GLIDING PILL
     // =========================================================
+    function positionTabGlider(instant) {
+        if (!tabSlider) return;
+        const activeBtn = (tabLookupBtn && tabLookupBtn.classList.contains('active')) ? tabLookupBtn : tabRegisterBtn;
+        if (!activeBtn) return;
+
+        const apply = () => {
+            const prevTransition = tabSlider.style.transition;
+            if (instant) tabSlider.style.transition = 'none';
+            tabSlider.style.width = activeBtn.offsetWidth + 'px';
+            tabSlider.style.transform = `translateX(${activeBtn.offsetLeft}px)`;
+            tabSlider.style.opacity = '1';
+            if (instant) {
+                void tabSlider.offsetWidth;
+                tabSlider.style.transition = prevTransition;
+            }
+        };
+        requestAnimationFrame(apply);
+    }
+
+    if (tabsWrap && typeof ResizeObserver !== 'undefined') {
+        new ResizeObserver(() => positionTabGlider(true)).observe(tabsWrap);
+    } else if (typeof window.addEventListener === 'function') {
+        window.addEventListener('resize', () => positionTabGlider(true));
+    }
+
     function activateTab(tabName, updateUrl) {
+        const prevTab = activeTabState;
+        const isFirstInit = (prevTab === null);
+        const dirClass = tabName === 'lookup' ? 'sr-enter-right' : 'sr-enter-left';
+        activeTabState = tabName;
+
         if (tabName === 'lookup') {
             if (tabRegisterBtn) {
                 tabRegisterBtn.classList.remove('active');
@@ -298,12 +411,17 @@
             if (panelRegister) {
                 panelRegister.hidden = true;
                 panelRegister.style.display = 'none';
+                panelRegister.classList.remove('sr-enter-left', 'sr-enter-right');
             }
             if (panelLookup) {
                 panelLookup.hidden = false;
                 panelLookup.style.display = '';
+                panelLookup.classList.remove('sr-enter-left', 'sr-enter-right');
+                if (!isFirstInit && prevTab !== tabName) {
+                    void panelLookup.offsetWidth;
+                    panelLookup.classList.add(dirClass);
+                }
             }
-            if (tabSlider) tabSlider.style.transform = 'translateX(100%)';
         } else {
             if (tabLookupBtn) {
                 tabLookupBtn.classList.remove('active');
@@ -316,13 +434,20 @@
             if (panelLookup) {
                 panelLookup.hidden = true;
                 panelLookup.style.display = 'none';
+                panelLookup.classList.remove('sr-enter-left', 'sr-enter-right');
             }
             if (panelRegister) {
                 panelRegister.hidden = false;
                 panelRegister.style.display = '';
+                panelRegister.classList.remove('sr-enter-left', 'sr-enter-right');
+                if (!isFirstInit && prevTab !== tabName) {
+                    void panelRegister.offsetWidth;
+                    panelRegister.classList.add(dirClass);
+                }
             }
-            if (tabSlider) tabSlider.style.transform = 'translateX(0%)';
         }
+
+        positionTabGlider(isFirstInit);
 
         if (updateUrl) {
             try {
@@ -334,9 +459,8 @@
                 }
                 window.history.replaceState({}, '', url.toString());
             } catch (e) { }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
-        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     if (tabRegisterBtn) {
@@ -399,6 +523,40 @@
     // =========================================================
     // 6. CATALOG THIẾT BỊ (json/devices_catalog.json)
     // =========================================================
+    function updateSummaryDevice(val) {
+        if (!summaryDeviceEl) return;
+        const clean = (val !== undefined ? val : (codenameInput ? codenameInput.value : '')).trim().toLowerCase();
+        if (!clean) {
+            summaryDeviceEl.textContent = tr('serial.summaryWaiting', 'Chưa nhập');
+            return;
+        }
+        if (devicesMap[clean]) {
+            const dev = devicesMap[clean];
+            const lang = (typeof I18n !== 'undefined' && I18n.currentLang === 'vi') ? 'vi' : 'en';
+            const devName = (dev.name && (dev.name[lang] || dev.name.en || dev.name.vi)) || clean;
+            summaryDeviceEl.textContent = `${devName} (${clean})`;
+        } else {
+            summaryDeviceEl.textContent = clean;
+        }
+    }
+
+    function updateSummarySerial(sanitizedVal) {
+        if (!summarySerialEl) return;
+        const clean = sanitizedVal !== undefined ? sanitizedVal : (serialInput ? sanitizeSerial(serialInput.value) : '');
+        summarySerialEl.textContent = clean || '—';
+    }
+
+    function setAmountWithPulse(newText) {
+        if (!donationAmountVal) return;
+        const prev = donationAmountVal.textContent;
+        donationAmountVal.textContent = newText;
+        if (prev && prev !== newText) {
+            donationAmountVal.classList.remove('sr-price-pulse');
+            void donationAmountVal.offsetWidth;
+            donationAmountVal.classList.add('sr-price-pulse');
+        }
+    }
+
     async function initCatalog() {
         try {
             const res = await fetch('./json/devices_catalog.json');
@@ -416,6 +574,11 @@
                     }
                     datalist.appendChild(frag);
                 }
+                if (codenameInput && codenameInput.value.trim()) {
+                    handleCodenameInput();
+                } else {
+                    updateSummaryDevice('');
+                }
             }
         } catch (err) {
             console.warn('Không tải được catalog gợi ý thiết bị:', err);
@@ -428,13 +591,15 @@
         const val = codenameInput.value.trim().toLowerCase();
         if (!val) {
             previewBox.classList.remove('show');
+            updateSummaryDevice('');
             updatePaymentSyntax();
             return;
         }
 
         if (devicesMap[val]) {
             const dev = devicesMap[val];
-            const devName = dev.name && dev.name.en ? dev.name.en : val;
+            const lang = (typeof I18n !== 'undefined' && I18n.currentLang === 'vi') ? 'vi' : 'en';
+            const devName = (dev.name && (dev.name[lang] || dev.name.en || dev.name.vi)) || val;
             previewText.innerHTML = tr('serial.previewFound', 'Thiết bị: <strong>{name}</strong> ({brand}) • Codename: <code>{code}</code>', {
                 name: devName,
                 brand: dev.brand || 'Xiaomi',
@@ -445,7 +610,8 @@
             previewText.innerHTML = tr('serial.previewManual', 'Mã thiết bị nhập tay: <code>{code}</code>', { code: val });
             previewBox.classList.add('show');
         }
-        
+
+        updateSummaryDevice(val);
         updatePaymentSyntax();
     }
 
@@ -499,14 +665,14 @@
             if (paymentQrCaptionText) paymentQrCaptionText.textContent = tr('serial.qrCaptionBinance', 'Quét mã bằng app Binance (5 USDT)');
             if (binanceDetailsGroup) binanceDetailsGroup.style.display = 'block';
             if (paypalDetailsGroup) paypalDetailsGroup.style.display = 'none';
-            if (donationAmountVal) donationAmountVal.textContent = '5 USDT (Only 5$)';
+            setAmountWithPulse('5 USDT');
         } else {
             if (paymentQrImg) paymentQrImg.src = 'images/QR_PAYPAL_DNT_HYPERUR.jpg';
             if (paymentQrBadgeText) paymentQrBadgeText.textContent = 'PayPal (5 USD)';
             if (paymentQrCaptionText) paymentQrCaptionText.textContent = tr('serial.qrCaptionPaypal', 'Quét mã hoặc mở PayPal gửi 5$');
             if (binanceDetailsGroup) binanceDetailsGroup.style.display = 'none';
             if (paypalDetailsGroup) paypalDetailsGroup.style.display = 'block';
-            if (donationAmountVal) donationAmountVal.textContent = '5 USD (Only 5$)';
+            setAmountWithPulse('5 USD');
         }
     }
 
@@ -519,7 +685,7 @@
 
     function selectPaymentMethod(methodKey) {
         currentPaymentMethod = methodKey;
-        const cards = document.querySelectorAll('.payment-method-card');
+        const cards = document.querySelectorAll('.sr-radio-item[data-method], .payment-method-card[data-method]');
         cards.forEach(card => {
             const isMatch = card.getAttribute('data-method') === methodKey;
             card.classList.toggle('active', isMatch);
@@ -561,9 +727,7 @@
             const count = getDeviceCountForEmail(email);
             const priceInfo = calculatePrice(count);
 
-            if (donationAmountVal) {
-                donationAmountVal.textContent = priceInfo.priceText;
-            }
+            setAmountWithPulse(priceInfo.priceText);
             if (paymentTierPill) {
                 paymentTierPill.textContent = priceInfo.tierLabel;
                 paymentTierPill.className = `tier-pill ${priceInfo.tierKey === 'base' ? 'tier-base' : (priceInfo.tierKey === 'tier30' ? 'tier-30' : 'tier-15')} current-active`;
@@ -576,7 +740,7 @@
         }
     }
 
-    document.querySelectorAll('.payment-method-card').forEach(card => {
+    document.querySelectorAll('.sr-radio-item[data-method], .payment-method-card[data-method]').forEach(card => {
         card.addEventListener('click', function () {
             const methodKey = this.getAttribute('data-method') || 'mbbank';
             selectPaymentMethod(methodKey);
@@ -636,7 +800,8 @@
             }
         }
 
-        // Cập nhật gợi ý cú pháp chuyển khoản
+        // Cập nhật gợi ý cú pháp chuyển khoản & tóm tắt
+        updateSummarySerial(sanitized);
         updatePaymentSyntax();
 
         // Cập nhật QR code với serial mới
@@ -691,11 +856,12 @@
             }
         }
 
-        // 4. Mức Ủng Hộ Áp Dụng ở khung thanh toán
+        // 4. Mức Ủng Hộ Áp Dụng ở khung thanh toán & RadioList
+        if (radioVndPriceEl) {
+            radioVndPriceEl.textContent = priceInfo.priceText;
+        }
         if (currentPaymentMethod === 'crypto_intl') {
-            if (donationAmountVal) {
-                donationAmountVal.textContent = currentIntlSub === 'paypal' ? '5 USD (Only 5$)' : '5 USDT (Only 5$)';
-            }
+            setAmountWithPulse(currentIntlSub === 'paypal' ? '5 USD' : '5 USDT');
             if (paymentTierPill) {
                 paymentTierPill.textContent = tr('serial.payIntlTag', 'Only 5$ • Giá cố định');
                 paymentTierPill.className = 'tier-pill tier-intl-fixed current-active';
@@ -704,9 +870,7 @@
                 paymentTierHint.style.display = 'none';
             }
         } else {
-            if (donationAmountVal) {
-                donationAmountVal.textContent = priceInfo.priceText;
-            }
+            setAmountWithPulse(priceInfo.priceText);
             if (paymentTierPill) {
                 paymentTierPill.textContent = priceInfo.tierLabel;
                 paymentTierPill.className = `tier-pill ${priceInfo.tierKey === 'base' ? 'tier-base' : (priceInfo.tierKey === 'tier30' ? 'tier-30' : 'tier-15')} current-active`;
@@ -1015,11 +1179,11 @@
                 if (submitBtn) {
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = `
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" aria-hidden="true">
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                             <polyline points="22 4 12 14.01 9 11.01"></polyline>
                         </svg>
-                        <span id="btn-submit-text">${tr('serial.submitBtnSend', 'Xác Nhận & Gửi Serial Lên Hệ Thống')}</span>
+                        <span id="btn-submit-text">${tr('serial.submitBtn', 'Xác Nhận & Lấy Mã QR Thanh Toán')}</span>
                     `;
                 }
                 return;
@@ -1048,17 +1212,17 @@
             if (paymentWrapper) {
                 paymentWrapper.style.display = 'block';
                 setTimeout(() => {
-                    paymentWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    paymentWrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }, 150);
             }
 
             if (submitBtn) {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = `
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" aria-hidden="true">
                         <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
-                    <span id="btn-submit-text">${tr('serial.submitSavedScanQr', 'Đã Lưu Serial — Quét Mã QR Bên Dưới Để Kích Hoạt')}</span>
+                    <span id="btn-submit-text">${tr('serial.qrInlineReady', 'Đã lưu Serial — Quét mã QR để kích hoạt')}</span>
                 `;
             }
 
@@ -1122,10 +1286,9 @@
                     if (modalQrOwnerVal) modalQrOwnerVal.textContent = activeQr.name;
                     if (modalBtnCopy) {
                         modalBtnCopy.onclick = function() {
-                            navigator.clipboard.writeText(fullSyntax).then(() => {
-                                if (modalBtnCopyText) modalBtnCopyText.textContent = tr('serial.copiedShort', '✓ Đã chép');
-                                setTimeout(() => { if (modalBtnCopyText) modalBtnCopyText.textContent = tr('serial.copyShort', 'Chép'); }, 2000);
-                            });
+                            copyTextToClipboard(fullSyntax).then(() => {
+                                markCopyBtnCopied(this, tr('serial.toastCopiedSyntax', 'Đã sao chép cú pháp: {text}', { text: fullSyntax }));
+                            }).catch(() => {});
                         };
                     }
                 }
@@ -1352,7 +1515,10 @@
                             </div>
                             <div style="font-family:'JetBrains Mono',monospace; color:var(--accent-primary, #10b981); font-size:0.85rem; display:flex; align-items:center; gap:0.5rem;">
                                 <span>SN: <strong>${item.serial}</strong></span>
-                                <button type="button" class="btn-copy-mini" data-copy-device-sn="${item.serial}" style="padding:0.15rem 0.45rem; font-size:0.75rem;">${tr('serial.copyShort', 'Chép')}</button>
+                                <button type="button" class="sr-copy-btn" data-copy-device-sn="${item.serial}" style="padding:0.18rem 0.5rem; font-size:0.73rem;">
+                                    <span class="sr-copy-icon">${COPY_ICON_SVG}</span>
+                                    <span class="sr-copy-label">${tr('serial.copyShort', 'Chép')}</span>
+                                </button>
                             </div>
                         </div>
                         <div style="display:flex; align-items:center; gap:0.6rem;">
@@ -1418,12 +1584,10 @@
                 b.addEventListener('click', function(e) {
                     e.preventDefault();
                     const sn = this.getAttribute('data-copy-device-sn');
-                    if (sn && navigator.clipboard) {
-                        navigator.clipboard.writeText(sn).then(() => {
-                            this.textContent = tr('serial.copiedShort', '✓ Đã chép');
-                            setTimeout(() => { this.textContent = tr('serial.copyShort', 'Chép'); }, 1800);
-                            showToast(tr('serial.toastCopiedSn', 'Đã sao chép Serial: {sn}', { sn }));
-                        });
+                    if (sn) {
+                        copyTextToClipboard(sn).then(() => {
+                            markCopyBtnCopied(this, tr('serial.toastCopiedSn', 'Đã sao chép Serial: {sn}', { sn }));
+                        }).catch(() => {});
                     }
                 });
             });
@@ -1523,7 +1687,7 @@
                                     <span style="font-size:0.82rem; color:#94a3b8;">${tr('serial.bankOwnerLabel', 'Chủ Tài Khoản:')}</span>
                                     <div style="display:flex; align-items:center; gap:0.5rem;">
                                         <span style="font-size:0.88rem; font-weight:700; color:#e2e8f0;">${currentQr.name}</span>
-                                        <button type="button" class="btn-copy-mini" data-copy="${currentQr.name}">${tr('serial.copyShort', 'Chép')}</button>
+                                        <button type="button" class="sr-copy-btn" data-copy="${currentQr.name}"><span class="sr-copy-icon">${COPY_ICON_SVG}</span><span class="sr-copy-label">${tr('serial.copyShort', 'Chép')}</span></button>
                                     </div>
                                 </div>
 
@@ -1531,14 +1695,14 @@
                                     <span style="font-size:0.82rem; color:#94a3b8;">${tr('serial.bankAccLabel', 'Số Tài Khoản MBBank:')}</span>
                                     <div style="display:flex; align-items:center; gap:0.5rem;">
                                         <span style="font-size:1.05rem; font-weight:800; color:#38bdf8; font-family:'JetBrains Mono', monospace;">${currentQr.acc}</span>
-                                        <button type="button" class="btn-copy-mini" data-copy="${currentQr.acc}">${tr('serial.copyShort', 'Chép')}</button>
+                                        <button type="button" class="sr-copy-btn" data-copy="${currentQr.acc}"><span class="sr-copy-icon">${COPY_ICON_SVG}</span><span class="sr-copy-label">${tr('serial.copyShort', 'Chép')}</span></button>
                                     </div>
                                 </div>
 
                                 <div style="padding:0.75rem 0.85rem; background:rgba(245, 158, 11, 0.08); border-radius:8px; border:1px solid rgba(245, 158, 11, 0.25);">
                                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
                                         <span style="font-size:0.82rem; font-weight:700; color:#fbbf24;">${tr('serial.syntaxLabel', 'Nội Dung Chuyển Khoản (Bắt Buộc):')}</span>
-                                        <button type="button" class="btn-copy-accent" data-copy-syntax-btn="${transferSyntax}" style="padding:0.25rem 0.65rem; font-size:0.75rem;">${tr('serial.copySyntaxShort', 'Chép cú pháp')}</button>
+                                        <button type="button" class="sr-copy-btn sr-copy-accent" data-copy-syntax-btn="${transferSyntax}"><span class="sr-copy-icon">${COPY_ICON_SVG}</span><span class="sr-copy-label">${tr('serial.copySyntaxShort', 'Chép cú pháp')}</span></button>
                                     </div>
                                     <div style="font-family:'JetBrains Mono', monospace; font-size:0.95rem; font-weight:700; color:#fef08a; background:rgba(0,0,0,0.35); padding:0.45rem 0.65rem; border-radius:6px; word-break:break-all;">${transferSyntax}</div>
                                     <div style="font-size:0.74rem; color:#fbbf24; margin-top:0.35rem;">${tr('serial.pendingWarning', '⚠️ Cần ghi đúng nội dung này để SePay tự động kích hoạt vĩnh viễn ngay lập tức.')}</div>
@@ -1670,12 +1834,10 @@
             lookupResultContainer.querySelectorAll('[data-copy-syntax-btn]').forEach(btn => {
                 btn.addEventListener('click', function () {
                     const text = this.getAttribute('data-copy-syntax-btn');
-                    if (text && navigator.clipboard) {
-                        navigator.clipboard.writeText(text).then(() => {
-                            this.textContent = tr('serial.copiedShort', '✓ Đã chép');
-                            showToast(tr('serial.toastCopiedSyntax', 'Đã sao chép cú pháp: {text}', { text }));
-                            setTimeout(() => { this.textContent = tr('serial.copySyntaxShort', 'Chép cú pháp'); }, 1800);
-                        });
+                    if (text) {
+                        copyTextToClipboard(text).then(() => {
+                            markCopyBtnCopied(this, tr('serial.toastCopiedSyntax', 'Đã sao chép cú pháp: {text}', { text }));
+                        }).catch(() => {});
                     }
                 });
             });
@@ -1684,10 +1846,10 @@
             lookupResultContainer.querySelectorAll('[data-copy]').forEach(btn => {
                 btn.addEventListener('click', function () {
                     const text = this.getAttribute('data-copy');
-                    if (text && navigator.clipboard) {
-                        navigator.clipboard.writeText(text).then(() => {
-                            showToast(tr('serial.toastCopied', 'Đã sao chép: {text}', { text }));
-                        });
+                    if (text) {
+                        copyTextToClipboard(text).then(() => {
+                            markCopyBtnCopied(this, tr('serial.toastCopied', 'Đã sao chép: {text}', { text }));
+                        }).catch(() => {});
                     }
                 });
             });
@@ -1993,6 +2155,12 @@
                 openQrLightbox();
             }
         });
+        paymentQrWrap.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openQrLightbox();
+            }
+        });
     }
 
     if (qrLightboxClose) qrLightboxClose.addEventListener('click', closeQrLightbox);
@@ -2021,8 +2189,10 @@
         // Khôi phục trạng thái QR xoay vòng
         restoreQrState();
 
-        // Khởi tạo hiển thị giá ban đầu (mặc định 50k)
+        // Khởi tạo hiển thị giá & tóm tắt ban đầu (mặc định 50k)
         applyPriceUI(calculatePrice(0), 0);
+        updateSummaryDevice('');
+        updateSummarySerial('');
 
         renderLookupHistory();
 
@@ -2083,6 +2253,7 @@
     }
 
     window.addEventListener('hyperur:langchange', function () {
+        positionTabGlider(true);
         const email = senderEmailInput ? senderEmailInput.value.trim() : '';
         const count = getDeviceCountForEmail(email);
         applyPriceUI(calculatePrice(count), count);
@@ -2094,9 +2265,13 @@
         }
         if (codenameInput && codenameInput.value.trim()) {
             handleCodenameInput();
+        } else {
+            updateSummaryDevice('');
         }
         if (serialInput && serialInput.value.trim()) {
             handleSerialInput();
+        } else {
+            updateSummarySerial('');
         }
         if (lastLookupResult && lastLookupQuery) {
             renderLookupResultCard(lastLookupResult, lastLookupQuery);

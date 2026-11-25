@@ -860,13 +860,53 @@
     });
   }
 
-  // Sao chép link trong dialog (dùng toast thay vì alert chặn UI)
+  // Sao chép link trong dialog — đổi trực tiếp trạng thái nút sang "Đã chép link"
+  const COPY_ICON_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+  const CHECK_ICON_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+
+  function markCopyButtonCopied(btn) {
+    if (!btn) return;
+    btn.classList.add('is-copied');
+    btn.innerHTML = CHECK_ICON_SVG + '<span>' + tr('download.copiedShort', 'Đã chép link') + '</span>';
+    if (btn._resetTimer) clearTimeout(btn._resetTimer);
+    btn._resetTimer = setTimeout(() => {
+      btn.classList.remove('is-copied');
+      btn.innerHTML = COPY_ICON_SVG + '<span>' + tr('download.copyShort', 'Chép link') + '</span>';
+      btn._resetTimer = null;
+    }, 2200);
+  }
+
+  function copyTextToClipboard(text) {
+    const fallbackCopy = () => new Promise((resolve, reject) => {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        ok ? resolve() : reject(new Error('execCommand failed'));
+      } catch (err) {
+        reject(err);
+      }
+    });
+
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+      return navigator.clipboard.writeText(text).catch(() => fallbackCopy());
+    }
+    return fallbackCopy();
+  }
+
   if (dialogContent) {
     dialogContent.addEventListener('click', (e) => {
       const copyBtn = e.target.closest('.copy-link-btn[data-url]');
       if (copyBtn) {
         const url = copyBtn.getAttribute('data-url');
-        navigator.clipboard.writeText(url).then(() => {
+        copyTextToClipboard(url).then(() => {
+          markCopyButtonCopied(copyBtn);
           showToast(tr('download.copiedAlert', 'Đã sao chép link tải Google Drive vào bộ nhớ tạm!'));
         }).catch(() => {
           prompt(tr('download.copyPrompt', 'Link tải ROM Google Drive:'), url);
