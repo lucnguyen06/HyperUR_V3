@@ -1,7 +1,7 @@
 # Project Handoff — HyperUR V3
 
-> **Last updated**: 2026-11-25  
-> **Git status**: Clean — Spec `001`–`005`, `download.html` copy feedback (`Đã chép link`), `AGENTS.md` (`astryx` sync), and `serial.html` Concept A polish (`RadioList` CSS cleanup, EN two-column alignment, `con` → `máy` copy) are committed and pushed to `origin/main`.
+> **Last updated**: 2026-11-26  
+> **Git status**: Clean — Spec `001`–`006` (including Global Site Footer Concept A — Astryx Editorial Grid) are committed and pushed to `origin/main`.
 
 ---
 
@@ -42,11 +42,15 @@ All specifications, plans, and completed task checklists live under `specs/` (in
    - Preserves all PHP/GAS backend API contracts, SePay QR rotation, URL params (`?tab=lookup`, `?serial=`, `?serial_prefill=`), and `sessionStorage` caches.
    - Post-redesign polish: removed legacy `.payment-method-card` CSS leakage on `#payment-methods-grid` and scoped `.sr-price-meta .tier-pill`, stacked `.sr-two-col` field headers and shortened placeholders (`amethyst, fuxi` / `5A1C8D2F`) for clean VI/EN alignment, and unified Vietnamese unit wording (`con` → `máy`).
 
+6. **Redesigned Global Site Footer (Concept A — Astryx Editorial Grid)** — see `specs/006-redesign-footer/`
+   - Replaced the legacy centered minimalist footer (`.site-footer-minimal`, hardcoded `189+`, missing navigation & community links) with `.ft-editorial` across all 4 public pages (`index.html`, `download.html`, `guide.html`, `serial.html`), `styles.css`, and `json/i18n.js`.
+   - Features an asymmetric 4-column editorial grid (Brand & OS status using local `images/logo_hyperur.jpg`, Navigation with `aria-current="page"`, Telegram Community channels, and Core Lead maintainers), hairline dividers, Dark/Light theme parity, 100% VI/EN i18n coverage, hover-gated rules, `:focus-visible`, and `prefers-reduced-motion` support.
+
 ---
 
 ## 2. Suggested Next Steps
 1. **Runtime PHP/MySQL Verification**: Test `api/serial-register.php`, `api/payment-webhook.php`, `api/qr-active.php`, `check_serial2.php`, and `add_serial.php` on an environment with PHP 8.x + MySQL (or run `scripts/sepay-e2e/run.ps1`).
-2. **Optional Next UI Redecorations**: The remaining major public page after `guide.html`, `download.html`, and `serial.html` is `index.html` (also check whether the shared footer pill `"Hỗ trợ 189+ thiết bị"` across pages should be updated to remove `189+`).
+2. **Optional Next UI Redecoration**: The remaining public page body after `guide.html`, `download.html`, `serial.html`, and the shared global footer is `index.html` (check hero/feature sections if further Astryx alignment is desired).
 
 ---
 

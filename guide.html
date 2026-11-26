@@ -321,27 +321,106 @@
         </div>
     </main>
 
-    <!-- Global Site Footer -->
-    <footer class="site-footer site-footer-minimal">
-        <div class="footer-glow-layer" aria-hidden="true"></div>
-        <div class="footer-inner footer-minimal-inner">
-            <div class="footer-minimal-brand-row">
-                <a href="index.html" class="footer-logo">
-                    <img src="https://t.me/i/userpic/320/hyperur.jpg" alt="HyperUR Logo" width="36" height="36" class="footer-brand-icon" referrerpolicy="no-referrer" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><rect width=%2240%22 height=%2240%22 rx=%2210%22 fill=%22%232563eb%22/><text x=%2250%25%22 y=%2256%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22800%22 font-size=%2218%22>H</text></svg>'">
-                    <span class="logo-text" translate="no">Hyper<span class="brand-accent">UR</span></span>
-                </a>
-                <div class="footer-status-pill">
-                    <span class="status-pulse-dot" aria-hidden="true"></span>
-                    <span data-i18n="footer.status">Hỗ trợ 189+ thiết bị • OS 1.0 - 4.0</span>
+    <!-- Global Site Footer (Astryx Editorial Grid) -->
+    <footer class="ft-editorial">
+        <div class="ft-inner">
+            <div class="ft-grid">
+                <!-- Brand & Mission -->
+                <div class="ft-brand">
+                    <a href="index.html" class="ft-logo">
+                        <img src="images/logo_hyperur.jpg" alt="HyperUR Logo" width="32" height="32" class="ft-logo-img" loading="lazy">
+                        <span class="ft-wordmark" translate="no">Hyper<span class="ft-wordmark-accent">UR</span></span>
+                    </a>
+                    <p class="ft-desc" data-i18n="footer.desc">Dự án ROM Custom Stock-based tối ưu hiệu năng mượt mà, tối ưu pin và an toàn tuyệt đối.</p>
+                    <div class="ft-status">
+                        <span class="ft-status-dot" aria-hidden="true"></span>
+                        <span data-i18n="footer.statusEditorial">HyperOS 1.0 – 4.0 · Xiaomi / Redmi / POCO</span>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div>
+                    <h3 class="ft-col-title" data-i18n="footer.colNav">Điều hướng</h3>
+                    <ul class="ft-list">
+                        <li><a href="index.html" class="ft-link" data-i18n="nav.home">Trang Chủ</a></li>
+                        <li><a href="download.html" class="ft-link" data-i18n="footer.navDownload">Kho Tải ROM</a></li>
+                        <li><a href="guide.html" class="ft-link" aria-current="page" data-i18n="footer.navGuide">Hướng Dẫn Flash</a></li>
+                        <li><a href="serial.html" class="ft-link" data-i18n="nav.serial">Đăng Ký &amp; Tra Cứu Serial</a></li>
+                    </ul>
+                </div>
+
+                <!-- Community -->
+                <div>
+                    <h3 class="ft-col-title" data-i18n="footer.colComm">Cộng đồng</h3>
+                    <ul class="ft-list">
+                        <li>
+                            <a href="https://t.me/hypermodupdate" target="_blank" rel="noopener noreferrer" class="ft-comm-link">
+                                <span class="ft-comm-title">
+                                    <span data-i18n="footer.commChannel">Kênh cập nhật ROM</span>
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                        <path d="M7 17L17 7M7 7h10v10"></path>
+                                    </svg>
+                                </span>
+                                <span class="ft-comm-handle" translate="no">@hypermodupdate</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://t.me/HuperUltraRateChat" target="_blank" rel="noopener noreferrer" class="ft-comm-link">
+                                <span class="ft-comm-title">
+                                    <span data-i18n="footer.commGroup">Nhóm hỗ trợ 24/7</span>
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                        <path d="M7 17L17 7M7 7h10v10"></path>
+                                    </svg>
+                                </span>
+                                <span class="ft-comm-handle" translate="no">@HuperUltraRateChat</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Maintainers -->
+                <div>
+                    <h3 class="ft-col-title" data-i18n="footer.colTeam">Phát triển</h3>
+                    <ul class="ft-list">
+                        <li>
+                            <a href="https://t.me/lcnguy06" target="_blank" rel="noopener noreferrer" class="ft-dev-link">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" class="ft-dev-icon" aria-hidden="true">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"></path>
+                                </svg>
+                                <span>
+                                    <span class="ft-dev-handle" translate="no">@lcnguy06</span>
+                                    <span class="ft-dev-role" data-i18n="footer.roleLead">Core Lead &amp; Dev</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://t.me/Usagi79" target="_blank" rel="noopener noreferrer" class="ft-dev-link">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" class="ft-dev-icon" aria-hidden="true">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"></path>
+                                </svg>
+                                <span>
+                                    <span class="ft-dev-handle" translate="no">@Usagi79</span>
+                                    <span class="ft-dev-role" data-i18n="footer.roleLead">Core Lead &amp; Dev</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
-            <p class="footer-desc footer-minimal-desc" data-i18n="footer.desc">Dự án ROM Custom Stock-based tối ưu hiệu năng mượt mà, tối ưu pin và an toàn tuyệt đối.</p>
-
-            <div class="footer-bottom footer-minimal-bottom">
-                <div class="footer-copyright">
-                    <p data-i18n="footer.copyright">© 2026 HYPERUR TEAM. BẢO LƯU MỌI QUYỀN.</p>
+            <!-- Baseline -->
+            <div class="ft-bottom">
+                <div class="ft-legal">
+                    <strong data-i18n="footer.copyrightClean">© 2026 HyperUR Team. Bảo lưu mọi quyền.</strong>
+                    <span class="ft-legal-dot" aria-hidden="true">·</span>
+                    <span data-i18n="footer.disclaimer">Dự án độc lập, không trực thuộc Xiaomi Inc.</span>
                 </div>
+                <a href="#" class="ft-top-btn" data-i18n-aria-label="footer.scrollTop" aria-label="Lên đầu trang">
+                    <span data-i18n="footer.scrollTop">Lên đầu trang</span>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <path d="M12 19V5M5 12l7-7 7 7"></path>
+                    </svg>
+                </a>
             </div>
         </div>
     </footer>
