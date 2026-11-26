@@ -1,7 +1,7 @@
 # Project Handoff — HyperUR V3
 
 > **Last updated**: 2026-11-26  
-> **Git status**: Clean — Spec `001`–`006` (including Global Site Footer Concept A — Astryx Editorial Grid) are committed and pushed to `origin/main`.
+> **Git status**: Spec `007`–`008` committed and pushed to `origin/main`.
 
 ---
 
@@ -11,7 +11,7 @@ All specifications, plans, and completed task checklists live under `specs/` (in
 
 1. **Backend Bug & Security Fixes** — see `specs/001-bug-security-fixes/`
    - Fixed `admin_logs` `bind_param` type string (`'isssssssss'`), fail-closed auth on `check_serial2.php`, admin-only mutations on `api/qr-active.php`, `api/payment-webhook.php` amount/prefix/idempotency gates, `add_serial.php` `REMOTE_ADDR` & CIDR handling, `api/email-template.php` whitelist, `scripts/sepay-e2e/run.ps1`, `README.md`, and `md/DEVELOPER_ARCHITECTURE.md`.
-   - **Note**: PHP/MySQL was **not installed** on the previous machine, so PHP endpoints still need runtime smoke testing on staging/XAMPP/production.
+   - **Note**: XAMPP PHP 8.5.13 (`C:\xampp\php\php.exe`) and MariaDB 10.11.19 (`C:\xampp\mysql\bin\mysql.exe`) are installed locally (19/19 PHP files pass `php -l`; `sql/schema.sql` and Spec 008 queries validated on MariaDB 10.11.19 `--bootstrap`), while live HTTP E2E still requires local `api/config.php` or running `scripts/sepay-e2e/run.ps1`.
 
 2. **Redesigned `guide.html` (Editorial Field Manual)** — see `specs/002-redesign-guide-page/`
    - Scoped `.guide-*` styles appended to `styles.css`, full Dark/Light theme + VI/EN i18n.
@@ -46,6 +46,14 @@ All specifications, plans, and completed task checklists live under `specs/` (in
    - Replaced the legacy centered minimalist footer (`.site-footer-minimal`, hardcoded `189+`, missing navigation & community links) with `.ft-editorial` across all 4 public pages (`index.html`, `download.html`, `guide.html`, `serial.html`), `styles.css`, and `json/i18n.js`.
    - Features an asymmetric 4-column editorial grid (Brand & OS status using local `images/logo_hyperur.jpg`, Navigation with `aria-current="page"`, Telegram Community channels, and Core Lead maintainers), hairline dividers, Dark/Light theme parity, 100% VI/EN i18n coverage, hover-gated rules, `:focus-visible`, and `prefers-reduced-motion` support.
 
+7. **Redesigned `serial.html` Modal & Lookup Cards (Concept 1A + Concept 2A)** — see `specs/007-redesign-serial-modal-lookup/`
+   - **Part 1 (`#success-dialog`, Concept 1A — Split Checkout Ngang)**: Fixed Dark-mode `--sr-*` token scoping across `.sr-modal`, `.sr-lightbox`, and `.sr-toast`; redesigned modal into a compact 2-column horizontal checkout with top-right `×` close, full `crypto_intl` (Binance Pay / PayPal) sub-tab support, non-breaking full-width transfer memo + copy buttons, `<dialog>` top-layer-safe QR lightbox handoff, and removed leftover obsolete 36-day `isFree` dead code from `serial.js` and `json/i18n.js`.
+   - **Part 2 (`#lookup-result-container` & `.lookup-history-*`, Concept 2A — Astryx Flat Ledger & Status Rail)**: Replaced legacy `.lookup-result-card` (broken `--radius-xl`/`--radius-full` sharp corners and Light-Mode-breaking dark inline styles) with `.sr-res-card` across all 5 lookup states (`email`, `active`, `pending`, `expired`, `notfound`), loading spinner, and Astryx-styled lookup history; added `escapeHtml()` sanitization and email prefill support on `[data-jump-to-register]`.
+
+8. **Dynamic Admin Telegram Routing (`@lcnguy06` / `@Usagi79`)** — see `specs/008-admin-telegram-routing/`
+   - Added `recipient_acc` and `recipient_name` to `sql/schema.sql`, `api/serial-register.php` (strict allowlist + safe `SHOW COLUMNS` auto-migration + 12-param prepared statements), and `api/serial-lookup.php` (with `payment_transactions` fallback for webhook-matched serials).
+   - Updated `serial.js`, `json/i18n.js`, `styles.css`, and `serial.html` to cache selected QR recipients (`NGUYEN TAN LUC` / `VQRQAMNWP9901` → `@lcnguy06`, `NGUYEN VAN TUC` / `VQRQANJTA5424` → `@Usagi79`), route directly when the recipient is known, and show a collapsible Astryx 2-admin picker (`.sr-admin-picker`) when the recipient is unknown.
+
 ---
 
 ## 2. Suggested Next Steps
@@ -56,6 +64,7 @@ All specifications, plans, and completed task checklists live under `specs/` (in
 
 ## 3. Useful Verification Commands
 - **JS syntax**: `node --check json/i18n.js; node --check json/devices.js; node --check serial.js`
+- **PHP syntax (XAMPP)**: `& 'C:\xampp\php\php.exe' -l api/serial-register.php; & 'C:\xampp\php\php.exe' -l api/serial-lookup.php`
 - **Git safe.directory note (Windows)**: If git reports dubious ownership, prefix with `git -c safe.directory=<repo-path> ...`.
 
 ## 4. Suggested Skills for the Next Agent

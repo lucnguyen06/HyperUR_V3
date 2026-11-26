@@ -644,75 +644,163 @@
         </div>
     </main>
 
-    <!-- Dialog Modal: Xác Nhận Thành Công (Đăng Ký) -->
-    <dialog class="reg-modal sr-modal" id="success-dialog">
-        <div class="reg-modal-content">
-            <div class="reg-modal-icon" aria-hidden="true">
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+    <!-- Dialog Modal: Xác Nhận Thành Công (Concept 1A — Split Checkout Ngang) -->
+    <dialog class="reg-modal sr-modal" id="success-dialog" aria-labelledby="modal-title-text">
+        <div class="sr-modal-shell">
+            <!-- Modal Header -->
+            <div class="sr-modal-head">
+                <div class="sr-modal-head-left">
+                    <span class="sr-modal-saved-pill">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span data-i18n="serial.modalSavedPill">Đã lưu Serial</span>
+                    </span>
+                    <h2 class="sr-modal-title" id="modal-title-text" data-i18n="serial.modalPaidTitle">Quét Mã QR Để Kích Hoạt!</h2>
+                    <span class="sr-modal-sn-chip is-mono" id="modal-serial-val">---</span>
+                </div>
+                <button type="button" class="sr-icon-close" id="modal-close-x" aria-label="Đóng Cửa Sổ" data-i18n-aria-label="serial.modalCloseBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" aria-hidden="true">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
             </div>
-            <h2 class="reg-modal-title" data-i18n="serial.modalTitleDefault">Đã Gửi Serial Lên Hệ Thống!</h2>
-            <p class="reg-modal-desc" id="modal-desc-text" data-i18n="serial.modalDescDefault">Số Serial của bạn đã được gửi lên hệ thống máy chủ để xác nhận và kích hoạt bản quyền. Email xác nhận đã được gửi đến địa chỉ email của bạn.</p>
+            <p class="sr-only" id="modal-desc-text" data-i18n="serial.modalDescDefault">Số Serial của bạn đã được gửi lên hệ thống máy chủ để xác nhận và kích hoạt bản quyền. Email xác nhận đã được gửi đến địa chỉ email của bạn.</p>
 
-            <div class="reg-modal-details">
-                <div>
-                    <span data-i18n="serial.modalLabelSn">Số Serial:</span>
-                    <span id="modal-serial-val" style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--accent-cyan);">---</span>
-                </div>
-                <div>
-                    <span data-i18n="serial.modalLabelCodename">Mã Thiết Bị (Codename):</span>
-                    <span id="modal-codename-val">---</span>
-                </div>
-                <div>
-                    <span data-i18n="serial.modalLabelPlan">Gói Đăng Ký:</span>
-                    <span id="modal-plan-val">Có Ủng hộ (Vĩnh viễn)</span>
-                </div>
-                <div>
-                    <span data-i18n="serial.modalLabelAmount">Mức Ủng Hộ:</span>
-                    <span id="modal-amount-val" style="color: var(--sr-warning, #fbbf24); font-weight: 700;">50.000đ / thiết bị</span>
-                </div>
-                <div>
-                    <span data-i18n="serial.modalLabelEmail">Email Liên Hệ:</span>
-                    <span id="modal-email-val" style="color: var(--accent-cyan); font-family: 'JetBrains Mono', monospace;">---</span>
-                </div>
-            </div>
-
-            <!-- Khung QR Thanh Toán Hiển Thị Ngay Trong Modal -->
-            <div class="modal-qr-box" id="modal-payment-qr-box" style="display: none; margin: 1rem 0; padding: 1.1rem; border-radius: 12px; text-align: center;">
-                <div class="sr-modal-qr-head" style="font-weight: 700; font-size: 0.92rem; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 0.45rem;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span data-i18n="serial.modalQrHead">Quét QR Bằng App Ngân Hàng Để Kích Hoạt</span>
-                </div>
-                <div style="display: flex; justify-content: center; margin-bottom: 0.75rem;">
-                    <img id="modal-qr-img" src="" alt="Mã QR thanh toán" width="210" height="210" style="border-radius: 12px; background: #fff; padding: 6px;" loading="lazy">
-                </div>
-                <div class="sr-modal-syntax-card" style="border-radius: 8px; padding: 0.65rem 0.85rem; margin-bottom: 0.75rem; text-align: left;">
-                    <div style="font-size: 0.76rem; color: var(--muted); margin-bottom: 0.25rem;" data-i18n="serial.modalQrSyntaxLabel">Cú pháp chuyển khoản bắt buộc:</div>
-                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
-                        <code id="modal-qr-syntax" style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; word-break: break-all;">UR ...</code>
-                        <button type="button" class="sr-copy-btn" id="modal-btn-copy-syntax" style="flex-shrink: 0;" aria-label="Sao chép cú pháp">
-                            <span class="sr-copy-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
-                            <span class="sr-copy-label" id="modal-btn-copy-text" data-i18n="serial.copyShort">Chép</span>
-                        </button>
+            <!-- Split 2-Column Body -->
+            <div class="sr-modal-split-body" id="modal-payment-qr-box">
+                <!-- Left Column: QR Stage -->
+                <div class="sr-modal-qr-pane">
+                    <div class="sr-intl-switcher" id="modal-intl-switcher" style="display: none;">
+                        <button type="button" class="sr-intl-subtab active" id="modal-sub-binance" data-modal-intl="binance">Binance Pay (5 USDT)</button>
+                        <button type="button" class="sr-intl-subtab" id="modal-sub-paypal" data-modal-intl="paypal">PayPal (5 USD)</button>
                     </div>
+
+                    <div class="sr-qr-wrap sr-modal-qr-frame" id="modal-qr-frame" role="button" tabindex="0" aria-label="Nhấn ảnh QR để phóng to" data-i18n-aria-label="serial.modalZoomHint">
+                        <div class="sr-qr-badge">
+                            <span class="sr-qr-dot" aria-hidden="true"></span>
+                            <span id="modal-qr-badge-text">MBBank VietQR 24/7</span>
+                        </div>
+                        <img id="modal-qr-img" src="" alt="Mã QR thanh toán" width="180" height="180" class="sr-qr-img" loading="lazy">
+                        <span class="sr-qr-caption" id="modal-qr-footer-text">SePay · napas 247 · MB</span>
+                    </div>
+
+                    <div class="sr-modal-amount-stack">
+                        <div class="sr-modal-amount is-mono" id="modal-amount-val">50.000đ</div>
+                        <span class="sr-modal-tier-tag" id="modal-tier-tag" data-i18n="serial.tierBase">Cơ bản: 50k</span>
+                    </div>
+                    <p class="sr-modal-zoom-hint" id="modal-qr-zoom-hint" data-i18n="serial.modalZoomHint">Nhấn ảnh QR để phóng to</p>
                 </div>
-                <div style="font-size: 0.78rem; line-height: 1.45;">
-                    MBBank (VA SePay): <strong id="modal-qr-acc-val">VQRQAMNWP9901</strong> • <strong id="modal-qr-owner-val">NGUYEN TAN LUC</strong><br>
-                    <span class="sr-modal-qr-hint" data-i18n="serial.modalQrHint">Chuyển đúng cú pháp để hệ thống SePay tự động duyệt trong 10 giây</span>
+
+                <!-- Right Column: Receipt, Full-Width Syntax & Channel Details -->
+                <div class="sr-modal-info-pane">
+                    <div class="sr-modal-receipt">
+                        <div class="sr-modal-receipt-row">
+                            <span data-i18n="serial.summaryDeviceLabel">Thiết bị</span>
+                            <strong id="modal-codename-val">---</strong>
+                        </div>
+                        <div class="sr-modal-receipt-row">
+                            <span data-i18n="serial.modalLabelPlan">Gói Đăng Ký:</span>
+                            <strong id="modal-plan-val">Đăng kí có Ủng hộ (Vĩnh viễn)</strong>
+                        </div>
+                        <div class="sr-modal-receipt-row">
+                            <span data-i18n="serial.modalLabelEmail">Email Liên Hệ:</span>
+                            <strong class="is-mono sr-modal-email-val" id="modal-email-val">---</strong>
+                        </div>
+                    </div>
+
+                    <div class="sr-modal-syntax-card">
+                        <div class="sr-syntax-head">
+                            <span data-i18n="serial.modalQrSyntaxLabel">Cú pháp chuyển khoản bắt buộc:</span>
+                            <button type="button" class="sr-copy-btn sr-copy-accent" id="modal-btn-copy-syntax" aria-label="Sao chép cú pháp">
+                                <span class="sr-copy-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+                                <span class="sr-copy-label" id="modal-btn-copy-text" data-i18n="serial.copySyntaxShort">Chép cú pháp</span>
+                            </button>
+                        </div>
+                        <code class="sr-modal-syntax-code is-mono" id="modal-qr-syntax">UR ...</code>
+                    </div>
+
+                    <div class="sr-modal-channel-rows">
+                        <!-- VietQR MBBank Details -->
+                        <div id="modal-bank-group" class="sr-modal-channel-group">
+                            <div class="sr-qr-row">
+                                <span class="sr-qr-row-lbl" data-i18n="serial.modalAccShort">STK MBBank</span>
+                                <span class="sr-qr-row-right">
+                                    <strong class="sr-qr-row-val is-mono is-accent" id="modal-qr-acc-val">VQRQAMNWP9901</strong>
+                                    <button type="button" class="sr-copy-btn" id="modal-btn-copy-acc" data-copy="VQRQAMNWP9901" aria-label="Sao chép số tài khoản">
+                                        <span class="sr-copy-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+                                        <span class="sr-copy-label" data-i18n="serial.copyShort">Chép</span>
+                                    </button>
+                                </span>
+                            </div>
+                            <div class="sr-qr-row">
+                                <span class="sr-qr-row-lbl" data-i18n="serial.bankOwnerLabel">Chủ Tài Khoản:</span>
+                                <span class="sr-qr-row-right">
+                                    <strong class="sr-qr-row-val" id="modal-qr-owner-val">NGUYEN TAN LUC</strong>
+                                    <button type="button" class="sr-copy-btn" id="modal-btn-copy-owner" data-copy="NGUYEN TAN LUC" aria-label="Sao chép tên người nhận">
+                                        <span class="sr-copy-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+                                        <span class="sr-copy-label" data-i18n="serial.copyShort">Chép</span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Binance Pay Details -->
+                        <div id="modal-binance-group" class="sr-modal-channel-group" style="display: none;">
+                            <div class="sr-qr-row">
+                                <span class="sr-qr-row-lbl" data-i18n="serial.modalBinanceUidShort">UID Binance</span>
+                                <span class="sr-qr-row-right">
+                                    <strong class="sr-qr-row-val is-mono sr-val-warning">833477683</strong>
+                                    <button type="button" class="sr-copy-btn" data-copy="833477683" aria-label="Sao chép UID Binance">
+                                        <span class="sr-copy-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+                                        <span class="sr-copy-label" data-i18n="serial.copyUid">Chép UID</span>
+                                    </button>
+                                </span>
+                            </div>
+                            <div class="sr-qr-row">
+                                <span class="sr-qr-row-lbl" data-i18n="serial.binanceNickLabel">Nickname Binance:</span>
+                                <strong class="sr-qr-row-val">lucnguyen06</strong>
+                            </div>
+                        </div>
+
+                        <!-- PayPal Details -->
+                        <div id="modal-paypal-group" class="sr-modal-channel-group" style="display: none;">
+                            <div class="sr-qr-row">
+                                <span class="sr-qr-row-lbl" data-i18n="serial.modalPaypalLinkShort">Link PayPal</span>
+                                <span class="sr-qr-row-right">
+                                    <a href="https://paypal.me/lucnguyeen" target="_blank" rel="noopener noreferrer" class="sr-qr-link is-mono">paypal.me/lucnguyeen</a>
+                                    <button type="button" class="sr-copy-btn" data-copy="https://paypal.me/lucnguyeen" aria-label="Sao chép link PayPal">
+                                        <span class="sr-copy-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
+                                        <span class="sr-copy-label" data-i18n="serial.copyLink">Chép Link</span>
+                                    </button>
+                                </span>
+                            </div>
+                            <div class="sr-qr-row">
+                                <span class="sr-qr-row-lbl" data-i18n="serial.paypalOwnerLabel">Tên Người Nhận PayPal:</span>
+                                <strong class="sr-qr-row-val">Nguyễn Lực</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="sr-modal-note">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        <span id="modal-qr-hint-text" data-i18n="serial.modalQrHintClean">Chuyển đúng cú pháp để hệ thống SePay tự động duyệt trong ~10 giây.</span>
+                    </p>
                 </div>
             </div>
 
-            <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+            <!-- Modal Footer -->
+            <div class="sr-modal-footer">
+                <button type="button" class="sr-btn-ghost" id="modal-close-btn">
+                    <span data-i18n="serial.modalCloseBtn">Đóng Cửa Sổ</span>
+                </button>
                 <button type="button" id="modal-lookup-link" class="sr-btn-primary">
-                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" aria-hidden="true">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
                     <span data-i18n="serial.modalCheckBtn">Kiểm Tra Trạng Thái Kích Hoạt Serial Ngay</span>
-                </button>
-                <button type="button" class="sr-btn-ghost sr-btn-full" id="modal-close-btn">
-                    <span data-i18n="serial.modalCloseBtn">Đóng Cửa Sổ</span>
                 </button>
             </div>
         </div>
@@ -862,6 +950,6 @@
     <script src="json/i18n.js"></script>
 
     <!-- Serial Hub Logic -->
-    <script src="serial.js?v=20261125_astrx2"></script>
+    <script src="serial.js?v=20261126_astrx4"></script>
 </body>
 </html>

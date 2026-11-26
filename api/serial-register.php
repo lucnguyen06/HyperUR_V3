@@ -86,6 +86,19 @@ try {
     $senderName = mb_substr($senderName, 0, 100);
     $transactionCode = mb_substr($transactionCode, 0, 100);
 
+    // Validate recipient account (chỉ chấp nhận 2 tài khoản hợp lệ trong hệ thống)
+    $rawRecipientAcc = strtoupper(trim((string)($data['recipientAcc'] ?? '')));
+    if ($rawRecipientAcc === 'VQRQAMNWP9901') {
+        $recipientAcc = 'VQRQAMNWP9901';
+        $recipientName = 'NGUYEN TAN LUC';
+    } elseif ($rawRecipientAcc === 'VQRQANJTA5424') {
+        $recipientAcc = 'VQRQANJTA5424';
+        $recipientName = 'NGUYEN VAN TUC';
+    } else {
+        $recipientAcc = '';
+        $recipientName = '';
+    }
+
     // Connect to database
     $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     
@@ -106,6 +119,8 @@ try {
             `sender_name`      VARCHAR(100) DEFAULT NULL,
             `sender_email`     VARCHAR(100) NOT NULL,
             `transaction_code` VARCHAR(100) DEFAULT NULL,
+            `recipient_acc`    VARCHAR(50)  DEFAULT NULL,
+            `recipient_name`   VARCHAR(100) DEFAULT NULL,
             `status`           ENUM('Pending', 'Active', 'Expired', 'Suspended') DEFAULT 'Pending',
             `activated_at`     DATETIME     DEFAULT NULL,
             `expired_at`       DATETIME     DEFAULT NULL,
@@ -130,6 +145,24 @@ try {
             INDEX `idx_created` (`created_at`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
     ");
+
+    // Tự động nâng cấp cột recipient_acc / recipient_name nếu bảng cũ chưa có
+    $hasRecipientCols = false;
+    try {
+        if ($colChk = @$conn->query("SHOW COLUMNS FROM `registrations` LIKE 'recipient_acc'")) {
+            $hasRecipientCols = ($colChk->num_rows > 0);
+            $colChk->close();
+        }
+        if (!$hasRecipientCols) {
+            @$conn->query("ALTER TABLE `registrations` ADD COLUMN `recipient_acc` VARCHAR(50) DEFAULT NULL AFTER `transaction_code`, ADD COLUMN `recipient_name` VARCHAR(100) DEFAULT NULL AFTER `recipient_acc`");
+            if ($colChk2 = @$conn->query("SHOW COLUMNS FROM `registrations` LIKE 'recipient_acc'")) {
+                $hasRecipientCols = ($colChk2->num_rows > 0);
+                $colChk2->close();
+            }
+        }
+    } catch (\Throwable $migErr) {
+        $hasRecipientCols = false;
+    }
     
     // Check if Free plan (auto-activate) - SO KHỚP CHÍNH XÁC theo whitelist
     $isFree = in_array($plan, FREE_PLAN_WHITELIST, true);
@@ -148,57 +181,116 @@ try {
         // Giữ Active nếu bản ghi cũ đã từng được kích hoạt trước đó
         $finalStatus = ($existingReg['status'] === 'Active') ? 'Active' : $status;
         
-        $updateStmt = $conn->prepare("
-            UPDATE registrations 
-            SET codename = ?, 
-                plan = ?, 
-                payment_method = ?, 
-                sender_name = ?, 
-                sender_email = ?, 
-                transaction_code = IF(transaction_code IS NULL OR transaction_code = '', ?, transaction_code),
-                status = ?,
-                activated_at = IF(? = 'Active' AND activated_at IS NULL, NOW(), activated_at),
-                serial = ?,
-                updated_at = NOW()
-            WHERE LOWER(serial) = LOWER(?)
-        ");
-        $updateStmt->bind_param(
-            "ssssssssss",
-            $codename,
-            $plan,
-            $paymentMethod,
-            $senderName,
-            $senderEmail,
-            $transactionCode,
-            $finalStatus,
-            $finalStatus,
-            $serial,
-            $serial
-        );
+        if ($hasRecipientCols) {
+            $updateStmt = $conn->prepare("
+                UPDATE registrations 
+                SET codename = ?, 
+                    plan = ?, 
+                    payment_method = ?, 
+                    sender_name = ?, 
+                    sender_email = ?, 
+                    transaction_code = IF(transaction_code IS NULL OR transaction_code = '', ?, transaction_code),
+                    recipient_acc = COALESCE(NULLIF(?, ''), recipient_acc),
+                    recipient_name = COALESCE(NULLIF(?, ''), recipient_name),
+                    status = ?,
+                    activated_at = IF(? = 'Active' AND activated_at IS NULL, NOW(), activated_at),
+                    serial = ?,
+                    updated_at = NOW()
+                WHERE LOWER(serial) = LOWER(?)
+            ");
+            $updateStmt->bind_param(
+                "ssssssssssss",
+                $codename,
+                $plan,
+                $paymentMethod,
+                $senderName,
+                $senderEmail,
+                $transactionCode,
+                $recipientAcc,
+                $recipientName,
+                $finalStatus,
+                $finalStatus,
+                $serial,
+                $serial
+            );
+        } else {
+            $updateStmt = $conn->prepare("
+                UPDATE registrations 
+                SET codename = ?, 
+                    plan = ?, 
+                    payment_method = ?, 
+                    sender_name = ?, 
+                    sender_email = ?, 
+                    transaction_code = IF(transaction_code IS NULL OR transaction_code = '', ?, transaction_code),
+                    status = ?,
+                    activated_at = IF(? = 'Active' AND activated_at IS NULL, NOW(), activated_at),
+                    serial = ?,
+                    updated_at = NOW()
+                WHERE LOWER(serial) = LOWER(?)
+            ");
+            $updateStmt->bind_param(
+                "ssssssssss",
+                $codename,
+                $plan,
+                $paymentMethod,
+                $senderName,
+                $senderEmail,
+                $transactionCode,
+                $finalStatus,
+                $finalStatus,
+                $serial,
+                $serial
+            );
+        }
         $updateStmt->execute();
         $updateStmt->close();
         $status = $finalStatus;
         
     } else {
         // Insert new record
-        $insertStmt = $conn->prepare("
-            INSERT INTO registrations 
-            (serial, codename, plan, payment_method, sender_name, sender_email, transaction_code, status, activated_at, expired_at) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        ");
-        $insertStmt->bind_param(
-            "ssssssssss",
-            $serial,
-            $codename,
-            $plan,
-            $paymentMethod,
-            $senderName,
-            $senderEmail,
-            $transactionCode,
-            $status,
-            $activatedAt,
-            $expiredAt
-        );
+        if ($hasRecipientCols) {
+            $recipientAccParam = $recipientAcc !== '' ? $recipientAcc : null;
+            $recipientNameParam = $recipientName !== '' ? $recipientName : null;
+            $insertStmt = $conn->prepare("
+                INSERT INTO registrations 
+                (serial, codename, plan, payment_method, sender_name, sender_email, transaction_code, recipient_acc, recipient_name, status, activated_at, expired_at) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ");
+            $insertStmt->bind_param(
+                "ssssssssssss",
+                $serial,
+                $codename,
+                $plan,
+                $paymentMethod,
+                $senderName,
+                $senderEmail,
+                $transactionCode,
+                $recipientAccParam,
+                $recipientNameParam,
+                $status,
+                $activatedAt,
+                $expiredAt
+            );
+        } else {
+            $insertStmt = $conn->prepare("
+                INSERT INTO registrations 
+                (serial, codename, plan, payment_method, sender_name, sender_email, transaction_code, status, activated_at, expired_at) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ");
+            $insertStmt->bind_param(
+                "ssssssssss",
+                $serial,
+                $codename,
+                $plan,
+                $paymentMethod,
+                $senderName,
+                $senderEmail,
+                $transactionCode,
+                $status,
+                $activatedAt,
+                $expiredAt
+            );
+        }
         $insertStmt->execute();
         $insertStmt->close();
     }

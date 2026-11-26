@@ -64,6 +64,8 @@ try {
             `sender_name`      VARCHAR(100) DEFAULT NULL,
             `sender_email`     VARCHAR(100) NOT NULL,
             `transaction_code` VARCHAR(100) DEFAULT NULL,
+            `recipient_acc`    VARCHAR(50)  DEFAULT NULL,
+            `recipient_name`   VARCHAR(100) DEFAULT NULL,
             `status`           ENUM('Pending', 'Active', 'Expired', 'Suspended') DEFAULT 'Pending',
             `activated_at`     DATETIME     DEFAULT NULL,
             `expired_at`       DATETIME     DEFAULT NULL,
@@ -236,7 +238,20 @@ try {
     }
 
     // Tra cứu thông tin từ bảng `registrations` (nếu có)
-    $stmtReg = $conn->prepare("SELECT serial, codename, plan, payment_method, sender_name, sender_email, transaction_code, status, created_at, activated_at, expired_at, updated_at FROM registrations WHERE LOWER(TRIM(serial)) = LOWER(?) LIMIT 1");
+    $hasRecipientCols = false;
+    try {
+        if ($colChk = @$conn->query("SHOW COLUMNS FROM `registrations` LIKE 'recipient_acc'")) {
+            $hasRecipientCols = ($colChk->num_rows > 0);
+            $colChk->close();
+        }
+    } catch (\Throwable $colEx) {
+        $hasRecipientCols = false;
+    }
+
+    $regSql = $hasRecipientCols
+        ? "SELECT serial, codename, plan, payment_method, sender_name, sender_email, transaction_code, recipient_acc, recipient_name, status, created_at, activated_at, expired_at, updated_at FROM registrations WHERE LOWER(TRIM(serial)) = LOWER(?) LIMIT 1"
+        : "SELECT serial, codename, plan, payment_method, sender_name, sender_email, transaction_code, status, created_at, activated_at, expired_at, updated_at FROM registrations WHERE LOWER(TRIM(serial)) = LOWER(?) LIMIT 1";
+    $stmtReg = $conn->prepare($regSql);
     $regRow = null;
     if ($stmtReg) {
         $stmtReg->bind_param("s", $serial);
@@ -246,6 +261,38 @@ try {
             $regRow = $resReg->fetch_assoc();
         }
         $stmtReg->close();
+    }
+
+    // Xác định tài khoản nhận chuyển khoản để định tuyến Admin hỗ trợ (@lcnguy06 / @Usagi79)
+    $resolvedRecipientAcc = '';
+    $resolvedRecipientName = '';
+    if ($regRow) {
+        $resolvedRecipientAcc = trim((string)($regRow['recipient_acc'] ?? ''));
+        $resolvedRecipientName = trim((string)($regRow['recipient_name'] ?? ''));
+    }
+    if ($resolvedRecipientAcc === '') {
+        try {
+            $stmtTx = @$conn->prepare("SELECT account_number, raw_payload FROM payment_transactions WHERE LOWER(TRIM(matched_serial)) = LOWER(?) ORDER BY id DESC LIMIT 1");
+            if ($stmtTx) {
+                $stmtTx->bind_param("s", $serial);
+                if ($stmtTx->execute()) {
+                    $resTx = $stmtTx->get_result();
+                    if ($resTx && ($txRow = $resTx->fetch_assoc())) {
+                        $haystack = strtoupper(trim((string)($txRow['account_number'] ?? '')) . ' ' . (string)($txRow['raw_payload'] ?? ''));
+                        if (strpos($haystack, 'VQRQANJTA5424') !== false || strpos($haystack, 'NGUYEN VAN TUC') !== false) {
+                            $resolvedRecipientAcc = 'VQRQANJTA5424';
+                            $resolvedRecipientName = 'NGUYEN VAN TUC';
+                        } elseif (strpos($haystack, 'VQRQAMNWP9901') !== false || strpos($haystack, 'NGUYEN TAN LUC') !== false) {
+                            $resolvedRecipientAcc = 'VQRQAMNWP9901';
+                            $resolvedRecipientName = 'NGUYEN TAN LUC';
+                        }
+                    }
+                }
+                $stmtTx->close();
+            }
+        } catch (\Throwable $txEx) {
+            // Bỏ qua nếu bảng payment_transactions chưa được tạo
+        }
     }
 
     $formatDate = function($datetime) {
@@ -322,6 +369,8 @@ try {
             'senderName'      => $regRow['sender_name'] ?? 'Thành Viên HyperUR',
             'senderEmail'     => $sRow['Gmail'] ?: ($regRow['sender_email'] ?? ''),
             'transactionCode' => $regRow['transaction_code'] ?? ('STT-' . $sRow['STT']),
+            'recipientAcc'    => $resolvedRecipientAcc,
+            'recipientName'   => $resolvedRecipientName,
             'status'          => ($statusCode === 'pending') ? 'Pending' : (($statusCode === 'expired') ? 'Expired' : 'Active'),
             'registeredDate'  => $regRow ? $formatDate($regRow['created_at']) : 'Hệ Thống',
             'activatedDate'   => $activatedDisplay,
@@ -378,6 +427,8 @@ try {
             'senderName'      => $regRow['sender_name'],
             'senderEmail'     => $regRow['sender_email'],
             'transactionCode' => $regRow['transaction_code'],
+            'recipientAcc'    => $resolvedRecipientAcc,
+            'recipientName'   => $resolvedRecipientName,
             'status'          => $st,
             'registeredDate'  => $formatDate($regRow['created_at']),
             'activatedDate'   => '',

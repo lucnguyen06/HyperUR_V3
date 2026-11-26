@@ -30,6 +30,8 @@ CREATE TABLE IF NOT EXISTS `registrations` (
     `sender_name`      VARCHAR(100) DEFAULT NULL,
     `sender_email`     VARCHAR(100) NOT NULL,
     `transaction_code` VARCHAR(100) DEFAULT NULL,
+    `recipient_acc`    VARCHAR(50)  DEFAULT NULL,
+    `recipient_name`   VARCHAR(100) DEFAULT NULL,
     `status`           ENUM('Pending', 'Active', 'Expired', 'Suspended') DEFAULT 'Pending',
     `activated_at`     DATETIME     DEFAULT NULL,
     `expired_at`       DATETIME     DEFAULT NULL,
