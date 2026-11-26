@@ -20,7 +20,7 @@
     const LOOKUP_HISTORY_KEY = 'hyperur_lookup_history';
     const SERIAL_RECIPIENTS_KEY = 'hyperur_serial_recipients';
 
-    // Dữ liệu mẫu khởi đầu (đồng bộ theo json/email_registrations.json)
+    // Cache số lượng thiết bị theo email trong phiên hiện tại
     let emailDataStore = {};
 
     let currentSelectedPlan = 'vip';
@@ -58,19 +58,6 @@
     // 1. DATA LOAD & EMAIL REGISTRATION STORAGE
     // =========================================================
     async function loadEmailRegistrationsData() {
-        // 1. Thử tải dữ liệu từ json/email_registrations.json nếu có
-        try {
-            const res = await fetch('./json/email_registrations.json', { cache: 'no-cache' });
-            if (res.ok) {
-                const json = await res.json();
-                if (json && typeof json === 'object') {
-                    emailDataStore = Object.assign({}, emailDataStore, json);
-                }
-            }
-        } catch (err) {
-            // Chạy file:// hoặc mạng offline thì dùng fallback bộ nhớ cục bộ
-        }
-
         // Dọn cache cũ trong localStorage nếu còn sót từ phiên bản trước
         try {
             localStorage.removeItem(EMAIL_STORAGE_KEY);

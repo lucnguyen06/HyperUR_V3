@@ -163,19 +163,11 @@
 
     try {
       // 1. Tải danh mục thiết bị (devices_catalog.json cục bộ — rất nhanh)
-      let catalogMap = null;
-      try {
-        const catRes = await fetch('./json/devices_catalog.json');
-        if (catRes.ok) {
-          catalogMap = await catRes.json();
-        }
-      } catch (e) {
-        console.warn('Không tải được devices_catalog.json, thử fallback manifest:', e);
+      const catRes = await fetch('./json/devices_catalog.json');
+      if (!catRes.ok) {
+        throw new Error('Failed to load devices_catalog.json');
       }
-
-      if (!catalogMap) {
-        catalogMap = await fallbackLoadManifest();
-      }
+      const catalogMap = await catRes.json();
 
       // 2. Hiển thị ngay dữ liệu đã lưu trong phiên hiện tại (sessionStorage) để reload không bị kẹt spinner
       const cachedRoms = getCachedDriveRoms();
@@ -289,29 +281,6 @@
     }
 
     return {};
-  }
-
-  /**
-   * Fallback loader cho cấu trúc cũ nếu chưa có catalog
-   */
-  async function fallbackLoadManifest() {
-    const manifestRes = await fetch('./devices/manifest.json');
-    if (!manifestRes.ok) throw new Error('Failed to load manifest');
-    const manifest = await manifestRes.json();
-    const codenames = manifest.devices || [];
-
-    const loadedMap = {};
-    const batchSize = 12;
-    for (let i = 0; i < codenames.length; i += batchSize) {
-      const batch = codenames.slice(i, i + batchSize);
-      await Promise.all(batch.map(async (code) => {
-        try {
-          const res = await fetch(`./devices/${code}.json`);
-          if (res.ok) loadedMap[code] = await res.json();
-        } catch (_) { }
-      }));
-    }
-    return loadedMap;
   }
 
   /**
